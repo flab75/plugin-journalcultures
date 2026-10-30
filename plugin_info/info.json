@@ -1,0 +1,34 @@
+{
+	"id": "journalcultures",
+	"name": "Journal de cultures",
+	"pluginVersion": "0.2",
+	"description": {
+		"fr_FR": "Fiches des plantes de la maison et du jardin (botanique, culture, pot), emplacement suivi et historisé, alerte de froid selon la rusticité et le pot, rappels d'engrais, mesures, photos et identification Pl@ntNet, journal unique des travaux.",
+		"en_US": "Plant records for house and garden (botany, growing, pot), tracked and historized location, cold alert from hardiness and pot size, fertilizer reminders, measurements, photos and Pl@ntNet identification, single work log."
+	},
+	"licence": "MIT",
+	"author": "flab",
+	"require": "4.4",
+	"os": {
+		"min": 11,
+		"max": 12.99
+	},
+	"category": "nature",
+	"hasDependency": false,
+	"hasOwnDeamon": false,
+	"changelog_beta": "https://github.com/flab75/plugin-journalcultures/blob/beta/docs/#language#/changelog.md",
+	"documentation_beta": "https://github.com/flab75/plugin-journalcultures/blob/beta/docs/#language#/index.md",
+	"changelog": "https://github.com/flab75/plugin-journalcultures/blob/master/docs/#language#/changelog.md",
+	"documentation": "https://github.com/flab75/plugin-journalcultures/blob/master/docs/#language#/index.md",
+	"language": [
+		"fr_FR"
+	],
+	"compatibility": [
+		"diy",
+		"docker",
+		"rpi",
+		"luna",
+		"atlas",
+		"smart"
+	]
+}
