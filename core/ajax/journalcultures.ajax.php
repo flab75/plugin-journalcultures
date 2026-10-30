@@ -62,6 +62,11 @@ try {
   if ($a == 'mesurer') { $eq(init('id'), 'plante')->mesurer($liste('mesures')); ajax::success(); }
   if ($a == 'photo_ajout') ajax::success($eq(init('id'), 'plante')->ajouterPhoto($_FILES['photo'] ?? []));
   if ($a == 'photo_suppr') { unlink($eq(init('id'), 'plante')->photo(init('nom'))); ajax::success(); }
+  if ($a == 'etiquette') { // photo de l'étiquette = une des photos de la plante ('' = aucune)
+    $p = $eq(init('id'), 'plante'); $n = (string)init('nom');
+    if ($n !== '') $p->photo($n);
+    journalcultures::$_sansGbif = true; $p->setConfiguration('etiquette', $n); $p->save(); ajax::success();
+  }
   if ($a == 'identifier') ajax::success($eq(init('id'), 'plante')->identifier(init('nom'), init('organe')));
 
   throw new Exception(__('Aucune méthode correspondante à', __FILE__) . ' : ' . $a);

@@ -93,11 +93,12 @@ if (!window.journalcultures) (function () {
     var r = null, w
     function avec(fn) { return function (ct) { if (r) fn(ct); else ajax('plante', {id: id}, function (x) { r = x; fn(ct) }, erreur(ct)) } }
     function recharger(k) { r = null; w.montrer(k) }
+    function charger(img, n, er) { ajax('photo', {id: id, nom: n}, function (b) { if (b instanceof Blob) { img.src = w.url(URL.createObjectURL(b)); img.onclick = function () { window.open(img.src) } } }, er, true) }
     var p = d.plantes.filter(function (x) { return x.id == id })[0] || {nom: ''}
     w = fenetre(p.nom, [
       ['fic', "{{Fiche}}", avec(function (ct) {
         var g = r.gbif || {}, s = r.etat
-        ct.innerHTML = '<table>' +
+        ct.innerHTML = (r.etiquette ? '<p><img class="jdc-et" alt="' + "{{Étiquette}}" + '" style="max-width:100%;cursor:zoom-in"></p>' : '') + '<table>' +
           '<tr><th>' + "{{Emplacement}}" + '</th><td>' + esc(s.empl || '–') + (s.t !== null ? ' · ' + nb(s.t, ' °C') : '') + (s.tmin !== null ? ' · ' + "{{min. prévue}}" + ' ' + nb(s.tmin, ' °C') : '') + (s.h !== null ? ' · ' + nb(s.h, ' %') : '') + '</td></tr>' +
           '<tr><th>' + "{{Pot}}" + '</th><td>' + esc(r.pot) + '</td></tr>' +
           '<tr><th>' + "{{Rusticité effective}}" + '</th><td>' + (s.reff === null ? "{{inconnue (pas de rusticité dans la fiche)}}" : nb(s.reff, ' °C')) + (s.raison ? ' <b class="jdc-er">' + esc(s.raison) + '</b>' : '') + '</td></tr>' +
@@ -112,6 +113,8 @@ if (!window.journalcultures) (function () {
             '<a href="https://citrusvariety.ucr.edu/" target="_blank" rel="noopener noreferrer">UC Riverside</a></small></p>' : '') +
           (r.liens.length ? '<h4>' + "{{Sources en ligne}}" + '</h4>' + r.liens.map(function (l) { return '<a href="' + esc(l[1]) + '" target="_blank" rel="noopener noreferrer">' + esc(l[0]) + '</a>' }).join(' · ') : '') +
           (d.admin == 1 ? '<p><small>' + "{{La fiche se modifie dans la page du plugin (équipement de la plante).}}" + '</small></p>' : '')
+        var ie = ct.querySelector('.jdc-et')
+        if (ie) charger(ie, r.etiquette, function () { ie.parentNode.remove() })
       })],
       ['jou', "{{Journal}}", avec(function (ct) {
         ct.innerHTML = ''
@@ -124,12 +127,13 @@ if (!window.journalcultures) (function () {
           '<div class="jdc-ph">' + r.photos.map(function (n) {
             return '<figure data-n="' + esc(n) + '"><img alt=""><figcaption>' + esc(n.slice(6, 8) + '/' + n.slice(4, 6) + '/' + n.slice(0, 4)) +
               (d.admin == 1 ? (r.plantnet == 1 ? ' · <select class="org"><option value="auto">' + "{{auto}}" + '</option><option value="leaf">' + "{{feuille}}" + '</option><option value="flower">' + "{{fleur}}" + '</option><option value="fruit">' + "{{fruit}}" + '</option><option value="bark">' + "{{écorce}}" + '</option></select> <a class="b idf">Pl@ntNet</a>' : '') +
-                ' <a class="b sup" title="' + "{{Supprimer}}" + '">✕</a>' : '') + '<div class="res"></div></figcaption></figure>'
+                ' <a class="b eti">' + (n == r.etiquette ? "{{★ étiquette}}" : "{{☆ étiquette}}") + '</a> <a class="b sup" title="' + "{{Supprimer}}" + '">✕</a>' : n == r.etiquette ? ' · ' + "{{étiquette}}" : '') + '<div class="res"></div></figcaption></figure>'
           }).join('') + '</div>' + (r.photos.length ? '' : '<p>' + "{{Aucune photo.}}" + '</p>')
         ct.querySelectorAll('.jdc-ph figure').forEach(function (fg) {
           var n = fg.dataset.n, img = fg.querySelector('img'), res = fg.querySelector('.res')
-          ajax('photo', {id: id, nom: n}, function (b) { if (b instanceof Blob) { img.src = w.url(URL.createObjectURL(b)); img.onclick = function () { window.open(img.src) } } }, function (er) { res.textContent = er }, true)
-          var s = fg.querySelector('.sup'), i = fg.querySelector('.idf')
+          charger(img, n, function (er) { res.textContent = er })
+          var s = fg.querySelector('.sup'), i = fg.querySelector('.idf'), et = fg.querySelector('.eti')
+          if (et) et.onclick = function () { ajax('etiquette', {id: id, nom: n == r.etiquette ? '' : n}, function () { recharger('pho') }, function (er) { res.textContent = er }) } // ★ = retirer
           if (s) s.onclick = function () { if (s.dataset.ok) ajax('photo_suppr', {id: id, nom: n}, function () { recharger('pho') }, function (er) { res.textContent = er }); else { s.dataset.ok = 1; s.textContent = "{{Confirmer ✕}}" } }
           if (i) i.onclick = function () {
             res.textContent = "{{Identification…}}"

@@ -41,3 +41,4 @@ le résultat reste indécis entre Poncirus et hybride de Poncirus (la consigne e
 
 ## Photos
 Gardées dans le dossier `data` du plugin (non servi directement, lues par la tuile après contrôle des droits).
+**☆ étiquette** sous une photo (administrateurs) : elle devient la photo de l'étiquette, affichée en tête de la fiche ; **★** la retire.

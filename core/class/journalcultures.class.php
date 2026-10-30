@@ -382,7 +382,8 @@ class journalcultures extends eqLogic {
     $obs = journalcultures_calc::observes($this->caracteres()); $carac = [];
     foreach ($obs as $k => $v) $carac[] = [journalcultures_calc::CARACTERES[$k][0], journalcultures_calc::CARACTERES[$k][1][$v]];
     return ['id' => $this->getId(), 'nom' => $this->getName(), 'fiche' => $f, 'carac' => $carac, 'ident' => journalcultures_calc::identifier($obs), 'gbif' => $g, 'pot' => $potTxt, 'etat' => $s, 'cmds' => $cmds,
-      'journal' => self::journal([$this->getId()], 300), 'photos' => $this->photos(), 'liens' => array_values($liens),
+      'journal' => self::journal([$this->getId()], 300), 'photos' => $ph = $this->photos(), 'liens' => array_values($liens),
+      'etiquette' => in_array($this->getConfiguration('etiquette'), $ph, true) ? $this->getConfiguration('etiquette') : '', // photo supprimée : plus d'étiquette
       'plantnet' => self::cle() !== '' ? 1 : 0];
   }
 
