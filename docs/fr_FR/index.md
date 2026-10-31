@@ -14,6 +14,17 @@ Noter simplement la vie des plantes de la maison et du jardin, même quand elles
 - Administrateurs : cocher des plantes, puis **＋ Noter** (une entrée pour chacune) ou **Déplacer…** (rentrée à la serre en un geste,
   noté au journal) ; **✓** à côté de 🌱 = engrais donné.
 
+## Mesures
+Onglet **Mesures** de la fenêtre d'une plante : choisir l'organe, saisir ce qu'on a mesuré (les champs vides sont ignorés ;
+plusieurs Ø de fruits séparés par des espaces, virgule décimale : `32 35,5 41`), une note et, au besoin, une photo. Tout part au journal en une entrée « Mesure ».
+Rapports calculés : aile / limbe (≥ 0,5 = aile très large, typique des papedas), greffon / porte-greffe (bourrelet, incompatibilité).
+Courbes historisées : hauteur, Ø du tronc (greffon, ou tronc d'une plante non greffée), nombre de feuilles, nombre de fruits (si noués, en croissance et mûrs sont tous saisis).
+Les mesures complètent les caractères d'identification vides (aile de moins de 2 mm de large = simple liseré ; pas de taille de fruit pour les fruits en doigt ou en main) ; un désaccord est noté au journal.
+
+## Page plein écran
+Cocher « Page plein écran dans le menu Accueil » dans la configuration du plugin. Même page sur ordinateur, tablette et téléphone ;
+sur grand écran la fiche s'ouvre à côté de la liste. Relue toutes les 5 minutes (bouton ↻ pour tout de suite).
+
 ## Configuration du plugin
 - **Emplacements** : `Nom | température | humidité | température minimale prévue`, une ligne chacun. Sans sonde, pas d'alerte.
 - **Marge** (3 °C) : alerte quand la température mesurée ou prévue descend à la rusticité effective + la marge.
@@ -28,6 +39,9 @@ Noter simplement la vie des plantes de la maison et du jardin, même quand elles
 - **Pot** : diamètre, hauteur, hauteur de terre, ou pleine terre.
 - **Engrais** : `semaines | produit | dose` par ligne, semaines ISO : `10-40/2`, `12,16,20`, `48-8`.
 - **Sources et points à vérifier** : où vient chaque information, et ce qui reste à confirmer.
+
+Multiplication (semis, greffe…) et sa date (`2024`, `2024-05` ou `2024-05-12`) : l'âge est affiché dans la fiche
+(« ≈ » quand seule l'année est connue).
 
 ## Identification (agrumes)
 Dans la fiche de la plante, choisir ce qui est observé (folioles, aile du pétiole, boutons floraux, taille, forme, peau et pulpe du fruit…),

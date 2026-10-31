@@ -191,6 +191,9 @@ $eqLogics = eqLogic::byType($plugin->getId());
 									: '<textarea class="eqLogicAttr form-control autogrow" data-l1key="configuration" data-l2key="' . $k . '" rows="1"></textarea>';
 								echo '</div></div>';
 							}
+							echo '<div class="form-group"><label class="col-sm-4 control-label">{{Multiplication}}</label><div class="col-sm-4"><select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="multiplication"><option value="">{{inconnue}}</option>';
+							foreach (journalcultures_calc::MULTIPLICATIONS as $m) echo '<option value="' . $m . '">' . htmlspecialchars(__(ucfirst($m), __FILE__)) . '</option>';
+							echo '</select></div><div class="col-sm-4"><input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="date_mult" placeholder="{{date : 2024, 2024-05 ou 2024-05-12}}" title="{{L\'âge de la plante en est calculé}}"></div></div>';
 							echo '<datalist id="jdc-pg">';
 							foreach (journalcultures::PORTE_GREFFES as $n => $d) echo '<option value="' . htmlspecialchars($n) . '">' . htmlspecialchars($d) . '</option>';
 							echo '</datalist>';

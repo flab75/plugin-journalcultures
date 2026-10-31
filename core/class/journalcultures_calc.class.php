@@ -148,6 +148,98 @@ class journalcultures_calc {
     return ['verdict' => $net ? 'probable' : 'indecis', 'observes' => count($obs), 'groupes' => array_slice($r, 0, 3)];
   }
 
+  const MULTIPLICATIONS = ['semis', 'greffe', 'bouture', 'marcotte', 'achat'];
+
+  // date de semis / greffe « 2024 », « 2024-05 » ou « 2024-05-12 » → « ≈ 2 ans », « 7 mois », « 1 an » ; null si illisible ou à venir
+  public static function age($d, $now = null) {
+    if (!preg_match('/^(\d{4})(?:-(\d{2})(?:-(\d{2}))?)?$/D', trim((string)$d), $m)) return null;
+    $now = $now ?? time(); $a = (int)$m[1]; $mo = ($m[2] ?? '') !== '' ? (int)$m[2] : null;
+    if ($a < 1900 || ($mo !== null && !checkdate($mo, (int)($m[3] ?? 1), $a))) return null;
+    $ans = function ($n) { return $n . ' an' . ($n > 1 ? 's' : ''); };
+    if ($mo === null) { $n = (int)date('Y', $now) - $a; return $n < 0 ? null : ($n == 0 ? 'moins d’un an' : '≈ ' . $ans($n)); } // année seule : à un an près
+    $n = ((int)date('Y', $now) - $a) * 12 + (int)date('n', $now) - $mo;
+    return $n < 0 ? null : ($n == 0 ? 'moins d’un mois' : ($n < 12 ? $n . ' mois' : $ans(intdiv($n, 12))));
+  }
+
+  /* Catalogue fixe des mesures : organe => [titre, [clé => [type, libellé, unité ou choix]]] ;
+     type n = nombre, l = liste de nombres (plusieurs fruits), c = choix. Les valeurs vont au journal (colonne valeurs), clé « organe.clé ». */
+  const MESURES = [
+    'plante' => ['Plante', ['hauteur' => ['n', 'Hauteur', 'cm'], 'envergure' => ['n', 'Envergure', 'cm'], 'charpentieres' => ['n', 'Charpentières', ''],
+      'vigueur' => ['c', 'Vigueur (1 à 5)', ['1', '2', '3', '4', '5']], 'etat' => ['c', 'État général (1 à 5)', ['1', '2', '3', '4', '5']],
+      'stade' => ['c', 'Stade', ['repos', 'débourrement', 'pousse', 'floraison', 'fructification']]]],
+    'tronc' => ['Tronc / greffe', ['d_tronc' => ['n', 'Ø du tronc (plante non greffée)', 'mm'], 'd_pg' => ['n', 'Ø porte-greffe (5 cm sous la greffe)', 'mm'],
+      'd_greffon' => ['n', 'Ø greffon (5 cm au-dessus)', 'mm'], 'h_greffe' => ['n', 'Hauteur du point de greffe', 'cm'], 'rejets' => ['n', 'Rejets du porte-greffe', ''],
+      'ecorce' => ['c', 'Écorce', ['saine', 'fissures', 'gomme', 'lésions']]]],
+    'epines' => ['Épines', ['longueur' => ['n', 'Longueur maximale', 'mm'], 'densite' => ['c', 'Densité', ['aucune', 'rares', 'nombreuses']],
+      'position' => ['c', 'Position', ['bois jeune', 'vieux bois', 'partout']]]],
+    'feuilles' => ['Feuilles', ['limbe_l' => ['n', 'Limbe : longueur', 'mm'], 'limbe_w' => ['n', 'Limbe : largeur', 'mm'], 'aile_l' => ['n', 'Aile : longueur', 'mm'],
+      'aile_w' => ['n', 'Aile : largeur', 'mm'], 'nombre' => ['n', 'Nombre de feuilles', ''], 'pousses' => ['n', 'Nouvelles pousses', ''],
+      'couleur' => ['c', 'Couleur', ['vert foncé', 'vert clair', 'jaunissement entre les nervures', 'jaune uniforme']], 'chute' => ['c', 'Chute', ['aucune', 'faible', 'forte']]]],
+    'fleurs' => ['Fleurs', ['boutons' => ['n', 'Boutons', ''], 'ouvertes' => ['n', 'Fleurs ouvertes', ''], 'couleur' => ['c', 'Couleur des boutons', ['blancs', 'violets']],
+      'parfum' => ['c', 'Parfum', ['aucun', 'léger', 'fort']]]],
+    'fruits' => ['Fruits', ['noues' => ['n', 'Noués', ''], 'croissance' => ['n', 'En croissance', ''], 'murs' => ['n', 'Mûrs', ''],
+      'diametres' => ['l', 'Ø des fruits (un espace entre deux fruits)', 'mm'], 'poids' => ['n', 'Poids moyen', 'g'], 'pepins' => ['n', 'Pépins par fruit', ''],
+      'brix' => ['n', 'Taux de sucre', '°Brix'], 'recolte' => ['n', 'Poids récolté', 'g'], 'couleur' => ['c', 'Couleur', ['vert', 'en virage', 'jaune', 'orange']]]],
+    'pot' => ['Racines / pot', ['substrat' => ['c', 'Substrat', ['sec', 'frais', 'humide', 'détrempé']], 'racines' => ['c', 'Racines au drainage', ['non', 'oui']]]],
+    'sante' => ['Santé', ['ravageur' => ['c', 'Ravageur', ['aucun', 'mineuse', 'cochenille', 'acarien', 'puceron', 'autre']],
+      'intensite' => ['c', 'Intensité', ['faible', 'moyenne', 'forte']], 'maladie' => ['c', 'Maladie', ['aucune', 'gommose', 'fumagine', 'autre']]]],
+  ];
+  const CALCULS = ['calc.aile_limbe' => ['Aile / limbe', ''], 'calc.greffon_pg' => ['Greffon / porte-greffe', ''],
+    'calc.fruits_moy' => ['Ø moyen des fruits', 'mm'], 'calc.fruits_min' => ['Ø minimal des fruits', 'mm'], 'calc.fruits_max' => ['Ø maximal des fruits', 'mm']];
+
+  /* Saisie ['organe.clé' => texte] → valeurs contrôlées ['organe.clé' => nombre, [nombres] ou choix] ; vide = ignoré, invalide = exception.
+     Liste : espaces ou « ; » séparent, la virgule est décimale (« 32 35,5 41 ») comme sur le pavé numérique français. */
+  public static function valeurs($in) {
+    $r = [];
+    foreach (self::MESURES as $o => [, $champs]) foreach ($champs as $k => [$t, $l, $u]) {
+      $v = is_scalar($in["$o.$k"] ?? null) ? trim((string)$in["$o.$k"]) : '';
+      if ($v === '') continue;
+      $faux = new Exception(sprintf(__('Valeur invalide : %s', __FILE__), $l));
+      if ($t == 'c') { if (!in_array($v, $u, true)) throw $faux; $r["$o.$k"] = ctype_digit($v) ? (int)$v : $v; continue; } // notes 1 à 5 en nombres : courbes
+      $ns = $t == 'l' ? preg_split('/[;\s]+/', strtr($v, [',' => '.']), -1, PREG_SPLIT_NO_EMPTY) : [strtr($v, [',' => '.'])];
+      if (!$ns) continue; // « ; » seul
+      foreach ($ns as $n) if (!is_numeric($n) || $n < 0 || $n > 100000) throw $faux;
+      if (count($ns) > 50) throw $faux;
+      $r["$o.$k"] = $t == 'l' ? array_map('floatval', $ns) : (float)$ns[0];
+    }
+    return $r;
+  }
+
+  public static function calculs($v) { // rapports et statistiques tirés des valeurs
+    $r = [];
+    if (($v['feuilles.limbe_l'] ?? 0) > 0 && isset($v['feuilles.aile_l'])) $r['calc.aile_limbe'] = round($v['feuilles.aile_l'] / $v['feuilles.limbe_l'], 2);
+    if (($v['tronc.d_pg'] ?? 0) > 0 && isset($v['tronc.d_greffon'])) $r['calc.greffon_pg'] = round($v['tronc.d_greffon'] / $v['tronc.d_pg'], 2);
+    if ($d = $v['fruits.diametres'] ?? []) $r += ['calc.fruits_moy' => round(array_sum($d) / count($d), 1), 'calc.fruits_min' => min($d), 'calc.fruits_max' => max($d)];
+    return $r;
+  }
+
+  public static function resume($v) { // texte lisible du relevé, pour la note du journal : « Feuilles : Limbe : longueur 85 mm ; Aile / limbe 0,59 »
+    $nb = function ($x) { return str_replace('.', ',', (string)$x); };
+    $g = [];
+    foreach (self::MESURES as $o => [$titre, $champs]) {
+      $l = [];
+      foreach ($champs as $k => [$t, $lib, $u]) if (isset($v["$o.$k"])) {
+        $x = $v["$o.$k"];
+        $l[] = $lib . ' ' . ($t == 'c' ? $x : (is_array($x) ? implode(', ', array_map($nb, $x)) : $nb($x)) . ($u !== '' ? ' ' . $u : ''));
+      }
+      if ($l) $g[] = $titre . ' : ' . implode(', ', $l);
+    }
+    foreach (self::CALCULS as $k => [$lib, $u]) if (isset($v[$k])) $g[] = $lib . ' ' . $nb($v[$k]) . ($u !== '' ? ' ' . $u : '');
+    return implode(' ; ', $g);
+  }
+
+  /* Caractères d'identification déduits des mesures : [caractère => code de CARACTERES] ; $forme = id_forme de la plante.
+     ponytail: seuils simples (aile de moins de 2 mm de large = simple liseré ; aile comparée à la longueur du limbe : ¼ et ½ ; feuille 5 et 10 cm ;
+     fruit 3, 6 et 10 cm de Ø, sauf fruits en doigt ou en main dont la taille est une longueur) ; les affiner si une plante connue les contredit. */
+  public static function suggestions($v, $forme = '') {
+    $r = [];
+    if (($v['feuilles.aile_w'] ?? 2) < 2) $r['aile'] = 'aucune';
+    elseif (isset($v['calc.aile_limbe'])) { $x = $v['calc.aile_limbe']; $r['aile'] = $x == 0 ? 'aucune' : ($x < 0.25 ? 'etroite' : ($x < 0.5 ? 'large' : 'tres_large')); }
+    if (isset($v['feuilles.limbe_l'])) { $x = $v['feuilles.limbe_l']; $r['feuille'] = $x < 50 ? 'petite' : ($x <= 100 ? 'moyenne' : 'grande'); }
+    if (isset($v['calc.fruits_moy']) && !in_array($forme, ['doigt', 'main'], true)) { $x = $v['calc.fruits_moy']; $r['fruit'] = $x < 30 ? 'lt3' : ($x < 60 ? '3-6' : ($x <= 100 ? '6-10' : 'gt10')); }
+    return $r;
+  }
+
   public static function date($v) { // 'Y-m-d' valide ou exception
     $v = (string)$v;
     if (!preg_match('/^(\d{4})-(\d{2})-(\d{2})$/D', $v, $m) || !checkdate((int)$m[2], (int)$m[3], (int)$m[1])) throw new Exception(__('Date invalide', __FILE__));

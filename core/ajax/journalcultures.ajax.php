@@ -18,6 +18,7 @@ try {
   $a = init('action');
 
   if ($a == 'plante') ajax::success($eq(init('id'), 'plante')->fiche());
+  if ($a == 'page') ajax::success(journalcultures::page());
   if ($a == 'journal') { $c = $eq(init('id'), 'collection'); ajax::success(journalcultures::journal(array_map(function ($p) { return $p->getId(); }, $c->plantes()), 500, $c->getId())); }
   if ($a == 'photo') { // image envoyée telle quelle (la tuile la lit en blob)
     $f = $eq(init('id'), 'plante')->photo(init('nom'));
@@ -30,7 +31,7 @@ try {
   // écritures : administrateurs seulement
   if (!isConnect('admin')) throw new Exception(__('401 - Accès non autorisé', __FILE__));
   if ($a == 'noter') { // une entrée par plante cochée, ou une entrée libre
-    $in = $liste('entree'); $ids = array_values(array_filter((array)($in['plantes'] ?? []), 'is_numeric'));
+    $in = $liste('entree'); unset($in['valeurs']); $ids = array_values(array_filter((array)($in['plantes'] ?? []), 'is_numeric'));
     if (count($ids) > 200) throw new Exception(__('Trop de plantes', __FILE__));
     $maj = array_map(function ($id) use ($eq) { return $eq($id, 'plante'); }, $ids); // tout vérifier avant d'écrire : pas de saisie à moitié faite
     $coll = $maj ? null : $eq($in['collection_id'] ?? 0, 'collection'); // entrée libre : rattachée à la collection de la tuile
@@ -59,7 +60,7 @@ try {
     }
     ajax::success($n);
   }
-  if ($a == 'mesurer') { $eq(init('id'), 'plante')->mesurer($liste('mesures')); ajax::success(); }
+  if ($a == 'mesurer') ajax::success($eq(init('id'), 'plante')->mesurer($liste('mesures')));
   if ($a == 'photo_ajout') ajax::success($eq(init('id'), 'plante')->ajouterPhoto($_FILES['photo'] ?? []));
   if ($a == 'photo_suppr') { unlink($eq(init('id'), 'plante')->photo(init('nom'))); ajax::success(); }
   if ($a == 'etiquette') { // photo de l'étiquette = une des photos de la plante ('' = aucune)

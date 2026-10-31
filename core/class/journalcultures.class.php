@@ -54,9 +54,10 @@ class journalcultures extends eqLogic {
     $old = $this->getId() ? self::byId($this->getId()) : null;
     $this->_ancColl = is_object($old) && ($old->getConfiguration('collection') != $this->getConfiguration('collection') || $this->type() != 'plante') ? $old->collection() : null;
     if ($this->type() != 'plante') return;
-    foreach (array_merge(array_keys(self::FICHE), ['engrais', 'pot_diam', 'pot_haut', 'pot_terre']) as $k) { // configuration en utf8mb3 : un émoji ferait échouer la sauvegarde
+    foreach (array_merge(array_keys(self::FICHE), ['engrais', 'pot_diam', 'pot_haut', 'pot_terre', 'date_mult']) as $k) { // configuration en utf8mb3 : un émoji ferait échouer la sauvegarde
       if (is_string($v = $this->getConfiguration($k))) $this->setConfiguration($k, preg_replace('/[\x{10000}-\x{10FFFF}]/u', '', $v) ?? '');
     }
+    if (!in_array($this->getConfiguration('multiplication'), journalcultures_calc::MULTIPLICATIONS, true)) $this->setConfiguration('multiplication', '');
     foreach (journalcultures_calc::CARACTERES as $k => [, $opt]) { // caractères observés : codes de la liste seulement
       $v = $this->getConfiguration('id_' . $k);
       if ($v !== '' && $v !== null && !(is_string($v) && isset($opt[$v]))) $this->setConfiguration('id_' . $k, '');
@@ -203,21 +204,35 @@ class journalcultures extends eqLogic {
 
   public function valeur($k) { $c = $this->getCmd('info', $k); return is_object($c) ? $c->execCmd() : null; }
 
-  public function mesurer(array $in) { // hauteur, tronc, feuilles, fruits : nombres ≥ 0, champ vide = inchangé ; noté au journal
+  /* Relevé du catalogue journalcultures_calc::MESURES : ['v' => ['organe.clé' => texte], 'note' => texte] → une entrée « Mesure » du journal
+     (valeurs + calculs dans la colonne valeurs) ; les commandes historisées hauteur / tronc / feuilles / fruits suivent. → [caractère => code] suggérés */
+  public function mesurer(array $in) {
     if (!$this->getIsEnable()) throw new Exception(__('Plante désactivée', __FILE__));
-    $note = []; $ev = [];
-    foreach (['hauteur' => 'cm', 'tronc' => 'mm', 'feuilles' => '', 'fruits' => ''] as $k => $u) {
-      $v = trim(strtr((string)($in[$k] ?? ''), [',' => '.']));
-      if ($v === '') continue;
-      if (!is_numeric($v) || $v < 0 || $v > 100000) throw new Exception(sprintf(__('Valeur invalide : %s', __FILE__), $k));
-      if (!is_object($c = $this->getCmd('info', $k))) throw new Exception(sprintf(__('Commande absente : %s (sauvegarder l\'équipement)', __FILE__), $k));
-      $ev[] = [$c, (float)$v];
-      $note[] = self::commandes('plante')[$k][0] . ' ' . str_replace('.', ',', (float)$v) . ($u ? ' ' . $u : '');
+    $v = journalcultures_calc::valeurs(is_array($in['v'] ?? null) ? $in['v'] : []);
+    $note = journalcultures_calc::texte($in['note'] ?? '', 1000);
+    if (!$v && $note === '') throw new Exception(__('Aucune mesure saisie', __FILE__));
+    $v += journalcultures_calc::calculs($v);
+    $fr = array_intersect_key($v, array_flip(['fruits.noues', 'fruits.croissance', 'fruits.murs']));
+    // courbes : tronc = greffon (ou tronc d'une plante non greffée), jamais le porte-greffe ; fruits = total, seulement si les 3 comptages sont saisis
+    $ev = ['hauteur' => $v['plante.hauteur'] ?? null, 'tronc' => $v['tronc.d_greffon'] ?? $v['tronc.d_tronc'] ?? null,
+      'feuilles' => $v['feuilles.nombre'] ?? null, 'fruits' => count($fr) == 3 ? array_sum($fr) : null];
+    foreach ($ev as $k => $x) if ($x !== null && !is_object($this->getCmd('info', $k))) throw new Exception(sprintf(__('Commande absente : %s (sauvegarder l\'équipement)', __FILE__), $k));
+    $sug = journalcultures_calc::suggestions($v, (string)$this->getConfiguration('id_forme')); $diff = []; $chg = false;
+    foreach ($sug as $k => $code) {
+      $avant = (string)$this->getConfiguration('id_' . $k);
+      if ($avant === '') { $this->setConfiguration('id_' . $k, $code); $chg = true; }
+      elseif ($avant !== $code) $diff[] = sprintf(__('%s : saisi « %s », mesuré « %s »', __FILE__), journalcultures_calc::CARACTERES[$k][0],
+        journalcultures_calc::CARACTERES[$k][1][$avant] ?? $avant, journalcultures_calc::CARACTERES[$k][1][$code]);
     }
-    if (!$note) throw new Exception(__('Aucune mesure saisie', __FILE__));
-    foreach ($ev as [$c, $v]) $c->event($v); // event et pas checkAndUpdateCmd : une mesure identique fait aussi un point sur la courbe
+    if ($chg) { // caractères complétés : identification recalculée par preSave ; avant le journal, pour qu'une erreur ne laisse pas une mesure à renvoyer en double
+      self::$_sansGbif = true;
+      try { $this->save(); } finally { self::$_sansGbif = false; }
+    }
+    $txt = journalcultures_calc::resume($v);
     self::inserer(['date' => date('Y-m-d'), 'plante_id' => $this->getId(), 'plante' => $this->getName(), 'lieu' => (string)$this->getConfiguration('emplacement'),
-      'action' => 'Mesure', 'note' => implode(', ', $note)]);
+      'action' => 'Mesure', 'note' => implode(' — ', array_filter([$txt, $note, implode(' ; ', $diff)], 'strlen')), 'valeurs' => $v]);
+    foreach ($ev as $k => $x) if ($x !== null) $this->getCmd('info', $k)->event($x); // event : une mesure identique fait aussi un point sur la courbe
+    return $sug;
   }
 
   /* ---------- journal (table, partagé avec Sélénoculture) ---------- */
@@ -227,6 +242,8 @@ class journalcultures extends eqLogic {
       plante_id INT NULL, collection_id INT NULL, plante VARCHAR(120) NOT NULL DEFAULT \'\', lieu VARCHAR(60) NOT NULL DEFAULT \'\', action VARCHAR(30) NOT NULL,
       cat VARCHAR(10) NOT NULL DEFAULT \'\', note TEXT NULL, lune VARCHAR(200) NULL, origine VARCHAR(30) NOT NULL DEFAULT \'journalcultures\',
       cree DATETIME NOT NULL, KEY plante (plante_id, date), KEY collection (collection_id), KEY date (date)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci', [], DB::FETCH_TYPE_ROW);
+    if (!DB::Prepare('SHOW COLUMNS FROM ' . self::TABLE . ' LIKE \'valeurs\'', [], DB::FETCH_TYPE_ROW)) // 0.3 : valeurs des mesures (JSON)
+      DB::Prepare('ALTER TABLE ' . self::TABLE . ' ADD valeurs TEXT NULL', [], DB::FETCH_TYPE_ROW);
   }
 
   private static function lune($date) { // lune de midi, si Sélénoculture est présent (même calcul)
@@ -238,7 +255,7 @@ class journalcultures extends eqLogic {
   }
 
   /* Ajoute une entrée validée : date, action (ACTIONS), plante_id (plante du plugin) ou plante (texte), collection_id (entrée libre
-     notée depuis une collection), lieu, cat, note, origine → id
+     notée depuis une collection), lieu, cat, note, origine, valeurs (tableau, mesures) → id
      Point d'entrée public pour les autres plugins (Sélénoculture). */
   public static function inserer(array $in) {
     $date = journalcultures_calc::date($in['date'] ?? '');
@@ -258,8 +275,9 @@ class journalcultures extends eqLogic {
       $cid = (int)$c->getId();
     }
     $t = function ($k, $n) use ($in) { return journalcultures_calc::texte($in[$k] ?? '', $n); };
-    DB::Prepare('INSERT INTO ' . self::TABLE . ' (date, plante_id, collection_id, plante, lieu, action, cat, note, lune, origine, cree) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())',
-      [$date, $pid, $cid, $plante, $t('lieu', 60), $in['action'], $cat, $t('note', 2000), self::lune($date), $t('origine', 30) ?: 'journalcultures'], DB::FETCH_TYPE_ROW);
+    $val = is_array($in['valeurs'] ?? null) && $in['valeurs'] ? json_encode($in['valeurs'], JSON_UNESCAPED_UNICODE) : null;
+    DB::Prepare('INSERT INTO ' . self::TABLE . ' (date, plante_id, collection_id, plante, lieu, action, cat, note, lune, origine, valeurs, cree) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())',
+      [$date, $pid, $cid, $plante, $t('lieu', 60), $in['action'], $cat, $t('note', 5000), self::lune($date), $t('origine', 30) ?: 'journalcultures', $val], DB::FETCH_TYPE_ROW);
     return (int)DB::getLastInsertId();
   }
 
@@ -270,8 +288,8 @@ class journalcultures extends eqLogic {
     if ($coll !== null) $w[] = 'collection_id = ' . (int)$coll;
     if ((is_array($ids) || $coll !== null) && !$w) return [];
     $w = $w ? ' WHERE ' . implode(' OR ', $w) : '';
-    $r = DB::Prepare('SELECT id, date, plante_id, plante, lieu, action, cat, note, lune, origine FROM ' . self::TABLE . $w . ' ORDER BY date DESC, id DESC LIMIT ' . (int)$limite, [], DB::FETCH_TYPE_ALL) ?: [];
-    foreach ($r as &$x) $x['lune'] = json_decode((string)$x['lune'], true);
+    $r = DB::Prepare('SELECT id, date, plante_id, plante, lieu, action, cat, note, lune, origine, valeurs FROM ' . self::TABLE . $w . ' ORDER BY date DESC, id DESC LIMIT ' . (int)$limite, [], DB::FETCH_TYPE_ALL) ?: [];
+    foreach ($r as &$x) { $x['lune'] = json_decode((string)$x['lune'], true); $x['valeurs'] = json_decode((string)$x['valeurs'], true); }
     return $r;
   }
 
@@ -384,11 +402,19 @@ class journalcultures extends eqLogic {
     return ['id' => $this->getId(), 'nom' => $this->getName(), 'fiche' => $f, 'carac' => $carac, 'ident' => journalcultures_calc::identifier($obs), 'gbif' => $g, 'pot' => $potTxt, 'etat' => $s, 'cmds' => $cmds,
       'journal' => self::journal([$this->getId()], 300), 'photos' => $ph = $this->photos(), 'liens' => array_values($liens),
       'etiquette' => in_array($this->getConfiguration('etiquette'), $ph, true) ? $this->getConfiguration('etiquette') : '', // photo supprimée : plus d'étiquette
-      'plantnet' => self::cle() !== '' ? 1 : 0];
+      'plantnet' => self::cle() !== '' ? 1 : 0, 'multiplication' => $this->multiplication(), 'mesures' => journalcultures_calc::MESURES, 'calculs' => journalcultures_calc::CALCULS];
+  }
+
+  public function multiplication() { // « Semis · ≈ 2 ans (2024) », '' si rien de saisi
+    $m = (string)$this->getConfiguration('multiplication'); $d = trim((string)$this->getConfiguration('date_mult'));
+    $a = journalcultures_calc::age($d);
+    return implode(' · ', array_filter([$m !== '' ? __(ucfirst($m), __FILE__) : '', $a !== null ? $a . ' (' . $d . ')' : $d]));
   }
 
   public function donnees() { // tuile d'une collection
     $pl = []; $L = self::emplacements();
+    $mes = []; // date de la dernière mesure par plante
+    foreach (DB::Prepare('SELECT plante_id, MAX(date) d FROM ' . self::TABLE . ' WHERE action = ? AND plante_id IS NOT NULL GROUP BY plante_id', ['Mesure'], DB::FETCH_TYPE_ALL) ?: [] as $x) $mes[$x['plante_id']] = $x['d'];
     foreach ($this->plantes() as $p) {
       if (!$p->getIsEnable()) continue;
       $sonde = trim($L[$p->getConfiguration('emplacement')][0] ?? '') !== ''; // lieu sans sonde : pas l'ancienne température
@@ -396,13 +422,22 @@ class journalcultures extends eqLogic {
       $rust = journalcultures_calc::nombre($p->getConfiguration('rusticite')) !== null; // rusticité effacée de la fiche : pas l'ancienne valeur
       $pl[] = ['id' => $p->getId(), 'nom' => $p->getName(), 'empl' => $p->valeur('emplacement'), 't' => $sonde && !$m ? $p->valeur('temperature') : null, 'muette' => $m,
         'reff' => $rust ? $p->valeur('rusticite') : null,
-        'alerte' => $p->valeur('alerte'), 'raison' => $p->valeur('raison'), 'engrais' => $p->valeur('engrais'), 'rust' => $p->getConfiguration('rusticite')];
+        'alerte' => $p->valeur('alerte'), 'raison' => $p->valeur('raison'), 'engrais' => $p->valeur('engrais'), 'rust' => $p->getConfiguration('rusticite'),
+        'pg' => (string)$p->getConfiguration('porte_greffe'), 'mes' => $mes[$p->getId()] ?? ''];
     }
-    return ['id' => $this->getId(), 'plantes' => $pl, 'emplacements' => array_keys(self::emplacements()), 'admin' => isConnect('admin') ? 1 : 0,
+    return ['id' => $this->getId(), 'nom' => $this->getName(), 'plantes' => $pl, 'emplacements' => array_keys(self::emplacements()), 'admin' => isConnect('admin') ? 1 : 0,
       'actions' => array_map(function ($a) { return __($a, __FILE__); }, journalcultures_calc::ACTIONS), 'actionsCle' => journalcultures_calc::ACTIONS];
   }
 
-  private static function lib() { // ponytail: bibliothèque recopiée dans chaque tuile (gardée par window.journalcultures)
+  public static function page() { // panel plein écran : collections lisibles par l'utilisateur + températures des emplacements
+    $cs = array_values(array_filter(self::byType('journalcultures', true), function ($c) { return $c->type() == 'collection' && $c->hasRight('r'); }));
+    usort($cs, function ($a, $b) { return strnatcasecmp($a->getName(), $b->getName()); });
+    $lieux = [];
+    foreach (self::emplacements() as $nom => $s) if (trim($s[0]) !== '') $lieux[] = ['nom' => $nom, 't' => self::lire($s[0]), 'h' => self::lire($s[1])];
+    return ['collections' => array_map(function ($c) { return $c->donnees(); }, $cs), 'lieux' => $lieux];
+  }
+
+  public static function lib() { // ponytail: bibliothèque recopiée dans chaque tuile et dans le panel (gardée par window.journalcultures)
     static $js = [];
     $l = translate::getLanguage();
     return $js[$l] ??= translate::exec(file_get_contents(__DIR__ . '/../template/journalcultures.js'), 'plugins/journalcultures/core/template/journalcultures.js');
