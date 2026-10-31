@@ -13,6 +13,7 @@ class journalcultures_calc {
 
   /* Rusticité effective d'une plante en pot : les racines y sont bien moins protégées qu'en pleine terre.
      Pénalité = min(pmax, k / e), e = demi-épaisseur de la motte en cm (min(diamètre, hauteur de terre) / 2) ;
+     pot carré : 'diam' = côté (même rapport volume / paroi qu'un pot rond de Ø = côté, donc même e) ;
      pot de dimensions inconnues = pénalité maximale (prudence).
      ponytail: modèle grossier (ni durée du froid, ni vent, ni pot isolé ou surélevé) ; régler k et pmax à l'usage. */
   public static function rusticite($r, array $pot, $k = 50, $pmax = 8) {
@@ -181,8 +182,8 @@ class journalcultures_calc {
       'diametres' => ['l', 'Ø des fruits (un espace entre deux fruits)', 'mm'], 'poids' => ['n', 'Poids moyen', 'g'], 'pepins' => ['n', 'Pépins par fruit', ''],
       'brix' => ['n', 'Taux de sucre', '°Brix'], 'recolte' => ['n', 'Poids récolté', 'g'], 'couleur' => ['c', 'Couleur', ['vert', 'en virage', 'jaune', 'orange']]]],
     'pot' => ['Racines / pot', ['substrat' => ['c', 'Substrat', ['sec', 'frais', 'humide', 'détrempé']], 'racines' => ['c', 'Racines au drainage', ['non', 'oui']],
-      'diam' => ['n', 'Nouveau pot : Ø', 'cm'], 'haut' => ['n', 'Nouveau pot : hauteur', 'cm'], 'terre' => ['n', 'Nouveau pot : hauteur de terre', 'cm'],
-      'pleine_terre' => ['c', 'Pleine terre', ['non', 'oui']]]], // pot.diam/haut/terre/pleine_terre : remplacent le pot de la fiche (journalcultures::mesurer)
+      'forme' => ['c', 'Nouveau pot : forme', ['rond', 'carré']], 'diam' => ['n', 'Nouveau pot : Ø ou côté', 'cm'], 'haut' => ['n', 'Nouveau pot : hauteur', 'cm'], 'terre' => ['n', 'Nouveau pot : hauteur de terre', 'cm'],
+      'pleine_terre' => ['c', 'Pleine terre', ['non', 'oui']]]], // pot.forme/diam/haut/terre/pleine_terre : remplacent le pot de la fiche (journalcultures::mesurer)
     'sante' => ['Santé', ['ravageur' => ['c', 'Ravageur', ['aucun', 'mineuse', 'cochenille', 'acarien', 'puceron', 'autre']],
       'intensite' => ['c', 'Intensité', ['faible', 'moyenne', 'forte']], 'maladie' => ['c', 'Maladie', ['aucune', 'gommose', 'fumagine', 'autre']]]],
   ];

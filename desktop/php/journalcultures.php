@@ -161,7 +161,13 @@ $eqLogics = eqLogic::byType($plugin->getId());
 								<div class="col-sm-6"><input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="pleine_terre"></div>
 							</div>
 							<div class="form-group jdc-plante">
-								<label class="col-sm-4 control-label">{{Diamètre du pot}} (cm)</label>
+								<label class="col-sm-4 control-label">{{Forme du pot}}</label>
+								<div class="col-sm-6"><select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="pot_forme">
+									<option value="">{{Rond}}</option><option value="carre">{{Carré}}</option>
+								</select></div>
+							</div>
+							<div class="form-group jdc-plante">
+								<label class="col-sm-4 control-label">{{Diamètre ou côté du pot}} (cm)</label>
 								<div class="col-sm-6"><input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="pot_diam" placeholder=""></div>
 							</div>
 							<div class="form-group jdc-plante">

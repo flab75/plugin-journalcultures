@@ -47,7 +47,7 @@ $ok($C::age('2024', $now) === '≈ 2 ans' && $C::age('2026', $now) === 'moins d�
 $ok($C::age('2027', $now) === null && $C::age('2024-13', $now) === null && $C::age('2024-05-99', $now) === null && $C::age('2024-02-29', $now) === '2 ans' && $C::age('vers 2024', $now) === null && $C::age('', $now) === null, 'âge illisible ou à venir');
 $v = $C::valeurs(['feuilles.limbe_l' => '80', 'feuilles.aile_l' => '45,5', 'fruits.diametres' => '32; 35 41', 'pot.substrat' => 'frais', 'plante.hauteur' => '', 'x.y' => '3']);
 $ok($v === ['feuilles.limbe_l' => 80.0, 'feuilles.aile_l' => 45.5, 'fruits.diametres' => [32.0, 35.0, 41.0], 'pot.substrat' => 'frais'], 'valeurs saisies');
-foreach ([['plante.hauteur' => '-1'], ['plante.hauteur' => 'abc'], ['pot.substrat' => 'mouillé'], ['fruits.diametres' => '3, x'], ['plante.hauteur' => ['1']]] as $faux)
+foreach ([['plante.hauteur' => '-1'], ['plante.hauteur' => 'abc'], ['pot.substrat' => 'mouillé'], ['pot.forme' => 'ovale'], ['fruits.diametres' => '3, x'], ['plante.hauteur' => ['1']]] as $faux)
   try { if ($C::valeurs($faux)) $ok(false, 'valeur invalide acceptée : ' . json_encode($faux)); } catch (Exception $x) {}
 $v += $C::calculs($v);
 $ok($v['calc.aile_limbe'] === 0.57 && $v['calc.fruits_moy'] === 36.0 && $v['calc.fruits_min'] === 32.0 && $v['calc.fruits_max'] === 41.0 && !isset($v['calc.greffon_pg']), 'calculs des mesures');
@@ -57,6 +57,7 @@ $ok($C::suggestions(['calc.aile_limbe' => 0.1, 'feuilles.aile_w' => 1.0, 'calc.f
 $ok($C::valeurs(['fruits.diametres' => '32,5 41'])['fruits.diametres'] === [32.5, 41.0] && $C::valeurs(['fruits.diametres' => ' ; ']) === [] && $C::valeurs(['plante.vigueur' => '3']) === ['plante.vigueur' => 3], 'liste : virgule décimale, liste vide ; note 1 à 5 en nombre');
 $ok($C::valeurs(['fruits.nombre' => '12', 'pot.diam' => '40', 'pot.terre' => '32,5', 'pot.pleine_terre' => 'oui']) === ['fruits.nombre' => 12.0, 'pot.diam' => 40.0, 'pot.terre' => 32.5, 'pot.pleine_terre' => 'oui']
   && $C::rusticite('-6', ['diam' => 40.0, 'terre' => 32.5]) === -2.9, 'nombre de fruits, nouveau pot en nombres');
+$ok($C::valeurs(['pot.forme' => 'carré']) === ['pot.forme' => 'carré'], 'forme du pot');
 $ok(strpos($C::resume($v), 'Feuilles : Limbe : longueur 80 mm, Aile : longueur 45,5 mm') === 0 && strpos($C::resume($v), 'Aile / limbe 0,57') !== false, 'résumé du relevé');
 foreach ($C::MESURES as $o => [$t, $ch]) foreach ($ch as $k => $f) $ok(in_array($f[0], ['n', 'l', 'c'], true) && ($f[0] != 'c' || is_array($f[2])) && strpos("$o$k", '.') === false, "catalogue : $o.$k");
 foreach ($C::suggestions(['calc.aile_limbe' => 0.3, 'feuilles.limbe_l' => 40.0, 'calc.fruits_moy' => 120.0]) as $k => $c) $ok(isset($C::CARACTERES[$k][1][$c]), "suggestion $k = $c inconnue");

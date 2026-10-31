@@ -145,12 +145,12 @@ class journalcultures extends eqLogic {
 
   public function pot() {
     return ['diam' => $this->getConfiguration('pot_diam'), 'haut' => $this->getConfiguration('pot_haut'), 'terre' => $this->getConfiguration('pot_terre'),
-      'pleine_terre' => $this->getConfiguration('pleine_terre') == 1];
+      'pleine_terre' => $this->getConfiguration('pleine_terre') == 1, 'carre' => $this->getConfiguration('pot_forme') == 'carre'];
   }
 
   public function potTexte() {
     $pot = $this->pot(); $x = function ($k) use ($pot) { return $pot[$k] !== '' && $pot[$k] !== null ? str_replace('.', ',', (string)$pot[$k]) : '?'; };
-    return $pot['pleine_terre'] ? __('pleine terre', __FILE__) : sprintf(__('pot Ø %s cm, hauteur %s cm, terre %s cm', __FILE__), $x('diam'), $x('haut'), $x('terre'));
+    return $pot['pleine_terre'] ? __('pleine terre', __FILE__) : sprintf($pot['carre'] ? __('pot carré %s cm de côté, hauteur %s cm, terre %s cm', __FILE__) : __('pot Ø %s cm, hauteur %s cm, terre %s cm', __FILE__), $x('diam'), $x('haut'), $x('terre'));
   }
 
   public function etat() { // état de la plante maintenant : emplacement, températures, rusticité effective, alerte, engrais à donner
@@ -231,6 +231,7 @@ class journalcultures extends eqLogic {
     }
     $potAvant = $this->potTexte(); // nouveau pot (rempotage, mise en pleine terre) : remplace celui de la fiche, rusticité recalculée par postSave
     foreach (['diam' => 'pot_diam', 'haut' => 'pot_haut', 'terre' => 'pot_terre'] as $k => $c) if (isset($v["pot.$k"])) { $this->setConfiguration($c, $v["pot.$k"]); $chg = true; }
+    if (isset($v['pot.forme'])) { $this->setConfiguration('pot_forme', $v['pot.forme'] == 'carré' ? 'carre' : ''); $chg = true; }
     if (isset($v['pot.pleine_terre'])) { $this->setConfiguration('pleine_terre', $v['pot.pleine_terre'] == 'oui' ? 1 : 0); $chg = true; }
     if (($potApres = $this->potTexte()) != $potAvant) $diff[] = sprintf(__('Pot : %s → %s', __FILE__), $potAvant, $potApres);
     if ($chg) { // caractères complétés ou pot changé : identification recalculée par preSave ; avant le journal, pour qu'une erreur ne laisse pas une mesure à renvoyer en double

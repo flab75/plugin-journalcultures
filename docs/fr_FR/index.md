@@ -19,7 +19,7 @@ Onglet **Mesures** de la fenêtre d'une plante : choisir l'organe, saisir ce qu'
 plusieurs Ø de fruits séparés par des espaces, virgule décimale : `32 35,5 41`), une note et, au besoin, une photo. Tout part au journal en une entrée « Mesure ».
 Rapports calculés : aile / limbe (≥ 0,5 = aile très large, typique des papedas), greffon / porte-greffe (bourrelet, incompatibilité).
 Courbes historisées : hauteur, Ø du tronc (greffon, ou tronc d'une plante non greffée), nombre de feuilles, nombre de fruits (le total saisi, sinon la somme si noués, en croissance et mûrs sont tous saisis).
-Rempotage : organe « Racines / pot », champs « Nouveau pot » (Ø, hauteur, hauteur de terre) ou « Pleine terre » : ils remplacent le pot de la fiche,
+Rempotage : organe « Racines / pot », champs « Nouveau pot » (forme, Ø ou côté, hauteur, hauteur de terre) ou « Pleine terre » : ils remplacent le pot de la fiche,
 la rusticité effective est recalculée et l'ancien → le nouveau pot est noté au journal.
 Les mesures complètent les caractères d'identification vides (aile de moins de 2 mm de large = simple liseré ; pas de taille de fruit pour les fruits en doigt ou en main) ; un désaccord est noté au journal.
 
@@ -38,7 +38,7 @@ sur grand écran la fiche s'ouvre à côté de la liste. Relue toutes les 5 minu
 ## Fiche d'une plante
 - **Nom botanique** : vérifié auprès de GBIF à l'enregistrement (nom retenu, famille, statut).
 - **Rusticité** : température supportée en pleine terre, en °C (« −7 » ou « -7 (FA5) » acceptés).
-- **Pot** : diamètre, hauteur, hauteur de terre, ou pleine terre.
+- **Pot** : forme (rond ou carré), diamètre ou côté, hauteur, hauteur de terre, ou pleine terre. Un pot carré de 30 cm de côté compte comme un pot rond de 30 cm de Ø.
 - **Engrais** : `semaines | produit | dose` par ligne, semaines ISO : `10-40/2`, `12,16,20`, `48-8`.
 - **Sources et points à vérifier** : où vient chaque information, et ce qui reste à confirmer.
 
