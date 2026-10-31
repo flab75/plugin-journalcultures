@@ -108,7 +108,7 @@ if (!window.journalcultures || window.journalcultures.v !== 3) (function () { //
     var r = null, w, msg = ''
     function avec(fn) { return function (ct) { if (r) fn(ct); else ajax('plante', {id: id}, function (x) { r = x; fn(ct) }, erreur(ct)) } }
     function recharger(k) { r = null; w.montrer(k) }
-    function charger(img, n, er) { ajax('photo', {id: id, nom: n}, function (b) { if (b instanceof Blob) { img.src = w.url(URL.createObjectURL(b)); img.onclick = function () { window.open(img.src) } } }, er, true) }
+    function charger(img, n, er) { ajax('photo', {id: id, nom: n}, function (b) { if (b instanceof Blob) { var u = w.url(URL.createObjectURL(b)), fr = new FileReader(); fr.onload = function () { img.src = fr.result }; fr.readAsDataURL(b); img.onclick = function () { window.open(u) } } }, er, true) } // CSP de Jeedom : img-src refuse blob: → data: pour l'image, blob: pour l'ouvrir en grand
     var p = d.plantes.filter(function (x) { return x.id == id })[0] || {nom: ''}
     w = fenetre(p.nom, [
       ['fic', "{{Fiche}}", avec(function (ct) {
