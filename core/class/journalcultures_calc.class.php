@@ -177,10 +177,12 @@ class journalcultures_calc {
       'couleur' => ['c', 'Couleur', ['vert foncé', 'vert clair', 'jaunissement entre les nervures', 'jaune uniforme']], 'chute' => ['c', 'Chute', ['aucune', 'faible', 'forte']]]],
     'fleurs' => ['Fleurs', ['boutons' => ['n', 'Boutons', ''], 'ouvertes' => ['n', 'Fleurs ouvertes', ''], 'couleur' => ['c', 'Couleur des boutons', ['blancs', 'violets']],
       'parfum' => ['c', 'Parfum', ['aucun', 'léger', 'fort']]]],
-    'fruits' => ['Fruits', ['noues' => ['n', 'Noués', ''], 'croissance' => ['n', 'En croissance', ''], 'murs' => ['n', 'Mûrs', ''],
+    'fruits' => ['Fruits', ['nombre' => ['n', 'Nombre de fruits (total)', ''], 'noues' => ['n', 'Noués', ''], 'croissance' => ['n', 'En croissance', ''], 'murs' => ['n', 'Mûrs', ''],
       'diametres' => ['l', 'Ø des fruits (un espace entre deux fruits)', 'mm'], 'poids' => ['n', 'Poids moyen', 'g'], 'pepins' => ['n', 'Pépins par fruit', ''],
       'brix' => ['n', 'Taux de sucre', '°Brix'], 'recolte' => ['n', 'Poids récolté', 'g'], 'couleur' => ['c', 'Couleur', ['vert', 'en virage', 'jaune', 'orange']]]],
-    'pot' => ['Racines / pot', ['substrat' => ['c', 'Substrat', ['sec', 'frais', 'humide', 'détrempé']], 'racines' => ['c', 'Racines au drainage', ['non', 'oui']]]],
+    'pot' => ['Racines / pot', ['substrat' => ['c', 'Substrat', ['sec', 'frais', 'humide', 'détrempé']], 'racines' => ['c', 'Racines au drainage', ['non', 'oui']],
+      'diam' => ['n', 'Nouveau pot : Ø', 'cm'], 'haut' => ['n', 'Nouveau pot : hauteur', 'cm'], 'terre' => ['n', 'Nouveau pot : hauteur de terre', 'cm'],
+      'pleine_terre' => ['c', 'Pleine terre', ['non', 'oui']]]], // pot.diam/haut/terre/pleine_terre : remplacent le pot de la fiche (journalcultures::mesurer)
     'sante' => ['Santé', ['ravageur' => ['c', 'Ravageur', ['aucun', 'mineuse', 'cochenille', 'acarien', 'puceron', 'autre']],
       'intensite' => ['c', 'Intensité', ['faible', 'moyenne', 'forte']], 'maladie' => ['c', 'Maladie', ['aucune', 'gommose', 'fumagine', 'autre']]]],
   ];

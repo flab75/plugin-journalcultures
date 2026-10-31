@@ -148,6 +148,11 @@ class journalcultures extends eqLogic {
       'pleine_terre' => $this->getConfiguration('pleine_terre') == 1];
   }
 
+  public function potTexte() {
+    $pot = $this->pot(); $x = function ($k) use ($pot) { return $pot[$k] !== '' && $pot[$k] !== null ? str_replace('.', ',', (string)$pot[$k]) : '?'; };
+    return $pot['pleine_terre'] ? __('pleine terre', __FILE__) : sprintf(__('pot Ø %s cm, hauteur %s cm, terre %s cm', __FILE__), $x('diam'), $x('haut'), $x('terre'));
+  }
+
   public function etat() { // état de la plante maintenant : emplacement, températures, rusticité effective, alerte, engrais à donner
     $e = (string)$this->getConfiguration('emplacement'); $L = self::emplacements();
     $s = $L[$e] ?? ['', '', '']; $inconnu = $e !== '' && !isset($L[$e]); // renommé ou retiré de la configuration
@@ -213,9 +218,9 @@ class journalcultures extends eqLogic {
     if (!$v && $note === '') throw new Exception(__('Aucune mesure saisie', __FILE__));
     $v += journalcultures_calc::calculs($v);
     $fr = array_intersect_key($v, array_flip(['fruits.noues', 'fruits.croissance', 'fruits.murs']));
-    // courbes : tronc = greffon (ou tronc d'une plante non greffée), jamais le porte-greffe ; fruits = total, seulement si les 3 comptages sont saisis
+    // courbes : tronc = greffon (ou tronc d'une plante non greffée), jamais le porte-greffe ; fruits = total saisi, sinon somme des 3 comptages s'ils sont tous saisis
     $ev = ['hauteur' => $v['plante.hauteur'] ?? null, 'tronc' => $v['tronc.d_greffon'] ?? $v['tronc.d_tronc'] ?? null,
-      'feuilles' => $v['feuilles.nombre'] ?? null, 'fruits' => count($fr) == 3 ? array_sum($fr) : null];
+      'feuilles' => $v['feuilles.nombre'] ?? null, 'fruits' => $v['fruits.nombre'] ?? (count($fr) == 3 ? array_sum($fr) : null)];
     foreach ($ev as $k => $x) if ($x !== null && !is_object($this->getCmd('info', $k))) throw new Exception(sprintf(__('Commande absente : %s (sauvegarder l\'équipement)', __FILE__), $k));
     $sug = journalcultures_calc::suggestions($v, (string)$this->getConfiguration('id_forme')); $diff = []; $chg = false;
     foreach ($sug as $k => $code) {
@@ -224,7 +229,11 @@ class journalcultures extends eqLogic {
       elseif ($avant !== $code) $diff[] = sprintf(__('%s : saisi « %s », mesuré « %s »', __FILE__), journalcultures_calc::CARACTERES[$k][0],
         journalcultures_calc::CARACTERES[$k][1][$avant] ?? $avant, journalcultures_calc::CARACTERES[$k][1][$code]);
     }
-    if ($chg) { // caractères complétés : identification recalculée par preSave ; avant le journal, pour qu'une erreur ne laisse pas une mesure à renvoyer en double
+    $potAvant = $this->potTexte(); // nouveau pot (rempotage, mise en pleine terre) : remplace celui de la fiche, rusticité recalculée par postSave
+    foreach (['diam' => 'pot_diam', 'haut' => 'pot_haut', 'terre' => 'pot_terre'] as $k => $c) if (isset($v["pot.$k"])) { $this->setConfiguration($c, $v["pot.$k"]); $chg = true; }
+    if (isset($v['pot.pleine_terre'])) { $this->setConfiguration('pleine_terre', $v['pot.pleine_terre'] == 'oui' ? 1 : 0); $chg = true; }
+    if (($potApres = $this->potTexte()) != $potAvant) $diff[] = sprintf(__('Pot : %s → %s', __FILE__), $potAvant, $potApres);
+    if ($chg) { // caractères complétés ou pot changé : identification recalculée par preSave ; avant le journal, pour qu'une erreur ne laisse pas une mesure à renvoyer en double
       self::$_sansGbif = true;
       try { $this->save(); } finally { self::$_sansGbif = false; }
     }
@@ -386,9 +395,7 @@ class journalcultures extends eqLogic {
     $s = $this->etat(); $g = $this->getConfiguration('gbif') ?: [];
     $f = [];
     foreach (self::FICHE as $k => $l) if (($v = trim((string)$this->getConfiguration($k))) !== '') $f[] = [__($l, __FILE__), $v];
-    $pot = $this->pot();
-    $potTxt = $pot['pleine_terre'] ? __('pleine terre', __FILE__) : sprintf(__('pot Ø %s cm, hauteur %s cm, terre %s cm', __FILE__),
-      $pot['diam'] !== '' ? $pot['diam'] : '?', $pot['haut'] !== '' ? $pot['haut'] : '?', $pot['terre'] !== '' ? $pot['terre'] : '?');
+    $potTxt = $this->potTexte();
     $cmds = [];
     foreach (self::commandes('plante') as $k => [$n, , $u]) if (is_object($c = $this->getCmd('info', $k))) $cmds[$k] = ['id' => $c->getId(), 'nom' => $n, 'val' => $c->execCmd(), 'unite' => $u];
     $bota = trim((string)$this->getConfiguration('bota')); $q = rawurlencode(($g['espece'] ?? '') ?: $bota);

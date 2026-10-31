@@ -55,6 +55,8 @@ $ok($C::suggestions($v) == ['aile' => 'tres_large', 'feuille' => 'moyenne', 'fru
 $ok($C::suggestions(['calc.aile_limbe' => 0.0, 'feuilles.limbe_l' => 120.0]) == ['aile' => 'aucune', 'feuille' => 'grande'], 'suggestions : sans aile, grande feuille');
 $ok($C::suggestions(['calc.aile_limbe' => 0.1, 'feuilles.aile_w' => 1.0, 'calc.fruits_moy' => 20.0], 'doigt') == ['aile' => 'aucune'], 'suggestions : simple liseré, fruit en doigt');
 $ok($C::valeurs(['fruits.diametres' => '32,5 41'])['fruits.diametres'] === [32.5, 41.0] && $C::valeurs(['fruits.diametres' => ' ; ']) === [] && $C::valeurs(['plante.vigueur' => '3']) === ['plante.vigueur' => 3], 'liste : virgule décimale, liste vide ; note 1 à 5 en nombre');
+$ok($C::valeurs(['fruits.nombre' => '12', 'pot.diam' => '40', 'pot.terre' => '32,5', 'pot.pleine_terre' => 'oui']) === ['fruits.nombre' => 12.0, 'pot.diam' => 40.0, 'pot.terre' => 32.5, 'pot.pleine_terre' => 'oui']
+  && $C::rusticite('-6', ['diam' => 40.0, 'terre' => 32.5]) === -2.9, 'nombre de fruits, nouveau pot en nombres');
 $ok(strpos($C::resume($v), 'Feuilles : Limbe : longueur 80 mm, Aile : longueur 45,5 mm') === 0 && strpos($C::resume($v), 'Aile / limbe 0,57') !== false, 'résumé du relevé');
 foreach ($C::MESURES as $o => [$t, $ch]) foreach ($ch as $k => $f) $ok(in_array($f[0], ['n', 'l', 'c'], true) && ($f[0] != 'c' || is_array($f[2])) && strpos("$o$k", '.') === false, "catalogue : $o.$k");
 foreach ($C::suggestions(['calc.aile_limbe' => 0.3, 'feuilles.limbe_l' => 40.0, 'calc.fruits_moy' => 120.0]) as $k => $c) $ok(isset($C::CARACTERES[$k][1][$c]), "suggestion $k = $c inconnue");
