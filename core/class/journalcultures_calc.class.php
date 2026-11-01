@@ -290,7 +290,7 @@ class journalcultures_calc {
     if ($verdict == 'mort') return ['echouee', ''];
     if ($verdict == 'douteux') return [$statut, $j($jour, 7)];
     if ($verdict != 'ok') throw new Exception(__('Verdict inconnu', __FILE__));
-    return $statut == 'probable' ? ['reprise', ''] : ['probable', max($j($greffe, self::GREFFE_JOURS['probable']), $j($jour, 14))];
+    return $statut == 'probable' ? ['reprise', ''] : ['probable', max($j($greffe, self::GREFFE_JOURS['probable']), $jour)]; // J+42 déjà passé (réponse tardive) : la question suivante tout de suite
   }
 
   public static function age($d, $now = null) {

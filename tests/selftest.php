@@ -14,7 +14,7 @@ $ok($C::rusticite('', ['diam' => 40]) === null, 'rusticité inconnue');
 $t = mktime(12, 0, 0, 11, 1, 2026);
 $ok($C::jeunesse('greffe', '2025-11-01', 6, 5, $t) === 4.8 && $C::jeunesse('semis', '2020', 6, 5, $t) === 0.0 && $C::jeunesse('achat', '2026-10', 6, 5, $t) === 0.0
   && $C::jeunesse('greffe', '', 6, 5, $t) === 0.0 && $C::jeunesse('greffe', '2026-12', 6, 5, $t) === 6.0 && $C::jeunesse('greffe', '2026-02-30', 6, 5, $t) === 0.0, 'pénalité de jeunesse');
-$ok($C::controler('attente', 'ok', '2026-09-13', '2026-10-04') == ['probable', '2026-10-25'] && $C::controler('attente', 'ok', '2026-09-13', '2026-11-01') == ['probable', '2026-11-15']
+$ok($C::controler('attente', 'ok', '2026-09-13', '2026-10-04') == ['probable', '2026-10-25'] && $C::controler('attente', 'ok', '2026-09-13', '2026-11-01') == ['probable', '2026-11-01']
   && $C::controler('probable', 'ok', '2026-09-13', '2026-11-01') == ['reprise', ''] && $C::controler('attente', 'douteux', '2026-09-13', '2026-11-01') == ['attente', '2026-11-08']
   && $C::controler('probable', 'mort', '2026-09-13', '2026-11-01') == ['echouee', ''] && strpos($C::greffeQuestion('attente', 'chip'), 'œil') === 0, 'contrôles de greffe');
 $ok($C::greffeTemp(null) === '' && $C::greffeTemp(20.04) === 'trop froid pour souder : 20 °C en moyenne sur 24 h (< 21 °C)' && $C::greffeTemp(25) === ''
