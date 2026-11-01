@@ -254,6 +254,45 @@ class journalcultures_calc {
   }
 
   // date de semis / greffe « 2024 », « 2024-05 » ou « 2024-05-12 » → « ≈ 2 ans », « 7 mois », « 1 an » ; null si illisible ou à venir
+  // jeune plante (semis, greffe, bouture, marcotte datés) moins rustique : +x °C à 0 an, décroît jusqu'à 0 à n ans ; achat ou sans date : 0
+  // ponytail: décroissance linéaire, repères généraux (UF/IFAS : jeunes arbres à protéger, < 5 ans), rien de propre aux greffes
+  public static function jeunesse($m, $d, $x = 6, $n = 5, $now = null) {
+    if (!in_array($m, ['semis', 'greffe', 'bouture', 'marcotte'], true) || $n <= 0 || !preg_match('/^(\d{4})(?:-(\d{2})(?:-(\d{2}))?)?$/D', trim((string)$d), $g)) return 0.0;
+    $mo = ($g[2] ?? '') !== '' ? (int)$g[2] : 7; $j = ($g[3] ?? '') !== '' ? (int)$g[3] : 1; // année seule : milieu d'année
+    if ((int)$g[1] < 1900 || !checkdate($mo, $j, (int)$g[1])) return 0.0;
+    $ans = max(0, (($now ?? time()) - mktime(12, 0, 0, $mo, $j, (int)$g[1])) / 31557600);
+    return round(max(0, $x * (1 - $ans / $n)), 1);
+  }
+
+  /* Suivi d'une greffe récente : contrôle du bourgeon à J+21 (œil ou bourgeons verts et gonflés, lien retiré), puis à J+42 (débourrement,
+     sinon forcer en rabattant le porte-greffe) ; un statut n'avance que sur confirmation. Repères : UF/IFAS (lien retiré à 2-3 semaines),
+     Alabama ACES (œil vert = pris ; vert sans pousse : rabattre), UC Ventura (soudure en 3-4 semaines au printemps, 6-8 sinon), minigreffe Valencia (bilan à 6 semaines). */
+  const GREFFE_STATUTS = ['attente' => 'en attente', 'probable' => 'probablement prise', 'reprise' => 'reprise', 'echouee' => 'échouée'];
+  const GREFFE_JOURS = ['attente' => 21, 'probable' => 42];
+  public static function greffeQuestion($statut, $type) {
+    $oeil = in_array($type, ['ecusson_t_inverse', 'ecusson_t', 'chip', 'chip_inverse', 'placage'], true); // greffe d'un œil, sinon de rameau (ou type inconnu)
+    if ($statut == 'attente') return $oeil ? 'œil vert et gonflé, sans se ratatiner ? (retirer le lien)' : 'bourgeons du greffon verts et gonflés ?';
+    if ($statut == 'probable') return $oeil ? 'l’œil a-t-il débourré ? (sinon rabattre le porte-greffe au-dessus pour le forcer)' : 'la pousse du greffon continue-t-elle ?';
+    return '';
+  }
+  /* Température pour souder (moyenne 24 h de l'emplacement) : sous ~21 °C le Poncirus s'endort (Alabama ACES : dormance quand le jour reste < 70 °F),
+     cal le plus rapide vers 21-29 °C, prise moindre au-dessus de ~32 °C (sources d'amateurs : growingfruit.org, forum) → seuils réglables */
+  public static function greffeTemp($moy, $min = 21, $max = 32) {
+    if ($moy === null) return '';
+    if ($moy < $min) return sprintf('trop froid pour souder : %s °C en moyenne sur 24 h (< %s °C)', round($moy, 1), $min);
+    if ($moy > $max) return sprintf('trop chaud pour souder : %s °C en moyenne sur 24 h (> %s °C)', round($moy, 1), $max);
+    return '';
+  }
+  // verdict d'un contrôle (ok, douteux = revoir dans 7 jours, mort) → [statut, prochain contrôle 'Y-m-d' ou '']
+  public static function controler($statut, $verdict, $greffe, $jour) {
+    if (!isset(self::GREFFE_JOURS[$statut])) throw new Exception(__('Pas de contrôle de greffe en cours', __FILE__));
+    $j = function ($d, $n) { return date('Y-m-d', strtotime($d . ' +' . $n . ' days')); };
+    if ($verdict == 'mort') return ['echouee', ''];
+    if ($verdict == 'douteux') return [$statut, $j($jour, 7)];
+    if ($verdict != 'ok') throw new Exception(__('Verdict inconnu', __FILE__));
+    return $statut == 'probable' ? ['reprise', ''] : ['probable', max($j($greffe, self::GREFFE_JOURS['probable']), $j($jour, 14))];
+  }
+
   public static function age($d, $now = null) {
     if (!preg_match('/^(\d{4})(?:-(\d{2})(?:-(\d{2}))?)?$/D', trim((string)$d), $m)) return null;
     $now = $now ?? time(); $a = (int)$m[1]; $mo = ($m[2] ?? '') !== '' ? (int)$m[2] : null;

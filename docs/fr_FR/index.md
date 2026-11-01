@@ -33,6 +33,10 @@ sur grand écran la fiche s'ouvre à côté de la liste. Relue toutes les 5 minu
 - **Pénalité du pot** : en pot, la rusticité est relevée de `min(maximum, k / e)`, `e` = demi-épaisseur de la motte en cm
   (le plus petit du diamètre et de la hauteur de terre, divisé par 2). Par défaut k = 50 et maximum = 8 °C. Modèle volontairement simple
   (ni durée du froid, ni vent, ni pot isolé) : à ajuster selon vos observations.
+- **Pénalité de jeunesse** : une plante semée, greffée, bouturée ou marcottée, avec sa date, est moins rustique : rusticité relevée de x °C
+  à 0 an, puis linéairement jusqu'à 0 à n ans (par défaut 6 °C et 5 ans : greffe d'un an → +4,8 °C ; date « 2024 » seule = milieu d'année).
+  Repères généraux sur les jeunes agrumes (vulgarisation des universités de Floride, de Louisiane et de Géorgie : jeunes arbres
+  à protéger dès 0 °C, < 5 ans), pas de chiffre propre aux greffes : à ajuster. Achat ou sans date : aucune pénalité, 0 pour la retirer.
 - **Clé Pl@ntNet** (facultative) : compte gratuit sur my.plantnet.org, 500 identifications par jour.
 
 ## Fiche d'une plante
@@ -55,10 +59,24 @@ cocher celles à envoyer (5 au plus) puis « Pl@ntNet » : une seule demande pou
 
 ## Greffe
 **Greffer…** (bas de l'onglet Fiche, administrateurs) : la plante, en général un porte-greffe, devient le greffon. Même formulaire que « ＋ Plante » :
-nouveau nom, nom botanique du greffon, collection (par défaut l'actuelle : choisir « Agrumes » pour un porte-greffe), type et date de greffe ;
+**greffon** choisi dans la liste de nos plantes (les autres collections que celle du porte-greffe : nom botanique, cultivar et caractères recopiés,
+nom proposé « greffon sur porte-greffe ») ou écrit à la main (nouveau cultivar), nouveau nom, nom botanique du greffon, collection (par défaut l'actuelle : choisir « Agrumes » pour un porte-greffe), type et date de greffe ;
 le porte-greffe est déduit du nom (Poncirus, Flying Dragon, FA5…), modifiable. C'est le **même équipement** : journal, photos, pot, emplacement
 et courbes sont gardés, ainsi que le champ « Sol » (ce sont toujours ses racines) ; le reste de la fiche, les caractères observés et la photo
 d'étiquette, qui décrivaient le porte-greffe, sont vidés. Une entrée « Greffe » est ajoutée au journal.
+
+**Suivi de la greffe** (après « Greffer… », ou « ＋ Plante » greffée depuis moins de 60 jours avec une date complète) : la fiche montre le statut
+(*en attente* → *probablement prise* → *reprise*, ou *échouée*) et la date du prochain contrôle du bourgeon :
+J+21 (œil ou bourgeons du greffon verts et gonflés, sans se ratatiner ; retirer le lien), puis J+42 (l'œil a-t-il débourré ? sinon rabattre
+le porte-greffe au-dessus pour le forcer ; greffe de rameau : la pousse continue-t-elle ?). Le statut n'avance **que sur réponse** :
+**Oui**, **Douteux** (revoir dans 7 jours) ou **Non, mort** (deux clics) ; chaque réponse est notée au journal. Un contrôle dû remplit la commande
+« Greffe à contrôler », reprise par le rapport du matin. Délais d'après la vulgarisation des universités de Floride, d'Alabama et de Californie :
+le bourgeon, plus que le calendrier, décide. Une greffe échouée reste marquée ; **Redevenir porte-greffe…** rend le nom, la collection
+et la fiche d'avant la greffe (gardés par « Greffer… » depuis la 0.10 ; avant, seuls le nom et la collection sont à saisir).
+Tant que la greffe n'est pas reprise, la moyenne sur 24 h de la sonde de l'emplacement est comparée aux seuils de la configuration
+(21 et 32 °C par défaut) : en dehors, la fiche et la commande « Greffe à contrôler » disent « trop froid (ou trop chaud) pour souder ».
+La soudure est la plus rapide vers 21-29 °C ; sous 21 °C le Poncirus s'endort (Alabama ACES), et la greffe attend le printemps.
+Il faut que la sonde soit historisée.
 
 Type de greffe : si la multiplication est vide, le choisir la passe à « greffe » ; avec une autre multiplication (semis, bouture…), il est effacé.
 

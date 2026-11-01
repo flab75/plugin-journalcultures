@@ -85,10 +85,13 @@ try {
   }
   // « ＋ Plante » : listes du formulaire, groupe et rusticité estimée au fil de la saisie, création
   if ($a == 'modele') ajax::success(['caracteres' => journalcultures_calc::CARACTERES, 'porte_greffes' => journalcultures::PORTE_GREFFES,
-    'multiplications' => journalcultures_calc::MULTIPLICATIONS, 'greffes' => journalcultures_calc::GREFFES, 'collections' => journalcultures::collections(), 'plantnet' => journalcultures::cle() !== '' ? 1 : 0]);
+    'multiplications' => journalcultures_calc::MULTIPLICATIONS, 'greffes' => journalcultures_calc::GREFFES, 'collections' => journalcultures::collections(),
+    'cultivars' => init('pg') ? journalcultures::cultivars($eq(init('pg'), 'plante')) : [], 'plantnet' => journalcultures::cle() !== '' ? 1 : 0]);
   if ($a == 'reconnaitre') { $c = $liste('carac'); ajax::success(['ident' => journalcultures_calc::identifier($c), 'estimee' => journalcultures_calc::estimee((string)init('bota'), $c)]); }
   if ($a == 'creer') ajax::success(journalcultures::creer($eq(init('collection'), 'collection'), $liste('plante')));
   if ($a == 'accepter') ajax::success($eq(init('id'), 'plante')->accepter($liste('champs'), $liste('sources')));
+  if ($a == 'controler') ajax::success($eq(init('id'), 'plante')->controlerGreffe((string)init('verdict'), (string)init('note')));
+  if ($a == 'degreffer') ajax::success($eq(init('id'), 'plante')->degreffer($eq(init('collection'), 'collection'), init('nom')));
   if ($a == 'greffer') ajax::success(journalcultures::creer($eq(init('collection'), 'collection'), $liste('plante'), $eq(init('id'), 'plante')));
 
   throw new Exception(__('Aucune méthode correspondante à', __FILE__) . ' : ' . $a);

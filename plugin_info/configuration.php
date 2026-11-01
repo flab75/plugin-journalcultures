@@ -28,6 +28,20 @@ if (!isConnect('admin')) {
       <div class="col-md-1"><input class="configKey form-control" data-l1key="pmax" placeholder="8"></div>
     </div>
     <div class="form-group">
+      <label class="col-md-4 control-label">{{Pénalité de jeunesse}} : °C / {{ans}}
+        <sup><i class="fas fa-question-circle tooltips" title="{{Semis, greffe, bouture ou marcotte datés : rusticité relevée de x °C la première année, puis de moins en moins jusqu'à 0 à n ans. Par défaut 6 °C et 5 ans : greffe d'un an → +4,8 °C. Achat ou sans date : aucune pénalité. 0 pour la retirer.}}"></i></sup>
+      </label>
+      <div class="col-md-1"><input class="configKey form-control" data-l1key="jeune" placeholder="6"></div>
+      <div class="col-md-1"><input class="configKey form-control" data-l1key="jeune_ans" placeholder="5"></div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label">{{Greffe : température pour souder}} : min / max °C
+        <sup><i class="fas fa-question-circle tooltips" title="{{Tant que la greffe n'est pas reprise, la moyenne sur 24 h de la sonde de l'emplacement est comparée à ces seuils ; hors limites, la fiche et la commande « Greffe à contrôler » le disent. Par défaut 21 °C (le Poncirus s'endort en dessous) et 32 °C.}}"></i></sup>
+      </label>
+      <div class="col-md-1"><input class="configKey form-control" data-l1key="greffe_tmin" placeholder="21"></div>
+      <div class="col-md-1"><input class="configKey form-control" data-l1key="greffe_tmax" placeholder="32"></div>
+    </div>
+    <div class="form-group">
       <label class="col-md-4 control-label">{{Clé API Pl@ntNet}}
         <sup><i class="fas fa-question-circle tooltips" title="{{Compte gratuit sur my.plantnet.org (500 identifications par jour). Facultatif : sans clé, pas d'identification des photos.}}"></i></sup>
       </label>

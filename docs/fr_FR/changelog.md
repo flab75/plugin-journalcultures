@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.11 (2026-11-01)
+- Greffe pas encore reprise : la moyenne sur 24 h de la sonde de l'emplacement est comparée à 21 °C (le Poncirus s'endort en dessous)
+  et 32 °C, réglables ; « trop froid / trop chaud pour souder » dans la fiche et dans la commande « Greffe à contrôler ».
+
+## 0.10 (2026-11-01)
+- Suivi des greffes récentes (« Greffer… », ou « ＋ Plante » greffée depuis moins de 60 jours) : statut « en attente » → « probablement prise » → « reprise »,
+  ou « échouée ». Contrôle du bourgeon à J+21 (œil ou bourgeons verts et gonflés, lien retiré) puis à J+42 (débourrement, sinon forcer) ; le statut
+  n'avance que sur réponse (Oui / Douteux = revoir dans 7 jours / Non, mort), notée au journal. Contrôle dû : commande « Greffe à contrôler » (lue par le rapport du matin).
+- Greffe échouée : « Redevenir porte-greffe… » rend le nom, la collection et la fiche d'avant la greffe.
+
+## 0.9 (2026-11-01)
+- Rusticité effective : pénalité de jeunesse pour une plante semée, greffée, bouturée ou marcottée et datée, +6 °C la première année puis de moins
+  en moins jusqu'à 0 à 5 ans (réglable dans la configuration) ; affichée dans la fiche (« dont jeunesse »). Achat ou sans date : aucune.
+
+## 0.8 (2026-11-01)
+- « Greffer… » : champ « Greffon », choisi parmi nos plantes (nom botanique, cultivar et caractères recopiés) ou écrit à la main ; noté au journal de la greffe.
+
 ## 0.7 (2026-11-01)
 - Identification : critère « largeur de l'aile » (comparée au limbe), qui départage papeda (combava) et pomelo sans fruit ;
   rempli par la mesure (largeur de l'aile et du limbe, rapport « Aile / limbe (largeur) »).
