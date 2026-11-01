@@ -113,6 +113,10 @@ class journalcultures extends eqLogic {
           'note' => ($a !== '' ? $a : '?') . ' → ' . ($b !== '' ? $b : '?')]);
       } catch (Throwable $e) { log::add('journalcultures', 'error', $this->getHumanName() . ' : déplacement non noté : ' . $e->getMessage()); } // l'équipement est déjà sauvé
     }
+    if ($this->type() == 'plante' && is_object($c = $this->_ancColl) && $c->getId() != $this->getId()) try { // changement de collection (« Déplacer… », page du plugin, greffe)
+      self::inserer(['date' => date('Y-m-d'), 'plante_id' => $this->getId(), 'plante' => $this->getName(), 'lieu' => (string)$this->getConfiguration('emplacement'), 'action' => 'Déplacement',
+        'note' => __('Collection', __FILE__) . ' : ' . $c->getName() . ' → ' . (is_object($n = $this->collection()) ? $n->getName() : '?')]);
+    } catch (Throwable $e) { log::add('journalcultures', 'error', $this->getHumanName() . ' : changement de collection non noté : ' . $e->getMessage()); }
     try {
       if ($this->getIsEnable()) $this->maj();
       elseif ($this->type() == 'plante' && is_object($c = $this->collection())) $c->maj(); // plante désactivée : retirée de la tuile tout de suite
@@ -373,19 +377,26 @@ class journalcultures extends eqLogic {
     return self::cle() !== '' ? '********' : '';
   }
 
-  public function identifier($nom, $organe) { return self::identifierFichier($this->photo($nom), $organe); }
-  public static function identifierEnvoi(array $f, $organe) { $ext = self::image($f); return self::identifierFichier($f['tmp_name'], $organe, $ext); } // « ＋ Plante » : photo pas encore rangée
-
-  // Pl@ntNet (clé de l'utilisateur, 500 identifications par jour) : 5 meilleures espèces
-  private static function identifierFichier($chemin, $organe, $ext = null) {
+  /* Pl@ntNet (clé de l'utilisateur, 500 identifications par jour) sur 1 à 5 photos à la fois, chacune avec son organe : 5 meilleures espèces.
+     $noms : photos rangées de $p ; $fichiers : photos envoyées ($_FILES), pas encore rangées ; $organes dans cet ordre (noms puis fichiers). */
+  public static function identifierPhotos(?journalcultures $p, array $noms, array $fichiers, array $organes) {
     $cle = self::cle();
     if ($cle === '') throw new Exception(__('Clé Pl@ntNet absente : la saisir dans la configuration du plugin', __FILE__));
-    if (!in_array($organe, ['auto', 'leaf', 'flower', 'fruit', 'bark'], true)) $organe = 'auto';
-    $ext = $ext ?? pathinfo($chemin, PATHINFO_EXTENSION); // fichier envoyé : nom temporaire sans extension
-    $img = new CURLFile($chemin, ['jpg' => 'image/jpeg', 'png' => 'image/png', 'webp' => 'image/webp'][$ext] ?? '', 'photo.' . $ext);
+    $im = [];
+    foreach ($noms as $n) { if (!$p) throw new Exception(__('Photo introuvable', __FILE__)); $im[] = [$p->photo($n), pathinfo($n, PATHINFO_EXTENSION)]; }
+    foreach ($fichiers as $f) $im[] = [$f['tmp_name'], self::image($f)]; // fichier envoyé : nom temporaire sans extension
+    if (!$im || count($im) > 5) throw new Exception(__('Choisir de 1 à 5 photos', __FILE__));
+    if (array_sum(array_map(function ($x) { return filesize($x[0]); }, $im)) > 40e6) throw new Exception(__('Photos trop lourdes pour Pl@ntNet (40 Mo en tout au plus)', __FILE__)); // tout passe en mémoire
+    // multipart écrit à la main : Pl@ntNet attend « images » et « organs » répétés, ce qu'un tableau CURLOPT_POSTFIELDS ne sait pas faire
+    $b = 'jdc' . bin2hex(random_bytes(12)); $corps = '';
+    foreach ($im as $i => [$chemin, $ext]) {
+      $o = $organes[$i] ?? 'auto'; if (!in_array($o, ['auto', 'leaf', 'flower', 'fruit', 'bark'], true)) $o = 'auto';
+      $corps .= "--$b\r\nContent-Disposition: form-data; name=\"organs\"\r\n\r\n$o\r\n--$b\r\nContent-Disposition: form-data; name=\"images\"; filename=\"photo$i.$ext\"\r\n" .
+        'Content-Type: ' . ['jpg' => 'image/jpeg', 'png' => 'image/png', 'webp' => 'image/webp'][$ext] . "\r\n\r\n" . file_get_contents($chemin) . "\r\n";
+    }
     $ch = curl_init('https://my-api.plantnet.org/v2/identify/all?' . http_build_query(['api-key' => $cle, 'lang' => 'fr']));
-    curl_setopt_array($ch, [CURLOPT_POST => true, CURLOPT_POSTFIELDS => ['images' => $img, 'organs' => $organe],
-      CURLOPT_RETURNTRANSFER => true, CURLOPT_TIMEOUT => 40]);
+    curl_setopt_array($ch, [CURLOPT_POST => true, CURLOPT_POSTFIELDS => $corps . "--$b--\r\n", CURLOPT_HTTPHEADER => ['Content-Type: multipart/form-data; boundary=' . $b],
+      CURLOPT_RETURNTRANSFER => true, CURLOPT_TIMEOUT => 60]);
     $r = curl_exec($ch); $code = curl_getinfo($ch, CURLINFO_HTTP_CODE); curl_close($ch);
     $j = json_decode((string)$r, true);
     // réponse d'erreur recopiée sans la requête (la clé est dans l'adresse)

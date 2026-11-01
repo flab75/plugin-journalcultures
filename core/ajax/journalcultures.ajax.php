@@ -49,14 +49,24 @@ try {
     if (is_object($p) && $p->getIsEnable()) $p->maj();
     ajax::success();
   }
-  if ($a == 'deplacer') {
-    $e = (string)init('emplacement');
-    if (!array_key_exists($e, journalcultures::emplacements())) throw new Exception(__('Emplacement inconnu', __FILE__));
-    $n = 0; $ps = array_map(function ($id) use ($eq) { return $eq($id, 'plante'); }, $liste('plantes')); // tout vérifier avant de déplacer
-    journalcultures::$_sansGbif = true;
+  if ($a == 'deplacer') { // emplacement et/ou collection ('' = inchangé)
+    $e = (string)init('emplacement'); $co = init('collection') ? $eq(init('collection'), 'collection') : null;
+    if ($e !== '' && !array_key_exists($e, journalcultures::emplacements())) throw new Exception(__('Emplacement inconnu', __FILE__));
+    if ($e === '' && !$co) throw new Exception(__('Rien à changer', __FILE__));
+    if (count($liste('plantes')) > 200) throw new Exception(__('Trop de plantes', __FILE__));
+    $ps = array_map(function ($id) use ($eq) { return $eq($id, 'plante'); }, $liste('plantes')); // tout vérifier avant de déplacer
+    if ($co) foreach ($ps as $p) foreach (eqLogic::byObjectId($co->getObject_id(), false) as $x) // nom unique par objet (tous plugins)
+      if ($x->getId() != $p->getId() && mb_strtolower($x->getName()) == mb_strtolower($p->getName())) throw new Exception(sprintf(__('%s : un équipement de l\'objet de destination porte déjà ce nom', __FILE__), $p->getName()));
+    $n = 0; journalcultures::$_sansGbif = true;
     foreach ($ps as $p) {
-      if ($p->getConfiguration('emplacement') == $e) continue;
-      $p->setConfiguration('emplacement', $e); $p->save(); $n++; // preSave/postSave notent le déplacement au journal
+      $ch = false;
+      if ($e !== '' && $p->getConfiguration('emplacement') != $e) { $p->setConfiguration('emplacement', $e); $ch = true; }
+      if ($co && $p->getConfiguration('collection') != $co->getId()) { $p->setConfiguration('collection', $co->getId()); $p->setObject_id($co->getObject_id()); $ch = true; }
+      if ($ch) try { $p->save(); $n++; } // preSave/postSave notent le déplacement au journal, et redessinent les deux tuiles
+      catch (Throwable $x) { // nom en double à l'accent près (index unique du core) : dire où on s'est arrêté
+        if (strpos($x->getMessage(), 'Duplicate') === false) throw $x;
+        throw new Exception(sprintf(__('%s : un équipement de l\'objet de destination porte déjà ce nom (%d plante(s) déplacée(s) avant)', __FILE__), $p->getName(), $n));
+      }
     }
     ajax::success($n);
   }
@@ -68,12 +78,15 @@ try {
     if ($n !== '') $p->photo($n);
     journalcultures::$_sansGbif = true; $p->setConfiguration('etiquette', $n); $p->save(); ajax::success();
   }
-  if ($a == 'identifier') ajax::success($eq(init('id'), 'plante')->identifier(init('nom'), init('organe')));
-  // « ＋ Plante » : listes du formulaire, groupe et rusticité estimée au fil de la saisie, Pl@ntNet sur une photo pas encore rangée, création
+  if ($a == 'identifier') { // Pl@ntNet : photos de la plante (noms) et/ou envoyées (photo0, photo1…), organes dans cet ordre
+    $noms = array_values(array_filter($liste('noms'), 'is_string')); $fs = [];
+    for ($k = 0; isset($_FILES['photo' . $k]); $k++) $fs[] = $_FILES['photo' . $k];
+    ajax::success(journalcultures::identifierPhotos($noms ? $eq(init('id'), 'plante') : null, $noms, $fs, $liste('organes')));
+  }
+  // « ＋ Plante » : listes du formulaire, groupe et rusticité estimée au fil de la saisie, création
   if ($a == 'modele') ajax::success(['caracteres' => journalcultures_calc::CARACTERES, 'porte_greffes' => journalcultures::PORTE_GREFFES,
     'multiplications' => journalcultures_calc::MULTIPLICATIONS, 'greffes' => journalcultures_calc::GREFFES, 'collections' => journalcultures::collections(), 'plantnet' => journalcultures::cle() !== '' ? 1 : 0]);
   if ($a == 'reconnaitre') { $c = $liste('carac'); ajax::success(['ident' => journalcultures_calc::identifier($c), 'estimee' => journalcultures_calc::estimee((string)init('bota'), $c)]); }
-  if ($a == 'identifier_photo') ajax::success(journalcultures::identifierEnvoi($_FILES['photo'] ?? [], init('organe')));
   if ($a == 'creer') ajax::success(journalcultures::creer($eq(init('collection'), 'collection'), $liste('plante')));
   if ($a == 'accepter') ajax::success($eq(init('id'), 'plante')->accepter($liste('champs'), $liste('sources')));
   if ($a == 'greffer') ajax::success(journalcultures::creer($eq(init('collection'), 'collection'), $liste('plante'), $eq(init('id'), 'plante')));

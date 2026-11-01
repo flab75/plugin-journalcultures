@@ -11,8 +11,8 @@ Noter simplement la vie des plantes de la maison et du jardin, même quand elles
 
 ## Tuile
 - Cliquer une plante : fenêtre **Fiche** (avec liens POWO, GBIF, Tela Botanica, PFAF), **Journal**, **Photos**, **Mesures** (et courbes).
-- Administrateurs : cocher des plantes, puis **＋ Noter** (une entrée pour chacune) ou **Déplacer…** (rentrée à la serre en un geste,
-  noté au journal) ; **✓** à côté de 🌱 = engrais donné.
+- Administrateurs : cocher des plantes, puis **＋ Noter** (une entrée pour chacune) ou **Déplacer…** (changer l'emplacement, la collection, ou les deux :
+  rentrée à la serre en un geste, noté au journal) ; **✓** à côté de 🌱 = engrais donné.
 
 ## Mesures
 Onglet **Mesures** de la fenêtre d'une plante : choisir l'organe, saisir ce qu'on a mesuré (les champs vides sont ignorés ;
@@ -46,10 +46,12 @@ Multiplication (semis, greffe…) et sa date (`2024`, `2024-05` ou `2024-05-12`)
 (« ≈ » quand seule l'année est connue). Pour une greffe, préciser le type (voir [Greffe](#greffe)).
 
 ## Nouvelle plante
-**＋ Plante** (tuile ou page plein écran, administrateurs) : nom, emplacement, nom botanique, cultivar, porte-greffe, rusticité, multiplication
-(et type de greffe), pot. Pour trouver le nom botanique : une photo envoyée à Pl@ntNet (« Retenir » remplit le champ), ou la clé des caractères ;
-le groupe probable et la rusticité estimée s'affichent à chaque choix. La photo est rangée dans la plante créée. Le reste de la fiche se complète
-dans la page du plugin.
+**＋ Plante** (tuile ou page plein écran, administrateurs) : d'abord où sera la plante (emplacement) et dans quelle collection, puis nom, nom botanique, cultivar, porte-greffe, rusticité, multiplication
+(et type de greffe), pot. Pour trouver le nom botanique : Pl@ntNet (voir plus bas ; « Retenir » remplit le champ), ou la clé des caractères ;
+le groupe probable et la rusticité estimée s'affichent à chaque choix. Les photos choisies sont rangées dans la plante créée. Le reste de la fiche se complète dans la page du plugin.
+
+**Pl@ntNet** (« ＋ Plante » et « Identifier… ») : choisir une ou plusieurs photos, donner à chacune son type (feuille, fleur, fruit, écorce, ou auto),
+cocher celles à envoyer (5 au plus) puis « Pl@ntNet » : une seule demande pour toutes, plus sûre qu'une photo seule.
 
 ## Greffe
 **Greffer…** (bas de l'onglet Fiche, administrateurs) : la plante, en général un porte-greffe, devient le greffon. Même formulaire que « ＋ Plante » :
@@ -94,8 +96,8 @@ la morphologie ne suffit souvent pas (seul l'ADN tranche). Profils recoupés ave
 Utile aussi pour un rejet sous la greffe : feuilles à 3 folioles = porte-greffe, à couper ; Poncirus pur et hybrides se ressemblent trop,
 le résultat reste indécis entre Poncirus et hybride de Poncirus (la consigne est la même).
 
-**Identifier…** (bas de la fiche, administrateurs) : le même travail sans passer par la page du plugin. Pl@ntNet sur une photo de la plante
-(ou une nouvelle, non rangée), « Retenir » une espèce, compléter la clé des caractères (cochée d'après la fiche). Un tableau montre
+**Identifier…** (bas de la fiche, administrateurs) : le même travail sans passer par la page du plugin. Pl@ntNet sur des photos de la plante
+(et/ou de nouvelles, non rangées), « Retenir » une espèce, compléter la clé des caractères (cochée d'après la fiche). Un tableau montre
 chaque champ qui changerait : valeur actuelle, valeur proposée, source (score Pl@ntNet, nom botanique ou caractères). La rusticité proposée
 est celle du groupe, écrite « -3 (estimée) » pour qu'on la distingue d'une valeur sourcée (le groupe part dans la source, au journal) ;
 elle n'est proposée que si elle diffère de la fiche, et seulement avec le nom ou les caractères dont elle découle (à cocher aussi). Rien n'est coché d'office ;

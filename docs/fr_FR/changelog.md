@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.6 (2026-11-01)
+- « ＋ Plante » commence par l'emplacement et la collection (au choix, plus seulement celle de la tuile) ; plusieurs photos rangées dans la plante créée.
+- « Déplacer… » change aussi la collection (noté au journal, comme tout changement de collection).
+- Pl@ntNet : plusieurs photos (5 au plus) en une seule demande, chacune avec son type (feuille, fleur, fruit, écorce, auto) et sa vignette.
+- Fenêtres lisibles sur téléphone : plus de champ qui dépasse à droite.
+
 ## 0.5 (2026-11-01)
 - « Identifier… » dans la fiche d'une plante : Pl@ntNet sur une de ses photos (ou une nouvelle) et clé des caractères partant de la fiche,
   puis un tableau des champs qui changeraient (nom botanique, caractères, rusticité estimée d'après le groupe, écrite « -3 (estimée) »).
