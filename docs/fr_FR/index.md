@@ -69,14 +69,16 @@ d'étiquette, qui décrivaient le porte-greffe, sont vidés. Une entrée « Gref
 (*en attente* → *probablement prise* → *reprise*, ou *échouée*) et la date du prochain contrôle du bourgeon :
 J+21 (œil ou bourgeons du greffon verts et gonflés, sans se ratatiner ; retirer le lien), puis J+42 (l'œil a-t-il débourré ? sinon rabattre
 le porte-greffe au-dessus pour le forcer ; greffe de rameau : la pousse continue-t-elle ?). Le statut n'avance **que sur réponse** :
-**Oui**, **Douteux** (revoir dans 7 jours) ou **Non, mort** (deux clics) ; chaque réponse est notée au journal. Un contrôle dû remplit la commande
+**Oui**, **Douteux** (revoir dans 7 jours), **Au printemps** (œil vivant laissé dormant, pour une greffe d'automne :
+contrôle le 15 mars, après avoir rabattu le porte-greffe au-dessus de l'œil) ou **Non, mort** (deux clics) ; chaque réponse est notée au journal. Un contrôle dû remplit la commande
 « Greffe à contrôler », reprise par le rapport du matin. Délais d'après la vulgarisation des universités de Floride, d'Alabama et de Californie :
 le bourgeon, plus que le calendrier, décide. Une greffe échouée reste marquée ; **Redevenir porte-greffe…** rend le nom, la collection
 et la fiche d'avant la greffe (gardés par « Greffer… » depuis la 0.10 ; avant, seuls le nom et la collection sont à saisir).
 Tant que la greffe n'est pas reprise, la moyenne sur 24 h de la sonde de l'emplacement est comparée aux seuils de la configuration
 (21 et 32 °C par défaut) : en dehors, la fiche et la commande « Greffe à contrôler » disent « trop froid (ou trop chaud) pour souder ».
 La soudure est la plus rapide vers 21-29 °C ; sous 21 °C le Poncirus s'endort (Alabama ACES), et la greffe attend le printemps.
-Il faut que la sonde soit historisée.
+Œil dormant (« Au printemps ») : la soudure est faite, le seuil de 21 °C ne s'applique plus ; seul le gel compte
+(« gel : protéger l'œil » si la sonde descend sous 0 °C sur 24 h). Il faut que la sonde soit historisée.
 
 Type de greffe : si la multiplication est vide, le choisir la passe à « greffe » ; avec une autre multiplication (semis, bouture…), il est effacé.
 

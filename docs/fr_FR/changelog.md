@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.12 (2026-11-01)
+- Suivi des greffes : bouton « Au printemps » (œil vivant laissé dormant, greffe d'automne) → statut « œil dormant jusqu'au printemps »,
+  contrôle le 15 mars (rabattre le porte-greffe, l'œil a-t-il débourré ?). Pendant la dormance, plus de seuil de 21 °C (soudure faite) :
+  seulement « gel : protéger l'œil » si la sonde de l'emplacement descend sous 0 °C sur 24 h.
+- Réponse tardive au premier contrôle : si J+42 est passé, la question suivante est posée tout de suite.
+
 ## 0.11 (2026-11-01)
 - Greffe pas encore reprise : la moyenne sur 24 h de la sonde de l'emplacement est comparée à 21 °C (le Poncirus s'endort en dessous)
   et 32 °C, réglables ; « trop froid / trop chaud pour souder » dans la fiche et dans la commande « Greffe à contrôler ».

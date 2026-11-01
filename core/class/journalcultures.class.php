@@ -472,10 +472,11 @@ class journalcultures extends eqLogic {
     $s = (string)$this->getConfiguration('greffe_statut');
     if (!isset(journalcultures_calc::GREFFE_STATUTS[$s])) return null;
     $c = (string)$this->getConfiguration('greffe_controle'); $av = $this->getConfiguration('greffe_avant'); $temp = '';
-    if (isset(journalcultures_calc::GREFFE_JOURS[$s]) && ($i = self::info((self::emplacements()[(string)$this->getConfiguration('emplacement')] ?? [''])[0]))) { // pas encore reprise : la soudure a-t-elle assez chaud ?
+    if ($s != 'reprise' && $s != 'echouee' && ($i = self::info((self::emplacements()[(string)$this->getConfiguration('emplacement')] ?? [''])[0]))) {
       $st = history::getStatistique($i->getId(), date('Y-m-d H:i:s', time() - 86400), date('Y-m-d H:i:s')); // ponytail: sonde non historisée → pas d'avis
-      $temp = journalcultures_calc::greffeTemp(is_numeric($st['avg'] ?? null) && ($st['count'] ?? 0) > 0 ? (float)$st['avg'] : null,
-        (float)config::byKey('greffe_tmin', 'journalcultures', 21), (float)config::byKey('greffe_tmax', 'journalcultures', 32));
+      $v = function ($k) use ($st) { return is_numeric($st[$k] ?? null) && ($st['count'] ?? 0) > 0 ? (float)$st[$k] : null; };
+      $temp = $s == 'dormant' ? journalcultures_calc::greffeGel($v('min')) // œil dormant : seulement le gel
+        : journalcultures_calc::greffeTemp($v('avg'), (float)config::byKey('greffe_tmin', 'journalcultures', 21), (float)config::byKey('greffe_tmax', 'journalcultures', 32)); // la soudure a-t-elle assez chaud ?
     }
     return ['statut' => $s, 'texte' => journalcultures_calc::GREFFE_STATUTS[$s], 'controle' => $c, 'du' => $c !== '' && $c <= date('Y-m-d'),
       'question' => journalcultures_calc::greffeQuestion($s, $this->getConfiguration('type_greffe')),
@@ -489,7 +490,7 @@ class journalcultures extends eqLogic {
     self::$_sansGbif = true; $this->setConfiguration('greffe_statut', $n); $this->setConfiguration('greffe_controle', $c); $this->save();
     try {
       self::inserer(['date' => date('Y-m-d'), 'plante_id' => $this->getId(), 'plante' => $this->getName(), 'lieu' => (string)$this->getConfiguration('emplacement'), 'action' => 'Observation',
-        'note' => sprintf(__('Contrôle de greffe (%s) : %s → %s', __FILE__), $q, ['ok' => __('oui', __FILE__), 'douteux' => __('douteux', __FILE__), 'mort' => __('non, bourgeon mort', __FILE__)][$verdict],
+        'note' => sprintf(__('Contrôle de greffe (%s) : %s → %s', __FILE__), $q, ['ok' => __('oui', __FILE__), 'douteux' => __('douteux', __FILE__), 'printemps' => __('le laisser dormir jusqu’au printemps', __FILE__), 'mort' => __('non, bourgeon mort', __FILE__)][$verdict],
           journalcultures_calc::GREFFE_STATUTS[$n]) . ($c !== '' ? ', ' . sprintf(__('prochain contrôle le %s', __FILE__), $c) : '')
           . (($t = journalcultures_calc::texte($note, 200)) !== '' ? ' ; ' . $t : '')]);
     } catch (Throwable $e) { log::add('journalcultures', 'error', $this->getHumanName() . ' : contrôle de greffe non noté : ' . $e->getMessage()); } // statut déjà sauvé

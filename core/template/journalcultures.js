@@ -1,6 +1,6 @@
 /* Journal de cultures — tuile d'une collection et ses fenêtres (plante, journal, noter, déplacer). Recopié dans chaque tuile par
    journalcultures::toHtml(), chargé une seule fois par page. Textes entre doubles accolades traduits côté PHP (core/i18n). */
-if (!window.journalcultures || window.journalcultures.v !== 11) (function () { // v : un onglet ouvert avant une mise à jour recharge la bibliothèque
+if (!window.journalcultures || window.journalcultures.v !== 12) (function () { // v : un onglet ouvert avant une mise à jour recharge la bibliothèque
   var css = document.getElementById('jdc-css') || document.createElement('style')
   css.id = 'jdc-css'
   css.textContent =
@@ -121,7 +121,7 @@ if (!window.journalcultures || window.journalcultures.v !== 11) (function () { /
           (r.greffe ? '<tr><th>' + "{{Greffe}}" + '</th><td class="grs">' + esc(r.greffe.texte) + (r.greffe.controle ? ' · ' + "{{contrôle le}}" + ' ' + esc(r.greffe.controle.split('-').reverse().join('/')) : '') +
             (r.greffe.question ? '<br>' + (r.greffe.du ? '<b class="jdc-er">' + esc(r.greffe.question) + '</b>' : '<small>' + esc(r.greffe.question) + '</small>') : '') +
             (r.greffe.temp ? '<br><b class="jdc-er">' + esc(r.greffe.temp) + '</b>' : '') +
-            (d.admin == 1 && r.greffe.question ? '<br><input class="gnote" maxlength="200" placeholder="' + "{{note (facultatif)}}" + '"> <a class="b gv" data-v="ok">' + "{{Oui}}" + '</a> <a class="b gv" data-v="douteux" title="' + "{{revoir dans 7 jours}}" + '">' + "{{Douteux}}" + '</a> <a class="b gv" data-v="mort">' + "{{Non, mort}}" + '</a>' : '') +
+            (d.admin == 1 && r.greffe.question ? '<br><input class="gnote" maxlength="200" placeholder="' + "{{note (facultatif)}}" + '"> <a class="b gv" data-v="ok">' + "{{Oui}}" + '</a> <a class="b gv" data-v="douteux" title="' + "{{revoir dans 7 jours}}" + '">' + "{{Douteux}}" + '</a> ' + (r.greffe.statut != 'dormant' ? '<a class="b gv" data-v="printemps" title="' + "{{œil vivant, laissé dormant : contrôle le 15 mars}}" + '">' + "{{Au printemps}}" + '</a> ' : '') + '<a class="b gv" data-v="mort">' + "{{Non, mort}}" + '</a>' : '') +
             (d.admin == 1 && r.greffe.statut == 'echouee' ? ' <a class="b dgr">' + "{{Redevenir porte-greffe…}}" + '</a>' : '') + ' <span class="jdc-er"></span></td></tr>' : '') +
           '<tr><th>' + "{{Rusticité effective}}" + '</th><td>' + (s.reff === null ? "{{inconnue (pas de rusticité dans la fiche)}}" : nb(s.reff, ' °C')) +
             (s.reff !== null && s.estimee ? ' <small>(' + "{{estimée}}" + ' ' + nb(s.estimee.r, ' °C') + ' : ' + esc(s.estimee.groupes.join(', ')) + (s.estimee.par == 'nom' ? '' : ', ' + "{{d'après les caractères}}") + ')</small>' : '') + (s.reff !== null && s.jeunesse > 0 ? ' <small>(' + "{{dont jeunesse}}" + ' +' + nb(s.jeunesse, ' °C') + ')</small>' : '') + (s.raison ? ' <b class="jdc-er">' + esc(s.raison) + '</b>' : '') + '</td></tr>' +
@@ -456,7 +456,7 @@ if (!window.journalcultures || window.journalcultures.v !== 11) (function () { /
   }
 
   // opt.panel : colonnes en plus (porte-greffe, dernière mesure), masquées sur téléphone
-  window.journalcultures = {v: 11, ajax: ajax, esc: esc, nb: nb, init: function (b, d, opt) {
+  window.journalcultures = {v: 12, ajax: ajax, esc: esc, nb: nb, init: function (b, d, opt) {
     if (!b) return
     d.apres = opt && opt.apres // relu par « Greffer… » (fiche)
     var pa = opt && opt.panel

@@ -16,9 +16,11 @@ $ok($C::jeunesse('greffe', '2025-11-01', 6, 5, $t) === 4.8 && $C::jeunesse('semi
   && $C::jeunesse('greffe', '', 6, 5, $t) === 0.0 && $C::jeunesse('greffe', '2026-12', 6, 5, $t) === 6.0 && $C::jeunesse('greffe', '2026-02-30', 6, 5, $t) === 0.0, 'pénalité de jeunesse');
 $ok($C::controler('attente', 'ok', '2026-09-13', '2026-10-04') == ['probable', '2026-10-25'] && $C::controler('attente', 'ok', '2026-09-13', '2026-11-01') == ['probable', '2026-11-01']
   && $C::controler('probable', 'ok', '2026-09-13', '2026-11-01') == ['reprise', ''] && $C::controler('attente', 'douteux', '2026-09-13', '2026-11-01') == ['attente', '2026-11-08']
-  && $C::controler('probable', 'mort', '2026-09-13', '2026-11-01') == ['echouee', ''] && strpos($C::greffeQuestion('attente', 'chip'), 'œil') === 0, 'contrôles de greffe');
+  && $C::controler('probable', 'mort', '2026-09-13', '2026-11-01') == ['echouee', '']
+  && $C::controler('probable', 'printemps', '2026-09-13', '2026-11-01') == ['dormant', '2027-03-15'] && $C::controler('attente', 'printemps', '2026-02-01', '2026-02-20') == ['dormant', '2026-03-15']
+  && $C::controler('dormant', 'ok', '2026-09-13', '2027-03-20') == ['reprise', ''] && $C::controler('dormant', 'douteux', '2026-09-13', '2027-03-15') == ['dormant', '2027-03-22'] && strpos($C::greffeQuestion('attente', 'chip'), 'œil') === 0, 'contrôles de greffe');
 $ok($C::greffeTemp(null) === '' && $C::greffeTemp(20.04) === 'trop froid pour souder : 20 °C en moyenne sur 24 h (< 21 °C)' && $C::greffeTemp(25) === ''
-  && strpos($C::greffeTemp(33, 21, 32), 'trop chaud') === 0 && $C::greffeTemp(19, 18, 32) === '' && strpos($C::greffeTemp(20.96), ': 20.9 °C') !== false, 'température de la greffe');
+  && strpos($C::greffeTemp(33, 21, 32), 'trop chaud') === 0 && $C::greffeTemp(19, 18, 32) === '' && strpos($C::greffeTemp(20.96), ': 20.9 °C') !== false && $C::greffeGel(null) === '' && $C::greffeGel(0.4) === '' && strpos($C::greffeGel(-1.25), '-1.3 °C') !== false, 'température de la greffe');
 try { $C::controler('echouee', 'ok', '2026-09-13', '2026-11-01'); $ok(false, 'greffe échouée : plus de contrôle'); } catch (Exception $e) {}
 $ok($C::alerte(-5.0, 1.0, null)['alerte'] === 0 && $C::alerte(-5.0, -3.0, null)['alerte'] === 1 && $C::alerte(-5.0, 4.0, -3.5)['alerte'] === 1, 'alerte : mesurée, prévue');
 $ok($C::alerte(null, -10.0, null) === null && $C::alerte(-5.0, null, null) === null, 'alerte : inconnue');

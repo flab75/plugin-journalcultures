@@ -266,13 +266,15 @@ class journalcultures_calc {
 
   /* Suivi d'une greffe récente : contrôle du bourgeon à J+21 (œil ou bourgeons verts et gonflés, lien retiré), puis à J+42 (débourrement,
      sinon forcer en rabattant le porte-greffe) ; un statut n'avance que sur confirmation. Repères : UF/IFAS (lien retiré à 2-3 semaines),
-     Alabama ACES (œil vert = pris ; vert sans pousse : rabattre), UC Ventura (soudure en 3-4 semaines au printemps, 6-8 sinon), minigreffe Valencia (bilan à 6 semaines). */
-  const GREFFE_STATUTS = ['attente' => 'en attente', 'probable' => 'probablement prise', 'reprise' => 'reprise', 'echouee' => 'échouée'];
+     Alabama ACES (œil vert = pris ; vert sans pousse : rabattre), UC Ventura (soudure en 3-4 semaines au printemps, 6-8 sinon), minigreffe Valencia (bilan à 6 semaines).
+     Œil gardé dormant jusqu'au printemps (greffe d'automne), puis porte-greffe rabattu pour le forcer : Arizona (az1146), Kentucky (greffage). */
+  const GREFFE_STATUTS = ['attente' => 'en attente', 'probable' => 'probablement prise', 'dormant' => 'œil dormant jusqu’au printemps', 'reprise' => 'reprise', 'echouee' => 'échouée'];
   const GREFFE_JOURS = ['attente' => 21, 'probable' => 42];
   public static function greffeQuestion($statut, $type) {
     $oeil = in_array($type, ['ecusson_t_inverse', 'ecusson_t', 'chip', 'chip_inverse', 'placage'], true); // greffe d'un œil, sinon de rameau (ou type inconnu)
     if ($statut == 'attente') return $oeil ? 'œil vert et gonflé, sans se ratatiner ? (retirer le lien)' : 'bourgeons du greffon verts et gonflés ?';
-    if ($statut == 'probable') return $oeil ? 'l’œil a-t-il débourré ? (sinon rabattre le porte-greffe au-dessus pour le forcer)' : 'la pousse du greffon continue-t-elle ?';
+    if ($statut == 'probable') return $oeil ? 'l’œil a-t-il débourré ? (sinon le forcer en rabattant le porte-greffe au-dessus, ou le laisser dormir jusqu’au printemps)' : 'la pousse du greffon continue-t-elle ?';
+    if ($statut == 'dormant') return $oeil ? 'printemps : rabattre le porte-greffe au-dessus de l’œil ; a-t-il débourré ?' : 'printemps : les bourgeons du greffon ont-ils démarré ?';
     return '';
   }
   /* Température pour souder (moyenne 24 h de l'emplacement) : sous ~21 °C le Poncirus s'endort (Alabama ACES : dormance quand le jour reste < 70 °F),
@@ -283,14 +285,22 @@ class journalcultures_calc {
     if ($moy > $max) return sprintf('trop chaud pour souder : %s °C en moyenne sur 24 h (> %s °C)', ceil($moy * 10) / 10, $max);
     return '';
   }
-  // verdict d'un contrôle (ok, douteux = revoir dans 7 jours, mort) → [statut, prochain contrôle 'Y-m-d' ou '']
+  /* Œil dormant : soudure faite, plus besoin de 21 °C ; reste à le protéger du gel (UC ANR : greffe d'automne à protéger du gel).
+     ponytail: 0 °C fixe sur le minimum 24 h, à rendre réglable si la sonde est loin de la plante */
+  public static function greffeGel($min) {
+    return $min !== null && $min < 0 ? sprintf('gel : protéger l’œil, %s °C au plus bas sur 24 h', floor($min * 10) / 10) : '';
+  }
+  // verdict d'un contrôle (ok, douteux = revoir dans 7 jours, printemps = œil laissé dormant, mort) → [statut, prochain contrôle 'Y-m-d' ou '']
   public static function controler($statut, $verdict, $greffe, $jour) {
-    if (!isset(self::GREFFE_JOURS[$statut])) throw new Exception(__('Pas de contrôle de greffe en cours', __FILE__));
+    if (!in_array($statut, ['attente', 'probable', 'dormant'], true)) throw new Exception(__('Pas de contrôle de greffe en cours', __FILE__));
     $j = function ($d, $n) { return date('Y-m-d', strtotime($d . ' +' . $n . ' days')); };
     if ($verdict == 'mort') return ['echouee', ''];
     if ($verdict == 'douteux') return [$statut, $j($jour, 7)];
+    if ($verdict == 'printemps' && $statut != 'dormant') { // ponytail: 15 mars fixe ; à rendre réglable si le climat de la pièce l'exige
+      $p = substr($jour, 0, 4) . '-03-15'; return ['dormant', $p > $jour ? $p : ((int)substr($jour, 0, 4) + 1) . '-03-15'];
+    }
     if ($verdict != 'ok') throw new Exception(__('Verdict inconnu', __FILE__));
-    return $statut == 'probable' ? ['reprise', ''] : ['probable', max($j($greffe, self::GREFFE_JOURS['probable']), $jour)]; // J+42 déjà passé (réponse tardive) : la question suivante tout de suite
+    return $statut != 'attente' ? ['reprise', ''] : ['probable', max($j($greffe, self::GREFFE_JOURS['probable']), $jour)]; // J+42 déjà passé (réponse tardive) : la question suivante tout de suite
   }
 
   public static function age($d, $now = null) {
