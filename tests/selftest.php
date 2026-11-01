@@ -18,7 +18,7 @@ $ok($C::controler('attente', 'ok', '2026-09-13', '2026-10-04') == ['probable', '
   && $C::controler('probable', 'ok', '2026-09-13', '2026-11-01') == ['reprise', ''] && $C::controler('attente', 'douteux', '2026-09-13', '2026-11-01') == ['attente', '2026-11-08']
   && $C::controler('probable', 'mort', '2026-09-13', '2026-11-01') == ['echouee', ''] && strpos($C::greffeQuestion('attente', 'chip'), 'œil') === 0, 'contrôles de greffe');
 $ok($C::greffeTemp(null) === '' && $C::greffeTemp(20.04) === 'trop froid pour souder : 20 °C en moyenne sur 24 h (< 21 °C)' && $C::greffeTemp(25) === ''
-  && strpos($C::greffeTemp(33, 21, 32), 'trop chaud') === 0 && $C::greffeTemp(19, 18, 32) === '', 'température de la greffe');
+  && strpos($C::greffeTemp(33, 21, 32), 'trop chaud') === 0 && $C::greffeTemp(19, 18, 32) === '' && strpos($C::greffeTemp(20.96), ': 20.9 °C') !== false, 'température de la greffe');
 try { $C::controler('echouee', 'ok', '2026-09-13', '2026-11-01'); $ok(false, 'greffe échouée : plus de contrôle'); } catch (Exception $e) {}
 $ok($C::alerte(-5.0, 1.0, null)['alerte'] === 0 && $C::alerte(-5.0, -3.0, null)['alerte'] === 1 && $C::alerte(-5.0, 4.0, -3.5)['alerte'] === 1, 'alerte : mesurée, prévue');
 $ok($C::alerte(null, -10.0, null) === null && $C::alerte(-5.0, null, null) === null, 'alerte : inconnue');

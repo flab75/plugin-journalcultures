@@ -279,8 +279,8 @@ class journalcultures_calc {
      cal le plus rapide vers 21-29 °C, prise moindre au-dessus de ~32 °C (sources d'amateurs : growingfruit.org, forum) → seuils réglables */
   public static function greffeTemp($moy, $min = 21, $max = 32) {
     if ($moy === null) return '';
-    if ($moy < $min) return sprintf('trop froid pour souder : %s °C en moyenne sur 24 h (< %s °C)', round($moy, 1), $min);
-    if ($moy > $max) return sprintf('trop chaud pour souder : %s °C en moyenne sur 24 h (> %s °C)', round($moy, 1), $max);
+    if ($moy < $min) return sprintf('trop froid pour souder : %s °C en moyenne sur 24 h (< %s °C)', floor($moy * 10) / 10, $min); // arrondi vers l'extérieur : jamais « 21 °C (< 21 °C) »
+    if ($moy > $max) return sprintf('trop chaud pour souder : %s °C en moyenne sur 24 h (> %s °C)', ceil($moy * 10) / 10, $max);
     return '';
   }
   // verdict d'un contrôle (ok, douteux = revoir dans 7 jours, mort) → [statut, prochain contrôle 'Y-m-d' ou '']
