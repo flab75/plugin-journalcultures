@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.4 (2026-11-01)
+- Bouton « ＋ Plante » sur la tuile et la page plein écran : nom, emplacement, pot, multiplication, porte-greffe, nom botanique.
+  Aide à l'identification dans le même formulaire : photo envoyée à Pl@ntNet (« Retenir » remplit le nom botanique) et clé des caractères,
+  avec le groupe probable et la rusticité estimée mis à jour à chaque choix. La photo est rangée dans la plante créée.
+- Champ « Type de greffe » (écusson en T inversé ou non, chip budding, placage, fente, sous écorce, anglaise, pont, approche, microgreffe…) dans la page du plugin
+  et dans « ＋ Plante » (proposé quand la multiplication est « greffe ») ; affiché dans la fiche avec la multiplication.
+- « Greffer… » dans la fiche d'une plante (porte-greffe) : même formulaire que « ＋ Plante », la plante devient le greffon sur place (nouveau nom,
+  fiche, collection ; journal, photos, pot, emplacement et courbes gardés, sol aussi : ce sont toujours ses racines). Entrée « Greffe » au journal.
+- Critère « quartiers » ; rusticité estimée d'après le groupe (nom botanique, sinon caractères observés).
+
 ## 0.3 (2026-10-31)
 - Mesures par organe (plante, tronc et greffe, épines, feuilles, fleurs, fruits, racines et pot, santé), catalogue fixe ; un relevé = une entrée
   « Mesure » du journal avec ses valeurs. Calculs : aile / limbe, greffon / porte-greffe, Ø moyen, minimal et maximal des fruits.

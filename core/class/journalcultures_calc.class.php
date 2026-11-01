@@ -194,6 +194,36 @@ class journalcultures_calc {
   }
 
   const MULTIPLICATIONS = ['semis', 'greffe', 'bouture', 'marcotte', 'achat'];
+  // type de greffe (multiplication « greffe ») : greffes d'un œil (pépinière), de rameau (changer de variété, réparer), de laboratoire
+  const GREFFES = ['ecusson_t_inverse' => 'écusson en T inversé', 'ecusson_t' => 'écusson en T', 'chip' => 'chip budding (œil en copeau)',
+    'chip_inverse' => 'chip inversé', 'placage' => 'placage d’œil', 'fente' => 'fente', 'sous_ecorce' => 'sous écorce (couronne)',
+    'anglaise' => 'anglaise', 'pont' => 'pont', 'incrustation' => 'incrustation', 'approche' => 'en approche', 'laterale' => 'latérale',
+    'souche' => 'sur souche', 'microgreffe' => 'microgreffe d’apex in vitro', 'minigreffe' => 'minigreffe en fente'];
+  public static function greffe(array $c) { // type de greffe gardé seulement s'il est connu, et il implique la multiplication « greffe »
+    if (!array_key_exists($c['type_greffe'] ?? '', self::GREFFES)) { unset($c['type_greffe']); return $c; }
+    if (($c['multiplication'] ?? '') === '') $c['multiplication'] = 'greffe';
+    if ($c['multiplication'] !== 'greffe') unset($c['type_greffe']);
+    return $c;
+  }
+
+  /* Plante saisie dans la tuile (« ＋ Plante ») : champs reçus → configuration retenue. Textes bornés, dimensions du pot > 0,
+     emplacement pris dans $empl (noms) ou refusé, caractères d'identification valides seulement (le reste se complète dans la page du plugin). */
+  const NOUVELLE = ['bota' => 120, 'cultivar' => 120, 'porte_greffe' => 120, 'origine' => 200, 'rusticite' => 40, 'date_mult' => 10];
+  public static function nouvelle(array $in, array $empl) {
+    $c = [];
+    foreach (self::NOUVELLE as $k => $n) if (($v = self::texte($in[$k] ?? '', $n)) !== '') $c[$k] = $v;
+    if (in_array($in['multiplication'] ?? '', self::MULTIPLICATIONS, true)) $c['multiplication'] = $in['multiplication'];
+    $c = self::greffe($c + (isset($in['type_greffe']) ? ['type_greffe' => (string)$in['type_greffe']] : []));
+    foreach (['pot_diam', 'pot_haut', 'pot_terre'] as $k) if (($v = self::nombre($in[$k] ?? '')) !== null && $v > 0) $c[$k] = $v;
+    if (($in['pot_forme'] ?? '') === 'carre') $c['pot_forme'] = 'carre';
+    if (!empty($in['pleine_terre'])) $c['pleine_terre'] = 1;
+    if (($e = (string)($in['emplacement'] ?? '')) !== '') {
+      if (!in_array($e, $empl, true)) throw new Exception(__('Emplacement inconnu', __FILE__));
+      $c['emplacement'] = $e;
+    }
+    foreach (self::observes(is_array($in['carac'] ?? null) ? $in['carac'] : []) as $k => $v) $c['id_' . $k] = $v;
+    return $c;
+  }
 
   // date de semis / greffe « 2024 », « 2024-05 » ou « 2024-05-12 » → « ≈ 2 ans », « 7 mois », « 1 an » ; null si illisible ou à venir
   public static function age($d, $now = null) {

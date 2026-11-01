@@ -58,6 +58,8 @@ class journalcultures extends eqLogic {
       if (is_string($v = $this->getConfiguration($k))) $this->setConfiguration($k, preg_replace('/[\x{10000}-\x{10FFFF}]/u', '', $v) ?? '');
     }
     if (!in_array($this->getConfiguration('multiplication'), journalcultures_calc::MULTIPLICATIONS, true)) $this->setConfiguration('multiplication', '');
+    $g = journalcultures_calc::greffe(['multiplication' => $this->getConfiguration('multiplication'), 'type_greffe' => (string)$this->getConfiguration('type_greffe')]);
+    $this->setConfiguration('multiplication', $g['multiplication']); $this->setConfiguration('type_greffe', $g['type_greffe'] ?? '');
     foreach (journalcultures_calc::CARACTERES as $k => [, $opt]) { // caractères observés : codes de la liste seulement
       $v = $this->getConfiguration('id_' . $k);
       if ($v !== '' && $v !== null && !(is_string($v) && isset($opt[$v]))) $this->setConfiguration('id_' . $k, '');
@@ -337,12 +339,17 @@ class journalcultures extends eqLogic {
     return $f;
   }
 
-  // ponytail: photo gardée telle quelle (pas de réduction) ; miniatures si la fenêtre devient lente
-  public function ajouterPhoto(array $f) { // fichier envoyé ($_FILES) : image jpeg/png/webp de 15 Mo max
+  private static function image(array $f) { // fichier envoyé ($_FILES) : image jpeg/png/webp de 15 Mo max → extension
     if (($f['error'] ?? 1) !== UPLOAD_ERR_OK || !is_uploaded_file($f['tmp_name'] ?? '')) throw new Exception(__('Envoi de la photo échoué', __FILE__));
     if ($f['size'] > 15 * 1048576) throw new Exception(__('Photo trop lourde (15 Mo max)', __FILE__));
     $ext = ['image/jpeg' => 'jpg', 'image/png' => 'png', 'image/webp' => 'webp'][(new finfo(FILEINFO_MIME_TYPE))->file($f['tmp_name'])] ?? null;
     if (!$ext || !getimagesize($f['tmp_name'])) throw new Exception(__('Format refusé (jpeg, png ou webp)', __FILE__));
+    return $ext;
+  }
+
+  // ponytail: photo gardée telle quelle (pas de réduction) ; miniatures si la fenêtre devient lente
+  public function ajouterPhoto(array $f) {
+    $ext = self::image($f);
     $d = self::dossier($this->getId());
     if (!is_dir($d) && !mkdir($d, 0775, true)) throw new Exception(__('Dossier des photos impossible à créer', __FILE__));
     $nom = date('Ymd_His') . '_' . bin2hex(random_bytes(3)) . '.' . $ext;
@@ -366,13 +373,18 @@ class journalcultures extends eqLogic {
     return self::cle() !== '' ? '********' : '';
   }
 
+  public function identifier($nom, $organe) { return self::identifierFichier($this->photo($nom), $organe); }
+  public static function identifierEnvoi(array $f, $organe) { $ext = self::image($f); return self::identifierFichier($f['tmp_name'], $organe, $ext); } // « ＋ Plante » : photo pas encore rangée
+
   // Pl@ntNet (clé de l'utilisateur, 500 identifications par jour) : 5 meilleures espèces
-  public function identifier($nom, $organe) {
+  private static function identifierFichier($chemin, $organe, $ext = null) {
     $cle = self::cle();
     if ($cle === '') throw new Exception(__('Clé Pl@ntNet absente : la saisir dans la configuration du plugin', __FILE__));
     if (!in_array($organe, ['auto', 'leaf', 'flower', 'fruit', 'bark'], true)) $organe = 'auto';
+    $ext = $ext ?? pathinfo($chemin, PATHINFO_EXTENSION); // fichier envoyé : nom temporaire sans extension
+    $img = new CURLFile($chemin, ['jpg' => 'image/jpeg', 'png' => 'image/png', 'webp' => 'image/webp'][$ext] ?? '', 'photo.' . $ext);
     $ch = curl_init('https://my-api.plantnet.org/v2/identify/all?' . http_build_query(['api-key' => $cle, 'lang' => 'fr']));
-    curl_setopt_array($ch, [CURLOPT_POST => true, CURLOPT_POSTFIELDS => ['images' => new CURLFile($this->photo($nom)), 'organs' => $organe],
+    curl_setopt_array($ch, [CURLOPT_POST => true, CURLOPT_POSTFIELDS => ['images' => $img, 'organs' => $organe],
       CURLOPT_RETURNTRANSFER => true, CURLOPT_TIMEOUT => 40]);
     $r = curl_exec($ch); $code = curl_getinfo($ch, CURLINFO_HTTP_CODE); curl_close($ch);
     $j = json_decode((string)$r, true);
@@ -384,6 +396,42 @@ class journalcultures extends eqLogic {
       return ['score' => round(100 * ($x['score'] ?? 0)), 'nom' => $s['scientificNameWithoutAuthor'] ?? '', 'auteur' => $s['scientificNameAuthorship'] ?? '',
         'famille' => $s['family']['scientificNameWithoutAuthor'] ?? '', 'communs' => implode(', ', array_slice($s['commonNames'] ?? [], 0, 3))];
     }, array_slice($j['results'] ?? [], 0, 5));
+  }
+
+  /* Nouvelle plante saisie dans la tuile (« ＋ Plante ») : dans la collection et son objet, masquée du dashboard comme les autres → id */
+  /* « Greffer… » ($pg = porte-greffe) : la même plante devient le greffon (même id : journal, photos, pot, emplacement, courbes gardés) ;
+     fiche, caractères observés et étiquette décrivaient le porte-greffe et sont vidés, sauf le sol (ce sont toujours ses racines). */
+  public static function creer(journalcultures $coll, array $in, ?journalcultures $pg = null) {
+    $nom = journalcultures_calc::texte($in['nom'] ?? '', 120);
+    if ($nom === '') throw new Exception(__('Nom de la plante obligatoire', __FILE__));
+    $c = journalcultures_calc::nouvelle($in, array_map('strval', array_keys(self::emplacements()))); // contrôlé avant toute écriture ; strval : un nom « 2 » devient une clé entière
+    foreach (eqLogic::byObjectId($coll->getObject_id(), false) as $e) if (mb_strtolower($e->getName()) == mb_strtolower($nom) && (!$pg || $e->getId() != $pg->getId())) // tous plugins : nom unique par objet
+      throw new Exception(__('Un équipement de cet objet porte déjà ce nom', __FILE__));
+    if ($pg) {
+      if (!$pg->getIsEnable()) throw new Exception(__('Plante désactivée', __FILE__));
+      $p = $pg; $avant = $pg->getName(); $c['multiplication'] = 'greffe';
+      try { $jour = journalcultures_calc::date($c['date_mult'] ?? ''); } catch (Exception $x) { $jour = date('Y-m-d'); } // date de greffe partielle (2026-05) ou absente : aujourd'hui
+      foreach (array_merge(array_diff(array_keys(self::FICHE), ['sol']), ['etiquette', 'type_greffe', 'date_mult']) as $k) $p->setConfiguration($k, '');
+      foreach (array_keys(journalcultures_calc::CARACTERES) as $k) $p->setConfiguration('id_' . $k, '');
+    } else {
+      $p = new journalcultures();
+      $p->setEqType_name('journalcultures'); $p->setIsEnable(1); $p->setIsVisible(0); $p->setConfiguration('type', 'plante');
+    }
+    $p->setName($nom); $p->setObject_id($coll->getObject_id()); $p->setConfiguration('collection', $coll->getId());
+    foreach ($c as $k => $v) $p->setConfiguration($k, $v);
+    try { $p->save(); } catch (Exception $x) { // ponytail: l'index unique du core ignore aussi les accents (« Cedrat » = « Cédrat »)
+      if (strpos($x->getMessage(), 'Duplicate') !== false) throw new Exception(__('Un équipement de cet objet porte déjà ce nom', __FILE__));
+      throw $x;
+    }
+    // save : preSave : identification, GBIF si nom botanique ; postSave : commandes, tuile de la collection (et l'ancienne si greffe)
+    if ($pg) try { // greffe déjà enregistrée : une erreur ici ne doit pas la faire refaire (« X greffé sur X »)
+      $nom = $p->getName(); // nettoyé par le core (# [ ] & % retirés)
+      self::inserer(['date' => $jour, 'plante_id' => $p->getId(), 'plante' => $nom,
+        'lieu' => (string)$p->getConfiguration('emplacement'), 'action' => 'Greffe', 'note' => sprintf(__('%s greffé sur %s (%s)', __FILE__),
+          implode(' ', array_filter([$c['bota'] ?? '', $c['cultivar'] ?? '', $nom !== ($c['bota'] ?? '') ? '« ' . $nom . ' »' : ''])), $avant,
+          journalcultures_calc::GREFFES[$c['type_greffe'] ?? ''] ?? __('type de greffe non précisé', __FILE__))]);
+    } catch (Throwable $e) { log::add('journalcultures', 'error', $p->getHumanName() . ' : greffe non notée au journal : ' . $e->getMessage()); }
+    return (int)$p->getId();
   }
 
   /* ---------- tuile et fenêtres ---------- */
@@ -415,10 +463,10 @@ class journalcultures extends eqLogic {
       'plantnet' => self::cle() !== '' ? 1 : 0, 'multiplication' => $this->multiplication(), 'mesures' => journalcultures_calc::MESURES, 'calculs' => journalcultures_calc::CALCULS];
   }
 
-  public function multiplication() { // « Semis · ≈ 2 ans (2024) », '' si rien de saisi
-    $m = (string)$this->getConfiguration('multiplication'); $d = trim((string)$this->getConfiguration('date_mult'));
+  public function multiplication() { // « Greffe (fente) · ≈ 2 ans (2024) », '' si rien de saisi
+    $m = (string)$this->getConfiguration('multiplication'); $g = journalcultures_calc::GREFFES[$this->getConfiguration('type_greffe')] ?? ''; $d = trim((string)$this->getConfiguration('date_mult'));
     $a = journalcultures_calc::age($d);
-    return implode(' · ', array_filter([$m !== '' ? __(ucfirst($m), __FILE__) : '', $a !== null ? $a . ' (' . $d . ')' : $d]));
+    return implode(' · ', array_filter([$m !== '' ? __(ucfirst($m), __FILE__) . ($g !== '' ? ' (' . $g . ')' : '') : '', $a !== null ? $a . ' (' . $d . ')' : $d]));
   }
 
   public function donnees() { // tuile d'une collection
@@ -438,6 +486,12 @@ class journalcultures extends eqLogic {
     }
     return ['id' => $this->getId(), 'nom' => $this->getName(), 'plantes' => $pl, 'emplacements' => array_keys(self::emplacements()), 'admin' => isConnect('admin') ? 1 : 0,
       'actions' => array_map(function ($a) { return __($a, __FILE__); }, journalcultures_calc::ACTIONS), 'actionsCle' => journalcultures_calc::ACTIONS];
+  }
+
+  public static function collections() { // [[id, nom]] des collections lisibles, pour « Greffer… »
+    $cs = array_filter(self::byType('journalcultures', true), function ($c) { return $c->type() == 'collection' && $c->hasRight('r'); });
+    usort($cs, function ($a, $b) { return strnatcasecmp($a->getName(), $b->getName()); });
+    return array_map(function ($c) { return [(int)$c->getId(), $c->getName()]; }, $cs);
   }
 
   public static function page() { // panel plein écran : collections lisibles par l'utilisateur + températures des emplacements

@@ -69,6 +69,13 @@ try {
     journalcultures::$_sansGbif = true; $p->setConfiguration('etiquette', $n); $p->save(); ajax::success();
   }
   if ($a == 'identifier') ajax::success($eq(init('id'), 'plante')->identifier(init('nom'), init('organe')));
+  // « ＋ Plante » : listes du formulaire, groupe et rusticité estimée au fil de la saisie, Pl@ntNet sur une photo pas encore rangée, création
+  if ($a == 'modele') ajax::success(['caracteres' => journalcultures_calc::CARACTERES, 'porte_greffes' => journalcultures::PORTE_GREFFES,
+    'multiplications' => journalcultures_calc::MULTIPLICATIONS, 'greffes' => journalcultures_calc::GREFFES, 'collections' => journalcultures::collections(), 'plantnet' => journalcultures::cle() !== '' ? 1 : 0]);
+  if ($a == 'reconnaitre') { $c = $liste('carac'); ajax::success(['ident' => journalcultures_calc::identifier($c), 'estimee' => journalcultures_calc::estimee((string)init('bota'), $c)]); }
+  if ($a == 'identifier_photo') ajax::success(journalcultures::identifierEnvoi($_FILES['photo'] ?? [], init('organe')));
+  if ($a == 'creer') ajax::success(journalcultures::creer($eq(init('collection'), 'collection'), $liste('plante')));
+  if ($a == 'greffer') ajax::success(journalcultures::creer($eq(init('collection'), 'collection'), $liste('plante'), $eq(init('id'), 'plante')));
 
   throw new Exception(__('Aucune méthode correspondante à', __FILE__) . ' : ' . $a);
 } catch (Throwable $e) {

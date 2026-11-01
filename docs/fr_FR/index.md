@@ -43,7 +43,46 @@ sur grand écran la fiche s'ouvre à côté de la liste. Relue toutes les 5 minu
 - **Sources et points à vérifier** : où vient chaque information, et ce qui reste à confirmer.
 
 Multiplication (semis, greffe…) et sa date (`2024`, `2024-05` ou `2024-05-12`) : l'âge est affiché dans la fiche
-(« ≈ » quand seule l'année est connue).
+(« ≈ » quand seule l'année est connue). Pour une greffe, préciser le type (voir [Greffe](#greffe)).
+
+## Nouvelle plante
+**＋ Plante** (tuile ou page plein écran, administrateurs) : nom, emplacement, nom botanique, cultivar, porte-greffe, rusticité, multiplication
+(et type de greffe), pot. Pour trouver le nom botanique : une photo envoyée à Pl@ntNet (« Retenir » remplit le champ), ou la clé des caractères ;
+le groupe probable et la rusticité estimée s'affichent à chaque choix. La photo est rangée dans la plante créée. Le reste de la fiche se complète
+dans la page du plugin.
+
+## Greffe
+**Greffer…** (bas de l'onglet Fiche, administrateurs) : la plante, en général un porte-greffe, devient le greffon. Même formulaire que « ＋ Plante » :
+nouveau nom, nom botanique du greffon, collection (par défaut l'actuelle : choisir « Agrumes » pour un porte-greffe), type et date de greffe ;
+le porte-greffe est déduit du nom (Poncirus, Flying Dragon, FA5…), modifiable. C'est le **même équipement** : journal, photos, pot, emplacement
+et courbes sont gardés, ainsi que le champ « Sol » (ce sont toujours ses racines) ; le reste de la fiche, les caractères observés et la photo
+d'étiquette, qui décrivaient le porte-greffe, sont vidés. Une entrée « Greffe » est ajoutée au journal.
+
+Type de greffe : si la multiplication est vide, le choisir la passe à « greffe » ; avec une autre multiplication (semis, bouture…), il est effacé.
+
+| Type | Description |
+|---|---|
+| **Greffes d'un œil** | *pour multiplier en pépinière* |
+| Écusson en T inversé | Un œil prélevé avec un peu d'écorce, glissé sous l'écorce du porte-greffe incisée en T à l'envers (⊥). La plus employée en Floride pour les jeunes plants : bonne reprise, peu d'habileté. |
+| Écusson en T | Même chose avec une incision en T droit. Convient aussi, moins employée. |
+| Chip budding (œil en copeau) | Un copeau de bois portant l'œil, posé dans une entaille de même forme. Quand l'écorce ne se décolle plus (hors sève) ou est trop épaisse pour l'écusson. Demande un peu plus d'habileté. |
+| Chip inversé | Variante du chip, courante sur agrumes, quand l'écorce ne se décolle pas. |
+| Placage d'œil | Plaque d'écorce portant l'œil, appliquée à la place d'une plaque identique retirée du porte-greffe. Pour les écorces épaisses. |
+| **Greffes de rameau** | *pour changer de variété (surgreffage) ou réparer un arbre* |
+| Fente | Le porte-greffe coupé est fendu, un greffon taillé en biseau y est inséré. Sur les charpentières, pour surgreffer. |
+| Sous écorce (couronne) | Greffons glissés entre l'écorce et le bois d'une branche coupée, en sève. Surgreffage. |
+| Anglaise | Porte-greffe et greffon de même diamètre, coupés en biseau et emboîtés. Jugée inadaptée aux agrumes sur rameaux déjà lignifiés. |
+| Pont | Greffons qui enjambent une plaie du tronc pour rétablir la sève. Réparation. |
+| Incrustation | Greffon inséré dans une entaille en V du porte-greffe. Renforcer ou réparer. |
+| En approche | Deux plantes enracinées soudées côte à côte, séparées après la reprise. Renforcer ou réparer (ex. nouveau porte-greffe au pied d'un arbre). |
+| Latérale | Greffon inséré sur le côté du porte-greffe, sans le couper d'abord. |
+| Sur souche | Sur une souche recépée, pour repartir d'un vieil arbre. |
+| **Laboratoire et pépinière spécialisée** | |
+| Microgreffe d'apex in vitro | Pointe de pousse de quelques dixièmes de mm greffée en tube : assainit une variété porteuse de virus (Corse : > 80 % de reprise après regreffage). |
+| Minigreffe en fente | Fente sur porte-greffe de 6 mois : 75 % de réussite contre 38 % pour l'écusson en T (essai sur orange 'Valencia'). |
+
+Sources (non relues, synthèse) : UF/IFAS HS1309, Cirad (revue *Fruits*, 1982), guide du développement rural de Polynésie française,
+INRAE-Cirad Corse, Carimi 2001, essai colombien 2022.
 
 ## Identification (agrumes)
 Dans la fiche de la plante, choisir ce qui est observé (folioles, aile du pétiole, boutons floraux, taille, forme, peau et pulpe du fruit…),

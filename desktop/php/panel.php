@@ -48,7 +48,7 @@ if (!isConnect()) throw new Exception('{{401 - Accès non autorisé}}');
     P.querySelector('.jdc-cols').innerHTML = cs.map(function (x) { return '<button type="button" data-id="' + x.id + '" aria-pressed="' + (x === c) + '" class="' + (x === c ? 'on' : '') + '">' + J.esc(x.nom) + ' · ' + x.plantes.length + '</button>' }).join('')
     P.querySelectorAll('.jdc-cols button').forEach(function (a) { a.onclick = function () { sel = a.dataset.id; try { localStorage.setItem('jdc-collection', sel) } catch (e) {} rendre() } })
     P.querySelector('.jdc-lieux').innerHTML = data.lieux.map(function (l) { return '<div>' + J.esc(l.nom) + '<b>' + J.nb(l.t, ' °C') + '</b>' + (l.h !== null ? J.nb(l.h, ' %') : '') + '</div>' }).join('')
-    if (c) J.init(P.querySelector('.jdc'), c, {panel: 1}); else P.querySelector('.jdc').textContent = "{{Aucune collection visible.}}"
+    if (c) J.init(P.querySelector('.jdc'), c, {panel: 1, apres: charger}); else P.querySelector('.jdc').textContent = "{{Aucune collection visible.}}"
     filtrer()
   }
   function charger() { J.ajax('page', {}, function (d) { data = d; rendre() }, function (er) { P.querySelector('.jdc').textContent = er }) }

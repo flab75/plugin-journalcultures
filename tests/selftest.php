@@ -73,6 +73,13 @@ $ok($C::valeurs(['pot.forme' => 'carré']) === ['pot.forme' => 'carré'], 'forme
 $ok(strpos($C::resume($v), 'Feuilles : Limbe : longueur 80 mm, Aile : longueur 45,5 mm') === 0 && strpos($C::resume($v), 'Aile / limbe 0,57') !== false, 'résumé du relevé');
 foreach ($C::MESURES as $o => [$t, $ch]) foreach ($ch as $k => $f) $ok(in_array($f[0], ['n', 'l', 'c'], true) && ($f[0] != 'c' || is_array($f[2])) && strpos("$o$k", '.') === false, "catalogue : $o.$k");
 foreach ($C::suggestions(['calc.aile_limbe' => 0.3, 'feuilles.limbe_l' => 40.0, 'calc.fruits_moy' => 120.0]) as $k => $c) $ok(isset($C::CARACTERES[$k][1][$c]), "suggestion $k = $c inconnue");
+$n = $C::nouvelle(['bota' => ' Citrus limon ', 'cultivar' => '', 'multiplication' => 'greffe', 'pot_diam' => '30', 'pot_haut' => '0', 'pot_forme' => 'carre', 'pleine_terre' => '',
+  'emplacement' => 'Serre', 'carac' => ['folioles' => 'un', 'aile' => 'xx'], 'ident' => 'triche'], ['Serre']);
+$ok($n == ['bota' => 'Citrus limon', 'multiplication' => 'greffe', 'pot_diam' => 30.0, 'pot_forme' => 'carre', 'emplacement' => 'Serre', 'id_folioles' => 'un'], 'nouvelle plante : champs gardés, vides et invalides écartés');
+$ok($C::nouvelle(['multiplication' => 'vol', 'carac' => 'x'], []) === [], 'nouvelle plante : multiplication hors liste, caractères illisibles');
+try { $C::nouvelle(['emplacement' => 'Cave'], ['Serre']); $ok(false, 'nouvelle plante : emplacement inconnu accepté'); } catch (Exception $x) {}
+$ok($C::greffe(['type_greffe' => 'fente']) == ['type_greffe' => 'fente', 'multiplication' => 'greffe'] && $C::greffe(['multiplication' => 'semis', 'type_greffe' => 'fente']) == ['multiplication' => 'semis']
+  && $C::greffe(['multiplication' => 'greffe', 'type_greffe' => 'x']) == ['multiplication' => 'greffe'], 'type de greffe : implique « greffe », écarté sinon ou hors liste');
 echo "calculs OK\n";
 
 $t = DB::Prepare("SHOW TABLES LIKE 'journalcultures_journal'", [], DB::FETCH_TYPE_ROW);
