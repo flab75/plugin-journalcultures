@@ -17,7 +17,7 @@ Noter simplement la vie des plantes de la maison et du jardin, même quand elles
 ## Mesures
 Onglet **Mesures** de la fenêtre d'une plante : choisir l'organe, saisir ce qu'on a mesuré (les champs vides sont ignorés ;
 plusieurs Ø de fruits séparés par des espaces, virgule décimale : `32 35,5 41`), une note et, au besoin, une photo. Tout part au journal en une entrée « Mesure ».
-Rapports calculés : aile / limbe (≥ 0,5 = aile très large, typique des papedas), greffon / porte-greffe (bourrelet, incompatibilité).
+Rapports calculés : aile / limbe en longueur (≥ 0,5 = aile très large, typique des papedas) et en largeur (aile et limbe mesurés au plus large), greffon / porte-greffe (bourrelet, incompatibilité).
 Courbes historisées : hauteur, Ø du tronc (greffon, ou tronc d'une plante non greffée), nombre de feuilles, nombre de fruits (le total saisi, sinon la somme si noués, en croissance et mûrs sont tous saisis).
 Rempotage : organe « Racines / pot », champs « Nouveau pot » (forme, Ø ou côté, hauteur, hauteur de terre) ou « Pleine terre » : ils remplacent le pot de la fiche,
 la rusticité effective est recalculée et l'ancien → le nouveau pot est noté au journal.
@@ -90,7 +90,11 @@ INRAE-Cirad Corse, Carimi 2001, essai colombien 2022.
 Dans la fiche de la plante, choisir ce qui est observé (folioles, aile du pétiole, boutons floraux, taille, forme, peau et pulpe du fruit…),
 laisser « non observé » le reste, puis enregistrer. Le plugin classe les groupes du plus au moins compatible (Poncirus, hybride de Poncirus, kumquat, calamondin,
 citron caviar, yuzu, papeda, cédrat, citron, lime, mandarine, orange, bigaradier (dont bergamote), pomelo) et nomme les caractères en désaccord.
-Aile « large » = moins de la moitié du limbe, « très large » = la moitié ou plus (papedas seulement).
+Aile « large » = moins de la moitié du limbe, « très large » = la moitié ou plus (papedas seulement), en longueur.
+Largeur de l'aile comparée à celle du limbe : presque aussi large ou plus chez les papedas (combava, ichang), nettement plus étroite chez le pomelo —
+utile pour un jeune semis sans fruit.
+Jeunes rameaux (pousse de l'année, à la loupe) : glabres chez l'orange et le bigaradier ; souvent poilus chez le pomelo, un peu chez le yuzu —
+des rameaux poilus comptent pour eux, des rameaux glabres ne les écartent pas.
 « Probable » : un seul groupe sans désaccord (au moins 3 accords), tous les autres sont contredits. Groupe seulement, jamais la variété : pour un hybride,
 la morphologie ne suffit souvent pas (seul l'ADN tranche). Profils recoupés avec la clé du genre de la Flora of China.
 Utile aussi pour un rejet sous la greffe : feuilles à 3 folioles = porte-greffe, à couper ; Poncirus pur et hybrides se ressemblent trop,

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.7 (2026-11-01)
+- Identification : critère « largeur de l'aile » (comparée au limbe), qui départage papeda (combava) et pomelo sans fruit ;
+  rempli par la mesure (largeur de l'aile et du limbe, rapport « Aile / limbe (largeur) »).
+- Identification : critère « jeunes rameaux » (poilus ou glabres) ; poilus = indice pour le pomelo et le yuzu, contre l'orange et le bigaradier.
+
 ## 0.6 (2026-11-01)
 - « ＋ Plante » commence par l'emplacement et la collection (au choix, plus seulement celle de la tuile) ; plusieurs photos rangées dans la plante créée.
 - « Déplacer… » change aussi la collection (noté au journal, comme tout changement de collection).

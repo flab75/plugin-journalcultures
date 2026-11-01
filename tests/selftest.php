@@ -44,6 +44,7 @@ $ok($id(['folioles' => '1']) === [] && $id(['fruit' => '<3']) === [], 'identific
 $ok($id(['aile' => 'aucune', 'pulpe' => 'peu', 'forme' => 'main', 'boutons' => 'violets']) == ['probable', 'Cédrat (dont Main de Bouddha)'], 'identification : main de Bouddha');
 $ok($id(['folioles' => 'mix'])[0] == 'indecis' && $id([]) === [] && $id(['aile' => 'xx', 'fruit' => ['3-6']]) === [], 'identification : indécis, vide, codes invalides');
 foreach ($C::GROUPES as $g => $prof) foreach ($prof as $k => $codes) foreach ($codes as $c) $ok(isset($C::CARACTERES[$k][1][$c]), "profil $g : $k = $c inconnu");
+foreach ($C::INDICES as $g => $prof) foreach ($prof as $k => $codes) foreach ($codes as $c) $ok(isset($C::GROUPES[$g]) && !isset($C::GROUPES[$g][$k]) && isset($C::CARACTERES[$k][1][$c]), "indice $g : $k = $c inconnu ou déjà au profil");
 $ok(array_keys($C::RUSTICITE_GROUPES) == array_keys($C::GROUPES) && !array_diff($C::BOTA, array_keys($C::GROUPES)), 'rusticité et noms botaniques : groupes connus');
 $g = function ($b) use ($C) { $e = $C::estimee($b, []); return $e ? $e['groupes'][0] : null; };
 foreach (['Citrus reshni × Poncirus trifoliata' => 'Hybride de Poncirus (citrange, citrumelo, FA5…)', "Poncirus trifoliata 'Flying Dragon'" => 'Poncirus',
@@ -65,6 +66,13 @@ $v += $C::calculs($v);
 $ok($v['calc.aile_limbe'] === 0.57 && $v['calc.fruits_moy'] === 36.0 && $v['calc.fruits_min'] === 32.0 && $v['calc.fruits_max'] === 41.0 && !isset($v['calc.greffon_pg']), 'calculs des mesures');
 $ok($C::suggestions($v) == ['aile' => 'tres_large', 'feuille' => 'moyenne', 'fruit' => '3-6'], 'suggestions d\'identification');
 $ok($C::suggestions(['calc.aile_limbe' => 0.0, 'feuilles.limbe_l' => 120.0]) == ['aile' => 'aucune', 'feuille' => 'grande'], 'suggestions : sans aile, grande feuille');
+$w = $C::calculs(['feuilles.aile_w' => 30.0, 'feuilles.limbe_w' => 36.0]);
+$ok($w == ['calc.aile_limbe_w' => 0.83] && $C::suggestions($w + ['feuilles.aile_w' => 30.0]) == ['aile_largeur' => 'presque'] && $C::suggestions(['calc.aile_limbe_w' => 0.4, 'feuilles.aile_w' => 1.0]) == ['aile' => 'aucune'], 'largeur de l\'aile : calcul et suggestion');
+$ok($id(['aile' => 'large', 'aile_largeur' => 'presque', 'folioles' => 'un'])[1] != 'Pomelo, pamplemousse' && in_array('Largeur de l’aile (comparée au limbe)', $C::identifier(['aile_largeur' => 'moins'], 20)['groupes'][array_search('Papeda (combava, ichang)', array_column($C::identifier(['aile_largeur' => 'moins'], 20)['groupes'], 'groupe'))]['contre']), 'largeur de l\'aile : pomelo et papeda départagés');
+$ch = ['folioles' => 'un', 'aile' => 'large', 'feuille' => 'grande'];
+$acc = function ($c, $g) use ($C) { foreach ($C::identifier($c, 20)['groupes'] as $x) if ($x['groupe'] == $g) return [$x['accords'], count($x['contre'])]; };
+$ok($acc($ch + ['rameaux' => 'poilus'], 'Pomelo, pamplemousse') == [4, 0] && $acc($ch + ['rameaux' => 'glabres'], 'Pomelo, pamplemousse') == [3, 0]
+  && $acc($ch + ['rameaux' => 'poilus'], 'Bigaradier (orange amère)')[1] == 1 && $acc($ch + ['rameaux' => 'poilus'], 'Yuzu') == [3, 0], 'jeunes rameaux : indice pomelo/yuzu, contre bigaradier');
 $ok($C::suggestions(['calc.aile_limbe' => 0.1, 'feuilles.aile_w' => 1.0, 'calc.fruits_moy' => 20.0], 'doigt') == ['aile' => 'aucune'], 'suggestions : simple liseré, fruit en doigt');
 $ok($C::valeurs(['fruits.diametres' => '32,5 41'])['fruits.diametres'] === [32.5, 41.0] && $C::valeurs(['fruits.diametres' => ' ; ']) === [] && $C::valeurs(['plante.vigueur' => '3']) === ['plante.vigueur' => 3], 'liste : virgule décimale, liste vide ; note 1 à 5 en nombre');
 $ok($C::valeurs(['fruits.nombre' => '12', 'pot.diam' => '40', 'pot.terre' => '32,5', 'pot.pleine_terre' => 'oui']) === ['fruits.nombre' => 12.0, 'pot.diam' => 40.0, 'pot.terre' => 32.5, 'pot.pleine_terre' => 'oui']

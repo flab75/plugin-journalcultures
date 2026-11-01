@@ -80,6 +80,7 @@ class journalcultures_calc {
     'feuillage' => ['Feuillage', ['persistant' => 'persistant', 'caduc' => 'tombe l’hiver']],
     'folioles' => ['Folioles par feuille', ['un' => '1', 'trois' => '3', 'mix' => '1 et 3 mélangées']],
     'aile' => ['Aile du pétiole', ['aucune' => 'aucune ou un simple liseré', 'etroite' => 'étroite', 'large' => 'large (moins de la moitié du limbe)', 'tres_large' => 'très large (moitié du limbe ou plus)']],
+    'aile_largeur' => ['Largeur de l’aile (comparée au limbe)', ['moins' => 'moins de la moitié du limbe', 'moitie' => 'de la moitié aux trois quarts', 'presque' => 'presque aussi large que le limbe, ou plus']],
     'feuille' => ['Longueur de la feuille', ['petite' => 'moins de 5 cm', 'moyenne' => '5 à 10 cm', 'grande' => 'plus de 10 cm']],
     'boutons' => ['Boutons floraux', ['blancs' => 'blancs', 'violets' => 'teintés de violet']],
     'fruit' => ['Taille du fruit', ['lt3' => 'moins de 3 cm', '3-6' => '3 à 6 cm', '6-10' => '6 à 10 cm', 'gt10' => 'plus de 10 cm']],
@@ -88,6 +89,7 @@ class journalcultures_calc {
     'peau' => ['Surface de la peau', ['lisse' => 'lisse', 'rugueuse' => 'rugueuse ou bosselée', 'duvet' => 'duveteuse']],
     'gout_peau' => ['Goût de la peau', ['amere' => 'amère ou neutre', 'sucree' => 'sucrée, se mange']],
     'pelage' => ['Épluchage', ['facile' => 'peau qui se détache seule', 'adherente' => 'peau adhérente']],
+    'rameaux' => ['Jeunes rameaux', ['poilus' => 'poilus (duvet fin, à la loupe)', 'glabres' => 'glabres (lisses)']],
     'quartiers' => ['Quartiers du fruit (coupé en travers)', ['peu' => '6 ou moins', 'nombreux' => '7 ou plus']],
     'pulpe' => ['Pulpe', ['douce' => 'douce', 'acide' => 'acide', 'amere' => 'amère', 'perles' => 'en perles (caviar)', 'peu' => 'presque absente (peau très épaisse)']],
   ];
@@ -95,7 +97,12 @@ class journalcultures_calc {
      Recoupés avec la clé du genre de la Flora of China, vol. 11 (aile > moitié du limbe = papedas, « très large » ; cédrat sans aile, peau plus épaisse que la pulpe ;
      citron : pétales teintés de rose, mamelon ; lime de Tahiti : fleurs blanches (UCR) ou un peu violacées (Morton), les deux acceptées ; bergamote = bigaradier jaune, ronde ou en poire ; citron Meyer souvent rond ; yuzu et mandarine : peau qui s'enlève ; pomelo : fruit ≥ 10 cm ;
      quartiers : kumquat 3-6 loges contre 7-15 pour les autres Citrus (Flora of China), kumquat 4-5, calamondin 8-9 (中国植物志 p. 175) ;
-     pas imposé aux papedas (combava 6-7), au caviar, au cédrat ni au Poncirus).
+     pas imposé aux papedas (combava 6-7), au caviar, au cédrat ni au Poncirus) ;
+     largeur de l'aile : combava presque aussi large que le limbe (Flora of China : limbe 0,5-1 cm plus large ; Sofiyanti 2022), ichang plus large que le limbe (FoC),
+     pomelo nettement plus étroite (FoC : aile 0,5-3 cm, limbe 4-8 cm ; Sofiyanti 2022) ; non imposée aux autres groupes (aucune source) ;
+     jeunes rameaux : glabres chez l'orange et le bigaradier (C. ×aurantium, clé FoC 8b ; Swingle & Reece : les rameaux poilus séparent le pomelo
+     des autres espèces) ; poilus chez le pomelo (FoC 8a + Swingle & Reece « often pubescent ») et le yuzu (FoC « sparsely pubescent when young ») :
+     seulement un indice pour eux (INDICES), un pomelo glabre reste possible.
      ponytail: profils de groupes, pas de variétés : les hybrides restent souvent indécis (la Flora of China le dit aussi) ;
      protocoles UPOV complets non relus, affiner un profil quand une plante connue le contredit. */
   const GROUPES = [
@@ -108,7 +115,7 @@ class journalcultures_calc {
     'Citron caviar (finger lime)' => ['feuillage' => ['persistant'], 'folioles' => ['un'], 'forme' => ['doigt'], 'feuille' => ['petite'], 'pulpe' => ['perles'], 'aile' => ['aucune'], 'fruit' => ['3-6', '6-10']],
     'Yuzu' => ['feuillage' => ['persistant'], 'folioles' => ['un'], 'aile' => ['etroite', 'large'], 'peau' => ['rugueuse'], 'pulpe' => ['acide', 'amere'], 'couleur' => ['jaune'],
       'fruit' => ['3-6', '6-10'], 'forme' => ['ronde', 'aplatie'], 'boutons' => ['blancs'], 'gout_peau' => ['amere'], 'pelage' => ['facile'], 'quartiers' => ['nombreux']],
-    'Papeda (combava, ichang)' => ['feuillage' => ['persistant'], 'folioles' => ['un'], 'aile' => ['tres_large'], 'peau' => ['rugueuse'], 'pulpe' => ['acide', 'amere', 'peu'],
+    'Papeda (combava, ichang)' => ['feuillage' => ['persistant'], 'folioles' => ['un'], 'aile' => ['tres_large'], 'aile_largeur' => ['moitie', 'presque'], 'peau' => ['rugueuse'], 'pulpe' => ['acide', 'amere', 'peu'],
       'boutons' => ['blancs'], 'gout_peau' => ['amere']],
     'Cédrat (dont Main de Bouddha)' => ['feuillage' => ['persistant'], 'folioles' => ['un'], 'boutons' => ['violets'], 'aile' => ['aucune'], 'fruit' => ['6-10', 'gt10'],
       'forme' => ['ovale', 'main'], 'couleur' => ['jaune'], 'pulpe' => ['acide', 'peu'], 'feuille' => ['moyenne', 'grande'], 'pelage' => ['adherente']],
@@ -118,13 +125,16 @@ class journalcultures_calc {
       'aile' => ['etroite', 'aucune'], 'peau' => ['lisse'], 'pelage' => ['adherente'], 'quartiers' => ['nombreux']],
     'Mandarine' => ['feuillage' => ['persistant'], 'folioles' => ['un'], 'pelage' => ['facile'], 'forme' => ['aplatie', 'ronde'], 'couleur' => ['orange'], 'pulpe' => ['douce', 'acide'],
       'aile' => ['aucune', 'etroite'], 'boutons' => ['blancs'], 'fruit' => ['3-6', '6-10'], 'peau' => ['lisse'], 'quartiers' => ['nombreux']],
-    'Orange douce' => ['feuillage' => ['persistant'], 'folioles' => ['un'], 'pelage' => ['adherente'], 'forme' => ['ronde', 'ovale'], 'couleur' => ['orange'], 'pulpe' => ['douce'],
+    'Orange douce' => ['feuillage' => ['persistant'], 'folioles' => ['un'], 'rameaux' => ['glabres'], 'pelage' => ['adherente'], 'forme' => ['ronde', 'ovale'], 'couleur' => ['orange'], 'pulpe' => ['douce'],
       'aile' => ['etroite', 'aucune'], 'boutons' => ['blancs'], 'fruit' => ['6-10', 'gt10'], 'quartiers' => ['nombreux']],
-    'Bigaradier (orange amère)' => ['feuillage' => ['persistant'], 'folioles' => ['un'], 'aile' => ['etroite', 'large'], 'pelage' => ['adherente'], 'pulpe' => ['amere', 'acide'], 'couleur' => ['orange', 'jaune'],
+    'Bigaradier (orange amère)' => ['feuillage' => ['persistant'], 'folioles' => ['un'], 'rameaux' => ['glabres'], 'aile' => ['etroite', 'large'], 'pelage' => ['adherente'], 'pulpe' => ['amere', 'acide'], 'couleur' => ['orange', 'jaune'],
       'forme' => ['ronde', 'aplatie', 'ovale'], 'boutons' => ['blancs'], 'fruit' => ['6-10'], 'gout_peau' => ['amere'], 'quartiers' => ['nombreux']],
-    'Pomelo, pamplemousse' => ['feuillage' => ['persistant'], 'folioles' => ['un'], 'aile' => ['etroite', 'large'], 'fruit' => ['6-10', 'gt10'], 'couleur' => ['jaune', 'verte'], 'feuille' => ['moyenne', 'grande'],
+    'Pomelo, pamplemousse' => ['feuillage' => ['persistant'], 'folioles' => ['un'], 'aile' => ['etroite', 'large'], 'aile_largeur' => ['moins', 'moitie'], 'fruit' => ['6-10', 'gt10'], 'couleur' => ['jaune', 'verte'], 'feuille' => ['moyenne', 'grande'],
       'boutons' => ['blancs'], 'pelage' => ['adherente'], 'quartiers' => ['nombreux']],
   ];
+
+  // indices : un accord si observé, jamais une contradiction (caractère fréquent mais pas constant dans le groupe)
+  const INDICES = ['Pomelo, pamplemousse' => ['rameaux' => ['poilus']], 'Yuzu' => ['rameaux' => ['poilus']]];
 
   // codes observés valides seulement : [caractère => code]
   public static function observes($cfg) {
@@ -144,6 +154,7 @@ class journalcultures_calc {
     foreach (self::GROUPES as $g => $prof) {
       $acc = 0; $contre = [];
       foreach ($obs as $k => $v) if (isset($prof[$k])) { if (in_array($v, $prof[$k], true)) $acc++; else $contre[] = self::CARACTERES[$k][0]; }
+      foreach (self::INDICES[$g] ?? [] as $k => $codes) if (in_array($obs[$k] ?? null, $codes, true)) $acc++;
       $r[] = ['groupe' => $g, 'accords' => $acc, 'contre' => $contre];
     }
     usort($r, function ($a, $b) { return [count($a['contre']), -$a['accords']] <=> [count($b['contre']), -$b['accords']]; });
@@ -278,7 +289,7 @@ class journalcultures_calc {
     'sante' => ['Santé', ['ravageur' => ['c', 'Ravageur', ['aucun', 'mineuse', 'cochenille', 'acarien', 'puceron', 'autre']],
       'intensite' => ['c', 'Intensité', ['faible', 'moyenne', 'forte']], 'maladie' => ['c', 'Maladie', ['aucune', 'gommose', 'fumagine', 'autre']]]],
   ];
-  const CALCULS = ['calc.aile_limbe' => ['Aile / limbe', ''], 'calc.greffon_pg' => ['Greffon / porte-greffe', ''],
+  const CALCULS = ['calc.aile_limbe' => ['Aile / limbe', ''], 'calc.aile_limbe_w' => ['Aile / limbe (largeur)', ''], 'calc.greffon_pg' => ['Greffon / porte-greffe', ''],
     'calc.fruits_moy' => ['Ø moyen des fruits', 'mm'], 'calc.fruits_min' => ['Ø minimal des fruits', 'mm'], 'calc.fruits_max' => ['Ø maximal des fruits', 'mm']];
 
   /* Saisie ['organe.clé' => texte] → valeurs contrôlées ['organe.clé' => nombre, [nombres] ou choix] ; vide = ignoré, invalide = exception.
@@ -302,6 +313,7 @@ class journalcultures_calc {
   public static function calculs($v) { // rapports et statistiques tirés des valeurs
     $r = [];
     if (($v['feuilles.limbe_l'] ?? 0) > 0 && isset($v['feuilles.aile_l'])) $r['calc.aile_limbe'] = round($v['feuilles.aile_l'] / $v['feuilles.limbe_l'], 2);
+    if (($v['feuilles.limbe_w'] ?? 0) > 0 && isset($v['feuilles.aile_w'])) $r['calc.aile_limbe_w'] = round($v['feuilles.aile_w'] / $v['feuilles.limbe_w'], 2);
     if (($v['tronc.d_pg'] ?? 0) > 0 && isset($v['tronc.d_greffon'])) $r['calc.greffon_pg'] = round($v['tronc.d_greffon'] / $v['tronc.d_pg'], 2);
     if ($d = $v['fruits.diametres'] ?? []) $r += ['calc.fruits_moy' => round(array_sum($d) / count($d), 1), 'calc.fruits_min' => min($d), 'calc.fruits_max' => max($d)];
     return $r;
@@ -323,12 +335,13 @@ class journalcultures_calc {
   }
 
   /* Caractères d'identification déduits des mesures : [caractère => code de CARACTERES] ; $forme = id_forme de la plante.
-     ponytail: seuils simples (aile de moins de 2 mm de large = simple liseré ; aile comparée à la longueur du limbe : ¼ et ½ ; feuille 5 et 10 cm ;
+     ponytail: seuils simples (aile de moins de 2 mm de large = simple liseré ; aile comparée à la longueur du limbe : ¼ et ½, à sa largeur : ½ et ¾ ; feuille 5 et 10 cm ;
      fruit 3, 6 et 10 cm de Ø, sauf fruits en doigt ou en main dont la taille est une longueur) ; les affiner si une plante connue les contredit. */
   public static function suggestions($v, $forme = '') {
     $r = [];
     if (($v['feuilles.aile_w'] ?? 2) < 2) $r['aile'] = 'aucune';
     elseif (isset($v['calc.aile_limbe'])) { $x = $v['calc.aile_limbe']; $r['aile'] = $x == 0 ? 'aucune' : ($x < 0.25 ? 'etroite' : ($x < 0.5 ? 'large' : 'tres_large')); }
+    if (($v['feuilles.aile_w'] ?? 0) >= 2 && isset($v['calc.aile_limbe_w'])) { $x = $v['calc.aile_limbe_w']; $r['aile_largeur'] = $x < 0.5 ? 'moins' : ($x < 0.75 ? 'moitie' : 'presque'); }
     if (isset($v['feuilles.limbe_l'])) { $x = $v['feuilles.limbe_l']; $r['feuille'] = $x < 50 ? 'petite' : ($x <= 100 ? 'moyenne' : 'grande'); }
     if (isset($v['calc.fruits_moy']) && !in_array($forme, ['doigt', 'main'], true)) { $x = $v['calc.fruits_moy']; $r['fruit'] = $x < 30 ? 'lt3' : ($x < 60 ? '3-6' : ($x <= 100 ? '6-10' : 'gt10')); }
     return $r;
