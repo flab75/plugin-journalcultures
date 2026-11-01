@@ -436,6 +436,20 @@ class journalcultures extends eqLogic {
 
   /* ---------- tuile et fenêtres ---------- */
 
+  public function accepter(array $in, array $src) { // « Identifier… » : champs cochés écrits, puis une entrée « Observation » au journal
+    $act = ['bota' => $this->getConfiguration('bota'), 'rusticite' => $this->getConfiguration('rusticite')];
+    foreach ($this->caracteres() as $k => $v) $act['id_' . $k] = $v;
+    [$c, $l] = journalcultures_calc::accepter($act, $in, $src);
+    if (!$c) throw new Exception(__('Rien à changer', __FILE__));
+    foreach ($c as $k => $v) $this->setConfiguration($k, $v);
+    $this->save(); // preSave : identification, GBIF si nom botanique changé ; postSave : tuile
+    try {
+      self::inserer(['date' => date('Y-m-d'), 'plante_id' => $this->getId(), 'plante' => $this->getName(), 'lieu' => (string)$this->getConfiguration('emplacement'),
+        'action' => 'Observation', 'note' => __('Identification', __FILE__) . ' : ' . implode(' ; ', $l)]);
+    } catch (Throwable $e) { log::add('journalcultures', 'error', $this->getHumanName() . ' : identification non notée : ' . $e->getMessage()); } // fiche déjà sauvée
+    return count($c);
+  }
+
   public function caracteres() { // [caractère => code saisi] pour journalcultures_calc::identifier
     $r = [];
     foreach (array_keys(journalcultures_calc::CARACTERES) as $k) $r[$k] = $this->getConfiguration('id_' . $k);
@@ -457,7 +471,7 @@ class journalcultures extends eqLogic {
       ['PFAF', 'https://pfaf.org/user/Plant.aspx?LatinName=' . $q]]);
     $obs = journalcultures_calc::observes($this->caracteres()); $carac = [];
     foreach ($obs as $k => $v) $carac[] = [journalcultures_calc::CARACTERES[$k][0], journalcultures_calc::CARACTERES[$k][1][$v]];
-    return ['id' => $this->getId(), 'nom' => $this->getName(), 'fiche' => $f, 'carac' => $carac, 'ident' => journalcultures_calc::identifier($obs), 'gbif' => $g, 'pot' => $potTxt, 'etat' => $s, 'cmds' => $cmds,
+    return ['id' => $this->getId(), 'nom' => $this->getName(), 'fiche' => $f, 'carac' => $carac, 'brut' => ['bota' => $bota, 'rusticite' => trim((string)$this->getConfiguration('rusticite')), 'carac' => $obs], 'ident' => journalcultures_calc::identifier($obs), 'gbif' => $g, 'pot' => $potTxt, 'etat' => $s, 'cmds' => $cmds,
       'journal' => self::journal([$this->getId()], 300), 'photos' => $ph = $this->photos(), 'liens' => array_values($liens),
       'etiquette' => in_array($this->getConfiguration('etiquette'), $ph, true) ? $this->getConfiguration('etiquette') : '', // photo supprimée : plus d'étiquette
       'plantnet' => self::cle() !== '' ? 1 : 0, 'multiplication' => $this->multiplication(), 'mesures' => journalcultures_calc::MESURES, 'calculs' => journalcultures_calc::CALCULS];

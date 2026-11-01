@@ -75,6 +75,7 @@ try {
   if ($a == 'reconnaitre') { $c = $liste('carac'); ajax::success(['ident' => journalcultures_calc::identifier($c), 'estimee' => journalcultures_calc::estimee((string)init('bota'), $c)]); }
   if ($a == 'identifier_photo') ajax::success(journalcultures::identifierEnvoi($_FILES['photo'] ?? [], init('organe')));
   if ($a == 'creer') ajax::success(journalcultures::creer($eq(init('collection'), 'collection'), $liste('plante')));
+  if ($a == 'accepter') ajax::success($eq(init('id'), 'plante')->accepter($liste('champs'), $liste('sources')));
   if ($a == 'greffer') ajax::success(journalcultures::creer($eq(init('collection'), 'collection'), $liste('plante'), $eq(init('id'), 'plante')));
 
   throw new Exception(__('Aucune méthode correspondante à', __FILE__) . ' : ' . $a);

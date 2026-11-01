@@ -94,6 +94,13 @@ la morphologie ne suffit souvent pas (seul l'ADN tranche). Profils recoupés ave
 Utile aussi pour un rejet sous la greffe : feuilles à 3 folioles = porte-greffe, à couper ; Poncirus pur et hybrides se ressemblent trop,
 le résultat reste indécis entre Poncirus et hybride de Poncirus (la consigne est la même).
 
+**Identifier…** (bas de la fiche, administrateurs) : le même travail sans passer par la page du plugin. Pl@ntNet sur une photo de la plante
+(ou une nouvelle, non rangée), « Retenir » une espèce, compléter la clé des caractères (cochée d'après la fiche). Un tableau montre
+chaque champ qui changerait : valeur actuelle, valeur proposée, source (score Pl@ntNet, nom botanique ou caractères). La rusticité proposée
+est celle du groupe, écrite « -3 (estimée) » pour qu'on la distingue d'une valeur sourcée (le groupe part dans la source, au journal) ;
+elle n'est proposée que si elle diffère de la fiche, et seulement avec le nom ou les caractères dont elle découle (à cocher aussi). Rien n'est coché d'office ;
+**Appliquer** n'écrit que les lignes cochées et ajoute une observation « Identification » au journal (avant → après), pour garder la trace.
+
 ## Photos
 Gardées dans le dossier `data` du plugin (non servi directement, lues par la tuile après contrôle des droits).
 **☆ étiquette** sous une photo (administrateurs) : elle devient la photo de l'étiquette, affichée en tête de la fiche ; **★** la retire.

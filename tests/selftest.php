@@ -80,6 +80,10 @@ $ok($C::nouvelle(['multiplication' => 'vol', 'carac' => 'x'], []) === [], 'nouve
 try { $C::nouvelle(['emplacement' => 'Cave'], ['Serre']); $ok(false, 'nouvelle plante : emplacement inconnu accepté'); } catch (Exception $x) {}
 $ok($C::greffe(['type_greffe' => 'fente']) == ['type_greffe' => 'fente', 'multiplication' => 'greffe'] && $C::greffe(['multiplication' => 'semis', 'type_greffe' => 'fente']) == ['multiplication' => 'semis']
   && $C::greffe(['multiplication' => 'greffe', 'type_greffe' => 'x']) == ['multiplication' => 'greffe'], 'type de greffe : implique « greffe », écarté sinon ou hors liste');
+[$c, $l] = $C::accepter(['bota' => 'Citrus limon', 'id_folioles' => 'un', 'rusticite' => ''],
+  ['bota' => 'Citrus limon', 'rusticite' => '-3 (estimée : citron)', 'id_folioles' => 'trois', 'id_aile' => 'xx', 'id_pulpe' => '', 'gbif' => 'triche'], ['rusticite' => 'clé']);
+$ok($c == ['rusticite' => '-3 (estimée : citron)', 'id_folioles' => 'trois'] && $l == ['Rusticité : – → -3 (estimée : citron) (clé)', 'Folioles par feuille : 1 → 3'],
+  'identification acceptée : inchangé, vide, invalide et hors liste écartés');
 echo "calculs OK\n";
 
 $t = DB::Prepare("SHOW TABLES LIKE 'journalcultures_journal'", [], DB::FETCH_TYPE_ROW);

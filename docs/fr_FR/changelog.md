@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.5 (2026-11-01)
+- « Identifier… » dans la fiche d'une plante : Pl@ntNet sur une de ses photos (ou une nouvelle) et clé des caractères partant de la fiche,
+  puis un tableau des champs qui changeraient (nom botanique, caractères, rusticité estimée d'après le groupe, écrite « -3 (estimée) »).
+  Rien n'est coché d'office : seules les lignes cochées sont écrites, et notées au journal (avant → après, source).
+
 ## 0.4 (2026-11-01)
 - Bouton « ＋ Plante » sur la tuile et la page plein écran : nom, emplacement, pot, multiplication, porte-greffe, nom botanique.
   Aide à l'identification dans le même formulaire : photo envoyée à Pl@ntNet (« Retenir » remplit le nom botanique) et clé des caractères,

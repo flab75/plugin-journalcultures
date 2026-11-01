@@ -225,6 +225,23 @@ class journalcultures_calc {
     return $c;
   }
 
+  /* « Identifier… » (fiche) : champs cochés → [configuration à écrire, lignes du journal « avant → après (source) »].
+     Nom botanique et rusticité : textes bornés ; caractères : codes de la clé seulement ; champ vide, inchangé ou invalide ignoré. */
+  public static function accepter(array $actuel, array $in, array $src = []) {
+    $c = []; $l = [];
+    $ch = ['bota' => ['Nom botanique', null], 'rusticite' => ['Rusticité', null]];
+    foreach (self::CARACTERES as $k => [$lib, $opt]) $ch['id_' . $k] = [$lib, $opt];
+    foreach ($ch as $k => [$lib, $opt]) {
+      if (!isset($in[$k])) continue;
+      $v = $opt === null ? self::texte($in[$k], $k == 'bota' ? 120 : 40) : (is_string($in[$k]) && isset($opt[$in[$k]]) ? $in[$k] : '');
+      $a = trim(is_scalar($actuel[$k] ?? '') ? (string)($actuel[$k] ?? '') : '');
+      if ($v === '' || $v === $a) continue;
+      $c[$k] = $v; $s = self::texte($src[$k] ?? '', 60);
+      $l[] = $lib . ' : ' . ($a === '' ? '–' : ($opt[$a] ?? $a)) . ' → ' . ($opt[$v] ?? $v) . ($s !== '' ? ' (' . $s . ')' : '');
+    }
+    return [$c, $l];
+  }
+
   // date de semis / greffe « 2024 », « 2024-05 » ou « 2024-05-12 » → « ≈ 2 ans », « 7 mois », « 1 an » ; null si illisible ou à venir
   public static function age($d, $now = null) {
     if (!preg_match('/^(\d{4})(?:-(\d{2})(?:-(\d{2}))?)?$/D', trim((string)$d), $m)) return null;

@@ -1,6 +1,6 @@
 /* Journal de cultures — tuile d'une collection et ses fenêtres (plante, journal, noter, déplacer). Recopié dans chaque tuile par
    journalcultures::toHtml(), chargé une seule fois par page. Textes entre doubles accolades traduits côté PHP (core/i18n). */
-if (!window.journalcultures || window.journalcultures.v !== 5) (function () { // v : un onglet ouvert avant une mise à jour recharge la bibliothèque
+if (!window.journalcultures || window.journalcultures.v !== 6) (function () { // v : un onglet ouvert avant une mise à jour recharge la bibliothèque
   var css = document.getElementById('jdc-css') || document.createElement('style')
   css.id = 'jdc-css'
   css.textContent =
@@ -131,9 +131,11 @@ if (!window.journalcultures || window.journalcultures.v !== 5) (function () { //
             '<a href="https://citrusvariety.ucr.edu/" target="_blank" rel="noopener noreferrer">UC Riverside</a></small></p>' : '') +
           (r.liens.length ? '<h4>' + "{{Sources en ligne}}" + '</h4>' + r.liens.map(function (l) { return '<a href="' + esc(l[1]) + '" target="_blank" rel="noopener noreferrer">' + esc(l[0]) + '</a>' }).join(' · ') : '') +
           (d.admin == 1 ? '<p><small>' + "{{La fiche se modifie dans la page du plugin (équipement de la plante).}}" + '</small> <a class="b grf" title="' +
-            "{{La plante devient le greffon : nom, fiche et collection changent ; journal, photos, pot et mesures sont gardés}}" + '">' + "{{Greffer…}}" + '</a></p>' : '')
+            "{{La plante devient le greffon : nom, fiche et collection changent ; journal, photos, pot et mesures sont gardés}}" + '">' + "{{Greffer…}}" + '</a> <a class="b idn">' + "{{Identifier…}}" + '</a></p>' : '')
         var gb = ct.querySelector('.grf')
         if (gb) gb.onclick = function () { w.fermer(); nouvelle(d, d.apres, {id: id, nom: r.nom}) }
+        var ib = ct.querySelector('.idn')
+        if (ib) ib.onclick = function () { w.fermer(); identifier(d, id, r) }
         var ie = ct.querySelector('.jdc-et')
         if (ie) charger(ie, r.etiquette, function () { ie.parentNode.remove() })
       })],
@@ -235,25 +237,115 @@ if (!window.journalcultures || window.journalcultures.v !== 5) (function () { //
     ], depart)
   }
 
+  var IMG = 'image/jpeg,image/png,image/webp,image/*'
+  function orgHtml() { return '<select class="org" style="width:auto"><option value="auto">' + "{{auto}}" + '</option><option value="leaf">' + "{{feuille}}" + '</option><option value="flower">' + "{{fleur}}" +
+    '</option><option value="fruit">' + "{{fruit}}" + '</option><option value="bark">' + "{{écorce}}" + '</option></select>' }
+  function cleHtml(C, val) { // clé des caractères en pastilles ; val = {caractère: code} coché au départ
+    return Object.keys(C).map(function (k) {
+      return '<fieldset><legend>' + esc(C[k][0]) + '</legend>' + [['', '–']].concat(Object.keys(C[k][1]).map(function (v) { return [v, C[k][1][v]] })).map(function (o) {
+        return '<label class="jdc-pil"><input type="radio" name="id_' + esc(k) + '" value="' + esc(o[0]) + '"' + (o[0] == (val[k] || '') ? ' checked' : '') + '><span>' + esc(o[1]) + '</span></label>'
+      }).join('') + '</fieldset>'
+    }).join('')
+  }
+  function caracDe(f) { var c = {}; f.querySelectorAll('details input:checked').forEach(function (i) { if (i.value) c[i.name.slice(3)] = i.value }); return c }
+  function recHtml(x) { // groupe probable et rusticité estimée (réponse de « reconnaitre »)
+    var id = x.ident, e = x.estimee
+    return (id && id.groupes ? '<p>' + (id.verdict == 'probable' ? "{{Groupe probable}}" : "{{Indécis entre}}") + ' : ' +
+      id.groupes.map(function (g) { return '<b>' + esc(g.groupe) + '</b> <small>(' + g.accords + ' ' + "{{accord(s)}}" + (g.contre.length ? ', ' + "{{contre}}" + ' : ' + esc(g.contre.join(', ')) : '') + ')</small>' }).join(' · ') + '</p>' : '') +
+      (e ? '<p>' + "{{Rusticité estimée}}" + ' <b>' + nb(e.r, ' °C') + '</b> <small>(' + esc(e.groupes.join(', ')) + ', ' + (e.par == 'nom' ? "{{d'après le nom botanique}}" : "{{d'après les caractères}}") + ')</small></p>' : '')
+  }
+  function plantnetHtml(l) { // espèces proposées, chacune avec « Retenir »
+    return l.length ? l.map(function (x) {
+      return '<div><a class="b uti" data-nom="' + esc(x.nom) + '" data-commun="' + esc(x.communs.split(', ')[0]) + '" data-score="' + esc(x.score) + '">' + "{{Retenir}}" + '</a> <b>' + esc(x.score) + ' %</b> <i>' + esc(x.nom) + '</i> ' + esc(x.auteur) + (x.communs ? ' — ' + esc(x.communs) : '') + '</div>'
+    }).join('') : "{{Aucune espèce reconnue.}}"
+  }
+
+  /* « Identifier… » (fiche, admins) : Pl@ntNet sur une photo de la plante ou une nouvelle, clé des caractères partant de la fiche,
+     puis tableau des champs qui changeraient ; rien n'est coché d'office, seules les lignes cochées sont écrites (et notées au journal). */
+  function identifier(d, id, r) {
+    var B = r.brut, w = fenetre("{{Identifier}}" + ' ' + r.nom, [['i', "{{Identification}}", function (ct) {
+      ajax('modele', {}, function (M) {
+        ct.innerHTML = '<form class="jdc-np">' +
+          '<label>' + "{{Photo}}" + '</label><span>' + (M.plantnet == 1 ? '<select name="ph" style="width:auto">' + r.photos.map(function (n) { return '<option value="' + esc(n) + '">' + esc(n) + '</option>' }).join('') +
+            '<option value="">' + "{{nouvelle photo…}}" + '</option></select> <input type="file" name="photo" accept="' + IMG + '" style="width:auto"> ' + orgHtml() + ' <a class="b idf">Pl@ntNet</a>' :
+            "{{Pl@ntNet : clé absente (configuration du plugin)}}") + '<div class="res"></div></span>' +
+          '<label>' + "{{Nom botanique}}" + '</label><input name="bota" maxlength="120" value="' + esc(B.bota) + '">' +
+          '<details open><summary>' + "{{Clé d'identification : cocher ce qu'on voit}}" + '</summary>' + cleHtml(M.caracteres, B.carac) + '</details><div class="rec"></div>' +
+          '<h4 style="grid-column:1/-1">' + "{{Propositions : cocher ce qu'on accepte}}" + '</h4><div class="pro" style="grid-column:1/-1"></div>' +
+          '<span></span><span><button type="submit">' + "{{Appliquer}}" + '</button> <span class="jdc-er"></span></span></form>'
+        var f = ct.querySelector('form'), F = f.elements, rec = f.querySelector('.rec'), pro = f.querySelector('.pro'), res = f.querySelector('.res')
+        var n = 0, fait = 0, est = null, retenu = null, coch = {}, lignes = [] // coch : « champ␁valeur », une case ne suit pas une valeur qui change
+        function majFichier() { if (F.ph) F.photo.style.display = F.ph.value ? 'none' : '' }
+        if (F.ph) { F.ph.onchange = majFichier; majFichier() }
+        function propositions() { // [clé, libellé, actuel, proposé (affiché), valeur écrite, source]
+          var C = M.caracteres, c = caracDe(f), b = F.bota.value.trim(), L = []
+          if (b && b != B.bota) L.push(['bota', "{{Nom botanique}}", B.bota, b, b, retenu && retenu.nom == b ? 'Pl@ntNet ' + retenu.score + ' %' : ''])
+          Object.keys(c).forEach(function (k) { if (c[k] != (B.carac[k] || '')) L.push(['id_' + k, C[k][0], B.carac[k] ? C[k][1][B.carac[k]] : '', C[k][1][c[k]], c[k], '']) })
+          var m = String(B.rusticite).replace(/[−–]/g, '-').match(/-?\s*\d+(?:[.,]\d+)?/), ra = m ? parseFloat(m[0].replace(/\s/g, '').replace(',', '.')) : null // comme nombre() côté serveur
+          if (est && ra !== est.r) { var v = nb(est.r) + ' (' + "{{estimée}}" + ')' // court (40 caractères au plus) ; les groupes vont dans la source, donc au journal
+            L.push(['rusticite', "{{Rusticité (°C, pleine terre)}}", B.rusticite, v, v, (est.par == 'nom' ? "{{d'après le nom botanique}}" : "{{d'après les caractères}}") + ' : ' + est.groupes.join(', ')]) }
+          lignes = L
+          pro.innerHTML = L.length ? '<table><tr><th></th><th>' + "{{Champ}}" + '</th><th>' + "{{Actuel}}" + '</th><th>' + "{{Proposé}}" + '</th><th>' + "{{Source}}" + '</th></tr>' + L.map(function (x) {
+            return '<tr><td><input type="checkbox" data-k="' + esc(x[0] + '\u0001' + x[4]) + '"' + (coch[x[0] + '\u0001' + x[4]] ? ' checked' : '') + '></td><td>' + esc(x[1]) + '</td><td>' + esc(x[2] || '–') + '</td><td><b>' + esc(x[3]) + '</b></td><td><small>' + esc(x[5]) + '</small></td></tr>'
+          }).join('') + '</table>' : '<p>' + "{{Rien ne change par rapport à la fiche.}}" + '</p>'
+          pro.querySelectorAll('input').forEach(function (i) { i.onchange = function () { coch[i.dataset.k] = i.checked } })
+        }
+        function reconnaitre() {
+          var k = ++n
+          ajax('reconnaitre', {carac: JSON.stringify(caracDe(f)), bota: F.bota.value}, function (x) {
+            if (k != n) return // réponse dépassée par une saisie plus récente
+            fait = k; est = x.estimee; rec.innerHTML = recHtml(x); propositions()
+          }, function (er) { if (k == n) rec.textContent = er })
+        }
+        f.querySelector('details').onchange = reconnaitre; F.bota.onchange = reconnaitre
+        f.onkeydown = function (e) { if (e.key == 'Enter' && e.target.tagName == 'INPUT') { e.preventDefault(); if (e.target == F.bota) reconnaitre() } }
+        var idf = f.querySelector('.idf')
+        if (idf) idf.onclick = function () {
+          var nom = F.ph.value
+          if (!nom && !F.photo.files.length) { res.textContent = "{{Choisir d'abord une photo.}}"; return }
+          if (idf.dataset.envoi) return // une identification à la fois (quota de 500 par jour)
+          idf.dataset.envoi = 1; res.textContent = "{{Identification…}}"
+          var org = f.querySelector('.org').value
+          ajax(nom ? 'identifier' : 'identifier_photo', nom ? {id: id, nom: nom, organe: org} : {photo: F.photo.files[0], organe: org}, function (l) {
+            delete idf.dataset.envoi; res.innerHTML = plantnetHtml(l)
+            res.querySelectorAll('.uti').forEach(function (a) { a.onclick = function () { retenu = {nom: a.dataset.nom, score: a.dataset.score}; F.bota.value = a.dataset.nom; reconnaitre() } })
+          }, function (er) { delete idf.dataset.envoi; res.textContent = er })
+        }
+        f.onsubmit = function (ev) {
+          ev.preventDefault()
+          var ch = {}, src = {}, bt = f.querySelector('button[type=submit]'), er = f.querySelector('.jdc-er')
+          var lb = lignes.filter(function (x) { return x[0] == 'bota' })[0], bv = F.bota.value.trim()
+          if (fait != n || (lb ? lb[4] != bv : bv && bv != B.bota)) {
+            er.textContent = "{{Recalcul en cours : vérifier les propositions puis réessayer.}}"; reconnaitre(); return } // tableau pas à jour de la saisie
+          lignes.forEach(function (x) { if (coch[x[0] + '\u0001' + x[4]]) { ch[x[0]] = x[4]; if (x[5]) src[x[0]] = x[5] } })
+          if (!Object.keys(ch).length) { er.textContent = "{{Cocher au moins une proposition.}}"; return }
+          if (ch.rusticite) { // l'estimation repose sur le nom ou les caractères du formulaire : ils doivent être acceptés aussi
+            var dep = lignes.filter(function (x) { return est.par == 'nom' ? x[0] == 'bota' : x[0].indexOf('id_') == 0 }).filter(function (x) { return !(x[0] in ch) })
+            if (dep.length) { er.textContent = "{{La rusticité estimée dépend de :}}" + ' ' + dep.map(function (x) { return x[1] }).join(', ') + ' ' + "{{— les cocher aussi.}}"; return }
+          }
+          bt.disabled = true; er.textContent = ''
+          ajax('accepter', {id: id, champs: JSON.stringify(ch), sources: JSON.stringify(src)}, function () { w.fermer(); if (d.apres) d.apres(); plante(d, id) },
+            function (e) { bt.disabled = false; er.textContent = e })
+        }
+        reconnaitre()
+      }, erreur(ct))
+    }]])
+  }
+
   // « ＋ Plante » : saisie à la main, aidée par Pl@ntNet (photo) et par la clé des caractères ; le reste de la fiche se complète dans la page du plugin
   // pg {id, nom} : « Greffer… » depuis la fiche d'un porte-greffe, même formulaire, la plante est transformée sur place (emplacement et pot gardés)
   function nouvelle(d, apres, pg) {
     var w = fenetre(pg ? "{{Greffer}}" + ' ' + pg.nom : "{{Nouvelle plante}}", [['n', d.nom, function (ct) {
       ajax('modele', {}, function (M) {
-        var C = M.caracteres, img = 'image/jpeg,image/png,image/webp,image/*'
+        var C = M.caracteres
         function champ(lib, h) { return '<label>' + lib + '</label>' + h }
         ct.innerHTML = '<form class="jdc-np">' +
           champ("{{Nom}}", '<input name="nom" required maxlength="120"' + (pg ? ' placeholder="' + "{{nom du greffon, ex. Yuzu n°2}}" + '"' : '') + '>') +
           (pg ? champ("{{Collection}}", '<select name="collection">' + M.collections.map(function (c) { return '<option value="' + c[0] + '"' + (c[0] == d.id ? ' selected' : '') + '>' + esc(c[1]) + '</option>' }).join('') + '</select>') : '') +
           champ("{{Emplacement}}", '<select name="emplacement"><option value=""></option>' + d.emplacements.map(function (e) { return '<option value="' + esc(e) + '">' + esc(e) + '</option>' }).join('') + '</select>') +
-          champ("{{Photo}}", '<span><input type="file" name="photo" accept="' + img + '">' + (M.plantnet == 1 ? ' <select class="org"><option value="auto">' + "{{auto}}" + '</option><option value="leaf">' + "{{feuille}}" + '</option><option value="flower">' + "{{fleur}}" +
-            '</option><option value="fruit">' + "{{fruit}}" + '</option><option value="bark">' + "{{écorce}}" + '</option></select> <a class="b idf">Pl@ntNet</a>' : '') + '<div class="res"></div></span>') +
+          champ("{{Photo}}", '<span><input type="file" name="photo" accept="' + IMG + '">' + (M.plantnet == 1 ? ' ' + orgHtml() + ' <a class="b idf">Pl@ntNet</a>' : '') + '<div class="res"></div></span>') +
           champ("{{Nom botanique}}", '<input name="bota" maxlength="120" placeholder="Citrus limon">') +
-          '<details><summary>' + "{{Clé d'identification : cocher ce qu'on voit}}" + '</summary>' + Object.keys(C).map(function (k) {
-            return '<fieldset><legend>' + esc(C[k][0]) + '</legend>' + [['', '–']].concat(Object.keys(C[k][1]).map(function (v) { return [v, C[k][1][v]] })).map(function (o) {
-              return '<label class="jdc-pil"><input type="radio" name="id_' + esc(k) + '" value="' + esc(o[0]) + '"' + (o[0] ? '' : ' checked') + '><span>' + esc(o[1]) + '</span></label>'
-            }).join('') + '</fieldset>'
-          }).join('') + '</details><div class="rec"></div>' +
+          '<details><summary>' + "{{Clé d'identification : cocher ce qu'on voit}}" + '</summary>' + cleHtml(C, {}) + '</details><div class="rec"></div>' +
           champ("{{Cultivar}}", '<input name="cultivar" maxlength="120">') +
           champ("{{Porte-greffe}}", '<input name="porte_greffe" maxlength="120" list="jdc-pgn"><datalist id="jdc-pgn">' + Object.keys(M.porte_greffes).map(function (k) { return '<option value="' + esc(k) + '">' + esc(M.porte_greffes[k]) + '</option>' }).join('') + '</datalist>') +
           champ("{{Rusticité (°C, pleine terre)}}", '<input name="rusticite" maxlength="40" placeholder="' + "{{vide : estimée d'après le groupe}}" + '">') +
@@ -266,15 +358,12 @@ if (!window.journalcultures || window.journalcultures.v !== 5) (function () { //
             '<label style="display:inline"><input type="checkbox" name="pleine_terre" value="1"> ' + "{{pleine terre}}" + '</label></span>') +
           '<span></span><span><button type="submit">' + "{{Créer la plante}}" + '</button> <span class="jdc-er"></span></span></form>'
         var f = ct.querySelector('form'), F = f.elements, rec = f.querySelector('.rec'), n = 0
-        function carac() { var c = {}; f.querySelectorAll('details input:checked').forEach(function (i) { if (i.value) c[i.name.slice(3)] = i.value }); return c }
+        function carac() { return caracDe(f) }
         function reconnaitre() {
           var k = ++n
           ajax('reconnaitre', {carac: JSON.stringify(carac()), bota: F.bota.value}, function (x) {
             if (k != n) return // réponse dépassée par une saisie plus récente
-            var id = x.ident, e = x.estimee
-            rec.innerHTML = (id && id.groupes ? '<p>' + (id.verdict == 'probable' ? "{{Groupe probable}}" : "{{Indécis entre}}") + ' : ' +
-              id.groupes.map(function (g) { return '<b>' + esc(g.groupe) + '</b> <small>(' + g.accords + ' ' + "{{accord(s)}}" + (g.contre.length ? ', ' + "{{contre}}" + ' : ' + esc(g.contre.join(', ')) : '') + ')</small>' }).join(' · ') + '</p>' : '') +
-              (e ? '<p>' + "{{Rusticité estimée}}" + ' <b>' + nb(e.r, ' °C') + '</b> <small>(' + esc(e.groupes.join(', ')) + ', ' + (e.par == 'nom' ? "{{d'après le nom botanique}}" : "{{d'après les caractères}}") + ')</small></p>' : '')
+            rec.innerHTML = recHtml(x)
           }, function (er) { if (k == n) rec.textContent = er })
         }
         f.querySelector('details').onchange = reconnaitre; F.bota.onchange = reconnaitre
@@ -295,9 +384,7 @@ if (!window.journalcultures || window.journalcultures.v !== 5) (function () { //
           idf.dataset.envoi = 1; res.textContent = "{{Identification…}}"
           ajax('identifier_photo', {photo: F.photo.files[0], organe: f.querySelector('.org').value}, function (l) {
             delete idf.dataset.envoi
-            res.innerHTML = l.length ? l.map(function (x) {
-              return '<div><a class="b uti" data-nom="' + esc(x.nom) + '" data-commun="' + esc(x.communs.split(', ')[0]) + '">' + "{{Retenir}}" + '</a> <b>' + esc(x.score) + ' %</b> <i>' + esc(x.nom) + '</i> ' + esc(x.auteur) + (x.communs ? ' — ' + esc(x.communs) : '') + '</div>'
-            }).join('') : "{{Aucune espèce reconnue.}}"
+            res.innerHTML = plantnetHtml(l)
             res.querySelectorAll('.uti').forEach(function (a) { a.onclick = function () { F.bota.value = a.dataset.nom; if (!F.nom.value) F.nom.value = a.dataset.commun; reconnaitre() } })
           }, function (er) { delete idf.dataset.envoi; res.textContent = er })
         }
@@ -320,7 +407,7 @@ if (!window.journalcultures || window.journalcultures.v !== 5) (function () { //
   }
 
   // opt.panel : colonnes en plus (porte-greffe, dernière mesure), masquées sur téléphone
-  window.journalcultures = {v: 5, ajax: ajax, esc: esc, nb: nb, init: function (b, d, opt) {
+  window.journalcultures = {v: 6, ajax: ajax, esc: esc, nb: nb, init: function (b, d, opt) {
     if (!b) return
     d.apres = opt && opt.apres // relu par « Greffer… » (fiche)
     var pa = opt && opt.panel
