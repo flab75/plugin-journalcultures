@@ -31,6 +31,8 @@ $ok($id(['aile' => 'tres_large', 'peau' => 'rugueuse', 'pulpe' => 'acide', 'foli
 $ok($id(['folioles' => true]) === [] && $id(['folioles' => 1.0]) === [], 'identification : non-texte refusé');
 $ok($id(['folioles' => 'un', 'gout_peau' => 'sucree', 'fruit' => 'lt3', 'forme' => 'ovale', 'couleur' => 'orange']) == ['probable', 'Kumquat'], 'identification : kumquat');
 $ok($id(['boutons' => 'violets', 'forme' => 'ovale', 'couleur' => 'jaune', 'pulpe' => 'acide', 'aile' => 'etroite', 'peau' => 'rugueuse']) == ['probable', 'Citron'], 'identification : citron');
+$cal = ['folioles' => 'un', 'fruit' => 'lt3', 'forme' => 'ronde', 'couleur' => 'orange', 'pulpe' => 'acide', 'peau' => 'lisse'];
+$ok($id($cal)[0] == 'indecis' && $id(['quartiers' => 'nombreux'] + $cal) == ['probable', 'Calamondin'] && $id(['quartiers' => 'peu'] + $cal) == ['probable', 'Kumquat'], 'identification : kumquat ou calamondin tranché par les quartiers');
 $berg = ['feuillage' => 'persistant', 'folioles' => 'un', 'aile' => 'etroite', 'boutons' => 'blancs', 'fruit' => '6-10', 'forme' => 'ronde', 'couleur' => 'jaune', 'peau' => 'lisse', 'pelage' => 'adherente', 'pulpe' => 'acide'];
 $r = $C::identifier($berg); $deux = array_column(array_slice($r['groupes'], 0, 2), 'groupe'); sort($deux);
 $ok($r['verdict'] == 'indecis' && $deux == ['Bigaradier (orange amère)', 'Lime'], 'identification : bergamote = bigaradier ou lime');
@@ -42,6 +44,16 @@ $ok($id(['folioles' => '1']) === [] && $id(['fruit' => '<3']) === [], 'identific
 $ok($id(['aile' => 'aucune', 'pulpe' => 'peu', 'forme' => 'main', 'boutons' => 'violets']) == ['probable', 'Cédrat (dont Main de Bouddha)'], 'identification : main de Bouddha');
 $ok($id(['folioles' => 'mix'])[0] == 'indecis' && $id([]) === [] && $id(['aile' => 'xx', 'fruit' => ['3-6']]) === [], 'identification : indécis, vide, codes invalides');
 foreach ($C::GROUPES as $g => $prof) foreach ($prof as $k => $codes) foreach ($codes as $c) $ok(isset($C::CARACTERES[$k][1][$c]), "profil $g : $k = $c inconnu");
+$ok(array_keys($C::RUSTICITE_GROUPES) == array_keys($C::GROUPES) && !array_diff($C::BOTA, array_keys($C::GROUPES)), 'rusticité et noms botaniques : groupes connus');
+$g = function ($b) use ($C) { $e = $C::estimee($b, []); return $e ? $e['groupes'][0] : null; };
+foreach (['Citrus reshni × Poncirus trifoliata' => 'Hybride de Poncirus (citrange, citrumelo, FA5…)', "Poncirus trifoliata 'Flying Dragon'" => 'Poncirus',
+  'Citrus × floridana (limequat)' => 'Lime', 'Citrus microcarpa' => 'Calamondin', 'Fortunella obovata × margarita' => 'Kumquat', 'Microcitrus australasica (Finger lime)' => 'Citron caviar (finger lime)',
+  "Citrus junos ‘Yuzu n°1’" => 'Yuzu', 'Citrus medica var. sarcodactylis' => 'Cédrat (dont Main de Bouddha)', 'Citrus × bergamia' => 'Bigaradier (orange amère)',
+  'citrus×limon' => 'Citron', 'Citrus latifolia' => 'Lime', "Citrus x tangor 'Shiranui'" => 'Mandarine', 'Citrus sinensis' => 'Orange douce', 'Citrus maxima' => 'Pomelo, pamplemousse',
+  'Citrus aurantiifolia' => 'Lime', '' => null, 'Ficus carica' => null] as $b => $att) $ok($g($b) === $att, "nom botanique « $b » → $att");
+$e = $C::estimee('', ['folioles' => 'un', 'fruit' => '6-10', 'couleur' => 'jaune']);
+$ok($e['par'] == 'caracteres' && $e['r'] == max(array_intersect_key($C::RUSTICITE_GROUPES, array_flip($e['groupes']))) && count($e['groupes']) > 3, 'rusticité estimée : le moins rustique des groupes possibles');
+$ok($C::estimee('Citrus sinensis', ['feuillage' => 'caduc', 'folioles' => 'trois'])['groupes'] == ['Orange douce'] && $C::estimee('', ['aile' => 'xx']) === null, 'rusticité estimée : le nom passe avant les caractères ; rien de reconnu');
 $now = strtotime('2026-10-31');
 $ok($C::age('2024', $now) === '≈ 2 ans' && $C::age('2026', $now) === 'moins d’un an' && $C::age('2026-03', $now) === '7 mois' && $C::age('2025-10-12', $now) === '1 an' && $C::age('2026-10', $now) === 'moins d’un mois', 'âge');
 $ok($C::age('2027', $now) === null && $C::age('2024-13', $now) === null && $C::age('2024-05-99', $now) === null && $C::age('2024-02-29', $now) === '2 ans' && $C::age('vers 2024', $now) === null && $C::age('', $now) === null, 'âge illisible ou à venir');

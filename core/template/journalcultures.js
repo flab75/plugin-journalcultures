@@ -117,7 +117,8 @@ if (!window.journalcultures || window.journalcultures.v !== 3) (function () { //
           '<tr><th>' + "{{Emplacement}}" + '</th><td>' + esc(s.empl || '–') + (s.t !== null ? ' · ' + nb(s.t, ' °C') : '') + (s.tmin !== null ? ' · ' + "{{min. prévue}}" + ' ' + nb(s.tmin, ' °C') : '') + (s.h !== null ? ' · ' + nb(s.h, ' %') : '') + '</td></tr>' +
           '<tr><th>' + "{{Pot}}" + '</th><td>' + esc(r.pot) + '</td></tr>' +
           (r.multiplication ? '<tr><th>' + "{{Multiplication}}" + '</th><td>' + esc(r.multiplication) + '</td></tr>' : '') +
-          '<tr><th>' + "{{Rusticité effective}}" + '</th><td>' + (s.reff === null ? "{{inconnue (pas de rusticité dans la fiche)}}" : nb(s.reff, ' °C')) + (s.raison ? ' <b class="jdc-er">' + esc(s.raison) + '</b>' : '') + '</td></tr>' +
+          '<tr><th>' + "{{Rusticité effective}}" + '</th><td>' + (s.reff === null ? "{{inconnue (pas de rusticité dans la fiche)}}" : nb(s.reff, ' °C')) +
+            (s.reff !== null && s.estimee ? ' <small>(' + "{{estimée}}" + ' ' + nb(s.estimee.r, ' °C') + ' : ' + esc(s.estimee.groupes.join(', ')) + (s.estimee.par == 'nom' ? '' : ', ' + "{{d'après les caractères}}") + ')</small>' : '') + (s.raison ? ' <b class="jdc-er">' + esc(s.raison) + '</b>' : '') + '</td></tr>' +
           (s.engrais ? '<tr><th>' + "{{Engrais cette semaine}}" + '</th><td>' + esc(s.engrais) + '</td></tr>' : '') +
           (g.nom ? '<tr><th>GBIF</th><td>' + esc(g.nom) + (g.famille ? ' · ' + esc(g.famille) : '') + ' <small>(' + esc(g.statut) + ', ' + esc(g.type) + ' ' + esc(g.confiance) + ' %)</small></td></tr>' :
             g.statut == 'NONE' ? '<tr><th>GBIF</th><td class="jdc-er">' + "{{nom botanique introuvable}}" + '</td></tr>' : '') +

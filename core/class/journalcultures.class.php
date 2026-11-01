@@ -157,7 +157,9 @@ class journalcultures extends eqLogic {
     $e = (string)$this->getConfiguration('emplacement'); $L = self::emplacements();
     $s = $L[$e] ?? ['', '', '']; $inconnu = $e !== '' && !isset($L[$e]); // renommé ou retiré de la configuration
     $t = self::lire($s[0]); $h = self::lire($s[1]); $tmin = self::lire($s[2], 36); // une prévision peut rester identique longtemps
-    $reff = journalcultures_calc::rusticite($this->getConfiguration('rusticite'), $this->pot(),
+    $r = $this->getConfiguration('rusticite'); $est = null; // fiche sans rusticité : estimée d'après le groupe (nom botanique ou caractères)
+    if (journalcultures_calc::nombre($r) === null && ($est = journalcultures_calc::estimee($this->getConfiguration('bota'), $this->caracteres()))) $r = $est['r'];
+    $reff = journalcultures_calc::rusticite($r, $this->pot(),
       (float)config::byKey('k', 'journalcultures', 50), (float)config::byKey('pmax', 'journalcultures', 8));
     $al = journalcultures_calc::alerte($reff, $t, $tmin, (float)config::byKey('marge', 'journalcultures', 3));
     $sans = trim($s[0]) === '' && trim($s[2]) === ''; // emplacement sans sonde (Maison…)
@@ -172,7 +174,7 @@ class journalcultures extends eqLogic {
     $eng = journalcultures_calc::engrais($this->getConfiguration('engrais'), (int)date('W'));
     if ($eng && DB::Prepare('SELECT COUNT(*) n FROM ' . self::TABLE . ' WHERE plante_id = ? AND action = ? AND date >= ?',
       [$this->getId(), 'Engrais', date('Y-m-d', strtotime('monday this week'))], DB::FETCH_TYPE_ROW)['n'] > 0) $eng = []; // déjà donné cette semaine
-    return ['empl' => $e, 't' => $t, 'h' => $h, 'tmin' => $tmin, 'reff' => $reff, 'alerte' => $al['alerte'] ?? null, 'raison' => $al['raison'] ?? '',
+    return ['empl' => $e, 't' => $t, 'h' => $h, 'tmin' => $tmin, 'reff' => $reff, 'estimee' => $est, 'alerte' => $al['alerte'] ?? null, 'raison' => $al['raison'] ?? '',
       'engrais' => mb_substr(implode(' ; ', $eng), 0, 120)];
   }
 
@@ -427,7 +429,8 @@ class journalcultures extends eqLogic {
       if (!$p->getIsEnable()) continue;
       $sonde = trim($L[$p->getConfiguration('emplacement')][0] ?? '') !== ''; // lieu sans sonde : pas l'ancienne température
       $m = self::muette($p->valeur('raison')); // sonde muette ou emplacement inconnu
-      $rust = journalcultures_calc::nombre($p->getConfiguration('rusticite')) !== null; // rusticité effacée de la fiche : pas l'ancienne valeur
+      $rust = journalcultures_calc::nombre($p->getConfiguration('rusticite')) !== null // rusticité effacée de la fiche : pas l'ancienne valeur
+        || journalcultures_calc::estimee($p->getConfiguration('bota'), $p->caracteres()) !== null; // … sauf si le groupe en donne une
       $pl[] = ['id' => $p->getId(), 'nom' => $p->getName(), 'empl' => $p->valeur('emplacement'), 't' => $sonde && !$m ? $p->valeur('temperature') : null, 'muette' => $m,
         'reff' => $rust ? $p->valeur('rusticite') : null,
         'alerte' => $p->valeur('alerte'), 'raison' => $p->valeur('raison'), 'engrais' => $p->valeur('engrais'), 'rust' => $p->getConfiguration('rusticite'),

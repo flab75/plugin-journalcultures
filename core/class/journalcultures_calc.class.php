@@ -88,39 +88,42 @@ class journalcultures_calc {
     'peau' => ['Surface de la peau', ['lisse' => 'lisse', 'rugueuse' => 'rugueuse ou bosselée', 'duvet' => 'duveteuse']],
     'gout_peau' => ['Goût de la peau', ['amere' => 'amère ou neutre', 'sucree' => 'sucrée, se mange']],
     'pelage' => ['Épluchage', ['facile' => 'peau qui se détache seule', 'adherente' => 'peau adhérente']],
+    'quartiers' => ['Quartiers du fruit (coupé en travers)', ['peu' => '6 ou moins', 'nombreux' => '7 ou plus']],
     'pulpe' => ['Pulpe', ['douce' => 'douce', 'acide' => 'acide', 'amere' => 'amère', 'perles' => 'en perles (caviar)', 'peu' => 'presque absente (peau très épaisse)']],
   ];
   /* Profils : groupe => [caractère => codes compatibles] ; un caractère absent du profil ne compte pas.
      Recoupés avec la clé du genre de la Flora of China, vol. 11 (aile > moitié du limbe = papedas, « très large » ; cédrat sans aile, peau plus épaisse que la pulpe ;
-     citron : pétales teintés de rose, mamelon ; lime de Tahiti : fleurs blanches (UCR) ou un peu violacées (Morton), les deux acceptées ; bergamote = bigaradier jaune, ronde ou en poire ; citron Meyer souvent rond ; yuzu et mandarine : peau qui s'enlève ; pomelo : fruit ≥ 10 cm).
+     citron : pétales teintés de rose, mamelon ; lime de Tahiti : fleurs blanches (UCR) ou un peu violacées (Morton), les deux acceptées ; bergamote = bigaradier jaune, ronde ou en poire ; citron Meyer souvent rond ; yuzu et mandarine : peau qui s'enlève ; pomelo : fruit ≥ 10 cm ;
+     quartiers : kumquat 3-6 loges contre 7-15 pour les autres Citrus (Flora of China), kumquat 4-5, calamondin 8-9 (中国植物志 p. 175) ;
+     pas imposé aux papedas (combava 6-7), au caviar, au cédrat ni au Poncirus).
      ponytail: profils de groupes, pas de variétés : les hybrides restent souvent indécis (la Flora of China le dit aussi) ;
      protocoles UPOV complets non relus, affiner un profil quand une plante connue le contredit. */
   const GROUPES = [
     'Poncirus' => ['feuillage' => ['caduc'], 'folioles' => ['trois'], 'peau' => ['duvet'], 'pulpe' => ['amere', 'acide'], 'boutons' => ['blancs']],
     'Hybride de Poncirus (citrange, citrumelo, FA5…)' => ['feuillage' => ['persistant', 'caduc'], 'folioles' => ['trois', 'mix'], 'peau' => ['lisse', 'duvet'], 'pulpe' => ['acide', 'amere'], 'boutons' => ['blancs']],
     'Kumquat' => ['feuillage' => ['persistant'], 'folioles' => ['un'], 'gout_peau' => ['sucree'], 'fruit' => ['lt3', '3-6'], 'forme' => ['ronde', 'ovale'],
-      'feuille' => ['petite', 'moyenne'], 'aile' => ['aucune', 'etroite'], 'boutons' => ['blancs'], 'couleur' => ['orange', 'jaune'], 'pulpe' => ['acide', 'douce'], 'pelage' => ['adherente']],
+      'feuille' => ['petite', 'moyenne'], 'aile' => ['aucune', 'etroite'], 'boutons' => ['blancs'], 'couleur' => ['orange', 'jaune'], 'pulpe' => ['acide', 'douce'], 'pelage' => ['adherente'], 'quartiers' => ['peu']],
     'Calamondin' => ['feuillage' => ['persistant'], 'folioles' => ['un'], 'fruit' => ['lt3', '3-6'], 'forme' => ['ronde', 'aplatie'], 'couleur' => ['orange'],
-      'pulpe' => ['acide'], 'pelage' => ['facile'], 'peau' => ['lisse'], 'aile' => ['aucune', 'etroite'], 'boutons' => ['blancs'], 'feuille' => ['petite', 'moyenne']],
+      'pulpe' => ['acide'], 'pelage' => ['facile'], 'peau' => ['lisse'], 'aile' => ['aucune', 'etroite'], 'boutons' => ['blancs'], 'feuille' => ['petite', 'moyenne'], 'quartiers' => ['nombreux']],
     'Citron caviar (finger lime)' => ['feuillage' => ['persistant'], 'folioles' => ['un'], 'forme' => ['doigt'], 'feuille' => ['petite'], 'pulpe' => ['perles'], 'aile' => ['aucune'], 'fruit' => ['3-6', '6-10']],
     'Yuzu' => ['feuillage' => ['persistant'], 'folioles' => ['un'], 'aile' => ['etroite', 'large'], 'peau' => ['rugueuse'], 'pulpe' => ['acide', 'amere'], 'couleur' => ['jaune'],
-      'fruit' => ['3-6', '6-10'], 'forme' => ['ronde', 'aplatie'], 'boutons' => ['blancs'], 'gout_peau' => ['amere'], 'pelage' => ['facile']],
+      'fruit' => ['3-6', '6-10'], 'forme' => ['ronde', 'aplatie'], 'boutons' => ['blancs'], 'gout_peau' => ['amere'], 'pelage' => ['facile'], 'quartiers' => ['nombreux']],
     'Papeda (combava, ichang)' => ['feuillage' => ['persistant'], 'folioles' => ['un'], 'aile' => ['tres_large'], 'peau' => ['rugueuse'], 'pulpe' => ['acide', 'amere', 'peu'],
       'boutons' => ['blancs'], 'gout_peau' => ['amere']],
     'Cédrat (dont Main de Bouddha)' => ['feuillage' => ['persistant'], 'folioles' => ['un'], 'boutons' => ['violets'], 'aile' => ['aucune'], 'fruit' => ['6-10', 'gt10'],
       'forme' => ['ovale', 'main'], 'couleur' => ['jaune'], 'pulpe' => ['acide', 'peu'], 'feuille' => ['moyenne', 'grande'], 'pelage' => ['adherente']],
     'Citron' => ['feuillage' => ['persistant'], 'folioles' => ['un'], 'boutons' => ['violets'], 'aile' => ['aucune', 'etroite'], 'forme' => ['ovale', 'ronde'], 'couleur' => ['jaune', 'verte'],
-      'pulpe' => ['acide'], 'pelage' => ['adherente'], 'fruit' => ['3-6', '6-10'], 'peau' => ['lisse', 'rugueuse']],
+      'pulpe' => ['acide'], 'pelage' => ['adherente'], 'fruit' => ['3-6', '6-10'], 'peau' => ['lisse', 'rugueuse'], 'quartiers' => ['nombreux']],
     'Lime' => ['feuillage' => ['persistant'], 'folioles' => ['un'], 'couleur' => ['verte', 'jaune'], 'forme' => ['ronde', 'ovale'], 'boutons' => ['blancs', 'violets'], 'pulpe' => ['acide'], 'fruit' => ['3-6', '6-10'],
-      'aile' => ['etroite', 'aucune'], 'peau' => ['lisse'], 'pelage' => ['adherente']],
+      'aile' => ['etroite', 'aucune'], 'peau' => ['lisse'], 'pelage' => ['adherente'], 'quartiers' => ['nombreux']],
     'Mandarine' => ['feuillage' => ['persistant'], 'folioles' => ['un'], 'pelage' => ['facile'], 'forme' => ['aplatie', 'ronde'], 'couleur' => ['orange'], 'pulpe' => ['douce', 'acide'],
-      'aile' => ['aucune', 'etroite'], 'boutons' => ['blancs'], 'fruit' => ['3-6', '6-10'], 'peau' => ['lisse']],
+      'aile' => ['aucune', 'etroite'], 'boutons' => ['blancs'], 'fruit' => ['3-6', '6-10'], 'peau' => ['lisse'], 'quartiers' => ['nombreux']],
     'Orange douce' => ['feuillage' => ['persistant'], 'folioles' => ['un'], 'pelage' => ['adherente'], 'forme' => ['ronde', 'ovale'], 'couleur' => ['orange'], 'pulpe' => ['douce'],
-      'aile' => ['etroite', 'aucune'], 'boutons' => ['blancs'], 'fruit' => ['6-10', 'gt10']],
+      'aile' => ['etroite', 'aucune'], 'boutons' => ['blancs'], 'fruit' => ['6-10', 'gt10'], 'quartiers' => ['nombreux']],
     'Bigaradier (orange amère)' => ['feuillage' => ['persistant'], 'folioles' => ['un'], 'aile' => ['etroite', 'large'], 'pelage' => ['adherente'], 'pulpe' => ['amere', 'acide'], 'couleur' => ['orange', 'jaune'],
-      'forme' => ['ronde', 'aplatie', 'ovale'], 'boutons' => ['blancs'], 'fruit' => ['6-10'], 'gout_peau' => ['amere']],
+      'forme' => ['ronde', 'aplatie', 'ovale'], 'boutons' => ['blancs'], 'fruit' => ['6-10'], 'gout_peau' => ['amere'], 'quartiers' => ['nombreux']],
     'Pomelo, pamplemousse' => ['feuillage' => ['persistant'], 'folioles' => ['un'], 'aile' => ['etroite', 'large'], 'fruit' => ['6-10', 'gt10'], 'couleur' => ['jaune', 'verte'], 'feuille' => ['moyenne', 'grande'],
-      'boutons' => ['blancs'], 'pelage' => ['adherente']],
+      'boutons' => ['blancs'], 'pelage' => ['adherente'], 'quartiers' => ['nombreux']],
   ];
 
   // codes observés valides seulement : [caractère => code]
@@ -134,7 +137,7 @@ class journalcultures_calc {
      → [] si rien d'observé, sinon ['verdict', 'observes' => n, 'groupes' => [['groupe', 'accords' => n, 'contre' => [libellés en désaccord]], …]] (3 premiers) ;
      verdict 'probable' seulement si le premier n'a aucune contradiction, au moins 3 accords, et que tous les autres sont contredits :
      un groupe non contredit dont le profil ignore un caractère n'est pas écarté pour autant (citron sans boutons observés ≠ lime). */
-  public static function identifier($cfg) {
+  public static function identifier($cfg, $n = 3) {
     $obs = self::observes($cfg);
     if (!$obs) return [];
     $r = [];
@@ -146,7 +149,48 @@ class journalcultures_calc {
     usort($r, function ($a, $b) { return [count($a['contre']), -$a['accords']] <=> [count($b['contre']), -$b['accords']]; });
     $a = $r[0]; $b = $r[1];
     $net = !$a['contre'] && $a['accords'] >= 3 && $b['contre'];
-    return ['verdict' => $net ? 'probable' : 'indecis', 'observes' => count($obs), 'groupes' => array_slice($r, 0, 3)];
+    return ['verdict' => $net ? 'probable' : 'indecis', 'observes' => count($obs), 'groupes' => array_slice($r, 0, $n)];
+  }
+
+  /* Nom botanique → groupe : premier motif qui correspond (hybrides de Poncirus avant Poncirus, limequat et calamondin avant kumquat,
+     bergamote et orange amère avant citron et orange). Synonymes : Flora of China 11 et 中国植物志 (C. japonica = Fortunella, C. ×microcarpa
+     = madurensis = mitis, C. trifoliata = Poncirus). ponytail: tangor, tangelo, Shiranui rangés en mandarine ; limequat en lime (le moins rustique des deux parents). */
+  const BOTA = [
+    '/\s[×x]\s*poncirus|poncirus\s.*\s[×x]\s|citrange|citrumelo|citrandarin/iu' => 'Hybride de Poncirus (citrange, citrumelo, FA5…)',
+    '/poncirus|trifoliata/iu' => 'Poncirus',
+    '/floridana|limequat/iu' => 'Lime',
+    '/microcarpa|madurensis|mitis|calamondin/iu' => 'Calamondin',
+    '/fortunella|japonica|margarita|obovata|crassifolia|hindsii|kumquat/iu' => 'Kumquat',
+    '/australasica|microcitrus|caviar|finger/iu' => 'Citron caviar (finger lime)',
+    '/junos|yuzu/iu' => 'Yuzu',
+    '/hystrix|ichangensis|cavaleriei|papeda|combava/iu' => 'Papeda (combava, ichang)',
+    '/medica|c[ée]drat|sarcodactyl/iu' => 'Cédrat (dont Main de Bouddha)',
+    '/bergamia|aurantium|myrtifolia|bigarad|am[èe]re/iu' => 'Bigaradier (orange amère)',
+    '/limon|meyeri|lemon|citronnier/iu' => 'Citron',
+    '/aurantiifolia|latifolia|limettioides|\blime\b/iu' => 'Lime',
+    '/reticulata|unshiu|deliciosa|clementina|tangerina|nobilis|tangor|tangelo|mandarin|satsuma|shiranui/iu' => 'Mandarine',
+    '/sinensis|orange/iu' => 'Orange douce',
+    '/maxima|grandis|paradisi|pomelo|pamplemousse|grapefruit/iu' => 'Pomelo, pamplemousse',
+  ];
+  /* Rusticité d'un groupe (°C, pleine terre) quand la fiche n'en donne pas : la moins froide des sources (prudence), à remplacer par une valeur de la fiche.
+     Kumquat : TyCitriK −10, UF −12, Fortune 1870 (via Swingle) « 10-15 °F de gel » ≈ −8 ; citron : TyCitriK −5, Blondel −5/−6 ; cédrat : TyCitriK −3, Guo −4/−5 (feuilles) ; calamondin, lime, caviar, papeda : TyCitriK seul ;
+     yuzu : RHS H3 −5 contre TyCitriK −14 (le plus prudent gardé) ; Poncirus : TyCitriK −16, fiches −15 ; hybrides : Carrizo −11, citrumelo −12, FA5 −13 → −10 comme les fiches FA5 ;
+     bigaradier, mandarine, orange, pomelo : aucune valeur chiffrée sur la plante, encadrés par l'ordre UF (Jackson & Fasulo HS-123 : calamondin > bigaradier > mandarinier
+     > oranger > pomelo > citronnier) entre calamondin −5 et citron −5 → −5. */
+  const RUSTICITE_GROUPES = [
+    'Poncirus' => -15, 'Hybride de Poncirus (citrange, citrumelo, FA5…)' => -10, 'Kumquat' => -8, 'Calamondin' => -5, 'Citron caviar (finger lime)' => -4,
+    'Yuzu' => -5, 'Papeda (combava, ichang)' => -4, 'Cédrat (dont Main de Bouddha)' => -3, 'Citron' => -5, 'Lime' => -4, 'Mandarine' => -5, 'Orange douce' => -5,
+    'Bigaradier (orange amère)' => -5, 'Pomelo, pamplemousse' => -5,
+  ];
+
+  /* Rusticité estimée d'après le groupe : nom botanique d'abord, sinon caractères observés (tous les groupes non contredits, le moins rustique retenu).
+     → null (rien de reconnu), sinon ['r' => °C, 'groupes' => [noms], 'par' => 'nom'|'caracteres'] */
+  public static function estimee($bota, $cfg) {
+    foreach (self::BOTA as $re => $g) if (preg_match($re, ' ' . $bota . ' ')) return ['r' => (float)self::RUSTICITE_GROUPES[$g], 'groupes' => [$g], 'par' => 'nom'];
+    $id = self::identifier($cfg, count(self::GROUPES));
+    $c = array_column(array_filter($id['groupes'] ?? [], function ($x) { return !$x['contre']; }), 'groupe');
+    if (!$c) return null;
+    return ['r' => (float)max(array_intersect_key(self::RUSTICITE_GROUPES, array_flip($c))), 'groupes' => $c, 'par' => 'caracteres'];
   }
 
   const MULTIPLICATIONS = ['semis', 'greffe', 'bouture', 'marcotte', 'achat'];
