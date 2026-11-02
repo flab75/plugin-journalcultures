@@ -1,6 +1,6 @@
 /* Journal de cultures — tuile d'une collection et ses fenêtres (plante, journal, noter, déplacer). Recopié dans chaque tuile par
    journalcultures::toHtml(), chargé une seule fois par page. Textes entre doubles accolades traduits côté PHP (core/i18n). */
-if (!window.journalcultures || window.journalcultures.v !== 15) (function () { // v : un onglet ouvert avant une mise à jour recharge la bibliothèque
+if (!window.journalcultures || window.journalcultures.v !== 18) (function () { // v : un onglet ouvert avant une mise à jour recharge la bibliothèque
   var css = document.getElementById('jdc-css') || document.createElement('style')
   css.id = 'jdc-css'
   css.textContent =
@@ -11,9 +11,9 @@ if (!window.journalcultures || window.journalcultures.v !== 15) (function () { /
     '.jdc-bt{display:flex;gap:5px;justify-content:center;margin-top:6px}.jdc-bt a,.jdc-m .b{cursor:pointer;border-radius:12px;padding:2px 10px;background:rgba(128,128,128,.2)}' +
     '.jdc-m{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center}' +
     '.jdc-mb{background:var(--bg-modal-color,#fff);color:var(--txt-color,#222);width:min(800px,96vw);max-height:90vh;overflow:auto;border-radius:10px;padding:10px 14px;font-size:13px;text-align:left}' +
-    '.jdc-mb nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;align-items:center}.jdc-mb nav a{cursor:pointer;padding:3px 10px;border-radius:10px;background:rgba(128,128,128,.15)}' +
-    '.jdc-m:not(.jdc-in) .jdc-mb nav{position:sticky;top:-10px;z-index:1;background:var(--bg-modal-color,#fff);padding:6px 0}[id^=jdc-n-]{scroll-margin-top:50px}' +
-    '.jdc-mb a[data-n]{cursor:pointer;text-decoration:underline}.jdc-mb nav a.on{background:#4a7;color:#fff}.jdc-mb nav .z{margin-left:auto}.jdc-mb nav b{margin-right:6px}' +
+    '.jdc-mb>nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;align-items:center}.jdc-mb>nav a{cursor:pointer;padding:3px 10px;border-radius:10px;background:rgba(128,128,128,.15)}' +
+    '.jdc-m:not(.jdc-in) .jdc-mb>nav{position:sticky;top:-10px;z-index:1;background:var(--bg-modal-color,#fff);padding:6px 0}[id^=jdc-n-]{scroll-margin-top:50px}' +
+    '.jdc-mb a[data-n]{cursor:pointer;text-decoration:underline}.jdc-mb>nav a.on{background:#4a7;color:#fff}.jdc-mb>nav .z{margin-left:auto}.jdc-mb>nav b{margin-right:6px}' +
     '.jdc-mb table{width:100%;border-collapse:collapse}.jdc-mb td,.jdc-mb th{padding:3px 5px;border-bottom:1px solid rgba(128,128,128,.25);vertical-align:top;text-align:left}' +
     '.jdc-mb form{display:grid;grid-template-columns:fit-content(35%) minmax(0,1fr);gap:4px 8px;align-items:center;margin-bottom:10px}' +
     '.jdc-mb input,.jdc-mb select,.jdc-mb textarea{width:100%;box-sizing:border-box}.jdc-mb input[type=checkbox]{width:auto}' +
@@ -26,8 +26,16 @@ if (!window.journalcultures || window.journalcultures.v !== 15) (function () { /
     '.jdc-lg{display:flex;align-items:center;gap:8px;margin:0 0 6px;font-weight:normal}.jdc-lg>span{flex:1}.jdc-lg input{width:110px;text-align:right}.jdc-lg small{width:42px}.jdc-lg textarea{flex:2}' +
     '.jdc-svg svg{width:100%;height:auto;max-height:220px}' +
     '.jdc-np details,.jdc-np .rec{grid-column:1/-1}.jdc-np summary{cursor:pointer;margin:4px 0}.jdc-np fieldset{border:0;padding:0;margin:0 0 6px}.jdc-np legend{font-size:inherit;border:0;margin:0 0 3px;width:auto}' +
-    '@media (max-width:600px){.jdc-m{align-items:stretch}.jdc-mb{width:100vw;max-height:none;height:100%;border-radius:0;font-size:15px}.jdc-mb nav a{padding:8px 12px}' +
-    '.jdc-mb input,.jdc-mb select,.jdc-mb textarea{font-size:16px;min-height:40px}.jdc-mb button{min-height:44px}.jdc .xs{display:none}}'
+    // notice : large, sommaire à gauche (ordinateur), au-dessus (tablette), replié (mobile), lignes de 75 caractères au plus, tableaux défilants
+    '.jdc-not .jdc-mb{width:min(1100px,96vw);font-size:14px;line-height:1.55;padding:10px 20px 24px}.jdc-not .jdc-ct>h2{font-size:22px;margin:8px 0 12px;padding-bottom:6px;border-bottom:2px solid #2F6B3A}' +
+    '.jdc-doc{display:grid;grid-template-columns:220px minmax(0,1fr);gap:24px;align-items:start}.jdc-tx>*{max-width:75ch}.jdc-tx>.jdc-tw{max-width:none}.jdc-tx>p:first-child{margin-top:0}' +
+    '.jdc-toc{position:sticky;top:44px;max-height:calc(90vh - 70px);overflow:auto;font-size:13px;line-height:1.35;border-left:3px solid rgba(47,107,58,.5);padding-left:10px}' +
+    '.jdc-toc summary{cursor:pointer;font-weight:600;margin-bottom:4px}.jdc-toc ul{list-style:none;margin:0;padding:0}.jdc-toc li{margin:5px 0}.jdc-toc li.s{padding-left:12px;font-size:12px;opacity:.85}.jdc-mb .jdc-toc a[data-n]{text-decoration:none}.jdc-toc a:hover{text-decoration:underline}' +
+    '.jdc-tx h3{font-size:18px;margin:28px 0 8px;padding-bottom:4px;border-bottom:1px solid rgba(128,128,128,.35)}.jdc-tx h4{font-size:15.5px;margin:22px 0 6px;padding-left:8px;border-left:3px solid #2F6B3A}.jdc-tx h5{font-size:14px;margin:14px 0 4px}' +
+    '.jdc-tx li{margin:3px 0}.jdc-tw{overflow-x:auto;margin:10px 0 14px}.jdc-tw table{margin:0;min-width:480px;font-size:13px;line-height:1.4}.jdc-tw th,.jdc-tw td{padding:5px 8px!important;vertical-align:top!important}.jdc-tw th{background:rgba(47,107,58,.18);white-space:nowrap}.jdc-tw tr:nth-child(even) td{background:rgba(128,128,128,.07)}.jdc-tw td:first-child{min-width:9em}.jdc-ct code{color:inherit;background:rgba(128,128,128,.18);border:0;padding:1px 4px;border-radius:3px;font-size:.88em;white-space:normal;overflow-wrap:anywhere;-webkit-box-decoration-break:clone;box-decoration-break:clone}.jdc-not .jdc-ct img{max-width:100%;height:auto}' +
+    '@media (max-width:900px){.jdc-doc{display:block}.jdc-tx>*{max-width:none}.jdc-toc{position:static;max-height:none;margin-bottom:14px;padding:8px 10px;border:1px solid rgba(128,128,128,.3);border-radius:8px}}' +
+    '@media (max-width:600px){.jdc-m{align-items:stretch}.jdc-mb{width:100vw;max-height:none;height:100%;border-radius:0;font-size:15px}.jdc-mb>nav a{padding:8px 12px}' +
+    '.jdc-not .jdc-mb{width:100vw;padding:8px 14px 24px}.jdc-not .jdc-ct>h2{font-size:19px}.jdc-mb input,.jdc-mb select,.jdc-mb textarea{font-size:16px;min-height:40px}.jdc-mb button{min-height:44px}.jdc .xs{display:none}}'
   document.head.appendChild(css)
 
   function esc(s) { return String(s === undefined || s === null ? '' : s).replace(/[&<>"']/g, function (x) { return '&#' + x.charCodeAt(0) + ';' }) }
@@ -49,7 +57,7 @@ if (!window.journalcultures || window.journalcultures.v !== 15) (function () { /
     opt = opt || {}
     var cible = window.journalcultures.cible, cour = null // panel : à côté de la liste (pas si on a quitté le panel, ni sur écran étroit)
     if (!cible || opt.flottante || !cible.isConnected || window.innerWidth <= 900) cible = null
-    var m = document.createElement('div'); m.className = 'jdc-m' + (cible ? ' jdc-in' : '')
+    var m = document.createElement('div'); m.className = 'jdc-m' + (cible ? ' jdc-in' : '') + (opt.classe ? ' ' + opt.classe : '')
     if (cible) { if (posee) posee.fermer(); cible.innerHTML = '' }
     m.innerHTML = '<div class="jdc-mb"><nav><b>' + esc(titre) + '</b>' + o.map(function (x) { return '<a data-o="' + x[0] + '">' + esc(x[1]) + '</a>' }).join('') +
       (opt.aide ? '<a class="q" title="' + "{{Notice}}" + '">?</a>' : '') + '<a class="z">✕</a></nav><div class="jdc-ct"></div></div>';
@@ -87,7 +95,8 @@ if (!window.journalcultures || window.journalcultures.v !== 15) (function () { /
         if (w) w.montrer(k2); else w = fenetre("{{Notice}}", N.map(function (n) { return [n.k, n.titre, function (ct) {
           ct.innerHTML = n.html
           ct.querySelectorAll('a[data-n]').forEach(function (l) { l.onclick = function () { aller(l.dataset.n || n.k, l.dataset.a) } })
-        }] }), k2, {flottante: 1})
+          var d = ct.querySelector('.jdc-toc details'); if (d && window.innerWidth <= 600) d.open = false // mobile : sommaire replié
+        }] }), k2, {flottante: 1, classe: 'jdc-not'})
         var e = a && document.getElementById('jdc-n-' + a)
         if (e) e.scrollIntoView(); else w.boite.scrollTop = 0
       }
@@ -143,18 +152,18 @@ if (!window.journalcultures || window.journalcultures.v !== 15) (function () { /
     return '<h4>' + "{{Engrais}}" + '</h4>' +
       (e.carences.length ? '<p><b>' + "{{Pistes d'après la dernière mesure}}" + '</b> <small>(' + "{{pas un diagnostic}}" + ')</small></p><ul>' + e.carences.map(function (c) {
         return '<li>' + esc(c.txt) + (c.produits.length ? '<br><small>' + "{{En stock}}" + ' : ' + esc(c.produits.join(' · ')) + '</small>' : '') + '</li>' }).join('') + '</ul>' : '') +
-      '<p>' + (e.litres ? "{{Pot}}" + ' ' + nb(e.litres, ' L') + ' · ' + "{{besoin}}" + ' ' + nb(e.litres * e.taux * 2) + ' ' + "{{g d'azote toutes les 2 semaines en saison de croissance}}" + '<br><small>' + "{{Saison = de début mars à début octobre (semaines 10 à 40), rien en hiver ; chaque produit a la sienne, indiquée ci-dessous.}}" + '</small>' : "{{Pot de dimensions inconnues ou pleine terre : pas de plan (dose de l'étiquette)}}") + '</p>' +
+      '<p>' + (e.litres ? "{{Pot}}" + ' ' + nb(e.litres, ' L') + ' · ' + "{{besoin}}" + ' ' + nb(e.litres * e.taux * 2) + ' ' + "{{g d'azote toutes les 2 semaines en saison de croissance}}" + (e.jeune < 1 ? ' <small>(' + "{{jeune plant : dose réduite à}}" + ' ' + Math.round(e.jeune * 100) + ' %)</small><br><small>' + "{{Une dose déjà au calendrier n'est pas réduite d'elle-même : vider la case dose (elle se recalcule) puis écrire ; à refaire chaque printemps, la part remonte avec l'âge.}}" + '</small>' : '') + '<br><small>' + "{{Saison = de début mars à début octobre (semaines 10 à 40), rien en hiver ; chaque produit a la sienne, indiquée ci-dessous.}}" + '</small>' : "{{Pot de dimensions inconnues ou pleine terre : pas de plan (dose de l'étiquette)}}") + '</p>' +
       '<p><small>' + "{{Calendrier actuel}}" + ' : ' + (e.calendrier ? esc(e.calendrier).replace(/\n/g, ' ; ') : '–') + '</small></p>' +
       (e.litres && pl.length ? '<table class="jdc-plan">' + pl.map(function (x) {
         var p = x[0], i = x[1], v = e.parts[i] || 0
-        return '<tr><td><label><input type="checkbox" class="pk" data-i="' + i + '"' + (v ? ' checked' : '') + (admin ? '' : ' disabled') + '> ' + esc(p.nom) + '</label> <small>' + esc(p.n) + ' % N, ' + "{{toutes les}}" + ' ' + p.tous + ' ' + "{{sem.}}" + ', ' + saison(p.saison) + '</small></td>' +
+        return '<tr><td><label><input type="checkbox" class="pk" data-i="' + i + '"' + (v ? ' checked' : '') + (admin ? '' : ' disabled') + '> ' + esc(p.nom) + '</label> <small>' + esc(p.n) + ' % N, ' + "{{toutes les}}" + ' ' + p.tous + ' ' + "{{sem.}}" + ', ' + saison(p.saison) + (p.ge ? ', ' + "{{dose de l'étiquette}}" + ' ' + nb(p.gl) + ' g/L' : '') + '</small></td>' +
           '<td><input class="pp" data-i="' + i + '" type="number" min="0" max="100" style="width:4.5em" value="' + v + '"' + (admin ? '' : ' disabled') + '> %</td><td><input class="pd" data-i="' + i + '" type="number" min="0" step="any" style="width:5em"' + (e.doses[i] ? ' value="' + e.doses[i] + '"' : '') + (admin ? '' : ' disabled') + '> g <small class="pg" data-i="' + i + '"></small></td></tr>' }).join('') + '</table>' +
-        '<p><small>' + "{{Seuls les produits cochés reçoivent l'azote, réparti selon les parts (total 100 %). La dose calculée peut être ajustée à la main : c'est elle qui est écrite.}}" + '</small>' +
+        '<p><small>' + "{{Seuls les produits cochés reçoivent l'azote, réparti selon les parts (total 100 %). Un produit à dose d'étiquette garde cette dose ; son azote est retiré du besoin et le reste va aux autres. La dose calculée peut être ajustée à la main : c'est elle qui est écrite.}}" + '</small>' +
         (admin ? ' <a class="b pe">' + "{{Écrire dans le calendrier}}" + '</a> <span class="jdc-er pr"></span>' : '') + '</p>' : '')
   }
   function blocSante(s, cat) {
     function src(l) { return ' <small>(' + esc(l.join(', ')) + (l.length == 1 ? ' — <b>' + "{{une seule source}}" + '</b>' : '') + ')</small>' }
-    function statut(p) { return p.statut == 'absent' ? ' <b>' + "{{absent de France}}" + '</b>' : p.statut == 'quarantaine' ? ' <b class="jdc-er">' + "{{quarantaine : à signaler}}" + '</b>' : '' }
+    function statut(p) { return p.statut == 'absent' ? ' <b>' + "{{absent de France}}" + '</b>' : p.statut == 'a_verifier' ? ' <b>' + "{{absence à vérifier}}" + '</b>' : p.statut == 'quarantaine' ? ' <b class="jdc-er">' + "{{quarantaine : à signaler}}" + '</b>' : '' }
     function gestes(p) { return '<ol>' + p.gestes.map(function (g) { return '<li>' + esc(g[0]) + src(g[1]) + '</li>' }).join('') + '</ol>' + (p.note ? '<p><small>' + esc(p.note) + '</small></p>' : '') }
     return '<h4>' + "{{Santé}}" + '</h4>' +
       (s.pistes.length ? '<p><b>' + "{{Pistes d'après la mesure du}}" + ' ' + esc(s.date.slice(0, 10)) + '</b> <small>(' + "{{pas un diagnostic ; gestes du plus doux au plus fort}}" + ')</small></p>' + s.pistes.map(function (x) {
@@ -168,8 +177,9 @@ if (!window.journalcultures || window.journalcultures.v !== 15) (function () { /
     function parts() { var r = {}; t.querySelectorAll('.pk:checked').forEach(function (k) { r[k.dataset.i] = Number(t.querySelector('.pp[data-i="' + k.dataset.i + '"]').value) || 0 }); return r }
     function doses() { var r = {}; t.querySelectorAll('.pk:checked').forEach(function (k) { var v = Number(t.querySelector('.pd[data-i="' + k.dataset.i + '"]').value); if (v > 0) r[k.dataset.i] = v }); return r }
     function calc(re) { // re : parts changées → dose recalculée ; sinon la dose saisie (ou celle du calendrier) est gardée
-      var r = parts(), s = 0
-      t.querySelectorAll('.pg').forEach(function (c) { var i = c.dataset.i, v = r[i], g = v ? Math.max(1, Math.round(e.produits[i].g100 * v / 100)) : 0, d = t.querySelector('.pd[data-i="' + i + '"]'); s += v || 0
+      var r = parts(), s = 0, et = 0, au = 0 // comme journalcultures_calc::plan : dose d'étiquette fixe, son azote retiré du besoin, le reste aux autres selon leurs parts
+      Object.keys(r).forEach(function (i) { if (!r[i]) return; if (e.produits[i].ge) et += e.produits[i].ne; else au += Math.min(r[i], 100) })
+      t.querySelectorAll('.pg').forEach(function (c) { var i = c.dataset.i, v = r[i], p = e.produits[i], g = v ? Math.max(1, Math.round(p.ge || p.g100 * Math.max(0, 1 - et) * Math.min(v, 100) / au)) : 0, d = t.querySelector('.pd[data-i="' + i + '"]'); s += v || 0
         if (re || (v && !d.value)) d.value = g || ''; c.textContent = v && Number(d.value) !== g ? '(' + "{{calculé}}" + ' ' + g + ' g)' : '' })
       var m = ct.querySelector('.pr'); if (m) m.textContent = Object.keys(r).length && Math.abs(s - 100) > 1 ? "{{total}}" + ' ' + s + ' %' : ''
     }
@@ -414,6 +424,7 @@ if (!window.journalcultures || window.journalcultures.v !== 15) (function () { /
           var C = M.caracteres, c = caracDe(f), b = F.bota.value.trim(), L = []
           if (b && b != B.bota) L.push(['bota', "{{Nom botanique}}", B.bota, b, b, retenu && retenu.nom == b ? 'Pl@ntNet ' + retenu.score + ' %' : ''])
           Object.keys(c).forEach(function (k) { if (c[k] != (B.carac[k] || '')) L.push(['id_' + k, C[k][0], B.carac[k] ? C[k][1][B.carac[k]] : '', C[k][1][c[k]], c[k], '']) })
+          Object.keys(C).forEach(function (k) { if (B.carac[k] && C[k][1][B.carac[k]] && !c[k]) L.push(['id_' + k, C[k][0], C[k][1][B.carac[k]], '–', '', '']) }) // remis à « – » : effacé
           var m = String(B.rusticite).replace(/[−–]/g, '-').match(/-?\s*\d+(?:[.,]\d+)?/), ra = m ? parseFloat(m[0].replace(/\s/g, '').replace(',', '.')) : null // comme nombre() côté serveur
           if (est && ra !== est.r) { var v = nb(est.r) + ' (' + "{{estimée}}" + ')' // court (40 caractères au plus) ; les groupes vont dans la source, donc au journal
             L.push(['rusticite', "{{Rusticité (°C, pleine terre)}}", B.rusticite, v, v, (est.par == 'nom' ? "{{d'après le nom botanique}}" : "{{d'après les caractères}}") + ' : ' + est.groupes.join(', ')]) }
@@ -535,7 +546,7 @@ if (!window.journalcultures || window.journalcultures.v !== 15) (function () { /
   }
 
   // opt.panel : colonnes en plus (porte-greffe, dernière mesure), masquées sur téléphone
-  window.journalcultures = {v: 15, notice: notice, ajax: ajax, esc: esc, nb: nb, init: function (b, d, opt) {
+  window.journalcultures = {v: 18, notice: notice, ajax: ajax, esc: esc, nb: nb, init: function (b, d, opt) {
     if (!b) return
     d.apres = opt && opt.apres // relu par « Greffer… » (fiche)
     var pa = opt && opt.panel

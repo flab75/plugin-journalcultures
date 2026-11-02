@@ -171,11 +171,11 @@ class journalcultures extends eqLogic {
     $r = $this->getConfiguration('rusticite'); $est = null; // fiche sans rusticité : estimée d'après le groupe (nom botanique ou caractères)
     if (journalcultures_calc::nombre($r) === null && ($est = journalcultures_calc::estimee($this->getConfiguration('bota'), $this->caracteres()))) $r = $est['r'];
     $reff = journalcultures_calc::rusticite($r, $this->pot(),
-      (float)config::byKey('k', 'journalcultures', 50), (float)config::byKey('pmax', 'journalcultures', 8));
+      max(0, self::reglage('k', 50)), max(0, self::reglage('pmax', 8)));
     $jeu = journalcultures_calc::jeunesse((string)$this->getConfiguration('multiplication'), $this->getConfiguration('date_mult'),
-      (float)config::byKey('jeune', 'journalcultures', 6), (float)config::byKey('jeune_ans', 'journalcultures', 5));
+      self::reglage('jeune', 6), self::reglage('jeune_ans', 5));
     if ($reff !== null) $reff = round($reff + $jeu, 1);
-    $al = journalcultures_calc::alerte($reff, $t, $tmin, (float)config::byKey('marge', 'journalcultures', 3));
+    $al = journalcultures_calc::alerte($reff, $t, $tmin, self::reglage('marge', 3));
     $sans = trim($s[0]) === '' && trim($s[2]) === ''; // emplacement sans sonde (Maison…)
     if ($inconnu) { // on ne sait plus où elle est : on garde l'alerte, on le dit
       $al = ['alerte' => null, 'raison' => __('emplacement inconnu', __FILE__)];
@@ -476,7 +476,7 @@ class journalcultures extends eqLogic {
       $st = history::getStatistique($i->getId(), date('Y-m-d H:i:s', time() - 86400), date('Y-m-d H:i:s')); // ponytail: sonde non historisée → pas d'avis
       $v = function ($k) use ($st) { return is_numeric($st[$k] ?? null) && ($st['count'] ?? 0) > 0 ? (float)$st[$k] : null; };
       $temp = $s == 'dormant' ? journalcultures_calc::greffeGel($v('min')) // œil dormant : seulement le gel
-        : journalcultures_calc::greffeTemp($v('avg'), (float)config::byKey('greffe_tmin', 'journalcultures', 21), (float)config::byKey('greffe_tmax', 'journalcultures', 32)); // la soudure a-t-elle assez chaud ?
+        : journalcultures_calc::greffeTemp($v('avg'), self::reglage('greffe_tmin', 21), self::reglage('greffe_tmax', 32)); // la soudure a-t-elle assez chaud ?
     }
     return ['statut' => $s, 'texte' => journalcultures_calc::GREFFE_STATUTS[$s], 'controle' => $c, 'du' => $c !== '' && $c <= date('Y-m-d'),
       'question' => journalcultures_calc::greffeQuestion($s, $this->getConfiguration('type_greffe')),
@@ -579,31 +579,37 @@ class journalcultures extends eqLogic {
     return journalcultures_calc::produits((string)config::byKey('produits', 'journalcultures', '')); // vidé par l'utilisateur = aucun produit (le catalogue n'est proposé qu'à l'installation)
   }
 
-  private static function taux() { $x = (float)journalcultures_calc::nombre(config::byKey('taux_n', 'journalcultures', 0.07)); return $x > 0 && $x < 1 ? $x : 0.07; }
+  private static function reglage($k, $def) { $v = journalcultures_calc::nombre(config::byKey($k, 'journalcultures', $def)); return $v === null ? $def : $v; } // virgule et signe − acceptés ; texte → défaut
+  private static function taux() { $x = self::reglage('taux_n', 0.07); return $x > 0 && $x < 1 ? $x : 0.07; }
+  private function facteurJeune() { // jeune plant (semis, greffe… datés) : besoin réduit, voir journalcultures_calc::facteurJeune
+    $f = self::reglage('engrais_jeune', 25); $n = self::reglage('engrais_jeune_ans', 3);
+    return journalcultures_calc::facteurJeune((string)$this->getConfiguration('multiplication'), $this->getConfiguration('date_mult'), ($f > 0 ? $f : 100) / 100, $n);
+  }
 
   private function dosesActuelles(array $P) { // grammes déjà au calendrier pour les produits du plan (dose peut-être ajustée à la main) → proposés tels quels
     $r = [];
-    foreach (preg_split('/\R/', (string)$this->getConfiguration('engrais')) as $l) { $c = explode('|', $l . '||');
+    foreach ((preg_split('/\R/u', (string)$this->getConfiguration('engrais')) ?: []) as $l) { $c = explode('|', $l . '||');
       foreach ($P as $i => $p) if ($p['n'] > 0 && $p['tous'] > 0 && mb_strtolower(trim($c[1])) === mb_strtolower($p['nom']) && ($g = journalcultures_calc::nombre($c[2])) > 0) $r[$i] = $g; }
     return $r;
   }
 
   private function partsActuelles(array $P) { // produits du plan déjà dans le calendrier → parts égales ; aucun → rien de coché
-    $cal = array_map(function ($l) { return mb_strtolower(trim(explode('|', $l . '||')[1])); }, preg_split('/\R/', (string)$this->getConfiguration('engrais')));
+    $cal = array_map(function ($l) { return mb_strtolower(trim(explode('|', $l . '||')[1])); }, (preg_split('/\R/u', (string)$this->getConfiguration('engrais')) ?: []));
     $i = array_keys(array_filter($P, function ($p) use ($cal) { return $p['n'] > 0 && $p['tous'] > 0 && in_array(mb_strtolower($p['nom']), $cal, true); }));
     if (!$i) return [];
     $r = array_fill_keys($i, floor(100 / count($i))); $r[end($i)] += 100 - array_sum($r); return $r; // reste au dernier : total juste 100
   }
 
   public function engraisFiche() {
-    $P = self::produits(); $L = journalcultures_calc::volume($this->pot()); $taux = self::taux();
+    $P = self::produits(); $L = journalcultures_calc::volume($this->pot()); $fj = $this->facteurJeune(); $taux = self::taux() * $fj;
     $v = DB::Prepare('SELECT valeurs FROM ' . self::TABLE . ' WHERE plante_id = ? AND action = ? AND valeurs LIKE ? ORDER BY date DESC, id DESC LIMIT 1', [$this->getId(), 'Mesure', '%feuilles.couleur%'], DB::FETCH_TYPE_ROW); // dernière mesure de la couleur des feuilles, pas la dernière mesure tout court
     $car = journalcultures_calc::carences(json_decode($v['valeurs'] ?? '', true) ?: []);
     foreach ($car as &$c) $c['produits'] = array_values(array_map(function ($p) { return $p['nom'] . ($p['note'] !== '' ? ' (' . $p['note'] . ')' : ''); },
       array_filter($P, function ($p) use ($c) { return in_array($c['el'], $p['apporte'], true); })));
     unset($c);
-    return ['litres' => $L, 'taux' => $taux, 'calendrier' => (string)$this->getConfiguration('engrais'), 'parts' => (object)$this->partsActuelles($P), 'doses' => (object)$this->dosesActuelles($P), 'carences' => $car,
-      'produits' => array_map(function ($p) use ($L, $taux) { return $p + ['g100' => $L && $p['n'] > 0 && $p['tous'] > 0 ? $L * $taux * $p['tous'] * 100 / $p['n'] : null]; }, $P)];
+    return ['litres' => $L, 'taux' => $taux, 'jeune' => $fj, 'calendrier' => (string)$this->getConfiguration('engrais'), 'parts' => (object)$this->partsActuelles($P), 'doses' => (object)$this->dosesActuelles($P), 'carences' => $car,
+      'produits' => array_map(function ($p) use ($L, $taux) { $ok = $L && $p['n'] > 0 && $p['tous'] > 0; // ge : dose de l'étiquette ; ne : son azote, en part du besoin
+        return $p + ['g100' => $ok ? $L * $taux * $p['tous'] * 100 / $p['n'] : null, 'ge' => $ok && $p['gl'] > 0 ? $L * $p['gl'] : null, 'ne' => $ok && $p['gl'] > 0 ? $p['gl'] * $p['n'] / 100 / $p['tous'] / $taux : 0]; }, $P)];
   }
 
   // « Écrire dans le calendrier » : lignes des produits du plan remplacées, les autres lignes (fer, magnésium, à la main) gardées ; noté au journal
@@ -615,11 +621,11 @@ class journalcultures extends eqLogic {
     if (abs(array_sum($parts) - 100) > 1) throw new Exception(__('Les parts doivent faire 100 %', __FILE__));
     $doses = array_map('floatval', array_filter($doses, 'is_numeric'));
     if (array_filter($doses, function ($x) { return $x < 0 || $x > 5000; })) throw new Exception(__('Dose entre 0 et 5000 g', __FILE__));
-    $plan = journalcultures_calc::plan($L, $P, $parts, self::taux(), $doses);
+    $plan = journalcultures_calc::plan($L, $P, $parts, self::taux() * $this->facteurJeune(), $doses);
     if (!$plan) throw new Exception(__('Aucun produit du plan coché', __FILE__));
     $noms = array_map(function ($p) { return mb_strtolower($p['nom']); }, array_filter($P, function ($p) { return $p['n'] > 0 && $p['tous'] > 0; }));
     $avant = (string)$this->getConfiguration('engrais');
-    $garde = array_filter(preg_split('/\R/', $avant), function ($l) use ($noms) { return trim($l) !== '' && !in_array(mb_strtolower(trim(explode('|', $l . '||')[1])), $noms, true); });
+    $garde = array_filter((preg_split('/\R/u', $avant) ?: []), function ($l) use ($noms) { return trim($l) !== '' && !in_array(mb_strtolower(trim(explode('|', $l . '||')[1])), $noms, true); });
     $apres = implode("\n", array_merge($garde, array_column($plan, 'ligne')));
     if ($apres === $avant) throw new Exception(__('Rien à changer', __FILE__));
     self::$_sansGbif = true;

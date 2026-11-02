@@ -29,7 +29,7 @@ if (!isConnect('admin')) {
     </div>
     <div class="form-group">
       <label class="col-md-4 control-label">{{Pénalité de jeunesse}} : °C / {{ans}}
-        <sup><i class="fas fa-question-circle tooltips" title="{{Semis, greffe, bouture ou marcotte datés : rusticité relevée de x °C la première année, puis de moins en moins jusqu'à 0 à n ans. Par défaut 6 °C et 5 ans : greffe d'un an → +4,8 °C. Achat ou sans date : aucune pénalité. 0 pour la retirer.}}"></i></sup>
+        <sup><i class="fas fa-question-circle tooltips" title="{{Semis, greffe, bouture ou marcotte datés : rusticité relevée de x °C la première année, puis de moins en moins jusqu'à 0 à n ans. Par défaut 6 °C et 5 ans (choix du plugin) : greffe d'un an → +4,8 °C. Achat ou sans date : aucune pénalité. 0 pour la retirer.}}"></i></sup>
       </label>
       <div class="col-md-1"><input class="configKey form-control" data-l1key="jeune" placeholder="6"></div>
       <div class="col-md-1"><input class="configKey form-control" data-l1key="jeune_ans" placeholder="5"></div>
@@ -43,15 +43,22 @@ if (!isConnect('admin')) {
     </div>
     <div class="form-group">
       <label class="col-md-4 control-label">{{Produits en stock (engrais, correcteurs)}}
-        <sup><i class="fas fa-question-circle tooltips" title="{{Une ligne par produit : Nom | % d'azote | toutes les n semaines (0 = ponctuel) | saison en semaines ISO (10-40 = mars à octobre) | éléments apportés (N P K Mg Fe S Zn Mn) | remarque. Pour toutes les plantes : une plante ne reçoit que les produits cochés dans son plan (fiche). Les produits à % d'azote et intervalle servent au plan ; les éléments, aux pistes de carence.}}"></i></sup>
+        <sup><i class="fas fa-question-circle tooltips" title="{{Une ligne par produit : Nom | % d'azote | toutes les n semaines (0 = ponctuel) | saison en semaines ISO (10-40 = mars à octobre) | éléments apportés (N P K Mg Fe S Zn Mn) | remarque | dose de l'étiquette en g par litre de pot et par apport (facultatif : le plan la suit au lieu de la calculer). Pour toutes les plantes : une plante ne reçoit que les produits cochés dans son plan (fiche). Les produits à % d'azote et intervalle servent au plan ; les éléments, aux pistes de carence.}}"></i></sup>
       </label>
       <div class="col-md-8"><textarea class="configKey form-control" data-l1key="produits" rows="6"></textarea></div>
     </div>
     <div class="form-group">
       <label class="col-md-4 control-label">{{Azote par litre de pot}} (g / {{semaine}})
-        <sup><i class="fas fa-question-circle tooltips" title="{{Besoin en azote d'une plante en pot pendant la saison de pousse, en grammes d'azote par litre de pot et par semaine. Par défaut 0,07 (0,14 g toutes les 2 semaines, essais en pot sur agrumes). Le plan de chaque plante en découle.}}"></i></sup>
+        <sup><i class="fas fa-question-circle tooltips" title="{{Besoin en azote d'une plante en pot pendant la saison de pousse, en grammes d'azote par litre de pot et par semaine. Par défaut 0,07 (0,14 g toutes les 2 semaines ; un essai en pot et deux étiquettes : 0,10 à 0,16 g ; 0, négatif ou 1 et plus : 0,07). Le plan de chaque plante en découle.}}"></i></sup>
       </label>
       <div class="col-md-2"><input class="configKey form-control" data-l1key="taux_n" placeholder="0.07"></div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label">{{Engrais d'un jeune plant}} : % / {{ans}}
+        <sup><i class="fas fa-question-circle tooltips" title="{{Semis, greffe, bouture ou marcotte datés : le besoin en azote est réduit à ce % à 0 an, puis remonte linéairement jusqu'à 100 % à n ans. Par défaut 25 % et 3 ans (choix du plugin) : greffe d'un an → 50 %. En pot, trop d'azote réduit les racines des jeunes agrumes (une étude). Achat ou sans date : 100 %. % à 0 ou 100, ou durée à 0, pour retirer la réduction. Les doses d'étiquette et les doses corrigées à la main ne changent pas, ni une dose déjà au calendrier tant qu'on ne la recalcule pas.}}"></i></sup>
+      </label>
+      <div class="col-md-1"><input class="configKey form-control" data-l1key="engrais_jeune" placeholder="25"></div>
+      <div class="col-md-1"><input class="configKey form-control" data-l1key="engrais_jeune_ans" placeholder="3"></div>
     </div>
     <div class="form-group">
       <label class="col-md-4 control-label">{{Clé API Pl@ntNet}}

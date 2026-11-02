@@ -51,7 +51,7 @@ class journalcultures_calc {
   // calendrier d'engrais « semaines | produit | dose » par ligne → produits prévus la semaine $sem : ['Produit dose', …]
   public static function engrais($texte, $sem) {
     $r = [];
-    foreach (preg_split('/\R/', (string)$texte) as $l) {
+    foreach (preg_split('/\R/u', (string)$texte) ?: [] as $l) {
       $p = array_map('trim', explode('|', $l));
       if (count($p) >= 2 && $p[1] !== '' && in_array((int)$sem, self::semaines($p[0]))) $r[] = trim($p[1] . ' ' . ($p[2] ?? ''));
     }
@@ -61,7 +61,7 @@ class journalcultures_calc {
   // emplacements « Nom | temp | humidité | tmin prévue » par ligne → [nom => [temp, hum, tmin]] (chaînes de commandes, '' si absente)
   public static function emplacements($texte) {
     $r = [];
-    foreach (preg_split('/\R/', (string)$texte) as $l) {
+    foreach (preg_split('/\R/u', (string)$texte) ?: [] as $l) {
       $p = array_map('trim', explode('|', $l));
       if ($p[0] !== '') $r[mb_substr($p[0], 0, 60)] = [$p[1] ?? '', $p[2] ?? '', $p[3] ?? '']; // nom historisé (varchar 127) et colonne lieu (60)
     }
@@ -96,7 +96,7 @@ class journalcultures_calc {
   /* Profils : groupe => [caractère => codes compatibles] ; un caractère absent du profil ne compte pas.
      Recoupés avec la clé du genre de la Flora of China, vol. 11 (aile > moitié du limbe = papedas, « très large » ; cédrat sans aile, peau plus épaisse que la pulpe ;
      citron : pétales teintés de rose, mamelon ; lime de Tahiti : fleurs blanches (UCR) ou un peu violacées (Morton), les deux acceptées ; bergamote = bigaradier jaune, ronde ou en poire ; citron Meyer souvent rond ; yuzu et mandarine : peau qui s'enlève ; pomelo : fruit ≥ 10 cm ;
-     quartiers : kumquat 3-6 loges contre 7-15 pour les autres Citrus (Flora of China), kumquat 4-5, calamondin 8-9 (中国植物志 p. 175) ;
+     quartiers : kumquat 3-6 loges contre 7-15 pour les autres Citrus (Flora of China), calamondin 8-9 (中国植物志 1997 p. 175, relu le 2026-11-02) ;
      pas imposé aux papedas (combava 6-7), au caviar, au cédrat ni au Poncirus) ;
      largeur de l'aile : combava presque aussi large que le limbe (Flora of China : limbe 0,5-1 cm plus large ; Sofiyanti 2022), ichang plus large que le limbe (FoC),
      pomelo nettement plus étroite (FoC : aile 0,5-3 cm, limbe 4-8 cm ; Sofiyanti 2022) ; non imposée aux autres groupes (aucune source) ;
@@ -107,18 +107,18 @@ class journalcultures_calc {
      protocoles UPOV complets non relus, affiner un profil quand une plante connue le contredit. */
   const GROUPES = [
     'Poncirus' => ['feuillage' => ['caduc'], 'folioles' => ['trois'], 'peau' => ['duvet'], 'pulpe' => ['amere', 'acide'], 'boutons' => ['blancs']],
-    'Hybride de Poncirus (citrange, citrumelo, FA5…)' => ['feuillage' => ['persistant', 'caduc'], 'folioles' => ['trois', 'mix'], 'peau' => ['lisse', 'duvet'], 'pulpe' => ['acide', 'amere'], 'boutons' => ['blancs']],
+    'Hybride de Poncirus (citrange, citrumelo, FA5…)' => ['feuillage' => ['persistant', 'caduc'], 'folioles' => ['trois', 'mix'], 'peau' => ['lisse', 'duvet', 'rugueuse'], 'pulpe' => ['acide', 'amere'], 'boutons' => ['blancs']],
     'Kumquat' => ['feuillage' => ['persistant'], 'folioles' => ['un'], 'gout_peau' => ['sucree'], 'fruit' => ['lt3', '3-6'], 'forme' => ['ronde', 'ovale'],
       'feuille' => ['petite', 'moyenne'], 'aile' => ['aucune', 'etroite'], 'boutons' => ['blancs'], 'couleur' => ['orange', 'jaune'], 'pulpe' => ['acide', 'douce'], 'pelage' => ['adherente'], 'quartiers' => ['peu']],
     'Calamondin' => ['feuillage' => ['persistant'], 'folioles' => ['un'], 'fruit' => ['lt3', '3-6'], 'forme' => ['ronde', 'aplatie'], 'couleur' => ['orange'],
       'pulpe' => ['acide'], 'pelage' => ['facile'], 'peau' => ['lisse'], 'aile' => ['aucune', 'etroite'], 'boutons' => ['blancs'], 'feuille' => ['petite', 'moyenne'], 'quartiers' => ['nombreux']],
     'Citron caviar (finger lime)' => ['feuillage' => ['persistant'], 'folioles' => ['un'], 'forme' => ['doigt'], 'feuille' => ['petite'], 'pulpe' => ['perles'], 'aile' => ['aucune'], 'fruit' => ['3-6', '6-10']],
     'Yuzu' => ['feuillage' => ['persistant'], 'folioles' => ['un'], 'aile' => ['etroite', 'large'], 'peau' => ['rugueuse'], 'pulpe' => ['acide', 'amere'], 'couleur' => ['jaune'],
-      'fruit' => ['3-6', '6-10'], 'forme' => ['ronde', 'aplatie'], 'boutons' => ['blancs'], 'gout_peau' => ['amere'], 'pelage' => ['facile'], 'quartiers' => ['nombreux']],
+      'fruit' => ['3-6', '6-10'], 'forme' => ['ronde', 'aplatie'], 'boutons' => ['blancs', 'violets'], 'gout_peau' => ['amere'], 'pelage' => ['facile'], 'quartiers' => ['nombreux']],
     'Papeda (combava, ichang)' => ['feuillage' => ['persistant'], 'folioles' => ['un'], 'aile' => ['tres_large'], 'aile_largeur' => ['moitie', 'presque'], 'peau' => ['rugueuse'], 'pulpe' => ['acide', 'amere', 'peu'],
-      'boutons' => ['blancs'], 'gout_peau' => ['amere']],
-    'Cédrat (dont Main de Bouddha)' => ['feuillage' => ['persistant'], 'folioles' => ['un'], 'boutons' => ['violets'], 'aile' => ['aucune'], 'fruit' => ['6-10', 'gt10'],
-      'forme' => ['ovale', 'main'], 'couleur' => ['jaune'], 'pulpe' => ['acide', 'peu'], 'feuille' => ['moyenne', 'grande'], 'pelage' => ['adherente']],
+      'boutons' => ['blancs', 'violets'], 'gout_peau' => ['amere']],
+    'Cédrat (dont Main de Bouddha)' => ['feuillage' => ['persistant'], 'folioles' => ['un'], 'boutons' => ['violets', 'blancs'], 'aile' => ['aucune'], 'fruit' => ['6-10', 'gt10'],
+      'forme' => ['ovale', 'main'], 'couleur' => ['jaune'], 'pulpe' => ['acide', 'peu', 'douce'], 'feuille' => ['moyenne', 'grande'], 'pelage' => ['adherente']],
     'Citron' => ['feuillage' => ['persistant'], 'folioles' => ['un'], 'boutons' => ['violets'], 'aile' => ['aucune', 'etroite'], 'forme' => ['ovale', 'ronde'], 'couleur' => ['jaune', 'verte'],
       'pulpe' => ['acide'], 'pelage' => ['adherente'], 'fruit' => ['3-6', '6-10'], 'peau' => ['lisse', 'rugueuse'], 'quartiers' => ['nombreux']],
     'Lime' => ['feuillage' => ['persistant'], 'folioles' => ['un'], 'couleur' => ['verte', 'jaune'], 'forme' => ['ronde', 'ovale'], 'boutons' => ['blancs', 'violets'], 'pulpe' => ['acide'], 'fruit' => ['3-6', '6-10'],
@@ -126,11 +126,11 @@ class journalcultures_calc {
     'Mandarine' => ['feuillage' => ['persistant'], 'folioles' => ['un'], 'pelage' => ['facile'], 'forme' => ['aplatie', 'ronde'], 'couleur' => ['orange'], 'pulpe' => ['douce', 'acide'],
       'aile' => ['aucune', 'etroite'], 'boutons' => ['blancs'], 'fruit' => ['3-6', '6-10'], 'peau' => ['lisse'], 'quartiers' => ['nombreux']],
     'Orange douce' => ['feuillage' => ['persistant'], 'folioles' => ['un'], 'rameaux' => ['glabres'], 'pelage' => ['adherente'], 'forme' => ['ronde', 'ovale'], 'couleur' => ['orange'], 'pulpe' => ['douce'],
-      'aile' => ['etroite', 'aucune'], 'boutons' => ['blancs'], 'fruit' => ['6-10', 'gt10'], 'quartiers' => ['nombreux']],
+      'aile' => ['etroite', 'aucune'], 'boutons' => ['blancs', 'violets'], 'fruit' => ['6-10', 'gt10'], 'quartiers' => ['nombreux']],
     'Bigaradier (orange amère)' => ['feuillage' => ['persistant'], 'folioles' => ['un'], 'rameaux' => ['glabres'], 'aile' => ['etroite', 'large'], 'pelage' => ['adherente'], 'pulpe' => ['amere', 'acide'], 'couleur' => ['orange', 'jaune'],
       'forme' => ['ronde', 'aplatie', 'ovale'], 'boutons' => ['blancs'], 'fruit' => ['6-10'], 'gout_peau' => ['amere'], 'quartiers' => ['nombreux']],
     'Pomelo, pamplemousse' => ['feuillage' => ['persistant'], 'folioles' => ['un'], 'aile' => ['etroite', 'large'], 'aile_largeur' => ['moins', 'moitie'], 'fruit' => ['6-10', 'gt10'], 'couleur' => ['jaune', 'verte'], 'feuille' => ['moyenne', 'grande'],
-      'boutons' => ['blancs'], 'pelage' => ['adherente'], 'quartiers' => ['nombreux']],
+      'boutons' => ['violets', 'blancs'], 'pelage' => ['adherente'], 'quartiers' => ['nombreux']],
   ];
 
   // indices : un accord si observé, jamais une contradiction (caractère fréquent mais pas constant dans le groupe)
@@ -164,10 +164,10 @@ class journalcultures_calc {
   }
 
   /* Nom botanique → groupe : premier motif qui correspond (hybrides de Poncirus avant Poncirus, limequat et calamondin avant kumquat,
-     bergamote et orange amère avant citron et orange). Synonymes : Flora of China 11 et 中国植物志 (C. japonica = Fortunella, C. ×microcarpa
-     = madurensis = mitis, C. trifoliata = Poncirus). ponytail: tangor, tangelo, Shiranui rangés en mandarine ; limequat en lime (le moins rustique des deux parents). */
+     bergamote et orange amère avant citron et orange). Synonymes : Flora of China 11 (C. japonica = Fortunella, C. trifoliata = Poncirus) et 中国植物志 p. 175 (C. ×microcarpa
+     = madurensis = mitis). FoC 2008 : boutons du pomelo « violacés ou rarement blancs », de l'ichang violet-rouge pâle, pétales de l'orange douce rarement et du yuzu parfois violacés → acceptés (décision de l'utilisateur, 2026-11-02) ; cédrat de Corse à pulpe douce (Curk 2022) → douce acceptée. ponytail: tangor, tangelo, Shiranui rangés en mandarine ; limequat en lime (le moins rustique des deux parents). */
   const BOTA = [
-    '/\s[×x]\s*poncirus|poncirus\s.*\s[×x]\s|citrange|citrumelo|citrandarin/iu' => 'Hybride de Poncirus (citrange, citrumelo, FA5…)',
+    '/\s[×x]\s*(poncirus|(c(itrus)?\.?\s*)?trifoliata)|(poncirus|trifoliata)\s(.*\s)?(×|x\s)|citrange|citrumelo|citrandarin|citroncirus|insitorum/iu' => 'Hybride de Poncirus (citrange, citrumelo, FA5…)',
     '/poncirus|trifoliata/iu' => 'Poncirus',
     '/floridana|limequat/iu' => 'Lime',
     '/microcarpa|madurensis|mitis|calamondin/iu' => 'Calamondin',
@@ -185,7 +185,8 @@ class journalcultures_calc {
   ];
   /* Rusticité d'un groupe (°C, pleine terre) quand la fiche n'en donne pas : la moins froide des sources (prudence), à remplacer par une valeur de la fiche.
      Kumquat : TyCitriK −10, UF −12, Fortune 1870 (via Swingle) « 10-15 °F de gel » ≈ −8 ; citron : TyCitriK −5, Blondel −5/−6 ; cédrat : TyCitriK −3, Guo −4/−5 (feuilles) ; calamondin, lime, caviar, papeda : TyCitriK seul ;
-     yuzu : RHS H3 −5 contre TyCitriK −14 (le plus prudent gardé) ; Poncirus : TyCitriK −16, fiches −15 ; hybrides : Carrizo −11, citrumelo −12, FA5 −13 → −10 comme les fiches FA5 ;
+     yuzu : RHS H3 −5 contre TyCitriK −14 (le plus prudent gardé) ; Poncirus : TyCitriK −16, fiches −15 ; hybrides : Chopinet & Dupouy 1951, de seconde main (citranges de Montauban −10/−14, satsumange −11/−13, citrangedins, limonanges,
+     citrangequat ≈ −10 ; citranges Rusk et Willits sensibles aux coups de froid brusques), TyCitriK C35 −10, Carrizo −11, citrumelo −12, FA5 −13 → −10 ;
      bigaradier, mandarine, orange, pomelo : aucune valeur chiffrée sur la plante, encadrés par l'ordre UF (Jackson & Fasulo HS-123 : calamondin > bigaradier > mandarinier
      > oranger > pomelo > citronnier) entre calamondin −5 et citron −5 → −5. */
   const RUSTICITE_GROUPES = [
@@ -246,9 +247,10 @@ class journalcultures_calc {
       if (!isset($in[$k])) continue;
       $v = $opt === null ? self::texte($in[$k], $k == 'bota' ? 120 : 40) : (is_string($in[$k]) && isset($opt[$in[$k]]) ? $in[$k] : '');
       $a = trim(is_scalar($actuel[$k] ?? '') ? (string)($actuel[$k] ?? '') : '');
-      if ($v === '' || $v === $a) continue;
+      $efface = $opt !== null && $in[$k] === '' && $a !== ''; // caractère remis à « – » dans « Identifier… »
+      if (($v === '' && !$efface) || $v === $a) continue;
       $c[$k] = $v; $s = self::texte($src[$k] ?? '', 60);
-      $l[] = $lib . ' : ' . ($a === '' ? '–' : ($opt[$a] ?? $a)) . ' → ' . ($opt[$v] ?? $v) . ($s !== '' ? ' (' . $s . ')' : '');
+      $l[] = $lib . ' : ' . ($a === '' ? '–' : ($opt[$a] ?? $a)) . ' → ' . ($v === '' ? '–' : ($opt[$v] ?? $v)) . ($s !== '' ? ' (' . $s . ')' : '');
     }
     return [$c, $l];
   }
@@ -263,6 +265,10 @@ class journalcultures_calc {
     $ans = max(0, (($now ?? time()) - mktime(12, 0, 0, $mo, $j, (int)$g[1])) / 31557600);
     return round(max(0, $x * (1 - $ans / $n)), 1);
   }
+
+  // jeune plant : besoin en azote multiplié par f à 0 an, remonte à 1 à n ans (Niu 2024 : en pot, l'excès d'azote réduit les racines d'orangers d'un an) ; achat ou sans date : 1
+  // ponytail: réutilise la décroissance linéaire de jeunesse() (en centièmes : elle arrondit à 0,1) ; f et n = choix du plugin, aucune source ne donne de courbe
+  public static function facteurJeune($m, $d, $f = 0.25, $n = 3, $now = null) { return max(0.01, round(1 - self::jeunesse($m, $d, 100 * (1 - min(1, max(0, (float)$f))), $n, $now) / 100, 2)); } // jamais 0 : le taux divise
 
   /* Suivi d'une greffe récente : contrôle du bourgeon à J+21 (œil ou bourgeons verts et gonflés, lien retiré), puis à J+42 (débourrement,
      sinon forcer en rabattant le porte-greffe) ; un statut n'avance que sur confirmation. Repères : UF/IFAS (lien retiré à 2-3 semaines),
@@ -418,36 +424,41 @@ class journalcultures_calc {
 
   /* Catalogue « Nom | % N | toutes les n semaines | saison (semaines ISO) | apporte | remarque » par ligne.
      Produits en stock, pour toutes les plantes : une plante ne reçoit que ceux cochés dans son plan.
-     % N et intervalle > 0 : produit possible du plan d'azote ; apporte = éléments (N P K Mg Fe S Zn Mn) pour les carences. Proposé quand le catalogue est vide. */
+     % N et intervalle > 0 : produit possible du plan d'azote ; apporte = éléments (N P K Mg Fe S Zn Mn) pour les carences. Proposé quand le catalogue est vide.
+     7e champ facultatif « g/L » : dose de l'étiquette en grammes par litre de pot et par apport ; le plan la suit au lieu de la calculer (corne : 3 × 1 g/L dans la saison). */
   const PRODUITS = "Ferti Agrumes 7-3-10 | 7 | 8 | 10-40 | N P K | granulés à enfouir par léger griffage ; étiquette : 80 à 240 g par sujet tous les 2 mois, de mars à octobre\n"
-    . "Corne broyée | 13 | 10 | 10-40 | N | effet sur 3 à 4 mois ; étiquette : en pot, 3 apports de 1 g par litre de terreau dans la saison\n"
+    . "Corne broyée | 13 | 12 | 10-40 | N | effet sur 3 à 4 mois ; étiquette : en pot, 3 apports de 1 g par litre de terreau dans la saison | 1\n"
     . "Sang séché | 12 | 0 | 10-30 | N | coup de fouet (effet en 3 à 4 jours) ; étiquette : 1 à 2 apports par an, printemps et été\n"
     . "Kélafer racinaire (fer EDDHA 6 %) | 0 | 0 | 6-44 | Fe | au pied seulement, jamais sur les feuilles ; dilué dans l'arrosage (10 à 40 g par litre d'eau) ; étiquette : jeunes plantations 5 à 15 g par pied, seulement en cas de besoin\n"
     . "Sel d'Epsom (sulfate de magnésium) | 0 | 0 | 10-40 | Mg S | pas de dose sur le seau (produit pour le bain)";
 
-  public static function produits($texte) { // → [['nom', 'n' (%), 'tous' (semaines), 'saison', 'apporte' => [éléments], 'note'], …]
+  public static function produits($texte) { // → [['nom', 'n' (%), 'tous' (semaines), 'saison', 'apporte' => [éléments], 'note', 'gl' (g/L de l'étiquette, 0 = calculé)], …]
     $r = [];
-    foreach (preg_split('/\R/', (string)$texte) as $l) {
+    foreach (preg_split('/\R/u', (string)$texte) ?: [] as $l) {
       $p = array_map('trim', explode('|', $l));
       if ($p[0] === '') continue;
       $r[] = ['nom' => mb_substr($p[0], 0, 60), 'n' => max(0, min(100, (float)self::nombre($p[1] ?? ''))), 'tous' => max(0, min(52, (int)self::nombre($p[2] ?? ''))),
         'saison' => preg_match('/^\d{1,2}-\d{1,2}$/D', $p[3] ?? '') ? $p[3] : '10-40',
         'apporte' => array_values(array_intersect(preg_split('/[\s,]+/', strtoupper($p[4] ?? ''), -1, PREG_SPLIT_NO_EMPTY), ['N', 'P', 'K', 'MG', 'FE', 'S', 'ZN', 'MN'])),
-        'note' => mb_substr($p[5] ?? '', 0, 300)];
+        'note' => mb_substr($p[5] ?? '', 0, 300), 'gl' => max(0, min(100, (float)self::nombre($p[6] ?? '')))];
     }
     return $r;
   }
 
   /* Plan d'azote d'une plante en pot : besoin = $taux g d'N par litre de pot et par semaine (0,07 = 0,14 g toutes les 2 semaines, ressources §13),
      réparti entre les produits du plan selon $parts (index du catalogue => %, total 100). → [['i', 'ligne' (« 10-40/8 | Nom | 40 g »), 'g'], …]
+     Produit à dose d'étiquette (gl > 0) : litres × gl, sa part ignorée ; l'azote qu'il apporte est retiré du besoin, le reste va aux autres selon leurs parts.
      ponytail: dose proportionnelle au volume seul (aucune source ne la fait varier avec la taille de la plante en pot) ; régler $taux à l'usage. */
   public static function plan($litres, array $produits, array $parts, $taux = 0.07, array $doses = []) { // doses : grammes ajustés à la main, prioritaires sur le calcul
     $r = [];
     if (!$litres) return $r;
-    foreach ($produits as $i => $p) {
-      $part = (float)($parts[$i] ?? 0);
-      if ($p['n'] <= 0 || $p['tous'] <= 0 || $part <= 0) continue;
-      $g = ($doses[$i] ?? 0) > 0 ? round($doses[$i], 1) : max(1, round($litres * $taux * $p['tous'] * min($part, 100) / $p['n'])); // part en % et N en % : les 100 s'annulent
+    $pris = array_filter($produits, function ($p, $i) use ($parts) { return $p['n'] > 0 && $p['tous'] > 0 && (float)($parts[$i] ?? 0) > 0; }, ARRAY_FILTER_USE_BOTH);
+    $etiq = 0; $autres = 0;
+    foreach ($pris as $i => $p) if (($p['gl'] ?? 0) > 0) $etiq += $litres * $p['gl'] * $p['n'] / 100 / $p['tous']; else $autres += min(100, (float)$parts[$i]);
+    $reste = max(0, 1 - $etiq / ($litres * $taux)); // part du besoin laissée aux produits calculés
+    foreach ($pris as $i => $p) {
+      $g = ($doses[$i] ?? 0) > 0 ? round($doses[$i], 1) : max(1, round(($p['gl'] ?? 0) > 0 ? $litres * $p['gl']
+        : $litres * $taux * $p['tous'] * $reste * min((float)$parts[$i], 100) / $autres * 100 / $p['n'])); // parts sur 100 sans étiquette : $reste = 1, $autres = 100
       $r[] = ['i' => $i, 'g' => $g, 'ligne' => $p['saison'] . '/' . $p['tous'] . ' | ' . $p['nom'] . ' | ' . str_replace('.', ',', (string)$g) . ' g'];
     }
     return $r;
@@ -474,23 +485,22 @@ class journalcultures_calc {
     'gommose' => ['nom' => 'Gommose et pourriture des racines (Phytophthora)', 'statut' => 'present',
       'signes' => 'gomme, écorce brune qui se fend au collet ou au point de greffe ; feuilles vert pâle à nervures jaunes (atteinte sévère), qui tombent ; racines fines molles dont l’écorce part (il reste un fil blanc) ; favorisée par un substrat qui reste mouillé',
       'sources' => ['UC IPM (gommose)', 'Vogel 1990', 'BSV PACA 2020', 'NHB', 'Sáenz Pérez 2019', 'Savita 2012', 'Whiteside 1971', 'Oliveira 1981', 'UF/IFAS HS261', 'TNAU'],
-      'gestes' => [['arroser moins, laisser ressuyer, pot qui draine ; ne pas mouiller le tronc', ['UC IPM (gommose)', 'BSV PACA 2020', 'NHB']],
+      'gestes' => [['arroser moins, laisser ressuyer, pot qui draine', ['UC IPM (gommose)', 'BSV PACA 2020', 'NHB', 'UF/IFAS HS261']],
+        ['ne pas mouiller le tronc', ['NHB', 'Savita 2012']],
         ['collet et point de greffe jamais enterrés : de la terre sur le bas du tronc favorise la maladie', ['UC IPM (gommose)', 'Sáenz Pérez 2019', 'Savita 2012', 'Whiteside 1971']],
         ['ne pas blesser le bas du tronc ni les racines (pas de travail du sol au pied) : les plaies sont la porte d’entrée', ['Savita 2012', 'Whiteside 1971', 'Oliveira 1981']],
-        ['une plaie fraîche est envahie le plus facilement, rarement après une dizaine de jours ; l’écorce intacte n’a pas été pénétrée dans l’essai (les 14 jours parfois cités viennent de l’avocatier)', ['Whiteside 1971']],
         ['enlever l’écorce brune et une bande d’écorce saine autour, laisser sécher, revoir pendant quelques mois (seulement si la lésion fait moins de la moitié du tour du tronc)', ['UC IPM (gommose)', 'NHB', 'TNAU']],
         ['badigeon de cuivre (bouillie bordelaise) sur la plaie et le bas du tronc', ['UC IPM (gommose)', 'NHB']],
-        ['en dernier : fongicide (phosphonate, fosétyl-Al chez les professionnels) ; un particulier n’a droit qu’aux produits marqués « emploi autorisé dans les jardins » (loi Labbé), selon l’étiquette', ['UC IPM (gommose)', 'Vogel 1990', 'NHB', 'Sáenz Pérez 2019', 'Savita 2012']],
-        ['plus de la moitié du tour du tronc atteinte : le déclin se voit dans le feuillage, le grattage ne suffit plus ; remplacer la plante (conseil économique, pas un résultat d’essai)', ['UC IPM (gommose)', 'UF/IFAS HS261', 'TNAU']]]],
+        ['en dernier : fongicide (phosphonate, fosétyl-Al chez les professionnels) ; un particulier n’a droit qu’aux produits marqués « emploi autorisé dans les jardins » (loi Labbé) : s’il en existe un pour cet usage (vérifier sur ephy.anses.fr), à la dose et pour l’usage de l’étiquette', ['UC IPM (gommose)', 'Vogel 1990', 'NHB', 'Sáenz Pérez 2019', 'Savita 2012']],
+        ['plus de la moitié du tour du tronc atteinte : le déclin se voit dans le feuillage, le grattage ne suffit plus ; remplacer la plante (conseil économique, pas un résultat d’essai)', ['UC IPM (gommose)', 'UF/IFAS HS261', 'TNAU']]],
+      'note' => 'une plaie fraîche est envahie le plus facilement, rarement après une dizaine de jours ; l’écorce intacte et subérisée n’a pas été pénétrée, mais les jeunes tiges encore sans liège, si : jeunes plants plus exposés (Whiteside 1971, une seule source)'],
     'cochenille' => ['nom' => 'Cochenilles', 'statut' => 'present',
       'signes' => 'boucliers bruns ou noirs, amas cotonneux blancs sur rameaux et nervures ; miellat, fumagine, fourmis',
       'sources' => ['Brun 1990', 'BSV Corse 2024', 'BSV PACA 2020', 'BSV JEVI Corse 2025', 'COCHORTI 2021'],
       'gestes' => [['enlever à la main celles qu’on atteint, couper les rameaux très touchés', ['BSV JEVI Corse 2025']],
-        ['pulvériser savon noir + huile végétale + alcool (5 cl de chaque par litre d’eau) jusqu’à ruissellement', ['BSV JEVI Corse 2025']],
         ['auxiliaires : Cryptolaemus montrouzieri, Anagyrus vladimiri (farineuses), Rodolia cardinalis (australienne)', ['BSV Corse 2024', 'BSV PACA 2020', 'Brun 1990', 'COCHORTI 2021']],
-        ['écarter les fourmis : elles protègent les cochenilles', ['BSV PACA 2020', 'BSV Corse 2024']],
         ['huile (blanche ou de colza), effet asphyxiant, en couvrant bien tout le feuillage', ['Brun 1990', 'BSV JEVI Corse 2025']]],
-      'note' => 'huile, savon, alcool : essayer d’abord sur quelques feuilles ; jamais en plein soleil, au-dessus d’environ 28 °C ni sur une plante assoiffée ; pas en même temps que cuivre ou soufre (brûlures ; précaution du plugin, pas des sources). Le mélange savon + huile + alcool : aucune étude publiée trouvée (ni efficacité ni brûlures sur agrumes), conseil de vulgarisation ; le savon nuit aussi aux larves de coccinelles et de chrysopes : pas de savon après un lâcher de Cryptolaemus'],
+      'note' => 'huile, savon : arroser la veille, jamais aux heures chaudes (Cloyd 2016, Brun 1990) ; huile seulement entre environ 5 et 24 °C (Cloyd 2016, une seule source) ; essayer d’abord sur quelques feuilles, pas en même temps que cuivre ou soufre (précaution du plugin). Le mélange savon noir + huile + alcool (BSV JEVI, conseil donné pour le figuier) n’est pas retenu : produit non autorisé, 5 % d’huile au lieu de 1,5 à 2 %, aucune étude sur agrumes ; une pulvérisation qui mouille tue aussi les larves de coccinelles et de chrysopes (Cloyd 2016) : pas de traitement après un lâcher de Cryptolaemus. Les fourmis défendent les cochenilles (BSV PACA 2020) ; aucune méthode efficace contre elles n’est connue (BSV Corse 2024)'],
     'acarien' => ['nom' => 'Acariens (araignées rouges, tétranyques)', 'statut' => 'present',
       'signes' => 'feuilles piquetées, jaunies, blanchies ou bronzées, petites toiles, surtout les jeunes feuilles ; difficiles à voir à l’œil nu',
       'sources' => ['BSV PACA 2020', 'Brun 1990', 'Réseau d’alerte d’Andalousie (via la presse)', 'NC State (P. citri)', 'Kasap 2009', 'Chouikhi 2022'],
@@ -498,18 +508,19 @@ class journalcultures_calc {
         ['pas d’excès d’engrais', ['BSV PACA 2020']],
         ['préserver les auxiliaires : acariens prédateurs (Neoseiulus californicus, Phytoseiulus persimilis, Euseius stipulatus), coccinelles Stethorus', ['Brun 1990', 'Chouikhi 2022']],
         ['huile blanche, en couvrant bien', ['Brun 1990']]],
-      'note' => 'huile : essayer d’abord sur quelques feuilles, jamais en plein soleil ni au-dessus d’environ 28 °C (précaution du plugin). Le climat dépend de l’espèce : tétranyque tisserand (Tetranychus urticae) vers 30 °C, supporte l’air sec ; acarien rouge des agrumes (Panonychus citri) vers 25 °C, humidité modérée, actif l’hiver et au printemps, freiné par le très chaud et sec (Andalousie, NC State, Chouikhi 2022) ; se développe de 15 à 35 °C (Kasap 2009). Sous serre, les deux sont possibles : des toiles nettes font penser à T. urticae (déduction du plugin)'],
+      'note' => 'huile : arroser la veille, jamais aux heures chaudes (Cloyd 2016, Brun 1990), seulement entre environ 5 et 24 °C (Cloyd 2016, une seule source) ; essayer d’abord sur quelques feuilles (précaution du plugin). Le climat dépend de l’espèce : tétranyque tisserand (Tetranychus urticae) vers 30 °C, supporte l’air sec (Andalousie, BSV PACA 2020) ; acarien rouge des agrumes (Panonychus citri) vers 25 °C, humidité modérée (Andalousie ; Kasap 2009 n’a testé que 65 %), à 35 °C 76 % meurent sans pondre (Kasap 2009), freiné par le très chaud et sec (NC State) ; surtout au printemps, puis à l’automne (NC State) ou l’hiver (Tunisie, Chouikhi 2022). Sous serre, les deux sont possibles : des toiles nettes font penser à T. urticae (déduction du plugin)'],
     'aleurode' => ['nom' => 'Aleurodes (mouches blanches)', 'statut' => 'present',
       'signes' => 'petites mouches blanches qui s’envolent quand on secoue, larves plates sous les feuilles ; miellat, fumagine',
       'sources' => ['Brun 1990', 'BSV Corse 2024', 'Barbagallo 1992', 'Soto 2001', 'Liu et Stansly 2000'],
-      'gestes' => [['auxiliaires spécifiques (Encarsia contre Dialeurodes citri, Cales noacki contre l’aleurode floconneux, parasitisme parfois de 100 %) : traiter rarement nécessaire', ['Brun 1990', 'Barbagallo 1992', 'Soto 2001']],
+      'gestes' => [['aleurode floconneux : Cales noacki le parasite parfois à 100 %, traiter rarement nécessaire', ['Brun 1990', 'Barbagallo 1992', 'Soto 2001']],
+        ['aleurode des agrumes (Dialeurodes citri) : Encarsia 70-80 % en Italie, souvent moins de 20 % à Valence, résultat variable', ['Barbagallo 1992', 'Soto 2001']],
         ['huile blanche contre les larves, en couvrant le dessous des feuilles', ['Brun 1990']]],
-      'note' => 'huile : essai sur d’autres aleurodes (Liu et Stansly 2000) ; plus efficace contre Dialeurodes citri que contre l’aleurode floconneux (étude turque de 1996, citée de seconde main). Essayer d’abord sur quelques feuilles, jamais en plein soleil ni au-dessus d’environ 28 °C (précaution du plugin)'],
+      'note' => 'huile : essai sur d’autres aleurodes (Liu et Stansly 2000) ; plus efficace contre Dialeurodes citri que contre l’aleurode floconneux (étude turque de 1996, citée de seconde main). Arroser la veille, jamais aux heures chaudes (Cloyd 2016, Brun 1990), huile seulement entre environ 5 et 24 °C (Cloyd 2016, une seule source) ; essayer d’abord sur quelques feuilles (précaution du plugin)'],
     'puceron' => ['nom' => 'Pucerons', 'statut' => 'present',
       'signes' => 'colonies sur les jeunes pousses tendres, feuilles enroulées ; miellat',
-      'sources' => ['Brun 1990', 'BSV JEVI Corse 2025', 'BSV Corse 2024', 'Gómez-Marco 2016', 'J. Econ. Entomol. 2019'],
-      'gestes' => [['surveiller les pousses tendres : les feuilles durcies ne sont plus attaquées', ['Brun 1990']],
-        ['favoriser les auxiliaires (coccinelles, surtout les petites Scymnus, chrysopes, syrphes) : ils doivent être là dès les premières colonies', ['BSV Corse 2024', 'Gómez-Marco 2016', 'J. Econ. Entomol. 2019']]]],
+      'sources' => ['Brun 1990', 'BSV JEVI Corse 2025', 'Gómez-Marco 2016', 'J. Econ. Entomol. 2019'],
+      'gestes' => [['surveiller les pousses tendres : une feuille ferme et coriace convient mal aux grosses colonies ; sur pomelo, rarement nécessaire d’intervenir', ['Brun 1990']],
+        ['favoriser les auxiliaires (coccinelles, surtout les petites Scymnus, chrysopes, syrphes) : ils doivent être là dès les premières colonies', ['Gómez-Marco 2016', 'J. Econ. Entomol. 2019']]]],
     'fumagine' => ['nom' => 'Fumagine', 'statut' => 'present',
       'signes' => 'dépôt noir comme de la suie, qui s’essuie, sur feuilles et fruits ; vient du miellat d’un insecte',
       'sources' => ['NHB', 'BSV JEVI Corse 2025', 'BSV PACA 2020', 'Brun 1990'],
@@ -518,33 +529,32 @@ class journalcultures_calc {
     'mineuse' => ['nom' => 'Mineuse des agrumes', 'statut' => 'present',
       'signes' => 'galeries sinueuses argentées dans les jeunes feuilles, qui se crispent et s’enroulent ; surtout les pousses d’été',
       'sources' => ['BSV PACA 2020', 'BSV Corse 2024', 'BSV JEVI Corse 2025'],
-      'gestes' => [['dégâts surtout esthétiques ; jeunes plantes plus menacées', ['BSV PACA 2020', 'BSV Corse 2024']],
+      'gestes' => [['plante adulte : dégâts surtout esthétiques (BSV PACA) ; risque réel pour les jeunes plantes (BSV Corse)', ['BSV PACA 2020', 'BSV Corse 2024']],
         ['couper les jeunes pousses atteintes', ['BSV PACA 2020']],
         ['si besoin, produit de biocontrôle', ['BSV Corse 2024']]]],
-    'mal_secco' => ['nom' => 'Mal secco (Plenodomus tracheiphilus, citronniers et limes)', 'statut' => 'present',
-      'signes' => 'feuilles qui tombent depuis la pointe des rameaux, rameaux qui sèchent, bois coloré saumon à rouge carotte sous l’écorce ; infection l’hiver dès 5 °C',
-      'sources' => ['Chapot 1963', 'Migheli 2009', 'Nigro 2011', 'OEPP 2024 (mal secco)', 'Leonardi 2023', 'Plants 2022', 'Cirad 1983'],
-      'gestes' => [['couper jusqu’au bois sain (sans coloration) : le champignon gagne la plante par le bois ; déchets en sac fermé à la déchetterie, jamais au compost (Chapot dit brûler : interdit aux particuliers aujourd’hui)', ['Chapot 1963', 'Leonardi 2023']],
-        ['désinfecter les outils entre deux coupes (alcool à 70° ; Chapot : sulfate de cuivre) et protéger les plaies (cuivre : à peu près la seule lutte hors pratiques culturales) ; éviter toute blessure l’hiver, c’est par elles qu’il entre', ['Chapot 1963', 'Leonardi 2023', 'Cirad 1983', 'Plants 2022']]],
-      'note' => 'sensibilité comparée des espèces : observations au champ, pas toujours confirmées par des tests (OEPP 2024)'],
+    'mal_secco' => ['nom' => 'Mal secco (Plenodomus tracheiphilus, citronniers, limes, cédratiers)', 'statut' => 'present',
+      'signes' => 'feuilles qui tombent depuis la pointe des rameaux, rameaux qui sèchent, bois coloré saumon à rouge carotte sous l’écorce ; infections surtout de novembre à février (pic en janvier)',
+      'sources' => ['Chapot 1963', 'Migheli 2009', 'Nigro 2011', 'OEPP 2024 (mal secco)', 'Catane 2022-2023', 'Cirad 1983'],
+      'gestes' => [['couper jusqu’au bois sain (sans coloration) : le champignon gagne la plante par le bois ; déchets en sac fermé à la déchetterie, jamais au compost (Chapot dit brûler : interdit aux particuliers aujourd’hui)', ['Chapot 1963', 'Catane 2022-2023']],
+        ['protéger les plaies au cuivre (la lutte chimique repose sur le cuivre) ; éviter toute blessure l’hiver, c’est par elles qu’il entre', ['Chapot 1963', 'Cirad 1983']]],
+      'note' => 'désinfecter les outils entre deux coupes : alcool à 70° (choix du plugin) ; Chapot les trempait dans du sulfate de cuivre à 5 %. Organisme réglementé non de quarantaine (ORNQ) dans l’Union européenne : déclaration non obligatoire chez un particulier. Très sensibles : citronnier, lime vraie, cédratier (Chapot) ; l’OEPP cite aussi bergamote et bigaradier. Sensibilité comparée : observations au champ, pas toujours confirmées par des tests (OEPP 2024)'],
     'aleurode_epineux' => ['nom' => 'Aleurode épineux (Aleurocanthus spiniferus)', 'statut' => 'quarantaine',
       'signes' => 'petites protubérances noires et épineuses sous les feuilles, miellat, fumagine, fourmis',
-      'sources' => ['Fiche SORE (aleurode épineux)', 'EFSA 2018', 'OEPP 2020 (aleurode épineux)', 'Porcelli 2013'],
-      'gestes' => [['ne pas déplacer ni donner la plante, photographier le dessous des feuilles', ['Fiche SORE (aleurode épineux)']],
-        ['signaler à la FREDON ou au SRAL (organisme de quarantaine)', ['Fiche SORE (aleurode épineux)']]],
-      'note' => 'présent dans l’UE en Italie (Pouilles depuis 2008, Campanie, Latium, Basilicate) et en Grèce, sous contrôle officiel (EFSA 2018, OEPP 2020) ; savons et mouillants ne le contrôlent qu’en partie (Porcelli 2013) ; chez l’aleurode floconneux, l’imidaclopride (interdit en France) perturbe les parasitoïdes et provoque une résurgence (Porcelli 2013)'],
+      'sources' => ['Fiche SORE (aleurode épineux)', 'EFSA 2018', 'OEPP 2020 (aleurode épineux)', 'Cioffi 2013'],
+      'gestes' => [['photographier le dessous des feuilles et signaler à la DRAAF-SRAL, photos jointes (organisme de quarantaine)', ['Fiche SORE (aleurode épineux)']]],
+      'note' => 'en attendant, ne pas déplacer ni donner la plante (précaution du plugin) ; présent en France (continent et Corse), Italie, Grèce, Croatie… (OEPP 2020), en Italie depuis 2008 (EFSA 2018) ; savons et mouillants ne le contrôlent qu’en partie (Cioffi 2013) ; chez l’aleurode floconneux, l’imidaclopride (interdit en France) perturbe les parasitoïdes et provoque une résurgence (Cioffi 2013)'],
     'hlb' => ['nom' => 'HLB (greening, dragon jaune)', 'statut' => 'absent',
       'signes' => 'marbrures jaunes asymétriques des feuilles, fruits déformés qui se colorent à l’envers, psylles sur les jeunes pousses',
       'sources' => ['PP328', 'BSV JEVI Corse 2025', 'Sáenz Pérez 2019'],
-      'gestes' => [['d’abord le test de symétrie : jaunissement pareil des deux côtés de la nervure = carence (zinc, magnésium…), asymétrique = suspect', ['PP328', 'Sáenz Pérez 2019']],
+      'gestes' => [['d’abord le test de symétrie : jaunissement pareil des deux côtés de la nervure = carence (zinc, magnésium…), asymétrique = suspect', ['PP328']],
         ['asymétrique avec psylles : signaler à la FREDON ; aucun traitement n’existe', ['BSV JEVI Corse 2025', 'Sáenz Pérez 2019']]],
-      'note' => 'absent de France métropolitaine ; psylle vecteur présent en Espagne et au Portugal (BSV JEVI Corse 2025)'],
-    'tristeza' => ['nom' => 'Tristeza (CTV)', 'statut' => 'absent',
-      'signes' => 'déclin des arbres greffés sur bigaradier ; virus transmis par pucerons et greffons',
-      'sources' => ['Vogel 1990', 'Sáenz Pérez 2019'],
+      'note' => 'bactérie absente de France métropolitaine ; deux psylles vecteurs sont présents dans l’Union européenne : Trioza erytreae en Espagne et au Portugal (BSV JEVI Corse 2025), Diaphorina citri à Chypre ; décolorations asymétriques aussi décrites par BSV JEVI ; peut se confondre avec un manque de zinc (Sáenz Pérez 2019)'],
+    'tristeza' => ['nom' => 'Tristeza (CTV, absente de Corse en 1990)', 'statut' => 'a_verifier',
+      'signes' => 'déclin des arbres greffés sur bigaradier ; virus transmis par pucerons et matériel végétal',
+      'sources' => ['Vogel 1990', 'Sáenz Pérez 2019', 'UF/IFAS HS261', 'Boccas et Laville 1976', 'Vanderweyen 1980'],
       'gestes' => [['plants et greffons d’origine contrôlée', ['Vogel 1990', 'Sáenz Pérez 2019']],
-        ['porte-greffe tolérant plutôt que bigaradier (FA5, Volkameriana, Cléopâtre…)', ['Sáenz Pérez 2019', 'Vogel 1990']]],
-      'note' => 'signalée absente : Vogel 1990 la tient hors de Corse par l’interdiction d’importer ; statut actuel à vérifier'],
+        ['porte-greffe tolérant plutôt que bigaradier (Sáenz Pérez 2019 cite Volkameriana, Cléopâtre…) ; mais sous serre la gommose est le risque n° 1 : Poncirus, citranges et citrumelo résistent aux deux ; le Volkameriana donne des résultats contradictoires (résistant pour UF/IFAS HS261, selon le clone pour Boccas et Laville 1976, très sensible pour Vanderweyen 1980)', ['Sáenz Pérez 2019', 'UF/IFAS HS261', 'Boccas et Laville 1976', 'Vanderweyen 1980']]],
+      'note' => 'absente de Corse en 1990 grâce à l’interdiction d’importer des plants (Vogel 1990) ; statut actuel en France non vérifié : le risque vient d’un plant importé'],
   ];
   /* Signe observé (mesure sante.signe) → problèmes possibles, dans l'ordre de SANTE */
   const SIGNES = ['feuilles collantes (miellat)' => ['cochenille', 'aleurode', 'puceron'], 'dépôt noir qui s’essuie' => ['fumagine'], 'boucliers ou amas cotonneux blancs' => ['cochenille'],
@@ -580,7 +590,7 @@ class journalcultures_calc {
 
   // Notice : Markdown restreint (titres, paragraphes, listes « - », tableaux, gras, italique, code, liens, images de docs/images) → HTML.
   // ponytail: pas un parseur complet, le texte vient de nos docs/ ; tout est échappé avant d'être balisé.
-  const NOTICES = ['index' => 'Mode d\'emploi', 'fertilisation' => 'Fertilisation', 'sante' => 'Santé', 'guide' => 'Guide de culture'];
+  const NOTICES = ['index' => 'Mode d\'emploi', 'fertilisation' => 'Fertilisation', 'sante' => 'Santé', 'identification' => 'Identification', 'guide' => 'Guide de culture'];
   public static function ancre($t) { return trim(preg_replace('/[^\p{L}\p{N}_-]+/u', '', str_replace(' ', '-', mb_strtolower($t))), '-'); } // comme GitHub
   public static function enligne($t) {
     $t = htmlspecialchars($t, ENT_QUOTES | ENT_SUBSTITUTE);
@@ -603,7 +613,7 @@ class journalcultures_calc {
     return preg_replace_callback("/\x01(\d+)\x01/", function ($m) use ($c) { return $c[$m[1]]; }, $t);
   }
   public static function markdown($md) {
-    $h = ''; $bloc = null; $acc = [];
+    $h = ''; $bloc = null; $acc = []; $som = []; // sommaire : titres ## et ###
     $fin = function () use (&$h, &$bloc, &$acc) {
       if ($bloc == 'p') $h .= '<p>' . implode(' ', array_map([self::class, 'enligne'], $acc)) . '</p>';
       if ($bloc == 'ul') $h .= '<ul>' . implode('', array_map(function ($i) { return '<li>' . self::enligne($i) . '</li>'; }, $acc)) . '</ul>';
@@ -611,17 +621,19 @@ class journalcultures_calc {
         $l = array_values(array_filter($acc, function ($r) { return !preg_match('/^\|[\s:|-]+\|$/', trim($r)); })); // sans la ligne de séparation
         foreach ($l as $n => $r) {
           $cs = array_map('trim', explode('|', trim(trim($r), '|')));
-          $h .= ($n ? '' : '<table class="table table-condensed">') . '<tr>' . implode('', array_map(function ($x) use ($n) { return ($n ? '<td>' : '<th>') . self::enligne($x) . ($n ? '</td>' : '</th>'); }, $cs)) . '</tr>';
+          $h .= ($n ? '' : '<div class="jdc-tw"><table class="table table-condensed">') . '<tr>' . implode('', array_map(function ($x) use ($n) { return ($n ? '<td>' : '<th>') . self::enligne($x) . ($n ? '</td>' : '</th>'); }, $cs)) . '</tr>';
         }
-        if ($l) $h .= '</table>';
+        if ($l) $h .= '</table></div>'; // jdc-tw : défile seul sur mobile
       }
       $bloc = null; $acc = [];
     };
-    foreach (preg_split('/\R/', $md) as $ligne) {
+    foreach (preg_split('/\R/u', $md) as $ligne) {
       if (trim($ligne) === '') { $fin(); continue; }
       if (preg_match('/^(#{1,4})\s+(.+)$/', $ligne, $m)) {
         $fin(); $n = strlen($m[1]) + 1;
-        $h .= "<h$n id=\"jdc-n-" . htmlspecialchars(self::ancre($m[2]), ENT_QUOTES) . "\">" . self::enligne($m[2]) . "</h$n>";
+        $a = htmlspecialchars(self::ancre($m[2]), ENT_QUOTES);
+        if ($n == 3 || $n == 4) $som[] = '<li' . ($n == 4 ? ' class="s"' : '') . '><a data-n="" data-a="' . $a . '">' . self::enligne(preg_replace('/\[([^\]]*)\]\([^)]*\)/', '$1', $m[2])) . '</a></li>';
+        $h .= "<h$n id=\"jdc-n-$a\">" . self::enligne($m[2]) . "</h$n>";
         continue;
       }
       if ($ligne[0] == '|') { if ($bloc != 't') { $fin(); $bloc = 't'; } $acc[] = $ligne; continue; }
@@ -631,6 +643,8 @@ class journalcultures_calc {
       $acc[] = trim($ligne);
     }
     $fin();
-    return $h;
+    if (substr_count(implode('', $som), '<li><a') < 2) return $h; // page courte : pas de sommaire
+    $t = preg_match('/^<h2 [^>]*>.*?<\/h2>/s', $h, $m) ? $m[0] : ''; // titre de la page (#) au-dessus
+    return $t . '<div class="jdc-doc"><nav class="jdc-toc"><details open><summary>Sommaire</summary><ul>' . implode('', $som) . '</ul></details></nav><div class="jdc-tx">' . substr($h, strlen($t)) . '</div></div>';
   }
 }

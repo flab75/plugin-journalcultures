@@ -14,6 +14,9 @@ $ok($C::rusticite('', ['diam' => 40]) === null, 'rusticité inconnue');
 $t = mktime(12, 0, 0, 11, 1, 2026);
 $ok($C::jeunesse('greffe', '2025-11-01', 6, 5, $t) === 4.8 && $C::jeunesse('semis', '2020', 6, 5, $t) === 0.0 && $C::jeunesse('achat', '2026-10', 6, 5, $t) === 0.0
   && $C::jeunesse('greffe', '', 6, 5, $t) === 0.0 && $C::jeunesse('greffe', '2026-12', 6, 5, $t) === 6.0 && $C::jeunesse('greffe', '2026-02-30', 6, 5, $t) === 0.0, 'pénalité de jeunesse');
+$ok($C::facteurJeune('greffe', '2025-11-01', 0.25, 3, $t) === 0.5 && $C::facteurJeune('semis', '2020', 0.25, 3, $t) === 1.0 && $C::facteurJeune('achat', '2026-10', 0.25, 3, $t) === 1.0
+  && $C::facteurJeune('greffe', '2026-12', 0.25, 3, $t) === 0.25 && $C::facteurJeune('greffe', '2026-12', 1, 3, $t) === 1.0 && $C::facteurJeune('greffe', '2026-12', 0.25, 0, $t) === 1.0
+  && $C::facteurJeune('greffe', '2026-12', 0, 3, $t) === 0.01 && $C::facteurJeune('greffe', '2026-12', -1, 3, $t) === 0.01, 'engrais d\'un jeune plant');
 $ok($C::controler('attente', 'ok', '2026-09-13', '2026-10-04') == ['probable', '2026-10-25'] && $C::controler('attente', 'ok', '2026-09-13', '2026-11-01') == ['probable', '2026-11-01']
   && $C::controler('probable', 'ok', '2026-09-13', '2026-11-01') == ['reprise', ''] && $C::controler('attente', 'douteux', '2026-09-13', '2026-11-01') == ['attente', '2026-11-08']
   && $C::controler('probable', 'mort', '2026-09-13', '2026-11-01') == ['echouee', '']
@@ -31,8 +34,14 @@ $P = $C::produits($C::PRODUITS);
 $ok(count($P) == 5 && $P[0]['n'] == 7.0 && $P[0]['tous'] == 8 && $P[0]['saison'] == '10-40' && $P[0]['apporte'] == ['N', 'P', 'K'] && $P[3]['apporte'] == ['FE'] && $P[4]['apporte'] == ['MG', 'S'], 'catalogue proposé');
 // 10 L, 0,07 g N/L/sem., Ferti 7 % toutes les 8 semaines : 10 × 0,07 × 8 / 0,07 = 80 g (bas de l'étiquette, 80 à 240 g tous les 2 mois)
 $ok($C::plan(10, $P, [0 => 100]) == [['i' => 0, 'g' => 80.0, 'ligne' => '10-40/8 | Ferti Agrumes 7-3-10 | 80 g']], 'plan : 100 % Ferti Agrumes');
+$ok($C::plan(10, $P, [0 => 100], 0.07 * 0.5)[0]['g'] == 40.0, 'plan d\'un jeune plant : moitié');
+$x = $C::plan(10, $P, [0 => 50, 1 => 50, 2 => 50, 3 => 100], 0.07 * 0.25); // besoin 0,175 g N/sem., corne 0,108 → Ferti 20 × 0,38 ≈ 8 g
+$ok(count($x) == 2 && $x[0]['g'] == 8.0 && $x[1]['ligne'] == '10-40/12 | Corne broyée | 10 g', 'jeune plant : corne gardée à l\'étiquette, Ferti réduit');
 $x = $C::plan(10, $P, [0 => 50, 1 => 50, 2 => 50, 3 => 100]); // sang séché ponctuel et Kélafer sans azote : jamais dans le plan
-$ok(count($x) == 2 && $x[0]['g'] == 40.0 && $x[1]['ligne'] == '10-40/10 | Corne broyée | 27 g' && $C::plan(null, $P, [0 => 100]) === [] && $C::plan(10, $P, []) === [], 'plan partagé, rien de coché');
+// corne à dose d'étiquette (1 g/L) : 10 g, 10 × 1 × 13 % / 12 sem. = 0,108 g N/sem. sur 0,7 → Ferti : 80 × (1 − 0,155) ≈ 68 g
+$ok(count($x) == 2 && $x[0]['g'] == 68.0 && $x[1]['ligne'] == '10-40/12 | Corne broyée | 10 g' && $C::plan(null, $P, [0 => 100]) === [] && $C::plan(10, $P, []) === [], 'plan partagé, corne à dose d\'étiquette, rien de coché');
+$Q = $C::produits("A | 10 | 4 | 10-40 | N\nB | 10 | 4 | 10-40 | N | | x");
+$ok($Q[1]['gl'] == 0.0 && array_column($C::plan(10, $Q, [0 => 30, 1 => 70]), 'g') == [8.0, 20.0] && $C::plan(10, $C::produits("C | 10 | 4 | 10-40 | N | | 20"), [0 => 100])[0]['g'] == 200.0, 'plan : parts sans étiquette, étiquette seule');
 $ok($C::plan(10, $P, [0 => 100], 0.07, [0 => 60]) == [['i' => 0, 'g' => 60.0, 'ligne' => '10-40/8 | Ferti Agrumes 7-3-10 | 60 g']] && $C::plan(10, $P, [0 => 100], 0.07, [0 => 12.5])[0]['ligne'] == '10-40/8 | Ferti Agrumes 7-3-10 | 12,5 g', 'plan : dose ajustée à la main');
 $ok($C::semaines(explode(' | ', $x[0]['ligne'])[0]) == [10, 18, 26, 34], 'ligne du plan lisible par le calendrier');
 $ok(array_column($C::carences(['feuilles.couleur' => 'jaunissement entre les nervures', 'feuilles.touchees' => 'jeunes', 'pot.substrat' => 'détrempé']), 'el') == ['EAU', 'FE']
@@ -45,9 +54,9 @@ $ok(array_column($C::sante(['sante.signe' => 'feuilles collantes (miellat)', 'sa
   && $C::sante(['sante.signe' => 'aucun', 'sante.ravageur' => 'autre'], true) === [] && $C::sante([], false) === [], 'pistes de santé');
 $ok(!array_diff(array_merge(...array_values($C::SIGNES)), array_keys($C::SANTE)) && !array_diff(array_keys($C::SIGNES), $C::MESURES['sante'][1]['signe'][2])
   && !array_diff(array_diff($C::MESURES['sante'][1]['ravageur'][2], ['aucun', 'autre']), array_keys($C::SANTE))
-  && !array_filter($C::SANTE, function ($p) { return !in_array($p['statut'], ['present', 'absent', 'quarantaine'], true) || !$p['sources'] || !$p['gestes']; })
+  && !array_filter($C::SANTE, function ($p) { return !in_array($p['statut'], ['present', 'absent', 'a_verifier', 'quarantaine'], true) || !$p['sources'] || !$p['gestes']; })
   && !array_filter($C::SANTE, function ($p) { foreach ($p['gestes'] as $g) if (!$g[1] || array_diff($g[1], $p['sources'])) return true; return false; })
-  && $C::SANTE['hlb']['statut'] == 'absent' && $C::SANTE['tristeza']['statut'] == 'absent', 'catalogue santé cohérent');
+  && $C::SANTE['hlb']['statut'] == 'absent' && $C::SANTE['tristeza']['statut'] == 'a_verifier', 'catalogue santé cohérent');
 $e = $C::emplacements("Serre | #1# | #2#\nJardin | #3# | | #4#\n\nMaison");
 $ok(array_keys($e) == ['Serre', 'Jardin', 'Maison'] && $e['Jardin'] == ['#3#', '', '#4#'] && $e['Maison'] == ['', '', ''], 'emplacements');
 $ok($C::texte(" Taille \u{1F345} <b> ", 80) === 'Taille  ‹b›' && $C::texte(['x'], 9) === '', 'texte saisi');
@@ -63,7 +72,9 @@ $ok($id(['forme' => 'ovale', 'couleur' => 'jaune', 'pulpe' => 'acide', 'pelage' 
 $ok($id(['aile' => 'tres_large', 'peau' => 'rugueuse', 'pulpe' => 'acide', 'folioles' => 'un']) == ['probable', 'Papeda (combava, ichang)'], 'identification : papeda');
 $ok($id(['folioles' => true]) === [] && $id(['folioles' => 1.0]) === [], 'identification : non-texte refusé');
 $ok($id(['folioles' => 'un', 'gout_peau' => 'sucree', 'fruit' => 'lt3', 'forme' => 'ovale', 'couleur' => 'orange']) == ['probable', 'Kumquat'], 'identification : kumquat');
-$ok($id(['boutons' => 'violets', 'forme' => 'ovale', 'couleur' => 'jaune', 'pulpe' => 'acide', 'aile' => 'etroite', 'peau' => 'rugueuse']) == ['probable', 'Citron'], 'identification : citron');
+// boutons violets : citron, mais aussi pomelo (FoC « violacés ou rarement blancs ») → la taille du fruit tranche
+$ok($id(['boutons' => 'violets', 'forme' => 'ovale', 'couleur' => 'jaune', 'pulpe' => 'acide', 'aile' => 'etroite', 'peau' => 'rugueuse'])[0] == 'indecis'
+  && $id(['boutons' => 'violets', 'forme' => 'ovale', 'couleur' => 'jaune', 'pulpe' => 'acide', 'aile' => 'etroite', 'peau' => 'rugueuse', 'fruit' => '3-6']) == ['probable', 'Citron'], 'identification : citron (pomelo écarté par le fruit)');
 $cal = ['folioles' => 'un', 'fruit' => 'lt3', 'forme' => 'ronde', 'couleur' => 'orange', 'pulpe' => 'acide', 'peau' => 'lisse'];
 $ok($id($cal)[0] == 'indecis' && $id(['quartiers' => 'nombreux'] + $cal) == ['probable', 'Calamondin'] && $id(['quartiers' => 'peu'] + $cal) == ['probable', 'Kumquat'], 'identification : kumquat ou calamondin tranché par les quartiers');
 $berg = ['feuillage' => 'persistant', 'folioles' => 'un', 'aile' => 'etroite', 'boutons' => 'blancs', 'fruit' => '6-10', 'forme' => 'ronde', 'couleur' => 'jaune', 'peau' => 'lisse', 'pelage' => 'adherente', 'pulpe' => 'acide'];
@@ -75,6 +86,8 @@ $ok($id(['aile' => 'large', 'fruit' => '6-10', 'couleur' => 'jaune', 'forme' => 
 $ok($id(['fruit' => '3-6', 'couleur' => 'verte'] + $berg) == ['probable', 'Lime'], 'identification : lime de Tahiti 3-6 cm');
 $ok($id(['folioles' => '1']) === [] && $id(['fruit' => '<3']) === [], 'identification : anciens codes refusés');
 $ok($id(['aile' => 'aucune', 'pulpe' => 'peu', 'forme' => 'main', 'boutons' => 'violets']) == ['probable', 'Cédrat (dont Main de Bouddha)'], 'identification : main de Bouddha');
+$ok($id(['boutons' => 'violets', 'rameaux' => 'glabres', 'pelage' => 'adherente', 'forme' => 'ronde', 'couleur' => 'orange', 'pulpe' => 'douce', 'fruit' => '6-10']) == ['probable', 'Orange douce']
+  && $id(['boutons' => 'violets', 'aile' => 'etroite', 'peau' => 'rugueuse', 'couleur' => 'jaune', 'pelage' => 'facile', 'gout_peau' => 'amere', 'pulpe' => 'acide', 'forme' => 'ronde']) == ['probable', 'Yuzu'], 'identification : orange douce et yuzu à boutons violacés');
 $ok($id(['folioles' => 'mix'])[0] == 'indecis' && $id([]) === [] && $id(['aile' => 'xx', 'fruit' => ['3-6']]) === [], 'identification : indécis, vide, codes invalides');
 foreach ($C::GROUPES as $g => $prof) foreach ($prof as $k => $codes) foreach ($codes as $c) $ok(isset($C::CARACTERES[$k][1][$c]), "profil $g : $k = $c inconnu");
 foreach ($C::INDICES as $g => $prof) foreach ($prof as $k => $codes) foreach ($codes as $c) $ok(isset($C::GROUPES[$g]) && !isset($C::GROUPES[$g][$k]) && isset($C::CARACTERES[$k][1][$c]), "indice $g : $k = $c inconnu ou déjà au profil");
@@ -84,7 +97,8 @@ foreach (['Citrus reshni × Poncirus trifoliata' => 'Hybride de Poncirus (citran
   'Citrus × floridana (limequat)' => 'Lime', 'Citrus microcarpa' => 'Calamondin', 'Fortunella obovata × margarita' => 'Kumquat', 'Microcitrus australasica (Finger lime)' => 'Citron caviar (finger lime)',
   "Citrus junos ‘Yuzu n°1’" => 'Yuzu', 'Citrus medica var. sarcodactylis' => 'Cédrat (dont Main de Bouddha)', 'Citrus × bergamia' => 'Bigaradier (orange amère)',
   'citrus×limon' => 'Citron', 'Citrus latifolia' => 'Lime', "Citrus x tangor 'Shiranui'" => 'Mandarine', 'Citrus sinensis' => 'Orange douce', 'Citrus maxima' => 'Pomelo, pamplemousse',
-  'Citrus aurantiifolia' => 'Lime', '' => null, 'Ficus carica' => null] as $b => $att) $ok($g($b) === $att, "nom botanique « $b » → $att");
+  'Citrus aurantiifolia' => 'Lime', 'Citrus trifoliata × C. reticulata' => 'Hybride de Poncirus (citrange, citrumelo, FA5…)', 'C. reshni x Citrus trifoliata' => 'Hybride de Poncirus (citrange, citrumelo, FA5…)',
+  'Citrus trifoliata' => 'Poncirus', '' => null, 'Ficus carica' => null] as $b => $att) $ok($g($b) === $att, "nom botanique « $b » → $att");
 $e = $C::estimee('', ['folioles' => 'un', 'fruit' => '6-10', 'couleur' => 'jaune']);
 $ok($e['par'] == 'caracteres' && $e['r'] == max(array_intersect_key($C::RUSTICITE_GROUPES, array_flip($e['groupes']))) && count($e['groupes']) > 3, 'rusticité estimée : le moins rustique des groupes possibles');
 $ok($C::estimee('Citrus sinensis', ['feuillage' => 'caduc', 'folioles' => 'trois'])['groupes'] == ['Orange douce'] && $C::estimee('', ['aile' => 'xx']) === null, 'rusticité estimée : le nom passe avant les caractères ; rien de reconnu');
@@ -125,11 +139,14 @@ $ok($C::greffe(['type_greffe' => 'fente']) == ['type_greffe' => 'fente', 'multip
   ['bota' => 'Citrus limon', 'rusticite' => '-3 (estimée : citron)', 'id_folioles' => 'trois', 'id_aile' => 'xx', 'id_pulpe' => '', 'gbif' => 'triche'], ['rusticite' => 'clé']);
 $ok($c == ['rusticite' => '-3 (estimée : citron)', 'id_folioles' => 'trois'] && $l == ['Rusticité : – → -3 (estimée : citron) (clé)', 'Folioles par feuille : 1 → 3'],
   'identification acceptée : inchangé, vide, invalide et hors liste écartés');
+[$c, $l] = $C::accepter(['id_aile' => 'large', 'id_pulpe' => 'acide'], ['id_aile' => '', 'id_pulpe' => 'xx']);
+$ok($c == ['id_aile' => ''] && $l == ['Aile du pétiole : large (moins de la moitié du limbe) → –'], 'identification : caractère remis à « – » effacé, invalide écarté');
+$ok($g('×Citroncirus webberi') === 'Hybride de Poncirus (citrange, citrumelo, FA5…)' && $g('Poncirus trifoliata ×C. sinensis') === 'Hybride de Poncirus (citrange, citrumelo, FA5…)', 'nom botanique : citroncirus, × sans espace');
 echo "calculs OK\n";
 
 $ok($C::markdown("a `**x** <b>` **b** *i* [L](https://e.fr) [G](#greffe) [S](sante.md#mal-secco) [X](javascript:alert)\n- un\n  suite\n\n| A | B |\n|---|---|\n| 1 | 2 |\n![s](images/a.svg) ![u](../images/b.svg) ![t](../x.png)")
   == '<p>a <code>**x** &lt;b&gt;</code> <b>b</b> <i>i</i> <a href="https://e.fr" target="_blank" rel="noopener noreferrer">L</a> <a data-n="" data-a="greffe">G</a> <a data-n="sante" data-a="mal-secco">S</a> X</p>'
-  . '<ul><li>un suite</li></ul><table class="table table-condensed"><tr><th>A</th><th>B</th></tr><tr><td>1</td><td>2</td></tr></table><p>[image manquante : images/a.svg] [image manquante : images/b.svg] !t</p>'
+  . '<ul><li>un suite</li></ul><div class="jdc-tw"><table class="table table-condensed"><tr><th>A</th><th>B</th></tr><tr><td>1</td><td>2</td></tr></table></div><p>[image manquante : images/a.svg] [image manquante : images/b.svg] !t</p>'
   && $C::ancre("Fiche d'une plante") == 'fiche-dune-plante' && $C::ancre('Identification (agrumes)') == 'identification-agrumes', 'notice : markdown échappé, liens filtrés, ancres comme GitHub');
 $H = [];
 foreach (array_keys($C::NOTICES) as $k) {
@@ -141,6 +158,10 @@ preg_match('/aide: \{([^}]*)\}/', file_get_contents(__DIR__ . '/../core/template
 preg_match_all("/['\"]([\\w-]+)['\"]\s*[,}]?/", $a[1] ?? '', $a);
 $ok(count($a[1]) >= 4, 'notice : ancres du « ? » trouvées');
 foreach ($a[1] as $x) $ok(strpos($H['index'] ?? '', 'id="jdc-n-' . $x . '"') !== false, "notice : ancre du « ? » #$x introuvable");
+$x = $C::markdown("# T\nintro\n## Un [l](#a)\n### Sous\n## Deux");
+$ok(strpos($x, '<h2 id="jdc-n-t">T</h2><div class="jdc-doc"><nav class="jdc-toc">') === 0 && strpos($x, '<li><a data-n="" data-a="un-la">Un l</a></li><li class="s"><a data-n="" data-a="sous">Sous</a></li>') !== false
+  && strpos($x, '<div class="jdc-tx"><p>intro</p><h3') !== false && strpos($C::markdown("# T\n## Un"), 'jdc-toc') === false, 'notice : sommaire sous le titre, seulement à partir de 2 sections');
+$ok(strpos($C::markdown("**\u{2605}** retire"), "<b>\u{2605}</b> retire") !== false, 'notice : caractère à octet 0x85 (★) pas coupé en deux lignes');
 foreach ($H as $k => $h) {
   $ok(strlen($h) > 100 && strpos($h, '<script') === false, "notice $k convertie");
   $ok(strpos($h, 'image manquante') === false, "notice $k : image absente de docs/images");

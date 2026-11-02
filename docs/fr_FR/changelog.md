@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.14 (2026-11-02)
+- Engrais d'un jeune plant (semis, greffe… datés) : besoin réduit à 25 % à 0 an, 100 % à 3 ans (réglable) ; jamais 0 (pas de division par zéro).
+- Réglages numériques : virgule et signe − acceptés, texte = valeur par défaut (avant : « 2,5 » lu 2, texte lu 0) ; k et maximum jamais négatifs.
+- Notice : méthode « Choisir sa fertilisation », sources Niu 2024 et Melgar 2010, revues adverses.
+
 ## 0.13 (2026-11-02)
 - Catalogue des produits en stock (configuration du plugin) : % d'azote, intervalle, saison, éléments apportés, remarque (dose de l'étiquette).
   Proposé à l'installation (Ferti Agrumes, corne broyée, sang séché, chélate de fer, sel d'Epsom), pour toutes les plantes : rien n'est donné d'office.
