@@ -56,7 +56,7 @@ if (!window.journalcultures || window.journalcultures.v !== 15) (function () { /
     (cible || document.body).appendChild(m)
     var ct = m.querySelector('.jdc-ct'), urls = []
     function fermer() { m.remove(); document.removeEventListener('keydown', touche); urls.forEach(URL.revokeObjectURL) }
-    function touche(e) { if (e.key == 'Escape' && !cible && !/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) fermer() } // posée dans le panel : ✕ seulement
+    function touche(e) { if (e.key == 'Escape' && !cible && m === [].slice.call(document.querySelectorAll('body > .jdc-m')).pop() && !/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) fermer() } // posée dans le panel : ✕ seulement
     document.addEventListener('keydown', touche)
     m.onclick = function (e) { if (e.target == m || e.target.classList.contains('z')) fermer() }
     if (opt.aide) m.querySelector('nav .q').onclick = function () { notice('index', opt.aide[cour]) }
@@ -75,8 +75,12 @@ if (!window.journalcultures || window.journalcultures.v !== 15) (function () { /
   var posee = null // fenêtre posée dans le panel : fermée (écouteur, photos) avant d'en poser une autre
 
   // notice (docs/fr_FR/*.md convertis par la box) : k = page, ancre = titre visé (comme sur GitHub)
+  var NC = null // pages de la notice, chargées une fois (images en data:, lourdes)
   function notice(k, ancre) {
-    ajax('notice', {}, function (N) {
+    if (NC) return lire(NC)
+    ajax('notice', {}, function (N) { lire(NC = N) }, function (er) { fenetre("{{Notice}}", [['e', "{{Erreur}}", function (ct) { erreur(ct)(er) }]], 'e', {flottante: 1}) })
+    function lire(N) {
+      if (!N.length) { NC = null; return fenetre("{{Notice}}", [['e', "{{Erreur}}", function (ct) { erreur(ct)("{{Notice absente (dossier docs)}}") }]], 'e', {flottante: 1}) }
       var w = null
       function aller(k2, a) {
         if (!N.some(function (n) { return n.k == k2 })) k2 = N[0].k
@@ -88,7 +92,7 @@ if (!window.journalcultures || window.journalcultures.v !== 15) (function () { /
         if (e) e.scrollIntoView(); else w.boite.scrollTop = 0
       }
       aller(k, ancre)
-    }, function (er) { fenetre("{{Notice}}", [['e', "{{Erreur}}", function (ct) { erreur(ct)(er) }]], 'e', {flottante: 1}) })
+    }
   }
 
   function erreur(ct) { return function (er) { ct.innerHTML = '<p class="jdc-er">' + esc(er) + '</p>' } }

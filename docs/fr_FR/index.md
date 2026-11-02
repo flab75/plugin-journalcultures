@@ -10,11 +10,11 @@ Les captures de cette notice viennent d'une collection de démonstration (plante
 - **＋ Plante** pour chaque plante : emplacement, collection, nom ; le reste peut attendre (voir [Nouvelle plante](#nouvelle-plante)).
 - Au fil des jours : **＋ Noter** les travaux, l'onglet **Mesures** pour la croissance, **Déplacer…** quand les plantes changent de place.
 
-![Page plein écran](images/panel.png)
+![Page plein écran](../images/panel.webp)
 
 *Page plein écran (Accueil → Journal de cultures) : un onglet par collection, les emplacements avec leur température et humidité, la liste des plantes ; la fiche s'ouvre à droite. Le bouton Notice ouvre ce texte.*
 
-![Tuile d'une collection](images/tuile.png)
+![Tuile d'une collection](../images/tuile.webp)
 
 *La tuile de la collection sur le dashboard : T° = température de l'emplacement, Rust. = rusticité effective de la plante (voir [Configuration du plugin](#configuration-du-plugin)).*
 
@@ -30,7 +30,7 @@ Les captures de cette notice viennent d'une collection de démonstration (plante
 - Administrateurs : cocher des plantes, puis **＋ Noter** (une entrée pour chacune) ou **Déplacer…** (changer l'emplacement, la collection, ou les deux :
   rentrée à la serre en un geste, noté au journal) ; **✓** à côté de 🌱 = engrais donné.
 
-![Onglet Journal](images/journal.png)
+![Onglet Journal](../images/journal.webp)
 
 *Onglet Journal : une entrée par travail (date, travail, lieu, note), la plus récente en haut ; ✕ supprime une entrée.*
 
@@ -43,7 +43,7 @@ Rempotage : organe « Racines / pot », champs « Nouveau pot » (forme, Ø ou c
 la rusticité effective est recalculée et l'ancien → le nouveau pot est noté au journal.
 Les mesures complètent les caractères d'identification vides (aile de moins de 2 mm de large = simple liseré ; pas de taille de fruit pour les fruits en doigt ou en main) ; un désaccord est noté au journal.
 
-![Onglet Mesures](images/mesures.png)
+![Onglet Mesures](../images/mesures.webp)
 
 *Onglet Mesures : un organe à la fois (ici « Plante ») ; « – » = non mesuré.*
 
@@ -63,9 +63,9 @@ sur grand écran la fiche s'ouvre à côté de la liste. Relue toutes les 5 minu
   à protéger dès 0 °C, < 5 ans), pas de chiffre propre aux greffes : à ajuster. Achat ou sans date : aucune pénalité, 0 pour la retirer.
 - **Clé Pl@ntNet** (facultative) : compte gratuit sur my.plantnet.org, 500 identifications par jour.
 
-![Calcul de la rusticité effective](images/rusticite.svg)
+![Calcul de la rusticité effective](../images/rusticite.svg)
 
-*Rusticité effective = rusticité en pleine terre + pénalité du pot + pénalité de jeunesse ; l'alerte part à la rusticité effective + la marge. Mêmes chiffres que le Citronnier Meyer des captures.*
+*Rusticité effective = rusticité en pleine terre + pénalité du pot + pénalité de jeunesse ; l'alerte part à la rusticité effective + la marge. Mêmes chiffres que le Citronnier Meyer des captures, au 2 novembre 2026 (la pénalité de jeunesse baisse avec le temps).*
 
 ## Fiche d'une plante
 - **Nom botanique** : vérifié auprès de GBIF à l'enregistrement (nom retenu, famille, statut).
@@ -78,7 +78,7 @@ sur grand écran la fiche s'ouvre à côté de la liste. Relue toutes les 5 minu
   « Écrire dans le calendrier » remplace les lignes de ces produits et garde les autres (fer, magnésium, lignes à la main). Pistes de carence : d'après la dernière mesure, jamais un diagnostic.
 - **Sources et points à vérifier** : où vient chaque information, et ce qui reste à confirmer.
 
-![Partie Engrais de la fiche](images/engrais.png)
+![Partie Engrais de la fiche](../images/engrais.webp)
 
 *Partie Engrais : pot de 17,7 L × 0,07 g d'azote par litre et par semaine × 8 semaines ÷ 7 % d'azote = 142 g de Ferti Agrumes toutes les 8 semaines (arrondi ici à 140 g à la main). Au-dessus, une piste de carence d'après la dernière mesure.*
 
@@ -93,7 +93,7 @@ le groupe probable et la rusticité estimée s'affichent à chaque choix. Les ph
 **Pl@ntNet** (« ＋ Plante » et « Identifier… ») : choisir une ou plusieurs photos, donner à chacune son type (feuille, fleur, fruit, écorce, ou auto),
 cocher celles à envoyer (5 au plus) puis « Pl@ntNet » : une seule demande pour toutes, plus sûre qu'une photo seule.
 
-![Formulaire Nouvelle plante](images/nouvelle-plante.png)
+![Formulaire Nouvelle plante](../images/nouvelle-plante.webp)
 
 *Début du formulaire « ＋ Plante » : emplacement et collection d'abord.*
 
@@ -120,9 +120,9 @@ La soudure est la plus rapide vers 21-29 °C ; sous 21 °C le Poncirus s'endort 
 Œil dormant (« Au printemps ») : la soudure est faite, le seuil de 21 °C ne s'applique plus ; seul le gel compte
 (« gel : protéger l'œil » si la sonde descend sous 0 °C sur 24 h). Il faut que la sonde soit historisée.
 
-![Suivi d'une greffe](images/greffe-suivi.svg)
+![Suivi d'une greffe](../images/greffe-suivi.svg)
 
-![Fiche d'une greffe en attente](images/greffe.png)
+![Fiche d'une greffe en attente](../images/greffe.webp)
 
 *Yuzu greffé il y a 12 jours : contrôle prévu le 11/11 (J+21), la question à se poser, et l'avertissement de température (la serre est à 11,2 °C en moyenne). Les boutons répondent au contrôle.*
 

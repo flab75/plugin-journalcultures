@@ -127,18 +127,29 @@ $ok($c == ['rusticite' => '-3 (estimée : citron)', 'id_folioles' => 'trois'] &&
   'identification acceptée : inchangé, vide, invalide et hors liste écartés');
 echo "calculs OK\n";
 
-$ok($C::markdown("a `**x** <b>` **b** *i* [L](https://e.fr) [G](#greffe) [S](sante.md#mal-secco) [X](javascript:alert)\n- un\n  suite\n\n| A | B |\n|---|---|\n| 1 | 2 |\n![s](images/a.svg) ![t](../x.png)")
+$ok($C::markdown("a `**x** <b>` **b** *i* [L](https://e.fr) [G](#greffe) [S](sante.md#mal-secco) [X](javascript:alert)\n- un\n  suite\n\n| A | B |\n|---|---|\n| 1 | 2 |\n![s](images/a.svg) ![u](../images/b.svg) ![t](../x.png)")
   == '<p>a <code>**x** &lt;b&gt;</code> <b>b</b> <i>i</i> <a href="https://e.fr" target="_blank" rel="noopener noreferrer">L</a> <a data-n="" data-a="greffe">G</a> <a data-n="sante" data-a="mal-secco">S</a> X</p>'
-  . '<ul><li>un suite</li></ul><table class="table table-condensed"><tr><th>A</th><th>B</th></tr><tr><td>1</td><td>2</td></tr></table><p>[image manquante : images/a.svg] !t</p>'
+  . '<ul><li>un suite</li></ul><table class="table table-condensed"><tr><th>A</th><th>B</th></tr><tr><td>1</td><td>2</td></tr></table><p>[image manquante : images/a.svg] [image manquante : images/b.svg] !t</p>'
   && $C::ancre("Fiche d'une plante") == 'fiche-dune-plante' && $C::ancre('Identification (agrumes)') == 'identification-agrumes', 'notice : markdown échappé, liens filtrés, ancres comme GitHub');
+$H = [];
 foreach (array_keys($C::NOTICES) as $k) {
   $f = __DIR__ . "/../docs/fr_FR/$k.md";
-  if (!is_file($f)) continue;
-  $h = $C::markdown(file_get_contents($f));
+  if (is_file($f)) $H[$k] = $C::markdown(file_get_contents($f));
+}
+// ancres codées en dur du « ? » de la fiche (journalcultures.js, option aide)
+preg_match('/aide: \{([^}]*)\}/', file_get_contents(__DIR__ . '/../core/template/journalcultures.js'), $a);
+preg_match_all("/['\"]([\\w-]+)['\"]\s*[,}]?/", $a[1] ?? '', $a);
+$ok(count($a[1]) >= 4, 'notice : ancres du « ? » trouvées');
+foreach ($a[1] as $x) $ok(strpos($H['index'] ?? '', 'id="jdc-n-' . $x . '"') !== false, "notice : ancre du « ? » #$x introuvable");
+foreach ($H as $k => $h) {
   $ok(strlen($h) > 100 && strpos($h, '<script') === false, "notice $k convertie");
   $ok(strpos($h, 'image manquante') === false, "notice $k : image absente de docs/images");
   preg_match_all('/data-n="(\w*)" data-a="([^"]*)"/', $h, $m, PREG_SET_ORDER);
-  foreach ($m as $l) if ($l[1] === '' && $l[2] !== '') $ok(strpos($h, 'id="jdc-n-' . $l[2] . '"') !== false, "notice $k : ancre #$l[2] introuvable");
+  foreach ($m as $l) {
+    $p = $l[1] === '' ? $k : $l[1];
+    if (!isset($H[$p])) { $ok(isset($C::NOTICES[$p]), "notice $k : lien vers la page $p inconnue"); continue; } // page à venir : lien ignoré
+    if ($l[2] !== '') $ok(strpos($H[$p], 'id="jdc-n-' . $l[2] . '"') !== false, "notice $k : ancre $p#$l[2] introuvable");
+  }
 }
 echo "notice OK\n";
 

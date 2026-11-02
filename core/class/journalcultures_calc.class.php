@@ -583,13 +583,14 @@ class journalcultures_calc {
   const NOTICES = ['index' => 'Mode d\'emploi', 'fertilisation' => 'Fertilisation', 'sante' => 'Santé', 'guide' => 'Guide de culture'];
   public static function ancre($t) { return trim(preg_replace('/[^\p{L}\p{N}_-]+/u', '', str_replace(' ', '-', mb_strtolower($t))), '-'); } // comme GitHub
   public static function enligne($t) {
-    $t = htmlspecialchars($t, ENT_QUOTES);
+    $t = htmlspecialchars($t, ENT_QUOTES | ENT_SUBSTITUTE);
     $c = []; // code mis de côté : rien n'est balisé dedans
     $t = preg_replace_callback('/`([^`]+)`/', function ($m) use (&$c) { $c[] = '<code>' . $m[1] . '</code>'; return "\x01" . (count($c) - 1) . "\x01"; }, $t);
-    $t = preg_replace_callback('/!\[([^\]]*)\]\((images\/[\w.-]+\.(?:png|jpe?g|webp|svg))\)/', function ($m) {
+    $t = preg_replace_callback('/!\[([^\]]*)\]\((?:\.\.\/)?images\/([\w.-]+\.(?:png|jpe?g|webp|svg))\)/', function ($m) {
       // intégrée en data: : le .htaccess du cœur Jeedom refuse toute URL contenant /docs/ (403)
-      $f = __DIR__ . '/../../docs/' . $m[2];
-      if (!is_file($f)) return '[image manquante : ' . $m[2] . ']';
+      // ../images/x : comme sur GitHub, le .md est dans docs/fr_FR/ et les images dans docs/images/
+      $f = __DIR__ . '/../../docs/images/' . $m[2];
+      if (!is_file($f)) return '[image manquante : images/' . $m[2] . ']';
       $e = strtolower(pathinfo($f, PATHINFO_EXTENSION));
       $type = ['svg' => 'svg+xml', 'jpg' => 'jpeg'][$e] ?? $e;
       return '<img src="data:image/' . $type . ';base64,' . base64_encode(file_get_contents($f)) . '" alt="' . $m[1] . '" style="max-width:100%">'; }, $t);

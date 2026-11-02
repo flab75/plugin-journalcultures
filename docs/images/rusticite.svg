@@ -22,5 +22,5 @@
   <text x="300" y="230" text-anchor="middle" fill="#246" font-weight="bold">−0,2 °C : rusticité effective</text>
   <line x1="492" y1="130" x2="492" y2="190" stroke="#c22" stroke-width="3"/>
   <text x="500" y="230" fill="#c22" font-weight="bold">2,8 °C : alerte</text>
-  <text x="20" y="260" font-size="10" fill="#777">Pot Ø 30 cm, 25 cm de terre : e = 25 ÷ 2 = 12,5 ; pénalité = min(8, 50 ÷ 12,5) = 4. Bouture de 2022 : 6 × (1 − 4,3 ÷ 5) ≈ 0,8.</text>
+  <text x="20" y="260" font-size="10" fill="#777">Pot Ø 30 cm, 25 cm de terre : e = 25 ÷ 2 = 12,5 ; pénalité = min(8, 50 ÷ 12,5) = 4. Bouture de 2022, au 2 novembre 2026 : 6 × (1 − 4,3 ÷ 5) ≈ 0,8.</text>
 </svg>
