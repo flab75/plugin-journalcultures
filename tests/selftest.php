@@ -26,6 +26,20 @@ $ok($C::alerte(-5.0, 1.0, null)['alerte'] === 0 && $C::alerte(-5.0, -3.0, null)[
 $ok($C::alerte(null, -10.0, null) === null && $C::alerte(-5.0, null, null) === null, 'alerte : inconnue');
 $ok($C::semaines('10-16/2') == [10, 12, 14, 16] && $C::semaines('12,16; 20') == [12, 16, 20] && $C::semaines('52-2') == [1, 2, 52, 53] && $C::semaines('x, 0, 60') == [], 'semaines');
 $ok($C::engrais("10-40/2 | Agrumes | 5 g/l\n11 | Fer\n | rien\nfaux", 12) == ['Agrumes 5 g/l'] && $C::engrais("10-40/2 | Agrumes | 5 g/l\n11 | Fer", 11) == ['Fer'], 'engrais de la semaine');
+$ok($C::volume(['diam' => 20, 'terre' => 20]) === 6.3 && $C::volume(['diam' => 20, 'haut' => 20, 'carre' => true]) === 8.0 && $C::volume(['diam' => 30, 'pleine_terre' => true]) === null && $C::volume(['diam' => 30]) === null, 'volume du pot');
+$P = $C::produits($C::PRODUITS);
+$ok(count($P) == 5 && $P[0]['n'] == 7.0 && $P[0]['tous'] == 8 && $P[0]['saison'] == '10-40' && $P[0]['apporte'] == ['N', 'P', 'K'] && $P[3]['apporte'] == ['FE'] && $P[4]['apporte'] == ['MG', 'S'], 'catalogue proposé');
+// 10 L, 0,07 g N/L/sem., Ferti 7 % toutes les 8 semaines : 10 × 0,07 × 8 / 0,07 = 80 g (bas de l'étiquette, 80 à 240 g tous les 2 mois)
+$ok($C::plan(10, $P, [0 => 100]) == [['i' => 0, 'g' => 80.0, 'ligne' => '10-40/8 | Ferti Agrumes 7-3-10 | 80 g']], 'plan : 100 % Ferti Agrumes');
+$x = $C::plan(10, $P, [0 => 50, 1 => 50, 2 => 50, 3 => 100]); // sang séché ponctuel et Kélafer sans azote : jamais dans le plan
+$ok(count($x) == 2 && $x[0]['g'] == 40.0 && $x[1]['ligne'] == '10-40/10 | Corne broyée | 27 g' && $C::plan(null, $P, [0 => 100]) === [] && $C::plan(10, $P, []) === [], 'plan partagé, rien de coché');
+$ok($C::plan(10, $P, [0 => 100], 0.07, [0 => 60]) == [['i' => 0, 'g' => 60.0, 'ligne' => '10-40/8 | Ferti Agrumes 7-3-10 | 60 g']] && $C::plan(10, $P, [0 => 100], 0.07, [0 => 12.5])[0]['ligne'] == '10-40/8 | Ferti Agrumes 7-3-10 | 12,5 g', 'plan : dose ajustée à la main');
+$ok($C::semaines(explode(' | ', $x[0]['ligne'])[0]) == [10, 18, 26, 34], 'ligne du plan lisible par le calendrier');
+$ok(array_column($C::carences(['feuilles.couleur' => 'jaunissement entre les nervures', 'feuilles.touchees' => 'jeunes', 'pot.substrat' => 'détrempé']), 'el') == ['EAU', 'FE']
+  && array_column($C::carences(['feuilles.couleur' => 'jaunissement entre les nervures', 'feuilles.touchees' => 'vieilles']), 'el') == ['MG']
+  && array_column($C::carences(['feuilles.couleur' => 'jaunissement entre les nervures']), 'el') == ['?']
+  && array_column($C::carences(['feuilles.couleur' => 'jaune uniforme', 'feuilles.forme' => 'petites et étroites']), 'el') == ['N', 'ZN']
+  && $C::carences(['feuilles.couleur' => 'vert foncé']) === [] && $C::carences([]) === [], 'pistes de carence');
 $e = $C::emplacements("Serre | #1# | #2#\nJardin | #3# | | #4#\n\nMaison");
 $ok(array_keys($e) == ['Serre', 'Jardin', 'Maison'] && $e['Jardin'] == ['#3#', '', '#4#'] && $e['Maison'] == ['', '', ''], 'emplacements');
 $ok($C::texte(" Taille \u{1F345} <b> ", 80) === 'Taille  ‹b›' && $C::texte(['x'], 9) === '', 'texte saisi');
@@ -113,7 +127,7 @@ if ($t) {
 } else echo "table absente (plugin pas installé)\n";
 
 foreach (eqLogic::byType('journalcultures') as $eq) {
-  $d = $eq->type() == 'collection' ? $eq->donnees() : $eq->etat();
+  $d = $eq->type() == 'collection' ? $eq->donnees() : $eq->etat() + ['engrais_fiche' => $eq->engraisFiche()];
   $ok(json_encode($d, JSON_HEX_TAG) !== false, 'données de ' . $eq->getHumanName());
   echo 'données OK : ' . $eq->getHumanName() . "\n";
 }

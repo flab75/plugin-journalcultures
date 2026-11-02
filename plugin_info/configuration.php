@@ -42,6 +42,18 @@ if (!isConnect('admin')) {
       <div class="col-md-1"><input class="configKey form-control" data-l1key="greffe_tmax" placeholder="32"></div>
     </div>
     <div class="form-group">
+      <label class="col-md-4 control-label">{{Produits en stock (engrais, correcteurs)}}
+        <sup><i class="fas fa-question-circle tooltips" title="{{Une ligne par produit : Nom | % d'azote | toutes les n semaines (0 = ponctuel) | saison en semaines ISO (10-40 = mars à octobre) | éléments apportés (N P K Mg Fe S Zn Mn) | remarque. Pour toutes les plantes : une plante ne reçoit que les produits cochés dans son plan (fiche). Les produits à % d'azote et intervalle servent au plan ; les éléments, aux pistes de carence.}}"></i></sup>
+      </label>
+      <div class="col-md-8"><textarea class="configKey form-control" data-l1key="produits" rows="6"></textarea></div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label">{{Azote par litre de pot}} (g / {{semaine}})
+        <sup><i class="fas fa-question-circle tooltips" title="{{Besoin en azote d'une plante en pot pendant la saison de pousse, en grammes d'azote par litre de pot et par semaine. Par défaut 0,07 (0,14 g toutes les 2 semaines, essais en pot sur agrumes). Le plan de chaque plante en découle.}}"></i></sup>
+      </label>
+      <div class="col-md-2"><input class="configKey form-control" data-l1key="taux_n" placeholder="0.07"></div>
+    </div>
+    <div class="form-group">
       <label class="col-md-4 control-label">{{Clé API Pl@ntNet}}
         <sup><i class="fas fa-question-circle tooltips" title="{{Compte gratuit sur my.plantnet.org (500 identifications par jour). Facultatif : sans clé, pas d'identification des photos.}}"></i></sup>
       </label>

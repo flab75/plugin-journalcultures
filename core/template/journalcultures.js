@@ -1,6 +1,6 @@
 /* Journal de cultures — tuile d'une collection et ses fenêtres (plante, journal, noter, déplacer). Recopié dans chaque tuile par
    journalcultures::toHtml(), chargé une seule fois par page. Textes entre doubles accolades traduits côté PHP (core/i18n). */
-if (!window.journalcultures || window.journalcultures.v !== 12) (function () { // v : un onglet ouvert avant une mise à jour recharge la bibliothèque
+if (!window.journalcultures || window.journalcultures.v !== 13) (function () { // v : un onglet ouvert avant une mise à jour recharge la bibliothèque
   var css = document.getElementById('jdc-css') || document.createElement('style')
   css.id = 'jdc-css'
   css.textContent =
@@ -105,6 +105,40 @@ if (!window.journalcultures || window.journalcultures.v !== 12) (function () { /
   function cochees(b) { return Array.prototype.map.call(b.querySelectorAll('.jdc-ck:checked'), function (c) { return c.value }) }
   function noms(d, ids) { return d.plantes.filter(function (p) { return ids.indexOf(String(p.id)) >= 0 }).map(function (p) { return p.nom }).join(', ') }
 
+  /* Engrais de la fiche : pistes de carence (dernière mesure), plan d'azote par volume du pot ; seuls les produits cochés, rien n'est écrit sans le bouton */
+  function blocEngrais(e, admin) {
+    var pl = e.produits.map(function (p, i) { return [p, i] }).filter(function (x) { return x[0].g100 !== null })
+    return '<h4>' + "{{Engrais}}" + '</h4>' +
+      (e.carences.length ? '<p><b>' + "{{Pistes d'après la dernière mesure}}" + '</b> <small>(' + "{{pas un diagnostic}}" + ')</small></p><ul>' + e.carences.map(function (c) {
+        return '<li>' + esc(c.txt) + (c.produits.length ? '<br><small>' + "{{En stock}}" + ' : ' + esc(c.produits.join(' · ')) + '</small>' : '') + '</li>' }).join('') + '</ul>' : '') +
+      '<p>' + (e.litres ? "{{Pot}}" + ' ' + nb(e.litres, ' L') + ' · ' + "{{besoin}}" + ' ' + nb(e.litres * e.taux * 2) + ' ' + "{{g d'azote toutes les 2 semaines en saison}}" : "{{Pot de dimensions inconnues ou pleine terre : pas de plan (dose de l'étiquette)}}") + '</p>' +
+      '<p><small>' + "{{Calendrier actuel}}" + ' : ' + (e.calendrier ? esc(e.calendrier).replace(/\n/g, ' ; ') : '–') + '</small></p>' +
+      (e.litres && pl.length ? '<table class="jdc-plan">' + pl.map(function (x) {
+        var p = x[0], i = x[1], v = e.parts[i] || 0
+        return '<tr><td><label><input type="checkbox" class="pk" data-i="' + i + '"' + (v ? ' checked' : '') + (admin ? '' : ' disabled') + '> ' + esc(p.nom) + '</label> <small>' + esc(p.n) + ' % N, ' + "{{toutes les}}" + ' ' + p.tous + ' ' + "{{sem.}}" + '</small></td>' +
+          '<td><input class="pp" data-i="' + i + '" type="number" min="0" max="100" style="width:4.5em" value="' + v + '"' + (admin ? '' : ' disabled') + '> %</td><td><input class="pd" data-i="' + i + '" type="number" min="0" step="any" style="width:5em"' + (e.doses[i] ? ' value="' + e.doses[i] + '"' : '') + (admin ? '' : ' disabled') + '> g <small class="pg" data-i="' + i + '"></small></td></tr>' }).join('') + '</table>' +
+        '<p><small>' + "{{Seuls les produits cochés reçoivent l'azote, réparti selon les parts (total 100 %). La dose calculée peut être ajustée à la main : c'est elle qui est écrite.}}" + '</small>' +
+        (admin ? ' <a class="b pe">' + "{{Écrire dans le calendrier}}" + '</a> <span class="jdc-er pr"></span>' : '') + '</p>' : '')
+  }
+  function brancherEngrais(ct, e, id, fini) {
+    var t = ct.querySelector('.jdc-plan'); if (!t) return
+    function parts() { var r = {}; t.querySelectorAll('.pk:checked').forEach(function (k) { r[k.dataset.i] = Number(t.querySelector('.pp[data-i="' + k.dataset.i + '"]').value) || 0 }); return r }
+    function doses() { var r = {}; t.querySelectorAll('.pk:checked').forEach(function (k) { var v = Number(t.querySelector('.pd[data-i="' + k.dataset.i + '"]').value); if (v > 0) r[k.dataset.i] = v }); return r }
+    function calc(re) { // re : parts changées → dose recalculée ; sinon la dose saisie (ou celle du calendrier) est gardée
+      var r = parts(), s = 0
+      t.querySelectorAll('.pg').forEach(function (c) { var i = c.dataset.i, v = r[i], g = v ? Math.max(1, Math.round(e.produits[i].g100 * v / 100)) : 0, d = t.querySelector('.pd[data-i="' + i + '"]'); s += v || 0
+        if (re || (v && !d.value)) d.value = g || ''; c.textContent = v && Number(d.value) !== g ? '(' + "{{calculé}}" + ' ' + g + ' g)' : '' })
+      var m = ct.querySelector('.pr'); if (m) m.textContent = Object.keys(r).length && Math.abs(s - 100) > 1 ? "{{total}}" + ' ' + s + ' %' : ''
+    }
+    t.querySelectorAll('.pk').forEach(function (k) { k.onchange = function () { // cocher : parts égales entre les cochés
+      var c = t.querySelectorAll('.pk:checked'), k = 0; t.querySelectorAll('.pp').forEach(function (p) { p.value = t.querySelector('.pk[data-i="' + p.dataset.i + '"]').checked ? (++k < c.length ? Math.floor(100 / c.length) : 100 - (c.length - 1) * Math.floor(100 / c.length)) : 0 }); calc(true) } })
+    t.querySelectorAll('.pp').forEach(function (p) { p.oninput = function () { calc(true) } })
+    t.querySelectorAll('.pd').forEach(function (p) { p.oninput = function () { calc() } })
+    calc()
+    var b = ct.querySelector('.pe')
+    if (b) b.onclick = function () { b.style.pointerEvents = 'none'; ajax('plan', {id: id, parts: JSON.stringify(parts()), doses: JSON.stringify(doses())}, fini, function (er) { b.style.pointerEvents = ''; ct.querySelector('.pr').textContent = er }) }
+  }
+
   function plante(d, id, depart) {
     var r = null, w, msg = ''
     function avec(fn) { return function (ct) { if (r) fn(ct); else ajax('plante', {id: id}, function (x) { r = x; fn(ct) }, erreur(ct)) } }
@@ -129,6 +163,7 @@ if (!window.journalcultures || window.journalcultures.v !== 12) (function () { /
           (g.nom ? '<tr><th>GBIF</th><td>' + esc(g.nom) + (g.famille ? ' · ' + esc(g.famille) : '') + ' <small>(' + esc(g.statut) + ', ' + esc(g.type) + ' ' + esc(g.confiance) + ' %)</small></td></tr>' :
             g.statut == 'NONE' ? '<tr><th>GBIF</th><td class="jdc-er">' + "{{nom botanique introuvable}}" + '</td></tr>' : '') +
           r.fiche.map(function (x) { return '<tr><th>' + esc(x[0]) + '</th><td style="white-space:pre-wrap">' + esc(x[1]) + '</td></tr>' }).join('') + '</table>' +
+          blocEngrais(r.engrais, d.admin == 1) +
           (r.ident && r.ident.groupes ? '<h4>' + "{{Identification}}" + '</h4><p>' + (r.ident.verdict == 'probable' ? "{{Groupe probable}}" : "{{Indécis entre}}") + ' : ' +
             r.ident.groupes.map(function (g) { return '<b>' + esc(g.groupe) + '</b> <small>(' + g.accords + ' ' + "{{accord(s)}}" + (g.contre.length ? ', ' + "{{contre}}" + ' : ' + esc(g.contre.join(', ')) : '') + ')</small>' }).join(' · ') +
             '</p><table>' + r.carac.map(function (x) { return '<tr><th>' + esc(x[0]) + '</th><td>' + esc(x[1]) + '</td></tr>' }).join('') + '</table><p><small>' +
@@ -157,6 +192,7 @@ if (!window.journalcultures || window.journalcultures.v !== 12) (function () { /
             }
           }, function (er) { ct.querySelector('.grs .jdc-er').textContent = er })
         }
+        brancherEngrais(ct, r.engrais, id, function () { recharger('fic') })
         var ib = ct.querySelector('.idn')
         if (ib) ib.onclick = function () { w.fermer(); identifier(d, id, r) }
         var ie = ct.querySelector('.jdc-et')
@@ -456,7 +492,7 @@ if (!window.journalcultures || window.journalcultures.v !== 12) (function () { /
   }
 
   // opt.panel : colonnes en plus (porte-greffe, dernière mesure), masquées sur téléphone
-  window.journalcultures = {v: 12, ajax: ajax, esc: esc, nb: nb, init: function (b, d, opt) {
+  window.journalcultures = {v: 13, ajax: ajax, esc: esc, nb: nb, init: function (b, d, opt) {
     if (!b) return
     d.apres = opt && opt.apres // relu par « Greffer… » (fiche)
     var pa = opt && opt.panel

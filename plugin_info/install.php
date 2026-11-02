@@ -4,10 +4,12 @@ require_once __DIR__ . '/../core/class/journalcultures.class.php';
 
 function journalcultures_install() {
   journalcultures::creerTable();
+  if (trim(config::byKey('produits', 'journalcultures', '')) === '') config::save('produits', journalcultures_calc::PRODUITS, 'journalcultures'); // réactivation : catalogue modifié gardé
 }
 
 function journalcultures_update() {
   journalcultures::creerTable();
+  if (trim(config::byKey('produits', 'journalcultures', '')) === '') config::save('produits', journalcultures_calc::PRODUITS, 'journalcultures'); // 0.13 : catalogue proposé, à modifier
   journalcultures::$_sansGbif = true; // pas d'appel GBIF par plante pendant la mise à jour
   foreach (eqLogic::byType('journalcultures') as $eq) { $eq->save(); $eq->commandesOk(true); } // commandes ajoutées ou retirées par la nouvelle version
 }

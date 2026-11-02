@@ -44,6 +44,10 @@ sur grand écran la fiche s'ouvre à côté de la liste. Relue toutes les 5 minu
 - **Rusticité** : température supportée en pleine terre, en °C (« −7 » ou « -7 (FA5) » acceptés).
 - **Pot** : forme (rond ou carré), diamètre ou côté, hauteur, hauteur de terre, ou pleine terre. Un pot carré de 30 cm de côté compte comme un pot rond de 30 cm de Ø.
 - **Engrais** : `semaines | produit | dose` par ligne, semaines ISO : `10-40/2`, `12,16,20`, `48-8`.
+- **Produits en stock** (configuration) : `Nom | % N | toutes les n semaines | saison | éléments | remarque`. Un produit avec % N et intervalle peut entrer dans le plan d'azote ;
+  les éléments (N P K Mg Fe S Zn Mn) servent aux pistes de carence. **Azote par litre de pot** : 0,07 g par semaine par défaut (0,14 g toutes les 2 semaines, essais en pot).
+- **Plan d'engrais** (fiche, partie Engrais) : dose = volume du pot × besoin × intervalle ÷ % N, partagée entre les produits **cochés** (aucun d'office, sauf ceux déjà au calendrier). La dose en grammes peut être ajustée à la main avant d'écrire ; celle déjà au calendrier est reprise.
+  « Écrire dans le calendrier » remplace les lignes de ces produits et garde les autres (fer, magnésium, lignes à la main). Pistes de carence : d'après la dernière mesure, jamais un diagnostic.
 - **Sources et points à vérifier** : où vient chaque information, et ce qui reste à confirmer.
 
 Multiplication (semis, greffe…) et sa date (`2024`, `2024-05` ou `2024-05-12`) : l'âge est affiché dans la fiche

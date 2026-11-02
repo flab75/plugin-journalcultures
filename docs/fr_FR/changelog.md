@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.13 (2026-11-02)
+- Catalogue des produits en stock (configuration du plugin) : % d'azote, intervalle, saison, éléments apportés, remarque (dose de l'étiquette).
+  Proposé à l'installation (Ferti Agrumes, corne broyée, sang séché, chélate de fer, sel d'Epsom), pour toutes les plantes : rien n'est donné d'office.
+- Fiche, partie « Engrais » : volume du pot, besoin en azote (0,07 g par litre et par semaine en saison, réglable), plan d'azote entre les produits cochés
+  (parts en %), dose en grammes ajustable à la main (celle déjà au calendrier est reprise) ; « Écrire dans le calendrier » remplace les lignes de ces produits, garde les autres, et le note au journal. Sans clic, rien n'est écrit.
+- Pistes de carence d'après la dernière mesure des feuilles (couleur, feuilles touchées, forme, substrat détrempé) avec les produits en stock qui apportent l'élément.
+  Mesures : couleur « V vert à la base, reste jaune » et « bronzé », « Feuilles touchées » (jeunes, vieilles, toutes), « Forme » (normale, petites et étroites, enroulées).
+
 ## 0.12 (2026-11-01)
 - Suivi des greffes : bouton « Au printemps » (œil vivant laissé dormant, greffe d'automne) → statut « œil dormant jusqu'au printemps »,
   contrôle le 15 mars (rabattre le porte-greffe, l'œil a-t-il débourré ?). Pendant la dormance, plus de seuil de 21 °C (soudure faite) :

@@ -559,7 +559,62 @@ class journalcultures extends eqLogic {
     return ['id' => $this->getId(), 'nom' => $this->getName(), 'fiche' => $f, 'carac' => $carac, 'brut' => ['bota' => $bota, 'rusticite' => trim((string)$this->getConfiguration('rusticite')), 'carac' => $obs], 'ident' => journalcultures_calc::identifier($obs), 'gbif' => $g, 'pot' => $potTxt, 'etat' => $s, 'cmds' => $cmds,
       'journal' => self::journal([$this->getId()], 300), 'photos' => $ph = $this->photos(), 'liens' => array_values($liens),
       'etiquette' => in_array($this->getConfiguration('etiquette'), $ph, true) ? $this->getConfiguration('etiquette') : '', // photo supprimée : plus d'étiquette
-      'plantnet' => self::cle() !== '' ? 1 : 0, 'multiplication' => $this->multiplication(), 'greffe' => $this->suiviGreffe(), 'mesures' => journalcultures_calc::MESURES, 'calculs' => journalcultures_calc::CALCULS];
+      'plantnet' => self::cle() !== '' ? 1 : 0, 'multiplication' => $this->multiplication(), 'greffe' => $this->suiviGreffe(), 'mesures' => journalcultures_calc::MESURES, 'calculs' => journalcultures_calc::CALCULS, 'engrais' => $this->engraisFiche()];
+  }
+
+  /* Engrais de la fiche : volume du pot, plan d'azote proposé (rien n'est écrit sans « Écrire dans le calendrier »), carences d'après la dernière mesure */
+  public static function produits() {
+    return journalcultures_calc::produits((string)config::byKey('produits', 'journalcultures', '')); // vidé par l'utilisateur = aucun produit (le catalogue n'est proposé qu'à l'installation)
+  }
+
+  private static function taux() { $x = (float)journalcultures_calc::nombre(config::byKey('taux_n', 'journalcultures', 0.07)); return $x > 0 && $x < 1 ? $x : 0.07; }
+
+  private function dosesActuelles(array $P) { // grammes déjà au calendrier pour les produits du plan (dose peut-être ajustée à la main) → proposés tels quels
+    $r = [];
+    foreach (preg_split('/\R/', (string)$this->getConfiguration('engrais')) as $l) { $c = explode('|', $l . '||');
+      foreach ($P as $i => $p) if ($p['n'] > 0 && $p['tous'] > 0 && mb_strtolower(trim($c[1])) === mb_strtolower($p['nom']) && ($g = journalcultures_calc::nombre($c[2])) > 0) $r[$i] = $g; }
+    return $r;
+  }
+
+  private function partsActuelles(array $P) { // produits du plan déjà dans le calendrier → parts égales ; aucun → rien de coché
+    $cal = array_map(function ($l) { return mb_strtolower(trim(explode('|', $l . '||')[1])); }, preg_split('/\R/', (string)$this->getConfiguration('engrais')));
+    $i = array_keys(array_filter($P, function ($p) use ($cal) { return $p['n'] > 0 && $p['tous'] > 0 && in_array(mb_strtolower($p['nom']), $cal, true); }));
+    if (!$i) return [];
+    $r = array_fill_keys($i, floor(100 / count($i))); $r[end($i)] += 100 - array_sum($r); return $r; // reste au dernier : total juste 100
+  }
+
+  public function engraisFiche() {
+    $P = self::produits(); $L = journalcultures_calc::volume($this->pot()); $taux = self::taux();
+    $v = DB::Prepare('SELECT valeurs FROM ' . self::TABLE . ' WHERE plante_id = ? AND action = ? AND valeurs LIKE ? ORDER BY date DESC, id DESC LIMIT 1', [$this->getId(), 'Mesure', '%feuilles.couleur%'], DB::FETCH_TYPE_ROW); // dernière mesure de la couleur des feuilles, pas la dernière mesure tout court
+    $car = journalcultures_calc::carences(json_decode($v['valeurs'] ?? '', true) ?: []);
+    foreach ($car as &$c) $c['produits'] = array_values(array_map(function ($p) { return $p['nom'] . ($p['note'] !== '' ? ' (' . $p['note'] . ')' : ''); },
+      array_filter($P, function ($p) use ($c) { return in_array($c['el'], $p['apporte'], true); })));
+    unset($c);
+    return ['litres' => $L, 'taux' => $taux, 'calendrier' => (string)$this->getConfiguration('engrais'), 'parts' => (object)$this->partsActuelles($P), 'doses' => (object)$this->dosesActuelles($P), 'carences' => $car,
+      'produits' => array_map(function ($p) use ($L, $taux) { return $p + ['g100' => $L && $p['n'] > 0 && $p['tous'] > 0 ? $L * $taux * $p['tous'] * 100 / $p['n'] : null]; }, $P)];
+  }
+
+  // « Écrire dans le calendrier » : lignes des produits du plan remplacées, les autres lignes (fer, magnésium, à la main) gardées ; noté au journal
+  public function ecrirePlan(array $parts, array $doses = []) {
+    $P = self::produits(); $L = journalcultures_calc::volume($this->pot());
+    if (!$L) throw new Exception(__('Pot de dimensions inconnues ou pleine terre : pas de plan', __FILE__));
+    $parts = array_map('floatval', array_filter($parts, 'is_numeric'));
+    if (array_filter($parts, function ($x) { return $x < 0 || $x > 100; })) throw new Exception(__('Chaque part doit être entre 0 et 100 %', __FILE__));
+    if (abs(array_sum($parts) - 100) > 1) throw new Exception(__('Les parts doivent faire 100 %', __FILE__));
+    $doses = array_map('floatval', array_filter($doses, 'is_numeric'));
+    if (array_filter($doses, function ($x) { return $x < 0 || $x > 5000; })) throw new Exception(__('Dose entre 0 et 5000 g', __FILE__));
+    $plan = journalcultures_calc::plan($L, $P, $parts, self::taux(), $doses);
+    if (!$plan) throw new Exception(__('Aucun produit du plan coché', __FILE__));
+    $noms = array_map(function ($p) { return mb_strtolower($p['nom']); }, array_filter($P, function ($p) { return $p['n'] > 0 && $p['tous'] > 0; }));
+    $avant = (string)$this->getConfiguration('engrais');
+    $garde = array_filter(preg_split('/\R/', $avant), function ($l) use ($noms) { return trim($l) !== '' && !in_array(mb_strtolower(trim(explode('|', $l . '||')[1])), $noms, true); });
+    $apres = implode("\n", array_merge($garde, array_column($plan, 'ligne')));
+    if ($apres === $avant) throw new Exception(__('Rien à changer', __FILE__));
+    self::$_sansGbif = true;
+    try { $this->setConfiguration('engrais', $apres); $this->save(); } finally { self::$_sansGbif = false; }
+    self::inserer(['date' => date('Y-m-d'), 'plante_id' => $this->getId(), 'plante' => $this->getName(), 'lieu' => (string)$this->getConfiguration('emplacement'), 'action' => 'Observation',
+      'note' => sprintf(__('Calendrier d\'engrais (pot de %s L) : %s → %s', __FILE__), str_replace('.', ',', (string)$L), $avant === '' ? '–' : strtr($avant, ["\n" => ' ; ']), strtr($apres, ["\n" => ' ; ']))]);
+    return $apres;
   }
 
   public function multiplication() { // « Greffe (fente) · ≈ 2 ans (2024) », '' si rien de saisi

@@ -326,7 +326,9 @@ class journalcultures_calc {
       'position' => ['c', 'Position', ['bois jeune', 'vieux bois', 'partout']]]],
     'feuilles' => ['Feuilles', ['limbe_l' => ['n', 'Limbe : longueur', 'mm'], 'limbe_w' => ['n', 'Limbe : largeur', 'mm'], 'aile_l' => ['n', 'Aile : longueur', 'mm'],
       'aile_w' => ['n', 'Aile : largeur', 'mm'], 'nombre' => ['n', 'Nombre de feuilles', ''], 'pousses' => ['n', 'Nouvelles pousses', ''],
-      'couleur' => ['c', 'Couleur', ['vert foncé', 'vert clair', 'jaunissement entre les nervures', 'jaune uniforme']], 'chute' => ['c', 'Chute', ['aucune', 'faible', 'forte']]]],
+      'couleur' => ['c', 'Couleur', ['vert foncé', 'vert clair', 'jaunissement entre les nervures', 'jaune uniforme', 'V vert à la base, reste jaune', 'bronzé']],
+      'touchees' => ['c', 'Feuilles touchées', ['jeunes', 'vieilles', 'toutes']], 'forme' => ['c', 'Forme', ['normale', 'petites et étroites', 'enroulées']],
+      'chute' => ['c', 'Chute', ['aucune', 'faible', 'forte']]]],
     'fleurs' => ['Fleurs', ['boutons' => ['n', 'Boutons', ''], 'ouvertes' => ['n', 'Fleurs ouvertes', ''], 'couleur' => ['c', 'Couleur des boutons', ['blancs', 'violets']],
       'parfum' => ['c', 'Parfum', ['aucun', 'léger', 'fort']]]],
     'fruits' => ['Fruits', ['nombre' => ['n', 'Nombre de fruits (total)', ''], 'noues' => ['n', 'Noués', ''], 'croissance' => ['n', 'En croissance', ''], 'murs' => ['n', 'Mûrs', ''],
@@ -393,6 +395,66 @@ class journalcultures_calc {
     if (($v['feuilles.aile_w'] ?? 0) >= 2 && isset($v['calc.aile_limbe_w'])) { $x = $v['calc.aile_limbe_w']; $r['aile_largeur'] = $x < 0.5 ? 'moins' : ($x < 0.75 ? 'moitie' : 'presque'); }
     if (isset($v['feuilles.limbe_l'])) { $x = $v['feuilles.limbe_l']; $r['feuille'] = $x < 50 ? 'petite' : ($x <= 100 ? 'moyenne' : 'grande'); }
     if (isset($v['calc.fruits_moy']) && !in_array($forme, ['doigt', 'main'], true)) { $x = $v['calc.fruits_moy']; $r['fruit'] = $x < 30 ? 'lt3' : ($x < 60 ? '3-6' : ($x <= 100 ? '6-10' : 'gt10')); }
+    return $r;
+  }
+
+  /* ---------- engrais : catalogue, plan par plante, carences ---------- */
+
+  // volume de terre en litres (pot rond : Ø ; carré : côté), null si pleine terre ou dimensions inconnues
+  public static function volume(array $pot) {
+    $d = (float)self::nombre($pot['diam'] ?? ''); $h = (float)(self::nombre($pot['terre'] ?? '') ?: self::nombre($pot['haut'] ?? ''));
+    if (!empty($pot['pleine_terre']) || $d <= 0 || $h <= 0) return null;
+    return round((!empty($pot['carre']) ? $d * $d : M_PI * $d * $d / 4) * $h / 1000, 1);
+  }
+
+  /* Catalogue « Nom | % N | toutes les n semaines | saison (semaines ISO) | apporte | remarque » par ligne.
+     Produits en stock, pour toutes les plantes : une plante ne reçoit que ceux cochés dans son plan.
+     % N et intervalle > 0 : produit possible du plan d'azote ; apporte = éléments (N P K Mg Fe S Zn Mn) pour les carences. Proposé quand le catalogue est vide. */
+  const PRODUITS = "Ferti Agrumes 7-3-10 | 7 | 8 | 10-40 | N P K | granulés à enfouir par léger griffage ; étiquette : 80 à 240 g par sujet tous les 2 mois, de mars à octobre\n"
+    . "Corne broyée | 13 | 10 | 10-40 | N | effet sur 3 à 4 mois ; étiquette : en pot, 3 apports de 1 g par litre de terreau dans la saison\n"
+    . "Sang séché | 12 | 0 | 10-30 | N | coup de fouet (effet en 3 à 4 jours) ; étiquette : 1 à 2 apports par an, printemps et été\n"
+    . "Kélafer racinaire (fer EDDHA 6 %) | 0 | 0 | 6-44 | Fe | au pied seulement, jamais sur les feuilles ; dilué dans l'arrosage (10 à 40 g par litre d'eau) ; étiquette : jeunes plantations 5 à 15 g par pied, seulement en cas de besoin\n"
+    . "Sel d'Epsom (sulfate de magnésium) | 0 | 0 | 10-40 | Mg S | pas de dose sur le seau (produit pour le bain)";
+
+  public static function produits($texte) { // → [['nom', 'n' (%), 'tous' (semaines), 'saison', 'apporte' => [éléments], 'note'], …]
+    $r = [];
+    foreach (preg_split('/\R/', (string)$texte) as $l) {
+      $p = array_map('trim', explode('|', $l));
+      if ($p[0] === '') continue;
+      $r[] = ['nom' => mb_substr($p[0], 0, 60), 'n' => max(0, min(100, (float)self::nombre($p[1] ?? ''))), 'tous' => max(0, min(52, (int)self::nombre($p[2] ?? ''))),
+        'saison' => preg_match('/^\d{1,2}-\d{1,2}$/D', $p[3] ?? '') ? $p[3] : '10-40',
+        'apporte' => array_values(array_intersect(preg_split('/[\s,]+/', strtoupper($p[4] ?? ''), -1, PREG_SPLIT_NO_EMPTY), ['N', 'P', 'K', 'MG', 'FE', 'S', 'ZN', 'MN'])),
+        'note' => mb_substr($p[5] ?? '', 0, 300)];
+    }
+    return $r;
+  }
+
+  /* Plan d'azote d'une plante en pot : besoin = $taux g d'N par litre de pot et par semaine (0,07 = 0,14 g toutes les 2 semaines, ressources §13),
+     réparti entre les produits du plan selon $parts (index du catalogue => %, total 100). → [['i', 'ligne' (« 10-40/8 | Nom | 40 g »), 'g'], …]
+     ponytail: dose proportionnelle au volume seul (aucune source ne la fait varier avec la taille de la plante en pot) ; régler $taux à l'usage. */
+  public static function plan($litres, array $produits, array $parts, $taux = 0.07, array $doses = []) { // doses : grammes ajustés à la main, prioritaires sur le calcul
+    $r = [];
+    if (!$litres) return $r;
+    foreach ($produits as $i => $p) {
+      $part = (float)($parts[$i] ?? 0);
+      if ($p['n'] <= 0 || $p['tous'] <= 0 || $part <= 0) continue;
+      $g = ($doses[$i] ?? 0) > 0 ? round($doses[$i], 1) : max(1, round($litres * $taux * $p['tous'] * min($part, 100) / $p['n'])); // part en % et N en % : les 100 s'annulent
+      $r[] = ['i' => $i, 'g' => $g, 'ligne' => $p['saison'] . '/' . $p['tous'] . ' | ' . $p['nom'] . ' | ' . str_replace('.', ',', (string)$g) . ' g'];
+    }
+    return $r;
+  }
+
+  /* Carence probable d'après la dernière mesure des feuilles (ressources §14 : UF/IFAS, Haifa, Elavarasan & Premalatha 2019).
+     → [['el' => élément, 'txt' => raison], …] ; substrat détrempé : averti d'abord (l'asphyxie bloque le fer). Jamais un diagnostic : des pistes. */
+  public static function carences(array $v) {
+    $c = $v['feuilles.couleur'] ?? ''; $o = $v['feuilles.touchees'] ?? ''; $r = [];
+    if (($v['pot.substrat'] ?? '') == 'détrempé') $r[] = ['el' => 'EAU', 'txt' => 'substrat détrempé : racines asphyxiées, le fer n’est plus absorbé ; arroser moins avant tout apport'];
+    if (in_array($c, ['jaune uniforme', 'vert clair'], true)) $r[] = ['el' => 'N', 'txt' => 'feuilles pâles ou jaunes partout' . ($o == 'jeunes' ? '' : ', vieilles feuilles d’abord') . ' : azote (le soufre donne le même aspect)'];
+    if ($c == 'V vert à la base, reste jaune' || ($c == 'jaunissement entre les nervures' && $o == 'vieilles')) $r[] = ['el' => 'MG', 'txt' => 'vieilles feuilles jaunes entre les nervures, V vert à la base : magnésium'];
+    if ($c == 'jaunissement entre les nervures' && $o == 'jeunes') $r[] = ['el' => 'FE', 'txt' => 'jeunes feuilles pâles à nervures vertes : fer (pH élevé, calcaire, excès d’eau ou de cuivre)'];
+    if ($c == 'jaunissement entre les nervures' && !in_array($o, ['jeunes', 'vieilles'], true)) $r[] = ['el' => '?', 'txt' => 'jaunissement entre les nervures : fer si ce sont les jeunes feuilles, magnésium si ce sont les vieilles (préciser « Feuilles touchées »)'];
+    if ($c == 'bronzé') $r[] = ['el' => 'K', 'txt' => 'vieilles feuilles bronzées' . (($v['feuilles.forme'] ?? '') == 'enroulées' ? ' et enroulées' : '') . ' : potassium (ou magnésium)'];
+    if (($v['feuilles.forme'] ?? '') == 'petites et étroites') $r[] = ['el' => 'ZN', 'txt' => 'feuilles petites, étroites et pointues, en rosette : zinc (souvent avec fer et manganèse quand le pH est élevé)'];
     return $r;
   }
 
