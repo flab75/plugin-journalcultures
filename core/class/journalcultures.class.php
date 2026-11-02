@@ -559,7 +559,19 @@ class journalcultures extends eqLogic {
     return ['id' => $this->getId(), 'nom' => $this->getName(), 'fiche' => $f, 'carac' => $carac, 'brut' => ['bota' => $bota, 'rusticite' => trim((string)$this->getConfiguration('rusticite')), 'carac' => $obs], 'ident' => journalcultures_calc::identifier($obs), 'gbif' => $g, 'pot' => $potTxt, 'etat' => $s, 'cmds' => $cmds,
       'journal' => self::journal([$this->getId()], 300), 'photos' => $ph = $this->photos(), 'liens' => array_values($liens),
       'etiquette' => in_array($this->getConfiguration('etiquette'), $ph, true) ? $this->getConfiguration('etiquette') : '', // photo supprimée : plus d'étiquette
-      'plantnet' => self::cle() !== '' ? 1 : 0, 'multiplication' => $this->multiplication(), 'greffe' => $this->suiviGreffe(), 'mesures' => journalcultures_calc::MESURES, 'calculs' => journalcultures_calc::CALCULS, 'engrais' => $this->engraisFiche()];
+      'plantnet' => self::cle() !== '' ? 1 : 0, 'multiplication' => $this->multiplication(), 'greffe' => $this->suiviGreffe(), 'mesures' => journalcultures_calc::MESURES, 'calculs' => journalcultures_calc::CALCULS, 'engrais' => $this->engraisFiche(), 'sante' => $this->santeFiche(), 'santeCat' => journalcultures_calc::SANTE];
+  }
+
+  /* Santé de la fiche : pistes d'après la dernière mesure qui parle de santé (signe, ravageur, maladie, écorce du tronc) */
+  public function santeFiche() {
+    $q = function ($like) { $r = DB::Prepare('SELECT date, valeurs FROM ' . self::TABLE . ' WHERE plante_id = ? AND action = ? AND valeurs LIKE ? ORDER BY date DESC, id DESC LIMIT 1', [$this->getId(), 'Mesure', $like], DB::FETCH_TYPE_ROW);
+      return [(string)($r['date'] ?? ''), json_decode($r['valeurs'] ?? '', true) ?: []]; };
+    [$ds, $s] = $q('%sante.%'); [$dt, $t] = $q('%tronc.ecorce%'); // séparées : une mesure du tronc n'efface pas un ravageur noté, et inversement
+    $v = array_filter($s, function ($k) { return strpos($k, 'sante.') === 0; }, ARRAY_FILTER_USE_KEY) + (isset($t['tronc.ecorce']) ? ['tronc.ecorce' => $t['tronc.ecorce']] : [])
+      + (($t['pot.substrat'] ?? '') === 'détrempé' || ($s['pot.substrat'] ?? '') === 'détrempé' ? ['pot.substrat' => 'détrempé'] : []);
+    $e = journalcultures_calc::estimee(trim((string)$this->getConfiguration('bota')) ?: $this->getName(), $this->caracteres()); // ponytail: groupe incertain (caractères) = citron possible
+    $citron = $e && array_intersect($e['groupes'], ['Citron', 'Lime']);
+    return ['date' => max($ds, $dt), 'pistes' => journalcultures_calc::sante($v, (bool)$citron)];
   }
 
   /* Engrais de la fiche : volume du pot, plan d'azote proposé (rien n'est écrit sans « Écrire dans le calendrier »), carences d'après la dernière mesure */

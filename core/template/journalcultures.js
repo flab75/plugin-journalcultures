@@ -1,6 +1,6 @@
 /* Journal de cultures — tuile d'une collection et ses fenêtres (plante, journal, noter, déplacer). Recopié dans chaque tuile par
    journalcultures::toHtml(), chargé une seule fois par page. Textes entre doubles accolades traduits côté PHP (core/i18n). */
-if (!window.journalcultures || window.journalcultures.v !== 13) (function () { // v : un onglet ouvert avant une mise à jour recharge la bibliothèque
+if (!window.journalcultures || window.journalcultures.v !== 14) (function () { // v : un onglet ouvert avant une mise à jour recharge la bibliothèque
   var css = document.getElementById('jdc-css') || document.createElement('style')
   css.id = 'jdc-css'
   css.textContent =
@@ -125,6 +125,17 @@ if (!window.journalcultures || window.journalcultures.v !== 13) (function () { /
         '<p><small>' + "{{Seuls les produits cochés reçoivent l'azote, réparti selon les parts (total 100 %). La dose calculée peut être ajustée à la main : c'est elle qui est écrite.}}" + '</small>' +
         (admin ? ' <a class="b pe">' + "{{Écrire dans le calendrier}}" + '</a> <span class="jdc-er pr"></span>' : '') + '</p>' : '')
   }
+  function blocSante(s, cat) {
+    function src(l) { return ' <small>(' + esc(l.join(', ')) + (l.length == 1 ? ' — <b>' + "{{une seule source}}" + '</b>' : '') + ')</small>' }
+    function statut(p) { return p.statut == 'absent' ? ' <b>' + "{{absent de France}}" + '</b>' : p.statut == 'quarantaine' ? ' <b class="jdc-er">' + "{{quarantaine : à signaler}}" + '</b>' : '' }
+    function gestes(p) { return '<ol>' + p.gestes.map(function (g) { return '<li>' + esc(g[0]) + src(g[1]) + '</li>' }).join('') + '</ol>' + (p.note ? '<p><small>' + esc(p.note) + '</small></p>' : '') }
+    return '<h4>' + "{{Santé}}" + '</h4>' +
+      (s.pistes.length ? '<p><b>' + "{{Pistes d'après la mesure du}}" + ' ' + esc(s.date.slice(0, 10)) + '</b> <small>(' + "{{pas un diagnostic ; gestes du plus doux au plus fort}}" + ')</small></p>' + s.pistes.map(function (x) {
+        var p = cat[x.id]; return '<p><b>' + esc(p.nom) + '</b>' + statut(p) + ' <small>— ' + esc(x.pourquoi) + '</small>' + (x.note ? '<br><small class="jdc-er">' + esc(x.note) + '</small>' : '') + '</p>' + gestes(p) }).join('') :
+        '<p><small>' + "{{Rien de signalé aux dernières mesures. Pour noter un problème : Mesure → Santé (signe observé, ravageur, maladie) ou Tronc → écorce.}}" + '</small></p>') +
+      '<details><summary>' + "{{Problèmes surveillés, par priorité}}" + '</summary>' + Object.keys(cat).map(function (k, i) { var p = cat[k]
+        return '<p><b>' + (i + 1) + '. ' + esc(p.nom) + '</b>' + statut(p) + src(p.sources) + '<br><small>' + esc(p.signes) + '</small></p>' + gestes(p) }).join('') + '</details>'
+  }
   function brancherEngrais(ct, e, id, fini) {
     var t = ct.querySelector('.jdc-plan'); if (!t) return
     function parts() { var r = {}; t.querySelectorAll('.pk:checked').forEach(function (k) { r[k.dataset.i] = Number(t.querySelector('.pp[data-i="' + k.dataset.i + '"]').value) || 0 }); return r }
@@ -168,7 +179,7 @@ if (!window.journalcultures || window.journalcultures.v !== 13) (function () { /
           (g.nom ? '<tr><th>GBIF</th><td>' + esc(g.nom) + (g.famille ? ' · ' + esc(g.famille) : '') + ' <small>(' + esc(g.statut) + ', ' + esc(g.type) + ' ' + esc(g.confiance) + ' %)</small></td></tr>' :
             g.statut == 'NONE' ? '<tr><th>GBIF</th><td class="jdc-er">' + "{{nom botanique introuvable}}" + '</td></tr>' : '') +
           r.fiche.map(function (x) { return '<tr><th>' + esc(x[0]) + '</th><td style="white-space:pre-wrap">' + esc(x[1]) + '</td></tr>' }).join('') + '</table>' +
-          blocEngrais(r.engrais, d.admin == 1) +
+          blocEngrais(r.engrais, d.admin == 1) + blocSante(r.sante, r.santeCat) +
           (r.ident && r.ident.groupes ? '<h4>' + "{{Identification}}" + '</h4><p>' + (r.ident.verdict == 'probable' ? "{{Groupe probable}}" : "{{Indécis entre}}") + ' : ' +
             r.ident.groupes.map(function (g) { return '<b>' + esc(g.groupe) + '</b> <small>(' + g.accords + ' ' + "{{accord(s)}}" + (g.contre.length ? ', ' + "{{contre}}" + ' : ' + esc(g.contre.join(', ')) : '') + ')</small>' }).join(' · ') +
             '</p><table>' + r.carac.map(function (x) { return '<tr><th>' + esc(x[0]) + '</th><td>' + esc(x[1]) + '</td></tr>' }).join('') + '</table><p><small>' +
@@ -497,7 +508,7 @@ if (!window.journalcultures || window.journalcultures.v !== 13) (function () { /
   }
 
   // opt.panel : colonnes en plus (porte-greffe, dernière mesure), masquées sur téléphone
-  window.journalcultures = {v: 13, ajax: ajax, esc: esc, nb: nb, init: function (b, d, opt) {
+  window.journalcultures = {v: 14, ajax: ajax, esc: esc, nb: nb, init: function (b, d, opt) {
     if (!b) return
     d.apres = opt && opt.apres // relu par « Greffer… » (fiche)
     var pa = opt && opt.panel

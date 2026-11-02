@@ -337,7 +337,10 @@ class journalcultures_calc {
     'pot' => ['Racines / pot', ['substrat' => ['c', 'Substrat', ['sec', 'frais', 'humide', 'détrempé']], 'racines' => ['c', 'Racines au drainage', ['non', 'oui']],
       'forme' => ['c', 'Nouveau pot : forme', ['rond', 'carré']], 'diam' => ['n', 'Nouveau pot : Ø ou côté', 'cm'], 'haut' => ['n', 'Nouveau pot : hauteur', 'cm'], 'terre' => ['n', 'Nouveau pot : hauteur de terre', 'cm'],
       'pleine_terre' => ['c', 'Pleine terre', ['non', 'oui']]]], // pot.forme/diam/haut/terre/pleine_terre : remplacent le pot de la fiche (journalcultures::mesurer)
-    'sante' => ['Santé', ['ravageur' => ['c', 'Ravageur', ['aucun', 'mineuse', 'cochenille', 'acarien', 'puceron', 'autre']],
+    'sante' => ['Santé', ['signe' => ['c', 'Signe observé', ['aucun', 'feuilles collantes (miellat)', 'dépôt noir qui s’essuie', 'boucliers ou amas cotonneux blancs', 'petites mouches blanches qui s’envolent',
+      'toiles fines, feuilles piquetées ou bronzées', 'galeries sinueuses argentées', 'points noirs épineux sous les feuilles', 'gomme ou écorce brune au collet', 'racines molles, écorce qui part (fil blanc)',
+      'rameaux qui sèchent depuis la pointe', 'marbrures jaunes asymétriques']], // → journalcultures_calc::SIGNES
+      'ravageur' => ['c', 'Ravageur', ['aucun', 'mineuse', 'cochenille', 'acarien', 'puceron', 'aleurode', 'autre']],
       'intensite' => ['c', 'Intensité', ['faible', 'moyenne', 'forte']], 'maladie' => ['c', 'Maladie', ['aucune', 'gommose', 'fumagine', 'autre']]]],
   ];
   const CALCULS = ['calc.aile_limbe' => ['Aile / limbe', ''], 'calc.aile_limbe_w' => ['Aile / limbe (largeur)', ''], 'calc.greffon_pg' => ['Greffon / porte-greffe', ''],
@@ -456,6 +459,108 @@ class journalcultures_calc {
     if ($c == 'bronzé') $r[] = ['el' => 'K', 'txt' => 'vieilles feuilles bronzées' . (($v['feuilles.forme'] ?? '') == 'enroulées' ? ' et enroulées' : '') . ' : potassium (ou magnésium)'];
     if (($v['feuilles.forme'] ?? '') == 'petites et étroites') $r[] = ['el' => 'ZN', 'txt' => 'feuilles petites, étroites et pointues, en rosette : zinc (souvent avec fer et manganèse quand le pH est élevé)'];
     return $r;
+  }
+
+  /* ---------- santé : problèmes surveillés et pistes ---------- */
+  /* Agrumes en pot sous serre (Île-de-France), du plus important au moins important. Références complètes : ressources.md §14.
+     Chaque geste porte ses sources ; un geste ou un problème à une seule source est signalé (en chercher une autre). statut : present, quarantaine, absent. */
+  const SANTE = [
+    'gommose' => ['nom' => 'Gommose et pourriture des racines (Phytophthora)', 'statut' => 'present',
+      'signes' => 'gomme, écorce brune qui se fend au collet ou au point de greffe ; feuilles vert pâle à nervures jaunes (atteinte sévère), qui tombent ; racines fines molles dont l’écorce part (il reste un fil blanc) ; favorisée par un substrat qui reste mouillé',
+      'sources' => ['UC IPM (gommose)', 'Vogel 1990', 'BSV PACA 2020', 'NHB', 'Sáenz Pérez 2019', 'Savita 2012'],
+      'gestes' => [['arroser moins, laisser ressuyer, pot qui draine ; ne pas mouiller le tronc', ['UC IPM (gommose)', 'BSV PACA 2020', 'NHB']],
+        ['collet et point de greffe jamais enterrés', ['UC IPM (gommose)', 'Sáenz Pérez 2019', 'Savita 2012']],
+        ['ne pas blesser le bas du tronc : une plaie mouillée reste une porte d’entrée environ 14 jours', ['Savita 2012']],
+        ['enlever l’écorce brune et une bande d’écorce saine autour, laisser sécher, revoir pendant quelques mois', ['UC IPM (gommose)', 'NHB']],
+        ['badigeon de cuivre (bouillie bordelaise) sur la plaie et le bas du tronc', ['UC IPM (gommose)', 'NHB']],
+        ['en dernier : fongicide (phosphonate, fosétyl-Al chez les professionnels) ; un particulier n’a droit qu’aux produits marqués « emploi autorisé dans les jardins » (loi Labbé), selon l’étiquette', ['UC IPM (gommose)', 'Vogel 1990', 'NHB', 'Sáenz Pérez 2019', 'Savita 2012']],
+        ['plus de la moitié du tour du tronc atteinte : remplacer la plante', ['UC IPM (gommose)']]]],
+    'cochenille' => ['nom' => 'Cochenilles', 'statut' => 'present',
+      'signes' => 'boucliers bruns ou noirs, amas cotonneux blancs sur rameaux et nervures ; miellat, fumagine, fourmis',
+      'sources' => ['Brun 1990', 'BSV Corse 2024', 'BSV PACA 2020', 'BSV JEVI Corse 2025', 'COCHORTI 2021'],
+      'gestes' => [['enlever à la main celles qu’on atteint, couper les rameaux très touchés', ['BSV JEVI Corse 2025']],
+        ['pulvériser savon noir + huile végétale + alcool (5 cl de chaque par litre d’eau) jusqu’à ruissellement', ['BSV JEVI Corse 2025']],
+        ['auxiliaires : Cryptolaemus montrouzieri, Anagyrus vladimiri (farineuses), Rodolia cardinalis (australienne)', ['BSV Corse 2024', 'BSV PACA 2020', 'Brun 1990', 'COCHORTI 2021']],
+        ['écarter les fourmis : elles protègent les cochenilles', ['BSV PACA 2020', 'BSV Corse 2024']],
+        ['huile (blanche ou de colza), effet asphyxiant, en couvrant bien tout le feuillage', ['Brun 1990', 'BSV JEVI Corse 2025']]],
+      'note' => 'huile, savon, alcool : essayer d’abord sur quelques feuilles ; jamais en plein soleil, au-dessus d’environ 28 °C ni sur une plante assoiffée ; pas en même temps que cuivre ou soufre (brûlures ; précaution du plugin, pas des sources)'],
+    'acarien' => ['nom' => 'Acariens (araignées rouges, tétranyques)', 'statut' => 'present',
+      'signes' => 'feuilles piquetées, jaunies, blanchies ou bronzées, petites toiles, surtout les jeunes feuilles ; difficiles à voir à l’œil nu',
+      'sources' => ['BSV PACA 2020', 'Brun 1990'],
+      'gestes' => [['regarder les deux faces des jeunes feuilles à la loupe', ['BSV PACA 2020']],
+        ['pas d’excès d’engrais', ['BSV PACA 2020']],
+        ['auxiliaires : acariens prédateurs (typhlodromes), coccinelles Stethorus', ['Brun 1990']],
+        ['huile blanche, en couvrant bien', ['Brun 1990']]],
+      'note' => 'huile : essayer d’abord sur quelques feuilles, jamais en plein soleil ni au-dessus d’environ 28 °C (précaution du plugin). Sources en désaccord sur le climat : chaud et sec pour BSV PACA 2020 (tétranyques), étés chauds et secs défavorables pour Brun 1990 (Panonychus citri)'],
+    'aleurode' => ['nom' => 'Aleurodes (mouches blanches)', 'statut' => 'present',
+      'signes' => 'petites mouches blanches qui s’envolent quand on secoue, larves plates sous les feuilles ; miellat, fumagine',
+      'sources' => ['Brun 1990', 'BSV Corse 2024'],
+      'gestes' => [['auxiliaire spécifique (Cales noacki pour l’aleurode floconneux) : traiter rarement nécessaire', ['Brun 1990']],
+        ['huile blanche contre les larves, en couvrant le dessous des feuilles', ['Brun 1990']]],
+      'note' => 'huile : essayer d’abord sur quelques feuilles, jamais en plein soleil ni au-dessus d’environ 28 °C (précaution du plugin)'],
+    'puceron' => ['nom' => 'Pucerons', 'statut' => 'present',
+      'signes' => 'colonies sur les jeunes pousses tendres, feuilles enroulées ; miellat',
+      'sources' => ['Brun 1990', 'BSV JEVI Corse 2025', 'BSV Corse 2024'],
+      'gestes' => [['surveiller les pousses tendres : les feuilles durcies ne sont plus attaquées', ['Brun 1990']],
+        ['favoriser les auxiliaires généralistes (coccinelles, chrysopes, syrphes)', ['BSV Corse 2024']]]],
+    'fumagine' => ['nom' => 'Fumagine', 'statut' => 'present',
+      'signes' => 'dépôt noir comme de la suie, qui s’essuie, sur feuilles et fruits ; vient du miellat d’un insecte',
+      'sources' => ['NHB', 'BSV JEVI Corse 2025', 'BSV PACA 2020', 'Brun 1990'],
+      'gestes' => [['trouver l’insecte qui fait le miellat (cochenille, aleurode, puceron) et le traiter : la fumagine part ensuite d’elle-même', ['NHB', 'BSV PACA 2020', 'Brun 1990']],
+        ['laver les feuilles à l’eau savonneuse', ['BSV JEVI Corse 2025']]]],
+    'mineuse' => ['nom' => 'Mineuse des agrumes', 'statut' => 'present',
+      'signes' => 'galeries sinueuses argentées dans les jeunes feuilles, qui se crispent et s’enroulent ; surtout les pousses d’été',
+      'sources' => ['BSV PACA 2020', 'BSV Corse 2024', 'BSV JEVI Corse 2025'],
+      'gestes' => [['dégâts surtout esthétiques ; jeunes plantes plus menacées', ['BSV PACA 2020', 'BSV Corse 2024']],
+        ['couper les jeunes pousses atteintes', ['BSV PACA 2020']],
+        ['si besoin, produit de biocontrôle', ['BSV Corse 2024']]]],
+    'mal_secco' => ['nom' => 'Mal secco (citronniers et limes)', 'statut' => 'present',
+      'signes' => 'feuilles qui tombent depuis la pointe des rameaux, rameaux qui sèchent, bois coloré saumon à rouge carotte sous l’écorce ; infection l’hiver dès 5 °C',
+      'sources' => ['Chapot 1963'],
+      'gestes' => [['couper jusqu’au bois sain (sans coloration) ; déchets en sac fermé à la déchetterie, jamais au compost (Chapot dit brûler : interdit aux particuliers aujourd’hui)', ['Chapot 1963']],
+        ['désinfecter les outils entre deux coupes (alcool à 70° ; Chapot : sulfate de cuivre) et protéger les plaies de taille ; éviter de blesser l’hiver', ['Chapot 1963']]]],
+    'aleurode_epineux' => ['nom' => 'Aleurode épineux (Aleurocanthus spiniferus)', 'statut' => 'quarantaine',
+      'signes' => 'petites protubérances noires et épineuses sous les feuilles, miellat, fumagine, fourmis',
+      'sources' => ['Fiche SORE (aleurode épineux)'],
+      'gestes' => [['ne pas déplacer ni donner la plante, photographier le dessous des feuilles', ['Fiche SORE (aleurode épineux)']],
+        ['signaler à la FREDON ou au SRAL (organisme de quarantaine)', ['Fiche SORE (aleurode épineux)']]]],
+    'hlb' => ['nom' => 'HLB (greening, dragon jaune)', 'statut' => 'absent',
+      'signes' => 'marbrures jaunes asymétriques des feuilles, fruits déformés qui se colorent à l’envers, psylles sur les jeunes pousses',
+      'sources' => ['PP328', 'BSV JEVI Corse 2025', 'Sáenz Pérez 2019'],
+      'gestes' => [['d’abord le test de symétrie : jaunissement pareil des deux côtés de la nervure = carence (zinc, magnésium…), asymétrique = suspect', ['PP328', 'Sáenz Pérez 2019']],
+        ['asymétrique avec psylles : signaler à la FREDON ; aucun traitement n’existe', ['BSV JEVI Corse 2025', 'Sáenz Pérez 2019']]],
+      'note' => 'absent de France métropolitaine ; psylle vecteur présent en Espagne et au Portugal (BSV JEVI Corse 2025)'],
+    'tristeza' => ['nom' => 'Tristeza (CTV)', 'statut' => 'absent',
+      'signes' => 'déclin des arbres greffés sur bigaradier ; virus transmis par pucerons et greffons',
+      'sources' => ['Vogel 1990', 'Sáenz Pérez 2019'],
+      'gestes' => [['plants et greffons d’origine contrôlée', ['Vogel 1990', 'Sáenz Pérez 2019']],
+        ['porte-greffe tolérant plutôt que bigaradier (FA5, Volkameriana, Cléopâtre…)', ['Sáenz Pérez 2019', 'Vogel 1990']]],
+      'note' => 'signalée absente : Vogel 1990 la tient hors de Corse par l’interdiction d’importer ; statut actuel à vérifier'],
+  ];
+  /* Signe observé (mesure sante.signe) → problèmes possibles, dans l'ordre de SANTE */
+  const SIGNES = ['feuilles collantes (miellat)' => ['cochenille', 'aleurode', 'puceron'], 'dépôt noir qui s’essuie' => ['fumagine'], 'boucliers ou amas cotonneux blancs' => ['cochenille'],
+    'petites mouches blanches qui s’envolent' => ['aleurode'], 'toiles fines, feuilles piquetées ou bronzées' => ['acarien'], 'galeries sinueuses argentées' => ['mineuse'],
+    'points noirs épineux sous les feuilles' => ['aleurode_epineux'], 'gomme ou écorce brune au collet' => ['gommose'], 'racines molles, écorce qui part (fil blanc)' => ['gommose'], 'rameaux qui sèchent depuis la pointe' => ['mal_secco', 'gommose'],
+    'marbrures jaunes asymétriques' => ['hlb']];
+
+  /* Pistes d'après la dernière mesure de santé : signe observé, ravageur ou maladie nommés, écorce du tronc. $citron : plante du groupe Citron ou Lime (mal secco).
+     → [['id', 'pourquoi', 'note'?], …] dans l'ordre de priorité de SANTE. Des pistes, jamais un diagnostic. */
+  public static function sante(array $v, $citron) {
+    $ids = [];
+    $add = function ($id, $p) use (&$ids) { if (isset(self::SANTE[$id])) $ids[$id][] = $p; };
+    foreach (self::SIGNES[$v['sante.signe'] ?? ''] ?? [] as $id) $add($id, $v['sante.signe']);
+    $r = $v['sante.ravageur'] ?? ''; if ($r !== '' && $r !== 'aucun' && $r !== 'autre') $add($r, 'ravageur noté' . (($v['sante.intensite'] ?? '') !== '' ? ' (' . $v['sante.intensite'] . ')' : ''));
+    $m = $v['sante.maladie'] ?? ''; if (in_array($m, ['gommose', 'fumagine'], true)) $add($m, 'maladie notée');
+    if (in_array($v['tronc.ecorce'] ?? '', ['gomme', 'lésions'], true)) $add('gommose', 'écorce : ' . $v['tronc.ecorce']);
+    $out = [];
+    foreach (array_keys(self::SANTE) as $id) {
+      if (!isset($ids[$id])) continue;
+      $x = ['id' => $id, 'pourquoi' => implode(' ; ', array_unique($ids[$id]))];
+      if ($id == 'mal_secco' && !$citron) $x['note'] = 'peu probable : touche surtout citronniers et limes ; voir d’abord le collet et l’arrosage';
+      if ($id == 'gommose' && ($v['pot.substrat'] ?? '') == 'détrempé') $x['note'] = 'substrat détrempé à la même mesure';
+      $out[] = $x;
+    }
+    return $out;
   }
 
   public static function date($v) { // 'Y-m-d' valide ou exception
