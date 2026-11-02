@@ -279,16 +279,17 @@ class journalcultures_calc {
   }
   /* Température pour souder (moyenne 24 h de l'emplacement) : sous ~21 °C le Poncirus s'endort (Alabama ACES : dormance quand le jour reste < 70 °F),
      cal le plus rapide vers 21-29 °C, prise moindre au-dessus de ~32 °C (sources d'amateurs : growingfruit.org, forum) → seuils réglables */
+  public static function virgule($x) { return str_replace('.', ',', (string)$x); } // 11.2 → « 11,2 » (affichage français)
   public static function greffeTemp($moy, $min = 21, $max = 32) {
     if ($moy === null) return '';
-    if ($moy < $min) return sprintf('trop froid pour souder : %s °C en moyenne sur 24 h (< %s °C)', floor($moy * 10) / 10, $min); // arrondi vers l'extérieur : jamais « 21 °C (< 21 °C) »
-    if ($moy > $max) return sprintf('trop chaud pour souder : %s °C en moyenne sur 24 h (> %s °C)', ceil($moy * 10) / 10, $max);
+    if ($moy < $min) return sprintf('trop froid pour souder : %s °C en moyenne sur 24 h (< %s °C)', self::virgule(floor($moy * 10) / 10), self::virgule($min)); // arrondi vers l'extérieur : jamais « 21 °C (< 21 °C) »
+    if ($moy > $max) return sprintf('trop chaud pour souder : %s °C en moyenne sur 24 h (> %s °C)', self::virgule(ceil($moy * 10) / 10), self::virgule($max));
     return '';
   }
   /* Œil dormant : soudure faite, plus besoin de 21 °C ; reste à le protéger du gel (UC ANR : greffe d'automne à protéger du gel).
      ponytail: 0 °C fixe sur le minimum 24 h, à rendre réglable si la sonde est loin de la plante */
   public static function greffeGel($min) {
-    return $min !== null && $min < 0 ? sprintf('gel : protéger l’œil, %s °C au plus bas sur 24 h', floor($min * 10) / 10) : '';
+    return $min !== null && $min < 0 ? sprintf('gel : protéger l’œil, %s °C au plus bas sur 24 h', self::virgule(floor($min * 10) / 10)) : '';
   }
   // verdict d'un contrôle (ok, douteux = revoir dans 7 jours, printemps = œil laissé dormant, mort) → [statut, prochain contrôle 'Y-m-d' ou '']
   public static function controler($statut, $verdict, $greffe, $jour) {
@@ -309,7 +310,12 @@ class journalcultures_calc {
     if ($a < 1900 || ($mo !== null && !checkdate($mo, (int)($m[3] ?? 1), $a))) return null;
     $ans = function ($n) { return $n . ' an' . ($n > 1 ? 's' : ''); };
     if ($mo === null) { $n = (int)date('Y', $now) - $a; return $n < 0 ? null : ($n == 0 ? 'moins d’un an' : '≈ ' . $ans($n)); } // année seule : à un an près
-    $n = ((int)date('Y', $now) - $a) * 12 + (int)date('n', $now) - $mo;
+    $j = ($m[3] ?? '') !== '' ? (int)$m[3] : null;
+    $n = ((int)date('Y', $now) - $a) * 12 + (int)date('n', $now) - $mo - ($j !== null && (int)date('j', $now) < $j ? 1 : 0); // mois entiers révolus
+    if ($n == 0 && $j !== null) { // moins d'un mois : en jours calendaires (DateTime : pas d'écart d'une heure au changement d'heure)
+      $d = (new DateTime(sprintf('%04d-%02d-%02d', $a, $mo, $j)))->diff(new DateTime(date('Y-m-d', $now)));
+      return $d->invert ? null : ($d->days == 0 ? 'aujourd’hui' : $d->days . ' jour' . ($d->days > 1 ? 's' : ''));
+    }
     return $n < 0 ? null : ($n == 0 ? 'moins d’un mois' : ($n < 12 ? $n . ' mois' : $ans(intdiv($n, 12))));
   }
 
@@ -581,7 +587,12 @@ class journalcultures_calc {
     $c = []; // code mis de côté : rien n'est balisé dedans
     $t = preg_replace_callback('/`([^`]+)`/', function ($m) use (&$c) { $c[] = '<code>' . $m[1] . '</code>'; return "\x01" . (count($c) - 1) . "\x01"; }, $t);
     $t = preg_replace_callback('/!\[([^\]]*)\]\((images\/[\w.-]+\.(?:png|jpe?g|webp|svg))\)/', function ($m) {
-      return '<img src="plugins/journalcultures/docs/' . $m[2] . '" alt="' . $m[1] . '" loading="lazy" style="max-width:100%">'; }, $t);
+      // intégrée en data: : le .htaccess du cœur Jeedom refuse toute URL contenant /docs/ (403)
+      $f = __DIR__ . '/../../docs/' . $m[2];
+      if (!is_file($f)) return '[image manquante : ' . $m[2] . ']';
+      $e = strtolower(pathinfo($f, PATHINFO_EXTENSION));
+      $type = ['svg' => 'svg+xml', 'jpg' => 'jpeg'][$e] ?? $e;
+      return '<img src="data:image/' . $type . ';base64,' . base64_encode(file_get_contents($f)) . '" alt="' . $m[1] . '" style="max-width:100%">'; }, $t);
     $t = preg_replace_callback('/\[([^\]]+)\]\(([^)\s]+)\)/', function ($m) {
       if (preg_match('/^https?:\/\//', $m[2])) return '<a href="' . $m[2] . '" target="_blank" rel="noopener noreferrer">' . $m[1] . '</a>';
       if (preg_match('/^(?:(\w+)\.md)?(?:#([\p{L}\p{N}_-]+))?$/u', $m[2], $l)) return '<a data-n="' . ($l[1] ?? '') . '" data-a="' . ($l[2] ?? '') . '">' . $m[1] . '</a>';

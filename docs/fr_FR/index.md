@@ -2,6 +2,22 @@
 
 Noter simplement la vie des plantes de la maison et du jardin, même quand elles changent de place au fil des saisons.
 
+Les captures de cette notice viennent d'une collection de démonstration (plantes et données fictives).
+
+## Prise en main
+- **Configuration du plugin** : décrire les emplacements et leurs sondes (voir [Configuration du plugin](#configuration-du-plugin)), cocher « Page plein écran dans le menu Accueil ».
+- **Créer une collection** (page du plugin, « Ajouter », type « Collection ») et la placer dans un objet : c'est la tuile.
+- **＋ Plante** pour chaque plante : emplacement, collection, nom ; le reste peut attendre (voir [Nouvelle plante](#nouvelle-plante)).
+- Au fil des jours : **＋ Noter** les travaux, l'onglet **Mesures** pour la croissance, **Déplacer…** quand les plantes changent de place.
+
+![Page plein écran](images/panel.png)
+
+*Page plein écran (Accueil → Journal de cultures) : un onglet par collection, les emplacements avec leur température et humidité, la liste des plantes ; la fiche s'ouvre à droite. Le bouton Notice ouvre ce texte.*
+
+![Tuile d'une collection](images/tuile.png)
+
+*La tuile de la collection sur le dashboard : T° = température de l'emplacement, Rust. = rusticité effective de la plante (voir [Configuration du plugin](#configuration-du-plugin)).*
+
 ## Principe
 - **Collection** (ex. Agrumes, Porte-greffes, Plantes de la maison) : c'est la tuile. Elle affiche le tableau de ses plantes
   (emplacement, température, rusticité effective, engrais à donner, alerte).
@@ -14,6 +30,10 @@ Noter simplement la vie des plantes de la maison et du jardin, même quand elles
 - Administrateurs : cocher des plantes, puis **＋ Noter** (une entrée pour chacune) ou **Déplacer…** (changer l'emplacement, la collection, ou les deux :
   rentrée à la serre en un geste, noté au journal) ; **✓** à côté de 🌱 = engrais donné.
 
+![Onglet Journal](images/journal.png)
+
+*Onglet Journal : une entrée par travail (date, travail, lieu, note), la plus récente en haut ; ✕ supprime une entrée.*
+
 ## Mesures
 Onglet **Mesures** de la fenêtre d'une plante : choisir l'organe, saisir ce qu'on a mesuré (les champs vides sont ignorés ;
 plusieurs Ø de fruits séparés par des espaces, virgule décimale : `32 35,5 41`), une note et, au besoin, une photo. Tout part au journal en une entrée « Mesure ».
@@ -22,6 +42,10 @@ Courbes historisées : hauteur, Ø du tronc (greffon, ou tronc d'une plante non 
 Rempotage : organe « Racines / pot », champs « Nouveau pot » (forme, Ø ou côté, hauteur, hauteur de terre) ou « Pleine terre » : ils remplacent le pot de la fiche,
 la rusticité effective est recalculée et l'ancien → le nouveau pot est noté au journal.
 Les mesures complètent les caractères d'identification vides (aile de moins de 2 mm de large = simple liseré ; pas de taille de fruit pour les fruits en doigt ou en main) ; un désaccord est noté au journal.
+
+![Onglet Mesures](images/mesures.png)
+
+*Onglet Mesures : un organe à la fois (ici « Plante ») ; « – » = non mesuré.*
 
 ## Page plein écran
 Cocher « Page plein écran dans le menu Accueil » dans la configuration du plugin. Même page sur ordinateur, tablette et téléphone ;
@@ -39,6 +63,10 @@ sur grand écran la fiche s'ouvre à côté de la liste. Relue toutes les 5 minu
   à protéger dès 0 °C, < 5 ans), pas de chiffre propre aux greffes : à ajuster. Achat ou sans date : aucune pénalité, 0 pour la retirer.
 - **Clé Pl@ntNet** (facultative) : compte gratuit sur my.plantnet.org, 500 identifications par jour.
 
+![Calcul de la rusticité effective](images/rusticite.svg)
+
+*Rusticité effective = rusticité en pleine terre + pénalité du pot + pénalité de jeunesse ; l'alerte part à la rusticité effective + la marge. Mêmes chiffres que le Citronnier Meyer des captures.*
+
 ## Fiche d'une plante
 - **Nom botanique** : vérifié auprès de GBIF à l'enregistrement (nom retenu, famille, statut).
 - **Rusticité** : température supportée en pleine terre, en °C (« −7 » ou « -7 (FA5) » acceptés).
@@ -50,6 +78,10 @@ sur grand écran la fiche s'ouvre à côté de la liste. Relue toutes les 5 minu
   « Écrire dans le calendrier » remplace les lignes de ces produits et garde les autres (fer, magnésium, lignes à la main). Pistes de carence : d'après la dernière mesure, jamais un diagnostic.
 - **Sources et points à vérifier** : où vient chaque information, et ce qui reste à confirmer.
 
+![Partie Engrais de la fiche](images/engrais.png)
+
+*Partie Engrais : pot de 17,7 L × 0,07 g d'azote par litre et par semaine × 8 semaines ÷ 7 % d'azote = 142 g de Ferti Agrumes toutes les 8 semaines (arrondi ici à 140 g à la main). Au-dessus, une piste de carence d'après la dernière mesure.*
+
 Multiplication (semis, greffe…) et sa date (`2024`, `2024-05` ou `2024-05-12`) : l'âge est affiché dans la fiche
 (« ≈ » quand seule l'année est connue). Pour une greffe, préciser le type (voir [Greffe](#greffe)).
 
@@ -60,6 +92,10 @@ le groupe probable et la rusticité estimée s'affichent à chaque choix. Les ph
 
 **Pl@ntNet** (« ＋ Plante » et « Identifier… ») : choisir une ou plusieurs photos, donner à chacune son type (feuille, fleur, fruit, écorce, ou auto),
 cocher celles à envoyer (5 au plus) puis « Pl@ntNet » : une seule demande pour toutes, plus sûre qu'une photo seule.
+
+![Formulaire Nouvelle plante](images/nouvelle-plante.png)
+
+*Début du formulaire « ＋ Plante » : emplacement et collection d'abord.*
 
 ## Greffe
 **Greffer…** (bas de l'onglet Fiche, administrateurs) : la plante, en général un porte-greffe, devient le greffon. Même formulaire que « ＋ Plante » :
@@ -83,6 +119,12 @@ Tant que la greffe n'est pas reprise, la moyenne sur 24 h de la sonde de l'empla
 La soudure est la plus rapide vers 21-29 °C ; sous 21 °C le Poncirus s'endort (Alabama ACES), et la greffe attend le printemps.
 Œil dormant (« Au printemps ») : la soudure est faite, le seuil de 21 °C ne s'applique plus ; seul le gel compte
 (« gel : protéger l'œil » si la sonde descend sous 0 °C sur 24 h). Il faut que la sonde soit historisée.
+
+![Suivi d'une greffe](images/greffe-suivi.svg)
+
+![Fiche d'une greffe en attente](images/greffe.png)
+
+*Yuzu greffé il y a 12 jours : contrôle prévu le 11/11 (J+21), la question à se poser, et l'avertissement de température (la serre est à 11,2 °C en moyenne). Les boutons répondent au contrôle.*
 
 Type de greffe : si la multiplication est vide, le choisir la passe à « greffe » ; avec une autre multiplication (semis, bouture…), il est effacé.
 

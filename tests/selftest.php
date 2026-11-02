@@ -20,7 +20,7 @@ $ok($C::controler('attente', 'ok', '2026-09-13', '2026-10-04') == ['probable', '
   && $C::controler('probable', 'printemps', '2026-09-13', '2026-11-01') == ['dormant', '2027-03-15'] && $C::controler('attente', 'printemps', '2026-02-01', '2026-02-20') == ['dormant', '2026-03-15']
   && $C::controler('dormant', 'ok', '2026-09-13', '2027-03-20') == ['reprise', ''] && $C::controler('dormant', 'douteux', '2026-09-13', '2027-03-15') == ['dormant', '2027-03-22'] && strpos($C::greffeQuestion('attente', 'chip'), 'œil') === 0, 'contrôles de greffe');
 $ok($C::greffeTemp(null) === '' && $C::greffeTemp(20.04) === 'trop froid pour souder : 20 °C en moyenne sur 24 h (< 21 °C)' && $C::greffeTemp(25) === ''
-  && strpos($C::greffeTemp(33, 21, 32), 'trop chaud') === 0 && $C::greffeTemp(19, 18, 32) === '' && strpos($C::greffeTemp(20.96), ': 20.9 °C') !== false && $C::greffeGel(null) === '' && $C::greffeGel(0.4) === '' && strpos($C::greffeGel(-1.25), '-1.3 °C') !== false, 'température de la greffe');
+  && strpos($C::greffeTemp(33, 21, 32), 'trop chaud') === 0 && $C::greffeTemp(19, 18, 32) === '' && strpos($C::greffeTemp(20.96), ': 20,9 °C') !== false && $C::greffeGel(null) === '' && $C::greffeGel(0.4) === '' && strpos($C::greffeGel(-1.25), '-1,3 °C') !== false, 'température de la greffe');
 try { $C::controler('echouee', 'ok', '2026-09-13', '2026-11-01'); $ok(false, 'greffe échouée : plus de contrôle'); } catch (Exception $e) {}
 $ok($C::alerte(-5.0, 1.0, null)['alerte'] === 0 && $C::alerte(-5.0, -3.0, null)['alerte'] === 1 && $C::alerte(-5.0, 4.0, -3.5)['alerte'] === 1, 'alerte : mesurée, prévue');
 $ok($C::alerte(null, -10.0, null) === null && $C::alerte(-5.0, null, null) === null, 'alerte : inconnue');
@@ -89,7 +89,7 @@ $e = $C::estimee('', ['folioles' => 'un', 'fruit' => '6-10', 'couleur' => 'jaune
 $ok($e['par'] == 'caracteres' && $e['r'] == max(array_intersect_key($C::RUSTICITE_GROUPES, array_flip($e['groupes']))) && count($e['groupes']) > 3, 'rusticité estimée : le moins rustique des groupes possibles');
 $ok($C::estimee('Citrus sinensis', ['feuillage' => 'caduc', 'folioles' => 'trois'])['groupes'] == ['Orange douce'] && $C::estimee('', ['aile' => 'xx']) === null, 'rusticité estimée : le nom passe avant les caractères ; rien de reconnu');
 $now = strtotime('2026-10-31');
-$ok($C::age('2024', $now) === '≈ 2 ans' && $C::age('2026', $now) === 'moins d’un an' && $C::age('2026-03', $now) === '7 mois' && $C::age('2025-10-12', $now) === '1 an' && $C::age('2026-10', $now) === 'moins d’un mois', 'âge');
+$ok($C::age('2024', $now) === '≈ 2 ans' && $C::age('2026', $now) === 'moins d’un an' && $C::age('2026-03', $now) === '7 mois' && $C::age('2025-10-12', $now) === '1 an' && $C::age('2026-10', $now) === 'moins d’un mois' && $C::age('2026-10-19', $now) === '12 jours' && $C::age('2026-09-30', $now) === '1 mois' && $C::age('2026-10-01', strtotime('2026-11-02')) === '1 mois' && $C::age('2026-09-05', strtotime('2026-11-02')) === '1 mois', 'âge');
 $ok($C::age('2027', $now) === null && $C::age('2024-13', $now) === null && $C::age('2024-05-99', $now) === null && $C::age('2024-02-29', $now) === '2 ans' && $C::age('vers 2024', $now) === null && $C::age('', $now) === null, 'âge illisible ou à venir');
 $v = $C::valeurs(['feuilles.limbe_l' => '80', 'feuilles.aile_l' => '45,5', 'fruits.diametres' => '32; 35 41', 'pot.substrat' => 'frais', 'plante.hauteur' => '', 'x.y' => '3']);
 $ok($v === ['feuilles.limbe_l' => 80.0, 'feuilles.aile_l' => 45.5, 'fruits.diametres' => [32.0, 35.0, 41.0], 'pot.substrat' => 'frais'], 'valeurs saisies');
@@ -129,15 +129,14 @@ echo "calculs OK\n";
 
 $ok($C::markdown("a `**x** <b>` **b** *i* [L](https://e.fr) [G](#greffe) [S](sante.md#mal-secco) [X](javascript:alert)\n- un\n  suite\n\n| A | B |\n|---|---|\n| 1 | 2 |\n![s](images/a.svg) ![t](../x.png)")
   == '<p>a <code>**x** &lt;b&gt;</code> <b>b</b> <i>i</i> <a href="https://e.fr" target="_blank" rel="noopener noreferrer">L</a> <a data-n="" data-a="greffe">G</a> <a data-n="sante" data-a="mal-secco">S</a> X</p>'
-  . '<ul><li>un suite</li></ul><table class="table table-condensed"><tr><th>A</th><th>B</th></tr><tr><td>1</td><td>2</td></tr></table><p><img src="plugins/journalcultures/docs/images/a.svg" alt="s" loading="lazy" style="max-width:100%"> !t</p>'
+  . '<ul><li>un suite</li></ul><table class="table table-condensed"><tr><th>A</th><th>B</th></tr><tr><td>1</td><td>2</td></tr></table><p>[image manquante : images/a.svg] !t</p>'
   && $C::ancre("Fiche d'une plante") == 'fiche-dune-plante' && $C::ancre('Identification (agrumes)') == 'identification-agrumes', 'notice : markdown échappé, liens filtrés, ancres comme GitHub');
 foreach (array_keys($C::NOTICES) as $k) {
   $f = __DIR__ . "/../docs/fr_FR/$k.md";
   if (!is_file($f)) continue;
   $h = $C::markdown(file_get_contents($f));
   $ok(strlen($h) > 100 && strpos($h, '<script') === false, "notice $k convertie");
-  preg_match_all('/src="plugins\/journalcultures\/docs\/(images\/[^"]+)"/', $h, $m);
-  foreach ($m[1] as $i) $ok(is_file(__DIR__ . "/../docs/$i"), "notice $k : image $i absente");
+  $ok(strpos($h, 'image manquante') === false, "notice $k : image absente de docs/images");
   preg_match_all('/data-n="(\w*)" data-a="([^"]*)"/', $h, $m, PREG_SET_ORDER);
   foreach ($m as $l) if ($l[1] === '' && $l[2] !== '') $ok(strpos($h, 'id="jdc-n-' . $l[2] . '"') !== false, "notice $k : ancre #$l[2] introuvable");
 }

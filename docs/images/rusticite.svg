@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 272" width="640" font-family="Helvetica, Arial, sans-serif" font-size="13">
+  <title>Rusticité effective et seuil d'alerte (exemple du Citronnier Meyer)</title>
+  <rect width="640" height="272" rx="8" fill="#fbfaf6"/>
+  <text x="20" y="28" font-size="15" font-weight="bold" fill="#222">Rusticité effective et alerte de froid — exemple : Citronnier Meyer</text>
+  <!-- échelle -8 … +6 °C : x = 60 + (t + 8) * 40 -->
+  <line x1="60" y1="190" x2="620" y2="190" stroke="#555"/>
+  <g fill="#555" text-anchor="middle" font-size="11">
+    <text x="60" y="207">−8</text><text x="140" y="207">−6</text><text x="220" y="207">−4</text><text x="300" y="207">−2</text>
+    <text x="380" y="207">0 °C</text><text x="460" y="207">2</text><text x="540" y="207">4</text><text x="620" y="207">6</text>
+  </g>
+  <g stroke="#555"><line x1="60" y1="186" x2="60" y2="194"/><line x1="140" y1="186" x2="140" y2="194"/><line x1="220" y1="186" x2="220" y2="194"/><line x1="300" y1="186" x2="300" y2="194"/><line x1="380" y1="186" x2="380" y2="194"/><line x1="460" y1="186" x2="460" y2="194"/><line x1="540" y1="186" x2="540" y2="194"/><line x1="620" y1="186" x2="620" y2="194"/></g>
+  <!-- -5 → -1 (pot +4) → -0,2 (jeunesse +0,8) → 2,8 (marge +3) -->
+  <rect x="180" y="62" width="160" height="26" fill="#c7dcef"/>
+  <text x="188" y="80" fill="#123">pot : + 4 °C</text>
+  <rect x="340" y="96" width="32" height="26" fill="#f3d9a4"/>
+  <text x="378" y="114" fill="#123">jeunesse : + 0,8 °C</text>
+  <rect x="372" y="130" width="120" height="26" fill="#f2c0b8"/>
+  <text x="380" y="148" fill="#123">marge : + 3 °C</text>
+  <line x1="180" y1="56" x2="180" y2="190" stroke="#2a6" stroke-width="3"/>
+  <text x="172" y="52" fill="#173">−5 °C : rusticité en pleine terre (fiche)</text>
+  <line x1="372" y1="96" x2="372" y2="190" stroke="#246" stroke-width="3"/>
+  <text x="300" y="230" text-anchor="middle" fill="#246" font-weight="bold">−0,2 °C : rusticité effective</text>
+  <line x1="492" y1="130" x2="492" y2="190" stroke="#c22" stroke-width="3"/>
+  <text x="500" y="230" fill="#c22" font-weight="bold">2,8 °C : alerte</text>
+  <text x="20" y="260" font-size="10" fill="#777">Pot Ø 30 cm, 25 cm de terre : e = 25 ÷ 2 = 12,5 ; pénalité = min(8, 50 ÷ 12,5) = 4. Bouture de 2022 : 6 × (1 − 4,3 ÷ 5) ≈ 0,8.</text>
+</svg>
