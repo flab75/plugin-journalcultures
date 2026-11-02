@@ -45,7 +45,7 @@ class journalcultures extends eqLogic {
     return ['emplacement' => [__('Emplacement', __FILE__), 'string', '', 1], 'temperature' => [__('Température de l’emplacement', __FILE__), 'numeric', '°C', 1],
       'rusticite' => [__('Rusticité effective', __FILE__), 'numeric', '°C', 1], 'alerte' => [__('Alerte froid', __FILE__), 'binary', '', 1],
       'raison' => [__('Raison de l’alerte', __FILE__), 'string', '', 1], 'engrais' => [__('Engrais de la semaine', __FILE__), 'string', '', 1],
-      'greffe' => [__('Greffe à contrôler', __FILE__), 'string', '', 1],
+      'greffe' => [__('Greffe à contrôler', __FILE__), 'string', '', 0], // texte > 127 caractères (question + température) : refusé par history.value
       'hauteur' => [__('Hauteur', __FILE__), 'numeric', 'cm', 1], 'tronc' => [__('Diamètre du tronc', __FILE__), 'numeric', 'mm', 1],
       'feuilles' => [__('Nombre de feuilles', __FILE__), 'numeric', '', 1], 'fruits' => [__('Nombre de fruits', __FILE__), 'numeric', '', 1]];
   }
@@ -89,7 +89,7 @@ class journalcultures extends eqLogic {
     }
     if ($nettoyer) $this->_cmds = []; // getCmd() garde en cache les commandes lues (postSave, maj) : sinon une supprimée n'est pas recréée
     foreach ($att as $k => [$nom, $sub, $unite, $hist]) {
-      if (is_object($this->getCmd('info', $k))) continue;
+      if (is_object($c = $this->getCmd('info', $k))) { if (!$hist && $c->getIsHistorized()) { $c->setIsHistorized(0); $c->save(); } continue; } // commande créée historisée par une version précédente
       $c = new journalculturesCmd();
       $c->setEqLogic_id($this->getId()); $c->setLogicalId($k); $c->setName($nom); $c->setType('info'); $c->setSubType($sub);
       $c->setUnite($unite); $c->setIsHistorized($hist); $c->setIsVisible(0); $c->save();
@@ -689,7 +689,7 @@ class journalcultures extends eqLogic {
 
 class journalculturesCmd extends cmd {
   public function preSave() { // texte possiblement > 127 caractères : refusé par history.value en mode strict
-    if ($this->getLogicalId() == 'resume') $this->setIsHistorized(0);
+    if (in_array($this->getLogicalId(), ['resume', 'greffe'], true)) $this->setIsHistorized(0);
   }
 
   public function execute($_options = []) {
