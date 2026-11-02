@@ -106,16 +106,21 @@ if (!window.journalcultures || window.journalcultures.v !== 13) (function () { /
   function noms(d, ids) { return d.plantes.filter(function (p) { return ids.indexOf(String(p.id)) >= 0 }).map(function (p) { return p.nom }).join(', ') }
 
   /* Engrais de la fiche : pistes de carence (dernière mesure), plan d'azote par volume du pot ; seuls les produits cochés, rien n'est écrit sans le bouton */
+  function saison(s) { // « 10-40 » (semaines ISO) → « du 5 mars au 1 oct. » ; ponytail: lundi approché à ±3 jours, suffit pour un calendrier d'engrais
+    var w = String(s).split('-'), an = new Date().getFullYear()
+    function d(n) { return new Date(an, 0, 1 + (Number(n) - 1) * 7).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' }) }
+    return w.length == 2 ? "{{du}}" + ' ' + d(w[0]) + ' ' + "{{au}}" + ' ' + d(w[1]) : esc(s)
+  }
   function blocEngrais(e, admin) {
     var pl = e.produits.map(function (p, i) { return [p, i] }).filter(function (x) { return x[0].g100 !== null })
     return '<h4>' + "{{Engrais}}" + '</h4>' +
       (e.carences.length ? '<p><b>' + "{{Pistes d'après la dernière mesure}}" + '</b> <small>(' + "{{pas un diagnostic}}" + ')</small></p><ul>' + e.carences.map(function (c) {
         return '<li>' + esc(c.txt) + (c.produits.length ? '<br><small>' + "{{En stock}}" + ' : ' + esc(c.produits.join(' · ')) + '</small>' : '') + '</li>' }).join('') + '</ul>' : '') +
-      '<p>' + (e.litres ? "{{Pot}}" + ' ' + nb(e.litres, ' L') + ' · ' + "{{besoin}}" + ' ' + nb(e.litres * e.taux * 2) + ' ' + "{{g d'azote toutes les 2 semaines en saison}}" : "{{Pot de dimensions inconnues ou pleine terre : pas de plan (dose de l'étiquette)}}") + '</p>' +
+      '<p>' + (e.litres ? "{{Pot}}" + ' ' + nb(e.litres, ' L') + ' · ' + "{{besoin}}" + ' ' + nb(e.litres * e.taux * 2) + ' ' + "{{g d'azote toutes les 2 semaines en saison de croissance}}" + '<br><small>' + "{{Saison = de début mars à début octobre (semaines 10 à 40), rien en hiver ; chaque produit a la sienne, indiquée ci-dessous.}}" + '</small>' : "{{Pot de dimensions inconnues ou pleine terre : pas de plan (dose de l'étiquette)}}") + '</p>' +
       '<p><small>' + "{{Calendrier actuel}}" + ' : ' + (e.calendrier ? esc(e.calendrier).replace(/\n/g, ' ; ') : '–') + '</small></p>' +
       (e.litres && pl.length ? '<table class="jdc-plan">' + pl.map(function (x) {
         var p = x[0], i = x[1], v = e.parts[i] || 0
-        return '<tr><td><label><input type="checkbox" class="pk" data-i="' + i + '"' + (v ? ' checked' : '') + (admin ? '' : ' disabled') + '> ' + esc(p.nom) + '</label> <small>' + esc(p.n) + ' % N, ' + "{{toutes les}}" + ' ' + p.tous + ' ' + "{{sem.}}" + '</small></td>' +
+        return '<tr><td><label><input type="checkbox" class="pk" data-i="' + i + '"' + (v ? ' checked' : '') + (admin ? '' : ' disabled') + '> ' + esc(p.nom) + '</label> <small>' + esc(p.n) + ' % N, ' + "{{toutes les}}" + ' ' + p.tous + ' ' + "{{sem.}}" + ', ' + saison(p.saison) + '</small></td>' +
           '<td><input class="pp" data-i="' + i + '" type="number" min="0" max="100" style="width:4.5em" value="' + v + '"' + (admin ? '' : ' disabled') + '> %</td><td><input class="pd" data-i="' + i + '" type="number" min="0" step="any" style="width:5em"' + (e.doses[i] ? ' value="' + e.doses[i] + '"' : '') + (admin ? '' : ' disabled') + '> g <small class="pg" data-i="' + i + '"></small></td></tr>' }).join('') + '</table>' +
         '<p><small>' + "{{Seuls les produits cochés reçoivent l'azote, réparti selon les parts (total 100 %). La dose calculée peut être ajustée à la main : c'est elle qui est écrite.}}" + '</small>' +
         (admin ? ' <a class="b pe">' + "{{Écrire dans le calendrier}}" + '</a> <span class="jdc-er pr"></span>' : '') + '</p>' : '')
