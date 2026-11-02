@@ -7,6 +7,7 @@ require_once __DIR__ . '/journalcultures_calc.class.php';
 class journalcultures extends eqLogic {
   const TABLE = 'journalcultures_journal';
   // fiche : clé de configuration => libellé
+  const HIVER = '45-8'; // repos hivernal : novembre → février (hémisphère nord), choix du plugin
   const FICHE = ['bota' => 'Nom botanique', 'cultivar' => 'Cultivar', 'porte_greffe' => 'Porte-greffe', 'origine' => 'Origine',
     'rusticite' => 'Rusticité (°C, pleine terre)', 'taille_adulte' => 'Taille adulte', 'exposition' => 'Exposition', 'sol' => 'Sol',
     'arrosage' => 'Arrosage', 'taille' => 'Taille', 'fructification' => 'Fructification', 'mg' => 'Magnésium', 'fe' => 'Fer',
@@ -185,9 +186,17 @@ class journalcultures extends eqLogic {
       $al = ['alerte' => null, 'raison' => __('sonde muette', __FILE__)];
       if ($this->valeur('raison') !== $al['raison']) log::add('journalcultures', 'warning', $this->getHumanName() . ' : ' . sprintf(__('sonde de « %s » muette', __FILE__), $e));
     }
-    $eng = journalcultures_calc::engrais($this->getConfiguration('engrais'), (int)date('W'));
-    if ($eng && DB::Prepare('SELECT COUNT(*) n FROM ' . self::TABLE . ' WHERE plante_id = ? AND action = ? AND date >= ?',
-      [$this->getId(), 'Engrais', date('Y-m-d', strtotime('monday this week'))], DB::FETCH_TYPE_ROW)['n'] > 0) $eng = []; // déjà donné cette semaine
+    $hiv = $this->getConfiguration('hivernage') == 1; $chauffe = !empty($s[3]); $sem = (int)date('W');
+    if ($hiv && $chauffe && ($al['raison'] ?? '') === '' && in_array($sem, journalcultures_calc::semaines(self::sud() ? journalcultures_calc::decaler(self::HIVER, 26) : self::HIVER)))
+      $al['raison'] = __('repos hivernal : emplacement chauffé, à mettre au frais', __FILE__); // ponytail: d'après la case de l'emplacement, pas la mesure (une serre froide au soleil n'est pas « au chaud »)
+    $eng = []; $pou = null;
+    foreach (journalcultures_calc::engraisDus($this->getConfiguration('engrais'), $sem, $chauffe && !$hiv && !$this->jeuneHiver()) as [$lib, $k, $hors, $prod]) {
+      if ($pou === null && ($pou = journalcultures_calc::pousse($this->moyenne7(), self::seuil())) === null) $pou = 0; // 0 : pas de sonde historisée
+      if ($pou === false || (($k > 0 || $hors) && $pou !== true)) continue; // trop froid : l'apport attend ; sans sonde, seule la semaine prévue compte (et rien hors saison)
+      $notes = DB::Prepare('SELECT note FROM ' . self::TABLE . ' WHERE plante_id = ? AND action = ? AND date >= ?', [$this->getId(), 'Engrais', date('Y-m-d', strtotime("monday this week -$k weeks"))], DB::FETCH_TYPE_ALL) ?: [];
+      if (!array_filter($notes, function ($n) use ($prod) { return trim((string)$n['note']) === '' || preg_match('/(?<![\p{L}\d])' . preg_quote($prod, '/') . '(?![\p{L}\d])/iu', $n['note']); })) $eng[] = $lib; // ce produit (mot entier) ou un apport sans note, depuis la semaine prévue
+    }
+    while (count($eng) > 1 && mb_strlen(implode(' ; ', $eng)) > 120) array_pop($eng); // coupé au produit près : la note de la coche garde des noms entiers
     return ['empl' => $e, 't' => $t, 'h' => $h, 'tmin' => $tmin, 'reff' => $reff, 'jeunesse' => $jeu, 'estimee' => $est, 'alerte' => $al['alerte'] ?? null, 'raison' => $al['raison'] ?? '',
       'engrais' => mb_substr(implode(' ; ', $eng), 0, 120), 'greffe' => ($g = $this->suiviGreffe()) ? implode(' ; ', array_filter([$g['du'] ? $g['question'] : '', $g['temp']])) : ''];
   }
@@ -429,9 +438,10 @@ class journalcultures extends eqLogic {
     if ($pg) {
       if (!$pg->getIsEnable()) throw new Exception(__('Plante désactivée', __FILE__));
       $p = $pg; $avant = $pg->getName(); $c['multiplication'] = 'greffe';
-      $p->setConfiguration('greffe_avant', self::instantane($pg)); // « Redevenir porte-greffe » si la greffe échoue
-      try { $jour = journalcultures_calc::date($c['date_mult'] ?? ''); } catch (Exception $x) { $jour = date('Y-m-d'); } // date de greffe partielle (2026-05) ou absente : aujourd'hui
-      foreach (array_merge(array_diff(array_keys(self::FICHE), ['sol']), ['etiquette', 'type_greffe', 'date_mult']) as $k) $p->setConfiguration($k, '');
+      if (!(in_array((string)$pg->getConfiguration('greffe_statut'), ['echouee', 'attente', 'probable'], true) && is_array($pg->getConfiguration('greffe_avant'))))
+        $p->setConfiguration('greffe_avant', self::instantane($pg)); // « Redevenir porte-greffe » si la greffe échoue ; regreffe d'une greffe pas prise : garder la fiche du vrai porte-greffe
+      try { $c['date_mult'] = journalcultures_calc::date($c['date_mult'] ?? ''); } catch (Exception $x) { $c['date_mult'] = date('Y-m-d'); } // partielle (2026-05) ou absente : aujourd'hui, écrit (suivi, jeunesse, engrais du jeune plant)
+      foreach (array_merge(array_diff(array_keys(self::FICHE), ['sol']), ['etiquette', 'type_greffe', 'date_mult', 'greffe_statut', 'greffe_controle', 'greffe_rep']) as $k) $p->setConfiguration($k, ''); // suivi d'une greffe précédente : effacé
       foreach (array_keys(journalcultures_calc::CARACTERES) as $k) $p->setConfiguration('id_' . $k, '');
     } else {
       $p = new journalcultures();
@@ -439,7 +449,7 @@ class journalcultures extends eqLogic {
     }
     $p->setName($nom); $p->setObject_id($coll->getObject_id()); $p->setConfiguration('collection', $coll->getId());
     foreach ($c as $k => $v) $p->setConfiguration($k, $v);
-    try { $jg = journalcultures_calc::date($c['date_mult'] ?? ''); } catch (Exception $x) { $jg = $pg ? $jour : null; }
+    try { $jg = journalcultures_calc::date($c['date_mult'] ?? ''); } catch (Exception $x) { $jg = null; }
     if (($c['multiplication'] ?? '') == 'greffe' && $jg && $jg >= date('Y-m-d', strtotime('-60 days'))) { // greffe récente : contrôles du bourgeon
       $p->setConfiguration('greffe_statut', 'attente');
       $p->setConfiguration('greffe_controle', date('Y-m-d', strtotime($jg . ' +' . journalcultures_calc::GREFFE_JOURS['attente'] . ' days')));
@@ -460,13 +470,33 @@ class journalcultures extends eqLogic {
     return (int)$p->getId();
   }
 
-  const GREFFE_CLES = ['etiquette', 'type_greffe', 'date_mult', 'multiplication', 'greffe_statut', 'greffe_controle', 'greffe_avant'];
+  const GREFFE_CLES = ['etiquette', 'type_greffe', 'date_mult', 'multiplication', 'greffe_statut', 'greffe_controle', 'greffe_rep', 'greffe_avant'];
   private static function instantane(journalcultures $p) { // fiche du porte-greffe avant la greffe (le sol reste : ce sont ses racines)
     $r = ['nom' => $p->getName(), 'collection' => $p->getConfiguration('collection')];
     foreach (array_merge(array_diff(array_keys(self::FICHE), ['sol']), array_diff(self::GREFFE_CLES, ['greffe_avant'])) as $k) $r[$k] = $p->getConfiguration($k);
     foreach (array_keys(journalcultures_calc::CARACTERES) as $k) $r['id_' . $k] = $p->getConfiguration('id_' . $k);
     return $r;
   }
+
+  /* Géographie : hémisphère d'après la latitude de Jeedom (Réglages → Système → Configuration), pays pour les statuts sanitaires,
+     température de l'emplacement pour la saison de pousse */
+  private static function sud() { return (float)config::byKey('info::latitude', 'core', 0) < 0; }
+  private static function pays() { return strtoupper(trim((string)config::byKey('info::stateCode', 'core', ''))); }
+  private static function seuil() { return self::reglage('pousse', journalcultures_calc::POUSSE); }
+  private static $_moy7 = [];
+  private function moyenne7() { // moyenne sur 7 jours de la sonde de l'emplacement (des mesures, pas pondérée par le temps), null sans sonde historisée, false si elle est muette depuis 7 jours
+    if (!($i = self::info((self::emplacements()[(string)$this->getConfiguration('emplacement')] ?? [''])[0])) || !$i->getIsHistorized()) return null;
+    if (!array_key_exists($i->getId(), self::$_moy7)) { // une requête par emplacement et par exécution, pas par plante
+      $st = history::getStatistique($i->getId(), date('Y-m-d H:i:s', time() - 7 * 86400), date('Y-m-d H:i:s'));
+      self::$_moy7[$i->getId()] = is_numeric($st['avg'] ?? null) && ($st['count'] ?? 0) > 0 ? round((float)$st['avg'], 1) : false; // muette : on attend, l'apport n'est pas annoncé au jugé
+    }
+    return self::$_moy7[$i->getId()];
+  }
+  public static function santeCat() { // hors de France, les statuts propres à la France deviennent « à vérifier pour ce pays »
+    $p = self::pays(); $fr = $p === '' || in_array($p, ['FR', 'FRA', 'FRANCE'], true); // pays non renseigné : comme la France (notice)
+    return array_map(function ($x) use ($fr) { return !$fr && !empty($x['regional']) ? ['statut' => 'pays', 'quar' => $x['statut'] == 'quarantaine'] + $x : $x; }, journalcultures_calc::SANTE);
+  }
+  public static function geo() { return ['sud' => self::sud(), 'pays' => self::pays()]; }
 
   public function suiviGreffe() { // null si la plante n'a pas de greffe suivie
     $s = (string)$this->getConfiguration('greffe_statut');
@@ -475,19 +505,26 @@ class journalcultures extends eqLogic {
     if ($s != 'reprise' && $s != 'echouee' && ($i = self::info((self::emplacements()[(string)$this->getConfiguration('emplacement')] ?? [''])[0]))) {
       $st = history::getStatistique($i->getId(), date('Y-m-d H:i:s', time() - 86400), date('Y-m-d H:i:s')); // ponytail: sonde non historisée → pas d'avis
       $v = function ($k) use ($st) { return is_numeric($st[$k] ?? null) && ($st['count'] ?? 0) > 0 ? (float)$st[$k] : null; };
-      $temp = $s == 'dormant' ? journalcultures_calc::greffeGel($v('min')) // œil dormant : seulement le gel
+      $temp = $s == 'dormant' || $s == 'pousse' ? journalcultures_calc::greffeGel($v('min')) // soudure faite : seulement le gel
         : journalcultures_calc::greffeTemp($v('avg'), self::reglage('greffe_tmin', 21), self::reglage('greffe_tmax', 32)); // la soudure a-t-elle assez chaud ?
     }
-    return ['statut' => $s, 'texte' => journalcultures_calc::GREFFE_STATUTS[$s], 'controle' => $c, 'du' => $c !== '' && $c <= date('Y-m-d'),
-      'question' => journalcultures_calc::greffeQuestion($s, $this->getConfiguration('type_greffe')),
+    $du = $c !== '' && ($c <= date('Y-m-d') // œil dormant : contrôle avancé (8 semaines au plus) si l'emplacement est déjà au-dessus du zéro de végétation
+      || ($s == 'dormant' && $c <= date('Y-m-d', strtotime('+56 days')) && (string)$this->getConfiguration('greffe_rep') <= date('Y-m-d', strtotime('-28 days'))
+        && journalcultures_calc::pousse($this->moyenne7(), self::seuil()))); // pas avant 4 semaines après la réponse (choix du plugin)
+    $q = journalcultures_calc::greffeQuestion($s, $this->getConfiguration('type_greffe'));
+    $pont = $this->getConfiguration('type_greffe') == 'pont'; // pont : pas d'œil à faire dormir ni de pousse attendue
+    if ($s == 'probable' && !$pont && $q !== '' && in_array((int)date('W'), journalcultures_calc::semaines(self::sud() ? journalcultures_calc::decaler(self::HIVER, 26) : self::HIVER)))
+      $q .= ' — ' . __('en hiver : « Au printemps », au frais hors gel, sans engrais ; le forcer maintenant demande chaleur et lumière (aucune source sur ce cas)', __FILE__); // soudure faite (J+21 confirmé) ; avant, la greffe a besoin de chaleur pour souder ; agrumes arrêtés sous ≈ 13 °C, pas d'engrais l'hiver (2 sources)
+    return ['statut' => $s, 'texte' => journalcultures_calc::GREFFE_STATUTS[$s], 'controle' => $c, 'du' => $du, 'question' => $q, 'printemps' => !$pont && $s == 'probable',
       'avant' => is_array($av) ? (string)($av['nom'] ?? '') : (string)$this->getConfiguration('porte_greffe'), 'avant_coll' => is_array($av) ? (string)($av['collection'] ?? '') : '', 'temp' => $temp];
   }
 
   public function controlerGreffe($verdict, $note) { // réponse au contrôle du bourgeon → nouveau statut, noté au journal
     $s = (string)$this->getConfiguration('greffe_statut'); $q = journalcultures_calc::greffeQuestion($s, $this->getConfiguration('type_greffe'));
-    try { $g = journalcultures_calc::date($this->getConfiguration('date_mult')); } catch (Exception $x) { $g = date('Y-m-d'); } // date partielle : on compte d'aujourd'hui
-    [$n, $c] = journalcultures_calc::controler($s, $verdict, $g, date('Y-m-d'));
-    self::$_sansGbif = true; $this->setConfiguration('greffe_statut', $n); $this->setConfiguration('greffe_controle', $c); $this->save();
+    try { $g = journalcultures_calc::date($this->getConfiguration('date_mult')); } catch (Exception $x) { $g = date('Y-m-d'); } // « Greffer… » écrit toujours une date complète
+    [$n, $c] = journalcultures_calc::controler($s, $verdict, $g, date('Y-m-d'), self::sud());
+    if ($n == 'pousse' && $this->getConfiguration('type_greffe') == 'pont') [$n, $c] = ['reprise', '']; // pont soudé aux deux bouts : rien ne doit pousser
+    self::$_sansGbif = true; $this->setConfiguration('greffe_statut', $n); $this->setConfiguration('greffe_rep', date('Y-m-d')); $this->setConfiguration('greffe_controle', $c); $this->save();
     try {
       self::inserer(['date' => date('Y-m-d'), 'plante_id' => $this->getId(), 'plante' => $this->getName(), 'lieu' => (string)$this->getConfiguration('emplacement'), 'action' => 'Observation',
         'note' => sprintf(__('Contrôle de greffe (%s) : %s → %s', __FILE__), $q, ['ok' => __('oui', __FILE__), 'douteux' => __('douteux', __FILE__), 'printemps' => __('le laisser dormir jusqu’au printemps', __FILE__), 'mort' => __('non, bourgeon mort', __FILE__)][$verdict],
@@ -559,7 +596,7 @@ class journalcultures extends eqLogic {
     return ['id' => $this->getId(), 'nom' => $this->getName(), 'fiche' => $f, 'carac' => $carac, 'brut' => ['bota' => $bota, 'rusticite' => trim((string)$this->getConfiguration('rusticite')), 'carac' => $obs], 'ident' => journalcultures_calc::identifier($obs), 'gbif' => $g, 'pot' => $potTxt, 'etat' => $s, 'cmds' => $cmds,
       'journal' => self::journal([$this->getId()], 300), 'photos' => $ph = $this->photos(), 'liens' => array_values($liens),
       'etiquette' => in_array($this->getConfiguration('etiquette'), $ph, true) ? $this->getConfiguration('etiquette') : '', // photo supprimée : plus d'étiquette
-      'plantnet' => self::cle() !== '' ? 1 : 0, 'multiplication' => $this->multiplication(), 'greffe' => $this->suiviGreffe(), 'mesures' => journalcultures_calc::MESURES, 'calculs' => journalcultures_calc::CALCULS, 'engrais' => $this->engraisFiche(), 'sante' => $this->santeFiche(), 'santeCat' => journalcultures_calc::SANTE];
+      'plantnet' => self::cle() !== '' ? 1 : 0, 'multiplication' => $this->multiplication(), 'greffe' => $this->suiviGreffe(), 'mesures' => journalcultures_calc::MESURES, 'calculs' => journalcultures_calc::CALCULS, 'engrais' => $this->engraisFiche(), 'sante' => $this->santeFiche(), 'santeCat' => self::santeCat(), 'geo' => self::geo()];
   }
 
   /* Santé de la fiche : pistes d'après la dernière mesure qui parle de santé (signe, ravageur, maladie, écorce du tronc) */
@@ -575,8 +612,9 @@ class journalcultures extends eqLogic {
   }
 
   /* Engrais de la fiche : volume du pot, plan d'azote proposé (rien n'est écrit sans « Écrire dans le calendrier »), carences d'après la dernière mesure */
-  public static function produits() {
-    return journalcultures_calc::produits((string)config::byKey('produits', 'journalcultures', '')); // vidé par l'utilisateur = aucun produit (le catalogue n'est proposé qu'à l'installation)
+  public static function produits() { // saisons du catalogue = hémisphère nord, décalées de 6 mois dans l'hémisphère sud
+    $P = journalcultures_calc::produits((string)config::byKey('produits', 'journalcultures', ''));
+    return self::sud() ? array_map(function ($p) { $p['saison'] = journalcultures_calc::decaler($p['saison'], 26); return $p; }, $P) : $P; // vidé par l'utilisateur = aucun produit (le catalogue n'est proposé qu'à l'installation)
   }
 
   private static function reglage($k, $def) { $v = journalcultures_calc::nombre(config::byKey($k, 'journalcultures', $def)); return $v === null ? $def : $v; } // virgule et signe − acceptés ; texte → défaut
@@ -600,6 +638,11 @@ class journalcultures extends eqLogic {
     $r = array_fill_keys($i, floor(100 / count($i))); $r[end($i)] += 100 - array_sum($r); return $r; // reste au dernier : total juste 100
   }
 
+  // moins d'un an ou greffe en cours de suivi : pas de demi-dose hors saison, même au chaud (pas d'engrais l'hiver : 2 sources ; excès d'azote nuisible au jeune plant : Niu 2024 ; choix du plugin)
+  public function jeuneHiver() {
+    return in_array((string)$this->getConfiguration('greffe_statut'), ['attente', 'probable', 'dormant', 'pousse'], true)
+      || journalcultures_calc::jeunesse((string)$this->getConfiguration('multiplication'), $this->getConfiguration('date_mult'), 1, 1) > 0;
+  }
   public function engraisFiche() {
     $P = self::produits(); $L = journalcultures_calc::volume($this->pot()); $fj = $this->facteurJeune(); $taux = self::taux() * $fj;
     $v = DB::Prepare('SELECT valeurs FROM ' . self::TABLE . ' WHERE plante_id = ? AND action = ? AND valeurs LIKE ? ORDER BY date DESC, id DESC LIMIT 1', [$this->getId(), 'Mesure', '%feuilles.couleur%'], DB::FETCH_TYPE_ROW); // dernière mesure de la couleur des feuilles, pas la dernière mesure tout court
@@ -607,7 +650,7 @@ class journalcultures extends eqLogic {
     foreach ($car as &$c) $c['produits'] = array_values(array_map(function ($p) { return $p['nom'] . ($p['note'] !== '' ? ' (' . $p['note'] . ')' : ''); },
       array_filter($P, function ($p) use ($c) { return in_array($c['el'], $p['apporte'], true); })));
     unset($c);
-    return ['litres' => $L, 'taux' => $taux, 'jeune' => $fj, 'calendrier' => (string)$this->getConfiguration('engrais'), 'parts' => (object)$this->partsActuelles($P), 'doses' => (object)$this->dosesActuelles($P), 'carences' => $car,
+    return ['litres' => $L, 'taux' => $taux, 'jeune' => $fj, 'moy7' => $this->moyenne7(), 'seuil' => self::seuil(), 'hiv' => $this->getConfiguration('hivernage') == 1, 'jeuneHiv' => $this->jeuneHiver(), 'chauffe' => !empty((self::emplacements()[(string)$this->getConfiguration('emplacement')] ?? [])[3]), 'sud' => self::sud(), 'calendrier' => (string)$this->getConfiguration('engrais'), 'parts' => (object)$this->partsActuelles($P), 'doses' => (object)$this->dosesActuelles($P), 'carences' => $car,
       'produits' => array_map(function ($p) use ($L, $taux) { $ok = $L && $p['n'] > 0 && $p['tous'] > 0; // ge : dose de l'étiquette ; ne : son azote, en part du besoin
         return $p + ['g100' => $ok ? $L * $taux * $p['tous'] * 100 / $p['n'] : null, 'ge' => $ok && $p['gl'] > 0 ? $L * $p['gl'] : null, 'ne' => $ok && $p['gl'] > 0 ? $p['gl'] * $p['n'] / 100 / $p['tous'] / $taux : 0]; }, $P)];
   }

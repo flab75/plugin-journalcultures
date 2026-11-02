@@ -50,8 +50,8 @@ La fiche se modifie dans la page du plugin (équipement de la plante) ; l'onglet
 - **Pot** : forme (rond ou carré), diamètre ou côté, hauteur, hauteur de terre, ou pleine terre. Pour la rusticité, un pot carré de 30 cm de côté
   compte comme un pot rond de 30 cm de Ø ; pour le volume (engrais), on compte bien côté × côté.
 - **Multiplication** (semis, greffe…) et sa date (`2024`, `2024-05` ou `2024-05-12` ; un autre format est ignoré, comme sans date) : l'âge est affiché dans la fiche
-  (« ≈ » quand seule l'année est connue). Pour une greffe, préciser le type (voir [Greffe](#greffe)).
-- **Engrais** : `semaines | produit | dose` par ligne, semaines ISO : `10-40/2`, `12,16,20`, `48-8`.
+  (« ≈ » quand seule l'année est connue). Pour une greffe, préciser le type (voir [Types de greffe](greffe.md#types-de-greffe)).
+- **Engrais** : `semaines | produit | dose` par ligne, semaines ISO : `10-40/2`, `12,16,20`, `48-8`. Un apport prévu n'est annoncé que si l'emplacement est en pousse (sans sonde historisée : calendrier seul) ; sauté par temps froid, il est rattrapé quand la moyenne remonte (voir [Géographie](#géographie)).
 - **Plan d'engrais** (partie Engrais) : dose = volume du pot × besoin × intervalle ÷ % N, partagée entre les produits **cochés** (aucun d'office,
   sauf ceux déjà au calendrier) ; un produit à dose d'étiquette garde la sienne (litres × g/L) et les autres se partagent l'azote restant.
   La dose en grammes peut être ajustée à la main avant d'écrire ; celle déjà au calendrier est reprise. « Écrire dans le calendrier » remplace
@@ -102,62 +102,12 @@ Racines / pot, Santé), saisir ce qu'on a mesuré, une note et, au besoin, une p
 - Gardées dans le dossier `data` du plugin (non servi directement, lues par la tuile après contrôle des droits).
 
 ## Greffe
-**Greffer…** (bas de l'onglet Fiche, administrateurs) : la plante, en général un porte-greffe, devient le greffon. Même formulaire que « ＋ Plante » :
-- **greffon** choisi parmi nos plantes des autres collections (nom botanique, cultivar et caractères recopiés, nom proposé « greffon sur porte-greffe »)
-  ou écrit à la main (nouveau cultivar) ;
-- nouveau nom, nom botanique du greffon, collection (par défaut l'actuelle : choisir la collection du greffon), type et date de greffe ;
-- le porte-greffe est déduit du nom (Poncirus, Flying Dragon, FA5…), modifiable.
-
-C'est le **même équipement** : journal, photos, pot, emplacement, courbes et champ « Sol » sont gardés (ce sont toujours ses racines) ;
-le reste de la fiche, les caractères observés et la photo d'étiquette, qui décrivaient le porte-greffe, sont vidés. Une entrée « Greffe » est ajoutée au journal.
-
-**Suivi de la greffe** (après « Greffer… », ou « ＋ Plante » greffée depuis moins de 60 jours avec une date complète) :
-- **Statut** : *en attente* → *probablement prise* → *reprise*, ou *œil dormant jusqu'au printemps*, ou *échouée*.
-- **Contrôles du bourgeon** : J+21 (œil ou bourgeons du greffon verts et gonflés, sans se ratatiner ; retirer le lien), puis J+42
-  (l'œil a-t-il débourré ? sinon rabattre le porte-greffe au-dessus pour le forcer ; greffe de rameau : la pousse continue-t-elle ?).
-- **Le statut n'avance que sur réponse** : **Oui**, **Douteux** (revoir dans 7 jours), **Au printemps** (œil vivant laissé dormant, pour une greffe
-  d'automne : contrôle le 15 mars, après avoir rabattu le porte-greffe au-dessus de l'œil) ou **Non, mort** (deux clics) ; chaque réponse est notée au journal.
-- Un contrôle dû remplit la commande « Greffe à contrôler », reprise par le rapport du matin. Délais d'après la vulgarisation des universités
-  de Floride, d'Alabama et de Californie : le bourgeon, plus que le calendrier, décide.
-- **Température** : tant que la greffe n'est pas reprise, la moyenne sur 24 h de la sonde de l'emplacement (historisée) est comparée aux seuils
-  de la configuration (21 et 32 °C par défaut, choix du plugin d'après des sources d'amateurs, réglables) : en dehors, la fiche et la commande disent
-  « trop froid (ou trop chaud) pour souder ». Sous 21 °C le Poncirus s'endort (Alabama ACES, **une seule source**) et la greffe attend le printemps.
-- **Œil dormant** : la soudure est faite, le seuil de 21 °C ne s'applique plus ; seul le gel compte (« gel : protéger l'œil » si la sonde descend
-  sous 0 °C sur 24 h, choix du plugin).
-- **Redevenir porte-greffe…** (greffe échouée) : rend le nom, la collection et la fiche d'avant la greffe, gardés par « Greffer… ».
-  Greffe faite avant la version 0.10 : nom (proposé d'après le champ Porte-greffe) et collection à choisir, la fiche est vidée.
-
-![Suivi d'une greffe](../images/greffe-suivi.svg)
-
-![Fiche d'une greffe en attente](../images/greffe.webp)
-
-*Yuzu greffé il y a 12 jours : contrôle prévu le 11/11 (J+21), la question à se poser, et l'avertissement de température (la serre est à 11,2 °C en moyenne). Les boutons répondent au contrôle.*
-
-Type de greffe : si la multiplication est vide, le choisir la passe à « greffe » ; avec une autre multiplication (semis, bouture…), il est effacé.
-
-| Type | Description |
-|---|---|
-| **Greffes d'un œil** | *pour multiplier en pépinière* |
-| Écusson en T inversé | Un œil prélevé avec un peu d'écorce, glissé sous l'écorce du porte-greffe incisée en T à l'envers (⊥). La plus employée en Floride pour les jeunes plants (UF/IFAS, **une seule source**) : bonne reprise, peu d'habileté. |
-| Écusson en T | Même chose avec une incision en T droit. Convient aussi, moins employée. |
-| Chip budding (œil en copeau) | Un copeau de bois portant l'œil, posé dans une entaille de même forme. Quand l'écorce ne se décolle plus (hors sève) ou est trop épaisse pour l'écusson. Demande un peu plus d'habileté. |
-| Chip inversé | Variante du chip, courante sur agrumes, quand l'écorce ne se décolle pas. |
-| Placage d'œil | Plaque d'écorce portant l'œil, appliquée à la place d'une plaque identique retirée du porte-greffe. Pour les écorces épaisses. |
-| **Greffes de rameau** | *pour changer de variété (surgreffage) ou réparer un arbre* |
-| Fente | Le porte-greffe coupé est fendu, un greffon taillé en biseau y est inséré. Sur les charpentières, pour surgreffer. |
-| Sous écorce (couronne) | Greffons glissés entre l'écorce et le bois d'une branche coupée, en sève. Surgreffage. |
-| Anglaise | Porte-greffe et greffon de même diamètre, coupés en biseau et emboîtés. Jugée inadaptée aux agrumes sur rameaux déjà lignifiés (**une seule source**). |
-| Pont | Greffons qui enjambent une plaie du tronc pour rétablir la sève. Réparation. |
-| Incrustation | Greffon inséré dans une entaille en V du porte-greffe. Renforcer ou réparer. |
-| En approche | Deux plantes enracinées soudées côte à côte, séparées après la reprise. Renforcer ou réparer (ex. nouveau porte-greffe au pied d'un arbre). |
-| Latérale | Greffon inséré sur le côté du porte-greffe, sans le couper d'abord. |
-| Sur souche | Sur une souche recépée, pour repartir d'un vieil arbre. |
-| **Laboratoire et pépinière spécialisée** | |
-| Microgreffe d'apex in vitro | Pointe de pousse de quelques dixièmes de mm greffée en tube : assainit une variété porteuse de virus (Corse : > 80 % de reprise après regreffage, **une seule source**). |
-| Minigreffe en fente | Fente sur porte-greffe de 6 mois : 75 % de réussite contre 38 % pour l'écusson en T (un essai sur orange 'Valencia', **une seule source**). |
-
-Sources (non relues, synthèse) : UF/IFAS HS1309, Cirad (revue *Fruits*, 1982), guide du développement rural de Polynésie française,
-INRAE-Cirad Corse, Carimi 2001, essai colombien 2022.
+Tout est dans l'onglet [Greffe](greffe.md) : types, saison de chaque type, marche à suivre et points de contrôle, température, hiver, sources.
+- **Greffer…** (bas de l'onglet Fiche, administrateurs) : le porte-greffe devient le greffon, sur le même équipement (journal, photos, pot gardés).
+- **Suivi** (greffe de moins de 60 jours) : contrôles à J+21, J+42 puis 4 semaines après avoir répondu « débourré » ; le statut n'avance que sur réponse (**Oui**, **Douteux**,
+  **Au printemps**, **Non, mort**) ; un contrôle dû remplit la commande « Greffe à contrôler », reprise par le rapport du matin.
+- **Température** : 21-32 °C jusqu'à la soudure (réglable), puis seulement hors gel.
+- **Redevenir porte-greffe…** : annule une greffe échouée.
 
 ## Identification (agrumes)
 - **Clé des caractères** (fiche de la plante, dans la page du plugin) : choisir ce qui est observé (folioles, aile du pétiole, boutons floraux, fruit…),
@@ -171,8 +121,20 @@ INRAE-Cirad Corse, Carimi 2001, essai colombien 2022.
 
 Comment observer, chaque caractère groupe par groupe, la rusticité estimée et les limites : voir la page [Identification](identification.md).
 
+## Géographie
+Le plugin lit dans Jeedom (Réglages → Système → Configuration) la **latitude** et le **pays** ; rien d'autre à régler.
+- **Saison de l'engrais** : fenêtre de chaque produit (nord : début mars → début octobre) **et** moyenne sur 7 jours de l'emplacement au-dessus du zéro de végétation (≈ 13 °C) ;
+  un apport sauté par temps froid est rattrapé quand la moyenne remonte ; deux jours chauds en hiver ne changent rien. Au sud, fenêtre décalée de 6 mois (saisie toujours en semaines du nord ; plan déjà écrit : le réécrire). Détail : [La saison](fertilisation.md#la-saison).
+- **Emplacement chauffé** (salle de bains, véranda chauffée…) : hors de la fenêtre du produit, l'engrais continue au même rythme **à demi-dose** (dose du calendrier divisée par 2 dans l'annonce), tant que la moyenne sur 7 jours de la pièce atteint le zéro de végétation (sonde historisée nécessaire). Pas pour un jeune plant (moins d'un an, ou greffe en cours de suivi) : rien hors de la fenêtre, même au chaud (pas d'engrais l'hiver : 2 sources ; excès d'azote nuisible au jeune plant : Niu 2024, une seule source). Choix du plugin : aucune de nos sources ne traite d'un agrume en pièce chauffée l'hiver.
+- **Repos hivernal au frais** (case de la plante) : pas d'engrais hors de la fenêtre des produits (toute l'année), même en emplacement chauffé ; de novembre à février (mai à août au sud), la plante est signalée ⚠ (liste et fiche, pas le rapport du matin) si elle est dans un emplacement marqué chauffé. Choix du plugin.
+- **Greffe « Au printemps »** : contrôle le 15 mars au nord, le 15 septembre au sud, avancé si l'emplacement est déjà assez chaud (choix du plugin).
+- **Santé** : statuts de présence donnés pour la France, périodes pour l'hémisphère nord ; ailleurs, la fiche le signale. Détail : [Santé](sante.md).
+- **Rusticité et alertes froid** : mesurées par les sondes de chaque emplacement, donc valables partout.
+Latitude ou pays absents : le plugin fait comme pour la France, hémisphère nord (pays : `FR`, `FRA` ou `France`).
+
 ## Configuration du plugin
-- **Emplacements** : `Nom | température | humidité | température minimale prévue`, une ligne chacun. Sans sonde, pas d'alerte.
+- **Emplacements** : `Nom | température | humidité | température minimale prévue | chauffé`, une ligne chacun. Sans sonde, pas d'alerte.
+  Le 5ᵉ champ, facultatif (un mot quelconque, ex. `chauffé`), marque une pièce chauffée l'hiver : voir [Géographie](#géographie).
 - **Page plein écran dans le menu Accueil** : voir [Page plein écran](#page-plein-écran).
 - **Marge** (3 °C) : alerte quand la température mesurée ou prévue descend à la rusticité effective + la marge.
 - **Pénalité du pot** : en pot, la rusticité est relevée de `min(maximum, k / e)`, `e` = demi-épaisseur de la motte en cm
@@ -183,7 +145,8 @@ Comment observer, chaque caractère groupe par groupe, la rusticité estimée et
   Repères généraux sur les jeunes agrumes (vulgarisation des universités de Floride, de Louisiane et de Géorgie : jeunes arbres
   à protéger dès 0 °C, < 5 ans), pas de chiffre propre aux greffes : à ajuster. Achat ou sans date : aucune pénalité, 0 pour la retirer.
 - **Engrais d'un jeune plant** (25 % / 3 ans) : même principe pour l'engrais, besoin en azote réduit à 25 % à 0 an, puis 100 % à 3 ans (choix du plugin, voir [la dose en pot](fertilisation.md#combien--la-dose-en-pot)) ; % à 0 ou 100, ou durée à 0, pour la retirer. S'applique au plan recalculé, pas à une dose déjà au calendrier.
-- **Greffe : température pour souder** (21 / 32 °C) : voir [Greffe](#greffe).
+- **Greffe : température pour souder** (21 / 32 °C) : voir [Température, hiver, engrais](greffe.md#température-hiver-engrais).
+- **Zéro de végétation** (13 °C) : moyenne sur 7 jours de l'emplacement en dessous de laquelle les apports d'engrais attendent ; voir [Géographie](#géographie).
 - **Produits en stock** : `Nom | % N | toutes les n semaines | saison | éléments | remarque | dose de l'étiquette (g/L, facultatif)` ;
   pas à pas : [Ajouter un engrais ou un produit](fertilisation.md#ajouter-un-engrais-ou-un-produit). Un produit avec % N et intervalle peut entrer
   dans le plan d'azote ; les éléments (N P K Mg Fe S Zn Mn) servent aux pistes de carence.

@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.15 (2026-11-02)
+- Géographie : saison de l'engrais mesurée (moyenne 7 jours de l'emplacement ≥ zéro de végétation, 13 °C réglable) en plus de la fenêtre du produit ;
+  apport sauté par temps froid rattrapé quand la moyenne remonte (dans la fenêtre) ; hémisphère sud (latitude Jeedom) : fenêtres décalées de 6 mois, contrôle « Au printemps » le 15 septembre ;
+  la fiche signale un plan dont les semaines ne suivent plus la saison du produit.
+- Greffe « Au printemps » : contrôle avancé (8 semaines au plus, pas avant 4 semaines après la réponse) si l'emplacement est déjà au-dessus du zéro de végétation.
+- Greffe : marche à suivre selon le type (œil, rameau sur porte-greffe coupé, latérale/approche, pont) ; nouvelle étape « pousse du greffon »
+  (tuteurer, couper le haut du porte-greffe, ôter les rejets ; contrôle 4 semaines après le débourrement ; pont : reprise dès la soudure, sans « Au printemps ») ; en hiver, le contrôle J+42 conseille « Au printemps », au frais, sans engrais.
+- Notice : onglet **Greffe** (types, saisons, schémas pas à pas de l'écusson, du chip, de la couronne et de la fente herbacée, gravures de L. H. Bailey 1907-1920 (domaine public) pour l'anglaise, le placage de rameau, la latérale, l'incrustation, la fente, l'approche et le pont, marche à suivre, température, hiver, sources) ; la section du mode d'emploi n'en garde qu'un résumé ; listes numérotées affichées.
+- « Greffer… » sans date complète : la date du jour est écrite (avant : J+42 compté depuis le jour de la réponse, ≈ J+63 ; plant pas compté comme jeune pour la rusticité et l'engrais).
+  Regreffer une greffe pas prise efface l'ancien suivi et garde la fiche du porte-greffe d'origine pour « Redevenir porte-greffe… ».
+- « Au printemps » proposé à J+42 seulement (à J+21 la soudure n'est pas faite : l'alerte « trop froid pour souder » reste).
+- Greffe : saison de réalisation selon le type (notice, et rappel sous le type dans « Greffer… » / « ＋ Plante »), sources et « une seule source » indiqués.
+- Jeune plant (moins d'un an, ou greffe en cours de suivi) : pas de demi-dose hors saison, même en emplacement chauffé.
+- Santé : pays autre que la France → statuts de présence « à vérifier » (pays vide = France) ; hémisphère sud → rappel de décaler les périodes.
+- Emplacement chauffé (5ᵉ champ de la ligne) : engrais hors fenêtre à demi-dose (dose annoncée divisée par 2) tant que la moyenne atteint le seuil ; case « Repos hivernal au frais » par plante : jamais d'engrais hors fenêtre, ⚠ si elle est dans un emplacement chauffé de novembre à février.
+- Rattrapage limité à la première moitié de l'intervalle (jamais deux doses à moins d'une demi-période) et compté produit par produit ; sonde muette depuis 7 jours : les apports attendent (sonde non historisée = pas de sonde) ; demi-dose calculée ; liste d'engrais coupée au produit près.
+- Moyenne 7 jours lue une fois par emplacement ; saisons hors 1-53 refusées ; saison « toute l'année » non décalée.
+
 ## 0.14 (2026-11-02)
 - Engrais d'un jeune plant (semis, greffe… datés) : besoin réduit à 25 % à 0 an, 100 % à 3 ans (réglable) ; jamais 0 (pas de division par zéro).
 - Réglages numériques : virgule et signe − acceptés, texte = valeur par défaut (avant : « 2,5 » lu 2, texte lu 0) ; k et maximum jamais négatifs.

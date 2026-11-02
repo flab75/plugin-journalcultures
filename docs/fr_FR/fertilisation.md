@@ -1,6 +1,6 @@
 # Fertilisation des agrumes en pot
 
-Comment nourrir des agrumes **en pot**, rentrés l'hiver sous une serre ou une véranda (Île-de-France), et comment le plugin calcule le plan d'engrais.
+Comment nourrir des agrumes **en pot**, rentrés l'hiver sous une serre ou une véranda (rédigé pour l'Île-de-France ; ailleurs, voir [La saison](#la-saison)), et comment le plugin calcule le plan d'engrais.
 Presque toutes les études portent sur des **vergers en pleine terre** : leurs doses par hectare ou par arbre ne se transposent pas au pot, seuls leurs principes le font.
 
 Règle suivie : un fait n'est retenu que si **deux organismes indépendants** le donnent ; sinon il est marqué **une seule source**.
@@ -36,7 +36,7 @@ Les champs, dans l'ordre :
 | Nom | `Ferti Agrumes 7-3-10` | tel qu'il sera écrit dans le calendrier |
 | % d'azote | `7` | le premier chiffre du « N-P-K » de l'étiquette ; `0` pour un correcteur sans azote |
 | toutes les n semaines | `8` | l'intervalle entre deux apports ; `0` = produit ponctuel, hors plan |
-| saison | `10-40` | numéros de semaine (10 = début mars, 40 = début octobre) ; vide = 10-40 |
+| saison | `10-40` | numéros de semaine, **hémisphère nord** (10 = début mars, 40 = début octobre) ; vide = 10-40 ; décalée de 6 mois si Jeedom est dans l'hémisphère sud |
 | éléments apportés | `N P K` | parmi N P K Mg Fe S Zn Mn, séparés par des espaces : sert aux pistes de carence |
 | note | `granulés à enfouir` | remarque libre (étiquette, mode d'emploi) |
 | dose de l'étiquette | `1` | **facultatif** : grammes par litre de pot et par apport ; le plan suit alors l'étiquette au lieu de calculer |
@@ -101,8 +101,29 @@ Ce tableau est une **déduction du plugin** à partir des parties de cette page 
 
 ## La saison
 
-Dans le plugin, la saison va de la **semaine 10 à la semaine 40**, soit **de début mars à début octobre** ; en dehors, pas d'engrais.
-Les apports tombent à partir de la semaine 10, tous les n semaines : le Ferti Agrumes (8 semaines) en semaines 10, 18, 26 et 34, donc **le dernier dans la seconde quinzaine d'août** ;
+Dans le plugin, la saison a **deux conditions**, les deux à remplir :
+1. **la fenêtre du produit** : par défaut **semaine 10 à semaine 40**, soit **de début mars à début octobre** dans l'hémisphère nord ; en dehors, pas d'engrais.
+   Si la latitude de Jeedom (Réglages → Système → Configuration) est au sud, la fenêtre est **décalée de 6 mois** (semaines 36 à 14) au moment où le plan est écrit (choix du plugin).
+   La saison d'un produit se saisit **toujours en semaines de l'hémisphère nord** ; un plan déjà écrit garde ses semaines : après un changement de latitude, le réécrire (la fiche le signale) ;
+2. **la température mesurée** : la moyenne sur 7 jours de la sonde de l'emplacement doit atteindre le **zéro de végétation** des agrumes,
+   environ 13 °C (Curk 2022, INRAE ; ≈ 12,5 °C pour Aubert 1969, IFAC ; même filiation, IFAC puis Cirad : **une seule source**, à confirmer ; 13 °C par défaut : choix du plugin).
+   Les porte-greffes Poncirus, la satsuma et le kumquat Nagami ne poussent qu'au-dessus d'environ 15 °C (Tuzcu 1984, **une seule source**) : régler le seuil plus haut si la collection en est faite.
+   En dessous, l'arbre ne pousse pas : la fiche affiche « au repos » et l'apport prévu **attend** ; il est **rattrapé** la première semaine où la moyenne remonte,
+   tant que la fenêtre du produit court, que rien n'a été donné depuis (ce produit, ou un apport noté sans précision) et qu'on est dans la première moitié de l'intervalle (3 semaines au plus pour le Ferti, 5 pour la corne) ;
+   plus tard, on attend l'apport suivant, pour ne pas donner deux doses rapprochées (choix du plugin).
+   Moyenne sur 7 jours et seuil réglable (configuration, « Zéro de végétation ») : choix du plugin. Sans sonde historisée, seule la fenêtre compte (pas de rattrapage) ; une sonde muette depuis 7 jours, elle, fait attendre les apports (la fiche le dit).
+
+**Deux jours chauds en plein hiver** : rien ne se passe. Hors de la fenêtre du produit (au nord, d'octobre à février), pas d'engrais, quelle que soit la température (sauf emplacement marqué chauffé, voir plus bas).
+Et dans la fenêtre, deux jours chauds pèsent peu dans une moyenne de 7 jours : 5 jours à 9 °C et 2 jours à 20 °C font 12,1 °C, sous le seuil.
+Une semaine entière de douceur début mars, elle, ouvre la saison : c'est voulu (l'arbre repart).
+Limite : la moyenne est celle des mesures enregistrées ; une sonde muette depuis quelques jours garde la moyenne de ses dernières mesures (au-delà de 7 jours, les apports attendent).
+
+Ainsi un printemps froid, un hiver doux ou une région plus chaude ou plus fraîche que l'Île-de-France sont pris en compte par la mesure ;
+la mesure **raccourcit** la saison, elle ne l'allonge jamais au-delà de la fenêtre du produit (une serre chauffée l'hiver ne reçoit pas d'engrais en janvier, choix du plugin), **sauf** emplacement marqué « chauffé » dans la configuration :
+hors fenêtre, apports au même rythme à **demi-dose** (l'annonce donne la dose divisée par 2) tant que la moyenne atteint le seuil (choix du plugin, aucune de nos sources ne traite de l'hiver en pièce chauffée).
+Un jeune plant (moins d'un an, ou greffe en cours de suivi) n'en reçoit pas non plus hors fenêtre. Une plante cochée « **Repos hivernal au frais** » n'en reçoit jamais hors fenêtre, et elle est signalée si elle est dans un emplacement chauffé de novembre à février ([Géographie](index.md#géographie)).
+Climat très différent (tropiques, saison sèche) : adapter la fenêtre de chaque produit à la main.
+Dans la fenêtre par défaut, les apports tombent à partir de la semaine 10, tous les n semaines : le Ferti Agrumes (8 semaines) en semaines 10, 18, 26 et 34, donc **le dernier dans la seconde quinzaine d'août** (mi-septembre au plus tard s'il est rattrapé) ;
 la corne (12 semaines) en semaines 10, 22 et 34, soit les 3 apports de son étiquette.
 
 **Pourquoi** :
@@ -113,7 +134,7 @@ la corne (12 semaines) en semaines 10, 22 et 34, soit les 3 apports de son étiq
 
 **Limites connues** :
 - l'étude iranienne conseille **au plus 10 à 15 % de la dose annuelle avant la floraison**, puis une montée progressive (Asadi Kangarshahi 2023, **une seule source**) ;
-  le plugin, lui, donne la dose pleine dès la semaine 10. À corriger à la main si on veut suivre ce conseil (réduire le premier apport).
+  le plugin, lui, donne la dose pleine dès le premier apport de la saison. À corriger à la main si on veut suivre ce conseil (réduire le premier apport).
 - La date de fin n'est pas tranchée : le CIRAD juge « vraisemblable » que la répartition habituelle (75 % au printemps, 25 % en été) ne soit pas la plus efficace et propose des apports plus tardifs et mieux étalés (Vannière 1992 IV, hypothèse non testée, verger de Corse) ;
   l'étude iranienne baisse ou arrête au milieu du 2e stade de croissance du fruit, vers la fin de l'été selon la variété (Asadi Kangarshahi 2023).
   Début octobre est un choix du plugin, réglable produit par produit (champ saison).
@@ -251,10 +272,12 @@ Ni Mg, ni fer, ni oligo-éléments ne sont déclarés dans le Ferti Agrumes (fic
 ## Sources
 Lues en entier, sauf mention.
 - **Asadi Kangarshahi 2023** : Asadi Kangarshahi A., Akhlaghi Amiri N., gestion de l'azote dans les vergers d'agrumes, *Land Management Journal* 11(2):209-228, doi 10.22092/lmj.2023.362505.333 (Iran ; **résumé seul**, texte en persan).
+- **Aubert 1969** : Aubert B., synthèse sur le froid et les agrumes, *Fruits* 24(3), IFAC ; seuil de croissance ≈ 12,5 °C.
 - **Bar-Akiva 1966** : Bar-Akiva A., problème de la fumure organique en orangeraie, *Fruits* 21(7):343-346 (Israël) ; l'essai de Winnik y est cité de seconde main.
 - **Barooah 2022** : Barooah A., Chakravarty M., Hazarika B., *Response of nutrient management on growth, yield and quality of citrus crop: A review*, *Journal of Pharmacognosy and Phytochemistry* 11(5):291-297 (Inde).
 - **Boaretto 2024** : Boaretto R. M. et al., *Revista Brasileira de Fruticultura* 46:e-218, doi 10.1590/0100-29452024218 (IAC, Brésil).
 - **BSV PACA 2020** : Bulletin de santé du végétal, zones non agricoles, PACA, novembre 2020.
+- **Curk 2022** : Curk F., Luro F. et al., *Les agrumes du Nord de la Méditerranée*, INRAE-Cirad, 2022 (HAL hal-04646466) ; seuils de croissance (zéro de végétation ≈ 13 °C).
 - **Diggers** : étiquette Fruit & Citrus Fertiliser, Diggers (Australie, vendeur).
 - **Elavarasan 2019** : Elavarasan K., Premalatha A., *Journal of Pharmacognosy and Phytochemistry* 8(4):1705-1708 (Inde).
 - **Étiquettes** : Ferti Agrumes, Sang séché, Corne broyée, Kélafer (Agro Sens / Comptoir des Jardins), sel d'Epsom GiDe ; fiche de données de sécurité Ferti Agrumes (Comptoir des Jardins, 2026).
@@ -272,6 +295,7 @@ Lues en entier, sauf mention.
 - **CDFA** : California Department of Food and Agriculture, FREP, *Fertilization Guidelines: Citrus*.
 - **Morgan et Hanlon 2006** : Morgan K. T., Hanlon E. A., *Improving Citrus Nitrogen Uptake Efficiency: Understanding Citrus Nitrogen Requirements*, UF/IFAS SL-240, avril 2006.
 - **Niu 2024** : Niu R. et al., *Root reduction caused directly or indirectly by high application of nitrogen fertilizer…*, *Plants* 13(7):938, doi 10.3390/plants13070938 (Université du Sud-Ouest, Chongqing ; lu en ligne).
+- **Tuzcu 1984** : *Fruits* 39(9), croissance de 14 porte-greffes à basse température ; Poncirus, satsuma et Nagami ne poussent qu'au-dessus de ≈ 15 °C.
 - **UF/IFAS SL454** : interprétation des analyses de sol pour les agrumes (EDIS SS667, 2020).
 - **UF/IFAS SL456, SL457** : chapitres 2 (Obreza, Collins, Morgan, Graham, Alferez) et 3 (Obreza, Zekri, Futch) de *Nutrition of Florida Citrus Trees*, 3e éd., UF/IFAS SL253, 2020.
 - **UF/IFAS PP328** : test du stylo, carence ou HLB (University of Florida).

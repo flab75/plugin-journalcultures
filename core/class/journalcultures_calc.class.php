@@ -48,22 +48,43 @@ class journalcultures_calc {
     return $r;
   }
 
-  // calendrier d'engrais « semaines | produit | dose » par ligne → produits prévus la semaine $sem : ['Produit dose', …]
-  public static function engrais($texte, $sem) {
+  // saison « 10-40 » de l'hémisphère nord décalée de $n semaines (26 = hémisphère sud) ; semaines() gère le passage d'une année à l'autre
+  public static function decaler($s, $n) { if (count(self::semaines($s)) >= 52) return (string)$s; // toute l'année : rien à décaler
+    return preg_replace_callback('/\d+/', function ($m) use ($n) { return ((((int)$m[0] - 1 + $n) % 52) + 52) % 52 + 1; }, (string)$s); }
+  /* Zéro de végétation des agrumes : environ 13 °C (Curk 2022, INRAE), ≈ 12,5 °C (Aubert 1969, IFAC). En dessous, pas de pousse :
+     les apports d'engrais attendent (rattrapés dès que la moyenne remonte, dans la fenêtre de la ligne). Même filiation (IFAC → Cirad) : à confirmer ;
+     Tuzcu 1984 : Poncirus, satsuma, Nagami ne poussent qu'au-dessus de ≈ 15 °C. Moyenne sur 7 jours = choix du plugin (lisse un jour froid isolé). */
+  const POUSSE = 13;
+  public static function pousse($moy, $seuil) { return $moy === null || $moy === false ? $moy : $moy >= $seuil; } // null : pas de sonde historisée → le calendrier seul décide ; false : sonde muette → on attend
+
+  /* calendrier d'engrais « semaines | produit | dose » par ligne → apports dus en semaine $sem : [[libellé, retard, hors saison], …], retard = semaines depuis le dernier apport prévu de la ligne, seulement tant que
+     $sem est dans la fenêtre de la ligne (« 10-40/8 » → 10-40). Retard > 0 = apport sauté (trop froid) à rattraper, si rien n'a été donné depuis, et seulement pendant la première
+     moitié de l'intervalle, strictement (sinon on attend l'apport suivant : jamais deux doses à moins d'une demi-période ; choix du plugin). ponytail: modulo 53, une année à 52 semaines compte une semaine de trop au passage d'année
+     $chauffe : hors fenêtre, une ligne « a-b/pas » continue toute l'année au même pas, à demi-dose (emplacement chauffé ; choix du plugin, aucune source sur l'hiver en pièce chauffée). */
+  public static function engraisDus($texte, $sem, $chauffe = false) {
     $r = [];
     foreach (preg_split('/\R/u', (string)$texte) ?: [] as $l) {
       $p = array_map('trim', explode('|', $l));
-      if (count($p) >= 2 && $p[1] !== '' && in_array((int)$sem, self::semaines($p[0]))) $r[] = trim($p[1] . ' ' . ($p[2] ?? ''));
+      if (count($p) < 2 || $p[1] === '') continue;
+      $S = self::semaines($p[0]); $hors = !in_array((int)$sem, self::semaines(preg_replace('#/\d+#', '', $p[0])));
+      if ($hors) {
+        if (!$chauffe || !preg_match('#^(\d{1,2})-\d{1,2}(/\d{1,2})?$#D', $p[0], $m)) continue;
+        $S = self::semaines($m[1] . '-' . (((int)$m[1] + 51) % 53 + 1) . ($m[2] ?? '')); // toute l'année, au pas de la ligne
+      }
+      for ($k = 0; $k < 53 && !in_array(((int)$sem - 1 - $k + 53) % 53 + 1, $S); $k++);
+      if ($k * 2 >= (preg_match('#/(\d+)#', $p[0], $m) ? (int)$m[1] : 1) && $k > 0) continue;
+      $d = $hors ? preg_replace_callback('/\d+(?:[.,]\d+)?/', function ($x) { return self::virgule(round(self::nombre($x[0]) / 2, 1)); }, $p[2] ?? '', 1) : ($p[2] ?? ''); // hors saison : dose divisée par 2
+      $r[] = [trim($p[1] . ' ' . $d) . ($hors ? ' (demi-dose, hors saison)' : ''), $k, $hors, $p[1]];
     }
     return $r;
   }
 
-  // emplacements « Nom | temp | humidité | tmin prévue » par ligne → [nom => [temp, hum, tmin]] (chaînes de commandes, '' si absente)
+  // emplacements « Nom | temp | humidité | tmin prévue | chauffé » par ligne → [nom => [temp, hum, tmin, chauffé]] (chaînes de commandes, '' si absente ; 5e champ non vide = chauffé)
   public static function emplacements($texte) {
     $r = [];
     foreach (preg_split('/\R/u', (string)$texte) ?: [] as $l) {
       $p = array_map('trim', explode('|', $l));
-      if ($p[0] !== '') $r[mb_substr($p[0], 0, 60)] = [$p[1] ?? '', $p[2] ?? '', $p[3] ?? '']; // nom historisé (varchar 127) et colonne lieu (60)
+      if ($p[0] !== '') $r[mb_substr($p[0], 0, 60)] = [$p[1] ?? '', $p[2] ?? '', $p[3] ?? '', !in_array(mb_strtolower($p[4] ?? ''), ['', '0', 'non', 'no'], true)]; // nom historisé (varchar 127) et colonne lieu (60)
     }
     return $r;
   }
@@ -211,6 +232,20 @@ class journalcultures_calc {
     'chip_inverse' => 'chip inversé', 'placage' => 'placage d’œil', 'fente' => 'fente', 'sous_ecorce' => 'sous écorce (couronne)',
     'anglaise' => 'anglaise', 'pont' => 'pont', 'incrustation' => 'incrustation', 'approche' => 'en approche', 'laterale' => 'latérale',
     'souche' => 'sur souche', 'microgreffe' => 'microgreffe d’apex in vitro', 'minigreffe' => 'minigreffe en fente'];
+  // saison de réalisation par type. Règle commune : porte-greffe sorti du repos (moyenne > 13 °C), œil du greffon pas encore débourré
+  // (INRAE « Greffage 1/4 », même filiation que Curk 2022 p. 185 et 194) ; printemps le meilleur, plein été déconseillé sans abri frais (Curk).
+  // ponytail: types sans source relue = la règle générale seule, à compléter quand une source est lue
+  const GREFFE_SAISONS = [
+    'ecusson_t_inverse' => 'porte-greffe en sève (l’écorce se soulève), en pleine croissance : en général d’avril à novembre selon le lieu (UF/IFAS HS1309, une seule source ; en Corse dès mars-avril sous tunnel, mai dehors, INRAE) ; le printemps de préférence, pas en plein été sans abri frais (Curk 2022, une seule source)',
+    'ecusson_t' => 'porte-greffe en sève (l’écorce se soulève), en pleine croissance : en général d’avril à novembre selon le lieu (UF/IFAS HS1309, une seule source ; en Corse dès mars-avril sous tunnel, mai dehors, INRAE) ; le printemps de préférence, pas en plein été sans abri frais (Curk 2022, une seule source)',
+    'chip' => 'quand l’écorce se soulève mal (UF/IFAS HS1309, INRAE) ou est trop épaisse pour un écusson (UF/IFAS HS1309, une seule source), ou pour une variété épineuse, à rameaux triangulaires (INRAE, une seule source) ; saison : printemps (Curk 2022, règle générale)',
+    'chip_inverse' => 'quand l’écorce se soulève mal (UF/IFAS HS1309, INRAE) ou est trop épaisse pour un écusson (UF/IFAS HS1309, une seule source), ou pour une variété épineuse, à rameaux triangulaires (INRAE, une seule source) ; saison : printemps (Curk 2022, règle générale)',
+    'sous_ecorce' => 'porte-greffe âgé, de gros diamètre, écorce trop épaisse pour un écusson mais qui se décolle (INRAE, une seule source) ; saison : printemps (Curk 2022, règle générale)',
+    'minigreffe' => 'fente herbacée : très jeunes porte-greffes (tige d’environ 5 mm), greffon de jeune pousse ; sous abri presque toute l’année dans les pays plus chauds que la Corse (INRAE, une seule source)',
+    'anglaise' => 'peu utilisée pour les agrumes (Curk 2022) ; sinon printemps (règle générale)',
+    'microgreffe' => 'en laboratoire (in vitro) : toute saison',
+  ];
+  public static function greffeSaison($type) { return self::GREFFE_SAISONS[$type] ?? (array_key_exists($type, self::GREFFES) ? 'printemps (Curk 2022), porte-greffe sorti du repos, œil du greffon pas débourré (INRAE ; même filiation, une seule source) : règle générale, aucune source relue pour ce type' : ''); }
   public static function greffe(array $c) { // type de greffe gardé seulement s'il est connu, et il implique la multiplication « greffe »
     if (!array_key_exists($c['type_greffe'] ?? '', self::GREFFES)) { unset($c['type_greffe']); return $c; }
     if (($c['multiplication'] ?? '') === '') $c['multiplication'] = 'greffe';
@@ -273,15 +308,35 @@ class journalcultures_calc {
   /* Suivi d'une greffe récente : contrôle du bourgeon à J+21 (œil ou bourgeons verts et gonflés, lien retiré), puis à J+42 (débourrement,
      sinon forcer en rabattant le porte-greffe) ; un statut n'avance que sur confirmation. Repères : UF/IFAS (lien retiré à 2-3 semaines),
      Alabama ACES (œil vert = pris ; vert sans pousse : rabattre), UC Ventura (soudure en 3-4 semaines au printemps, 6-8 sinon), minigreffe Valencia (bilan à 6 semaines).
-     Œil gardé dormant jusqu'au printemps (greffe d'automne), puis porte-greffe rabattu pour le forcer : Arizona (az1146), Kentucky (greffage). */
-  const GREFFE_STATUTS = ['attente' => 'en attente', 'probable' => 'probablement prise', 'dormant' => 'œil dormant jusqu’au printemps', 'reprise' => 'reprise', 'echouee' => 'échouée'];
-  const GREFFE_JOURS = ['attente' => 21, 'probable' => 42];
+     Œil gardé dormant jusqu'au printemps (greffe d'automne), puis porte-greffe rabattu pour le forcer : Arizona (az1146), Kentucky (greffage).
+     Après le débourrement (« pousse ») : rejets du porte-greffe ôtés dès qu'ils sortent (UF/IFAS HS1309, Curk 2022 p. 210) ; pousse tuteurée, puis haut
+     du porte-greffe coupé à ≈ 1 cm au-dessus de la greffe quand elle fait quelques centimètres (HS1309 seul) ; contrôle 4 semaines après (choix du plugin). */
+  const GREFFE_STATUTS = ['attente' => 'en attente', 'probable' => 'probablement prise', 'dormant' => 'œil dormant jusqu’au printemps', 'pousse' => 'pousse du greffon', 'reprise' => 'reprise', 'echouee' => 'échouée'];
+  const GREFFE_JOURS = ['attente' => 21, 'probable' => 42, 'pousse' => 28];
+  /* Marche à suivre selon le type : œil (le forcer en rabattant le porte-greffe : HS1309, Alabama ACES) ; rameau sur porte-greffe déjà coupé
+     (lien ou sac retiré quand le greffon pousse : Curk 2022 p. 186, fiche INRAE couronne 15 jours) ; latérale et approche, porte-greffe pas coupé
+     (le couper au-dessus une fois la soudure faite, et sevrer le greffon d'approche : aucune source relue) ; pont : réparation, pas de pousse attendue. */
   public static function greffeQuestion($statut, $type) {
-    $oeil = in_array($type, ['ecusson_t_inverse', 'ecusson_t', 'chip', 'chip_inverse', 'placage'], true); // greffe d'un œil, sinon de rameau (ou type inconnu)
-    if ($statut == 'attente') return $oeil ? 'œil vert et gonflé, sans se ratatiner ? (retirer le lien)' : 'bourgeons du greffon verts et gonflés ?';
-    if ($statut == 'probable') return $oeil ? 'l’œil a-t-il débourré ? (sinon le forcer en rabattant le porte-greffe au-dessus, ou le laisser dormir jusqu’au printemps)' : 'la pousse du greffon continue-t-elle ?';
-    if ($statut == 'dormant') return $oeil ? 'printemps : rabattre le porte-greffe au-dessus de l’œil ; a-t-il débourré ?' : 'printemps : les bourgeons du greffon ont-ils démarré ?';
-    return '';
+    $g = in_array($type, ['ecusson_t_inverse', 'ecusson_t', 'chip', 'chip_inverse', 'placage'], true) ? 'oeil'
+      : (in_array($type, ['laterale', 'approche'], true) ? 'cote' : ($type == 'pont' ? 'pont' : 'rameau')); // type inconnu : rameau
+    $rej = 'ôter les rejets du porte-greffe';
+    $Q = [
+      'oeil' => ['attente' => 'œil vert et gonflé, sans se ratatiner ? (retirer le lien)',
+        'probable' => 'l’œil a-t-il débourré ? (sinon le forcer en rabattant le porte-greffe au-dessus, ou le laisser dormir jusqu’au printemps)',
+        'dormant' => 'printemps : rabattre le porte-greffe au-dessus de l’œil ; a-t-il débourré ?',
+        'pousse' => 'la pousse fait quelques centimètres ? la tuteurer, couper le haut du porte-greffe à environ 1 cm au-dessus de la greffe, ' . $rej],
+      'rameau' => ['attente' => 'bourgeons du greffon verts et gonflés ? (sac retiré)',
+        'probable' => 'le greffon pousse-t-il ? (retirer le lien quand les feuilles sortent)',
+        'dormant' => 'printemps : les bourgeons du greffon ont-ils démarré ?',
+        'pousse' => 'greffon tuteuré, lien retiré, ' . $rej . ' ?'],
+      'cote' => ['attente' => 'greffon vert, sans se ratatiner ?',
+        'probable' => 'soudure faite ? couper le porte-greffe au-dessus de la greffe (approche : sevrer aussi le greffon de sa plante) ; le greffon pousse-t-il ?',
+        'dormant' => 'printemps : couper le porte-greffe au-dessus de la greffe ; le greffon a-t-il démarré ?',
+        'pousse' => 'greffon tuteuré, ' . $rej . ' ?'],
+      'pont' => ['attente' => 'greffons du pont verts, sans se ratatiner ?', 'probable' => 'greffons du pont toujours verts et soudés aux deux bouts ?',
+        'dormant' => 'printemps : greffons du pont toujours verts ?', 'pousse' => 'pousses sur les greffons du pont ôtées, ' . $rej . ' ?'],
+    ];
+    return $Q[$g][$statut] ?? '';
   }
   /* Température pour souder (moyenne 24 h de l'emplacement) : sous ~21 °C le Poncirus s'endort (Alabama ACES : dormance quand le jour reste < 70 °F),
      cal le plus rapide vers 21-29 °C, prise moindre au-dessus de ~32 °C (sources d'amateurs : growingfruit.org, forum) → seuils réglables */
@@ -298,16 +353,18 @@ class journalcultures_calc {
     return $min !== null && $min < 0 ? sprintf('gel : protéger l’œil, %s °C au plus bas sur 24 h', self::virgule(floor($min * 10) / 10)) : '';
   }
   // verdict d'un contrôle (ok, douteux = revoir dans 7 jours, printemps = œil laissé dormant, mort) → [statut, prochain contrôle 'Y-m-d' ou '']
-  public static function controler($statut, $verdict, $greffe, $jour) {
-    if (!in_array($statut, ['attente', 'probable', 'dormant'], true)) throw new Exception(__('Pas de contrôle de greffe en cours', __FILE__));
+  public static function controler($statut, $verdict, $greffe, $jour, $sud = false) {
+    if (!in_array($statut, ['attente', 'probable', 'dormant', 'pousse'], true)) throw new Exception(__('Pas de contrôle de greffe en cours', __FILE__));
     $j = function ($d, $n) { return date('Y-m-d', strtotime($d . ' +' . $n . ' days')); };
     if ($verdict == 'mort') return ['echouee', ''];
     if ($verdict == 'douteux') return [$statut, $j($jour, 7)];
-    if ($verdict == 'printemps' && $statut != 'dormant') { // ponytail: 15 mars fixe ; à rendre réglable si le climat de la pièce l'exige
-      $p = substr($jour, 0, 4) . '-03-15'; return ['dormant', $p > $jour ? $p : ((int)substr($jour, 0, 4) + 1) . '-03-15'];
+    if ($verdict == 'printemps' && in_array($statut, ['attente', 'probable'], true)) { // 15 mars (15 septembre dans l'hémisphère sud) ; plus tôt si l'emplacement est déjà assez chaud (voir journalcultures::suiviGreffe)
+      $md = $sud ? '-09-15' : '-03-15'; $p = substr($jour, 0, 4) . $md; return ['dormant', $p > $jour ? $p : ((int)substr($jour, 0, 4) + 1) . $md];
     }
     if ($verdict != 'ok') throw new Exception(__('Verdict inconnu', __FILE__));
-    return $statut != 'attente' ? ['reprise', ''] : ['probable', max($j($greffe, self::GREFFE_JOURS['probable']), $jour)]; // J+42 déjà passé (réponse tardive) : la question suivante tout de suite
+    if ($statut == 'pousse') return ['reprise', ''];
+    if ($statut != 'attente') return ['pousse', $j($jour, self::GREFFE_JOURS['pousse'])]; // débourré : soins de la pousse, revus dans 4 semaines
+    return ['probable', max($j($greffe, self::GREFFE_JOURS['probable']), $jour)]; // J+42 déjà passé (réponse tardive) : la question suivante tout de suite
   }
 
   public static function age($d, $now = null) {
@@ -438,7 +495,7 @@ class journalcultures_calc {
       $p = array_map('trim', explode('|', $l));
       if ($p[0] === '') continue;
       $r[] = ['nom' => mb_substr($p[0], 0, 60), 'n' => max(0, min(100, (float)self::nombre($p[1] ?? ''))), 'tous' => max(0, min(52, (int)self::nombre($p[2] ?? ''))),
-        'saison' => preg_match('/^\d{1,2}-\d{1,2}$/D', $p[3] ?? '') ? $p[3] : '10-40',
+        'saison' => preg_match('/^(\d{1,2})-(\d{1,2})$/D', $p[3] ?? '', $m) && $m[1] >= 1 && $m[1] <= 53 && $m[2] >= 1 && $m[2] <= 53 ? $p[3] : '10-40',
         'apporte' => array_values(array_intersect(preg_split('/[\s,]+/', strtoupper($p[4] ?? ''), -1, PREG_SPLIT_NO_EMPTY), ['N', 'P', 'K', 'MG', 'FE', 'S', 'ZN', 'MN'])),
         'note' => mb_substr($p[5] ?? '', 0, 300), 'gl' => max(0, min(100, (float)self::nombre($p[6] ?? '')))];
     }
@@ -480,7 +537,8 @@ class journalcultures_calc {
 
   /* ---------- santé : problèmes surveillés et pistes ---------- */
   /* Agrumes en pot sous serre (Île-de-France), du plus important au moins important. Références complètes : ressources.md §14.
-     Chaque geste porte ses sources ; un geste ou un problème à une seule source est signalé (en chercher une autre). statut : present, quarantaine, absent. */
+     Chaque geste porte ses sources ; un geste ou un problème à une seule source est signalé (en chercher une autre). statut : present, quarantaine, absent, a_verifier, pour la France ; regional = statut propre à la France
+     (ailleurs : « à vérifier pour ce pays », journalcultures::santeCat). Périodes de risque : hémisphère nord (Corse, PACA, Californie, Floride). */
   const SANTE = [
     'gommose' => ['nom' => 'Gommose et pourriture des racines (Phytophthora)', 'statut' => 'present',
       'signes' => 'gomme, écorce brune qui se fend au collet ou au point de greffe ; feuilles vert pâle à nervures jaunes (atteinte sévère), qui tombent ; racines fines molles dont l’écorce part (il reste un fil blanc) ; favorisée par un substrat qui reste mouillé',
@@ -532,24 +590,24 @@ class journalcultures_calc {
       'gestes' => [['plante adulte : dégâts surtout esthétiques (BSV PACA) ; risque réel pour les jeunes plantes (BSV Corse)', ['BSV PACA 2020', 'BSV Corse 2024']],
         ['couper les jeunes pousses atteintes', ['BSV PACA 2020']],
         ['si besoin, produit de biocontrôle', ['BSV Corse 2024']]]],
-    'mal_secco' => ['nom' => 'Mal secco (Plenodomus tracheiphilus, citronniers, limes, cédratiers)', 'statut' => 'present',
+    'mal_secco' => ['nom' => 'Mal secco (Plenodomus tracheiphilus, citronniers, limes, cédratiers)', 'statut' => 'present', 'regional' => 1,
       'signes' => 'feuilles qui tombent depuis la pointe des rameaux, rameaux qui sèchent, bois coloré saumon à rouge carotte sous l’écorce ; infections surtout de novembre à février (pic en janvier)',
       'sources' => ['Chapot 1963', 'Migheli 2009', 'Nigro 2011', 'OEPP 2024 (mal secco)', 'Catane 2022-2023', 'Cirad 1983'],
       'gestes' => [['couper jusqu’au bois sain (sans coloration) : le champignon gagne la plante par le bois ; déchets en sac fermé à la déchetterie, jamais au compost (Chapot dit brûler : interdit aux particuliers aujourd’hui)', ['Chapot 1963', 'Catane 2022-2023']],
         ['protéger les plaies au cuivre (la lutte chimique repose sur le cuivre) ; éviter toute blessure l’hiver, c’est par elles qu’il entre', ['Chapot 1963', 'Cirad 1983']]],
       'note' => 'désinfecter les outils entre deux coupes : alcool à 70° (choix du plugin) ; Chapot les trempait dans du sulfate de cuivre à 5 %. Organisme réglementé non de quarantaine (ORNQ) dans l’Union européenne : déclaration non obligatoire chez un particulier. Très sensibles : citronnier, lime vraie, cédratier (Chapot) ; l’OEPP cite aussi bergamote et bigaradier. Sensibilité comparée : observations au champ, pas toujours confirmées par des tests (OEPP 2024)'],
-    'aleurode_epineux' => ['nom' => 'Aleurode épineux (Aleurocanthus spiniferus)', 'statut' => 'quarantaine',
+    'aleurode_epineux' => ['nom' => 'Aleurode épineux (Aleurocanthus spiniferus)', 'statut' => 'quarantaine', 'regional' => 1,
       'signes' => 'petites protubérances noires et épineuses sous les feuilles, miellat, fumagine, fourmis',
       'sources' => ['Fiche SORE (aleurode épineux)', 'EFSA 2018', 'OEPP 2020 (aleurode épineux)', 'Cioffi 2013'],
       'gestes' => [['photographier le dessous des feuilles et signaler à la DRAAF-SRAL, photos jointes (organisme de quarantaine)', ['Fiche SORE (aleurode épineux)']]],
       'note' => 'en attendant, ne pas déplacer ni donner la plante (précaution du plugin) ; présent en France (continent et Corse), Italie, Grèce, Croatie… (OEPP 2020), en Italie depuis 2008 (EFSA 2018) ; savons et mouillants ne le contrôlent qu’en partie (Cioffi 2013) ; chez l’aleurode floconneux, l’imidaclopride (interdit en France) perturbe les parasitoïdes et provoque une résurgence (Cioffi 2013)'],
-    'hlb' => ['nom' => 'HLB (greening, dragon jaune)', 'statut' => 'absent',
+    'hlb' => ['nom' => 'HLB (greening, dragon jaune)', 'statut' => 'absent', 'regional' => 1,
       'signes' => 'marbrures jaunes asymétriques des feuilles, fruits déformés qui se colorent à l’envers, psylles sur les jeunes pousses',
       'sources' => ['PP328', 'BSV JEVI Corse 2025', 'Sáenz Pérez 2019'],
       'gestes' => [['d’abord le test de symétrie : jaunissement pareil des deux côtés de la nervure = carence (zinc, magnésium…), asymétrique = suspect', ['PP328']],
         ['asymétrique avec psylles : signaler à la FREDON ; aucun traitement n’existe', ['BSV JEVI Corse 2025', 'Sáenz Pérez 2019']]],
       'note' => 'bactérie absente de France métropolitaine ; deux psylles vecteurs sont présents dans l’Union européenne : Trioza erytreae en Espagne et au Portugal (BSV JEVI Corse 2025), Diaphorina citri à Chypre ; décolorations asymétriques aussi décrites par BSV JEVI ; peut se confondre avec un manque de zinc (Sáenz Pérez 2019)'],
-    'tristeza' => ['nom' => 'Tristeza (CTV, absente de Corse en 1990)', 'statut' => 'a_verifier',
+    'tristeza' => ['nom' => 'Tristeza (CTV, absente de Corse en 1990)', 'statut' => 'a_verifier', 'regional' => 1,
       'signes' => 'déclin des arbres greffés sur bigaradier ; virus transmis par pucerons et matériel végétal',
       'sources' => ['Vogel 1990', 'Sáenz Pérez 2019', 'UF/IFAS HS261', 'Boccas et Laville 1976', 'Vanderweyen 1980'],
       'gestes' => [['plants et greffons d’origine contrôlée', ['Vogel 1990', 'Sáenz Pérez 2019']],
@@ -590,7 +648,7 @@ class journalcultures_calc {
 
   // Notice : Markdown restreint (titres, paragraphes, listes « - », tableaux, gras, italique, code, liens, images de docs/images) → HTML.
   // ponytail: pas un parseur complet, le texte vient de nos docs/ ; tout est échappé avant d'être balisé.
-  const NOTICES = ['index' => 'Mode d\'emploi', 'fertilisation' => 'Fertilisation', 'sante' => 'Santé', 'identification' => 'Identification', 'guide' => 'Guide de culture'];
+  const NOTICES = ['index' => 'Mode d\'emploi', 'fertilisation' => 'Fertilisation', 'sante' => 'Santé', 'greffe' => 'Greffe', 'identification' => 'Identification', 'guide' => 'Guide de culture'];
   public static function ancre($t) { return trim(preg_replace('/[^\p{L}\p{N}_-]+/u', '', str_replace(' ', '-', mb_strtolower($t))), '-'); } // comme GitHub
   public static function enligne($t) {
     $t = htmlspecialchars($t, ENT_QUOTES | ENT_SUBSTITUTE);
@@ -616,7 +674,7 @@ class journalcultures_calc {
     $h = ''; $bloc = null; $acc = []; $som = []; // sommaire : titres ## et ###
     $fin = function () use (&$h, &$bloc, &$acc) {
       if ($bloc == 'p') $h .= '<p>' . implode(' ', array_map([self::class, 'enligne'], $acc)) . '</p>';
-      if ($bloc == 'ul') $h .= '<ul>' . implode('', array_map(function ($i) { return '<li>' . self::enligne($i) . '</li>'; }, $acc)) . '</ul>';
+      if ($bloc == 'ul' || $bloc == 'ol') $h .= "<$bloc>" . implode('', array_map(function ($i) { return '<li>' . self::enligne($i) . '</li>'; }, $acc)) . "</$bloc>";
       if ($bloc == 't') {
         $l = array_values(array_filter($acc, function ($r) { return !preg_match('/^\|[\s:|-]+\|$/', trim($r)); })); // sans la ligne de séparation
         foreach ($l as $n => $r) {
@@ -637,8 +695,8 @@ class journalcultures_calc {
         continue;
       }
       if ($ligne[0] == '|') { if ($bloc != 't') { $fin(); $bloc = 't'; } $acc[] = $ligne; continue; }
-      if (preg_match('/^[-*]\s+(.*)$/', $ligne, $m)) { if ($bloc != 'ul') { $fin(); $bloc = 'ul'; } $acc[] = $m[1]; continue; }
-      if ($bloc == 'ul' && preg_match('/^\s+(.*)$/', $ligne, $m)) { $acc[count($acc) - 1] .= ' ' . $m[1]; continue; } // suite de l'élément
+      if (preg_match('/^(?:[-*]|(\d+)\.)\s+(.*)$/', $ligne, $m) && !($bloc == 'p' && $m[1] !== '' && $m[1] !== '1')) { $l = $m[1] === '' ? 'ul' : 'ol'; if ($bloc != $l) { $fin(); $bloc = $l; } $acc[] = $m[2]; continue; } // ponytail: <ol> numérotée de 1, le numéro écrit est ignoré ; comme CommonMark, seul « 1. » coupe un paragraphe
+      if (($bloc == 'ul' || $bloc == 'ol') && preg_match('/^\s+(.*)$/', $ligne, $m)) { $acc[count($acc) - 1] .= ' ' . $m[1]; continue; } // suite de l'élément
       if ($bloc != 'p') { $fin(); $bloc = 'p'; }
       $acc[] = trim($ligne);
     }

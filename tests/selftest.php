@@ -18,17 +18,23 @@ $ok($C::facteurJeune('greffe', '2025-11-01', 0.25, 3, $t) === 0.5 && $C::facteur
   && $C::facteurJeune('greffe', '2026-12', 0.25, 3, $t) === 0.25 && $C::facteurJeune('greffe', '2026-12', 1, 3, $t) === 1.0 && $C::facteurJeune('greffe', '2026-12', 0.25, 0, $t) === 1.0
   && $C::facteurJeune('greffe', '2026-12', 0, 3, $t) === 0.01 && $C::facteurJeune('greffe', '2026-12', -1, 3, $t) === 0.01, 'engrais d\'un jeune plant');
 $ok($C::controler('attente', 'ok', '2026-09-13', '2026-10-04') == ['probable', '2026-10-25'] && $C::controler('attente', 'ok', '2026-09-13', '2026-11-01') == ['probable', '2026-11-01']
-  && $C::controler('probable', 'ok', '2026-09-13', '2026-11-01') == ['reprise', ''] && $C::controler('attente', 'douteux', '2026-09-13', '2026-11-01') == ['attente', '2026-11-08']
+  && $C::controler('probable', 'ok', '2026-09-13', '2026-11-01') == ['pousse', '2026-11-29'] && $C::controler('pousse', 'ok', '2026-09-13', '2026-12-01') == ['reprise', ''] && $C::controler('attente', 'douteux', '2026-09-13', '2026-11-01') == ['attente', '2026-11-08']
   && $C::controler('probable', 'mort', '2026-09-13', '2026-11-01') == ['echouee', '']
   && $C::controler('probable', 'printemps', '2026-09-13', '2026-11-01') == ['dormant', '2027-03-15'] && $C::controler('attente', 'printemps', '2026-02-01', '2026-02-20') == ['dormant', '2026-03-15']
-  && $C::controler('dormant', 'ok', '2026-09-13', '2027-03-20') == ['reprise', ''] && $C::controler('dormant', 'douteux', '2026-09-13', '2027-03-15') == ['dormant', '2027-03-22'] && strpos($C::greffeQuestion('attente', 'chip'), 'œil') === 0, 'contrôles de greffe');
+  && $C::controler('dormant', 'ok', '2026-09-13', '2027-03-20') == ['pousse', '2027-04-17'] && strpos($C::greffeQuestion('pousse', 'chip'), 'tuteurer') !== false && strpos($C::greffeQuestion('pousse', 'fente'), 'lien retiré') !== false && strpos($C::greffeQuestion('probable', 'approche'), 'sevrer') !== false && strpos($C::greffeQuestion('attente', 'pont'), 'pont') !== false && strpos($C::greffeQuestion('pousse', ''), 'rejets') !== false && $C::greffeQuestion('reprise', 'chip') === '' && $C::controler('dormant', 'douteux', '2026-09-13', '2027-03-15') == ['dormant', '2027-03-22'] && strpos($C::greffeQuestion('attente', 'chip'), 'œil') === 0 && count(array_filter(array_keys($C::GREFFES), function ($k) use ($C) { return $C::greffeSaison($k) === ''; })) == 0 && $C::greffeSaison('x') === '' && strpos($C::greffeSaison('fente'), 'règle générale') !== false, 'contrôles de greffe');
 $ok($C::greffeTemp(null) === '' && $C::greffeTemp(20.04) === 'trop froid pour souder : 20 °C en moyenne sur 24 h (< 21 °C)' && $C::greffeTemp(25) === ''
   && strpos($C::greffeTemp(33, 21, 32), 'trop chaud') === 0 && $C::greffeTemp(19, 18, 32) === '' && strpos($C::greffeTemp(20.96), ': 20,9 °C') !== false && $C::greffeGel(null) === '' && $C::greffeGel(0.4) === '' && strpos($C::greffeGel(-1.25), '-1,3 °C') !== false, 'température de la greffe');
+$ok($C::controler('probable', 'printemps', '2026-09-13', '2026-11-01', true) == ['dormant', '2027-09-15'] && $C::controler('attente', 'printemps', '2026-03-01', '2026-04-10', true) == ['dormant', '2026-09-15'], 'printemps : 15 septembre dans l\'hémisphère sud');
+$ok($C::decaler('10-40', 26) === '36-14' && $C::decaler('6-44', 26) === '32-18' && $C::decaler('1-53', 26) === '1-53' && $C::decaler('53-1', 26) === '27-27' && in_array(1, $C::semaines('36-14')) && !in_array(20, $C::semaines('36-14')), 'saison décalée de 6 mois (hémisphère sud)');
+$ok($C::pousse(null, 13) === null && $C::pousse(12.9, 13) === false && $C::pousse(13.0, 13) === true && $C::pousse(false, 13) === false, 'zéro de végétation : null sans sonde, en dessous = au repos');
 try { $C::controler('echouee', 'ok', '2026-09-13', '2026-11-01'); $ok(false, 'greffe échouée : plus de contrôle'); } catch (Exception $e) {}
 $ok($C::alerte(-5.0, 1.0, null)['alerte'] === 0 && $C::alerte(-5.0, -3.0, null)['alerte'] === 1 && $C::alerte(-5.0, 4.0, -3.5)['alerte'] === 1, 'alerte : mesurée, prévue');
 $ok($C::alerte(null, -10.0, null) === null && $C::alerte(-5.0, null, null) === null, 'alerte : inconnue');
 $ok($C::semaines('10-16/2') == [10, 12, 14, 16] && $C::semaines('12,16; 20') == [12, 16, 20] && $C::semaines('52-2') == [1, 2, 52, 53] && $C::semaines('x, 0, 60') == [], 'semaines');
-$ok($C::engrais("10-40/2 | Agrumes | 5 g/l\n11 | Fer\n | rien\nfaux", 12) == ['Agrumes 5 g/l'] && $C::engrais("10-40/2 | Agrumes | 5 g/l\n11 | Fer", 11) == ['Fer'], 'engrais de la semaine');
+$ok($C::engraisDus("10-40/8 | Ferti | 40 g\n12,16 | Fer", 11) == [['Ferti 40 g', 1, false, 'Ferti']] && $C::engraisDus("10-40/8 | Ferti", 18) == [['Ferti', 0, false, 'Ferti']]
+  && $C::engraisDus("10-40/8 | Ferti", 41) == [] && $C::engraisDus("48-8/4 | X", 53) == [['X', 1, false, 'X']] && $C::engraisDus("48-8/4 | X", 1) == [] && $C::engraisDus("48-8/4 | X", 2) == [] && $C::engraisDus("10-40/8 | F", 15) == [] && $C::engraisDus("12,16 | Fer", 13) == [], 'apports dus, rattrapage limité à la moitié de l\'intervalle');
+$ok($C::engraisDus("10-40/8 | Ferti | 40 g\n12,16 | Fer", 45, true) == [['Ferti 20 g (demi-dose, hors saison)', 3, true, 'Ferti']] && $C::engraisDus("10-40/8 | Ferti", 5, true) == [['Ferti (demi-dose, hors saison)', 0, true, 'Ferti']] && $C::engraisDus("10-40/8 | F | 7,5 g", 42, true)[0][0] === 'F 3,8 g (demi-dose, hors saison)'
+  && $C::engraisDus("10-40/8 | Ferti", 11, true) == [['Ferti', 1, false, 'Ferti']] && $C::emplacements("SdB | a | | | chauffé\nSerre | b")['SdB'][3] === true && $C::emplacements("Serre | b | | | non")['Serre'][3] === false, 'emplacement chauffé : apports toute l\'année à demi-dose');
 $ok($C::volume(['diam' => 20, 'terre' => 20]) === 6.3 && $C::volume(['diam' => 20, 'haut' => 20, 'carre' => true]) === 8.0 && $C::volume(['diam' => 30, 'pleine_terre' => true]) === null && $C::volume(['diam' => 30]) === null, 'volume du pot');
 $P = $C::produits($C::PRODUITS);
 $ok(count($P) == 5 && $P[0]['n'] == 7.0 && $P[0]['tous'] == 8 && $P[0]['saison'] == '10-40' && $P[0]['apporte'] == ['N', 'P', 'K'] && $P[3]['apporte'] == ['FE'] && $P[4]['apporte'] == ['MG', 'S'], 'catalogue proposé');
@@ -58,7 +64,7 @@ $ok(!array_diff(array_merge(...array_values($C::SIGNES)), array_keys($C::SANTE))
   && !array_filter($C::SANTE, function ($p) { foreach ($p['gestes'] as $g) if (!$g[1] || array_diff($g[1], $p['sources'])) return true; return false; })
   && $C::SANTE['hlb']['statut'] == 'absent' && $C::SANTE['tristeza']['statut'] == 'a_verifier', 'catalogue santé cohérent');
 $e = $C::emplacements("Serre | #1# | #2#\nJardin | #3# | | #4#\n\nMaison");
-$ok(array_keys($e) == ['Serre', 'Jardin', 'Maison'] && $e['Jardin'] == ['#3#', '', '#4#'] && $e['Maison'] == ['', '', ''], 'emplacements');
+$ok(array_keys($e) == ['Serre', 'Jardin', 'Maison'] && $e['Jardin'] == ['#3#', '', '#4#', false] && $e['Maison'] == ['', '', '', false], 'emplacements');
 $ok($C::texte(" Taille \u{1F345} <b> ", 80) === 'Taille  ‹b›' && $C::texte(['x'], 9) === '', 'texte saisi');
 $ok($C::date('2026-10-29') === '2026-10-29', 'date');
 $ok(array_keys($C::emplacements(str_repeat('é', 80) . ' | #1#')) == [str_repeat('é', 60)], 'nom d\'emplacement borné à 60');
@@ -161,6 +167,8 @@ foreach ($a[1] as $x) $ok(strpos($H['index'] ?? '', 'id="jdc-n-' . $x . '"') !==
 $x = $C::markdown("# T\nintro\n## Un [l](#a)\n### Sous\n## Deux");
 $ok(strpos($x, '<h2 id="jdc-n-t">T</h2><div class="jdc-doc"><nav class="jdc-toc">') === 0 && strpos($x, '<li><a data-n="" data-a="un-la">Un l</a></li><li class="s"><a data-n="" data-a="sous">Sous</a></li>') !== false
   && strpos($x, '<div class="jdc-tx"><p>intro</p><h3') !== false && strpos($C::markdown("# T\n## Un"), 'jdc-toc') === false, 'notice : sommaire sous le titre, seulement à partir de 2 sections');
+$ok(strpos($C::markdown("x\n1. a\n   b\n2. c\n- d"), '<p>x</p><ol><li>a b</li><li>c</li></ol><ul><li>d</li></ul>') !== false, 'notice : liste numérotée');
+$ok(strpos($C::markdown("vers\n2026. suite"), '<p>vers 2026. suite</p>') !== false, 'notice : « 2026. » ne coupe pas un paragraphe');
 $ok(strpos($C::markdown("**\u{2605}** retire"), "<b>\u{2605}</b> retire") !== false, 'notice : caractère à octet 0x85 (★) pas coupé en deux lignes');
 foreach ($H as $k => $h) {
   $ok(strlen($h) > 100 && strpos($h, '<script') === false, "notice $k convertie");

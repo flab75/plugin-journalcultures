@@ -1,6 +1,6 @@
 /* Journal de cultures — tuile d'une collection et ses fenêtres (plante, journal, noter, déplacer). Recopié dans chaque tuile par
    journalcultures::toHtml(), chargé une seule fois par page. Textes entre doubles accolades traduits côté PHP (core/i18n). */
-if (!window.journalcultures || window.journalcultures.v !== 18) (function () { // v : un onglet ouvert avant une mise à jour recharge la bibliothèque
+if (!window.journalcultures || window.journalcultures.v !== 24) (function () { // v : un onglet ouvert avant une mise à jour recharge la bibliothèque
   var css = document.getElementById('jdc-css') || document.createElement('style')
   css.id = 'jdc-css'
   css.textContent =
@@ -152,8 +152,13 @@ if (!window.journalcultures || window.journalcultures.v !== 18) (function () { /
     return '<h4>' + "{{Engrais}}" + '</h4>' +
       (e.carences.length ? '<p><b>' + "{{Pistes d'après la dernière mesure}}" + '</b> <small>(' + "{{pas un diagnostic}}" + ')</small></p><ul>' + e.carences.map(function (c) {
         return '<li>' + esc(c.txt) + (c.produits.length ? '<br><small>' + "{{En stock}}" + ' : ' + esc(c.produits.join(' · ')) + '</small>' : '') + '</li>' }).join('') + '</ul>' : '') +
-      '<p>' + (e.litres ? "{{Pot}}" + ' ' + nb(e.litres, ' L') + ' · ' + "{{besoin}}" + ' ' + nb(e.litres * e.taux * 2) + ' ' + "{{g d'azote toutes les 2 semaines en saison de croissance}}" + (e.jeune < 1 ? ' <small>(' + "{{jeune plant : dose réduite à}}" + ' ' + Math.round(e.jeune * 100) + ' %)</small><br><small>' + "{{Une dose déjà au calendrier n'est pas réduite d'elle-même : vider la case dose (elle se recalcule) puis écrire ; à refaire chaque printemps, la part remonte avec l'âge.}}" + '</small>' : '') + '<br><small>' + "{{Saison = de début mars à début octobre (semaines 10 à 40), rien en hiver ; chaque produit a la sienne, indiquée ci-dessous.}}" + '</small>' : "{{Pot de dimensions inconnues ou pleine terre : pas de plan (dose de l'étiquette)}}") + '</p>' +
-      '<p><small>' + "{{Calendrier actuel}}" + ' : ' + (e.calendrier ? esc(e.calendrier).replace(/\n/g, ' ; ') : '–') + '</small></p>' +
+      '<p>' + (e.litres ? "{{Pot}}" + ' ' + nb(e.litres, ' L') + ' · ' + "{{besoin}}" + ' ' + nb(e.litres * e.taux * 2) + ' ' + "{{g d'azote toutes les 2 semaines en saison de croissance}}" + (e.jeune < 1 ? ' <small>(' + "{{jeune plant : dose réduite à}}" + ' ' + Math.round(e.jeune * 100) + ' %)</small><br><small>' + "{{Une dose déjà au calendrier n'est pas réduite d'elle-même : vider la case dose (elle se recalcule) puis écrire ; à refaire chaque printemps, la part remonte avec l'âge.}}" + '</small>' : '') + '<br><small>' + "{{Saison = quand la moyenne sur 7 jours de l'emplacement atteint}}" + ' ' + nb(e.seuil, ' °C') + ' (' + "{{zéro de végétation des agrumes}}" + ') : ' +
+        (e.moy7 === null ? "{{sans sonde historisée, seul le calendrier compte}}" : e.moy7 === false ? '<b>' + "{{sonde muette depuis 7 jours : les apports attendent}}" + '</b>' : "{{maintenant}}" + ' ' + nb(e.moy7, ' °C') + ', ' + (e.moy7 >= e.seuil ? "{{en pousse}}" : '<b>' + "{{au repos : les apports attendent, rattrapés quand il fait plus doux}}" + '</b>')) +
+        ' ; ' + "{{et seulement dans la fenêtre de chaque produit, ci-dessous}}" + (e.sud ? ' (' + "{{hémisphère sud : décalée de 6 mois}}" + ')' : '') + '.' +
+        (e.hiv ? ' ' + "{{Repos hivernal au frais : pas d'engrais hors de la fenêtre, même au chaud.}}" : e.chauffe && e.jeuneHiv ? ' ' + "{{Jeune plant (moins d'un an ou greffe en suivi) : pas d'engrais hors de la fenêtre, même au chaud.}}" : e.chauffe && e.moy7 ? ' ' + "{{Emplacement chauffé : hors de la fenêtre, apports à demi-dose tant que la moyenne atteint le seuil.}}" : '') + '</small>' : "{{Pot de dimensions inconnues ou pleine terre : pas de plan (dose de l'étiquette)}}") + '</p>' +
+      '<p><small>' + "{{Calendrier actuel}}" + ' : ' + (e.calendrier ? esc(e.calendrier).replace(/\n/g, ' ; ') : '–') + '</small>' +
+        (e.calendrier.split('\n').some(function (l) { var c = l.split('|').map(function (x) { return x.trim() }), p = e.produits.filter(function (p) { return p.nom == c[1] })[0]
+          return p && p.tous > 0 && /^\d+-\d+\/\d+$/.test(c[0]) && c[0].split('/')[0] != p.saison }) ? '<br><small class="jdc-er">' + "{{Une ligne du calendrier n'a pas la saison de son produit (latitude ou saison changée ?) : réécrire le plan, si ce n'est pas voulu.}}" + '</small>' : '') + '</p>' +
       (e.litres && pl.length ? '<table class="jdc-plan">' + pl.map(function (x) {
         var p = x[0], i = x[1], v = e.parts[i] || 0
         return '<tr><td><label><input type="checkbox" class="pk" data-i="' + i + '"' + (v ? ' checked' : '') + (admin ? '' : ' disabled') + '> ' + esc(p.nom) + '</label> <small>' + esc(p.n) + ' % N, ' + "{{toutes les}}" + ' ' + p.tous + ' ' + "{{sem.}}" + ', ' + saison(p.saison) + (p.ge ? ', ' + "{{dose de l'étiquette}}" + ' ' + nb(p.gl) + ' g/L' : '') + '</small></td>' +
@@ -161,11 +166,11 @@ if (!window.journalcultures || window.journalcultures.v !== 18) (function () { /
         '<p><small>' + "{{Seuls les produits cochés reçoivent l'azote, réparti selon les parts (total 100 %). Un produit à dose d'étiquette garde cette dose ; son azote est retiré du besoin et le reste va aux autres. La dose calculée peut être ajustée à la main : c'est elle qui est écrite.}}" + '</small>' +
         (admin ? ' <a class="b pe">' + "{{Écrire dans le calendrier}}" + '</a> <span class="jdc-er pr"></span>' : '') + '</p>' : '')
   }
-  function blocSante(s, cat) {
+  function blocSante(s, cat, geo) {
     function src(l) { return ' <small>(' + esc(l.join(', ')) + (l.length == 1 ? ' — <b>' + "{{une seule source}}" + '</b>' : '') + ')</small>' }
-    function statut(p) { return p.statut == 'absent' ? ' <b>' + "{{absent de France}}" + '</b>' : p.statut == 'a_verifier' ? ' <b>' + "{{absence à vérifier}}" + '</b>' : p.statut == 'quarantaine' ? ' <b class="jdc-er">' + "{{quarantaine : à signaler}}" + '</b>' : '' }
+    function statut(p) { return p.statut == 'absent' ? ' <b>' + "{{absent de France}}" + '</b>' : p.statut == 'a_verifier' ? ' <b>' + "{{absence à vérifier}}" + '</b>' : p.statut == 'quarantaine' ? ' <b class="jdc-er">' + "{{quarantaine : à signaler}}" + '</b>' : p.statut == 'pays' ? ' <b' + (p.quar ? ' class="jdc-er"' : '') + '>' + "{{statut à vérifier pour ce pays (connu pour la France)}}" + '</b>' : '' }
     function gestes(p) { return '<ol>' + p.gestes.map(function (g) { return '<li>' + esc(g[0]) + src(g[1]) + '</li>' }).join('') + '</ol>' + (p.note ? '<p><small>' + esc(p.note) + '</small></p>' : '') }
-    return '<h4>' + "{{Santé}}" + '</h4>' +
+    return '<h4>' + "{{Santé}}" + '</h4>' + (geo && geo.sud ? '<p><small class="jdc-er">' + "{{Les périodes citées (mois, saisons) viennent de l'hémisphère nord : les décaler de 6 mois.}}" + '</small></p>' : '') +
       (s.pistes.length ? '<p><b>' + "{{Pistes d'après la mesure du}}" + ' ' + esc(s.date.slice(0, 10)) + '</b> <small>(' + "{{pas un diagnostic ; gestes du plus doux au plus fort}}" + ')</small></p>' + s.pistes.map(function (x) {
         var p = cat[x.id]; return '<p><b>' + esc(p.nom) + '</b>' + statut(p) + ' <small>— ' + esc(x.pourquoi) + '</small>' + (x.note ? '<br><small class="jdc-er">' + esc(x.note) + '</small>' : '') + '</p>' + gestes(p) }).join('') :
         '<p><small>' + "{{Rien de signalé aux dernières mesures. Pour noter un problème : Mesure → Santé (signe observé, ravageur, maladie) ou Tronc → écorce.}}" + '</small></p>') +
@@ -208,7 +213,7 @@ if (!window.journalcultures || window.journalcultures.v !== 18) (function () { /
           (r.greffe ? '<tr><th>' + "{{Greffe}}" + '</th><td class="grs">' + esc(r.greffe.texte) + (r.greffe.controle ? ' · ' + "{{contrôle le}}" + ' ' + esc(r.greffe.controle.split('-').reverse().join('/')) : '') +
             (r.greffe.question ? '<br>' + (r.greffe.du ? '<b class="jdc-er">' + esc(r.greffe.question) + '</b>' : '<small>' + esc(r.greffe.question) + '</small>') : '') +
             (r.greffe.temp ? '<br><b class="jdc-er">' + esc(r.greffe.temp) + '</b>' : '') +
-            (d.admin == 1 && r.greffe.question ? '<br><input class="gnote" maxlength="200" placeholder="' + "{{note (facultatif)}}" + '"> <a class="b gv" data-v="ok">' + "{{Oui}}" + '</a> <a class="b gv" data-v="douteux" title="' + "{{revoir dans 7 jours}}" + '">' + "{{Douteux}}" + '</a> ' + (r.greffe.statut != 'dormant' ? '<a class="b gv" data-v="printemps" title="' + "{{œil vivant, laissé dormant : contrôle le 15 mars}}" + '">' + "{{Au printemps}}" + '</a> ' : '') + '<a class="b gv" data-v="mort">' + "{{Non, mort}}" + '</a>' : '') +
+            (d.admin == 1 && r.greffe.question ? '<br><input class="gnote" maxlength="200" placeholder="' + "{{note (facultatif)}}" + '"> <a class="b gv" data-v="ok">' + "{{Oui}}" + '</a> <a class="b gv" data-v="douteux" title="' + "{{revoir dans 7 jours}}" + '">' + "{{Douteux}}" + '</a> ' + (r.greffe.printemps ? '<a class="b gv" data-v="printemps" title="' + (r.geo && r.geo.sud ? "{{œil vivant, laissé dormant : contrôle le 15 septembre}}" : "{{œil vivant, laissé dormant : contrôle le 15 mars}}") + '">' + "{{Au printemps}}" + '</a> ' : '') + '<a class="b gv" data-v="mort">' + "{{Non, mort}}" + '</a>' : '') +
             (d.admin == 1 && r.greffe.statut == 'echouee' ? ' <a class="b dgr">' + "{{Redevenir porte-greffe…}}" + '</a>' : '') + ' <span class="jdc-er"></span></td></tr>' : '') +
           '<tr><th>' + "{{Rusticité effective}}" + '</th><td>' + (s.reff === null ? "{{inconnue (pas de rusticité dans la fiche)}}" : nb(s.reff, ' °C')) +
             (s.reff !== null && s.estimee ? ' <small>(' + "{{estimée}}" + ' ' + nb(s.estimee.r, ' °C') + ' : ' + esc(s.estimee.groupes.join(', ')) + (s.estimee.par == 'nom' ? '' : ', ' + "{{d'après les caractères}}") + ')</small>' : '') + (s.reff !== null && s.jeunesse > 0 ? ' <small>(' + "{{dont jeunesse}}" + ' +' + nb(s.jeunesse, ' °C') + ')</small>' : '') + (s.raison ? ' <b class="jdc-er">' + esc(s.raison) + '</b>' : '') + '</td></tr>' +
@@ -216,7 +221,7 @@ if (!window.journalcultures || window.journalcultures.v !== 18) (function () { /
           (g.nom ? '<tr><th>GBIF</th><td>' + esc(g.nom) + (g.famille ? ' · ' + esc(g.famille) : '') + ' <small>(' + esc(g.statut) + ', ' + esc(g.type) + ' ' + esc(g.confiance) + ' %)</small></td></tr>' :
             g.statut == 'NONE' ? '<tr><th>GBIF</th><td class="jdc-er">' + "{{nom botanique introuvable}}" + '</td></tr>' : '') +
           r.fiche.map(function (x) { return '<tr><th>' + esc(x[0]) + '</th><td style="white-space:pre-wrap">' + esc(x[1]) + '</td></tr>' }).join('') + '</table>' +
-          blocEngrais(r.engrais, d.admin == 1) + blocSante(r.sante, r.santeCat) +
+          blocEngrais(r.engrais, d.admin == 1) + blocSante(r.sante, r.santeCat, r.geo) +
           (r.ident && r.ident.groupes ? '<h4>' + "{{Identification}}" + '</h4><p>' + (r.ident.verdict == 'probable' ? "{{Groupe probable}}" : "{{Indécis entre}}") + ' : ' +
             r.ident.groupes.map(function (g) { return '<b>' + esc(g.groupe) + '</b> <small>(' + g.accords + ' ' + "{{accord(s)}}" + (g.contre.length ? ', ' + "{{contre}}" + ' : ' + esc(g.contre.join(', ')) : '') + ')</small>' }).join(' · ') +
             '</p><table>' + r.carac.map(function (x) { return '<tr><th>' + esc(x[0]) + '</th><td>' + esc(x[1]) + '</td></tr>' }).join('') + '</table><p><small>' +
@@ -487,7 +492,7 @@ if (!window.journalcultures || window.journalcultures.v !== 18) (function () { /
           champ("{{Multiplication}}", '<span><select name="multiplication" style="width:auto"><option value=""></option>' + M.multiplications.map(function (m) { return '<option value="' + esc(m) + '">' + esc(m) + '</option>' }).join('') +
             '</select> <select name="type_greffe" style="width:auto;display:none"><option value="">' + "{{type de greffe ?}}" + '</option>' +
             Object.keys(M.greffes).map(function (k) { return '<option value="' + esc(k) + '">' + esc(M.greffes[k]) + '</option>' }).join('') +
-            '</select> <input name="date_mult" maxlength="10" placeholder="2024-05" style="width:8em"></span>') +
+            '</select> <input name="date_mult" maxlength="10" placeholder="2024-05" style="width:8em"><br><small class="jdc-saison"></small></span>') +
           champ("{{Pot}}", '<span><select name="pot_forme" style="width:auto"><option value="">' + "{{rond, Ø}}" + '</option><option value="carre">' + "{{carré, côté}}" + '</option></select> ' +
             '<input name="pot_diam" inputmode="decimal" placeholder="cm" style="width:5em"> × <input name="pot_haut" inputmode="decimal" placeholder="' + "{{haut. cm}}" + '" style="width:6em"> ' +
             '<label style="display:inline"><input type="checkbox" name="pleine_terre" value="1"> ' + "{{pleine terre}}" + '</label></span>') +
@@ -502,7 +507,8 @@ if (!window.journalcultures || window.journalcultures.v !== 18) (function () { /
           }, function (er) { if (k == n) rec.textContent = er })
         }
         f.querySelector('details').onchange = reconnaitre; F.bota.onchange = reconnaitre
-        F.multiplication.onchange = function () { var g = F.multiplication.value == 'greffe'; F.type_greffe.style.display = g ? '' : 'none'; if (!g) F.type_greffe.value = '' }
+        F.type_greffe.onchange = function () { var t = (M.greffe_saisons || {})[F.type_greffe.value]; f.querySelector('.jdc-saison').textContent = t ? "{{Saison}} : " + t : '' }
+        F.multiplication.onchange = function () { var g = F.multiplication.value == 'greffe'; F.type_greffe.style.display = g ? '' : 'none'; if (!g) F.type_greffe.value = ''; F.type_greffe.onchange() }
         if (pg) { // greffe : multiplication imposée, date du jour, porte-greffe déduit du nom (« Flying Dragon 3 » → Flying Dragon), emplacement et pot inchangés
           F.multiplication.value = 'greffe'; F.multiplication.onchange(); F.multiplication.style.display = 'none'; F.date_mult.value = auj()
           F.porte_greffe.value = Object.keys(M.porte_greffes).sort(function (a, b) { return b.length - a.length }).filter(function (k) { return pg.nom.toLowerCase().indexOf(k.toLowerCase()) >= 0 })[0] || pg.nom
@@ -546,7 +552,7 @@ if (!window.journalcultures || window.journalcultures.v !== 18) (function () { /
   }
 
   // opt.panel : colonnes en plus (porte-greffe, dernière mesure), masquées sur téléphone
-  window.journalcultures = {v: 18, notice: notice, ajax: ajax, esc: esc, nb: nb, init: function (b, d, opt) {
+  window.journalcultures = {v: 24, notice: notice, ajax: ajax, esc: esc, nb: nb, init: function (b, d, opt) {
     if (!b) return
     d.apres = opt && opt.apres // relu par « Greffer… » (fiche)
     var pa = opt && opt.panel

@@ -9,6 +9,15 @@ Les bulletins de santé du végétal (BSV) de Corse et de PACA comptent pour deu
 Les sources sont nommées entre parenthèses ; les références complètes sont à la fin ([Sources](#sources)).
 Ce qui vient du plugin lui-même (précaution, déduction) est écrit comme tel.
 
+**Géographie** : les présences et absences (HLB, tristeza, mal secco, aleurode épineux) sont celles de **la France** ;
+les périodes de risque (mois, saisons) viennent de sources de l'**hémisphère nord** (Corse, PACA, Italie, Californie, Floride).
+Le plugin lit le pays et la latitude dans Jeedom (Réglages → Système → Configuration) :
+- pays autre que la France : ces quatre statuts deviennent « statut à vérifier pour ce pays » (l'aleurode épineux reste en rouge) ;
+- latitude au sud : la fiche rappelle de décaler les périodes citées de 6 mois (déduction du plugin : les saisons sont inversées) ;
+- pays non renseigné : traité comme la France.
+Les services et démarches cités (DRAAF-SRAL, FREDON, déclaration obligatoire) sont ceux de la France : ailleurs, s'adresser au service de protection des végétaux du pays.
+La Corse n'est pas distinguée du continent : les statuts propres à la Corse sont donnés dans le texte.
+
 ## Dans le plugin
 - **Mesures**, organe **Santé** : noter le **signe observé** (tableau ci-dessous), le ravageur ou la maladie s'ils sont connus, et l'intensité.
   Ravageurs proposés : mineuse, cochenille, acarien, puceron, aleurode, autre ; maladies : gommose, fumagine, autre.

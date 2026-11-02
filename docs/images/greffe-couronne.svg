@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif" font-size="13" viewBox="0 0 700 265" width="700">
+  <title>Greffe en couronne (sous écorce) : rabattre et fendre l'écorce, greffon en bec de flûte, glisser, ligaturer, ensacher</title>
+  <defs><marker id="f" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#246"/></marker></defs>
+  <rect width="700" height="265" rx="8" fill="#fbfaf6"/>
+  <rect x="95" y="70" width="44" height="140" fill="#9b7a4a"/>
+  <ellipse cx="117" cy="70" rx="22" ry="6" fill="#efe0b0" stroke="#7a5d33"/>
+  <line x1="117" y1="76" x2="117" y2="112" stroke="#c22" stroke-width="2.5"/>
+  <text x="150" y="150" font-size="11" fill="#555">30-40 cm</text><text x="150" y="164" font-size="11" fill="#555">du collet</text>
+  <text x="117" y="236" text-anchor="middle" font-weight="bold" font-size="14" fill="#222">1 Rabattre, fendre</text><text x="117" y="254" text-anchor="middle" fill="#555">l'écorce, la décoller</text>
+  <path d="M343 50 H357 V150 L343 205 Z" fill="#5a8f3c" stroke="#3d6b27"/>
+  <path d="M357 150 L343 205" stroke="#c22" stroke-width="2.5"/>
+  <ellipse cx="341" cy="75" rx="3.5" ry="5" fill="#24481a"/><ellipse cx="359" cy="100" rx="3.5" ry="5" fill="#24481a"/><ellipse cx="341" cy="125" rx="3.5" ry="5" fill="#24481a"/>
+  <text x="350" y="236" text-anchor="middle" font-weight="bold" font-size="14" fill="#222">2 Greffon 2-3 yeux</text><text x="350" y="254" text-anchor="middle" fill="#555">bas en bec de flûte</text>
+  <path d="M553 30 Q553 18 583 18 Q613 18 613 30 V165 H553 Z" fill="none" stroke="#888" stroke-dasharray="5 4"/>
+  <rect x="561" y="110" width="44" height="100" fill="#9b7a4a"/>
+  <rect x="563" y="40" width="14" height="110" fill="#5a8f3c" stroke="#3d6b27"/>
+  <rect x="560" y="110" width="20" height="40" fill="#9b7a4a" fill-opacity=".85"/>
+  <ellipse cx="583" cy="110" rx="22" ry="5" fill="#555"/><rect x="563" y="36" width="14" height="6" fill="#555"/>
+  <ellipse cx="561" cy="70" rx="3.5" ry="5" fill="#24481a"/><ellipse cx="579" cy="92" rx="3.5" ry="5" fill="#24481a"/>
+  <rect x="557" y="116" width="52" height="8" fill="#7aa6d6" fill-opacity=".55" transform="rotate(-12 583 116)"/>
+<rect x="557" y="127" width="52" height="8" fill="#7aa6d6" fill-opacity=".55" transform="rotate(-12 583 127)"/>
+<rect x="557" y="138" width="52" height="8" fill="#7aa6d6" fill-opacity=".55" transform="rotate(-12 583 138)"/>
+  <text x="620" y="40" font-size="11" fill="#555">sac</text><text x="620" y="108" font-size="11" fill="#555">mastic</text>
+  <text x="583" y="236" text-anchor="middle" font-weight="bold" font-size="14" fill="#222">3 Glisser, ligaturer</text><text x="583" y="254" text-anchor="middle" fill="#555">mastic, sac 15 jours</text>
+</svg>

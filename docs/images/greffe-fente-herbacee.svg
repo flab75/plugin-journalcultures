@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif" font-size="13" viewBox="0 0 700 265" width="700">
+  <title>Greffe en fente herbacée : écimer et fendre, greffon d'un œil en double biseau, enchâsser, Parafilm, ensacher</title>
+  <defs><marker id="f" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#246"/></marker></defs>
+  <rect width="700" height="265" rx="8" fill="#fbfaf6"/>
+  <rect x="110" y="80" width="14" height="130" fill="#7f8f4a"/>
+  <line x1="117" y1="80" x2="117" y2="102" stroke="#c22" stroke-width="2.5"/>
+  <text x="132" y="96" font-size="11" fill="#555">fente 1 cm</text>
+  <text x="132" y="150" font-size="11" fill="#555">35-45 cm du sol,</text><text x="132" y="164" font-size="11" fill="#555">Ø ≥ 5 mm</text>
+  <text x="117" y="236" text-anchor="middle" font-weight="bold" font-size="14" fill="#222">1 Écimer, fendre</text><text x="117" y="254" text-anchor="middle" fill="#555">très jeune porte-greffe</text>
+  <path d="M343 70 H357 V150 L350 182 L343 150 Z" fill="#7cb342" stroke="#3d6b27"/>
+  <path d="M357 150 L350 182 L343 150" fill="none" stroke="#c22" stroke-width="2.5"/>
+  <ellipse cx="359" cy="110" rx="3.5" ry="5" fill="#24481a"/>
+  <text x="372" y="114" font-size="11" fill="#555">un seul œil, au milieu</text>
+  <text x="350" y="236" text-anchor="middle" font-weight="bold" font-size="14" fill="#222">2 Greffon herbacé</text><text x="350" y="254" text-anchor="middle" fill="#555">base en double biseau</text>
+  <path d="M548 30 Q548 16 583 16 Q618 16 618 30 V175 H548 Z" fill="none" stroke="#888" stroke-dasharray="5 4"/>
+  <rect x="576" y="110" width="14" height="100" fill="#7f8f4a"/>
+  <rect x="576" y="42" width="14" height="68" fill="#7cb342" stroke="#3d6b27"/>
+  <ellipse cx="592" cy="76" rx="3.5" ry="5" fill="#24481a"/>
+  <rect x="571" y="36" width="24" height="94" rx="4" fill="#dfe8f2" fill-opacity=".6" stroke="#9ab"/>
+  <ellipse cx="560" cy="148" rx="12" ry="5" fill="#5a8f3c" transform="rotate(-25 560 148)"/>
+  <ellipse cx="606" cy="160" rx="12" ry="5" fill="#5a8f3c" transform="rotate(25 606 160)"/>
+  <text x="625" y="80" font-size="11" fill="#555">Parafilm,</text><text x="625" y="94" font-size="11" fill="#555">sommet</text><text x="625" y="108" font-size="11" fill="#555">compris</text>
+  <text x="625" y="155" font-size="11" fill="#555">feuilles du</text><text x="625" y="169" font-size="11" fill="#555">porte-greffe</text>
+  <text x="583" y="236" text-anchor="middle" font-weight="bold" font-size="14" fill="#222">3 Enchâsser, ligaturer</text><text x="583" y="254" text-anchor="middle" fill="#555">sac retiré à 15 jours</text>
+</svg>

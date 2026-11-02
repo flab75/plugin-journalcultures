@@ -160,6 +160,12 @@ $eqLogics = eqLogic::byType($plugin->getId());
 									?>
 								</select></div>
 							</div>
+							<div class="form-group jdc-plante">
+								<label class="col-sm-4 control-label">{{Repos hivernal au frais}}
+									<sup><i class="fas fa-question-circle tooltips" title="{{Pas d'engrais hors de la fenêtre des produits, même en emplacement chauffé ; de novembre à février (mai à août dans l'hémisphère sud), ⚠ si elle est dans un emplacement marqué chauffé. Choix du plugin.}}"></i></sup>
+								</label>
+								<div class="col-sm-6"><input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="hivernage"></div>
+							</div>
 							<legend class="jdc-plante"><i class="fas fa-box"></i> {{Pot (rusticité effective)}}</legend>
 							<div class="form-group jdc-plante">
 								<label class="col-sm-4 control-label">{{Pleine terre}}</label>

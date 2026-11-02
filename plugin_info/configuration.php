@@ -10,7 +10,7 @@ if (!isConnect('admin')) {
   <fieldset>
     <div class="form-group">
       <label class="col-md-4 control-label">{{Emplacements}}
-        <sup><i class="fas fa-question-circle tooltips" title="{{Une ligne par emplacement : Nom | commande température | commande humidité | commande température minimale prévue (facultatif, pour l'extérieur). Sans sonde, pas d'alerte de froid.}}"></i></sup>
+        <sup><i class="fas fa-question-circle tooltips" title="{{Une ligne par emplacement : Nom | commande température | commande humidité | commande température minimale prévue (facultatif, pour l'extérieur) | chauffé (facultatif : un mot, ex. « chauffé »). Sans sonde, pas d'alerte de froid. Emplacement chauffé : hors de la fenêtre des produits, engrais à demi-dose tant que la moyenne sur 7 jours atteint le zéro de végétation (sonde historisée nécessaire ; sauf plantes cochées « Repos hivernal au frais » ; choix du plugin, aucune source sur l'hiver en pièce chauffée).}}"></i></sup>
       </label>
       <div class="col-md-6"><textarea class="configKey form-control" data-l1key="emplacements" rows="7" placeholder="Serre | #[Serre][Sonde][Température]# | #[Serre][Sonde][Humidité]# |&#10;Jardin | #[Jardin][Sonde][Température]# | | #[Météo][Prévision][Température min]#&#10;Maison | | |"></textarea></div>
     </div>
@@ -43,7 +43,7 @@ if (!isConnect('admin')) {
     </div>
     <div class="form-group">
       <label class="col-md-4 control-label">{{Produits en stock (engrais, correcteurs)}}
-        <sup><i class="fas fa-question-circle tooltips" title="{{Une ligne par produit : Nom | % d'azote | toutes les n semaines (0 = ponctuel) | saison en semaines ISO (10-40 = mars à octobre) | éléments apportés (N P K Mg Fe S Zn Mn) | remarque | dose de l'étiquette en g par litre de pot et par apport (facultatif : le plan la suit au lieu de la calculer). Pour toutes les plantes : une plante ne reçoit que les produits cochés dans son plan (fiche). Les produits à % d'azote et intervalle servent au plan ; les éléments, aux pistes de carence.}}"></i></sup>
+        <sup><i class="fas fa-question-circle tooltips" title="{{Une ligne par produit : Nom | % d'azote | toutes les n semaines (0 = ponctuel) | saison en semaines ISO (10-40 = mars à octobre ; hémisphère nord, toujours saisie pour l'hémisphère nord, décalée de 6 mois d'office si la latitude de Jeedom est au sud ; un plan déjà écrit garde ses semaines : le réécrire) | éléments apportés (N P K Mg Fe S Zn Mn) | remarque | dose de l'étiquette en g par litre de pot et par apport (facultatif : le plan la suit au lieu de la calculer). Pour toutes les plantes : une plante ne reçoit que les produits cochés dans son plan (fiche). Les produits à % d'azote et intervalle servent au plan ; les éléments, aux pistes de carence.}}"></i></sup>
       </label>
       <div class="col-md-8"><textarea class="configKey form-control" data-l1key="produits" rows="6"></textarea></div>
     </div>
@@ -52,6 +52,12 @@ if (!isConnect('admin')) {
         <sup><i class="fas fa-question-circle tooltips" title="{{Besoin en azote d'une plante en pot pendant la saison de pousse, en grammes d'azote par litre de pot et par semaine. Par défaut 0,07 (0,14 g toutes les 2 semaines ; un essai en pot et deux étiquettes : 0,10 à 0,16 g ; 0, négatif ou 1 et plus : 0,07). Le plan de chaque plante en découle.}}"></i></sup>
       </label>
       <div class="col-md-2"><input class="configKey form-control" data-l1key="taux_n" placeholder="0.07"></div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label">{{Zéro de végétation}} (°C)
+        <sup><i class="fas fa-question-circle tooltips" title="{{Les agrumes ne poussent plus quand la moyenne sur 7 jours de la sonde de l'emplacement est sous ce seuil : les apports d'engrais du calendrier attendent, puis sont rattrapés quand la moyenne remonte (dans la fenêtre du produit, pendant la première moitié de l'intervalle) ; sonde muette depuis 7 jours : ils attendent aussi ; le contrôle d'un œil dormant peut être avancé (8 semaines au plus, choix du plugin) quand il est atteint. Par défaut 13 °C (choix du plugin ; environ 13 °C : Curk 2022, INRAE ; 12,5 °C : Aubert 1969, IFAC, même filiation, donc une seule source à confirmer ; Poncirus : plutôt 15 °C, Tuzcu 1984, une seule source). Emplacement sans sonde historisée : seul le calendrier compte. Hémisphère (latitude) et pays : ceux de Jeedom, Réglages → Système → Configuration.}}"></i></sup>
+      </label>
+      <div class="col-md-1"><input class="configKey form-control" data-l1key="pousse" placeholder="13"></div>
     </div>
     <div class="form-group">
       <label class="col-md-4 control-label">{{Engrais d'un jeune plant}} : % / {{ans}}

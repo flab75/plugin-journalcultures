@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif" font-size="13" viewBox="0 0 700 265" width="700">
+  <title>Chip budding : entaille, copeau du greffon, poser et ligaturer</title>
+  <defs><marker id="f" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#246"/></marker></defs>
+  <rect width="700" height="265" rx="8" fill="#fbfaf6"/>
+  <rect x="103" y="40" width="28" height="170" fill="#efe0b0"/>
+  <rect x="103" y="40" width="4" height="170" fill="#9b7a4a"/><rect x="127" y="40" width="4" height="170" fill="#9b7a4a"/>
+  <path d="M102 95 L112 147 L102 140 Z" fill="#fbfaf6"/>
+  <path d="M103 95 L112 147 L103 140" fill="none" stroke="#c22" stroke-width="2"/>
+  <path d="M88 95 V147 M84 95 H92 M84 147 H92" stroke="#555"/>
+  <text x="80" y="125" text-anchor="end" font-size="11" fill="#555">≈ 2-2,5 cm</text>
+  <text x="117" y="30" text-anchor="middle" font-size="11" fill="#555">profil</text>
+  <text x="117" y="236" text-anchor="middle" font-weight="bold" font-size="14" fill="#222">1 Entailler</text><text x="117" y="254" text-anchor="middle" fill="#555">base en biseau, mince</text>
+  <rect x="336" y="40" width="28" height="170" fill="#efe0b0"/>
+  <rect x="336" y="40" width="4" height="170" fill="#5a8f3c"/><rect x="360" y="40" width="4" height="170" fill="#5a8f3c"/>
+  <path d="M335 95 L345 147 L335 140 Z" fill="#fbfaf6"/>
+  <path d="M336 95 L345 147 L336 140" fill="none" stroke="#c22" stroke-width="2"/>
+  <path d="M296 95 L305 147 L296 140 Z" fill="#efe0b0" stroke="#3d6b27"/>
+  <line x1="296" y1="95" x2="296" y2="140" stroke="#5a8f3c" stroke-width="4"/>
+  <ellipse cx="292" cy="118" rx="4" ry="6" fill="#24481a"/>
+  <line x1="330" y1="120" x2="310" y2="120" stroke="#246" stroke-width="1.5" marker-end="url(#f)"/>
+  <text x="350" y="236" text-anchor="middle" font-weight="bold" font-size="14" fill="#222">2 Copeau du greffon</text><text x="350" y="254" text-anchor="middle" fill="#555">même forme, avec l'œil</text>
+  <rect x="569" y="40" width="28" height="170" rx="3" fill="#9b7a4a"/>
+  <path d="M569 95 H584 Q588 120 584 147 H569 Z" fill="#5a8f3c" stroke="#3d6b27"/>
+  <ellipse cx="576" cy="118" rx="3.5" ry="5" fill="#24481a"/>
+  <rect x="565" y="82" width="36" height="8" fill="#7aa6d6" fill-opacity=".55" transform="rotate(-12 583 82)"/>
+<rect x="565" y="93" width="36" height="8" fill="#7aa6d6" fill-opacity=".55" transform="rotate(-12 583 93)"/>
+<rect x="565" y="104" width="36" height="8" fill="#7aa6d6" fill-opacity=".55" transform="rotate(-12 583 104)"/>
+<rect x="565" y="115" width="36" height="8" fill="#7aa6d6" fill-opacity=".55" transform="rotate(-12 583 115)"/>
+<rect x="565" y="126" width="36" height="8" fill="#7aa6d6" fill-opacity=".55" transform="rotate(-12 583 126)"/>
+<rect x="565" y="137" width="36" height="8" fill="#7aa6d6" fill-opacity=".55" transform="rotate(-12 583 137)"/>
+<rect x="565" y="148" width="36" height="8" fill="#7aa6d6" fill-opacity=".55" transform="rotate(-12 583 148)"/>
+  <text x="610" y="100" font-size="11" fill="#555">écorce alignée</text>
+  <text x="610" y="114" font-size="11" fill="#555">sur un bord</text>
+  <text x="610" y="128" font-size="11" fill="#555">au moins</text>
+  <text x="583" y="236" text-anchor="middle" font-weight="bold" font-size="14" fill="#222">3 Poser, ligaturer</text><text x="583" y="254" text-anchor="middle" fill="#555">coupes couvertes</text>
+</svg>
