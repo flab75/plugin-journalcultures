@@ -648,7 +648,7 @@ class journalcultures_calc {
 
   // Notice : Markdown restreint (titres, paragraphes, listes « - », tableaux, gras, italique, code, liens, images de docs/images) → HTML.
   // ponytail: pas un parseur complet, le texte vient de nos docs/ ; tout est échappé avant d'être balisé.
-  const NOTICES = ['index' => 'Mode d\'emploi', 'fertilisation' => 'Fertilisation', 'sante' => 'Santé', 'greffe' => 'Greffe', 'identification' => 'Identification', 'guide' => 'Guide de culture'];
+  const NOTICES = ['index' => 'Mode d\'emploi', 'fertilisation' => 'Fertilisation', 'sante' => 'Santé', 'greffe' => 'Greffe', 'identification' => 'Identification', 'guide' => 'Botanique'];
   public static function ancre($t) { return trim(preg_replace('/[^\p{L}\p{N}_-]+/u', '', str_replace(' ', '-', mb_strtolower($t))), '-'); } // comme GitHub
   public static function enligne($t) {
     $t = htmlspecialchars($t, ENT_QUOTES | ENT_SUBSTITUTE);

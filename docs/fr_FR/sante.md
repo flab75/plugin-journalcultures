@@ -77,6 +77,11 @@ Du plus doux au plus fort : enlever à la main, couper, laver, auxiliaires, puis
 **Signes** : gomme, écorce brune qui se fend au collet ou au point de greffe ; feuilles vert pâle à nervures jaunes (atteinte sévère), qui tombent ;
 racines fines molles dont l'écorce part en laissant un fil blanc (Savita 2012, UC IPM).
 
+![Gomme au pied d'un citronnier](../images/sante-gommose.webp)
+
+*Gomme qui suinte au pied d'un citronnier (gommose du collet, Phytophthora probable selon l'auteur). Photo Eiku, Wikimedia Commons, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).*
+
+
 **Pourquoi** : le champignon (un oomycète) vit dans le sol et nage dans l'eau. Il entre par les **plaies** : une plaie fraîche est envahie le plus facilement,
 rarement plus de 10 jours après ; l'écorce intacte et subérisée n'a pas été pénétrée, mais les **jeunes tiges** encore sans liège, si ;
 et couvrir de terre le bas du tronc favorisait la maladie (Whiteside 1971). Les jeunes plants en pot sont donc les plus exposés (déduction du plugin).
@@ -103,6 +108,15 @@ Un porte-greffe tolérant et une greffe haute sont la meilleure prévention (Vog
 
 **Signes** : boucliers bruns ou noirs, amas cotonneux blancs sur les rameaux et le long des nervures ; miellat, fumagine, fourmis.
 
+![Cochenille australienne sur citronnier](../images/sante-cochenille-australienne.webp)
+
+*Cochenille australienne (Icerya purchasi) et son sac à œufs blanc cannelé, sur un rameau de citronnier, en Inde. Photo Vijay Cavale, Wikimedia Commons, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).*
+
+![Cochenilles sur une orange](../images/sante-cochenille-virgule.webp)
+
+*Petits boucliers bruns sur un agrume vendu au marché, à Hawaï : probablement la cochenille virgule (Lepidosaphes beckii) selon l'auteur. Photo Scot Nelson, Wikimedia Commons, CC0 (domaine public).*
+
+
 **Gestes** :
 - enlever à la main celles qu'on atteint, couper les rameaux très touchés (BSV JEVI Corse 2025, conseil donné pour le figuier, **une seule source**) ;
 - écarter les fourmis, qui les défendent (déduction du plugin ; voir [Surveiller](#surveiller)) ;
@@ -117,6 +131,15 @@ ce n'est pas un produit autorisé, il contient 5 % d'huile (contre 1,5 à 2 % po
 **Priorité 3.**
 
 **Signes** : feuilles piquetées, jaunies, blanchies ou bronzées, petites toiles, surtout sur les jeunes feuilles ; les acariens se voient à peine à l'œil nu.
+
+![Acarien rouge des agrumes](../images/sante-acarien-rouge.webp)
+
+*Acarien rouge des agrumes (Panonychus citri) adulte, sur citronnier Meyer. Photo Jim Baker, North Carolina State University, Bugwood.org, [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/).*
+
+![Tétranyque tisserand](../images/sante-tetranyque.webp)
+
+*Tétranyque tisserand (Tetranychus urticae), femelle et deux fils de soie, sur une feuille de haricot. Photo Gilles San Martin, Wikimedia Commons, [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/).*
+
 
 **Pourquoi le climat compte** : les sources ne parlent pas du même acarien.
 
@@ -138,6 +161,15 @@ ce n'est pas un produit autorisé, il contient 5 % d'huile (contre 1,5 à 2 % po
 
 **Signes** : petites mouches blanches qui s'envolent quand on secoue la plante ; larves plates sous les feuilles ; miellat, fumagine.
 
+![Aleurode floconneux sur une feuille](../images/sante-aleurode-floconneux.webp)
+
+*Aleurode floconneux (Aleurothrixus floccosus) : flocons cireux blancs sur une feuille de citronnier. Photo VictorCegarra, Wikimedia Commons, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).*
+
+![Larve d'aleurode des agrumes](../images/sante-aleurode-larve.webp)
+
+*Larve plate de l'aleurode des agrumes (Dialeurodes citri) sur une feuille d'agrume, en Californie. Photo Kaldari, Wikimedia Commons, domaine public.*
+
+
 **Gestes** :
 - **aleurode floconneux** : la petite guêpe *Cales noacki* le parasite parfois à 100 % ; traiter est rarement nécessaire (Brun 1990, Soto 2001, Barbagallo 1992) ;
 - **aleurode des agrumes** (*Dialeurodes citri*) : *Encarsia* le parasite à 70-80 % en Italie (Barbagallo 1992), à moins de 20 % le plus souvent à Valence (Soto 2001) : résultat variable ;
@@ -149,6 +181,11 @@ ce n'est pas un produit autorisé, il contient 5 % d'huile (contre 1,5 à 2 % po
 
 **Signes** : colonies sur les jeunes pousses tendres, feuilles enroulées ; miellat.
 
+![Puceron noir de l'oranger](../images/sante-puceron-noir.webp)
+
+*Puceron noir de l'oranger (Aphis aurantii, ancien Toxoptera aurantii) ; le trait mesure 1 mm. Photo Jesse Rorabaugh, Wikimedia Commons, CC0 (domaine public).*
+
+
 **Gestes** :
 - surveiller les pousses tendres au moment des poussées ; sur pomelo, il est rarement nécessaire d'intervenir (Brun 1990, **une seule source**) ;
 - favoriser les auxiliaires (coccinelles, surtout les petites *Scymnus*, chrysopes, syrphes) : la taille et la durée des colonies dépendent de la date d'arrivée des prédateurs,
@@ -159,6 +196,11 @@ ce n'est pas un produit autorisé, il contient 5 % d'huile (contre 1,5 à 2 % po
 
 **Signes** : dépôt noir comme de la suie, qui s'essuie, sur les feuilles et les fruits.
 
+![Fumagine sur feuilles et fruit](../images/sante-fumagine.webp)
+
+*Fumagine (selon l'auteur) : taches noires sur les feuilles d'un agrume, quelques points sur le fruit. Photo EdilEGrand2000, Wikimedia Commons, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).*
+
+
 **Gestes** :
 - trouver l'insecte qui fait le miellat (cochenille, aleurode, puceron) et le traiter : la fumagine part ensuite d'elle-même (NHB, BSV PACA 2020, Brun 1990) ;
 - laver les feuilles à l'eau savonneuse (BSV JEVI Corse 2025, **une seule source**).
@@ -167,6 +209,11 @@ ce n'est pas un produit autorisé, il contient 5 % d'huile (contre 1,5 à 2 % po
 **Priorité 7.** Surtout dehors, sur les pousses d'été.
 
 **Signes** : galeries sinueuses argentées dans les jeunes feuilles, qui se crispent et s'enroulent.
+
+![Galeries de la mineuse](../images/sante-mineuse.webp)
+
+*Galeries de la mineuse des agrumes (Phyllocnistis citrella) sous une feuille de combava, avec deux larves. Photo A. Ariosti, Wikimedia Commons, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).*
+
 
 **Gestes** :
 - sur une plante adulte, dégâts surtout esthétiques (BSV PACA 2020) ; risque réel pour les jeunes plantes (BSV Corse 2024) ;
@@ -178,6 +225,15 @@ ce n'est pas un produit autorisé, il contient 5 % d'huile (contre 1,5 à 2 % po
 organisme réglementé (liste A2 de l'OEPP) ; dans l'Union européenne, organisme réglementé non de quarantaine (ORNQ) : il vise les plants vendus, la déclaration n'est pas obligatoire chez un particulier.
 
 **Signes** : feuilles qui tombent depuis la pointe des rameaux, rameaux qui sèchent, bois coloré saumon à rouge carotte sous l'écorce.
+
+![Feuille de citronnier atteinte de mal secco](../images/sante-malsecco-feuille.webp)
+
+*Feuille de citronnier jaunie autour des nervures (mal secco). Photo Liberato, Cacciola et Magnano di San Lio 2006, PaDIL, Wikimedia Commons, [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).*
+
+![Rameau atteint de mal secco coupé](../images/sante-malsecco-coupe.webp)
+
+*Rameau malade coupé en travers : le bois est coloré. Mêmes auteurs, PaDIL, Wikimedia Commons, [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).*
+
 
 **Pourquoi** : il entre par les **blessures**, colonise le bois puis toute la plante (Catane 2022-2023, OEPP 2024) ; toute lésion, quelle qu'en soit l'origine, favorise l'infection (Cirad 1983).
 Les infections ont lieu surtout de novembre à février, avec un pic en janvier ; les organes qui produisent les spores apparaissent dès 5 °C (Chapot 1963).
@@ -196,6 +252,11 @@ La sensibilité comparée des espèces vient d'observations au champ, pas toujou
 
 **Signes** : petites protubérances noires et épineuses sous les feuilles, miellat, fumagine, fourmis.
 
+![Aleurode épineux sous une feuille de mandarinier](../images/sante-aleurode-epineux.webp)
+
+*Aleurode épineux (Aleurocanthus spiniferus) : pupes noires frangées de cire blanche sous une feuille de mandarinier. Photo Mladen Šimala (Centre croate de protection des plantes), base de l'OEPP, Wikimedia Commons, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).*
+
+
 **Gestes** :
 - photographier le dessous des feuilles et signaler au service régional de l'alimentation (DRAAF-SRAL), photos jointes (fiche SORE, **une seule source**) ;
 - en attendant, ne pas déplacer ni donner la plante (précaution du plugin).
@@ -208,6 +269,19 @@ Savons et mouillants ne le contrôlent qu'en partie (Cioffi 2013, **une seule so
 
 **Signes** : marbrures jaunes **asymétriques** des feuilles, fruits déformés qui se colorent à l'envers, psylles sur les jeunes pousses.
 
+![Psylle asiatique des agrumes](../images/sante-psylle.webp)
+
+*Psylle asiatique des agrumes (Diaphorina citri), adulte de 2 à 3 mm, sur une jeune feuille. Photo David Hall, USDA ARS, Wikimedia Commons, domaine public.*
+
+![Marbrure de feuilles atteintes de HLB](../images/sante-hlb-feuille.webp)
+
+*Marbrure (« blotchy mottle ») causée par le HLB sur des feuilles d'agrume, dans un verger d'orangers doux au Texas. Photo David Bartels, USDA, Wikimedia Commons, domaine public.*
+
+![Fruits d'agrume colorés à l'envers (HLB)](../images/sante-hlb-fruits.webp)
+
+*Fruits d'agrume qui se colorent à l'envers à cause du HLB, au Texas. Photo David Bartels, USDA, Wikimedia Commons, domaine public.*
+
+
 **Test de symétrie** : un jaunissement pareil des deux côtés de la nervure centrale est une carence (zinc, magnésium…) ; asymétrique, il est suspect (UF/IFAS PP328, **une seule source** ; les décolorations asymétriques sont aussi décrites par BSV JEVI Corse 2025).
 Le HLB peut se confondre avec un manque de zinc (Sáenz Pérez 2019).
 Asymétrique avec des psylles : signaler à la FREDON.
@@ -215,6 +289,24 @@ Asymétrique avec des psylles : signaler à la FREDON.
 ### Tristeza (absente de Corse en 1990)
 **Priorité 11. Absence à vérifier** : Vogel 1990 la tient hors de Corse par l'interdiction d'importer des plants ; le statut actuel en France n'a pas été vérifié. Le risque vient d'un plant importé.
 Virus transmis par des pucerons et par le matériel végétal (Sáenz Pérez 2019) ; il fait mourir les arbres greffés sur bigaradier (Vogel 1990, Sáenz Pérez 2019) ; aucun moyen curatif contre les virus (Vogel 1990).
+Le pomelo, très sensible, peut aussi décliner sur les autres porte-greffes (Vogel 1990, **une seule source**).
+
+![Agrume dépérissant (tristeza)](../images/sante-tristeza-declin.webp)
+
+*Agrume dépérissant, classé « symptômes de tristeza » par Bugwood, sans autre description. Photo Florida Division of Plant Industry, Florida Department of Agriculture and Consumer Services, Bugwood.org, [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/).*
+
+![Rameau écorcé, bois creusé de sillons (tristeza)](../images/sante-tristeza-bois.webp)
+
+*Rameau d'agrume écorcé, classé « symptômes de tristeza » par Bugwood, sans autre description : le bois creusé de sillons ressemble, à notre avis, au bois piqueté (« stem pitting ») ; Sáenz Pérez 2019 parle de « stem bite » sur la tige, sans photo ni détail. Photo Florida Division of Plant Industry, Florida Department of Agriculture and Consumer Services, Bugwood.org, [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/).*
+
+![Jeunes orangers atteints de tristeza](../images/sante-tristeza-jeunes.webp)
+
+*Virus de la tristeza sur de jeunes orangers doux greffés sur bigaradier : sévère à gauche, faible à droite (selon Bugwood, sans autre précision). Photo Florida Division of Plant Industry, Florida Department of Agriculture and Consumer Services, Bugwood.org, [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/).*
+
+![Puceron brun des agrumes](../images/sante-puceron-brun.webp)
+
+*Puceron brun des agrumes (Aphis citricidus, ancien Toxoptera citricida) sur une jeune pousse. Photo Florida Division of Plant Industry, Florida Department of Agriculture and Consumer Services, Bugwood.org, [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/).*
+
 
 **Gestes** : plants et greffons d'origine contrôlée (Vogel 1990, Sáenz Pérez 2019).
 Contre la tristeza, Sáenz Pérez 2019 conseille un porte-greffe tolérant plutôt que le bigaradier (Volkameriana, Cléopâtre…). Mais sous serre la **gommose est le risque n° 1** :

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.16 (2026-11-02)
+- Notice : onglet **Botanique** (bases : la plante, tige et bourgeons, sous l'écorce, feuille, racine, fleur et fruit, nourrir la plante, noms, multiplier),
+  faits sourcés (Shipunov 2021, OpenStax 2018, UF/IFAS, articles sur les agrumes) et « une seule source » indiqués ; gravures d'Atkinson 1905 (domaine public), feuille de Rendle 1911, planche de Köhler 1897, orange légendée (CC BY 2.5).
+- Notice, onglet **Santé** : une ou plusieurs photos par problème (20, domaine public, CC0, CC BY ou CC BY-SA, auteur et licence sous chaque photo).
+
 ## 0.15 (2026-11-02)
 - Géographie : saison de l'engrais mesurée (moyenne 7 jours de l'emplacement ≥ zéro de végétation, 13 °C réglable) en plus de la fenêtre du produit ;
   apport sauté par temps froid rattrapé quand la moyenne remonte (dans la fenêtre) ; hémisphère sud (latitude Jeedom) : fenêtres décalées de 6 mois, contrôle « Au printemps » le 15 septembre ;
