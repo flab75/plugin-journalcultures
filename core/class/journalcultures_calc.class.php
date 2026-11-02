@@ -571,4 +571,54 @@ class journalcultures_calc {
     if (!preg_match('/^(\d{4})-(\d{2})-(\d{2})$/D', $v, $m) || !checkdate((int)$m[2], (int)$m[3], (int)$m[1])) throw new Exception(__('Date invalide', __FILE__));
     return $v;
   }
+
+  // Notice : Markdown restreint (titres, paragraphes, listes « - », tableaux, gras, italique, code, liens, images de docs/images) → HTML.
+  // ponytail: pas un parseur complet, le texte vient de nos docs/ ; tout est échappé avant d'être balisé.
+  const NOTICES = ['index' => 'Mode d\'emploi', 'fertilisation' => 'Fertilisation', 'sante' => 'Santé', 'guide' => 'Guide de culture'];
+  public static function ancre($t) { return trim(preg_replace('/[^\p{L}\p{N}_-]+/u', '', str_replace(' ', '-', mb_strtolower($t))), '-'); } // comme GitHub
+  public static function enligne($t) {
+    $t = htmlspecialchars($t, ENT_QUOTES);
+    $c = []; // code mis de côté : rien n'est balisé dedans
+    $t = preg_replace_callback('/`([^`]+)`/', function ($m) use (&$c) { $c[] = '<code>' . $m[1] . '</code>'; return "\x01" . (count($c) - 1) . "\x01"; }, $t);
+    $t = preg_replace_callback('/!\[([^\]]*)\]\((images\/[\w.-]+\.(?:png|jpe?g|webp|svg))\)/', function ($m) {
+      return '<img src="plugins/journalcultures/docs/' . $m[2] . '" alt="' . $m[1] . '" loading="lazy" style="max-width:100%">'; }, $t);
+    $t = preg_replace_callback('/\[([^\]]+)\]\(([^)\s]+)\)/', function ($m) {
+      if (preg_match('/^https?:\/\//', $m[2])) return '<a href="' . $m[2] . '" target="_blank" rel="noopener noreferrer">' . $m[1] . '</a>';
+      if (preg_match('/^(?:(\w+)\.md)?(?:#([\p{L}\p{N}_-]+))?$/u', $m[2], $l)) return '<a data-n="' . ($l[1] ?? '') . '" data-a="' . ($l[2] ?? '') . '">' . $m[1] . '</a>';
+      return $m[1]; // autre cible : texte seul
+    }, $t);
+    $t = preg_replace(['/\*\*(.+?)\*\*/', '/(?<![\w*])\*(?!\s)(.+?)(?<!\s)\*(?![\w*])/'], ['<b>$1</b>', '<i>$1</i>'], $t);
+    return preg_replace_callback("/\x01(\d+)\x01/", function ($m) use ($c) { return $c[$m[1]]; }, $t);
+  }
+  public static function markdown($md) {
+    $h = ''; $bloc = null; $acc = [];
+    $fin = function () use (&$h, &$bloc, &$acc) {
+      if ($bloc == 'p') $h .= '<p>' . implode(' ', array_map([self::class, 'enligne'], $acc)) . '</p>';
+      if ($bloc == 'ul') $h .= '<ul>' . implode('', array_map(function ($i) { return '<li>' . self::enligne($i) . '</li>'; }, $acc)) . '</ul>';
+      if ($bloc == 't') {
+        $l = array_values(array_filter($acc, function ($r) { return !preg_match('/^\|[\s:|-]+\|$/', trim($r)); })); // sans la ligne de séparation
+        foreach ($l as $n => $r) {
+          $cs = array_map('trim', explode('|', trim(trim($r), '|')));
+          $h .= ($n ? '' : '<table class="table table-condensed">') . '<tr>' . implode('', array_map(function ($x) use ($n) { return ($n ? '<td>' : '<th>') . self::enligne($x) . ($n ? '</td>' : '</th>'); }, $cs)) . '</tr>';
+        }
+        if ($l) $h .= '</table>';
+      }
+      $bloc = null; $acc = [];
+    };
+    foreach (preg_split('/\R/', $md) as $ligne) {
+      if (trim($ligne) === '') { $fin(); continue; }
+      if (preg_match('/^(#{1,4})\s+(.+)$/', $ligne, $m)) {
+        $fin(); $n = strlen($m[1]) + 1;
+        $h .= "<h$n id=\"jdc-n-" . htmlspecialchars(self::ancre($m[2]), ENT_QUOTES) . "\">" . self::enligne($m[2]) . "</h$n>";
+        continue;
+      }
+      if ($ligne[0] == '|') { if ($bloc != 't') { $fin(); $bloc = 't'; } $acc[] = $ligne; continue; }
+      if (preg_match('/^[-*]\s+(.*)$/', $ligne, $m)) { if ($bloc != 'ul') { $fin(); $bloc = 'ul'; } $acc[] = $m[1]; continue; }
+      if ($bloc == 'ul' && preg_match('/^\s+(.*)$/', $ligne, $m)) { $acc[count($acc) - 1] .= ' ' . $m[1]; continue; } // suite de l'élément
+      if ($bloc != 'p') { $fin(); $bloc = 'p'; }
+      $acc[] = trim($ligne);
+    }
+    $fin();
+    return $h;
+  }
 }

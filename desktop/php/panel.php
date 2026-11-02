@@ -25,6 +25,7 @@ if (!isConnect()) throw new Exception('{{401 - Accès non autorisé}}');
     <h3>{{Journal de cultures}}</h3>
     <nav class="jdc-cols" aria-label="{{Collections}}"></nav>
     <input id="jdc-q" type="search" class="form-control" placeholder="{{Chercher une plante…}}" aria-label="{{Chercher une plante}}">
+    <button type="button" class="btn btn-default" id="jdc-not" title="{{Notice et guide de culture}}"><i class="fas fa-book"></i> {{Notice}}</button>
     <button type="button" class="btn btn-default" id="jdc-maj" title="{{Rafraîchir}}" aria-label="{{Rafraîchir}}"><i class="fas fa-sync"></i></button>
   </header>
   <section class="jdc-lieux" aria-label="{{Emplacements}}"></section>
@@ -54,6 +55,7 @@ if (!isConnect()) throw new Exception('{{401 - Accès non autorisé}}');
   function charger() { J.ajax('page', {}, function (d) { data = d; rendre() }, function (er) { P.querySelector('.jdc').textContent = er }) }
   q.oninput = filtrer
   P.querySelector('#jdc-maj').onclick = charger
+  P.querySelector('#jdc-not').onclick = function () { J.notice('index') }
   var t = setInterval(function () { // ponytail: relu toutes les 5 min (pas d'écoute des évènements Jeedom)
     if (!P.isConnected) return clearInterval(t) // Jeedom change de page sans recharger : on s'arrête une fois le panel quitté
     if (document.visibilityState == 'visible') charger()

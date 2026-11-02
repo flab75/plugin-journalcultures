@@ -1,6 +1,6 @@
 /* Journal de cultures — tuile d'une collection et ses fenêtres (plante, journal, noter, déplacer). Recopié dans chaque tuile par
    journalcultures::toHtml(), chargé une seule fois par page. Textes entre doubles accolades traduits côté PHP (core/i18n). */
-if (!window.journalcultures || window.journalcultures.v !== 14) (function () { // v : un onglet ouvert avant une mise à jour recharge la bibliothèque
+if (!window.journalcultures || window.journalcultures.v !== 15) (function () { // v : un onglet ouvert avant une mise à jour recharge la bibliothèque
   var css = document.getElementById('jdc-css') || document.createElement('style')
   css.id = 'jdc-css'
   css.textContent =
@@ -12,7 +12,8 @@ if (!window.journalcultures || window.journalcultures.v !== 14) (function () { /
     '.jdc-m{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center}' +
     '.jdc-mb{background:var(--bg-modal-color,#fff);color:var(--txt-color,#222);width:min(800px,96vw);max-height:90vh;overflow:auto;border-radius:10px;padding:10px 14px;font-size:13px;text-align:left}' +
     '.jdc-mb nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;align-items:center}.jdc-mb nav a{cursor:pointer;padding:3px 10px;border-radius:10px;background:rgba(128,128,128,.15)}' +
-    '.jdc-mb nav a.on{background:#4a7;color:#fff}.jdc-mb nav .z{margin-left:auto}.jdc-mb nav b{margin-right:6px}' +
+    '.jdc-m:not(.jdc-in) .jdc-mb nav{position:sticky;top:-10px;z-index:1;background:var(--bg-modal-color,#fff);padding:6px 0}[id^=jdc-n-]{scroll-margin-top:50px}' +
+    '.jdc-mb a[data-n]{cursor:pointer;text-decoration:underline}.jdc-mb nav a.on{background:#4a7;color:#fff}.jdc-mb nav .z{margin-left:auto}.jdc-mb nav b{margin-right:6px}' +
     '.jdc-mb table{width:100%;border-collapse:collapse}.jdc-mb td,.jdc-mb th{padding:3px 5px;border-bottom:1px solid rgba(128,128,128,.25);vertical-align:top;text-align:left}' +
     '.jdc-mb form{display:grid;grid-template-columns:fit-content(35%) minmax(0,1fr);gap:4px 8px;align-items:center;margin-bottom:10px}' +
     '.jdc-mb input,.jdc-mb select,.jdc-mb textarea{width:100%;box-sizing:border-box}.jdc-mb input[type=checkbox]{width:auto}' +
@@ -43,30 +44,52 @@ if (!window.journalcultures || window.journalcultures.v !== 14) (function () { /
   }
 
   // fenêtre à onglets : o = [[clé, titre, fonction(ct)], …]
-  function fenetre(titre, o, depart) {
-    var cible = window.journalcultures.cible // panel : à côté de la liste (pas si on a quitté le panel, ni sur écran étroit)
-    if (!cible || !cible.isConnected || window.innerWidth <= 900) cible = null
+  // opt.flottante : toujours en modale ; opt.aide = {clé d'onglet: ancre de la notice} → bouton « ? »
+  function fenetre(titre, o, depart, opt) {
+    opt = opt || {}
+    var cible = window.journalcultures.cible, cour = null // panel : à côté de la liste (pas si on a quitté le panel, ni sur écran étroit)
+    if (!cible || opt.flottante || !cible.isConnected || window.innerWidth <= 900) cible = null
     var m = document.createElement('div'); m.className = 'jdc-m' + (cible ? ' jdc-in' : '')
     if (cible) { if (posee) posee.fermer(); cible.innerHTML = '' }
-    m.innerHTML = '<div class="jdc-mb"><nav><b>' + esc(titre) + '</b>' + o.map(function (x) { return '<a data-o="' + x[0] + '">' + esc(x[1]) + '</a>' }).join('') + '<a class="z">✕</a></nav><div class="jdc-ct"></div></div>';
+    m.innerHTML = '<div class="jdc-mb"><nav><b>' + esc(titre) + '</b>' + o.map(function (x) { return '<a data-o="' + x[0] + '">' + esc(x[1]) + '</a>' }).join('') +
+      (opt.aide ? '<a class="q" title="' + "{{Notice}}" + '">?</a>' : '') + '<a class="z">✕</a></nav><div class="jdc-ct"></div></div>';
     (cible || document.body).appendChild(m)
     var ct = m.querySelector('.jdc-ct'), urls = []
     function fermer() { m.remove(); document.removeEventListener('keydown', touche); urls.forEach(URL.revokeObjectURL) }
     function touche(e) { if (e.key == 'Escape' && !cible && !/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) fermer() } // posée dans le panel : ✕ seulement
     document.addEventListener('keydown', touche)
     m.onclick = function (e) { if (e.target == m || e.target.classList.contains('z')) fermer() }
+    if (opt.aide) m.querySelector('nav .q').onclick = function () { notice('index', opt.aide[cour]) }
     function montrer(k) {
+      cour = k
       m.querySelectorAll('nav a[data-o]').forEach(function (a) { a.classList.toggle('on', a.dataset.o == k) })
       ct.textContent = "{{Chargement…}}"
       o.filter(function (x) { return x[0] == k })[0][2](ct)
     }
     m.querySelectorAll('nav a[data-o]').forEach(function (a) { a.onclick = function () { montrer(a.dataset.o) } })
     montrer(depart || o[0][0])
-    var f = {montrer: montrer, url: function (u) { urls.push(u); return u }, fermer: fermer}
+    var f = {montrer: montrer, url: function (u) { urls.push(u); return u }, fermer: fermer, boite: m.querySelector('.jdc-mb')}
     if (cible) posee = f
     return f
   }
   var posee = null // fenêtre posée dans le panel : fermée (écouteur, photos) avant d'en poser une autre
+
+  // notice (docs/fr_FR/*.md convertis par la box) : k = page, ancre = titre visé (comme sur GitHub)
+  function notice(k, ancre) {
+    ajax('notice', {}, function (N) {
+      var w = null
+      function aller(k2, a) {
+        if (!N.some(function (n) { return n.k == k2 })) k2 = N[0].k
+        if (w) w.montrer(k2); else w = fenetre("{{Notice}}", N.map(function (n) { return [n.k, n.titre, function (ct) {
+          ct.innerHTML = n.html
+          ct.querySelectorAll('a[data-n]').forEach(function (l) { l.onclick = function () { aller(l.dataset.n || n.k, l.dataset.a) } })
+        }] }), k2, {flottante: 1})
+        var e = a && document.getElementById('jdc-n-' + a)
+        if (e) e.scrollIntoView(); else w.boite.scrollTop = 0
+      }
+      aller(k, ancre)
+    }, function (er) { fenetre("{{Notice}}", [['e', "{{Erreur}}", function (ct) { erreur(ct)(er) }]], 'e', {flottante: 1}) })
+  }
 
   function erreur(ct) { return function (er) { ct.innerHTML = '<p class="jdc-er">' + esc(er) + '</p>' } }
 
@@ -309,7 +332,7 @@ if (!window.journalcultures || window.journalcultures.v !== 14) (function () { /
           }
         })
       })]
-    ], depart)
+    ], depart, {aide: {fic: "fiche-dune-plante", mes: 'mesures', pho: 'photos', jou: 'principe'}})
   }
 
   var IMG = 'image/jpeg,image/png,image/webp,image/*'
@@ -508,7 +531,7 @@ if (!window.journalcultures || window.journalcultures.v !== 14) (function () { /
   }
 
   // opt.panel : colonnes en plus (porte-greffe, dernière mesure), masquées sur téléphone
-  window.journalcultures = {v: 14, ajax: ajax, esc: esc, nb: nb, init: function (b, d, opt) {
+  window.journalcultures = {v: 15, notice: notice, ajax: ajax, esc: esc, nb: nb, init: function (b, d, opt) {
     if (!b) return
     d.apres = opt && opt.apres // relu par « Greffer… » (fiche)
     var pa = opt && opt.panel

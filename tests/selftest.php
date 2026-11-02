@@ -127,6 +127,22 @@ $ok($c == ['rusticite' => '-3 (estimée : citron)', 'id_folioles' => 'trois'] &&
   'identification acceptée : inchangé, vide, invalide et hors liste écartés');
 echo "calculs OK\n";
 
+$ok($C::markdown("a `**x** <b>` **b** *i* [L](https://e.fr) [G](#greffe) [S](sante.md#mal-secco) [X](javascript:alert)\n- un\n  suite\n\n| A | B |\n|---|---|\n| 1 | 2 |\n![s](images/a.svg) ![t](../x.png)")
+  == '<p>a <code>**x** &lt;b&gt;</code> <b>b</b> <i>i</i> <a href="https://e.fr" target="_blank" rel="noopener noreferrer">L</a> <a data-n="" data-a="greffe">G</a> <a data-n="sante" data-a="mal-secco">S</a> X</p>'
+  . '<ul><li>un suite</li></ul><table class="table table-condensed"><tr><th>A</th><th>B</th></tr><tr><td>1</td><td>2</td></tr></table><p><img src="plugins/journalcultures/docs/images/a.svg" alt="s" loading="lazy" style="max-width:100%"> !t</p>'
+  && $C::ancre("Fiche d'une plante") == 'fiche-dune-plante' && $C::ancre('Identification (agrumes)') == 'identification-agrumes', 'notice : markdown échappé, liens filtrés, ancres comme GitHub');
+foreach (array_keys($C::NOTICES) as $k) {
+  $f = __DIR__ . "/../docs/fr_FR/$k.md";
+  if (!is_file($f)) continue;
+  $h = $C::markdown(file_get_contents($f));
+  $ok(strlen($h) > 100 && strpos($h, '<script') === false, "notice $k convertie");
+  preg_match_all('/src="plugins\/journalcultures\/docs\/(images\/[^"]+)"/', $h, $m);
+  foreach ($m[1] as $i) $ok(is_file(__DIR__ . "/../docs/$i"), "notice $k : image $i absente");
+  preg_match_all('/data-n="(\w*)" data-a="([^"]*)"/', $h, $m, PREG_SET_ORDER);
+  foreach ($m as $l) if ($l[1] === '' && $l[2] !== '') $ok(strpos($h, 'id="jdc-n-' . $l[2] . '"') !== false, "notice $k : ancre #$l[2] introuvable");
+}
+echo "notice OK\n";
+
 $t = DB::Prepare("SHOW TABLES LIKE 'journalcultures_journal'", [], DB::FETCH_TYPE_ROW);
 if ($t) {
   $ok((bool)DB::Prepare("SHOW COLUMNS FROM journalcultures_journal LIKE 'valeurs'", [], DB::FETCH_TYPE_ROW), 'colonne valeurs (lancer la mise à jour du plugin)');

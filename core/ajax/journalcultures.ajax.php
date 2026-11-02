@@ -19,6 +19,14 @@ try {
 
   if ($a == 'plante') ajax::success($eq(init('id'), 'plante')->fiche());
   if ($a == 'page') ajax::success(journalcultures::page());
+  if ($a == 'notice') { // docs/fr_FR/*.md de la liste blanche, convertis ici (une seule source avec GitHub)
+    $r = [];
+    foreach (journalcultures_calc::NOTICES as $k => $t) {
+      $f = __DIR__ . '/../../docs/fr_FR/' . $k . '.md';
+      if (is_file($f)) $r[] = ['k' => $k, 'titre' => $t, 'html' => journalcultures_calc::markdown(file_get_contents($f))];
+    }
+    ajax::success($r);
+  }
   if ($a == 'journal') { $c = $eq(init('id'), 'collection'); ajax::success(journalcultures::journal(array_map(function ($p) { return $p->getId(); }, $c->plantes()), 500, $c->getId())); }
   if ($a == 'photo') { // image envoyée telle quelle (la tuile la lit en blob)
     $f = $eq(init('id'), 'plante')->photo(init('nom'));

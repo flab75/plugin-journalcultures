@@ -24,6 +24,11 @@ $eqLogics = eqLogic::byType($plugin->getId());
 				<br>
 				<span>{{Configuration}}</span>
 			</div>
+			<div class="cursor logoSecondary" onclick="window.journalcultures.notice('index')">
+				<i class="fas fa-book-open"></i>
+				<br>
+				<span>{{Notice}}</span>
+			</div>
 		</div>
 		<legend><i class="fas fa-table"></i> {{Mes collections et plantes}}</legend>
 		<?php
@@ -261,6 +266,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
 	</div><!-- /.eqLogic -->
 </div><!-- /.row row-overflow -->
 
+<script><?php echo journalcultures::lib(); ?></script>
 <!-- Inclusion du fichier javascript du plugin (dossier, nom_du_fichier, extension_du_fichier, id_du_plugin) -->
 <?php include_file('desktop', 'journalcultures', 'js', 'journalcultures'); ?>
 <!-- Inclusion du fichier javascript du core - NE PAS MODIFIER NI SUPPRIMER -->
