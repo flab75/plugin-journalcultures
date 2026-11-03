@@ -85,6 +85,31 @@ La méthode ci-dessous assemble ce qui s'accorde entre eux. Elle suit le cadre d
 - Le **pH** du substrat décide de la disponibilité des oligo-éléments : en pot, au-dessus de pH 7 dans l'eau de drainage, les jeunes orangers ont montré plus de carences et moins poussé ; ajouter de la chaux au terreau a fait monter le pH et baisser le fer, le zinc et le manganèse des feuilles (Labanauskas 1967 ; même sens : UF/IFAS SL456, « un pH élevé réduit la disponibilité du calcium, du magnésium, du fer, du zinc et du manganèse », voir [pH et eau du robinet](#ph-et-eau-du-robinet)).
   Ne pas chauler le substrat d'un agrume (déduction du plugin).
 
+### Le Ferti Agrumes face à ces critères
+
+Bilan du plugin (déduction à partir des critères ci-dessus et de l'étiquette) :
+
+| Critère | Ce que demande la notice | Ferti Agrumes 7-3-10 | Verdict |
+|---|---|---|---|
+| Forme | libération lente en pot | granulés organiques, effet 2 mois | conforme |
+| Rapport N-P-K | riche en azote, environ 2-1-1 ou 3-1-1 | 7-3-10 = 2,3-1-3,3 : plus de potassium que d'azote | à l'envers du rapport conseillé ; rien ne dit que ça nuise, le plan est calculé sur l'azote |
+| Oligo-éléments | un engrais qui en contient (une seule source) | aucun déclaré | manque : fer et magnésium à part, seulement si les feuilles le montrent |
+| « Spécial agrumes » | convient | oui | conforme |
+| Organique qui apporte vraiment de l'azote | pas un simple humate | 7 % d'azote | conforme |
+| Dose | pas plus que nécessaire, fourchette de l'étiquette | 80 à 240 g par sujet ; le calcul du plugin tombe dedans | conforme |
+| Moment | pendant la pousse, au moins 3 apports, rien l'hiver | tous les 2 mois de mars à octobre (semaines 10, 18, 26, 34) | conforme |
+| Endroit | au pied, substrat humide, pas de chaulage | enfoui par léger griffage | conforme |
+
+En somme : bon engrais de fond ; deux réserves, le rapport N-P-K inversé (trop de potassium plutôt que pas assez d'azote, sans conséquence connue) et l'absence d'oligo-éléments, qui oblige à surveiller les feuilles.
+Un 12-6-6 ou 12-4-6 avec oligo-éléments collerait mieux à la lettre des sources ; aucune ne montre que le Ferti Agrumes fait moins bien.
+
+**Et si on ajoute la corne broyée ?** Elle n'apporte que de l'azote (13 %, organique, lent) : ni phosphore, ni potassium, ni oligo-éléments.
+- Elle ne compense donc **pas** l'absence d'oligo-éléments.
+- Elle **rapproche un peu** le rapport de celui conseillé : à la dose de l'étiquette, elle couvre environ 15 % de l'azote du plan, et le Ferti le reste ; l'ensemble passe d'environ 2,3-1-3,3 à 2,8-1-3,4 (calcul du plugin), le potassium reste au-dessus de l'azote.
+  Pour atteindre 2-1-1, il faudrait que la corne fournisse près des deux tiers de l'azote, soit environ quatre fois sa dose d'étiquette : le plugin ne le propose pas.
+- Elle allonge la libération (effet 3 à 4 mois contre 2) : apport plus régulier, sans source qui en montre l'intérêt pour un agrume en pot.
+Bref, la corne est un complément d'azote à libération lente, pas un correctif des deux réserves ci-dessus.
+
 ### En pratique
 
 | Ce qu'on voit | Que faire |
