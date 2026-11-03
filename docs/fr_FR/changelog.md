@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.21 (2026-11-03)
+- Notice plus rapide : chaque page est chargée à sa première ouverture (plus toute la notice d'un coup), gardée toute prête par la box, et ses images arrivent à part (le navigateur les garde).
+- Photos : la fiche et l'identification affichent une vignette de 400 px (photo redressée selon l'appareil) ; un clic ouvre l'original.
+- Nom botanique vérifié chez GBIF : 3 s d'attente au plus (10 s avant) quand le site ne répond pas.
+- Dictionnaire des noms lu une fois puis gardé tout prêt par la box.
+
 ## 0.20 (2026-11-03)
 - Une collection qui contient encore des plantes ne peut plus être supprimée (ses plantes resteraient sans collection) : les déplacer ou les supprimer d'abord.
 - Onglet Mesures : toutes les mesures de la plante, plus seulement celles des 300 dernières entrées du journal.

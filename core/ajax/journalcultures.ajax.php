@@ -4,7 +4,7 @@ try {
   include_file('core', 'authentification', 'php');
   if (!isConnect()) throw new Exception(__('401 - Accès non autorisé', __FILE__));
   require_once __DIR__ . '/../class/journalcultures.class.php';
-  ajax::init();
+  ajax::init(['photo', 'image']); // lectures en GET : <img src> direct (session), rien n'y écrit
 
   // équipement du plugin ; droit de lecture vérifié sur la collection (les plantes n'ont pas de tuile ni de droits propres)
   $eq = function ($id, $type = null) {
@@ -19,19 +19,24 @@ try {
 
   if ($a == 'plante') ajax::success($eq(init('id'), 'plante')->fiche());
   if ($a == 'page') ajax::success(journalcultures::page());
-  if ($a == 'notice') { // docs/fr_FR/*.md de la liste blanche, convertis ici (une seule source avec GitHub)
-    $r = [];
-    foreach (journalcultures_calc::NOTICES as $k => $t) {
-      $f = __DIR__ . '/../../docs/fr_FR/' . $k . '.md';
-      if (is_file($f)) $r[] = ['k' => $k, 'titre' => $t, 'html' => journalcultures_calc::markdown(file_get_contents($f))];
-    }
-    ajax::success($r);
+  if ($a == 'notice') { // sans k : la liste des pages ; avec k : une page convertie (docs/fr_FR/*.md, une seule source avec GitHub)
+    if (init('k') === '') ajax::success(array_values(array_filter(array_map(function ($k, $t) { return is_file(__DIR__ . '/../../docs/fr_FR/' . $k . '.md') ? ['k' => $k, 'titre' => $t] : null; }, array_keys(journalcultures_calc::NOTICES), journalcultures_calc::NOTICES))));
+    ajax::success(journalcultures_calc::notice(init('k')));
+  }
+  if ($a == 'image') { // images de la notice : le .htaccess du cœur refuse toute URL contenant /docs/
+    $n = (string)init('n'); $f = __DIR__ . '/../../docs/images/' . $n;
+    if (!preg_match('/^[\w.-]+\.(png|jpe?g|webp|svg)$/D', $n) || !is_file($f)) throw new Exception(__('Image introuvable', __FILE__));
+    header('Content-Type: ' . ['png' => 'image/png', 'jpg' => 'image/jpeg', 'jpeg' => 'image/jpeg', 'webp' => 'image/webp', 'svg' => 'image/svg+xml'][strtolower(pathinfo($n, PATHINFO_EXTENSION))]);
+    header('X-Content-Type-Options: nosniff'); header("Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline'"); // svg ouvert seul : pas de script
+    header('Cache-Control: private, max-age=31536000, immutable'); // l'URL porte la date du fichier (v=)
+    header('Content-Length: ' . filesize($f)); readfile($f); exit;
   }
   if ($a == 'journal') { $c = $eq(init('id'), 'collection'); ajax::success(journalcultures::journal(array_map(function ($p) { return $p->getId(); }, $c->plantes()), 500, $c->getId())); }
-  if ($a == 'photo') { // image envoyée telle quelle (la tuile la lit en blob)
-    $f = $eq(init('id'), 'plante')->photo(init('nom'));
+  if ($a == 'photo') { // mini=1 : vignette de 400 px ; sinon l'original
+    $p = $eq(init('id'), 'plante'); $f = init('mini') ? $p->mini(init('nom')) : $p->photo(init('nom'));
     header('Content-Type: ' . ['jpg' => 'image/jpeg', 'png' => 'image/png', 'webp' => 'image/webp'][pathinfo($f, PATHINFO_EXTENSION)]);
-    header('Content-Length: ' . filesize($f)); header('Cache-Control: private, max-age=86400');
+    header('X-Content-Type-Options: nosniff');
+    header('Content-Length: ' . filesize($f)); header('Cache-Control: private, max-age=86400'); // une photo ne change jamais sous son nom
     readfile($f);
     exit;
   }
@@ -80,7 +85,7 @@ try {
   }
   if ($a == 'mesurer') ajax::success($eq(init('id'), 'plante')->mesurer($liste('mesures')));
   if ($a == 'photo_ajout') ajax::success($eq(init('id'), 'plante')->ajouterPhoto($_FILES['photo'] ?? []));
-  if ($a == 'photo_suppr') { unlink($eq(init('id'), 'plante')->photo(init('nom'))); ajax::success(); }
+  if ($a == 'photo_suppr') { $p = $eq(init('id'), 'plante'); unlink($p->photo(init('nom'))); @unlink(jeedom::getTmpFolder('journalcultures') . '/mini/' . $p->getId() . '_' . pathinfo(init('nom'), PATHINFO_FILENAME) . '.jpg'); ajax::success(); }
   if ($a == 'etiquette') { // photo de l'étiquette = une des photos de la plante ('' = aucune)
     $p = $eq(init('id'), 'plante'); $n = (string)init('nom');
     if ($n !== '') $p->photo($n);

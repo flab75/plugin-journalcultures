@@ -656,9 +656,14 @@ class journalcultures_calc {
      Cultivar entre guillemets, parenthèses, ×, var., subsp. ignorés ; mot absent du dictionnaire : rien. */
   public static function etymologie(array $noms) {
     static $L = null;
-    if ($L === null) {
-      $L = []; $f = __DIR__ . '/../../docs/fr_FR/noms.md';
-      if (is_file($f)) foreach (file($f, FILE_IGNORE_NEW_LINES) as $l) if (preg_match('/^- \*\*([\p{L}-]+)\*\*(.*)$/u', $l, $m)) $L[mb_strtolower($m[1])] = '**' . $m[1] . '**' . $m[2];
+    if ($L === null) { // dictionnaire lu une fois puis gardé en JSON dans le dossier temporaire, tant que noms.md n'a pas changé
+      $f = __DIR__ . '/../../docs/fr_FR/noms.md'; $c = jeedom::getTmpFolder('journalcultures') . '/noms.json';
+      $L = is_file($f) && is_file($c) && filemtime($c) >= max(filemtime($f), filemtime(__FILE__)) ? json_decode((string)file_get_contents($c), true) : null;
+      if (!is_array($L)) {
+        $L = [];
+        if (is_file($f)) foreach (file($f, FILE_IGNORE_NEW_LINES) as $l) if (preg_match('/^- \*\*([\p{L}-]+)\*\*(.*)$/u', $l, $m)) $L[mb_strtolower($m[1])] = '**' . $m[1] . '**' . $m[2];
+        if (is_file($f)) self::cache($c, json_encode($L, JSON_UNESCAPED_UNICODE));
+      }
     }
     $r = [];
     foreach ($noms as $n) foreach (preg_split('/[^\p{L}-]+/u', preg_replace("/(['‘’\"«»]).*?['‘’\"«»]|\(.*?\)/u", ' ', (string)$n)) as $w)
@@ -666,19 +671,31 @@ class journalcultures_calc {
         if (isset($L[$v])) { if (!isset($r[$v])) $r[$v] = self::enligne($L[$v]); break; }
     return array_values($r);
   }
+  private static function cache($c, $v) { // écriture atomique (deux requêtes à la fois ne lisent jamais un fichier à moitié écrit)
+    if (!is_dir(dirname($c))) @mkdir(dirname($c), 0775, true);
+    if (@file_put_contents($c . '.' . getmypid(), $v) !== false) @rename($c . '.' . getmypid(), $c);
+  }
+  /* Une page de la notice en HTML, gardée dans le dossier temporaire tant qu'elle est plus récente que son .md, ce fichier
+     (le convertisseur) et docs/images (dates des URL d'images). */
+  public static function notice($k) {
+    if (!isset(self::NOTICES[$k]) || !is_file($f = __DIR__ . '/../../docs/fr_FR/' . $k . '.md')) throw new Exception(__('Page de notice inconnue', __FILE__));
+    $c = jeedom::getTmpFolder('journalcultures') . '/notice_' . $k . '.html';
+    $t = max(array_merge([filemtime($f), filemtime(__FILE__), filemtime(__DIR__ . '/../../docs/images')], array_map('filemtime', glob(__DIR__ . '/../../docs/images/*') ?: [])));
+    if (is_file($c) && filemtime($c) >= $t) return (string)file_get_contents($c);
+    self::cache($c, $h = self::markdown(file_get_contents($f)));
+    return $h;
+  }
   public static function ancre($t) { return trim(preg_replace('/[^\p{L}\p{N}_-]+/u', '', str_replace(' ', '-', mb_strtolower($t))), '-'); } // comme GitHub
   public static function enligne($t) {
     $t = htmlspecialchars($t, ENT_QUOTES | ENT_SUBSTITUTE);
     $c = []; // code mis de côté : rien n'est balisé dedans
     $t = preg_replace_callback('/`([^`]+)`/', function ($m) use (&$c) { $c[] = '<code>' . $m[1] . '</code>'; return "\x01" . (count($c) - 1) . "\x01"; }, $t);
     $t = preg_replace_callback('/!\[([^\]]*)\]\((?:\.\.\/)?images\/([\w.-]+\.(?:png|jpe?g|webp|svg))\)/', function ($m) {
-      // intégrée en data: : le .htaccess du cœur Jeedom refuse toute URL contenant /docs/ (403)
+      // URL de l'action image : le .htaccess du cœur Jeedom refuse toute URL contenant /docs/ (403) ; v = date du fichier (cache du navigateur)
       // ../images/x : comme sur GitHub, le .md est dans docs/fr_FR/ et les images dans docs/images/
       $f = __DIR__ . '/../../docs/images/' . $m[2];
       if (!is_file($f)) return '[image manquante : images/' . $m[2] . ']';
-      $e = strtolower(pathinfo($f, PATHINFO_EXTENSION));
-      $type = ['svg' => 'svg+xml', 'jpg' => 'jpeg'][$e] ?? $e;
-      return '<img src="data:image/' . $type . ';base64,' . base64_encode(file_get_contents($f)) . '" alt="' . $m[1] . '" style="max-width:100%">'; }, $t);
+      return '<img src="plugins/journalcultures/core/ajax/journalcultures.ajax.php?action=image&amp;n=' . rawurlencode($m[2]) . '&amp;v=' . filemtime($f) . '" alt="' . $m[1] . '" loading="lazy" style="max-width:100%">'; }, $t);
     $t = preg_replace_callback('/\[([^\]]+)\]\(([^)\s]+)\)/', function ($m) {
       if (preg_match('/^https?:\/\//', $m[2])) return '<a href="' . $m[2] . '" target="_blank" rel="noopener noreferrer">' . $m[1] . '</a>';
       if (preg_match('/^(?:(\w+)\.md)?(?:#([\p{L}\p{N}_-]+))?$/u', $m[2], $l)) return '<a data-n="' . ($l[1] ?? '') . '" data-a="' . ($l[2] ?? '') . '">' . $m[1] . '</a>';

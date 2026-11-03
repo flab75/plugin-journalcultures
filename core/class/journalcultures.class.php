@@ -143,6 +143,7 @@ class journalcultures extends eqLogic {
     DB::Prepare('DELETE FROM ' . self::TABLE . ' WHERE plante_id = ?', [$this->getId()], DB::FETCH_TYPE_ROW);
     $d = self::dossier($this->getId());
     if (is_dir($d)) { array_map('unlink', glob($d . '/*') ?: []); @rmdir($d); }
+    array_map('unlink', glob(jeedom::getTmpFolder('journalcultures') . '/mini/' . (int)$this->getId() . '_*') ?: []); // vignettes
   }
 
   /* ---------- mesures, alerte, engrais ---------- */
@@ -352,7 +353,7 @@ class journalcultures extends eqLogic {
   /* ---------- botanique, photos, Pl@ntNet ---------- */
 
   private static function gbif($nom) { // GBIF species/match (sans clé) : nom retenu, famille, statut
-    $r = json_decode((string)(new com_http('https://api.gbif.org/v1/species/match?' . http_build_query(['name' => $nom, 'kingdom' => 'Plantae'])))->exec(10, 1), true);
+    $r = json_decode((string)(new com_http('https://api.gbif.org/v1/species/match?' . http_build_query(['name' => $nom, 'kingdom' => 'Plantae'])))->exec(3, 1), true); // 3 s : la fiche attend la réponse
     if (!is_array($r)) throw new Exception('réponse illisible');
     // HIGHERRANK sans genre = « Plantae » ou une famille (ex. hybride entre deux genres) : rien d'utile
     if (($r['matchType'] ?? 'NONE') == 'NONE' || (($r['matchType'] ?? '') == 'HIGHERRANK' && ($r['genus'] ?? '') === '')) return ['statut' => 'NONE'];
@@ -372,6 +373,28 @@ class journalcultures extends eqLogic {
   public function photo($nom) { // chemin d'une photo de la plante, nom contrôlé (pas de ../)
     if (!preg_match('/^\d{8}_\d{6}_[0-9a-f]{6}\.(jpg|png|webp)$/D', (string)$nom) || !is_file($f = self::dossier($this->getId()) . '/' . $nom)) throw new Exception(__('Photo introuvable', __FILE__));
     return $f;
+  }
+
+  /* Vignette JPEG de 400 px au plus (tuile, fiche) gardée dans le dossier temporaire de Jeedom, refaite si la photo est plus récente ;
+     l'original si GD ne sait pas la lire. Orientation EXIF appliquée (rotations seulement : les photos miroir sont rares). */
+  public function mini($nom) {
+    $f = $this->photo($nom);
+    $m = jeedom::getTmpFolder('journalcultures') . '/mini/' . $this->getId() . '_' . pathinfo($nom, PATHINFO_FILENAME) . '.jpg';
+    if (is_file($m) && filemtime($m) >= filemtime($f)) return $m;
+    $e = pathinfo($f, PATHINFO_EXTENSION); $t = @getimagesize($f);
+    $lire = ['jpg' => 'imagecreatefromjpeg', 'png' => 'imagecreatefrompng', 'webp' => 'imagecreatefromwebp'][$e];
+    $lim = trim(ini_get('memory_limit')); $lim = $lim == -1 ? INF : (int)$lim * (['k' => 1024, 'm' => 1048576, 'g' => 1073741824][strtolower(substr($lim, -1))] ?? 1);
+    if (!$t || $t[0] * $t[1] * 6 > $lim - memory_get_usage() || !function_exists($lire) || !($i = @$lire($f))) return $f; // GD : ≈ 5 octets par pixel ; trop gros = l'original (une erreur de mémoire ne se rattrape pas)
+    $w = imagesx($i); $h = imagesy($i); $k = min(1, 400 / max($w, $h));
+    $v = imagecreatetruecolor($W = max(1, (int)round($w * $k)), $H = max(1, (int)round($h * $k)));
+    imagefill($v, 0, 0, imagecolorallocate($v, 255, 255, 255)); // png transparent : fond blanc
+    imagecopyresampled($v, $i, 0, 0, 0, 0, $W, $H, $w, $h); imagedestroy($i);
+    $o = $e == 'jpg' && function_exists('exif_read_data') ? (int)((@exif_read_data($f) ?: [])['Orientation'] ?? 1) : 1;
+    if (isset([3 => 1, 6 => 1, 8 => 1][$o]) && ($r = imagerotate($v, [3 => 180, 6 => -90, 8 => 90][$o], 0))) { imagedestroy($v); $v = $r; } // tournée une fois réduite
+    if (!is_dir(dirname($m))) @mkdir(dirname($m), 0775, true);
+    $x = $m . '.' . getmypid(); // propre à la requête : deux vignettes faites en même temps ne s'écrasent pas
+    $ok = imagejpeg($v, $x, 80) && rename($x, $m); imagedestroy($v); @unlink($x);
+    return $ok ? $m : $f;
   }
 
   private static function image(array $f) { // fichier envoyé ($_FILES) : image jpeg/png/webp de 15 Mo max → extension

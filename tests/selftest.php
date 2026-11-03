@@ -186,6 +186,15 @@ foreach ($H as $k => $h) {
     if ($l[2] !== '') $ok(strpos($H[$p], 'id="jdc-n-' . $l[2] . '"') !== false, "notice $k : ancre $p#$l[2] introuvable");
   }
 }
+$im = glob(__DIR__ . '/../docs/images/*.{png,jpg,svg,webp}', GLOB_BRACE)[0] ?? null;
+if ($im) $ok(strpos($C::markdown('![a](images/' . basename($im) . ')'), '<p><img src="plugins/journalcultures/core/ajax/journalcultures.ajax.php?action=image&amp;n=' . rawurlencode(basename($im)) . '&amp;v=' . filemtime($im) . '"') === 0, 'notice : image par URL datée');
+$ok($C::notice('index') === $H['index'] && $C::notice('index') === $H['index'], 'notice : page en cache = page convertie');
+try { $C::notice('../index'); $ok(false, 'notice : page hors liste refusée'); } catch (Exception $x) {}
+foreach (journalcultures::byType('journalcultures') as $e) if ($e->type() == 'plante' && ($n = $e->photos())) { // vignette (dossier temporaire seulement)
+  $m = $e->mini($n[0]); $t = getimagesize($m);
+  if ($m !== $e->photo($n[0])) $ok($t[2] == IMAGETYPE_JPEG && max($t[0], $t[1]) <= 400 && $e->mini($n[0]) === $m, 'photo : vignette de 400 px'); // sinon : original servi (GD, mémoire)
+  break;
+}
 echo "notice OK\n";
 
 $t = DB::Prepare("SHOW TABLES LIKE 'journalcultures_journal'", [], DB::FETCH_TYPE_ROW);

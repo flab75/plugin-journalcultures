@@ -1,6 +1,6 @@
 /* Journal de cultures — tuile d'une collection et ses fenêtres (plante, journal, noter, déplacer). Recopié dans chaque tuile par
    journalcultures::toHtml(), chargé une seule fois par page. Textes entre doubles accolades traduits côté PHP (core/i18n). */
-if (!window.journalcultures || window.journalcultures.v !== 25) (function () { // v : un onglet ouvert avant une mise à jour recharge la bibliothèque
+if (!window.journalcultures || window.journalcultures.v !== 26) (function () { // v : un onglet ouvert avant une mise à jour recharge la bibliothèque
   var css = document.getElementById('jdc-css') || document.createElement('style')
   css.id = 'jdc-css'
   css.textContent =
@@ -42,14 +42,17 @@ if (!window.journalcultures || window.journalcultures.v !== 25) (function () { /
   function nb(v, u) { return v === null || v === undefined || v === '' ? '–' : String(Math.round(v * 10) / 10).replace('.', ',') + (u || '') }
   function auj() { var d = new Date(); return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2) }
 
-  function ajax(action, champs, ok, ko, blob) {
+  function ajax(action, champs, ok, ko) {
     var f = new FormData()
     f.append('action', action); f.append('jeedom_token', window.JEEDOM_AJAX_TOKEN || '')
     Object.keys(champs).forEach(function (k) { f.append(k, champs[k]) })
     fetch('plugins/journalcultures/core/ajax/journalcultures.ajax.php', {method: 'POST', body: f, credentials: 'same-origin'})
-      .then(function (r) { return blob && (r.headers.get('Content-Type') || '').indexOf('image/') == 0 ? r.blob().then(ok) : r.json().then(function (j) { if (j.state == 'ok') ok(j.result); else ko(j.result) }) })
+      .then(function (r) { return r.json().then(function (j) { if (j.state == 'ok') ok(j.result); else ko(j.result) }) })
       .catch(function (e) { ko(e instanceof SyntaxError ? "{{Réponse illisible : session expirée ? Recharger la page.}}" : String(e)) })
   }
+
+  // URL d'une photo de plante (lecture en GET, session de Jeedom) : mini = vignette de 400 px
+  function photo(id, n, mini) { return 'plugins/journalcultures/core/ajax/journalcultures.ajax.php?action=photo&id=' + encodeURIComponent(id) + '&nom=' + encodeURIComponent(n) + (mini ? '&mini=1' : '') }
 
   // fenêtre à onglets : o = [[clé, titre, fonction(ct)], …]
   // opt.flottante : toujours en modale ; opt.aide = {clé d'onglet: ancre de la notice} → bouton « ? »
@@ -62,8 +65,8 @@ if (!window.journalcultures || window.journalcultures.v !== 25) (function () { /
     m.innerHTML = '<div class="jdc-mb"><nav><b>' + esc(titre) + '</b>' + o.map(function (x) { return '<a data-o="' + x[0] + '">' + esc(x[1]) + '</a>' }).join('') +
       (opt.aide ? '<a class="q" title="' + "{{Notice}}" + '">?</a>' : '') + '<a class="z">✕</a></nav><div class="jdc-ct"></div></div>';
     (cible || document.body).appendChild(m)
-    var ct = m.querySelector('.jdc-ct'), urls = []
-    function fermer() { m.remove(); document.removeEventListener('keydown', touche); urls.forEach(URL.revokeObjectURL) }
+    var ct = m.querySelector('.jdc-ct')
+    function fermer() { m.remove(); document.removeEventListener('keydown', touche) }
     function touche(e) { if (e.key == 'Escape' && !cible && m === [].slice.call(document.querySelectorAll('body > .jdc-m')).pop() && !/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) fermer() } // posée dans le panel : ✕ seulement
     document.addEventListener('keydown', touche)
     m.onclick = function (e) { if (e.target == m || e.target.classList.contains('z')) fermer() }
@@ -76,30 +79,36 @@ if (!window.journalcultures || window.journalcultures.v !== 25) (function () { /
     }
     m.querySelectorAll('nav a[data-o]').forEach(function (a) { a.onclick = function () { montrer(a.dataset.o) } })
     montrer(depart || o[0][0])
-    var f = {montrer: montrer, url: function (u) { urls.push(u); return u }, fermer: fermer, boite: m.querySelector('.jdc-mb')}
+    var f = {montrer: montrer, fermer: fermer, boite: m.querySelector('.jdc-mb')}
     if (cible) posee = f
     return f
   }
   var posee = null // fenêtre posée dans le panel : fermée (écouteur, photos) avant d'en poser une autre
 
   // notice (docs/fr_FR/*.md convertis par la box) : k = page, ancre = titre visé (comme sur GitHub)
-  var NC = null // pages de la notice, chargées une fois (images en data:, lourdes)
+  var NC = null // liste des pages ; chaque page (HTML, gardé en cache par la box) est chargée à sa première ouverture
   function notice(k, ancre) {
+    function err(er) { fenetre("{{Notice}}", [['e', "{{Erreur}}", function (ct) { erreur(ct)(er) }]], 'e', {flottante: 1}) }
     if (NC) return lire(NC)
-    ajax('notice', {}, function (N) { lire(NC = N) }, function (er) { fenetre("{{Notice}}", [['e', "{{Erreur}}", function (ct) { erreur(ct)(er) }]], 'e', {flottante: 1}) })
+    ajax('notice', {}, function (N) { if (!N.length) return err("{{Notice absente (dossier docs)}}"); lire(NC = N) }, err)
     function lire(N) {
-      if (!N.length) { NC = null; return fenetre("{{Notice}}", [['e', "{{Erreur}}", function (ct) { erreur(ct)("{{Notice absente (dossier docs)}}") }]], 'e', {flottante: 1}) }
-      var w = null
+      var w = null, vise = null // vise : titre où défiler une fois la page posée
       function aller(k2, a) {
         if (!N.some(function (n) { return n.k == k2 })) k2 = N[0].k
+        vise = a
         if (w) w.montrer(k2); else w = fenetre("{{Notice}}", N.map(function (n) { return [n.k, n.titre, function (ct) {
-          ct.innerHTML = n.html
-          ct.querySelectorAll('a[data-n]').forEach(function (l) { l.onclick = function () { aller(l.dataset.n || n.k, l.dataset.a) } })
-          var d = ct.querySelector('.jdc-toc details'); if (d && window.innerWidth <= 600) d.open = false // mobile : sommaire replié
-          if (n.k == 'noms') chercher(ct)
+          ct.dataset.p = n.k // page affichée : une réponse arrivée après un changement d'onglet est ignorée
+          if (n.html) return poser(ct, n)
+          ajax('notice', {k: n.k}, function (h) { n.html = h; if (ct.dataset.p == n.k) poser(ct, n) }, function (er) { if (ct.dataset.p == n.k) erreur(ct)(er) })
         }] }), k2, {flottante: 1, classe: 'jdc-not'})
-        var e = a && w.boite.querySelector('#' + CSS.escape('jdc-n-' + a)) // cette fenêtre, pas une notice déjà ouverte
-        if (e) e.scrollIntoView(); else w.boite.scrollTop = 0
+      }
+      function poser(ct, n) {
+        ct.innerHTML = n.html
+        ct.querySelectorAll('a[data-n]').forEach(function (l) { l.onclick = function () { aller(l.dataset.n || n.k, l.dataset.a) } })
+        var d = ct.querySelector('.jdc-toc details'); if (d && window.innerWidth <= 600) d.open = false // mobile : sommaire replié
+        if (n.k == 'noms') chercher(ct)
+        var b = ct.closest('.jdc-mb'), e = vise && b.querySelector('#' + CSS.escape('jdc-n-' + vise)); vise = null // cette fenêtre, pas une notice déjà ouverte
+        if (e) e.scrollIntoView(); else b.scrollTop = 0
       }
       aller(k, ancre)
     }
@@ -222,7 +231,7 @@ if (!window.journalcultures || window.journalcultures.v !== 25) (function () { /
     function avec(fn) { return function (ct) { if (r) return fn(ct); var premier = !att; att = [fn, ct]
       if (premier) ajax('plante', {id: id}, function (x) { r = x; var a = att; att = null; a[0](a[1]) }, function (er) { var a = att; att = null; erreur(a[1])(er) }) } }
     function recharger(k) { r = null; w.montrer(k) }
-    function charger(img, n, er) { ajax('photo', {id: id, nom: n}, function (b) { if (b instanceof Blob) { var u = w.url(URL.createObjectURL(b)), fr = new FileReader(); fr.onload = function () { img.src = fr.result }; fr.readAsDataURL(b); img.onclick = function () { window.open(u) } } }, er, true) } // CSP de Jeedom : img-src refuse blob: → data: pour l'image, blob: pour l'ouvrir en grand
+    function charger(img, n, er) { img.onerror = function () { er("{{Photo illisible}}") }; img.src = photo(id, n, 1); img.style.cursor = 'zoom-in'; img.onclick = function () { window.open(photo(id, n)) } } // vignette ; l'original au clic
     var p = d.plantes.filter(function (x) { return x.id == id })[0] || {nom: ''}
     w = fenetre(p.nom, [
       ['fic', "{{Fiche}}", avec(function (ct) {
@@ -418,7 +427,7 @@ if (!window.journalcultures || window.journalcultures.v !== 25) (function () { /
       phs.appendChild(dv); return dv
     }
     ex.forEach(function (n) { var dv = ligne(n.slice(6, 8) + '/' + n.slice(4, 6) + '/' + n.slice(2, 4) + ' ' + n.slice(9, 11) + ':' + n.slice(11, 13), 'n' + n, false)
-      ajax('photo', {id: id, nom: n}, function (b) { if (b instanceof Blob) vignette(dv, b) }, function () {}, true) })
+      dv.querySelector('img').src = photo(id, n, 1) })
     fi.onchange = function () { Array.prototype.forEach.call(fi.files, function (f) { nv.push(f); vignette(ligne(f.name, 'f' + (nv.length - 1), true), f) }); fi.value = '' }
     if (idf) idf.onclick = function () {
       var ch = {id: id}, noms = [], org = [], fs = []
@@ -578,7 +587,7 @@ if (!window.journalcultures || window.journalcultures.v !== 25) (function () { /
   }
 
   // opt.panel : colonnes en plus (porte-greffe, dernière mesure), masquées sur téléphone
-  window.journalcultures = {v: 25, notice: notice, ajax: ajax, esc: esc, nb: nb, init: function (b, d, opt) {
+  window.journalcultures = {v: 26, notice: notice, ajax: ajax, esc: esc, nb: nb, init: function (b, d, opt) {
     if (!b) return
     d.apres = opt && opt.apres // relu par « Greffer… » (fiche)
     var pa = opt && opt.panel
