@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.20 (2026-11-03)
+- Une collection qui contient encore des plantes ne peut plus être supprimée (ses plantes resteraient sans collection) : les déplacer ou les supprimer d'abord.
+- Onglet Mesures : toutes les mesures de la plante, plus seulement celles des 300 dernières entrées du journal.
+- Mesures : un pot de 0 cm est refusé (le plan d'engrais devenait impossible).
+- Plan d'engrais : si la note au journal échoue, le calendrier écrit est gardé et l'erreur va au log (un nouvel envoi disait « Rien à changer »).
+- Mise à jour du plugin : un équipement en erreur n'empêche plus la mise à jour des autres.
+- Suppression d'une entrée du journal, d'une photo, choix de la photo d'étiquette : un double clic n'envoie plus deux fois.
+- Selftest : refus vérifiés sans rien écrire (plan d'engrais, greffe, retour en porte-greffe, création, pot de 0 cm).
+
 ## 0.19 (2026-11-03)
 - Dépôt : README (présentation, installation, liens vers la notice) ; description du plugin complétée (agrumes) ; liens de documentation et de changelog fixés sur la notice française.
 - Droits : photo de l'aleurode épineux remplacée (celle de Commons n'avait pas de licence prouvée ; l'OEPP réserve ses photos) par deux photos INRAE du premier foyer français, 2023 (colonie de pupes, adulte) (Rossi et Streito, Licence Ouverte Etalab 2.0).

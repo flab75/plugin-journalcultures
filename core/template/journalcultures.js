@@ -1,6 +1,6 @@
 /* Journal de cultures — tuile d'une collection et ses fenêtres (plante, journal, noter, déplacer). Recopié dans chaque tuile par
    journalcultures::toHtml(), chargé une seule fois par page. Textes entre doubles accolades traduits côté PHP (core/i18n). */
-if (!window.journalcultures || window.journalcultures.v !== 24) (function () { // v : un onglet ouvert avant une mise à jour recharge la bibliothèque
+if (!window.journalcultures || window.journalcultures.v !== 25) (function () { // v : un onglet ouvert avant une mise à jour recharge la bibliothèque
   var css = document.getElementById('jdc-css') || document.createElement('style')
   css.id = 'jdc-css'
   css.textContent =
@@ -132,7 +132,8 @@ if (!window.journalcultures || window.journalcultures.v !== 24) (function () { /
   function brancherSuppr(ct, apres) {
     ct.querySelectorAll('.jdc-del').forEach(function (a) {
       a.onclick = function () { if (!a.dataset.ok) { a.dataset.ok = 1; a.textContent = "{{Confirmer ✕}}"; return } // deuxième clic, comme les photos
-        ajax('supprimer', {entree: a.dataset.id}, apres, function (er) { a.textContent = er }) }
+        if (a.dataset.envoi) return; a.dataset.envoi = 1 // pas de double envoi
+        ajax('supprimer', {entree: a.dataset.id}, apres, function (er) { delete a.dataset.envoi; a.textContent = er }) }
     })
   }
 
@@ -296,8 +297,8 @@ if (!window.journalcultures || window.journalcultures.v !== 24) (function () { /
           var n = fg.dataset.n, img = fg.querySelector('img'), res = fg.querySelector('.res')
           charger(img, n, function (er) { res.textContent = er })
           var s = fg.querySelector('.sup'), i = fg.querySelector('.idf'), et = fg.querySelector('.eti')
-          if (et) et.onclick = function () { ajax('etiquette', {id: id, nom: n == r.etiquette ? '' : n}, function () { recharger('pho') }, function (er) { res.textContent = er }) } // ★ = retirer
-          if (s) s.onclick = function () { if (s.dataset.ok) ajax('photo_suppr', {id: id, nom: n}, function () { recharger('pho') }, function (er) { res.textContent = er }); else { s.dataset.ok = 1; s.textContent = "{{Confirmer ✕}}" } }
+          if (et) et.onclick = function () { if (et.dataset.envoi) return; et.dataset.envoi = 1; ajax('etiquette', {id: id, nom: n == r.etiquette ? '' : n}, function () { recharger('pho') }, function (er) { delete et.dataset.envoi; res.textContent = er }) } // ★ = retirer
+          if (s) s.onclick = function () { if (s.dataset.envoi) return; if (s.dataset.ok) { s.dataset.envoi = 1; ajax('photo_suppr', {id: id, nom: n}, function () { recharger('pho') }, function (er) { delete s.dataset.envoi; res.textContent = er }) } else { s.dataset.ok = 1; s.textContent = "{{Confirmer ✕}}" } }
           if (i) i.onclick = function () {
             if (i.dataset.envoi) return; i.dataset.envoi = 1 // double clic : quota Pl@ntNet compté une fois
             res.textContent = "{{Identification…}}"
@@ -316,7 +317,7 @@ if (!window.journalcultures || window.journalcultures.v !== 24) (function () { /
       })],
       ['mes', "{{Mesures}}", avec(function (ct) {
         var c = r.cmds, M = r.mesures, org = Object.keys(M)[0], h = msg ? '<p><b>' + esc(msg) + '</b></p>' : ''; msg = ''
-        var lm = r.journal.filter(function (x) { return x.action == 'Mesure' && x.valeurs }).reverse() // plus anciennes d'abord
+        var lm = r.releves // toutes les mesures, plus anciennes d'abord
         var ks = []; lm.forEach(function (x) { Object.keys(x.valeurs).forEach(function (k) { if (typeof x.valeurs[k] == 'number' && ks.indexOf(k) < 0) ks.push(k) }) })
         function lib(k) {
           var o = k.split('.'), f = o[0] == 'calc' ? r.calculs[k] && [0, r.calculs[k][0], r.calculs[k][1]] : M[o[0]] && M[o[0]][1][o[1]]
@@ -577,7 +578,7 @@ if (!window.journalcultures || window.journalcultures.v !== 24) (function () { /
   }
 
   // opt.panel : colonnes en plus (porte-greffe, dernière mesure), masquées sur téléphone
-  window.journalcultures = {v: 24, notice: notice, ajax: ajax, esc: esc, nb: nb, init: function (b, d, opt) {
+  window.journalcultures = {v: 25, notice: notice, ajax: ajax, esc: esc, nb: nb, init: function (b, d, opt) {
     if (!b) return
     d.apres = opt && opt.apres // relu par « Greffer… » (fiche)
     var pa = opt && opt.panel

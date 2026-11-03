@@ -428,6 +428,7 @@ class journalcultures_calc {
       $ns = $t == 'l' ? preg_split('/[;\s]+/', strtr($v, [',' => '.']), -1, PREG_SPLIT_NO_EMPTY) : [strtr($v, [',' => '.'])];
       if (!$ns) continue; // « ; » seul
       foreach ($ns as $n) if (!is_numeric($n) || $n < 0 || $n > 100000) throw $faux;
+      if ($o == 'pot' && $ns[0] <= 0) throw $faux; // pot de 0 cm : volume nul, plan d'engrais impossible
       if (count($ns) > 50) throw $faux;
       $r["$o.$k"] = $t == 'l' ? array_map('floatval', $ns) : (float)$ns[0];
     }

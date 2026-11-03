@@ -130,6 +130,13 @@ class journalcultures extends eqLogic {
     if (is_object($c = $this->_ancColl)) try { $c->maj(); } catch (Throwable $e) { log::add('journalcultures', 'error', $e->getMessage()); }
   }
 
+  public function remove() { // avant le core, qui supprime d'abord les commandes : une collection refusée garde les siennes
+    // ponytail: la désinstallation (classe update) supprime tout, dans n'importe quel ordre : pas de refus là
+    if ($this->type() == 'collection' && $this->plantes() && !in_array('update', array_column(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS), 'class'), true))
+      throw new Exception(sprintf(__('La collection %s contient encore %d plante(s) : les déplacer ou les supprimer d\'abord', __FILE__), $this->getName(), count($this->plantes())));
+    return parent::remove();
+  }
+
   public function preRemove() { // photos et entrées du journal de la plante
     if ($this->type() != 'plante') return;
     $this->_ancColl = $this->collection();
@@ -326,6 +333,13 @@ class journalcultures extends eqLogic {
     $r = DB::Prepare('SELECT id, date, plante_id, plante, lieu, action, cat, note, lune, origine, valeurs FROM ' . self::TABLE . $w . ' ORDER BY date DESC, id DESC LIMIT ' . (int)$limite, [], DB::FETCH_TYPE_ALL) ?: [];
     foreach ($r as &$x) { $x['lune'] = json_decode((string)$x['lune'], true); $x['valeurs'] = json_decode((string)$x['valeurs'], true); }
     return $r;
+  }
+
+  public static function releves($id) { // toutes les mesures d'une plante, plus anciennes d'abord (onglet Mesures ; le journal est limité)
+    $r = DB::Prepare('SELECT date, valeurs FROM ' . self::TABLE . ' WHERE plante_id = ? AND action = ? AND valeurs IS NOT NULL ORDER BY date, id', [(int)$id, 'Mesure'], DB::FETCH_TYPE_ALL) ?: [];
+    foreach ($r as &$x) $x['valeurs'] = json_decode((string)$x['valeurs'], true);
+    unset($x);
+    return array_values(array_filter($r, function ($x) { return is_array($x['valeurs']) && $x['valeurs']; }));
   }
 
   public static function supprimerEntree($id) { // → plante concernée (pour la remettre à jour) ou null
@@ -596,7 +610,7 @@ class journalcultures extends eqLogic {
     $obs = journalcultures_calc::observes($this->caracteres()); $carac = [];
     foreach ($obs as $k => $v) $carac[] = [journalcultures_calc::CARACTERES[$k][0], journalcultures_calc::CARACTERES[$k][1][$v]];
     return ['id' => $this->getId(), 'nom' => $this->getName(), 'fiche' => $f, 'carac' => $carac, 'brut' => ['bota' => $bota, 'rusticite' => trim((string)$this->getConfiguration('rusticite')), 'carac' => $obs], 'ident' => journalcultures_calc::identifier($obs), 'gbif' => $g, 'pot' => $potTxt, 'etat' => $s, 'cmds' => $cmds,
-      'journal' => self::journal([$this->getId()], 300), 'photos' => $ph = $this->photos(), 'liens' => array_values($liens),
+      'journal' => self::journal([$this->getId()], 300), 'releves' => self::releves($this->getId()), 'photos' => $ph = $this->photos(), 'liens' => array_values($liens),
       'etiquette' => in_array($this->getConfiguration('etiquette'), $ph, true) ? $this->getConfiguration('etiquette') : '', // photo supprimée : plus d'étiquette
       'plantnet' => self::cle() !== '' ? 1 : 0, 'multiplication' => $this->multiplication(), 'greffe' => $this->suiviGreffe(), 'mesures' => journalcultures_calc::MESURES, 'calculs' => journalcultures_calc::CALCULS, 'engrais' => $this->engraisFiche(), 'sante' => $this->santeFiche(), 'santeCat' => self::santeCat(), 'geo' => self::geo(),
       'noms' => journalcultures_calc::etymologie([$bota, $g['espece'] ?? ''])]; // nom saisi puis nom retenu par GBIF (ancien nom → actuel)
@@ -676,8 +690,9 @@ class journalcultures extends eqLogic {
     if ($apres === $avant) throw new Exception(__('Rien à changer', __FILE__));
     self::$_sansGbif = true;
     try { $this->setConfiguration('engrais', $apres); $this->save(); } finally { self::$_sansGbif = false; }
-    self::inserer(['date' => date('Y-m-d'), 'plante_id' => $this->getId(), 'plante' => $this->getName(), 'lieu' => (string)$this->getConfiguration('emplacement'), 'action' => 'Observation',
+    try { self::inserer(['date' => date('Y-m-d'), 'plante_id' => $this->getId(), 'plante' => $this->getName(), 'lieu' => (string)$this->getConfiguration('emplacement'), 'action' => 'Observation',
       'note' => sprintf(__('Calendrier d\'engrais (pot de %s L) : %s → %s', __FILE__), str_replace('.', ',', (string)$L), $avant === '' ? '–' : strtr($avant, ["\n" => ' ; ']), strtr($apres, ["\n" => ' ; ']))]);
+    } catch (Throwable $e) { log::add('journalcultures', 'error', $this->getHumanName() . ' : calendrier écrit, pas noté au journal : ' . $e->getMessage()); } // déjà écrit : un nouvel envoi dirait « Rien à changer »
     return $apres;
   }
 

@@ -11,7 +11,8 @@ function journalcultures_update() {
   journalcultures::creerTable();
   if (trim(config::byKey('produits', 'journalcultures', '')) === '') config::save('produits', journalcultures_calc::PRODUITS, 'journalcultures'); // 0.13 : catalogue proposé, à modifier
   journalcultures::$_sansGbif = true; // pas d'appel GBIF par plante pendant la mise à jour
-  foreach (eqLogic::byType('journalcultures') as $eq) { $eq->save(); $eq->commandesOk(true); } // commandes ajoutées ou retirées par la nouvelle version
+  foreach (eqLogic::byType('journalcultures') as $eq) try { $eq->save(); $eq->commandesOk(true); } // commandes ajoutées ou retirées par la nouvelle version
+    catch (Throwable $e) { log::add('journalcultures', 'error', $eq->getHumanName() . ' : mise à jour : ' . $e->getMessage()); } // un équipement en erreur n'arrête pas les autres
 }
 
 // ponytail: la table du journal est gardée à la désinstallation (des années de notes) ; DROP TABLE journalcultures_journal à la main si voulu

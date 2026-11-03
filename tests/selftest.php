@@ -114,8 +114,9 @@ $ok($C::age('2024', $now) === '≈ 2 ans' && $C::age('2026', $now) === 'moins d�
 $ok($C::age('2027', $now) === null && $C::age('2024-13', $now) === null && $C::age('2024-05-99', $now) === null && $C::age('2024-02-29', $now) === '2 ans' && $C::age('vers 2024', $now) === null && $C::age('', $now) === null, 'âge illisible ou à venir');
 $v = $C::valeurs(['feuilles.limbe_l' => '80', 'feuilles.aile_l' => '45,5', 'fruits.diametres' => '32; 35 41', 'pot.substrat' => 'frais', 'plante.hauteur' => '', 'x.y' => '3']);
 $ok($v === ['feuilles.limbe_l' => 80.0, 'feuilles.aile_l' => 45.5, 'fruits.diametres' => [32.0, 35.0, 41.0], 'pot.substrat' => 'frais'], 'valeurs saisies');
-foreach ([['plante.hauteur' => '-1'], ['plante.hauteur' => 'abc'], ['pot.substrat' => 'mouillé'], ['pot.forme' => 'ovale'], ['fruits.diametres' => '3, x'], ['plante.hauteur' => ['1']]] as $faux)
-  try { if ($C::valeurs($faux)) $ok(false, 'valeur invalide acceptée : ' . json_encode($faux)); } catch (Exception $x) {}
+foreach ([['plante.hauteur' => '-1'], ['plante.hauteur' => 'abc'], ['pot.substrat' => 'mouillé'], ['pot.forme' => 'ovale'], ['fruits.diametres' => '3, x'], ['pot.diam' => '0'], ['pot.terre' => '0,0']] as $faux)
+  try { $C::valeurs($faux); $ok(false, 'valeur invalide acceptée : ' . json_encode($faux)); } catch (Exception $x) {} // $ok sort (exit) : pas attrapé ici
+$ok($C::valeurs(['plante.hauteur' => ['1']]) === [], 'valeur non scalaire : ignorée');
 $v += $C::calculs($v);
 $ok($v['calc.aile_limbe'] === 0.57 && $v['calc.fruits_moy'] === 36.0 && $v['calc.fruits_min'] === 32.0 && $v['calc.fruits_max'] === 41.0 && !isset($v['calc.greffon_pg']), 'calculs des mesures');
 $ok($C::suggestions($v) == ['aile' => 'tres_large', 'feuille' => 'moyenne', 'fruit' => '3-6'], 'suggestions d\'identification');
@@ -193,6 +194,25 @@ if ($t) {
   journalcultures::journal(null, 1);
   echo "table OK\n";
 } else echo "table absente (plugin pas installé)\n";
+
+// refus avant toute écriture (aucun effet) : plan d'engrais, greffe, retour en porte-greffe, création
+$refus = function ($f, $m) use ($ok) { try { $f(); } catch (Exception $x) { return; } $ok(false, "accepté : $m"); };
+// plantes dans l'objet de leur collection : creer() ne cherche le nom que là, un autre objet laisserait passer (et écrirait)
+$pl = array_values(array_filter(eqLogic::byType('journalcultures'), function ($e) { return $e->type() == 'plante' && is_object($c = $e->collection()) && $e->getObject_id() == $c->getObject_id(); }));
+if ($pl) {
+  $avecPot = array_values(array_filter($pl, function ($e) { return journalcultures_calc::volume($e->pot()) > 0; })); // sinon les 3 refus tomberaient sur « pot inconnu »
+  $p = $avecPot[0] ?? $pl[0]; $co = $p->collection(); $av = $p->getConfiguration('engrais');
+  $refus(function () use ($p) { $p->ecrirePlan([0 => 50]); }, 'plan à 50 %');
+  $refus(function () use ($p) { $p->ecrirePlan([0 => 150, 1 => -50]); }, 'plan avec une part hors 0-100');
+  $refus(function () use ($p) { $p->ecrirePlan([0 => 100], [0 => 9999]); }, 'plan avec une dose de 9999 g');
+  $ok($p->getConfiguration('engrais') === $av, 'plan refusé : calendrier inchangé');
+  foreach ($pl as $q) if ($q->getConfiguration('greffe_statut') != 'echouee') { $refus(function () use ($q, $co) { $q->degreffer($co, 'x'); }, 'retour en porte-greffe sans greffe échouée'); break; }
+  $refus(function () use ($co) { journalcultures::creer($co, ['nom' => ' ']); }, 'plante sans nom');
+  $refus(function () use ($co, $p) { journalcultures::creer($co, ['nom' => mb_strtoupper($p->getName())]); }, 'plante au nom déjà pris');
+  foreach ($pl as $q) if ($q->getId() != $p->getId() && $q->getObject_id() == $p->getObject_id()) { $refus(function () use ($co, $p, $q) { journalcultures::creer($co, ['nom' => $p->getName()], $q); }, 'greffe au nom d\'une autre plante'); break; }
+  $ok($p->getName() === journalcultures::byId($p->getId())->getName(), 'refus : rien d\'enregistré');
+  echo "refus OK\n";
+}
 
 foreach (eqLogic::byType('journalcultures') as $eq) {
   $d = $eq->type() == 'collection' ? $eq->donnees() : $eq->etat() + ['engrais_fiche' => $eq->engraisFiche()];
