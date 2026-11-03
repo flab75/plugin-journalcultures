@@ -4,8 +4,8 @@
 	"pluginVersion": "0.19",
 	"display": "panel",
 	"description": {
-		"fr_FR": "Fiches des plantes de la maison et du jardin (botanique, culture, pot), emplacement suivi et historisé, alerte de froid selon la rusticité et le pot, rappels d'engrais, mesures, photos et identification Pl@ntNet, journal unique des travaux.",
-		"en_US": "Plant records for house and garden (botany, growing, pot), tracked and historized location, cold alert from hardiness and pot size, fertilizer reminders, measurements, photos and Pl@ntNet identification, single work log."
+		"fr_FR": "Fiches des plantes de la maison et du jardin (botanique, culture, pot), emplacement suivi et historisé, alerte de froid selon la rusticité et le pot, rappels d'engrais, mesures, photos et identification Pl@ntNet, journal unique des travaux. Notice détaillée pour les agrumes : greffe, santé, fertilisation, botanique, origine des noms.",
+		"en_US": "Plant records for house and garden (botany, growing, pot), tracked and historized location, cold alert from hardiness and pot size, fertilizer reminders, measurements, photos and Pl@ntNet identification, single work log. Detailed guide (in French) for citrus: grafting, pests and diseases, feeding, botany, plant name origins."
 	},
 	"licence": "MIT",
 	"author": "flab",
@@ -17,10 +17,10 @@
 	"category": "nature",
 	"hasDependency": false,
 	"hasOwnDeamon": false,
-	"changelog_beta": "https://github.com/flab75/plugin-journalcultures/blob/beta/docs/#language#/changelog.md",
-	"documentation_beta": "https://github.com/flab75/plugin-journalcultures/blob/beta/docs/#language#/index.md",
-	"changelog": "https://github.com/flab75/plugin-journalcultures/blob/master/docs/#language#/changelog.md",
-	"documentation": "https://github.com/flab75/plugin-journalcultures/blob/master/docs/#language#/index.md",
+	"changelog_beta": "https://github.com/flab75/plugin-journalcultures/blob/beta/docs/fr_FR/changelog.md",
+	"documentation_beta": "https://github.com/flab75/plugin-journalcultures/blob/beta/docs/fr_FR/index.md",
+	"changelog": "https://github.com/flab75/plugin-journalcultures/blob/master/docs/fr_FR/changelog.md",
+	"documentation": "https://github.com/flab75/plugin-journalcultures/blob/master/docs/fr_FR/index.md",
 	"language": [
 		"fr_FR"
 	],

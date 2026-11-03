@@ -2,7 +2,7 @@
 
 Pourquoi le romarin est-il la « rosée de la mer », et l'officinalis une plante d'apothicaire ? Ce dictionnaire raconte d'où viennent les noms botaniques : un genre (le premier mot, avec majuscule) puis une épithète (le second, en minuscules), presque toujours du latin ou du grec, parfois un hommage à un botaniste.
 
-Tape un mot dans la case de recherche : genre, épithète, nom français ou ancien nom. La recherche ignore les accents et les majuscules. La fiche de chaque plante montre aussi, à la ligne « Origine du nom », les mots de son nom botanique qui figurent ici.
+Dans le plugin (onglet « Noms des plantes » de la notice), tape un mot dans la case de recherche : genre, épithète, nom français ou ancien nom. La recherche ignore les accents et les majuscules. La fiche de chaque plante montre aussi, à la ligne « Origine du nom », les mots de son nom botanique qui figurent ici.
 
 ## Les noms qui ont changé
 

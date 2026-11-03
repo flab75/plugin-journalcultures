@@ -1,6 +1,7 @@
 # Changelog
 
 ## 0.19 (2026-11-03)
+- Dépôt : README (présentation, installation, liens vers la notice) ; description du plugin complétée (agrumes) ; liens de documentation et de changelog fixés sur la notice française.
 - Droits : photo de l'aleurode épineux remplacée (celle de Commons n'avait pas de licence prouvée ; l'OEPP réserve ses photos) par deux photos INRAE du premier foyer français, 2023 (colonie de pupes, adulte) (Rossi et Streito, Licence Ouverte Etalab 2.0).
 - Santé, Cochenilles : photo de la cochenille farineuse (Planococcus citri, Khokhlov, CC BY-SA 4.0) ; HLB : psylle adulte tout juste émergé (USGS, domaine public).
 - Chaque légende de photo renvoie à sa page source (auteur, licence) ; références complètes de Burkhardt 2018 et du Wiktionnaire ; LICENSE renvoie aux licences des images.
