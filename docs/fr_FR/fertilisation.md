@@ -160,6 +160,23 @@ Dans le plugin (choix du plugin) :
 
 Avant d'acheter, mêmes points que pour un 2-1-1 (ci-dessus), plus : azote sans urée de préférence (libération plus régulière, notion d'étiquette), fer chélaté et oligo-éléments déclarés. Parmi les engrais lents vus pour ce plugin, seuls des enrobés déclarent à la fois un rapport proche de 2-1-1, du magnésium, du fer et les oligo-éléments.
 
+
+### L'engrais organo-minéral en granulés
+
+Des granulés d'origine végétale ou animale (tourteaux, guano, vinasse) avec un peu d'azote minéral : la norme NF U 42-001 les range parmi les « organo-minéraux ». C'est l'autre forme « à libération lente » conseillée en pot (voir [Le bon produit](#2-le-bon-produit)).
+Ce qu'en disent l'étiquette et la fiche d'un 8-5-5 « utilisable en agriculture biologique » :
+- l'**azote** est surtout organique (6,5 % sur 8) : environ un cinquième d'azote minéral, qui agit vite (déduction du plugin), le reste attend que les microbes le libèrent, lentement dans un pot froid (voir [Organique ou minéral](#organique-ou-minéral)) ;
+- la **durée** (« nourrit jusqu'à 3 mois ») n'est pas l'intervalle : la même étiquette dit de réappliquer **après 5 semaines** ; c'est l'intervalle qu'on saisit ;
+- la **dose** est en **poignées** (« 2 à 5 selon la plante ») : imprécis ; peser une fois sa poignée, ou laisser le plugin calculer les grammes ; une étiquette « agrumes » de la même gamme donne **5 g par litre de pot sous 10 L, 3 g/L au-dessus**, toutes les 5 semaines de mars à septembre ;
+- un 8-5-5 fait **1,6-1-1** : proche du 2-1-1 conseillé, avec un peu plus de phosphore ; **ni magnésium ni oligo-éléments** déclarés : fer et magnésium à part, sur signe seulement ;
+- « **utilisable en agriculture biologique** » renvoie à la liste des engrais autorisés en bio (règlement (UE) 2021/1165, annexe II) : les engrais azotés de synthèse n'y sont pas ; un engrais enrobé à base de nitrate d'ammonium (voir [L'engrais enrobé](#lengrais-enrobé)) ne l'est donc pas.
+
+Le plugin, pour un 8 % d'azote toutes les 5 semaines, calcule environ **4,4 g par litre** et par apport (0,07 × 5 ÷ 0,08) : l'étiquette agrumes (3 g/L au-dessus de 10 L) donne environ 70 % du calcul (l'enrobé est bien plus bas), dans le sens de la mise en garde de [la dose en pot](#combien--la-dose-en-pot) (déduction du plugin, aucune source ne compare).
+
+Dans le plugin (choix du plugin) :
+- saisir **sans dose d'étiquette** (pas de 7e champ : le plugin calcule depuis l'azote), intervalle 5 semaines, période de mars à début septembre : `Organo-minéral 8-5-5 | 8 | 5 | 10-36 | N P K | granulés, bio, réappliquer après 5 semaines` ;
+- un jeune plant est réduit tout seul (dose calculée) ;
+- pour suivre l'étiquette plutôt que le calcul, corriger la dose à la main dans le plan (3 g/L, 5 g/L sous 10 L).
 ### En pratique
 
 | Ce qu'on voit | Que faire |
@@ -358,7 +375,8 @@ Lues en entier, sauf mention.
 - **Elavarasan 2019** : Elavarasan K., Premalatha A., *Journal of Pharmacognosy and Phytochemistry* 8(4):1705-1708 (Inde).
 - **Étiquettes** : Ferti Agrumes, Sang séché, Corne broyée, Kélafer (Agro Sens / Comptoir des Jardins), sel d'Epsom GiDe ; fiche de données de sécurité Ferti Agrumes (Comptoir des Jardins, 2026).
 - **Engrais enrobé** : fiche technique d'un engrais enrobé 16-8-12 « 6 mois » (revendeur italien, 2026) : durée selon la température, doses en pot, demi-dose pour un jeune plant, chélate EDTA stable entre pH 4 et 6,5.
-- **Fertiligène Performance Organics** : étiquette engrais agrumes (fiche du vendeur Truffaut).
+- **Fertiligène Performance Organics** : étiquette engrais agrumes (fiche du vendeur Truffaut) ; engrais universel 8-5-5 (fiche du vendeur Truffaut, norme NF U 42-001, poignées, réappliquer après 5 semaines) et sa fiche de données de sécurité (Evergreen Garden Care, 2023).
+- **Règlement (UE) 2021/1165** : annexe II, engrais et amendements autorisés en agriculture biologique.
 - **Guardiola 1975** : Guardiola J. L., Vivas S., González-Sicilia E., efficacité de l'analyse foliaire de l'azote, *Fruits* 30(2):113-118 (INIA, Espagne).
 - **Labanauskas 1967** : Labanauskas C. K., Nauer E. M., Roistacher C. N., *Hilgardia* 38(15), Université de Californie (semis d'oranger Valencia en pot).
 - **Haifa** : Deficiency Pro: Citrus, Haifa Group (Israël, vendeur d'engrais).
