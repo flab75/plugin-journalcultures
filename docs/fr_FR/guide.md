@@ -15,9 +15,9 @@ les gravures montrent souvent une autre plante qu'un agrume, ce qui est dit sous
 1. Une plante a des **pousses** (tige, feuilles, bourgeons, fleurs) et des **racines** ([La plante](#la-plante)).
 2. Sous l'écorce, le **liber** porte les sucres des feuilles vers les racines, les pousses et les fruits, le **bois** monte l'eau ; entre les deux, le **cambium** fabrique les deux ; dans une greffe, les tissus conducteurs se soudent ([Sous l'écorce](#sous-lécorce)).
 3. Couper le **bourgeon du bout** réveille les bourgeons de côté : c'est la base de la taille ([La tige et les bourgeons](#la-tige-et-les-bourgeons)).
-4. Une carence se lit sur **les vieilles feuilles** (azote, magnésium, potassium…) ou sur **les jeunes pousses** (fer, zinc, manganèse…) ([Nourrir la plante](#nourrir-la-plante) ; trois sources concordent : voir [Reconnaître une carence](fertilisation.md#reconnaître-une-carence)).
+4. Une carence se lit sur **les vieilles feuilles ou les feuilles adultes** (azote, magnésium, potassium…) ou sur **les jeunes pousses** (fer, zinc, manganèse…) ([Nourrir la plante](#nourrir-la-plante) ; trois sources concordent : voir [Reconnaître une carence](fertilisation.md#reconnaître-une-carence)).
 5. Le fruit est l'**ovaire** de la fleur qui a mûri ; chez les agrumes, on l'appelle **hespéride** (**une seule source**) ([La fleur et le fruit](#la-fleur-et-le-fruit)).
-6. Un **pépin** d'agrume donne souvent un plant identique à la mère (pas chez le cédratier ni le pamplemoussier, *C. maxima*), mais jeune et épineux pendant des années ; greffe, bouture et marcotte copient la mère et peuvent transmettre ses maladies ([Multiplier les agrumes](#multiplier-les-agrumes)).
+6. Un **pépin** d'agrume donne souvent un plant identique à la mère (pas chez le cédratier, le pamplemoussier *C. maxima*, le clémentinier ni certains hybrides de mandarinier), mais jeune et épineux pendant des années ; greffe, bouture et marcotte copient la mère et peuvent transmettre ses maladies ([Multiplier les agrumes](#multiplier-les-agrumes)).
 
 ## La plante
 
@@ -176,7 +176,7 @@ Détail et sources dans les paragraphes ci-dessous. Le tableau résume, il n'ajo
 ### Semis
 
 - **Pépins à plusieurs embryons** (polyembryonnés) : chez beaucoup d'agrumes, un pépin contient en général un embryon issu de la fécondation et un ou plusieurs embryons **nucellaires**, formés à partir des tissus de la mère ; ceux-ci donnent des plants **identiques à la mère** (Curk 2022 p. 56 et lexique p. 345 ; UF/IFAS HS1309 p. 1-2 ; de Rocca Serra 1992 p. 119).
-  Exception : le cédratier et le pamplemoussier (*C. maxima*) n'ont que des pépins à un seul embryon, donc des semis hybrides (de Rocca Serra 1992 p. 119 ; pépins « monoembryonnés » : Curk 2022 p. 190 et lexique).
+  Exception : le cédratier et le pamplemoussier (*C. maxima*) n'ont que des pépins à un seul embryon, donc des semis hybrides (de Rocca Serra 1992 p. 119 ; pépins « monoembryonnés » : Curk 2022 p. 190 et lexique) ; de même le clémentinier et certains hybrides de mandarinier (Aleza 2010 ; UC Riverside, fiche Clementine).
 - Le plant issu de la fécondation est un **hybride**, différent de la mère et souvent moins vigoureux : en pépinière, on l'élimine au repiquage ou au greffage (UF/IFAS HS1309 p. 1-2 ; Curk 2022 p. 197-199 ; de Rocca Serra 1992 p. 119).
   Moins un pépin a d'embryons, plus ce risque est grand : en moyenne 1,1 à 1,5 embryon par pépin chez le citronnier Volkamer, 1,5 à 2 chez le Poncirus, 3 à 4 chez le bigaradier (principe : Curk 2022 p. 197 et de Rocca Serra 1992 p. 119 ; chiffres : Curk 2022 p. 197, **une seule source**).
   Un plant de semis peut aussi être un hybride, même chez une espèce à plusieurs embryons : c'est ainsi qu'est née la clémentine, dans un semis de pépins de mandarine (Curk 2022 p. 68, **une seule source**).
@@ -226,6 +226,7 @@ Détail et sources dans les paragraphes ci-dessous. Le tableau résume, il n'ajo
 
 - **Shipunov 2021** : Shipunov A., *Introduction to Botany*, Minot State University, version du 7 juin 2021, 192 p., dédié au domaine public. Pages = pages du livre.
 - **OpenStax 2018** : Clark M. A., Douglas M., Choi J., *Biology 2e*, OpenStax, Rice University, 2018 (impression 2026 lue), CC BY-NC-SA 4.0 (rien n'en est recopié), https://openstax.org/details/books/biology-2e. Pages = pages du livre.
+- **Aleza 2010** : Aleza P., Juárez J., Ollitrault P., Navarro L., « Polyembryony in non-apomictic citrus genotypes », *Annals of Botany* 106:533-545 ([PMC2944972](https://pmc.ncbi.nlm.nih.gov/articles/PMC2944972/)).
 - **Curk 2022** : Curk F., Luro F., Minuto G., Nieddu G., *Les agrumes du Nord de la Méditerranée*, Alain Piazzola, 2022, doi 10.17180/m6z4-d276, HAL hal-04646466. Pages = pages du livre (deux par page du PDF).
 - **de Rocca Serra 1992** : de Rocca Serra D., Ollitrault P., « L'amélioration des agrumes : I - Les ressources génétiques », *Fruits*, numéro spécial Agrumes 1992, p. 115-123.
 - **UF/IFAS HS1309** : Albrecht U., Zekri M., Williamson J., *Citrus Propagation*, UF/IFAS, 2017, revue en 2021 et 2024, doi 10.32473/edis-hs1309-2017.

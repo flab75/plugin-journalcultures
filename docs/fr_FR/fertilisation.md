@@ -64,7 +64,7 @@ La méthode ci-dessous assemble ce qui s'accorde entre eux. Elle suit le cadre d
 ### 2. Le bon produit
 - **En pot, un engrais à libération lente** (granulés organiques ou engrais enrobé) : les arrosages fréquents lessivent les éléments nutritifs (Mississippi State University, Clemson, University of Maryland).
   Autre possibilité : un engrais **liquide à chaque arrosage** pendant la saison (University of Maryland ; Rutgers, qui reprend Mississippi).
-- Un engrais riche en **azote**, d'un rapport N-P-K d'environ **2-1-1 ou 3-1-1** : par exemple 12-6-6 ou 12-4-6 (University of Maryland ; Mississippi State University et Clemson donnent 12-6-6 ou 12-4-6).
+- Un engrais riche en **azote**, d'un rapport N-P-K d'environ **2-1-1 ou 3-1-1** : par exemple 12-6-6 (2-1-1) ou 12-4-6 (3-1-1,5) (University of Maryland ; Mississippi State University et Clemson donnent 12-6-6 ou 12-4-6).
   Notre Ferti Agrumes 7-3-10 contient plus de potassium que d'azote : rien ne dit qu'il nuise ; le plan est calculé sur son azote, le potassium en plus est sans effet sur le froid (voir [plus bas](#le-potassium-ne-protège-pas-du-froid)).
 - Un engrais qui contient des **oligo-éléments** (Mississippi State University, **une seule source**). Le Ferti Agrumes n'en déclare aucun : le fer et le magnésium se donnent à part, seulement si les feuilles le montrent.
 - Les produits « spécial agrumes » conviennent (University of Maryland, Mississippi State University).
@@ -227,17 +227,17 @@ Beaucoup de potassium n'augmente pas la rusticité au froid (UF/IFAS SL457, **un
 
 ## Reconnaître une carence
 
-Toujours **regarder d'abord quelles feuilles** sont touchées : les vieilles (azote, magnésium, potassium) ou les jeunes pousses (fer, zinc, manganèse).
-**Retenu** pour l'azote, le magnésium, le fer, le zinc et le manganèse : les trois sources concordent (UF/IFAS SL457, Haifa, Elavarasan 2019). Le potassium n'est décrit que par Haifa.
+Toujours **regarder d'abord quelles feuilles** sont touchées : les vieilles ou les adultes (azote, magnésium, potassium) ou les jeunes pousses (fer, zinc, manganèse).
+**Retenu** pour l'azote, le magnésium, le fer, le zinc et le manganèse : les trois sources concordent (UF/IFAS SL457, Haifa, Elavarasan 2019). Le potassium est décrit par Haifa et UF/IFAS SL457, qui ne placent pas les symptômes sur les mêmes feuilles (voir le tableau).
 
 | Carence | Feuilles touchées d'abord | Aspect | Que faire |
 |---|---|---|---|
-| Azote (N) | vieilles feuilles d'abord, puis tout le feuillage ; les vieilles tombent tôt | vert pâle à jaune uniforme, feuillage clairsemé | un apport d'azote ; le manque de soufre donne le même aspect (UF/IFAS, Haifa), mais d'abord sur les **jeunes feuilles** : le soufre bouge peu dans la plante (déduction du plugin) |
+| Azote (N) | vieilles feuilles d'abord, puis tout le feuillage ; les vieilles tombent tôt | vert pâle à jaune uniforme, feuillage clairsemé ; manque ancien : les vieilles feuilles sont tombées, l'intérieur de la ramure est dégarni et les feuilles restantes peuvent rester presque vertes (UF/IFAS SL457) | un apport d'azote ; le manque de soufre donne le même aspect (UF/IFAS, Haifa), mais d'abord sur les **jeunes feuilles** : le soufre bouge peu dans la plante (déduction du plugin) |
 | Magnésium (Mg) | vieilles feuilles, près des fruits | jaune des deux côtés de la nervure, un **V vert à l'envers** reste à la base ; puis bronze et chute | sulfate de magnésium (sel d'Epsom) ; en pulvérisation si le sol est calcaire |
 | Fer (Fe) | **jeunes pousses** | jaune clair à ivoire, **nervures restées vertes**, feuilles plus petites | chélate de fer au pied ; d'abord chercher la cause : substrat détrempé, pH élevé, excès de cuivre |
 | Zinc (Zn) | pousses du bout | bandes vertes le long des nervures sur fond jaune pâle ; **feuilles petites, étroites, pointues**, en rosette | sulfate de zinc en pulvérisation (Elavarasan 2019, **une seule source** ; aucun produit en stock) |
-| Manganèse (Mn) | jeunes feuilles | marbrure légère, bandes vert foncé le long des nervures ; ressemble au zinc | rien si c'est passager : ne corriger que si ça dure (choix du plugin) |
-| Potassium (K) | vieilles feuilles (Haifa, **une seule source**) | jaune puis bronze, bout brun, feuilles qui s'enroulent | sulfate ou nitrate de potassium |
+| Manganèse (Mn) | jeunes feuilles | marbrure légère, bandes vert foncé le long des nervures ; ressemble au zinc | rien si c'est passager : ne corriger que si ça dure (UF/IFAS SL457) |
+| Potassium (K) | feuilles adultes : vieilles feuilles pour Haifa, feuilles de la pousse de printemps tout juste mûres, en fin d'été, pour UF/IFAS (SL457 et fiche EDIS) | jaune puis bronze, bout brun, feuilles qui s'enroulent | sulfate ou nitrate de potassium |
 | Molybdène (Mo) | feuilles adultes | taches jaunes entre les nervures (« yellow spot ») | rare ; aucun produit en stock (UF/IFAS SS618, **une seule source**) |
 
 - Fer, zinc et manganèse manquent souvent ensemble quand le pH est élevé (UF/IFAS).

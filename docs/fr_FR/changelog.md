@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.28 (2026-11-03)
+Vérification de JDC contre des sources crédibles (OEPP, UF/IFAS, UC, Alabama ACES, UC Riverside) :
+- Tristeza : présente en France, en Haute-Corse (déclarée en 2018, OEPP), et non plus « absence à vérifier » ; elle passe avant le HLB (priorité 10).
+- Aleurode épineux : présent en France depuis 2023 (Gard, Hérault, puis Menton), sources OEPP corrigées ; *Diaphorina citri* aussi de passage en Grèce ; statuts du mal secco sourcés (OEPP).
+- Rusticité estimée : lime −3 °C (au lieu de −4 : UF/IFAS, bois abîmé dès −3, mort sous −4) ; kumquat −6 °C (au lieu de −8 : la moins froide des sources).
+- Pépins à un seul embryon : aussi le clémentinier et certains hybrides de mandarinier.
+- Greffe : Alabama ACES entaille et couche le haut comme le plugin ; soudure en 6-8 semaines pour une greffe d'automne (UC Ventura, relue) ;
+  porte-greffe coupé à environ 1,3 cm au-dessus de l'œil (HS1309) ; divergences des sources signalées (hauteur du point de greffe, œil couvert ou non, saison).
+- Engrais : potassium sur les feuilles adultes (UF/IFAS et Haifa), forme ancienne du manque d'azote, manganèse passager (UF/IFAS), rapport de 12-4-6 = 3-1-1,5.
+
 ## 0.27 (2026-11-03)
 - Pulpe : deux caractères d'identification, « Saveur de la pulpe » (douce, acide, amère) et « Aspect de la pulpe » (en vésicules, en perles, presque absente).
   Mise à jour : une pulpe saisie « en perles » ou « presque absente » passe dans l'aspect (un aspect déjà saisi est gardé), la saveur reste à « – ».

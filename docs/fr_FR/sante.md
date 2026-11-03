@@ -226,7 +226,7 @@ ce n'est pas un produit autorisé, il contient 5 % d'huile (contre 1,5 à 2 % po
 
 ### Mal secco (citronniers, limes, cédratiers)
 **Priorité 8.** Champignon des vaisseaux (*Plenodomus tracheiphilus*, ancien *Phoma tracheiphila*), surtout destructeur sur citronnier (Migheli 2009, Nigro 2011) ;
-organisme réglementé (liste A2 de l'OEPP) ; dans l'Union européenne, organisme réglementé non de quarantaine (ORNQ) : il vise les plants vendus, la déclaration n'est pas obligatoire chez un particulier (statuts non sourcés ici : à vérifier sur le site de l'OEPP).
+organisme réglementé (liste A2 de l'OEPP) ; dans l'Union européenne, organisme réglementé non de quarantaine (ORNQ) : il vise les plants vendus, la déclaration n'est pas obligatoire chez un particulier. Présent en France (continent et Corse), de façon limitée (OEPP 2026).
 
 **Signes** : feuilles qui tombent depuis la pointe des rameaux, rameaux qui sèchent, bois coloré saumon à rouge carotte sous l'écorce.
 
@@ -269,37 +269,12 @@ La sensibilité comparée des espèces vient d'observations au champ, pas toujou
 - photographier le dessous des feuilles et signaler à la DRAAF-SRAL (service de l'État) ou à la FREDON de sa région, photos jointes (fiche SORE, **une seule source**) ;
 - en attendant, ne pas déplacer ni donner la plante (précaution du plugin).
 
-Présent en France (continent et Corse), en Italie, en Grèce, en Croatie et ailleurs autour de la Méditerranée (OEPP 2020) ; en Italie depuis 2008, dans les Pouilles (EFSA 2018, OEPP 2020).
+Présent en France depuis 2023 : premier foyer confirmé dans le Gard (et Lunel, Hérault) en juin 2023 (OEPP RS 2023/160), puis à Menton (OEPP RS 2024/217) ; aujourd'hui en France continentale et en Corse, en Italie, en Grèce, en Croatie et ailleurs autour de la Méditerranée (OEPP 2026) ; en Italie depuis 2008, dans les Pouilles (EFSA 2018).
 Savons et mouillants ne le contrôlent qu'en partie (Cioffi 2013, **une seule source**).
 
-### HLB (greening, absent)
-**Priorité 10. Absent de France métropolitaine.** Bactérie transmise par des psylles. Deux psylles vecteurs sont déjà dans l'Union européenne : *Trioza erytreae* en Espagne et au Portugal (BSV JEVI Corse 2025), *Diaphorina citri* à Chypre (BSV JEVI Corse 2025, **une seule source**). Aucun traitement n'existe (BSV JEVI Corse 2025, Sáenz Pérez 2019).
-
-**Signes** : marbrures jaunes **asymétriques** des feuilles, fruits déformés qui se colorent à l'envers, psylles sur les jeunes pousses.
-
-![Psylle asiatique des agrumes](../images/sante-psylle.webp)
-
-*Psylle asiatique des agrumes (Diaphorina citri), adulte de 2 à 3 mm, sur une jeune feuille. Photo David Hall, USDA ARS, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Asian_Citrus_Psyllid_adult.jpg), domaine public.*
-
-![Psylle asiatique tout juste émergé](../images/sante-psylle-emergence.webp)
-
-*Psylle asiatique vu de face, adulte tout juste émergé : encore blanc, yeux rouges, antennes fines (spécimen photographié au laboratoire, sur fond noir). Photo USGS Bee Inventory and Monitoring Lab, [USGS](https://www.usgs.gov/media/images/citrus-psyllid-u-recently-emerged-2-head-ft-detrick), domaine public ; réduite.*
-
-![Marbrure de feuilles atteintes de HLB](../images/sante-hlb-feuille.webp)
-
-*Marbrure (« blotchy mottle ») causée par le HLB sur des feuilles d'agrume, dans un verger d'orangers doux au Texas. Photo David Bartels, USDA, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Citrus_Greening_%2820120120-APHIS-DB-0064%29.jpg), domaine public.*
-
-![Fruits d'agrume colorés à l'envers (HLB)](../images/sante-hlb-fruits.webp)
-
-*Fruits d'agrume qui se colorent à l'envers à cause du HLB, au Texas. Photo David Bartels, USDA, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Citrus_Greening_%2820120120-APHIS-DB-0065%29.jpg), domaine public.*
-
-
-**Test de symétrie** : un jaunissement pareil des deux côtés de la nervure centrale est une carence (zinc, magnésium…) ; asymétrique, il est suspect (UF/IFAS PP328, **une seule source** ; les décolorations asymétriques sont aussi décrites par BSV JEVI Corse 2025).
-Le HLB peut se confondre avec un manque de zinc (Sáenz Pérez 2019).
-Asymétrique avec des psylles : signaler à la DRAAF-SRAL (service de l'État) ou à la FREDON de sa région.
-
-### Tristeza (absente de Corse en 1990)
-**Priorité 11. Absence à vérifier** : Vogel 1990 la tient hors de Corse par l'interdiction d'importer des plants ; le statut actuel en France n'a pas été vérifié. Le risque vient d'un plant importé.
+### Tristeza (présente en Haute-Corse)
+**Priorité 10. Présente en France, en Haute-Corse seulement** : déclarée en 2018, des souches européennes y sont établies et ne peuvent plus être éradiquées ; jamais trouvée en Corse-du-Sud (OEPP 2026). En 1990, l'interdiction d'importer des plants la tenait encore hors de Corse (Vogel 1990).
+Dans l'Union européenne : organisme de quarantaine pour les souches venues d'ailleurs, organisme réglementé non de quarantaine (ORNQ) pour les plants vendus (règlement 2019/2072, OEPP 2026). Hors de Corse, le risque vient d'un plant ou d'un greffon importé.
 Virus transmis par des pucerons et par le matériel végétal (Sáenz Pérez 2019) ; il fait mourir les arbres greffés sur bigaradier (Vogel 1990, Sáenz Pérez 2019) ; aucun moyen curatif contre les virus (Vogel 1990).
 Le pomelo (*C. ×paradisi*, grapefruit), très sensible, peut aussi décliner sur les autres porte-greffes (Vogel 1990, **une seule source**).
 
@@ -323,6 +298,32 @@ Le pomelo (*C. ×paradisi*, grapefruit), très sensible, peut aussi décliner su
 **Gestes** : plants et greffons d'origine contrôlée (Vogel 1990, Sáenz Pérez 2019).
 Contre la tristeza, Sáenz Pérez 2019 conseille un porte-greffe tolérant plutôt que le bigaradier (Volkameriana, Cléopâtre…). Mais sous serre la **gommose est le risque n° 1**.
 Contre la tristeza : Poncirus résistant, citranges et citrumelo tolérants ; tous trois résistants à la gommose. Face à la gommose, le Volkameriana donne des résultats contradictoires (voir [Gommose](#gommose-et-pourriture-des-racines-phytophthora)). Choisir le porte-greffe d'abord pour la gommose.
+
+### HLB (greening, absent)
+**Priorité 11. Absent de France métropolitaine.** Bactérie transmise par des psylles. Deux psylles vecteurs sont déjà dans l'Union européenne : *Trioza erytreae* en Espagne et au Portugal (BSV JEVI Corse 2025), *Diaphorina citri* à Chypre (BSV JEVI Corse 2025, OEPP 2026), de passage en Grèce et seulement intercepté en France (OEPP 2026). Aucun traitement n'existe (BSV JEVI Corse 2025, Sáenz Pérez 2019).
+
+**Signes** : marbrures jaunes **asymétriques** des feuilles, fruits déformés qui se colorent à l'envers, psylles sur les jeunes pousses.
+
+![Psylle asiatique des agrumes](../images/sante-psylle.webp)
+
+*Psylle asiatique des agrumes (Diaphorina citri), adulte de 2 à 3 mm, sur une jeune feuille. Photo David Hall, USDA ARS, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Asian_Citrus_Psyllid_adult.jpg), domaine public.*
+
+![Psylle asiatique tout juste émergé](../images/sante-psylle-emergence.webp)
+
+*Psylle asiatique vu de face, adulte tout juste émergé : encore blanc, yeux rouges, antennes fines (spécimen photographié au laboratoire, sur fond noir). Photo USGS Bee Inventory and Monitoring Lab, [USGS](https://www.usgs.gov/media/images/citrus-psyllid-u-recently-emerged-2-head-ft-detrick), domaine public ; réduite.*
+
+![Marbrure de feuilles atteintes de HLB](../images/sante-hlb-feuille.webp)
+
+*Marbrure (« blotchy mottle ») causée par le HLB sur des feuilles d'agrume, dans un verger d'orangers doux au Texas. Photo David Bartels, USDA, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Citrus_Greening_%2820120120-APHIS-DB-0064%29.jpg), domaine public.*
+
+![Fruits d'agrume colorés à l'envers (HLB)](../images/sante-hlb-fruits.webp)
+
+*Fruits d'agrume qui se colorent à l'envers à cause du HLB, au Texas. Photo David Bartels, USDA, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Citrus_Greening_%2820120120-APHIS-DB-0065%29.jpg), domaine public.*
+
+
+**Test de symétrie** : un jaunissement pareil des deux côtés de la nervure centrale est une carence (zinc, magnésium…) ; asymétrique, il est suspect (UF/IFAS PP328, **une seule source** ; les décolorations asymétriques sont aussi décrites par BSV JEVI Corse 2025).
+Le HLB peut se confondre avec un manque de zinc (Sáenz Pérez 2019).
+Asymétrique avec des psylles : signaler à la DRAAF-SRAL (service de l'État) ou à la FREDON de sa région.
 
 ## Sources
 Lues en entier, sauf : Whiteside 1971, El-Hamalawi et Menge 1994, Liu et Stansly 2000, Gómez-Marco 2016, J. Econ. Entomol. 2019, Chouikhi 2022, Nigro 2011 (résumés seulement), Migheli 2009 (notice), et l'étude turque de 1996 (connue par la fiche « vérification des sources »). Deux sources du même organisme ne comptent que pour une ; les bulletins de santé du végétal (BSV) sont rédigés par des organismes différents (FREDON PACA, Chambre d'agriculture de Corse, FREDON Corse) mais dans le même réseau.
@@ -350,7 +351,9 @@ Lues en entier, sauf : Whiteside 1971, El-Hamalawi et Menge 1994, Liu et Stansly
 - **NC State** : fiche *Citrus red mite* (*Panonychus citri*), NC State University.
 - **NHB** : National Horticulture Board (Inde), fiche fumagine et maladies des agrumes.
 - **Nigro 2011** : Nigro F., Ippolito A., Salerno M. G., *Journal of Plant Pathology* 93(3):523-560.
-- **OEPP 2020, OEPP 2024** : fiches de l'Organisation européenne et méditerranéenne pour la protection des plantes (aleurode épineux ; mal secco).
+- **OEPP 2024** : fiche de l'Organisation européenne et méditerranéenne pour la protection des plantes (mal secco).
+- **OEPP 2026** : base de données de l'OEPP ([gd.eppo.int](https://gd.eppo.int)), répartition et statut réglementaire consultés le 3 novembre 2026 : tristeza (CTV000), aleurode épineux (ALECSN), *Diaphorina citri* (DIAACI), mal secco (DEUTTR).
+- **OEPP RS 2023/160, RS 2024/217** : Service d'information de l'OEPP, premier signalement de l'aleurode épineux en France ([2023/160](https://gd.eppo.int/reporting/article-7642)), puis à Menton.
 - **Oliveira 1981** : Oliveira et al., Embrapa, *Pesquisa Agropecuária Brasileira* 16(6).
 - **Réseau d'alerte d'Andalousie** : relayé par la presse (Agronews Castilla y León).
 - **Rossi et Streito 2023** : Rossi J.-P., Streito J.-C., *Pictures of Aleurocanthus spiniferus from French outbreak in 2023*, INRAE, Recherche Data Gouv, [doi:10.57745/WOHBMY](https://doi.org/10.57745/WOHBMY), Licence Ouverte Etalab 2.0.

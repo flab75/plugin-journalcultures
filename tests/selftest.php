@@ -67,7 +67,7 @@ $ok(!array_diff(array_merge(...array_values($C::SIGNES)), array_keys($C::SANTE))
   && !array_diff(array_diff($C::MESURES['sante'][1]['ravageur'][2], ['aucun', 'autre']), array_keys($C::SANTE))
   && !array_filter($C::SANTE, function ($p) { return !in_array($p['statut'], ['present', 'absent', 'a_verifier', 'quarantaine'], true) || !$p['sources'] || !$p['gestes']; })
   && !array_filter($C::SANTE, function ($p) { foreach ($p['gestes'] as $g) if (!$g[1] || array_diff($g[1], $p['sources'])) return true; return false; })
-  && $C::SANTE['hlb']['statut'] == 'absent' && $C::SANTE['tristeza']['statut'] == 'a_verifier', 'catalogue santé cohérent');
+  && $C::SANTE['hlb']['statut'] == 'absent' && $C::SANTE['tristeza']['statut'] == 'present' && array_search('tristeza', array_keys($C::SANTE)) < array_search('hlb', array_keys($C::SANTE)), 'catalogue santé cohérent');
 $e = $C::emplacements("Serre | #1# | #2#\nJardin | #3# | | #4#\n\nMaison");
 $ok(array_keys($e) == ['Serre', 'Jardin', 'Maison'] && $e['Jardin'] == ['#3#', '', '#4#', false] && $e['Maison'] == ['', '', '', false], 'emplacements');
 $ok($C::texte(" Taille \u{1F345} <b> ", 80) === 'Taille  ‹b›' && $C::texte(['x'], 9) === '', 'texte saisi');

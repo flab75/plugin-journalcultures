@@ -215,14 +215,14 @@ class journalcultures_calc {
     '/maxima|grandis|paradisi|pomelo|pamplemousse|grapefruit/iu' => 'Pomelo (C. ×paradisi), pamplemousse (C. maxima)',
   ];
   /* Rusticité d'un groupe (°C, pleine terre) quand la fiche n'en donne pas : la moins froide des sources (prudence), à remplacer par une valeur de la fiche.
-     Kumquat : TyCitriK −10, UF −12, Fortune 1870 (via Swingle) « 10-15 °F de gel » ≈ −8 ; citron : TyCitriK −5, Blondel −5/−6 ; cédrat : TyCitriK −3, Guo −4/−5 (feuilles) ; calamondin, lime, caviar, papeda : TyCitriK seul ;
+     Kumquat : TyCitriK −10, UF −12, Fortune 1870 (via Swingle) « 10-15 °F de gel » = −5,6 à −8,3, UF/IFAS (Zekri 2001) feuilles ≈ −6,7 → −6 (choix du plugin, entre −5,6 et −6,7) ; citron : TyCitriK −5, Blondel −5/−6 ; cédrat : TyCitriK −3, Guo −4/−5 (feuilles) ; lime : TyCitriK −4, mais UF/IFAS CH093 : bois abîmé dès −3, mort sous −4 (lime de Tahiti) → −3 ; calamondin, caviar, papeda : TyCitriK seul ;
      yuzu : RHS H3 −5 contre TyCitriK −14 (le plus prudent gardé) ; Poncirus : TyCitriK −16, fiches −15 ; hybrides : Chopinet & Dupouy 1951, de seconde main (citranges de Montauban −10/−14, satsumange −11/−13, citrangedins, limonanges,
      citrangequat ≈ −10 ; citranges Rusk et Willits sensibles aux coups de froid brusques), TyCitriK C35 −10, Carrizo −11, citrumelo −12, FA5 −13 → −10 ;
      bigaradier, mandarine, orange, pomelo et pamplemousse : aucune valeur chiffrée sur la plante, encadrés par l'ordre UF (Jackson & Fasulo HS-123 : calamondin > bigaradier > mandarinier
      > oranger > pomelo C. ×paradisi (grapefruit) > citronnier) entre calamondin −5 et citron −5 → −5. */
   const RUSTICITE_GROUPES = [
-    'Poncirus' => -15, 'Hybride de Poncirus (citrange, citrumelo, FA5)' => -10, 'Kumquat' => -8, 'Calamondin' => -5, 'Citron caviar (finger lime)' => -4,
-    'Yuzu' => -5, 'Papeda (combava, ichang)' => -4, 'Cédrat (dont Main de Bouddha)' => -3, 'Citron' => -5, 'Lime' => -4, 'Mandarine' => -5, 'Orange douce' => -5,
+    'Poncirus' => -15, 'Hybride de Poncirus (citrange, citrumelo, FA5)' => -10, 'Kumquat' => -6, 'Calamondin' => -5, 'Citron caviar (finger lime)' => -4,
+    'Yuzu' => -5, 'Papeda (combava, ichang)' => -4, 'Cédrat (dont Main de Bouddha)' => -3, 'Citron' => -5, 'Lime' => -3, 'Mandarine' => -5, 'Orange douce' => -5,
     'Bigaradier (orange amère)' => -5, 'Pomelo (C. ×paradisi), pamplemousse (C. maxima)' => -5,
   ];
 
@@ -246,8 +246,8 @@ class journalcultures_calc {
   // (INRAE « Greffage 1/4 », même filiation que Curk 2022 p. 185 et 194) ; printemps le meilleur, plein été déconseillé sans abri frais (Curk).
   // ponytail: types sans source relue = la règle générale seule, à compléter quand une source est lue
   const GREFFE_SAISONS = [
-    'ecusson_t_inverse' => 'porte-greffe en sève (l’écorce se soulève), en pleine croissance : en général d’avril à novembre selon le lieu (UF/IFAS HS1309, une seule source ; en Corse dès mars-avril sous tunnel, mai dehors, INRAE) ; le printemps de préférence, pas en plein été sans abri frais (Curk 2022, une seule source)',
-    'ecusson_t' => 'porte-greffe en sève (l’écorce se soulève), en pleine croissance : en général d’avril à novembre selon le lieu (UF/IFAS HS1309, une seule source ; en Corse dès mars-avril sous tunnel, mai dehors, INRAE) ; le printemps de préférence, pas en plein été sans abri frais (Curk 2022, une seule source)',
+    'ecusson_t_inverse' => 'porte-greffe en sève (l’écorce se soulève), en pleine croissance : d’avril à novembre en Floride (UF/IFAS HS1309), de mai à août en Alabama (Alabama ACES), au printemps ou à l’automne en Californie (UC Ventura) : les dates varient avec le lieu ; en Corse dès mars-avril sous tunnel, mai dehors (INRAE) ; le printemps de préférence, pas en plein été sans abri frais (Curk 2022, une seule source)',
+    'ecusson_t' => 'porte-greffe en sève (l’écorce se soulève), en pleine croissance : d’avril à novembre en Floride (UF/IFAS HS1309), de mai à août en Alabama (Alabama ACES), au printemps ou à l’automne en Californie (UC Ventura) : les dates varient avec le lieu ; en Corse dès mars-avril sous tunnel, mai dehors (INRAE) ; le printemps de préférence, pas en plein été sans abri frais (Curk 2022, une seule source)',
     'chip' => 'quand l’écorce se soulève mal (UF/IFAS HS1309, INRAE) ou est trop épaisse pour un écusson (UF/IFAS HS1309, une seule source), ou pour un cultivar épineux, à rameaux triangulaires (INRAE, une seule source) ; saison : printemps (Curk 2022, règle générale)',
     'chip_inverse' => 'quand l’écorce se soulève mal (UF/IFAS HS1309, INRAE) ou est trop épaisse pour un écusson (UF/IFAS HS1309, une seule source), ou pour un cultivar épineux, à rameaux triangulaires (INRAE, une seule source) ; saison : printemps (Curk 2022, règle générale)',
     'sous_ecorce' => 'porte-greffe âgé, de gros diamètre, écorce trop épaisse pour un écusson mais qui se décolle (INRAE, une seule source) ; saison : printemps (Curk 2022, règle générale)',
@@ -324,10 +324,10 @@ class journalcultures_calc {
 
   /* Suivi d'une greffe récente : contrôle du bourgeon à J+21 (œil ou bourgeons verts et gonflés, lien retiré), puis à J+42 (débourrement,
      sinon forcer l'œil : porte-greffe entaillé aux 2/3 au-dessus de l'œil, haut couché ; décision de l'utilisateur, 2026-11-03) ; un statut n'avance que sur confirmation. Repères : UF/IFAS (lien retiré à 2-3 semaines),
-     Alabama ACES (œil vert = pris ; vert sans pousse : forcer), UC Ventura (soudure en 3-4 semaines au printemps, 6-8 sinon), minigreffe Valencia (bilan à 6 semaines).
+     Alabama ACES (œil vert = pris ; vert sans pousse : forcer), UC Ventura (soudure en 3-4 semaines au printemps, 6-8 pour une greffe d'automne), minigreffe Valencia (bilan à 6 semaines).
      Œil gardé dormant jusqu'au printemps (greffe d'automne), puis forcé : Arizona (az1146), Kentucky (greffage).
      Après le débourrement (« pousse ») : rejets du porte-greffe ôtés dès qu'ils sortent (UF/IFAS HS1309, Curk 2022 p. 210) ; pousse tuteurée, puis porte-greffe
-     (haut couché compris) coupé à ≈ 1 cm au-dessus de l'œil une fois qu'il pousse (HS1309 seul) ; contrôle 4 semaines après (choix du plugin). */
+     (haut couché compris) coupé à ≈ 1,3 cm (1/2 inch) au-dessus de l'œil une fois qu'il pousse (HS1309 seul) ; contrôle 4 semaines après (choix du plugin). */
   const GREFFE_STATUTS = ['attente' => 'en attente', 'probable' => 'probablement prise', 'dormant' => 'greffon dormant jusqu’au printemps', 'pousse' => 'pousse du greffon', 'reprise' => 'réussie (suivi terminé)', 'echouee' => 'échouée'];
   const GREFFE_JOURS = ['attente' => 21, 'probable' => 42, 'pousse' => 28];
   /* Marche à suivre selon le type : œil (le forcer : entaille aux 2/3 au-dessus, haut couché) ; rameau sur porte-greffe déjà coupé
@@ -341,7 +341,7 @@ class journalcultures_calc {
       'oeil' => ['attente' => 'œil vert et gonflé, sans se ratatiner (retirer le lien pour voir) ?',
         'probable' => 'l’œil a-t-il débourré ? (sinon le forcer : entailler le porte-greffe aux 2/3 au-dessus de l’œil et coucher le haut ; ou le laisser dormir jusqu’au printemps)',
         'dormant' => 'printemps : forcer l’œil (entailler le porte-greffe aux 2/3 au-dessus de l’œil et coucher le haut) ; a-t-il débourré ?',
-        'pousse' => 'l’œil pousse : porte-greffe coupé à environ 1 cm au-dessus de l’œil (haut couché compris), pousse tuteurée, ' . $rej . ' ?'],
+        'pousse' => 'l’œil pousse : porte-greffe coupé à environ 1,3 cm au-dessus de l’œil (haut couché compris), pousse tuteurée, ' . $rej . ' ?'],
       'rameau' => ['attente' => 'bourgeons du greffon verts et gonflés (retirer le sac pour voir) ?',
         'probable' => 'le greffon pousse-t-il ? (retirer le lien quand les feuilles sortent)',
         'dormant' => 'printemps : les bourgeons du greffon ont-ils démarré ?',
@@ -550,7 +550,7 @@ class journalcultures_calc {
     if ($c == 'V vert à la base, reste jaune' || ($c == 'jaunissement entre les nervures' && $o == 'vieilles')) $r[] = ['el' => 'MG', 'txt' => 'vieilles feuilles jaunes entre les nervures, V vert à la base : magnésium'];
     if ($c == 'jaunissement entre les nervures' && $o == 'jeunes') $r[] = ['el' => 'FE', 'txt' => 'jeunes feuilles pâles à nervures vertes : fer (pH élevé, calcaire, excès d’eau ou de cuivre)'];
     if ($c == 'jaunissement entre les nervures' && !in_array($o, ['jeunes', 'vieilles'], true)) $r[] = ['el' => '?', 'txt' => 'jaunissement entre les nervures : fer si ce sont les jeunes feuilles, magnésium si ce sont les vieilles (préciser « Feuilles touchées »)'];
-    if ($c == 'bronzé') $r[] = ['el' => 'K', 'txt' => 'vieilles feuilles bronzées' . (($v['feuilles.forme'] ?? '') == 'enroulées' ? ' et enroulées' : '') . ' : potassium (ou magnésium)'];
+    if ($c == 'bronzé') $r[] = ['el' => 'K', 'txt' => 'feuilles adultes bronzées' . (($v['feuilles.forme'] ?? '') == 'enroulées' ? ' et enroulées' : '') . ' : potassium (ou magnésium)'];
     if (($v['feuilles.forme'] ?? '') == 'petites et étroites') $r[] = ['el' => 'ZN', 'txt' => 'feuilles petites, étroites et pointues, en rosette : zinc (souvent avec fer et manganèse quand le pH est élevé)'];
     return $r;
   }
@@ -612,27 +612,27 @@ class journalcultures_calc {
         ['si besoin, produit de biocontrôle', ['BSV Corse 2024']]]],
     'mal_secco' => ['nom' => 'Mal secco (Plenodomus tracheiphilus, citronniers, limes, cédratiers)', 'statut' => 'present', 'regional' => 1,
       'signes' => 'feuilles qui tombent depuis la pointe des rameaux, rameaux qui sèchent, bois coloré saumon à rouge carotte sous l’écorce ; infections surtout de novembre à février (pic en janvier)',
-      'sources' => ['Chapot 1963', 'Migheli 2009', 'Nigro 2011', 'OEPP 2024 (mal secco)', 'Catane 2022-2023', 'Spina et Cutuli 1983'],
+      'sources' => ['Chapot 1963', 'Migheli 2009', 'Nigro 2011', 'OEPP 2024 (mal secco)', 'OEPP 2026 (mal secco)', 'Catane 2022-2023', 'Spina et Cutuli 1983'],
       'gestes' => [['couper jusqu’au bois sain (sans coloration) : le champignon gagne la plante par le bois ; déchets en sac fermé à la déchetterie, jamais au compost (Chapot dit brûler : interdit aux particuliers aujourd’hui)', ['Chapot 1963', 'Catane 2022-2023']],
         ['protéger les plaies au cuivre (la lutte chimique repose sur le cuivre) ; éviter toute blessure l’hiver, c’est par elles qu’il entre', ['Chapot 1963', 'Spina et Cutuli 1983']]],
-      'note' => 'désinfecter les outils entre deux coupes : alcool à 70° (choix du plugin) ; Chapot les trempait dans du sulfate de cuivre à 5 %. Organisme réglementé non de quarantaine (ORNQ) dans l’Union européenne : déclaration non obligatoire chez un particulier. Très sensibles : citronnier, lime vraie, cédratier (Chapot) ; l’OEPP cite aussi bergamote et bigaradier. Sensibilité comparée : observations au champ, pas toujours confirmées par des tests (OEPP 2024)'],
+      'note' => 'désinfecter les outils entre deux coupes : alcool à 70° (choix du plugin) ; Chapot les trempait dans du sulfate de cuivre à 5 %. Organisme réglementé non de quarantaine (ORNQ) dans l’Union européenne : déclaration non obligatoire chez un particulier. Très sensibles : citronnier, lime vraie, cédratier (Chapot) ; l’OEPP cite aussi bergamote et bigaradier. Sensibilité comparée : observations au champ, pas toujours confirmées par des tests (OEPP 2024). Présent en France (continent et Corse), de façon limitée (OEPP 2026)'],
     'aleurode_epineux' => ['nom' => 'Aleurode épineux (Aleurocanthus spiniferus)', 'statut' => 'quarantaine', 'regional' => 1,
       'signes' => 'points noirs épineux sous les feuilles (larves et nymphes noires hérissées d’épines), miellat, fumagine, fourmis',
-      'sources' => ['Fiche SORE (aleurode épineux)', 'EFSA 2018', 'OEPP 2020 (aleurode épineux)', 'Cioffi 2013'],
+      'sources' => ['Fiche SORE (aleurode épineux)', 'EFSA 2018', 'OEPP RS 2023/160', 'OEPP RS 2024/217', 'OEPP 2026 (aleurode épineux)', 'Cioffi 2013'],
       'gestes' => [['photographier le dessous des feuilles et signaler à la DRAAF-SRAL (service de l’État) ou à la FREDON de sa région, photos jointes (organisme de quarantaine)', ['Fiche SORE (aleurode épineux)']]],
-      'note' => 'en attendant, ne pas déplacer ni donner la plante (précaution du plugin) ; présent en France (continent et Corse), Italie, Grèce, Croatie… (OEPP 2020), en Italie depuis 2008 (EFSA 2018) ; savons et mouillants ne le contrôlent qu’en partie (Cioffi 2013) ; chez l’aleurode floconneux, l’imidaclopride (interdit en France) perturbe les parasitoïdes et provoque une résurgence (Cioffi 2013)'],
-    'hlb' => ['nom' => 'HLB (greening, dragon jaune)', 'statut' => 'absent', 'regional' => 1,
-      'signes' => 'marbrures jaunes asymétriques des feuilles, fruits déformés qui se colorent à l’envers, psylles sur les jeunes pousses',
-      'sources' => ['PP328', 'BSV JEVI Corse 2025', 'Sáenz Pérez 2019'],
-      'gestes' => [['d’abord le test de symétrie : jaunissement pareil des deux côtés de la nervure = carence (zinc, magnésium…), asymétrique = suspect', ['PP328']],
-        ['asymétrique avec psylles : signaler à la DRAAF-SRAL (service de l’État) ou à la FREDON de sa région ; aucun traitement n’existe', ['BSV JEVI Corse 2025', 'Sáenz Pérez 2019']]],
-      'note' => 'bactérie absente de France métropolitaine ; deux psylles vecteurs sont présents dans l’Union européenne : Trioza erytreae en Espagne et au Portugal (BSV JEVI Corse 2025), Diaphorina citri à Chypre ; décolorations asymétriques aussi décrites par BSV JEVI ; peut se confondre avec un manque de zinc (Sáenz Pérez 2019)'],
-    'tristeza' => ['nom' => 'Tristeza (CTV, absente de Corse en 1990)', 'statut' => 'a_verifier', 'regional' => 1,
+      'note' => 'en attendant, ne pas déplacer ni donner la plante (précaution du plugin) ; présent en France depuis 2023 (Gard et Hérault : OEPP RS 2023/160 ; Menton : OEPP RS 2024/217 ; continent et Corse : OEPP 2026) ; aussi en Italie (depuis 2008, EFSA 2018), Grèce, Croatie… (OEPP 2026) ; savons et mouillants ne le contrôlent qu’en partie (Cioffi 2013) ; chez l’aleurode floconneux, l’imidaclopride (interdit en France) perturbe les parasitoïdes et provoque une résurgence (Cioffi 2013)'],
+    'tristeza' => ['nom' => 'Tristeza (CTV, présente en Haute-Corse)', 'statut' => 'present', 'regional' => 1,
       'signes' => 'déclin des arbres greffés sur bigaradier ; virus transmis par pucerons et matériel végétal',
-      'sources' => ['Vogel 1990', 'Sáenz Pérez 2019', 'UF/IFAS HS261', 'Boccas et Laville 1976', 'Vanderweyen 1980'],
+      'sources' => ['OEPP 2026 (tristeza)', 'Vogel 1990', 'Sáenz Pérez 2019', 'UF/IFAS HS261', 'Boccas et Laville 1976', 'Vanderweyen 1980'],
       'gestes' => [['plants et greffons d’origine contrôlée', ['Vogel 1990', 'Sáenz Pérez 2019']],
         ['porte-greffe tolérant plutôt que bigaradier (Sáenz Pérez 2019 cite Volkameriana, Cléopâtre…) ; mais sous serre la gommose est le risque n° 1. Contre la tristeza : Poncirus résistant, citranges et citrumelo tolérants ; tous trois résistants à la gommose. Face à la gommose, le Volkameriana donne des résultats contradictoires (résistant pour UF/IFAS HS261, selon le clone pour Boccas et Laville 1976, très sensible pour Vanderweyen 1980)', ['Sáenz Pérez 2019', 'UF/IFAS HS261', 'Boccas et Laville 1976', 'Vanderweyen 1980']]],
-      'note' => 'absente de Corse en 1990 grâce à l’interdiction d’importer des plants (Vogel 1990) ; statut actuel en France non vérifié : le risque vient d’un plant importé'],
+      'note' => 'présente en France seulement en Haute-Corse : déclarée en 2018, souches européennes établies, qu’on ne peut plus éradiquer ; jamais trouvée en Corse-du-Sud (OEPP 2026) ; en 1990, l’interdiction d’importer des plants la tenait hors de Corse (Vogel 1990). Réglementée dans l’Union européenne : quarantaine pour les souches venues d’ailleurs, organisme réglementé non de quarantaine (ORNQ) pour les plants vendus (règlement 2019/2072). Hors de Corse, le risque vient d’un plant ou d’un greffon importé'],
+    'hlb' => ['nom' => 'HLB (greening, dragon jaune)', 'statut' => 'absent', 'regional' => 1,
+      'signes' => 'marbrures jaunes asymétriques des feuilles, fruits déformés qui se colorent à l’envers, psylles sur les jeunes pousses',
+      'sources' => ['PP328', 'BSV JEVI Corse 2025', 'Sáenz Pérez 2019', 'OEPP 2026 (Diaphorina citri)'],
+      'gestes' => [['d’abord le test de symétrie : jaunissement pareil des deux côtés de la nervure = carence (zinc, magnésium…), asymétrique = suspect', ['PP328']],
+        ['asymétrique avec psylles : signaler à la DRAAF-SRAL (service de l’État) ou à la FREDON de sa région ; aucun traitement n’existe', ['BSV JEVI Corse 2025', 'Sáenz Pérez 2019']]],
+      'note' => 'bactérie absente de France métropolitaine ; deux psylles vecteurs sont présents dans l’Union européenne : Trioza erytreae en Espagne et au Portugal (BSV JEVI Corse 2025), Diaphorina citri à Chypre, de passage en Grèce, seulement intercepté en France (OEPP 2026) ; décolorations asymétriques aussi décrites par BSV JEVI ; peut se confondre avec un manque de zinc (Sáenz Pérez 2019)'],
   ];
   /* Signe observé (mesure sante.signe) → problèmes possibles, dans l'ordre de SANTE */
   const SIGNES = ['feuilles collantes (miellat)' => ['cochenille', 'aleurode', 'puceron'], 'dépôt noir qui s’essuie' => ['fumagine'], 'boucliers ou amas cotonneux blancs' => ['cochenille'],

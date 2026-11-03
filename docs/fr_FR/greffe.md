@@ -22,7 +22,7 @@ avec une autre multiplication (semis, bouture…), le type est effacé.
 | Type | Description |
 |---|---|
 | **Greffes d'un œil** | *pour multiplier en pépinière* |
-| Écusson en T inversé | Un œil prélevé avec un peu d'écorce, glissé sous l'écorce du porte-greffe incisée en T à l'envers (⊥). La plus employée en Floride pour les jeunes plants (UF/IFAS, **une seule source**) : simple, demande moins d'habileté que le chip (HS1309). |
+| Écusson en T inversé | Un œil prélevé avec un peu d'écorce, glissé sous l'écorce du porte-greffe incisée en T à l'envers (⊥). Avec le chip, la plus employée en Floride pour les jeunes plants (HS1309, **une seule source**) ; plus simple, elle demande moins d'habileté que le chip (HS1309). |
 | Écusson en T | Même chose avec une incision en T droit. Convient aussi, moins employée. |
 | Chip budding (œil en copeau) | Un copeau de bois portant l'œil, posé dans une entaille de même forme. Quand l'écorce ne se décolle plus (hors sève) ou est trop épaisse pour l'écusson. Demande plus d'habileté (HS1309). |
 | Chip inversé | Variante du chip, courante sur agrumes, quand l'écorce ne se décolle pas. |
@@ -48,22 +48,22 @@ Descriptions : relues dans HS1309 et la fiche INRAE-Cirad « Greffage » quand e
 Schémas dessinés pour ce plugin d'après le texte des deux fiches (pas à l'échelle). Pour les photos, voir HS1309 (fig. 5 à 8) ;
 pour les dessins d'origine, la fiche INRAE-Cirad (fig. 5 à 8). Les autres types n'ont pas de marche à suivre dans nos sources relues : voir les [gravures anciennes](#autres-types--gravures-anciennes).
 
-Pour tous : lame désinfectée avant chaque incision (HS1309, **une seule source**) ; point de greffe à 25-40 cm du collet, contre le *Phytophthora* (INRAE, **une seule source**).
+Pour tous : lame désinfectée avant chaque incision (HS1309, **une seule source**) ; point de greffe à 25-40 cm du collet, contre le *Phytophthora* (INRAE) ; 15-20 cm en Floride (HS1309) : les sources divergent, le plugin garde la plus haute.
 
 ### Écusson (T et T inversé)
 
 ![Greffe en écusson](../images/greffe-ecusson.svg)
 
 1. **Inciser** l'écorce jusqu'au bois, dans une partie lisse entre deux nœuds : un trait vertical de 2,5 à 4 cm (HS1309), puis un trait horizontal en haut (T : HS1309, INRAE)
-   ou en bas (⊥, T inversé : HS1309). Tige d'au moins 8 mm, porte-greffe en sève : l'écorce se soulève (INRAE).
+   ou en bas (⊥, T inversé : HS1309). Tige d'au moins 8 mm (INRAE ; 6 à 10 mm pour HS1309), porte-greffe en sève : l'écorce se soulève (INRAE).
 2. **Lever l'écusson** sur la baguette : lame presque parallèle, depuis environ 1,3 cm au-dessus de l'œil jusque sous lui (HS1309) ; 2 à 2,5 cm de long (HS1309, INRAE).
    Bois : une mince lame (HS1309) ou aucun (INRAE) — les deux fiches divergent ; ne pas creuser l'œil. Tenir l'écusson par le reste du pétiole, sans toucher la face coupée (HS1309).
    Une épine sous l'œil : garder une languette de bois, ou la rabattre sans la couper au ras de l'œil (INRAE, **une seule source**).
 3. **Glisser** l'écusson tout de suite sous l'écorce, face coupée contre le bois, entièrement dans l'incision (HS1309, INRAE) ; en T, recouper son haut au ras du trait horizontal (INRAE).
 4. **Ligaturer** tout de suite, ferme sans trop serrer, toutes les coupes couvertes : ruban (HS1309) ou raphia, nœud du côté opposé à l'œil (INRAE).
-   Sens : du bas vers le haut ou l'inverse (HS1309), par le haut pour ne pas faire glisser l'écusson (INRAE). Œil couvert (HS1309) ou laissé à l'air si l'air est humide (INRAE).
+   Sens : du bas vers le haut ou l'inverse (HS1309), par le haut pour ne pas faire glisser l'écusson (INRAE). Œil couvert (HS1309), laissé à l'air si l'air est humide (INRAE) ou toujours laissé à l'air (UC Ventura) : les sources divergent.
 5. **Forcer**, une fois le lien retiré (vers J+21) et la soudure faite : entailler le porte-greffe aux 2/3 au-dessus de l'œil (du côté de l'œil, 2,5 à 4 cm au-dessus)
-   et coucher le haut (ou le courber en boucle) ; une fois que l'œil pousse (quelques centimètres), couper le porte-greffe à environ 1 cm au-dessus de l'œil ;
+   et coucher le haut (ou le courber en boucle) ; une fois que l'œil pousse (quelques centimètres), couper le porte-greffe à environ 1,3 cm au-dessus de l'œil ;
    à défaut, une coupe en biais à 2,5 cm au-dessus de l'œil (HS1309, **une seule source**). Le plugin pose la question à J+42 (choix du plugin, voir [Suivi](#suivi-et-points-de-contrôle)).
 
 ### Chip budding
@@ -158,7 +158,7 @@ c'est la sève du porte-greffe qui décide, pas le calendrier. La saison du type
 
 | Type | Saison et conditions |
 |---|---|
-| Écusson en T, en T inversé | porte-greffe **en sève** (l'écorce se soulève), en pleine croissance : en général d'avril à novembre selon le lieu (HS1309, **une seule source**) ; en Corse dès mars-avril sous tunnel, mai dehors (INRAE) ; le printemps de préférence (Curk, **une seule source**) |
+| Écusson en T, en T inversé | porte-greffe **en sève** (l'écorce se soulève), en pleine croissance : d'avril à novembre en Floride (HS1309), de mai à août en Alabama (Alabama ACES), au printemps ou à l'automne en Californie (UC Ventura) : les dates varient avec le lieu, le critère est le même, l'écorce qui se soulève ; en Corse dès mars-avril sous tunnel, mai dehors (INRAE) ; le printemps de préférence (Curk, **une seule source**) |
 | Chip, chip inversé | quand l'écorce se soulève mal (HS1309, INRAE, qui l'appelle « placage ») ou est trop épaisse pour un écusson (HS1309, **une seule source**) ; cultivar épineux, rameaux à section triangulaire (INRAE, **une seule source**) ; saison : règle générale |
 | Sous écorce (couronne) | porte-greffe âgé, de gros diamètre, écorce trop épaisse pour un écusson mais qui se décolle (INRAE, **une seule source**) ; saison : règle générale |
 | Minigreffe en fente | fente herbacée : très jeunes porte-greffes (tige d'environ 5 mm), greffon de jeune pousse ; sous abri presque toute l'année dans les pays plus chauds que la Corse (INRAE, **une seule source**) |
@@ -208,7 +208,7 @@ ou greffe morte (le suivi s'arrête, sans statut) ; pont : *probablement prise* 
 |---|---|---|---|---|
 | J+21 | œil vert et gonflé, sans se ratatiner (retirer le lien pour voir) | bourgeons du greffon verts et gonflés (retirer le sac pour voir) | greffon vert | greffons verts |
 | J+42 | l'œil a-t-il débourré ? sinon le **forcer** (entailler le porte-greffe aux 2/3 au-dessus de l'œil et coucher le haut), ou « Au printemps » | le greffon pousse-t-il ? retirer le lien quand les feuilles sortent | le greffon pousse-t-il ? une fois soudé, couper le porte-greffe au-dessus (approche : sevrer le greffon de sa plante) | greffons soudés aux deux bouts ; oui → *réussie* (rien ne doit pousser, pas de « Au printemps ») |
-| Pousse (4 semaines après) | tuteurer la pousse, couper le haut du porte-greffe à environ 1 cm au-dessus de la greffe, ôter les rejets | greffon tuteuré, lien retiré, rejets ôtés | greffon tuteuré, rejets ôtés | — |
+| Pousse (4 semaines après) | tuteurer la pousse, couper le haut du porte-greffe à environ 1,3 cm au-dessus de la greffe, ôter les rejets | greffon tuteuré, lien retiré, rejets ôtés | greffon tuteuré, rejets ôtés | — |
 
 *Œil* : écussons, chip, placage ; *rameau* sur porte-greffe coupé : fente, couronne, anglaise, incrustation, sur souche, minigreffe ;
 *côté* : latérale, en approche. Type de greffe inconnu : traité comme une greffe de rameau.
@@ -222,9 +222,9 @@ de Californie : le bourgeon, plus que le calendrier, décide.
 **Répondre** (chaque réponse est notée au journal) :
 - **Oui** : étape suivante ;
 - **Douteux** : revoir dans 7 jours ;
-- **Au printemps** (à J+42 seulement, sauf pont) : greffon vivant (œil ou bourgeons verts, gonflés) laissé dormant, pour une greffe d'automne ; à J+42 la soudure est considérée comme faite (choix du plugin ; elle demande 3-4 semaines au printemps, 6-8 sinon : UC Ventura, **une seule source**) ; contrôle le 15 mars (15 septembre dans l'hémisphère sud ; plus tôt si l'emplacement est assez chaud),
+- **Au printemps** (à J+42 seulement, sauf pont) : greffon vivant (œil ou bourgeons verts, gonflés) laissé dormant, pour une greffe d'automne ; à J+42 la soudure est considérée comme faite (choix du plugin ; elle demande 3-4 semaines au printemps, 6-8 pour une greffe d'automne : UC Ventura, **une seule source**) ; contrôle le 15 mars (15 septembre dans l'hémisphère sud ; plus tôt si l'emplacement est assez chaud),
   avancé jusqu'à 8 semaines si la moyenne sur 7 jours de l'emplacement dépasse déjà 13 °C (seuil réglable, sonde historisée), au plus tôt 4 semaines après la réponse (choix du plugin) ;
-  au contrôle, forcer l'œil (entailler le porte-greffe aux 2/3 au-dessus de l'œil et coucher le haut ; couper à environ 1 cm au-dessus de l'œil une fois que l'œil pousse) ;
+  au contrôle, forcer l'œil (entailler le porte-greffe aux 2/3 au-dessus de l'œil et coucher le haut ; couper à environ 1,3 cm au-dessus de l'œil une fois que l'œil pousse) ;
 - **Non, mort** (deux clics) : greffe morte ; la plante reste, ou redevient, le porte-greffe, et le suivi s'arrête (le journal garde la trace).
 
 Un contrôle dû remplit la commande « Greffe à contrôler », reprise par le rapport du matin.
@@ -237,7 +237,7 @@ Un contrôle dû remplit la commande « Greffe à contrôler », reprise par le 
 
 - **Avant la soudure** (*en attente*, *probablement prise*) : la moyenne sur 24 h de la sonde de l'emplacement (historisée) est comparée aux seuils
   de la configuration (21 et 32 °C par défaut, choix du plugin d'après des sources d'amateurs, réglables) ; en dehors, la fiche et la commande disent
-  « trop froid (ou trop chaud) pour souder ». Sous 21 °C de jour le Poncirus s'endort (Alabama ACES, **une seule source**) et la greffe attend le printemps ; l'appliquer à la moyenne sur 24 h, nuits comprises, est un choix du plugin.
+  « trop froid (ou trop chaud) pour souder ». Sous 21 °C de jour le Poncirus s'endort (Alabama ACES, **une seule source**) ; que la greffe attende alors le printemps est une déduction du plugin ; l'appliquer à la moyenne sur 24 h, nuits comprises, est un choix du plugin.
 - **Greffon dormant, pousse du greffon** : la soudure est faite, le seuil de 21 °C ne s'applique plus ; seul le gel compte (« gel : protéger la greffe » si la sonde
   descend sous 0 °C sur 24 h, choix du plugin).
 - **En hiver** (novembre à février, mai à août dans l'hémisphère sud), le contrôle J+42 (soudure faite) ajoute : « Au printemps », au frais hors gel, sans engrais ;
@@ -251,7 +251,7 @@ Un contrôle dû remplit la commande « Greffe à contrôler », reprise par le 
 ## Sources
 
 - **UF/IFAS HS1309** : Albrecht U., Zekri M., Williamson J., *Citrus Propagation*, HS1309, University of Florida IFAS, 2017, révisé en 2021 et 2024.
-- **Alabama ACES** : Alabama Cooperative Extension System, fiches sur la greffe des agrumes (œil vert = pris, puis forcer en coupant le porte-greffe au-dessus, là où le plugin conseille d'entailler et de coucher le haut ; Poncirus en
+- **Alabama ACES** : Alabama Cooperative Extension System, fiches sur la greffe des agrumes ([Citrus budding: a step-by-step guide](https://www.aces.edu/blog/topics/crop-production/citrus-budding-a-step-by-step-guide/) : œil vert = pris ; vert sans pousse après plusieurs semaines : forcer en entaillant le porte-greffe aux 2/3 et en couchant ou courbant le haut, plutôt que de tout couper ; écussonnage de mai à août ; Poncirus en
   dormance quand le jour reste sous 21 °C).
 - **Curk 2022** : Curk F., Luro F., Minuto G., Nieddu G., *Les agrumes du Nord de la Méditerranée*, Alain Piazzola, 2022, doi 10.17180/m6z4-d276,
   https://hal.inrae.fr/hal-04646466
@@ -259,7 +259,7 @@ Un contrôle dû remplit la commande « Greffe à contrôler », reprise par le 
   et al. 2013 (même organisme que Curk 2022).
 - **Rutgers** : *Growing Citrus in Containers*, maître jardinier du comté de Hunterdon (reprend Mississippi State University P2542).
 - **Bailey** : Bailey L. H., *The Nursery-Book*, 11ᵉ éd., Macmillan, 1907 (Internet Archive cu31924097691087) et *The Nursery-Manual*, Macmillan, 1920 (Internet Archive nurserymanualcom00bailrich), domaine public ; texte cité = **une seule source**, souvent hors agrumes.
-- **UC Ventura** : University of California Cooperative Extension, comté de Ventura, conseils de greffage des agrumes (durée de la soudure) ; connue par la synthèse « Techniques de greffe », **non relue**.
+- **UC Ventura** : University of California Cooperative Extension, comté de Ventura, [Budding and grafting citrus and avocados in the home garden](https://ucanr.edu/county/cooperative-extension-ventura-county/budding-and-grafting-citrus-and-avocados-home-garden) (soudure en 3-4 semaines au printemps, 6-8 à l'automne ; œil laissé à l'air sous le lien).
 - **Non relues** (citées par la synthèse « Techniques de greffe », référence complète non retrouvée) : revue *Fruits* 1982 (Cirad, placage d'œil) ; guide du service du développement rural de Polynésie française ;
   Carimi 2001 (Italie, microgreffe et embryogenèse somatique) ; essai colombien 2022 sur orange 'Valencia' (minigreffe en fente).
 - **Températures de soudure (21-32 °C)** : sources d'amateurs seulement (forums, sites de jardinage), d'où des seuils réglables.

@@ -52,17 +52,18 @@ Ce qui vient du plugin lui-même (choix, seuil, déduction) est écrit comme tel
 |---|---|---|
 | Poncirus | −15 °C | TyCitriK −16 (**une seule source**) ; −15 par prudence (choix du plugin) |
 | Hybride de Poncirus | −10 °C | Chopinet et Dupouy 1951, de seconde main : citranges de Montauban −10 à −14 (André 1905, cité par Chopinet et Dupouy), satsumange −11 à −13 (Guillaumin), citrangedins et limonanges ≈ −10 (Kains, Guillaumin), citrangequat Thomasville −10 ; citranges Rusk et Willits sensibles aux coups de froid brusques. TyCitriK : C35 −10, Carrizo −11, citrumelo −12, FA5 −13 (commercial). −10 = la moins froide des deux |
-| Kumquat | −8 °C | TyCitriK −10, UF/IFAS HS-123 −12, Fortune 1870 cité par Swingle ≈ −8 |
+| Kumquat | −6 °C | TyCitriK −10, UF/IFAS HS-123 −12, UF/IFAS 2001 ≈ −6,7 (feuilles), Fortune 1870 cité par Swingle « 10-15 °F de gel » = −5,6 à −8,3 ; −6 = choix du plugin, entre −5,6 et −6,7 |
 | Citron | −5 °C | TyCitriK −5, Blondel 1986 −5/−6 |
 | Yuzu | −5 °C | RHS −5 contre TyCitriK −14 (le plus prudent gardé) |
 | Calamondin | −5 °C | TyCitriK, **une seule source** |
 | Mandarine, orange douce, bigaradier, pomelo (*C. ×paradisi*), pamplemousse (*C. maxima*) | −5 °C | TyCitriK (noms du pépiniériste, sans nom latin) : mandarinier −6, clémentinier −7, satsuma −10, oranger −7, pamplemoussier −6, pomelo −7, bigaradier −9 ; satsuma ≈ −9,4 (UF/IFAS HS-123). −5 est un choix du plugin, plus prudent que ces valeurs (l'ordre de HS-123 le place entre calamondin et citron) ; le satsuma est donc sous-estimé |
-| Citron caviar, papeda, lime | −4 °C | TyCitriK, **une seule source** ; papeda −4 = combava ; l'ichang (TyCitriK −11 pour l'Ichang lemon) est pris à la même valeur par prudence (choix du plugin) |
+| Lime | −3 °C | TyCitriK −4 ; UF/IFAS CH093 : bois abîmé dès −3 °C, mort sous −4 °C (lime de Tahiti) ; la lime vraie (Key lime), réputée plus frileuse encore, n’a pas de valeur sourcée ici |
+| Citron caviar, papeda | −4 °C | TyCitriK, **une seule source** ; papeda −4 = combava ; l'ichang (TyCitriK −11 pour l'Ichang lemon) est pris à la même valeur par prudence (choix du plugin) |
 | Bergamote | −5 °C | rangée en bigaradier (TyCitriK −5) |
 | Cédrat | −3 °C | TyCitriK −3, Guo 2009 −4/−5 (feuilles) |
 
 Ce tableau vaut pour une plante adulte en pleine terre ; le plugin ajoute les pénalités du pot et de jeunesse ([Configuration du plugin](index.md#configuration-du-plugin)).
-Le limequat est rangé en lime (−4), plus prudent que TyCitriK (−6).
+Le limequat est rangé en lime (−3), plus prudent que TyCitriK (−6).
 
 ## Bien observer
 
@@ -198,6 +199,8 @@ Non relus : les clés KeyBase (pages vides), la clé de Swingle et Reece 1967 (e
 - **Sofiyanti 2022** : Sofiyanti N., Iriani D., Wahyuni P. I., Idani N., Lestari P., Identification, morphology of *Citrus* L. and its traditional uses in Riau Province, Indonesia, *Biodiversitas* 23(2) : 1038-1047, 2022, doi 10.13057/biodiv/d230247.
 - **Swingle et Reece 1967** : *The Citrus Industry* vol. 1, chap. 3 (citation de Fortune 1870 sur le kumquat).
 - **TyCitriK 2023** : tableau des rusticités par porte-greffe et par cultivar, et fiche FA5 (pépiniériste, commercial).
+- **UF/IFAS 2001** : Zekri M., *Citrus Industry Agents* (bulletin), décembre 2001, University of Florida IFAS : feuilles de kumquat tenant jusqu'à 20 °F ≈ −6,7 °C (même organisme que HS982).
+- **UF/IFAS CH093** : *Tahiti Lime Growing in the Florida Home Landscape*, CH093, University of Florida IFAS, [ask.ifas.ufl.edu](https://ask.ifas.ufl.edu/publication/CH093) (même organisme que HS982).
 - **UF/IFAS HS-123** : Jackson L. K., Fasulo T. R., *Cold Hardy Citrus*, HS-123, University of Florida IFAS, 1994 (même organisme que HS982).
 - **UF/IFAS HS982** : Ferguson J. J., Chaparro J., *Dwarfing and Freeze Hardiness Potential of Trifoliate Orange Rootstocks*, HS982, University of Florida IFAS, 2004.
 - **UF/IFAS HS1309** : Albrecht U., Zekri M., Williamson J., *Citrus Propagation*, HS1309, University of Florida IFAS, 2017, révisé en 2021 et 2024 (même organisme que HS982).
