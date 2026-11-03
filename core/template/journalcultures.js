@@ -1,6 +1,6 @@
 /* Journal de cultures — tuile d'une collection et ses fenêtres (plante, journal, noter, déplacer). Recopié dans chaque tuile par
    journalcultures::toHtml(), chargé une seule fois par page. Textes entre doubles accolades traduits côté PHP (core/i18n). */
-if (!window.journalcultures || window.journalcultures.v !== 27) (function () { // v : un onglet ouvert avant une mise à jour recharge la bibliothèque
+if (!window.journalcultures || window.journalcultures.v !== 28) (function () { // v : un onglet ouvert avant une mise à jour recharge la bibliothèque
   var css = document.getElementById('jdc-css') || document.createElement('style')
   css.id = 'jdc-css'
   css.textContent =
@@ -35,7 +35,7 @@ if (!window.journalcultures || window.journalcultures.v !== 27) (function () { /
     '.jdc-toc{position:sticky;top:44px;max-height:calc(90vh - 70px);overflow:auto;font-size:13px;line-height:1.35;border-left:3px solid rgba(47,107,58,.5);padding-left:10px}' +
     '.jdc-toc summary{cursor:pointer;font-weight:600;margin-bottom:4px}.jdc-toc ul{list-style:none;margin:0;padding:0}.jdc-toc li{margin:5px 0}.jdc-toc li.s{padding-left:12px;font-size:12px;opacity:.85}.jdc-mb .jdc-toc a[data-n]{text-decoration:none}.jdc-toc a:hover{text-decoration:underline}' +
     '.jdc-tx h3{font-size:18px;margin:28px 0 8px;padding-bottom:4px;border-bottom:1px solid rgba(128,128,128,.35)}.jdc-tx h4{font-size:15.5px;margin:22px 0 6px;padding-left:8px;border-left:3px solid #2F6B3A}.jdc-tx h5{font-size:14px;margin:14px 0 4px}' +
-    '.jdc-tx li{margin:3px 0}.jdc-tw{overflow-x:auto;margin:10px 0 14px}.jdc-tw table{margin:0;min-width:480px;font-size:13px;line-height:1.4}.jdc-tw th,.jdc-tw td{padding:5px 8px!important;vertical-align:top!important}.jdc-tw th{background:rgba(47,107,58,.18);white-space:nowrap}.jdc-tw tr:nth-child(even) td{background:rgba(128,128,128,.07)}.jdc-tw td:first-child{min-width:9em}.jdc-ct code{color:inherit;background:rgba(128,128,128,.18);border:0;padding:1px 4px;border-radius:3px;font-size:.88em;white-space:normal;overflow-wrap:anywhere}.jdc-ct summary,.jdc-np summary{display:list-item;cursor:pointer}.jdc-not .jdc-ct img{max-width:100%;height:auto}.jdc-q{position:sticky;top:0;z-index:2;margin:8px 0 12px}' +
+    '.jdc-tx li{margin:3px 0}.jdc-tw{overflow-x:auto;margin:10px 0 14px}.jdc-tw table{margin:0;min-width:480px;font-size:13px;line-height:1.4}.jdc-tw th,.jdc-tw td{padding:5px 8px!important;vertical-align:top!important}.jdc-tw th{background:rgba(47,107,58,.18);white-space:nowrap}.jdc-tw tr:nth-child(even) td{background:rgba(128,128,128,.07)}.jdc-tw td:first-child{min-width:9em}.jdc-ct code{color:inherit;background:rgba(128,128,128,.18);border:0;padding:1px 4px;border-radius:3px;font-size:.88em;white-space:normal;overflow-wrap:anywhere}.jdc-ct summary,.jdc-np summary{display:list-item;cursor:pointer}.jdc-not .jdc-ct img{max-width:100%;height:auto}.jdc-tx p:has(>img.jdc-svgi){overflow-x:auto}@media (max-width:600px){.jdc-not .jdc-ct img.jdc-svgi{max-width:none!important;min-width:520px}}.jdc-q{position:sticky;top:0;z-index:2;margin:8px 0 12px}' +
     '@media (max-width:900px){.jdc-doc{display:block}.jdc-tx>*{max-width:none}.jdc-toc{position:static;max-height:none;margin-bottom:14px;padding:8px 10px;border:1px solid rgba(128,128,128,.3);border-radius:8px}}' +
     '@media (max-width:600px){.jdc-m{align-items:stretch}.jdc-mb{width:100vw;max-height:none;height:100%;border-radius:0;font-size:15px}.jdc-mb>nav button{padding:8px 12px}' +
     '.jdc-not .jdc-mb{width:100vw;padding:8px 14px 24px}.jdc-not .jdc-ct>h2{font-size:19px}.jdc-mb input,.jdc-mb select,.jdc-mb textarea{font-size:16px;min-height:40px}.jdc-mb button{min-height:44px}.jdc .xs{display:none}}'
@@ -155,7 +155,7 @@ if (!window.journalcultures || window.journalcultures.v !== 27) (function () { /
   function erreur(ct) { return function (er) { ct.innerHTML = '<p class="jdc-er" role="alert">' + esc(er) + '</p>' } }
 
   function tableJournal(d, l, avecPlante, apres) { // entrées du journal + suppression (admins)
-    return '<table><tr><th>' + "{{Date}}" + '</th><th>' + "{{Travail}}" + '</th><th></th></tr>' + l.map(function (x) {
+    return '<table><tr><th scope="col">' + "{{Date}}" + '</th><th scope="col">' + "{{Travail}}" + '</th><th></th></tr>' + l.map(function (x) {
       return '<tr><td>' + esc(x.date) + '</td><td><b>' + esc(d.actions[d.actionsCle.indexOf(x.action)] || x.action) + '</b>' + (avecPlante ? ' ' + esc(x.plante) : '') +
         (x.lieu ? ' <small>(' + esc(x.lieu) + ')</small>' : '') + (x.note ? '<br><small>' + esc(x.note) + '</small>' : '') + '</td><td>' +
         (d.admin == 1 ? '<button type="button" class="jb jdc-del" data-id="' + esc(x.id) + '" title="' + "{{Supprimer}}" + '" aria-label="' + "{{Supprimer l'entrée}}" + '">✕</button>' : '') + '</td></tr>'
@@ -260,25 +260,25 @@ if (!window.journalcultures || window.journalcultures.v !== 27) (function () { /
       ['fic', "{{Fiche}}", avec(function (ct) {
         var g = r.gbif || {}, s = r.etat
         ct.innerHTML = (r.etiquette ? '<p><img class="jdc-et" alt="' + "{{Étiquette}}" + '" style="max-width:100%;cursor:zoom-in"></p>' : '') + '<table>' +
-          '<tr><th>' + "{{Emplacement}}" + '</th><td>' + esc(s.empl || '–') + (s.t !== null ? ' · ' + nb(s.t, ' °C') : '') + (s.tmin !== null ? ' · ' + "{{min. prévue}}" + ' ' + nb(s.tmin, ' °C') : '') + (s.h !== null ? ' · ' + nb(s.h, ' %') : '') + '</td></tr>' +
-          '<tr><th>' + "{{Pot}}" + '</th><td>' + esc(r.pot) + '</td></tr>' +
-          (r.multiplication ? '<tr><th>' + "{{Multiplication}}" + '</th><td>' + esc(r.multiplication) + '</td></tr>' : '') +
-          (r.greffe ? '<tr><th>' + "{{Greffe}}" + '</th><td class="grs">' + esc(r.greffe.texte) + (r.greffe.controle ? ' · ' + "{{contrôle le}}" + ' ' + esc(r.greffe.controle.split('-').reverse().join('/')) : '') +
+          '<tr><th scope="row">' + "{{Emplacement}}" + '</th><td>' + esc(s.empl || '–') + (s.t !== null ? ' · ' + nb(s.t, ' °C') : '') + (s.tmin !== null ? ' · ' + "{{min. prévue}}" + ' ' + nb(s.tmin, ' °C') : '') + (s.h !== null ? ' · ' + nb(s.h, ' %') : '') + '</td></tr>' +
+          '<tr><th scope="row">' + "{{Pot}}" + '</th><td>' + esc(r.pot) + '</td></tr>' +
+          (r.multiplication ? '<tr><th scope="row">' + "{{Multiplication}}" + '</th><td>' + esc(r.multiplication) + '</td></tr>' : '') +
+          (r.greffe ? '<tr><th scope="row">' + "{{Greffe}}" + '</th><td class="grs">' + esc(r.greffe.texte) + (r.greffe.controle ? ' · ' + "{{contrôle le}}" + ' ' + esc(r.greffe.controle.split('-').reverse().join('/')) : '') +
             (r.greffe.question ? '<br>' + (r.greffe.du ? '<b class="jdc-er">' + esc(r.greffe.question) + '</b>' : '<small>' + esc(r.greffe.question) + '</small>') : '') +
             (r.greffe.temp ? '<br><b class="jdc-er">' + esc(r.greffe.temp) + '</b>' : '') +
             (d.admin == 1 && r.greffe.question ? '<br><input class="gnote" aria-label="' + "{{Note du contrôle (facultatif)}}" + '" maxlength="200" placeholder="' + "{{note (facultatif)}}" + '"> <button type="button" class="jb b gv" data-v="ok">' + "{{Oui}}" + '</button> <button type="button" class="jb b gv" data-v="douteux" title="' + "{{revoir dans 7 jours}}" + '">' + "{{Douteux}}" + '</button> ' + (r.greffe.printemps ? '<button type="button" class="jb b gv" data-v="printemps" title="' + (r.geo && r.geo.sud ? "{{œil vivant, laissé dormant : contrôle le 15 septembre}}" : "{{œil vivant, laissé dormant : contrôle le 15 mars}}") + '">' + "{{Au printemps}}" + '</button> ' : '') + '<button type="button" class="jb b gv" data-v="mort">' + "{{Non, mort}}" + '</button>' : '') +
             (d.admin == 1 && r.greffe.statut == 'echouee' ? ' <button type="button" class="jb b dgr">' + "{{Redevenir porte-greffe…}}" + '</button>' : '') + ' <span class="jdc-er"></span></td></tr>' : '') +
-          '<tr><th>' + "{{Rusticité effective}}" + '</th><td>' + (s.reff === null ? "{{inconnue (pas de rusticité dans la fiche)}}" : nb(s.reff, ' °C')) +
+          '<tr><th scope="row">' + "{{Rusticité effective}}" + '</th><td>' + (s.reff === null ? "{{inconnue (pas de rusticité dans la fiche)}}" : nb(s.reff, ' °C')) +
             (s.reff !== null && s.estimee ? ' <small>(' + "{{estimée}}" + ' ' + nb(s.estimee.r, ' °C') + ' : ' + esc(s.estimee.groupes.join(', ')) + (s.estimee.par == 'nom' ? '' : ', ' + "{{d'après les caractères}}") + ')</small>' : '') + (s.reff !== null && s.jeunesse > 0 ? ' <small>(' + "{{dont jeunesse}}" + ' +' + nb(s.jeunesse, ' °C') + ')</small>' : '') + (s.raison ? ' <b class="jdc-er">' + esc(s.raison) + '</b>' : '') + '</td></tr>' +
-          (s.engrais ? '<tr><th>' + "{{Engrais cette semaine}}" + '</th><td>' + esc(s.engrais) + '</td></tr>' : '') +
-          (g.nom ? '<tr><th>GBIF</th><td>' + esc(g.nom) + (g.famille ? ' · ' + esc(g.famille) : '') + ' <small>(' + esc(g.statut) + ', ' + esc(g.type) + ' ' + esc(g.confiance) + ' %)</small></td></tr>' :
-            g.statut == 'NONE' ? '<tr><th>GBIF</th><td class="jdc-er">' + "{{nom botanique introuvable}}" + '</td></tr>' : '') +
-          (r.noms && r.noms.length ? '<tr><th>' + "{{Origine du nom}}" + '</th><td>' + r.noms.join('<br>') + ' <small><button type="button" class="jb lk nms">' + "{{dictionnaire}}" + '</button></small></td></tr>' : '') + // html converti par la box depuis notre noms.md
-          r.fiche.map(function (x) { return '<tr><th>' + esc(x[0]) + '</th><td style="white-space:pre-wrap">' + esc(x[1]) + '</td></tr>' }).join('') + '</table>' +
+          (s.engrais ? '<tr><th scope="row">' + "{{Engrais cette semaine}}" + '</th><td>' + esc(s.engrais) + '</td></tr>' : '') +
+          (g.nom ? '<tr><th scope="row">GBIF</th><td><span lang="la">' + esc(g.nom) + '</span>' + (g.famille ? ' · ' + esc(g.famille) : '') + ' <small>(' + esc(g.statut) + ', ' + esc(g.type) + ' ' + esc(g.confiance) + ' %)</small></td></tr>' :
+            g.statut == 'NONE' ? '<tr><th scope="row">GBIF</th><td class="jdc-er">' + "{{nom botanique introuvable}}" + '</td></tr>' : '') +
+          (r.noms && r.noms.length ? '<tr><th scope="row">' + "{{Origine du nom}}" + '</th><td>' + r.noms.join('<br>') + ' <small><button type="button" class="jb lk nms">' + "{{dictionnaire}}" + '</button></small></td></tr>' : '') + // html converti par la box depuis notre noms.md
+          r.fiche.map(function (x) { return '<tr><th scope="row">' + esc(x[0]) + '</th><td style="white-space:pre-wrap">' + esc(x[1]) + '</td></tr>' }).join('') + '</table>' +
           blocEngrais(r.engrais, d.admin == 1) + blocSante(r.sante, r.santeCat, r.geo) +
           (r.ident && r.ident.groupes ? '<h4>' + "{{Identification}}" + '</h4><p>' + (r.ident.verdict == 'probable' ? "{{Groupe probable}}" : "{{Indécis entre}}") + ' : ' +
             r.ident.groupes.map(function (g) { return '<b>' + esc(g.groupe) + '</b> <small>(' + g.accords + ' ' + "{{accord(s)}}" + (g.contre.length ? ', ' + "{{contre}}" + ' : ' + esc(g.contre.join(', ')) : '') + ')</small>' }).join(' · ') +
-            '</p><table>' + r.carac.map(function (x) { return '<tr><th>' + esc(x[0]) + '</th><td>' + esc(x[1]) + '</td></tr>' }).join('') + '</table><p><small>' +
+            '</p><table>' + r.carac.map(function (x) { return '<tr><th scope="row">' + esc(x[0]) + '</th><td>' + esc(x[1]) + '</td></tr>' }).join('') + '</table><p><small>' +
             "{{Groupe seulement, jamais la variété. Comparer :}}" + ' <a href="https://idtools.org/id/citrus/citrusid/" target="_blank" rel="noopener noreferrer">Citrus ID</a> · ' +
             '<a href="https://citrusvariety.ucr.edu/" target="_blank" rel="noopener noreferrer">UC Riverside</a></small></p>' : '') +
           (r.liens.length ? '<h4>' + "{{Sources en ligne}}" + '</h4>' + r.liens.map(function (l) { return '<a href="' + esc(l[1]) + '" target="_blank" rel="noopener noreferrer">' + esc(l[0]) + '</a>' }).join(' · ') : '') +
@@ -383,11 +383,12 @@ if (!window.journalcultures || window.journalcultures.v !== 27) (function () { /
           var W = 600, H = 170, g = 34, t0 = p[0][0], t1 = p[p.length - 1][0], vs = p.map(function (x) { return x[1] }), v0 = Math.min.apply(null, vs), v1 = Math.max.apply(null, vs)
           function X(t) { return t1 > t0 ? g + (t - t0) / (t1 - t0) * (W - 2 * g) : W / 2 }
           function Y(v) { return v1 > v0 ? H - g - (v - v0) / (v1 - v0) * (H - 2 * g) : H / 2 }
-          ct.querySelector('.jdc-svg').innerHTML = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc(lib(k)) + '"><g fill="none" stroke="currentColor" stroke-opacity=".25"><line x1="' + g + '" y1="' + (H - g) + '" x2="' + (W - g) + '" y2="' + (H - g) + '"/></g>' +
+          ct.querySelector('.jdc-svg').innerHTML = '<svg viewBox="0 0 ' + W + ' ' + H + '" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-opacity=".25"><line x1="' + g + '" y1="' + (H - g) + '" x2="' + (W - g) + '" y2="' + (H - g) + '"/></g>' +
             '<polyline fill="none" stroke="#2F6B3A" stroke-width="2" points="' + p.map(function (x) { return X(x[0]) + ',' + Y(x[1]) }).join(' ') + '"/>' +
             p.map(function (x) { return '<circle cx="' + X(x[0]) + '" cy="' + Y(x[1]) + '" r="4" fill="#2F6B3A"><title>' + esc(x[2] + ' : ' + nb(x[1])) + '</title></circle>' }).join('') +
             '<g fill="currentColor" font-size="12"><text x="2" y="' + (Y(v1) + 4) + '">' + nb(v1) + '</text>' + (v1 > v0 ? '<text x="2" y="' + (Y(v0) + 4) + '">' + nb(v0) + '</text>' : '') +
-            '<text x="' + g + '" y="' + (H - 8) + '">' + esc(p[0][2]) + '</text>' + (p.length > 1 ? '<text x="' + (W - g) + '" y="' + (H - 8) + '" text-anchor="end">' + esc(p[p.length - 1][2]) + '</text>' : '') + '</g></svg>'
+            '<text x="' + g + '" y="' + (H - 8) + '">' + esc(p[0][2]) + '</text>' + (p.length > 1 ? '<text x="' + (W - g) + '" y="' + (H - 8) + '" text-anchor="end">' + esc(p[p.length - 1][2]) + '</text>' : '') + '</g></svg>' +
+            '<ul class="jdc-sr">' + p.map(function (x) { return '<li>' + esc(x[2] + ' : ' + nb(x[1])) + '</li>' }).join('') + '</ul>' // la courbe en texte, pour VoiceOver
         }
         if (cs) { cs.onchange = courbe; courbe() }
         var f = ct.querySelector('form.jdc-mf')
@@ -610,7 +611,7 @@ if (!window.journalcultures || window.journalcultures.v !== 27) (function () { /
   }
 
   // opt.panel : colonnes en plus (porte-greffe, dernière mesure), masquées sur téléphone
-  window.journalcultures = {v: 27, notice: notice, ajax: ajax, esc: esc, nb: nb, init: function (b, d, opt) {
+  window.journalcultures = {v: 28, notice: notice, ajax: ajax, esc: esc, nb: nb, init: function (b, d, opt) {
     if (!b) return
     d.apres = opt && opt.apres // relu par « Greffer… » (fiche)
     var pa = opt && opt.panel

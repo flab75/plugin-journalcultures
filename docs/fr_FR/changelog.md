@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.24 (2026-11-03)
+- Tuiles plus légères : la bibliothèque du plugin est chargée une seule fois, puis gardée par le navigateur, au lieu d'être recopiée dans chaque tuile.
+- Le relevé du quart d'heure lit une seule fois la liste des plantes et les dernières mesures pour toutes les collections.
+- Notice : les images ont leurs dimensions (la page ne saute plus pendant le chargement) ; sur iPhone, les schémas gardent un texte lisible et défilent sur le côté.
+- Accessibilité : la courbe des mesures existe aussi en texte pour VoiceOver ; en-têtes de tableaux, sommaire nommé, titre du panel, noms latins annoncés en latin.
+
 ## 0.23 (2026-11-03)
 - Sécurité : le nom botanique est vérifié chez GBIF avec contrôle du certificat (HTTPS seulement).
 - Les photos sont servies avec leur nom de fichier (affichage dans le navigateur, pas de téléchargement forcé).

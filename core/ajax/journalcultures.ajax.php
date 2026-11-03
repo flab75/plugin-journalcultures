@@ -4,7 +4,7 @@ try {
   include_file('core', 'authentification', 'php');
   if (!isConnect()) throw new Exception(__('401 - Accès non autorisé', __FILE__));
   require_once __DIR__ . '/../class/journalcultures.class.php';
-  ajax::init(['photo', 'image']); // lectures en GET : <img src> direct (session), rien n'y écrit
+  ajax::init(['photo', 'image', 'lib']); // lectures en GET : <img src> direct (session), rien n'y écrit
 
   // équipement du plugin ; droit de lecture vérifié sur la collection (les plantes n'ont pas de tuile ni de droits propres)
   $eq = function ($id, $type = null) {
@@ -30,6 +30,10 @@ try {
     header('X-Content-Type-Options: nosniff'); header("Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline'"); // svg ouvert seul : pas de script
     header('Cache-Control: private, max-age=31536000, immutable'); // l'URL porte la date du fichier (v=)
     header('Content-Length: ' . filesize($f)); readfile($f); exit;
+  }
+  if ($a == 'lib') { // bibliothèque des tuiles : l'URL porte la date du fichier (v=) et la langue (l=)
+    header('Content-Type: application/javascript; charset=utf-8'); header('X-Content-Type-Options: nosniff');
+    header('Cache-Control: private, max-age=31536000, immutable'); echo journalcultures::lib(); exit;
   }
   if ($a == 'journal') { $c = $eq(init('id'), 'collection'); ajax::success(journalcultures::journal(array_map(function ($p) { return $p->getId(); }, $c->plantes()), 500, $c->getId())); }
   if ($a == 'photo') { // mini=1 : vignette de 400 px ; sinon l'original

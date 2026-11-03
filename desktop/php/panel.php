@@ -5,7 +5,7 @@ if (!isConnect()) throw new Exception('{{401 - Accès non autorisé}}');
 <style>
   #jdc-panel{padding:8px 4px}
   #jdc-panel header{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:10px}
-  #jdc-panel header h3{margin:0}
+  #jdc-panel header h1{margin:0;font-size:24px}
   #jdc-panel .jdc-cols button{display:inline-block;cursor:pointer;background:none;color:inherit;font:inherit;border-radius:18px;padding:6px 14px;margin:0 4px 4px 0;border:1px solid rgba(128,128,128,.4)}
   #jdc-panel .jdc-cols button.on{background:#2F6B3A;border-color:#2F6B3A;color:#fff}
   #jdc-panel #jdc-q{flex:1 1 180px;min-width:0;min-height:38px;font-size:16px}
@@ -22,7 +22,7 @@ if (!isConnect()) throw new Exception('{{401 - Accès non autorisé}}');
 </style>
 <div id="jdc-panel">
   <header>
-    <h3>{{Journal de cultures}}</h3>
+    <h1>{{Journal de cultures}}</h1>
     <nav class="jdc-cols" aria-label="{{Collections}}"></nav>
     <input id="jdc-q" type="search" class="form-control" placeholder="{{Chercher une plante…}}" aria-label="{{Chercher une plante}}">
     <button type="button" class="btn btn-default" id="jdc-not" title="{{Notice et guide de culture}}"><i class="fas fa-book"></i> {{Notice}}</button>

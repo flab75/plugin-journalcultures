@@ -8,7 +8,16 @@
   <div class="jdc"></div>
   <script>
     if ('#refresh_id#' != '') { document.querySelector('.eqLogic[data-eqLogic_uid="#uid#"] .refresh')?.addEventListener('click', function() { jeedom.cmd.execute({ id: '#refresh_id#' }) }) } else { document.querySelector('.eqLogic[data-eqLogic_uid="#uid#"] .refresh')?.remove() }
-    @@LIB@@
-    journalcultures.init(document.querySelector('.eqLogic[data-eqLogic_uid="#uid#"] .jdc'), @@DATA@@)
+    ;(function (b, d, u) { // bibliothèque chargée une seule fois par page, depuis le cache du navigateur (URL versionnée)
+      var L = window.jdcLib = window.jdcLib || {}
+      ;(L[u] = L[u] || new Promise(function (ok, ko) { var s = document.createElement('script'); s.src = u; s.onload = ok; s.onerror = ko; document.head.appendChild(s) }))
+        .then(function () {
+          if (!window.journalcultures) throw 0 // session expirée : l'action a renvoyé une erreur, pas la bibliothèque
+          window.journalcultures.init(b, d)
+          var t = b.closest('.eqLogic'), pk = b.closest('.div_displayEquipement'), g = pk && window.Packery && Packery.data && Packery.data(pk) // tuile remplie après le placement du dashboard (qui l'a mise à 30 px) : on l'agrandit au contenu et on refait le placement
+          if (t && t.scrollHeight > t.clientHeight) t.style.height = t.scrollHeight + 'px' // ponytail: agrandit aussi une tuile réduite à la main ; tenir compte de la hauteur enregistrée si quelqu'un en veut une plus petite que son contenu
+          if (g) g.layout() // (pas positionEqLogic : sans hauteur enregistrée, il écrase la tuile à 30 px)
+        }).catch(function () { L[u] = null; if (b) b.textContent = '⚠ Journal de cultures : bibliothèque non chargée (recharger la page)' })
+    })(document.querySelector('.eqLogic[data-eqLogic_uid="#uid#"] .jdc'), @@DATA@@, '@@LIB@@')
   </script>
 </div>

@@ -156,7 +156,7 @@ echo "calculs OK\n";
 
 $ok($C::markdown("a `**x** <b>` **b** *i* [L](https://e.fr) [G](#greffe) [S](sante.md#mal-secco) [X](javascript:alert)\n- un\n  suite\n\n| A | B |\n|---|---|\n| 1 | 2 |\n![s](images/a.svg) ![u](../images/b.svg) ![t](../x.png)")
   == '<p>a <code>**x** &lt;b&gt;</code> <b>b</b> <i>i</i> <a href="https://e.fr" target="_blank" rel="noopener noreferrer">L</a> <a data-n="" data-a="greffe" href="#jdc-n-greffe">G</a> <a data-n="sante" data-a="mal-secco" href="#jdc-n-mal-secco">S</a> X</p>'
-  . '<ul><li>un suite</li></ul><div class="jdc-tw"><table class="table table-condensed"><tr><th>A</th><th>B</th></tr><tr><td>1</td><td>2</td></tr></table></div><p>[image manquante : images/a.svg] [image manquante : images/b.svg] !t</p>'
+  . '<ul><li>un suite</li></ul><div class="jdc-tw"><table class="table table-condensed"><tr><th scope="col">A</th><th scope="col">B</th></tr><tr><td>1</td><td>2</td></tr></table></div><p>[image manquante : images/a.svg] [image manquante : images/b.svg] !t</p>'
   && $C::ancre("Fiche d'une plante") == 'fiche-dune-plante' && $C::ancre('Identification (agrumes)') == 'identification-agrumes', 'notice : markdown échappé, liens filtrés, ancres comme GitHub');
 $H = [];
 foreach (array_keys($C::NOTICES) as $k) {
@@ -171,7 +171,7 @@ foreach ($a[1] as $x) $ok(strpos($H['index'] ?? '', 'id="jdc-n-' . $x . '"') !==
 $e = $C::etymologie(['Poncirus trifoliata (Flying Dragon)', "Citrus junos 'Yuzu' × Citrus"]);
 $ok(isset($H['noms']) && count($e) >= 3 && strpos($e[0], '<b>Poncirus</b>') === 0 && strpos(implode('', $e), 'Yuzu') === false && strpos(implode('', $e), '<script') === false, 'noms : origine des mots du nom botanique, cultivar ignoré');
 $x = $C::markdown("# T\nintro\n## Un [l](#a)\n### Sous\n## Deux");
-$ok(strpos($x, '<h2 id="jdc-n-t">T</h2><div class="jdc-doc"><nav class="jdc-toc">') === 0 && strpos($x, '<li><a data-n="" data-a="un-la" href="#jdc-n-un-la">Un l</a></li><li class="s"><a data-n="" data-a="sous" href="#jdc-n-sous">Sous</a></li>') !== false
+$ok(strpos($x, '<h2 id="jdc-n-t">T</h2><div class="jdc-doc"><nav class="jdc-toc" aria-label="Sommaire">') === 0 && strpos($x, '<li><a data-n="" data-a="un-la" href="#jdc-n-un-la">Un l</a></li><li class="s"><a data-n="" data-a="sous" href="#jdc-n-sous">Sous</a></li>') !== false
   && strpos($x, '<div class="jdc-tx"><p>intro</p><h3') !== false && strpos($C::markdown("# T\n## Un"), 'jdc-toc') === false, 'notice : sommaire sous le titre, seulement à partir de 2 sections');
 $ok(strpos($C::markdown("x\n1. a\n   b\n2. c\n- d"), '<p>x</p><ol><li>a b</li><li>c</li></ol><ul><li>d</li></ul>') !== false, 'notice : liste numérotée');
 $ok(strpos($C::markdown("vers\n2026. suite"), '<p>vers 2026. suite</p>') !== false, 'notice : « 2026. » ne coupe pas un paragraphe');

@@ -20,12 +20,15 @@ class journalcultures extends eqLogic {
   private $_ancColl = null; // ancienne collection à remettre à jour (plante changée de collection ou supprimée)
   const CLE = __DIR__ . '/../../data/plantnet.key'; // clé Pl@ntNet hors de la table config (config::getKey la livre à tout connecté)
 
+  private static $_memo = null; // pendant le cron seulement : liste des équipements et dernières mesures lues une fois pour toutes les collections
   public static function cron15() {
+    self::$_memo = [];
     $eqs = self::byType('journalcultures', true);
     usort($eqs, function ($a, $b) { return ($a->type() == 'collection') <=> ($b->type() == 'collection'); }); // plantes d'abord
     foreach ($eqs as $eq) {
       try { $eq->maj(false); } catch (Throwable $e) { log::add('journalcultures', 'error', $eq->getHumanName() . ' : ' . $e->getMessage()); }
     }
+    self::$_memo = null;
   }
 
   public function type() { return $this->getConfiguration('type', 'plante') == 'collection' ? 'collection' : 'plante'; }
@@ -35,7 +38,8 @@ class journalcultures extends eqLogic {
     return is_object($c) && $c->getEqType_name() == 'journalcultures' && $c->type() == 'collection' ? $c : null;
   }
   public function plantes() {
-    $r = array_values(array_filter(self::byType('journalcultures'), function ($p) { return $p->type() == 'plante' && $p->getConfiguration('collection') == $this->getId(); }));
+    $tous = self::$_memo === null ? self::byType('journalcultures') : (self::$_memo['tous'] ??= self::byType('journalcultures'));
+    $r = array_values(array_filter($tous, function ($p) { return $p->type() == 'plante' && $p->getConfiguration('collection') == $this->getId(); }));
     usort($r, function ($a, $b) { return strnatcasecmp($a->getName(), $b->getName()); });
     return $r;
   }
@@ -731,8 +735,12 @@ class journalcultures extends eqLogic {
 
   public function donnees() { // tuile d'une collection
     $pl = []; $L = self::emplacements();
-    $mes = []; // date de la dernière mesure par plante
-    foreach (DB::Prepare('SELECT plante_id, MAX(date) d FROM ' . self::TABLE . ' WHERE action = ? AND plante_id IS NOT NULL GROUP BY plante_id', ['Mesure'], DB::FETCH_TYPE_ALL) ?: [] as $x) $mes[$x['plante_id']] = $x['d'];
+    $mes = self::$_memo['mes'] ?? null; // date de la dernière mesure par plante
+    if ($mes === null) {
+      $mes = [];
+      foreach (DB::Prepare('SELECT plante_id, MAX(date) d FROM ' . self::TABLE . ' WHERE action = ? AND plante_id IS NOT NULL GROUP BY plante_id', ['Mesure'], DB::FETCH_TYPE_ALL) ?: [] as $x) $mes[$x['plante_id']] = $x['d'];
+      if (self::$_memo !== null) self::$_memo['mes'] = $mes;
+    }
     foreach ($this->plantes() as $p) {
       if (!$p->getIsEnable()) continue;
       $sonde = trim($L[$p->getConfiguration('emplacement')][0] ?? '') !== ''; // lieu sans sonde : pas l'ancienne température
@@ -774,7 +782,7 @@ class journalcultures extends eqLogic {
     return ['collections' => array_map(function ($c) { return $c->donnees(); }, $cs), 'lieux' => $lieux];
   }
 
-  public static function lib() { // ponytail: bibliothèque recopiée dans chaque tuile et dans le panel (gardée par window.journalcultures)
+  public static function lib() { // bibliothèque traduite : en ligne dans le panel et la page du plugin, par l'action ajax « lib » (cache navigateur) dans les tuiles
     static $js = [];
     $l = translate::getLanguage();
     return $js[$l] ??= translate::exec(file_get_contents(__DIR__ . '/../template/journalcultures.js'), 'plugins/journalcultures/core/template/journalcultures.js');
@@ -790,7 +798,8 @@ class journalcultures extends eqLogic {
     $replace += ['#eqLogic_class#' => 'eqLogic_layout_default', '#background-color#' => ''];
     $replace = array_map(function ($v) { return is_string($v) ? str_replace('@@', '@ @', $v) : $v; }, $replace); // pas de @@LIB@@ venu d'un nom
     $html = template_replace($replace, getTemplate('core', 'dashboard', 'collection', 'journalcultures'));
-    return $this->postToHtml($_version, strtr($html, ['@@LIB@@' => self::lib(), '@@DATA@@' => $json]));
+    $lib = 'plugins/journalcultures/core/ajax/journalcultures.ajax.php?action=lib&l=' . rawurlencode(translate::getLanguage()) . '&v=' . filemtime(__DIR__ . '/../template/journalcultures.js'); // ponytail: v ne suit pas core/i18n (fr seul) ; ajouter sa date si d'autres langues arrivent
+    return $this->postToHtml($_version, strtr($html, ['@@LIB@@' => $lib, '@@DATA@@' => $json]));
   }
 }
 

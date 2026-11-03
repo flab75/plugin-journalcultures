@@ -49,6 +49,12 @@ class journalcultures_calc {
   }
 
   // saison « 10-40 » de l'hémisphère nord décalée de $n semaines (26 = hémisphère sud) ; semaines() gère le passage d'une année à l'autre
+  public static function taille($f) { // width/height d'une image de la notice : la page ne saute pas pendant le chargement ; svg = viewBox
+    if (substr($f, -4) == '.svg') { if (!preg_match('/viewBox="[\d.]+ [\d.]+ ([\d.]+) ([\d.]+)"/', (string)file_get_contents($f), $m)) return ''; $w = (int)$m[1]; $h = (int)$m[2]; }
+    else { $i = @getimagesize($f); if (!$i) return ''; [$w, $h] = $i; }
+    return $w > 0 && $h > 0 ? ' width="' . $w . '" height="' . $h . '"' . (substr($f, -4) == '.svg' ? ' class="jdc-svgi"' : '') : '';
+  }
+  // ponytail: modulo 52 alors que semaines() compte jusqu'à 53 : seule une borne en semaine 53 (aucune saison réelle) tombe une semaine à côté ; % 53 décalerait toutes les saisons du sud d'une semaine
   public static function decaler($s, $n) { if (count(self::semaines($s)) >= 52) return (string)$s; // toute l'année : rien à décaler
     return preg_replace_callback('/\d+/', function ($m) use ($n) { return ((((int)$m[0] - 1 + $n) % 52) + 52) % 52 + 1; }, (string)$s); }
   /* Zéro de végétation des agrumes : environ 13 °C (Curk 2022, INRAE), ≈ 12,5 °C (Aubert 1969, IFAC). En dessous, pas de pousse :
@@ -695,7 +701,7 @@ class journalcultures_calc {
       // ../images/x : comme sur GitHub, le .md est dans docs/fr_FR/ et les images dans docs/images/
       $f = __DIR__ . '/../../docs/images/' . $m[2];
       if (!is_file($f)) return '[image manquante : images/' . $m[2] . ']';
-      return '<img src="plugins/journalcultures/core/ajax/journalcultures.ajax.php?action=image&amp;n=' . rawurlencode($m[2]) . '&amp;v=' . filemtime($f) . '" alt="' . $m[1] . '" loading="lazy" style="max-width:100%">'; }, $t);
+      return '<img src="plugins/journalcultures/core/ajax/journalcultures.ajax.php?action=image&amp;n=' . rawurlencode($m[2]) . '&amp;v=' . filemtime($f) . '" alt="' . $m[1] . '"' . self::taille($f) . ' loading="lazy" style="max-width:100%">'; }, $t);
     $t = preg_replace_callback('/\[([^\]]+)\]\(([^)\s]+)\)/', function ($m) {
       if (preg_match('/^https?:\/\//', $m[2])) return '<a href="' . $m[2] . '" target="_blank" rel="noopener noreferrer">' . $m[1] . '</a>';
       if (preg_match('/^(?:(\w+)\.md)?(?:#([\p{L}\p{N}_-]+))?$/u', $m[2], $l)) return '<a data-n="' . ($l[1] ?? '') . '" data-a="' . ($l[2] ?? '') . '" href="#' . (($l[2] ?? '') === '' ? '' : 'jdc-n-' . $l[2]) . '">' . $m[1] . '</a>'; // href : lien au clavier (le clic est pris par la notice)
@@ -713,7 +719,7 @@ class journalcultures_calc {
         $l = array_values(array_filter($acc, function ($r) { return !preg_match('/^\|[\s:|-]+\|$/', trim($r)); })); // sans la ligne de séparation
         foreach ($l as $n => $r) {
           $cs = array_map('trim', explode('|', trim(trim($r), '|')));
-          $h .= ($n ? '' : '<div class="jdc-tw"><table class="table table-condensed">') . '<tr>' . implode('', array_map(function ($x) use ($n) { return ($n ? '<td>' : '<th>') . self::enligne($x) . ($n ? '</td>' : '</th>'); }, $cs)) . '</tr>';
+          $h .= ($n ? '' : '<div class="jdc-tw"><table class="table table-condensed">') . '<tr>' . implode('', array_map(function ($x) use ($n) { return ($n ? '<td>' : '<th scope="col">') . self::enligne($x) . ($n ? '</td>' : '</th>'); }, $cs)) . '</tr>';
         }
         if ($l) $h .= '</table></div>'; // jdc-tw : défile seul sur mobile
       }
@@ -737,6 +743,6 @@ class journalcultures_calc {
     $fin();
     if (substr_count(implode('', $som), '<li><a') < 2) return $h; // page courte : pas de sommaire
     $t = preg_match('/^<h2 [^>]*>.*?<\/h2>/s', $h, $m) ? $m[0] : ''; // titre de la page (#) au-dessus
-    return $t . '<div class="jdc-doc"><nav class="jdc-toc"><details open><summary>Sommaire</summary><ul>' . implode('', $som) . '</ul></details></nav><div class="jdc-tx">' . substr($h, strlen($t)) . '</div></div>';
+    return $t . '<div class="jdc-doc"><nav class="jdc-toc" aria-label="Sommaire"><details open><summary>Sommaire</summary><ul>' . implode('', $som) . '</ul></details></nav><div class="jdc-tx">' . substr($h, strlen($t)) . '</div></div>';
   }
 }
