@@ -11,7 +11,7 @@ function journalcultures_update() {
   journalcultures::creerTable();
   if (trim(config::byKey('produits', 'journalcultures', '')) === '') config::save('produits', journalcultures_calc::PRODUITS, 'journalcultures'); // 0.13 : catalogue proposé, à modifier
   journalcultures::$_sansGbif = true; // pas d'appel GBIF par plante pendant la mise à jour
-  foreach (eqLogic::byType('journalcultures') as $eq) try { $eq->migrerGreffe(); } // 0.26 : greffe pas encore partie → la plante redevient le porte-greffe
+  foreach (eqLogic::byType('journalcultures') as $eq) try { for ($k = 0; $k < 3 && $eq->migrerGreffe(); $k++); } // 0.26 : greffe pas encore partie → la plante redevient le porte-greffe ; 0.27 : pont en attente → réparation (boucle : un pont 0.25 passe par les deux)
     catch (Throwable $e) { log::add('journalcultures', 'error', $eq->getHumanName() . ' : greffe non migrée : ' . $e->getMessage()); }
   foreach (eqLogic::byType('journalcultures') as $eq) try { $eq->save(); $eq->commandesOk(true); } // commandes ajoutées ou retirées par la nouvelle version
     catch (Throwable $e) { log::add('journalcultures', 'error', $eq->getHumanName() . ' : mise à jour : ' . $e->getMessage()); } // un équipement en erreur n'arrête pas les autres

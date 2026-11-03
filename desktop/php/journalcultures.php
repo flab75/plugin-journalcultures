@@ -182,7 +182,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
 							</div>
 							<div class="form-group jdc-plante">
 								<label class="col-sm-4 control-label">{{Repos hivernal au frais}}
-									<sup><i class="fas fa-question-circle tooltips" title="{{Pas d'engrais hors de la fenêtre des produits, même en emplacement chauffé ; de novembre à février (mai à août dans l'hémisphère sud), ⚠ si elle est dans un emplacement marqué chauffé. Choix du plugin.}}"></i></sup>
+									<sup><i class="fas fa-question-circle tooltips" title="{{Pas d'engrais hors de la période d'apport des produits, même en emplacement chauffé ; de novembre à février (mai à août dans l'hémisphère sud), ⚠ si la plante est dans un emplacement marqué chauffé. Choix du plugin.}}"></i></sup>
 								</label>
 								<div class="col-sm-6"><input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="hivernage"></div>
 							</div>
@@ -232,7 +232,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
 							foreach (journalcultures_calc::MULTIPLICATIONS as $m) echo '<option value="' . $m . '">' . htmlspecialchars(__(ucfirst($m), __FILE__)) . '</option>';
 							echo '</select></div><div class="col-sm-4"><input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="date_mult" placeholder="{{date : 2024, 2024-05 ou 2024-05-12}}" title="{{L\'âge de la plante en est calculé}}"></div></div>';
 							echo '<div class="form-group"><label class="col-sm-4 control-label">{{Type de greffe}}</label><div class="col-sm-4"><select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="type_greffe" title="{{Multiplication vide : elle devient « greffe » ; autre que greffe : type effacé}}"><option value="">{{inconnu ou sans objet}}</option>';
-							foreach (journalcultures_calc::GREFFES as $k => $g) echo '<option value="' . $k . '">' . htmlspecialchars($g) . '</option>';
+							foreach (journalcultures_calc::GREFFES as $k => $g) if ($k != 'pont') echo '<option value="' . $k . '">' . htmlspecialchars($g) . '</option>'; // pont : réparation (« Greffer… »), pas une multiplication
 							echo '</select></div></div>';
 							echo '<datalist id="jdc-pg">';
 							foreach (journalcultures::PORTE_GREFFES as $n => $d) echo '<option value="' . htmlspecialchars($n) . '">' . htmlspecialchars($d) . '</option>';
@@ -240,7 +240,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
 							?>
 							<div class="form-group"><label class="col-sm-4 control-label">GBIF</label><div class="col-sm-8" id="jdc-gbif" style="padding-top:7px"></div></div>
 							<legend><i class="fas fa-search"></i> {{Identification (caractères observés)}}
-								<sup><i class="fas fa-question-circle tooltips" title="{{Donne le groupe d'agrumes le plus compatible (kumquat, citron, yuzu…), jamais la variété : pour un hybride, la morphologie ne suffit souvent pas. Laisser vide ce qui n'est pas observé.}}"></i></sup>
+								<sup><i class="fas fa-question-circle tooltips" title="{{Donne le groupe d'agrumes le plus compatible (kumquat, citron, yuzu…), jamais le cultivar : pour un hybride, la morphologie ne suffit souvent pas. Laisser vide ce qui n'est pas observé.}}"></i></sup>
 							</legend>
 							<?php
 							foreach (journalcultures_calc::CARACTERES as $k => [$l, $opt]) {

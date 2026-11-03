@@ -82,7 +82,7 @@ racines fines molles dont l'écorce part en laissant un fil blanc (Savita 2012, 
 *Gomme qui suinte au pied d'un citronnier (gommose du collet, Phytophthora probable selon l'auteur). Photo Eiku, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Lemon_tree_with_phytophtora_02_-_foot_rot_gummosis.jpg), [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).*
 
 
-**Pourquoi** : le champignon (un oomycète) vit dans le sol et nage dans l'eau. Il entre par les **plaies** : une plaie fraîche est envahie le plus facilement,
+**Pourquoi** : *Phytophthora* est un oomycète (proche des algues brunes, longtemps classé parmi les champignons) ; il vit dans le sol et nage dans l'eau. Il entre par les **plaies** : une plaie fraîche est envahie le plus facilement,
 rarement plus de 10 jours après ; l'écorce intacte et subérisée n'a pas été pénétrée, mais les **jeunes tiges** encore sans liège, si ;
 et couvrir de terre le bas du tronc favorisait la maladie (Whiteside 1971). Les jeunes plants en pot sont donc les plus exposés (déduction du plugin).
 Le travail mécanique du sol donnait le plus de gommose, sans doute par les blessures (Oliveira 1981).
@@ -100,8 +100,8 @@ Savita 2012 dit qu'une plaie reste sensible jusqu'à 14 jours, sans référence 
   de UC IPM, pas un résultat d'essai.
 
 **Porte-greffe** : la sensibilité dépend du porte-greffe. Les bigaradiers, le Poncirus, les citranges et le citrumelo résistent (UF/IFAS HS261, Boccas et Laville 1976).
-Le Volkameriana donne des résultats contradictoires : résistant (UF/IFAS HS261), selon le clone (Boccas et Laville 1976), très sensible dans l'essai de Vanderweyen 1980, où la variété greffée change aussi la sensibilité.
-Un porte-greffe tolérant et une greffe haute sont la meilleure prévention (Vogel 1990, Vanderweyen 1980).
+Le Volkameriana donne des résultats contradictoires : résistant (UF/IFAS HS261), selon le clone (Boccas et Laville 1976), très sensible dans l'essai de Vanderweyen 1980, où le cultivar greffé change aussi la sensibilité.
+Un porte-greffe résistant et une greffe haute sont la meilleure prévention (Vogel 1990, Vanderweyen 1980).
 
 ### Cochenilles
 **Priorité 2.** Fréquentes sous serre, toute l'année.
@@ -191,12 +191,12 @@ ce n'est pas un produit autorisé, il contient 5 % d'huile (contre 1,5 à 2 % po
 
 
 **Gestes** :
-- surveiller les pousses tendres au moment des poussées ; sur pomelo, il est rarement nécessaire d'intervenir (Brun 1990, **une seule source**) ;
+- surveiller les pousses tendres au moment des poussées ; sur pomelo (*C. ×paradisi*), il est rarement nécessaire d'intervenir (Brun 1990, **une seule source**) ;
 - favoriser les auxiliaires (coccinelles, surtout les petites *Scymnus*, chrysopes, syrphes) : la taille et la durée des colonies dépendent de la date d'arrivée des prédateurs,
   il faut qu'ils soient là **dès les premières colonies** (Gómez-Marco 2016, J. Econ. Entomol. 2019).
 
 ### Fumagine
-**Priorité 6.** Un champignon noir qui pousse sur le miellat ; il salit et freine la photosynthèse, mais n'attaque pas la feuille.
+**Priorité 6.** Des champignons noirs qui poussent sur le miellat d'un insecte ; ils salissent et freinent la photosynthèse, mais n'attaquent pas la feuille.
 
 **Signes** : dépôt noir comme de la suie, qui s'essuie, sur les feuilles et les fruits.
 
@@ -254,7 +254,7 @@ La sensibilité comparée des espèces vient d'observations au champ, pas toujou
 ### Aleurode épineux (Aleurocanthus spiniferus)
 **Priorité 9. Organisme de quarantaine** de l'Union européenne : on ne le traite pas seul, on le **signale**.
 
-**Signes** : petites protubérances noires et épineuses sous les feuilles, miellat, fumagine, fourmis.
+**Signes** : points noirs épineux sous les feuilles (larves et nymphes noires hérissées d'épines), miellat, fumagine, fourmis.
 
 ![Aleurode épineux : colonie de pupes sous une feuille](../images/sante-aleurode-epineux.webp)
 
@@ -266,7 +266,7 @@ La sensibilité comparée des espèces vient d'observations au champ, pas toujou
 
 
 **Gestes** :
-- photographier le dessous des feuilles et signaler au service régional de l'alimentation (DRAAF-SRAL), photos jointes (fiche SORE, **une seule source**) ;
+- photographier le dessous des feuilles et signaler à la DRAAF-SRAL (service de l'État) ou à la FREDON de sa région, photos jointes (fiche SORE, **une seule source**) ;
 - en attendant, ne pas déplacer ni donner la plante (précaution du plugin).
 
 Présent en France (continent et Corse), en Italie, en Grèce, en Croatie et ailleurs autour de la Méditerranée (OEPP 2020) ; en Italie depuis 2008, dans les Pouilles (EFSA 2018, OEPP 2020).
@@ -296,12 +296,12 @@ Savons et mouillants ne le contrôlent qu'en partie (Cioffi 2013, **une seule so
 
 **Test de symétrie** : un jaunissement pareil des deux côtés de la nervure centrale est une carence (zinc, magnésium…) ; asymétrique, il est suspect (UF/IFAS PP328, **une seule source** ; les décolorations asymétriques sont aussi décrites par BSV JEVI Corse 2025).
 Le HLB peut se confondre avec un manque de zinc (Sáenz Pérez 2019).
-Asymétrique avec des psylles : signaler à la FREDON.
+Asymétrique avec des psylles : signaler à la DRAAF-SRAL (service de l'État) ou à la FREDON de sa région.
 
 ### Tristeza (absente de Corse en 1990)
 **Priorité 11. Absence à vérifier** : Vogel 1990 la tient hors de Corse par l'interdiction d'importer des plants ; le statut actuel en France n'a pas été vérifié. Le risque vient d'un plant importé.
 Virus transmis par des pucerons et par le matériel végétal (Sáenz Pérez 2019) ; il fait mourir les arbres greffés sur bigaradier (Vogel 1990, Sáenz Pérez 2019) ; aucun moyen curatif contre les virus (Vogel 1990).
-Le pomelo, très sensible, peut aussi décliner sur les autres porte-greffes (Vogel 1990, **une seule source**).
+Le pomelo (*C. ×paradisi*, grapefruit), très sensible, peut aussi décliner sur les autres porte-greffes (Vogel 1990, **une seule source**).
 
 ![Agrume dépérissant (tristeza)](../images/sante-tristeza-declin.webp)
 
@@ -321,8 +321,8 @@ Le pomelo, très sensible, peut aussi décliner sur les autres porte-greffes (Vo
 
 
 **Gestes** : plants et greffons d'origine contrôlée (Vogel 1990, Sáenz Pérez 2019).
-Contre la tristeza, Sáenz Pérez 2019 conseille un porte-greffe tolérant plutôt que le bigaradier (Volkameriana, Cléopâtre…). Mais sous serre la **gommose est le risque n° 1** :
-Poncirus, citranges et citrumelo résistent aux deux ; le Volkameriana donne des résultats contradictoires (voir [Gommose](#gommose-et-pourriture-des-racines-phytophthora)). Choisir le porte-greffe d'abord pour la gommose.
+Contre la tristeza, Sáenz Pérez 2019 conseille un porte-greffe tolérant plutôt que le bigaradier (Volkameriana, Cléopâtre…). Mais sous serre la **gommose est le risque n° 1**.
+Contre la tristeza : Poncirus résistant, citranges et citrumelo tolérants ; tous trois résistants à la gommose. Face à la gommose, le Volkameriana donne des résultats contradictoires (voir [Gommose](#gommose-et-pourriture-des-racines-phytophthora)). Choisir le porte-greffe d'abord pour la gommose.
 
 ## Sources
 Lues en entier, sauf : Whiteside 1971, El-Hamalawi et Menge 1994, Liu et Stansly 2000, Gómez-Marco 2016, J. Econ. Entomol. 2019, Chouikhi 2022, Nigro 2011 (résumés seulement), Migheli 2009 (notice), et l'étude turque de 1996 (connue par la fiche « vérification des sources »). Deux sources du même organisme ne comptent que pour une ; les bulletins de santé du végétal (BSV) sont rédigés par des organismes différents (FREDON PACA, Chambre d'agriculture de Corse, FREDON Corse) mais dans le même réseau.
@@ -361,6 +361,6 @@ Lues en entier, sauf : Whiteside 1971, El-Hamalawi et Menge 1994, Liu et Stansly
 - **TNAU** : Tamil Nadu Agricultural University, maladies des agrumes.
 - **UC IPM** : University of California, *Pest Management Guidelines: Citrus*, fiche *Phytophthora gummosis*.
 - **UF/IFAS HS261, PP328** : University of Florida (HS261 : Futch et Graham, *Field Diagnosis and Management of Phytophthora Diseases* ; PP328 : test du stylo, HLB ou carence). **UF/IFAS 2022** : alcool sur les cochenilles farineuses (vêtements).
-- **Vanderweyen 1980** : influence de la variété sur la sensibilité du porte-greffe à la gommose.
+- **Vanderweyen 1980** : influence du cultivar greffé sur la sensibilité du porte-greffe à la gommose.
 - **Vogel 1990** : Vogel R., maladies des agrumes en Corse (partie II), *Fruits* 45.
 - **Whiteside 1971** : Whiteside J. O., *Phytopathology* 61:1233-1238.

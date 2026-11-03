@@ -45,13 +45,13 @@ Relue toutes les 5 minutes (bouton ↻ pour tout de suite).
 ## Fiche d'une plante
 La fiche se modifie dans la page du plugin (équipement de la plante) ; l'onglet Fiche de la tuile l'affiche.
 - **Nom botanique** : vérifié auprès de GBIF à l'enregistrement (nom retenu, famille, statut).
-- **Rusticité** : température supportée en pleine terre, en °C (« −7 » ou « -7 (FA5) » acceptés). Vide : estimée d'après le groupe
+- **Rusticité** : température minimale supportée par une plante adulte en pleine terre, en °C (« −7 » ou « -7 (FA5) » acceptés). Vide : estimée d'après le groupe
   (voir [Rusticité estimée](identification.md#rusticité-estimée)) et utilisée pour les alertes.
 - **Pot** : forme (rond ou carré), diamètre ou côté, hauteur, hauteur de terre, ou pleine terre. Pour la rusticité, un pot carré de 30 cm de côté
   compte comme un pot rond de 30 cm de Ø ; pour le volume (engrais), on compte bien côté × côté.
 - **Multiplication** (semis, greffe…) et sa date (`2024`, `2024-05` ou `2024-05-12` ; un autre format est ignoré, comme sans date) : l'âge est affiché dans la fiche
   (« ≈ » quand seule l'année est connue). Pour une greffe, préciser le type (voir [Types de greffe](greffe.md#types-de-greffe)).
-- **Engrais** : `semaines | produit | dose` par ligne, semaines ISO : `10-40/2`, `12,16,20`, `48-8`. Un apport prévu n'est annoncé que si l'emplacement est en pousse (sans sonde historisée : calendrier seul) ; sauté par temps froid, il est rattrapé quand la moyenne remonte (voir [Géographie](#géographie)).
+- **Engrais** : `semaines | produit | dose` par ligne, semaines ISO : `10-40/2`, `12,16,20`, `48-8`. Un apport prévu n'est annoncé que si la moyenne sur 7 jours de l'emplacement atteint le zéro de végétation (sans sonde historisée : calendrier seul) ; sauté par temps froid, il est rattrapé quand la moyenne remonte (voir [Géographie](#géographie)).
 - **Plan d'engrais** (partie Engrais) : dose = volume du pot × besoin × intervalle ÷ % N, partagée entre les produits **cochés** (aucun d'office,
   sauf ceux déjà au calendrier) ; un produit à dose d'étiquette garde la sienne (litres × g/L) et les autres se partagent l'azote restant.
   La dose en grammes peut être ajustée à la main avant d'écrire ; celle déjà au calendrier est reprise. « Écrire dans le calendrier » remplace
@@ -83,7 +83,7 @@ cocher celles à envoyer (5 au plus) puis « Pl@ntNet » : une seule demande pou
 Onglet **Mesures** de la fenêtre d'une plante (administrateurs) : choisir l'organe (Plante, Tronc / greffe, Épines, Feuilles, Fleurs, Fruits,
 Racines / pot, Santé), saisir ce qu'on a mesuré, une note et, au besoin, une photo. Tout part au journal en une entrée « Mesure ».
 - Les champs vides sont ignorés ; plusieurs Ø de fruits séparés par des espaces, virgule décimale : `32 35,5 41`.
-- **Rapports calculés** : aile / limbe en longueur (≥ 0,5 = aile très large, typique des papedas) et en largeur (mesurés au plus large) ;
+- **Rapports calculés** : aile / limbe en longueur (≥ 0,5 = aile longue, typique des papedas) et en largeur (mesurés au plus large) ;
   greffon / porte-greffe (bourrelet, incompatibilité).
 - **Courbes** : hauteur, Ø du tronc (greffon, ou tronc d'une plante non greffée), nombre de feuilles, nombre de fruits
   (le total saisi, sinon la somme si noués, en croissance et mûrs sont tous saisis).
@@ -104,10 +104,12 @@ Racines / pot, Santé), saisir ce qu'on a mesuré, une note et, au besoin, une p
 
 ## Greffe
 Tout est dans l'onglet [Greffe](greffe.md) : types, saison de chaque type, marche à suivre et points de contrôle, température, hiver, sources.
-- **Greffer…** (bas de l'onglet Fiche, administrateurs) : la plante reste le porte-greffe, avec le greffon en attente. Quand un œil du greffon est reparti
+- **Greffer…** (bas de l'onglet Fiche, administrateurs) : la plante reste le porte-greffe, avec le greffon en attente. Quand un œil du greffon a débourré
   (confirmé au contrôle), porte-greffe et greffon deviennent une nouvelle plante : le même équipement prend le nom, la fiche et la collection du greffon
   (journal, photos, pot gardés). Greffe morte : la plante reste, ou redevient, le porte-greffe.
-- **Suivi** (greffe de moins de 60 jours) : contrôles à J+21, J+42 puis 4 semaines après le « Oui » qui confirme le départ d'un œil ; le statut n'avance que sur réponse (**Oui**, **Douteux**,
+  **Greffe en pont** (même bouton, type « pont ») : une réparation de l'écorce, pas une multiplication ; la plante garde son nom,
+  sa fiche et sa collection, seul le suivi J+21/J+42 s'applique.
+- **Suivi** (greffe de moins de 60 jours) : contrôles à J+21, J+42 puis 4 semaines après le « Oui » qui confirme le débourrement d'un œil ; le statut n'avance que sur réponse (**Oui**, **Douteux**,
   **Au printemps**, **Non, mort**) ; un contrôle dû remplit la commande « Greffe à contrôler », reprise par le rapport du matin.
 - **Température** : 21-32 °C jusqu'à la soudure (réglable), puis seulement hors gel.
 
@@ -115,23 +117,23 @@ Tout est dans l'onglet [Greffe](greffe.md) : types, saison de chaque type, march
 - **Clé des caractères** (fiche de la plante, dans la page du plugin) : choisir ce qui est observé (folioles, aile du pétiole, boutons floraux, fruit…),
   laisser « non observé » le reste, enregistrer. Le plugin classe les groupes du plus au moins compatible et nomme les caractères en désaccord ;
   « Probable » : un seul groupe sans désaccord, avec au moins 3 accords, tous les autres contredits ; sinon « Indécis entre… ».
-  Groupe seulement, jamais la variété.
+  Groupe seulement, jamais le cultivar.
 - **Identifier…** (bas de la fiche, administrateurs) : Pl@ntNet sur des photos, puis la clé ; un tableau montre chaque champ qui changerait
   (actuel, proposé, source). Rien n'est coché d'office ; **Appliquer** n'écrit que les lignes cochées et le note au journal.
-- Sur un agrume à une foliole greffé sur Poncirus ou un hybride, une pousse à 3 folioles sous la greffe est un rejet du porte-greffe,
+- Sur un agrume à une foliole greffé sur Poncirus ou un hybride de Poncirus (citrange, citrumelo, FA5), une pousse à 3 folioles (sur un jeune plant, 1 ou 2 folioles aussi) sous la greffe est un rejet du porte-greffe,
   à couper (déduction du plugin).
 
 Comment observer, chaque caractère groupe par groupe, la rusticité estimée et les limites : voir la page [Identification](identification.md).
 
 ## Géographie
 Le plugin lit dans Jeedom (Réglages → Système → Configuration) la **latitude** et le **pays** ; rien d'autre à régler.
-- **Saison de l'engrais** : fenêtre de chaque produit (nord : début mars → début octobre) **et** moyenne sur 7 jours de l'emplacement au-dessus du zéro de végétation (≈ 13 °C) ;
-  un apport sauté par temps froid est rattrapé quand la moyenne remonte ; deux jours chauds en hiver ne changent rien. Au sud, fenêtre décalée de 6 mois (saisie toujours en semaines du nord ; plan déjà écrit : le réécrire). Détail : [La saison](fertilisation.md#la-saison).
-- **Emplacement chauffé** (salle de bains, véranda chauffée…) : hors de la fenêtre du produit, l'engrais continue au même rythme **à demi-dose** (dose du calendrier divisée par 2 dans l'annonce), tant que la moyenne sur 7 jours de la pièce atteint le zéro de végétation (sonde historisée nécessaire). Pas pour un jeune plant (moins d'un an, ou greffe en cours de suivi) : rien hors de la fenêtre, même au chaud (pas d'engrais l'hiver : 2 sources ; excès d'azote nuisible au jeune plant : Niu 2024, une seule source). Choix du plugin : aucune de nos sources ne traite d'un agrume en pièce chauffée l'hiver.
-- **Repos hivernal au frais** (case de la plante) : pas d'engrais hors de la fenêtre des produits (toute l'année), même en emplacement chauffé ; de novembre à février (mai à août au sud), la plante est signalée ⚠ (liste et fiche, pas le rapport du matin) si elle est dans un emplacement marqué chauffé. Choix du plugin.
-- **Greffe « Au printemps »** : contrôle le 15 mars au nord, le 15 septembre au sud, avancé si l'emplacement est déjà assez chaud (choix du plugin).
+- **Saison de l'engrais** : période d'apport de chaque produit (nord : début mars → début octobre) **et** moyenne sur 7 jours de l'emplacement au-dessus du zéro de végétation (≈ 13 °C) ;
+  un apport sauté par temps froid est rattrapé quand la moyenne remonte ; deux jours chauds en hiver ne changent rien. Au sud, période d'apport décalée de 6 mois (saisie toujours en semaines du nord ; plan déjà écrit : le réécrire). Détail : [La saison](fertilisation.md#la-saison).
+- **Emplacement chauffé** (salle de bains, véranda chauffée…) : hors de la période d'apport du produit, l'engrais continue au même rythme **à demi-dose** (dose du calendrier divisée par 2 dans l'annonce), tant que la moyenne sur 7 jours de la pièce atteint le zéro de végétation (sonde historisée nécessaire). Pas pour un jeune plant (moins d'un an, ou greffe en cours de suivi) : rien hors de la période d'apport, même au chaud (pas d'engrais l'hiver : 2 sources ; excès d'azote nuisible au jeune plant : Niu 2024, une seule source). Choix du plugin : aucune de nos sources ne traite d'un agrume en pièce chauffée l'hiver.
+- **Repos hivernal au frais** (case de la plante) : jamais d'engrais hors de la période d'apport, même en emplacement chauffé ; et de novembre à février (mai à août au sud), la plante est signalée ⚠ (liste et fiche, pas le rapport du matin) si elle est dans un emplacement marqué chauffé. Choix du plugin.
+- **Greffe « Au printemps »** : contrôle le 15 mars au nord, le 15 septembre au sud (plus tôt si l'emplacement est assez chaud) (choix du plugin).
 - **Santé** : statuts de présence donnés pour la France, périodes pour l'hémisphère nord ; ailleurs, la fiche le signale. Détail : [Santé](sante.md).
-- **Rusticité et alertes froid** : mesurées par les sondes de chaque emplacement, donc valables partout.
+- **Rusticité et alertes froid** : températures mesurées par les sondes de chaque emplacement ; la rusticité vient de la fiche. Valables partout.
 Latitude ou pays absents : le plugin fait comme pour la France, hémisphère nord (pays : `FR`, `FRA` ou `France`).
 
 ## Exporter, importer

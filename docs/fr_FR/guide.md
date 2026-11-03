@@ -17,7 +17,7 @@ les gravures montrent souvent une autre plante qu'un agrume, ce qui est dit sous
 3. Couper le **bourgeon du bout** réveille les bourgeons de côté : c'est la base de la taille ([La tige et les bourgeons](#la-tige-et-les-bourgeons)).
 4. Une carence se lit sur **les vieilles feuilles** (azote, magnésium, potassium…) ou sur **les jeunes pousses** (fer, zinc, manganèse…) ([Nourrir la plante](#nourrir-la-plante) ; trois sources concordent : voir [Reconnaître une carence](fertilisation.md#reconnaître-une-carence)).
 5. Le fruit est l'**ovaire** de la fleur qui a mûri ; chez les agrumes, on l'appelle **hespéride** (**une seule source**) ([La fleur et le fruit](#la-fleur-et-le-fruit)).
-6. Un **pépin** d'agrume donne souvent un plant identique à la mère (pas chez le cédratier ni le pamplemoussier), mais jeune et épineux pendant des années ; greffe, bouture et marcotte copient la mère et peuvent transmettre ses maladies ([Multiplier les agrumes](#multiplier-les-agrumes)).
+6. Un **pépin** d'agrume donne souvent un plant identique à la mère (pas chez le cédratier ni le pamplemoussier, *C. maxima*), mais jeune et épineux pendant des années ; greffe, bouture et marcotte copient la mère et peuvent transmettre ses maladies ([Multiplier les agrumes](#multiplier-les-agrumes)).
 
 ## La plante
 
@@ -123,7 +123,7 @@ De l'extérieur vers le centre :
   Shipunov cite l'hespéride à côté de la baie parmi les fruits charnus (p. 166), et l'orange parmi les fruits charnus (p. 164).
 - **Zeste (flavédo)** : la couche colorée de l'écorce, avec les huiles essentielles.
 - **Albédo** : la partie blanche et spongieuse dessous.
-- **Quartiers** : chacun est un **carpelle**, une pièce du pistil, rempli de vésicules de jus.
+- **Quartiers (loges)** : chacun est un **carpelle**, une pièce du pistil, rempli de vésicules de jus.
 
 (Wikipédia « Hesperidium » et « Citrus », **une seule source** : l'encyclopédie.) Les quartiers servent à l'[identification](identification.md).
 
@@ -138,16 +138,18 @@ De l'extérieur vers le centre :
   Le classement « éléments secondaires » (Ca, Mg, S) des étiquettes d'engrais n'est pas dans ce manuel, qui les met avec les macroéléments.
 - Un manque se voit par une pousse lente ou une **chlorose**, un jaunissement des feuilles (OpenStax p. 904, **une seule source**).
 - **Éléments mobiles** : la plante les déplace vers ce qui pousse ; quand ils manquent, les **vieilles feuilles** jaunissent d'abord. Ce sont N, P, K, Mg, S (UF/IFAS HS1373).
+  Chez les agrumes, le soufre bouge pourtant peu : son manque se voit d'abord sur les **jeunes feuilles**, celui d'azote sur les vieilles (déduction du plugin, voir [Reconnaître une carence](fertilisation.md#reconnaître-une-carence)).
   Pour l'azote des agrumes : UF/IFAS SS420. Le nickel est mobile lui aussi (UF/IFAS SS618).
 - **Éléments immobiles** : ils restent où ils sont ; le manque se voit d'abord sur les **jeunes pousses**. Ce sont Ca, Fe, Zn, Cu, Mn, B, Mo (UF/IFAS HS1373).
+  Exception chez les agrumes : le manque de molybdène donne des taches jaunes (« yellow spot ») sur les **feuilles adultes** (UF/IFAS SS618, **une seule source**).
 - Ces fiches viennent toutes de l'université de Floride : elles comptent pour **une seule source**. Les carences des agrumes, avec plusieurs sources, sont dans [Reconnaître une carence](fertilisation.md#reconnaître-une-carence).
 
 ## Les noms
 
 - Les rangs vont du **règne** à l'**espèce** : embranchement, classe, ordre, famille, **genre**, espèce (OpenStax p. 514 ; Shipunov p. 20).
-- Le nom d'une espèce a deux mots : le **genre**, avec une majuscule, puis l'**épithète**, en minuscule : *Poncirus trifoliata* (Shipunov p. 23-24 ; OpenStax p. 514). Les deux s'écrivent en italique (OpenStax p. 514, **une seule source**).
+- Le nom d'une espèce a deux mots : le **genre**, avec une majuscule, puis l'**épithète**, en minuscule : *Citrus trifoliata* (anciennement *Poncirus trifoliata*) (Shipunov p. 23-24 ; OpenStax p. 514). Les deux s'écrivent en italique (OpenStax p. 514, **une seule source**).
 - Un **hybride** se marque d'un signe × (Shipunov p. 24, **une seule source** ; exemple de Shipunov : *Prunus ×domestica*, le prunier).
-- Un **cultivar** est une catégorie sous l'espèce (Shipunov p. 23) ; OpenStax emploie aussi le mot (p. 929) ; il s'écrit entre guillemets simples (Shipunov p. 23, **une seule source**), par exemple *Poncirus trifoliata* 'Flying Dragon'.
+- Un **cultivar** est une plante sélectionnée et nommée en culture (code international des plantes cultivées), à ne pas confondre avec la variété botanique (var.) ; c'est une catégorie sous l'espèce (Shipunov p. 23) ; OpenStax emploie aussi le mot (p. 929) ; il s'écrit entre guillemets simples (Shipunov p. 23, **une seule source**), par exemple *Citrus trifoliata* 'Flying Dragon'.
 - Dans le plugin : champs « Nom botanique » et « Cultivar » de la fiche ; le nom est vérifié auprès de GBIF ([Mode d'emploi](index.md)).
 
 ## Multiplier
@@ -174,7 +176,7 @@ Détail et sources dans les paragraphes ci-dessous. Le tableau résume, il n'ajo
 ### Semis
 
 - **Pépins à plusieurs embryons** (polyembryonnés) : chez beaucoup d'agrumes, un pépin contient en général un embryon issu de la fécondation et un ou plusieurs embryons **nucellaires**, formés à partir des tissus de la mère ; ceux-ci donnent des plants **identiques à la mère** (Curk 2022 p. 56 et lexique p. 345 ; UF/IFAS HS1309 p. 1-2 ; de Rocca Serra 1992 p. 119).
-  Exception : le cédratier et le pamplemoussier n'ont que des pépins à un seul embryon, donc des semis hybrides (de Rocca Serra 1992 p. 119 ; pépins « monoembryonnés » : Curk 2022 p. 190 et lexique).
+  Exception : le cédratier et le pamplemoussier (*C. maxima*) n'ont que des pépins à un seul embryon, donc des semis hybrides (de Rocca Serra 1992 p. 119 ; pépins « monoembryonnés » : Curk 2022 p. 190 et lexique).
 - Le plant issu de la fécondation est un **hybride**, différent de la mère et souvent moins vigoureux : en pépinière, on l'élimine au repiquage ou au greffage (UF/IFAS HS1309 p. 1-2 ; Curk 2022 p. 197-199 ; de Rocca Serra 1992 p. 119).
   Moins un pépin a d'embryons, plus ce risque est grand : en moyenne 1,1 à 1,5 embryon par pépin chez le citronnier Volkamer, 1,5 à 2 chez le Poncirus, 3 à 4 chez le bigaradier (principe : Curk 2022 p. 197 et de Rocca Serra 1992 p. 119 ; chiffres : Curk 2022 p. 197, **une seule source**).
   Un plant de semis peut aussi être un hybride, même chez une espèce à plusieurs embryons : c'est ainsi qu'est née la clémentine, dans un semis de pépins de mandarine (Curk 2022 p. 68, **une seule source**).
@@ -201,7 +203,7 @@ Détail et sources dans les paragraphes ci-dessous. Le tableau résume, il n'ajo
   tremper la base dans une hormone de bouturage ; garder la bouture **à l'étouffée** (enceinte close ou brumisation) jusqu'aux racines, qui viennent en quelques semaines.
   Une mini-serre peut servir d'enceinte close (idée du plugin, non sourcée).
 - Comme la greffe, la bouture et la marcotte transmettent les maladies de la plante mère : risque bien plus élevé que par la graine (Curk 2022 p. 198 ; boutures prises sur plantes saines certifiées : UF/IFAS HS1309).
-- Limites : une bouture ne fait pas de pivot profond et s'ancre mal (Curk 2022 p. 186) ; la plupart des variétés sur leurs propres racines craignent les *Phytophthora* (Curk 2022 p. 187 ; voir [Santé](sante.md)).
+- Limites : une bouture ne fait pas de pivot profond et s'ancre mal (Curk 2022 p. 186) ; la plupart des cultivars sur leurs propres racines craignent les *Phytophthora* (Curk 2022 p. 187 ; voir [Santé](sante.md)).
   En Corse, les cédratiers bouturés avaient des racines peu profondes et fragiles, au vent, au froid, aux nématodes et aux *Phytophthora* (Curk 2022 p. 95) : les deux constats viennent du même livre, **une seule source**.
 
 ### Marcotte

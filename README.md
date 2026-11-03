@@ -8,7 +8,7 @@ rappels d'engrais, mesures et courbes, photos, identification par [Pl@ntNet](htt
 
 ## Fonctions
 - **Collections** (une tuile par collection) et **plantes** rangées dedans, déplaçables d'un emplacement à l'autre.
-- **Alerte froid** : rusticité de l'espèce corrigée par l'âge et la taille du pot, comparée à la température des sondes de l'emplacement.
+- **Alerte froid** : rusticité de la plante corrigée par l'âge et la taille du pot, comparée à la température des sondes de l'emplacement.
 - **Engrais** : plan par plante selon les produits que vous avez, la saison et le volume du pot ; rappels sur la tuile.
 - **Greffes** : marche à suivre par type, contrôle à J+21 et J+42.
 - **Journal unique** des travaux, utilisable dans les scénarios ; commandes info pour chaque plante.

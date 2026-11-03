@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.27 (2026-11-03)
+- Pulpe : deux caractères d'identification, « Saveur de la pulpe » (douce, acide, amère) et « Aspect de la pulpe » (en vésicules, en perles, presque absente).
+  Mise à jour : une pulpe saisie « en perles » ou « presque absente » passe dans l'aspect (un aspect déjà saisi est gardé), la saveur reste à « – ».
+- Greffe en pont : c'est une réparation de l'écorce, plus une multiplication. La plante garde son nom, sa fiche et sa collection ; le suivi J+21 / J+42 reste.
+  « Greffer… » ne demande alors ni nom ni collection ; le pont n'est plus proposé dans « ＋ Plante ».
+  Mise à jour : un pont en attente redevient une réparation de la plante, avec son suivi.
+- Greffe : un œil « débourre » (au lieu de « repart ») ; forcer un œil = entailler le porte-greffe aux 2/3 au-dessus de l'œil et coucher le haut,
+  puis couper à environ 1 cm au-dessus de l'œil une fois que l'œil pousse. « Au printemps » : contrôle le 15 mars, plus tôt si l'emplacement est assez chaud.
+- Engrais : « période d'apport » (les semaines d'un produit) et « saison de pousse » (la condition de température) ; « hors période d'apport » dans les rappels.
+- Identification : « Longueur de l'aile (comparée au limbe) » courte, moyenne ou longue, et « Largeur de l'aile (comparée au limbe) » ; boutons « teintés de pourpre ou de rose » ;
+  noms de groupes « Pomelo (C. ×paradisi), pamplemousse (C. maxima) » et « Hybride de Poncirus (citrange, citrumelo, FA5) » ;
+  noms botaniques reconnus en plus : C. deliciosa (mandarine), cultivars d'orange douce et paradisi sous C. ×aurantium.
+- Vocabulaire : pomelo = *C. ×paradisi*, pamplemousse = *C. maxima* ; nom accepté d'abord (*Citrus trifoliata*, *Citrus japonica*), ancien nom entre parenthèses ;
+  « cultivar » au lieu de « variété » ; « quartiers (loges) » ; rusticité = température minimale supportée par une plante adulte en pleine terre.
+- Santé : Phytophthora est un oomycète ; porte-greffe résistant (gommose) ou tolérant (tristeza) ; organisme réglementé à signaler à la DRAAF-SRAL ou à la FREDON de sa région ;
+  fumagine et signes de l'aleurode épineux précisés.
+- Carences : jeunes feuilles pâles d'abord → soufre, vieilles feuilles → azote ; molybdène (« yellow spot » sur feuilles adultes) dans la notice.
+
 ## 0.26 (2026-11-03)
 - « Greffer… » : la plante reste le porte-greffe tant qu'aucun œil du greffon n'est reparti ; le greffon attend dans la fiche (« greffon en attente »).
   Au contrôle qui confirme le départ d'un œil, porte-greffe et greffon deviennent une nouvelle plante (même équipement : nom, fiche et collection du greffon).
