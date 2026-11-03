@@ -111,7 +111,6 @@ try {
   if ($a == 'accepter') ajax::success($eq(init('id'), 'plante')->accepter($liste('champs'), $liste('sources')));
   if ($a == 'plan') ajax::success($eq(init('id'), 'plante')->ecrirePlan($liste('parts'), $liste('doses')));
   if ($a == 'controler') ajax::success($eq(init('id'), 'plante')->controlerGreffe((string)init('verdict'), (string)init('note')));
-  if ($a == 'degreffer') ajax::success($eq(init('id'), 'plante')->degreffer($eq(init('collection'), 'collection'), init('nom')));
   if ($a == 'greffer') ajax::success(journalcultures::creer($eq(init('collection'), 'collection'), $liste('plante'), $eq(init('id'), 'plante')));
 
   throw new Exception(__('Aucune méthode correspondante à', __FILE__) . ' : ' . $a);

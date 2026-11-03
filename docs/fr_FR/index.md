@@ -104,11 +104,12 @@ Racines / pot, Santé), saisir ce qu'on a mesuré, une note et, au besoin, une p
 
 ## Greffe
 Tout est dans l'onglet [Greffe](greffe.md) : types, saison de chaque type, marche à suivre et points de contrôle, température, hiver, sources.
-- **Greffer…** (bas de l'onglet Fiche, administrateurs) : le porte-greffe devient le greffon, sur le même équipement (journal, photos, pot gardés).
+- **Greffer…** (bas de l'onglet Fiche, administrateurs) : le porte-greffe reste lui-même, avec le greffon en attente. Quand un œil du greffon est reparti
+  (confirmé au contrôle), porte-greffe et greffon deviennent une nouvelle plante : le même équipement prend le nom, la fiche et la collection du greffon
+  (journal, photos, pot gardés). Greffe morte : la plante reste, ou redevient, le porte-greffe.
 - **Suivi** (greffe de moins de 60 jours) : contrôles à J+21, J+42 puis 4 semaines après avoir répondu « débourré » ; le statut n'avance que sur réponse (**Oui**, **Douteux**,
   **Au printemps**, **Non, mort**) ; un contrôle dû remplit la commande « Greffe à contrôler », reprise par le rapport du matin.
 - **Température** : 21-32 °C jusqu'à la soudure (réglable), puis seulement hors gel.
-- **Redevenir porte-greffe…** : annule une greffe échouée.
 
 ## Identification (agrumes)
 - **Clé des caractères** (fiche de la plante, dans la page du plugin) : choisir ce qui est observé (folioles, aile du pétiole, boutons floraux, fruit…),

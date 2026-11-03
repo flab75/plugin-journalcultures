@@ -168,25 +168,33 @@ c'est la sève du porte-greffe qui décide, pas le calendrier. La saison du type
 
 ## Dans le plugin
 
-**Greffer…** (bas de l'onglet Fiche, administrateurs) : la plante, en général un porte-greffe, devient le greffon. Même formulaire que « ＋ Plante » :
+**Greffer…** (bas de l'onglet Fiche, administrateurs) : saisit la greffe faite sur cette plante, le porte-greffe. Même formulaire que « ＋ Plante » :
 - **greffon** choisi parmi nos plantes des autres collections (nom botanique, cultivar et caractères recopiés, nom proposé « greffon sur porte-greffe »)
   ou écrit à la main (nouveau cultivar) ;
-- nouveau nom, nom botanique du greffon, collection (par défaut l'actuelle : choisir la collection du greffon), type et date de greffe ;
+- **nom après reprise** (celui de la future plante), nom botanique du greffon, **collection après reprise** (par défaut l'actuelle : choisir celle du greffon), type et date de greffe ;
 - le porte-greffe est déduit du nom (Poncirus, Flying Dragon, FA5…), modifiable.
 
-C'est le **même équipement** : journal, photos, pot, emplacement, courbes et champ « Sol » sont gardés (ce sont toujours ses racines) ;
-le reste de la fiche, les caractères observés et la photo d'étiquette, qui décrivaient le porte-greffe, sont vidés. Une entrée « Greffe » est ajoutée au journal.
+**Tant qu'aucun œil n'est reparti**, la plante **reste le porte-greffe** : son nom, sa fiche et sa collection ne changent pas ; la fiche indique
+le greffon en attente. L'alerte de froid se règle sur le plus fragile des deux (rusticité et jeunesse du greffon, ou du porte-greffe) et l'engrais sur une jeune greffe (choix du plugin). Une entrée « Greffe » est ajoutée au journal.
 
-Le suivi démarre pour une greffe de **moins de 60 jours** : par « Greffer… » (date partielle ou vide : la date du jour est écrite), ou par « ＋ Plante » avec une date complète.
-Les contrôles comptent depuis la date de greffe. Regreffer une greffe pas prise efface son suivi ; « Redevenir porte-greffe… » rend toujours le porte-greffe d'origine.
+**Au départ d'un œil**, confirmé au contrôle (réponse « Oui » qui fait passer à *pousse du greffon* ; pont : à *reprise*), porte-greffe et greffon deviennent
+**une nouvelle plante**. C'est le **même équipement** : journal, photos, pot, emplacement, courbes et champ « Sol » sont gardés (ce sont toujours ses racines) ;
+il prend le nom, la collection et la fiche du greffon ; le reste de la fiche, les caractères observés et la photo d'étiquette, qui décrivaient le porte-greffe,
+sont remplacés par ceux du greffon (vides s'il n'en a pas). Le champ « Porte-greffe » du greffon reçoit le nom du porte-greffe s'il est laissé vide. Le journal note le changement.
 
-**Redevenir porte-greffe…** (greffe échouée) : rend le nom, la collection et la fiche d'avant la greffe, gardés par « Greffer… ».
-Greffe faite avant la version 0.10 : nom (proposé d'après le champ Porte-greffe) et collection à choisir, la fiche est vidée.
+**Greffe morte** (« Non, mort ») : le suivi s'arrête. Avant le départ d'un œil, la plante reste le porte-greffe et le greffon en attente est oublié ; après (la pousse meurt),
+elle **redevient le porte-greffe** : nom, collection et fiche d'avant le départ de l'œil (si ce nom est pris entre-temps, la réponse est refusée : renommer d'abord).
+
+Le suivi démarre pour une greffe de **moins de 60 jours** : par « Greffer… » (date partielle ou vide : la date du jour est écrite), ou par « ＋ Plante » avec une date complète
+(plante déjà greffée, achetée ou greffée ailleurs : elle est déjà le greffon, rien ne change à la reprise). Les contrôles comptent depuis la date de greffe.
+Greffe de **plus de 60 jours** saisie par « Greffer… » : considérée comme prise, la plante devient le greffon tout de suite, sans suivi.
+Regreffer une greffe pas encore partie remplace le greffon en attente : à la même date de greffe, c'est une correction et le suivi continue ;
+à une autre date, le suivi recommence. Pendant la *pousse du greffon*, regreffer est refusé : répondre d'abord au contrôle (reprise ou échec).
 
 ## Suivi et points de contrôle
 
 **Statut** : *en attente* → *probablement prise* → *pousse du greffon* → *reprise*, ou *œil dormant jusqu'au printemps* (puis *pousse du greffon*),
-ou *échouée* ; pont : *probablement prise* → *reprise*.
+ou greffe morte (le suivi s'arrête, sans statut) ; pont : *probablement prise* → *reprise*, et la plante devient le greffon à la reprise.
 
 ![Suivi d'une greffe](../images/greffe-suivi.svg)
 
@@ -213,7 +221,7 @@ de Californie : le bourgeon, plus que le calendrier, décide.
 - **Au printemps** (à J+42 seulement, sauf pont) : œil vivant (vert, gonflé) laissé dormant, pour une greffe d'automne ; à J+42 la soudure est considérée comme faite (choix du plugin ; elle demande 3-4 semaines au printemps, 6-8 sinon : UC Ventura, **une seule source**) ; contrôle le 15 mars (15 septembre dans l'hémisphère sud),
   avancé jusqu'à 8 semaines si la moyenne sur 7 jours de l'emplacement dépasse déjà 13 °C (seuil réglable, sonde historisée), au plus tôt 4 semaines après la réponse (choix du plugin) ;
   au contrôle, rabattre le porte-greffe au-dessus de l'œil ;
-- **Non, mort** (deux clics) : *échouée*.
+- **Non, mort** (deux clics) : greffe morte ; la plante reste, ou redevient, le porte-greffe, et le suivi s'arrête (le journal garde la trace).
 
 Un contrôle dû remplit la commande « Greffe à contrôler », reprise par le rapport du matin.
 

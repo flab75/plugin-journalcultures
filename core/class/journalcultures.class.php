@@ -186,13 +186,11 @@ class journalcultures extends eqLogic {
     $e = (string)$this->getConfiguration('emplacement'); $L = self::emplacements();
     $s = $L[$e] ?? ['', '', '']; $inconnu = $e !== '' && !isset($L[$e]); // renommé ou retiré de la configuration
     $t = self::lire($s[0]); $h = self::lire($s[1]); $tmin = self::lire($s[2], 36); // une prévision peut rester identique longtemps
-    $r = $this->getConfiguration('rusticite'); $est = null; // fiche sans rusticité : estimée d'après le groupe (nom botanique ou caractères)
-    if (journalcultures_calc::nombre($r) === null && ($est = journalcultures_calc::estimee($this->getConfiguration('bota'), $this->caracteres()))) $r = $est['r'];
-    $reff = journalcultures_calc::rusticite($r, $this->pot(),
-      max(0, self::reglage('k', 50)), max(0, self::reglage('pmax', 8)));
-    $jeu = journalcultures_calc::jeunesse((string)$this->getConfiguration('multiplication'), $this->getConfiguration('date_mult'),
-      self::reglage('jeune', 6), self::reglage('jeune_ans', 5));
-    if ($reff !== null) $reff = round($reff + $jeu, 1);
+    [$reff, $est, $jeu] = $this->reff((array)$this->getConfiguration()); $dugf = false;
+    if (is_array($gf = $this->getConfiguration('greffe_greffon'))) { // greffon en attente : alerte réglée sur le plus fragile des deux (choix du plugin)
+      $g = $this->reff($gf);
+      if ($g[0] !== null && ($reff === null || $g[0] > $reff)) { [$reff, $est, $jeu] = $g; $dugf = true; }
+    }
     $al = journalcultures_calc::alerte($reff, $t, $tmin, self::reglage('marge', 3));
     $sans = trim($s[0]) === '' && trim($s[2]) === ''; // emplacement sans sonde (Maison…)
     if ($inconnu) { // on ne sait plus où elle est : on garde l'alerte, on le dit
@@ -214,7 +212,7 @@ class journalcultures extends eqLogic {
       if (!array_filter($notes, function ($n) use ($prod) { return trim((string)$n['note']) === '' || preg_match('/(?<![\p{L}\d])' . preg_quote($prod, '/') . '(?![\p{L}\d])/iu', $n['note']); })) $eng[] = $lib; // ce produit (mot entier) ou un apport sans note, depuis la semaine prévue
     }
     while (count($eng) > 1 && mb_strlen(implode(' ; ', $eng)) > 120) array_pop($eng); // coupé au produit près : la note de la coche garde des noms entiers
-    return ['empl' => $e, 't' => $t, 'h' => $h, 'tmin' => $tmin, 'reff' => $reff, 'jeunesse' => $jeu, 'estimee' => $est, 'alerte' => $al['alerte'] ?? null, 'raison' => $al['raison'] ?? '',
+    return ['empl' => $e, 't' => $t, 'h' => $h, 'tmin' => $tmin, 'reff' => $reff, 'jeunesse' => $jeu, 'du_greffon' => $dugf, 'estimee' => $est, 'alerte' => $al['alerte'] ?? null, 'raison' => $al['raison'] ?? '',
       'engrais' => mb_substr(implode(' ; ', $eng), 0, 120), 'greffe' => ($g = $this->suiviGreffe()) ? implode(' ; ', array_filter([$g['du'] ? $g['question'] : '', $g['temp']])) : ''];
   }
 
@@ -477,48 +475,71 @@ class journalcultures extends eqLogic {
   }
 
   /* Nouvelle plante saisie dans la tuile (« ＋ Plante ») : dans la collection et son objet, masquée du dashboard comme les autres → id */
-  /* « Greffer… » ($pg = porte-greffe) : la même plante devient le greffon (même id : journal, photos, pot, emplacement, courbes gardés) ;
-     fiche, caractères observés et étiquette décrivaient le porte-greffe et sont vidés, sauf le sol (ce sont toujours ses racines). */
+  /* « Greffer… » ($pg = porte-greffe) : le porte-greffe reste lui-même ; le greffon (nom, collection, fiche) attend dans greffe_greffon.
+     La plante n'en prend l'identité qu'au départ d'un œil, confirmé au contrôle (controlerGreffe) ; greffe morte : il reste porte-greffe.
+     Greffe datée de plus de 60 jours (saisie après coup) : déjà prise, l'identité change tout de suite. */
   public static function creer(journalcultures $coll, array $in, ?journalcultures $pg = null) {
     $nom = journalcultures_calc::texte($in['nom'] ?? '', 120);
     if ($nom === '') throw new Exception(__('Nom de la plante obligatoire', __FILE__));
     if ($pg) $in['multiplication'] = 'greffe'; // avant nouvelle() : sinon le type de greffe est écarté
     $c = journalcultures_calc::nouvelle($in, array_map('strval', array_keys(self::emplacements()))); // contrôlé avant toute écriture ; strval : un nom « 2 » devient une clé entière
-    foreach (eqLogic::byObjectId($coll->getObject_id(), false) as $e) if (mb_strtolower($e->getName()) == mb_strtolower($nom) && (!$pg || $e->getId() != $pg->getId())) // tous plugins : nom unique par objet
-      throw new Exception(__('Un équipement de cet objet porte déjà ce nom', __FILE__));
-    if ($pg) {
-      if (!$pg->getIsEnable()) throw new Exception(__('Plante désactivée', __FILE__));
-      $p = $pg; $avant = $pg->getName();
-      if (!(in_array((string)$pg->getConfiguration('greffe_statut'), ['echouee', 'attente', 'probable', 'dormant', 'pousse'], true) && is_array($pg->getConfiguration('greffe_avant'))))
-        $p->setConfiguration('greffe_avant', self::instantane($pg)); // « Redevenir porte-greffe » si la greffe échoue ; regreffe d'une greffe pas prise : garder la fiche du vrai porte-greffe
-      try { $c['date_mult'] = journalcultures_calc::date($c['date_mult'] ?? ''); } catch (Exception $x) { $c['date_mult'] = date('Y-m-d'); } // partielle (2026-05) ou absente : aujourd'hui, écrit (suivi, jeunesse, engrais du jeune plant)
-      foreach (array_merge(array_diff(array_keys(self::FICHE), ['sol']), ['etiquette', 'type_greffe', 'date_mult', 'greffe_statut', 'greffe_controle', 'greffe_rep']) as $k) $p->setConfiguration($k, ''); // suivi d'une greffe précédente : effacé
-      foreach (array_keys(journalcultures_calc::CARACTERES) as $k) $p->setConfiguration('id_' . $k, '');
-    } else {
-      $p = new journalcultures();
-      $p->setEqType_name('journalcultures'); $p->setIsEnable(1); $p->setIsVisible(0); $p->setConfiguration('type', 'plante');
-    }
+    self::nomLibre($coll->getObject_id(), $nom, $pg ? $pg->getId() : null);
+    if ($pg) return $pg->greffer($coll, $nom, $c, journalcultures_calc::texte($in['greffon'] ?? '', 120));
+    $p = new journalcultures();
+    $p->setEqType_name('journalcultures'); $p->setIsEnable(1); $p->setIsVisible(0); $p->setConfiguration('type', 'plante');
     $p->setName($nom); $p->setObject_id($coll->getObject_id()); $p->setConfiguration('collection', $coll->getId());
     foreach ($c as $k => $v) $p->setConfiguration($k, $v);
     try { $jg = journalcultures_calc::date($c['date_mult'] ?? ''); } catch (Exception $x) { $jg = null; }
-    if (($c['multiplication'] ?? '') == 'greffe' && $jg && $jg >= date('Y-m-d', strtotime('-60 days'))) { // greffe récente : contrôles du bourgeon
+    if (($c['multiplication'] ?? '') == 'greffe' && $jg && $jg >= date('Y-m-d', strtotime('-60 days'))) { // plante achetée ou greffée ailleurs, greffe récente : contrôles du bourgeon (déjà le greffon : pas de bascule)
       $p->setConfiguration('greffe_statut', 'attente');
       $p->setConfiguration('greffe_controle', date('Y-m-d', strtotime($jg . ' +' . journalcultures_calc::GREFFE_JOURS['attente'] . ' days')));
     }
-    try { $p->save(); } catch (Exception $x) { // ponytail: l'index unique du core ignore aussi les accents (« Cedrat » = « Cédrat »)
-      if (strpos($x->getMessage(), 'Duplicate') !== false) throw new Exception(__('Un équipement de cet objet porte déjà ce nom', __FILE__));
+    $p->sauver(); // preSave : identification, GBIF si nom botanique ; postSave : commandes, tuile de la collection
+    return (int)$p->getId();
+  }
+
+  private static function nomLibre($objet, $nom, $sauf = null) { // tous plugins : nom unique par objet
+    foreach (eqLogic::byObjectId($objet, false) as $e) if (mb_strtolower($e->getName()) == mb_strtolower($nom) && $e->getId() != $sauf)
+      throw new Exception(sprintf(__('Un équipement de cet objet porte déjà le nom « %s »', __FILE__), $nom));
+  }
+  private function sauver() {
+    try { $this->save(); } catch (Exception $x) { // ponytail: l'index unique du core ignore aussi les accents (« Cedrat » = « Cédrat »)
+      if (strpos($x->getMessage(), 'Duplicate') !== false) throw new Exception(sprintf(__('Un équipement de cet objet porte déjà le nom « %s »', __FILE__), $this->getName()));
       throw $x;
     }
-    // save : preSave : identification, GBIF si nom botanique ; postSave : commandes, tuile de la collection (et l'ancienne si greffe)
-    if ($pg) try { // greffe déjà enregistrée : une erreur ici ne doit pas la faire refaire (« X greffé sur X »)
-      $nom = $p->getName(); // nettoyé par le core (# [ ] & % retirés)
-      self::inserer(['date' => $c['date_mult'], 'plante_id' => $p->getId(), 'plante' => $nom,
-        'lieu' => (string)$p->getConfiguration('emplacement'), 'action' => 'Greffe', 'note' => sprintf(__('%s greffé sur %s (%s)', __FILE__),
-          implode(' ', array_filter([$c['bota'] ?? '', $c['cultivar'] ?? '', $nom !== ($c['bota'] ?? '') ? '« ' . $nom . ' »' : ''])), $avant,
+  }
+
+  private function greffer(journalcultures $coll, $nom, array $c, $source) {
+    if (!$this->getIsEnable()) throw new Exception(__('Plante désactivée', __FILE__));
+    $s = (string)$this->getConfiguration('greffe_statut'); $ga = $this->getConfiguration('greffe_greffon');
+    if ($s == 'pousse') throw new Exception(__('Greffe en train de pousser : répondre d\'abord à son contrôle (reprise ou échec)', __FILE__)); // sinon le vrai porte-greffe serait perdu
+    try { $c['date_mult'] = journalcultures_calc::date($c['date_mult'] ?? ''); } catch (Exception $x) { $c['date_mult'] = date('Y-m-d'); } // partielle (2026-05) ou absente : aujourd'hui (suivi, jeunesse, engrais du jeune plant)
+    $gf = ['nom' => $nom, 'collection' => $coll->getId()] + array_intersect_key($c, array_flip(self::identite()));
+    if (trim($gf['porte_greffe'] ?? '') === '') $gf['porte_greffe'] = $this->getName();
+    $pg = $this->getName(); $recente = $c['date_mult'] >= date('Y-m-d', strtotime('-60 days'));
+    $this->setConfiguration('greffe_avant', null); // greffe précédente : son retour en arrière n'a plus lieu d'être
+    $this->setConfiguration('greffe_greffon', $gf);
+    $garde = is_array($ga) && ($ga['date_mult'] ?? '') === $c['date_mult'] && in_array($s, ['attente', 'probable', 'dormant'], true); // greffon en attente corrigé (même date) : suivi gardé
+    if ($garde) {
+    } elseif ($recente) {
+      $this->setConfiguration('greffe_rep', ''); // contrôles du bourgeon ; la plante reste le porte-greffe d'ici là
+      $this->setConfiguration('greffe_statut', 'attente');
+      $this->setConfiguration('greffe_controle', date('Y-m-d', strtotime($c['date_mult'] . ' +' . journalcultures_calc::GREFFE_JOURS['attente'] . ' days')));
+    } else {
+      $this->setConfiguration('greffe_statut', ''); $this->setConfiguration('greffe_controle', ''); $this->setConfiguration('greffe_rep', '');
+      $this->basculer(); $this->setConfiguration('greffe_avant', null); // pas de contrôle à venir : retour en arrière inutile
+    }
+    $this->sauver();
+    try { // greffe déjà enregistrée : une erreur ici ne doit pas la faire refaire
+      self::inserer(['date' => $c['date_mult'], 'plante_id' => $this->getId(), 'plante' => $this->getName(),
+        'lieu' => (string)$this->getConfiguration('emplacement'), 'action' => 'Greffe', 'note' => sprintf(__('%s greffé sur %s (%s)', __FILE__),
+          implode(' ', array_filter([$c['bota'] ?? '', $c['cultivar'] ?? ''])) ?: '« ' . $nom . ' »', $pg,
           journalcultures_calc::GREFFES[$c['type_greffe'] ?? ''] ?? __('type de greffe non précisé', __FILE__))
-          . (($g = journalcultures_calc::texte($in['greffon'] ?? '', 120)) !== '' ? ' ; ' . sprintf(__('greffon pris sur %s', __FILE__), $g) : '')]);
-    } catch (Throwable $e) { log::add('journalcultures', 'error', $p->getHumanName() . ' : greffe non notée au journal : ' . $e->getMessage()); }
-    return (int)$p->getId();
+          . ($source !== '' ? ' ; ' . sprintf(__('greffon pris sur %s', __FILE__), $source) : '')
+          . ' ; ' . ($garde ? __('greffon corrigé, suivi inchangé', __FILE__) : '') . ($garde ? '' : ($recente ? sprintf(($c['type_greffe'] ?? '') == 'pont' ? __('%s reste lui-même ; la plante deviendra « %s » à la reprise du pont', __FILE__) : __('%s reste le porte-greffe ; la plante deviendra « %s » au départ d\'un œil', __FILE__), $pg, $nom)
+            : sprintf(__('greffe ancienne, déjà prise : la plante devient « %s »', __FILE__), $this->getName())))]);
+    } catch (Throwable $e) { log::add('journalcultures', 'error', $this->getHumanName() . ' : greffe non notée au journal : ' . $e->getMessage()); }
+    return (int)$this->getId();
   }
 
   /* ---------- export / import : fiches des plantes, leur journal et le catalogue des produits ---------- */
@@ -529,7 +550,7 @@ class journalcultures extends eqLogic {
     foreach (self::byType('journalcultures') as $e) if ($e->type() == 'collection') $noms[$e->getId()] = [$e->getName(), is_object($o = $e->getObject()) ? $o->getName() : ''];
     foreach (self::byType('journalcultures') as $p) if ($p->type() == 'plante') {
       $c = array_diff_key((array)$p->getConfiguration(), array_flip(self::EXPORT_SAUF));
-      if (is_array($c['greffe_avant'] ?? null)) unset($c['greffe_avant']['collection']);
+      foreach (['greffe_avant', 'greffe_greffon'] as $k) if (is_array($c[$k] ?? null)) unset($c[$k]['collection']); // id propre à cette box : au retour, collection actuelle de la plante
       $j = DB::Prepare('SELECT date, lieu, action, cat, note, origine, valeurs FROM ' . self::TABLE . ' WHERE plante_id = ? ORDER BY date, id', [$p->getId()], DB::FETCH_TYPE_ALL) ?: [];
       foreach ($j as &$x) { $x['valeurs'] = $x['valeurs'] ? json_decode($x['valeurs'], true) : null; $x = array_filter($x, function ($v) { return $v !== null && $v !== ''; }); }
       unset($x);
@@ -571,6 +592,7 @@ class journalcultures extends eqLogic {
           $p->setEqType_name('journalcultures'); $p->setName($nom); $p->setObject_id($co->getObject_id()); $p->setIsVisible(0); $p->setIsEnable(isset($x['actif']) && !$x['actif'] ? 0 : 1);
           foreach ((array)($x['configuration'] ?? []) as $k => $v) if (is_string($k) && preg_match('/^[a-z][a-z0-9_]{0,39}$/D', $k) && !in_array($k, self::EXPORT_SAUF, true)) $p->setConfiguration($k, $sans4($v));
           $p->setConfiguration('type', 'plante'); $p->setConfiguration('collection', $co->getId());
+          foreach (['greffe_avant', 'greffe_greffon'] as $k) if (is_array($v = $p->getConfiguration($k))) { unset($v['collection']); $p->setConfiguration($k, $v); } // id d'une autre box (anciens exports)
           try { $p->save(); } catch (Exception $y) { if (strpos($y->getMessage(), 'Duplicate') === false) throw $y; $r['deja'][] = $nom; continue; } // index du core : accents ignorés
           $r['plantes']++; $pls[mb_strtolower($nom)] = 1; $ko = 0; // deux fois le même nom dans le fichier : une seule plante
           foreach (array_slice((array)($x['journal'] ?? []), 0, 20000) as $j) try {
@@ -588,12 +610,56 @@ class journalcultures extends eqLogic {
     return $r;
   }
 
-  const GREFFE_CLES = ['etiquette', 'type_greffe', 'date_mult', 'multiplication', 'greffe_statut', 'greffe_controle', 'greffe_rep', 'greffe_avant'];
-  private static function instantane(journalcultures $p) { // fiche du porte-greffe avant la greffe (le sol reste : ce sont ses racines)
+  // identité d'une plante (ce qui change à la greffe) ; le sol (ce sont toujours ses racines), le pot, l'emplacement, le journal et les photos restent
+  private static function identite() {
+    return array_merge(array_diff(array_keys(self::FICHE), ['sol']), ['etiquette', 'gbif', 'multiplication', 'type_greffe', 'date_mult'],
+      array_map(function ($k) { return 'id_' . $k; }, array_keys(journalcultures_calc::CARACTERES)));
+  }
+  private static function instantane(journalcultures $p) {
     $r = ['nom' => $p->getName(), 'collection' => $p->getConfiguration('collection')];
-    foreach (array_merge(array_diff(array_keys(self::FICHE), ['sol']), array_diff(self::GREFFE_CLES, ['greffe_avant'])) as $k) $r[$k] = $p->getConfiguration($k);
-    foreach (array_keys(journalcultures_calc::CARACTERES) as $k) $r['id_' . $k] = $p->getConfiguration('id_' . $k);
+    foreach (self::identite() as $k) $r[$k] = $p->getConfiguration($k);
     return $r;
+  }
+  private function prendre(array $id) { // identité d'un instantané (champ absent = vidé) ; collection disparue : celle d'aujourd'hui ; sans sauvegarder
+    $nom = journalcultures_calc::texte($id['nom'] ?? '', 120); if ($nom === '') $nom = $this->getName();
+    $co = self::byId($id['collection'] ?? 0);
+    if (!is_object($co) || $co->getEqType_name() != 'journalcultures' || $co->type() != 'collection') $co = $this->collection();
+    if (is_object($co)) { self::nomLibre($co->getObject_id(), $nom, $this->getId()); $this->setObject_id($co->getObject_id()); $this->setConfiguration('collection', $co->getId()); }
+    $this->setName($nom);
+    foreach (self::identite() as $k) $this->setConfiguration($k, $id[$k] ?? '');
+  }
+  private function basculer() { // un œil du greffon est reparti : la plante devient le greffon ; l'identité du porte-greffe est gardée (pousse qui meurt)
+    $gf = $this->getConfiguration('greffe_greffon'); $av = self::instantane($this);
+    $this->prendre(is_array($gf) ? $gf : []);
+    $this->setConfiguration('greffe_avant', $av); $this->setConfiguration('greffe_greffon', null);
+  }
+  private function greffeVal($k) { // type et date de la greffe : du greffon tant qu'il attend, sinon de la plante (devenue le greffon)
+    $gf = $this->getConfiguration('greffe_greffon');
+    return (string)(is_array($gf) ? ($gf[$k] ?? '') : $this->getConfiguration($k));
+  }
+
+  /* 0.26 : avant, « Greffer… » changeait l'identité tout de suite. Greffe pas encore partie (attente, probable, dormant) : remise en porte-greffe,
+     greffon en attente ; greffe échouée : remise en porte-greffe. → true si la plante a changé */
+  public function migrerGreffe() {
+    $s = (string)$this->getConfiguration('greffe_statut'); $av = $this->getConfiguration('greffe_avant');
+    if ($this->type() == 'plante' && !is_array($this->getConfiguration('greffe_greffon')) && (($s == 'echouee' && !is_array($av)) || (in_array($s, ['', 'reprise'], true) && $av !== '' && $av !== null))) {
+      if ($s == 'echouee') foreach (['greffe_statut', 'greffe_controle', 'greffe_rep'] as $k) $this->setConfiguration($k, ''); // échec sans porte-greffe connu : plus de suivi
+      $this->setConfiguration('greffe_avant', null); // greffe terminée : retour en arrière inutile
+      self::$_sansGbif = true; try { $this->sauver(); } finally { self::$_sansGbif = false; }
+      return true;
+    }
+    if ($this->type() != 'plante' || !is_array($av) || is_array($this->getConfiguration('greffe_greffon')) || !in_array($s, ['attente', 'probable', 'dormant', 'echouee'], true)) return false;
+    $gf = self::instantane($this); $n = $this->getName();
+    $this->prendre($av); $this->setConfiguration('greffe_avant', null);
+    if ($s == 'echouee') foreach (['greffe_statut', 'greffe_controle', 'greffe_rep'] as $k) $this->setConfiguration($k, '');
+    else $this->setConfiguration('greffe_greffon', $gf);
+    $this->sauver();
+    try {
+      self::inserer(['date' => date('Y-m-d'), 'plante_id' => $this->getId(), 'plante' => $this->getName(), 'lieu' => (string)$this->getConfiguration('emplacement'), 'action' => 'Greffe',
+        'note' => $s == 'echouee' ? sprintf(__('Greffe échouée : %s redevient le porte-greffe « %s »', __FILE__), $n, $this->getName())
+          : sprintf(__('Mise à jour du plugin : « %s » redevient le porte-greffe « %s » ; la plante deviendra « %s » au départ d\'un œil', __FILE__), $n, $this->getName(), $n)]);
+    } catch (Throwable $e) { log::add('journalcultures', 'error', $this->getHumanName() . ' : migration de la greffe non notée : ' . $e->getMessage()); }
+    return true;
   }
 
   /* Géographie : hémisphère d'après la latitude de Jeedom (Réglages → Système → Configuration), pays pour les statuts sanitaires,
@@ -619,7 +685,7 @@ class journalcultures extends eqLogic {
   public function suiviGreffe() { // null si la plante n'a pas de greffe suivie
     $s = (string)$this->getConfiguration('greffe_statut');
     if (!isset(journalcultures_calc::GREFFE_STATUTS[$s])) return null;
-    $c = (string)$this->getConfiguration('greffe_controle'); $av = $this->getConfiguration('greffe_avant'); $temp = '';
+    $c = (string)$this->getConfiguration('greffe_controle'); $gf = $this->getConfiguration('greffe_greffon'); $type = $this->greffeVal('type_greffe'); $temp = '';
     if ($s != 'reprise' && $s != 'echouee' && ($i = self::info((self::emplacements()[(string)$this->getConfiguration('emplacement')] ?? [''])[0]))) {
       $st = history::getStatistique($i->getId(), date('Y-m-d H:i:s', time() - 86400), date('Y-m-d H:i:s')); // ponytail: sonde non historisée → pas d'avis
       $v = function ($k) use ($st) { return is_numeric($st[$k] ?? null) && ($st['count'] ?? 0) > 0 ? (float)$st[$k] : null; };
@@ -629,50 +695,37 @@ class journalcultures extends eqLogic {
     $du = $c !== '' && ($c <= date('Y-m-d') // œil dormant : contrôle avancé (8 semaines au plus) si l'emplacement est déjà au-dessus du zéro de végétation
       || ($s == 'dormant' && $c <= date('Y-m-d', strtotime('+56 days')) && (string)$this->getConfiguration('greffe_rep') <= date('Y-m-d', strtotime('-28 days'))
         && journalcultures_calc::pousse($this->moyenne7(), self::seuil()))); // pas avant 4 semaines après la réponse (choix du plugin)
-    $q = journalcultures_calc::greffeQuestion($s, $this->getConfiguration('type_greffe'));
-    $pont = $this->getConfiguration('type_greffe') == 'pont'; // pont : pas d'œil à faire dormir ni de pousse attendue
+    $q = journalcultures_calc::greffeQuestion($s, $type);
+    $pont = $type == 'pont'; // pont : pas d'œil à faire dormir ni de pousse attendue
     if ($s == 'probable' && !$pont && $q !== '' && in_array((int)date('W'), journalcultures_calc::semaines(self::sud() ? journalcultures_calc::decaler(self::HIVER, 26) : self::HIVER)))
       $q .= ' — ' . __('en hiver : « Au printemps », au frais hors gel, sans engrais ; le forcer maintenant demande chaleur et lumière (aucune source sur ce cas)', __FILE__); // soudure faite (J+21 confirmé) ; avant, la greffe a besoin de chaleur pour souder ; agrumes arrêtés sous ≈ 13 °C, pas d'engrais l'hiver (2 sources)
     return ['statut' => $s, 'texte' => journalcultures_calc::GREFFE_STATUTS[$s], 'controle' => $c, 'du' => $du, 'question' => $q, 'printemps' => !$pont && $s == 'probable',
-      'avant' => is_array($av) ? (string)($av['nom'] ?? '') : (string)$this->getConfiguration('porte_greffe'), 'avant_coll' => is_array($av) ? (string)($av['collection'] ?? '') : '', 'temp' => $temp];
+      'greffon' => is_array($gf) ? (string)($gf['nom'] ?? '') : '', 'pont' => $pont, 'temp' => $temp]; // greffon : nom que prendra la plante au départ d'un œil
   }
 
-  public function controlerGreffe($verdict, $note) { // réponse au contrôle du bourgeon → nouveau statut, noté au journal
-    $s = (string)$this->getConfiguration('greffe_statut'); $q = journalcultures_calc::greffeQuestion($s, $this->getConfiguration('type_greffe'));
-    try { $g = journalcultures_calc::date($this->getConfiguration('date_mult')); } catch (Exception $x) { $g = date('Y-m-d'); } // « Greffer… » écrit toujours une date complète
-    if ($verdict == 'printemps' && ($s != 'probable' || $this->getConfiguration('type_greffe') == 'pont')) throw new Exception(__('« Au printemps » : seulement à J+42, pas pour un pont', __FILE__)); // comme le bouton de la fiche
+  /* Réponse au contrôle du bourgeon → nouveau statut, noté au journal. Œil reparti (pousse ; reprise pour un pont) : la plante devient le greffon.
+     Greffe morte : avant le départ de l'œil, la plante reste le porte-greffe ; après (la pousse meurt), elle le redevient. */
+  public function controlerGreffe($verdict, $note) {
+    $s = (string)$this->getConfiguration('greffe_statut'); $type = $this->greffeVal('type_greffe'); $q = journalcultures_calc::greffeQuestion($s, $type);
+    try { $g = journalcultures_calc::date($this->greffeVal('date_mult')); } catch (Exception $x) { $g = date('Y-m-d'); } // « Greffer… » écrit toujours une date complète
+    if ($verdict == 'printemps' && ($s != 'probable' || $type == 'pont')) throw new Exception(__('« Au printemps » : seulement à J+42, pas pour un pont', __FILE__)); // comme le bouton de la fiche
     [$n, $c] = journalcultures_calc::controler($s, $verdict, $g, date('Y-m-d'), self::sud());
-    if ($n == 'pousse' && $this->getConfiguration('type_greffe') == 'pont') [$n, $c] = ['reprise', '']; // pont soudé aux deux bouts : rien ne doit pousser
-    self::$_sansGbif = true; $this->setConfiguration('greffe_statut', $n); $this->setConfiguration('greffe_rep', date('Y-m-d')); $this->setConfiguration('greffe_controle', $c); $this->save();
+    if ($n == 'pousse' && $type == 'pont') [$n, $c] = ['reprise', '']; // pont soudé aux deux bouts : rien ne doit pousser
+    $avant = $this->getName(); $attend = is_array($this->getConfiguration('greffe_greffon')); $id = '';
+    if ($attend && in_array($n, ['pousse', 'reprise'], true)) { $this->basculer(); $id = sprintf($type == 'pont' ? __('pont repris : %s devient « %s »', __FILE__) : __('un œil est reparti : %s devient « %s »', __FILE__), $avant, $this->getName()); }
+    elseif ($n == 'echouee' && $attend) { $this->setConfiguration('greffe_greffon', null); $id = sprintf(__('%s reste le porte-greffe', __FILE__), $avant); }
+    elseif ($n == 'echouee' && is_array($av = $this->getConfiguration('greffe_avant'))) { $this->prendre($av); $id = sprintf(__('%s redevient le porte-greffe « %s »', __FILE__), $avant, $this->getName()); }
+    if ($n == 'echouee' || $n == 'reprise') $this->setConfiguration('greffe_avant', null); // greffe terminée
+    $this->setConfiguration('greffe_statut', $n == 'echouee' ? '' : $n); $this->setConfiguration('greffe_rep', $n == 'echouee' ? '' : date('Y-m-d')); $this->setConfiguration('greffe_controle', $c);
+    self::$_sansGbif = $id === ''; // identité changée : nom botanique relu par GBIF
+    try { $this->sauver(); } finally { self::$_sansGbif = false; }
     try {
-      self::inserer(['date' => date('Y-m-d'), 'plante_id' => $this->getId(), 'plante' => $this->getName(), 'lieu' => (string)$this->getConfiguration('emplacement'), 'action' => 'Observation',
+      self::inserer(['date' => date('Y-m-d'), 'plante_id' => $this->getId(), 'plante' => $this->getName(), 'lieu' => (string)$this->getConfiguration('emplacement'), 'action' => $id !== '' ? 'Greffe' : 'Observation',
         'note' => sprintf(__('Contrôle de greffe (%s) : %s → %s', __FILE__), $q, ['ok' => __('oui', __FILE__), 'douteux' => __('douteux', __FILE__), 'printemps' => __('le laisser dormir jusqu’au printemps', __FILE__), 'mort' => __('non, bourgeon mort', __FILE__)][$verdict],
-          journalcultures_calc::GREFFE_STATUTS[$n]) . ($c !== '' ? ', ' . sprintf(__('prochain contrôle le %s', __FILE__), $c) : '')
+          journalcultures_calc::GREFFE_STATUTS[$n]) . ($c !== '' ? ', ' . sprintf(__('prochain contrôle le %s', __FILE__), $c) : '') . ($id !== '' ? ' ; ' . $id : '')
           . (($t = journalcultures_calc::texte($note, 200)) !== '' ? ' ; ' . $t : '')]);
     } catch (Throwable $e) { log::add('journalcultures', 'error', $this->getHumanName() . ' : contrôle de greffe non noté : ' . $e->getMessage()); } // statut déjà sauvé
     return $n;
-  }
-
-  /* Greffe échouée : la plante redevient le porte-greffe, avec la fiche gardée au moment de « Greffer… » (vide si la greffe est plus ancienne) */
-  public function degreffer(journalcultures $coll, $nom) {
-    if ($this->getConfiguration('greffe_statut') != 'echouee') throw new Exception(__('Seule une greffe échouée peut redevenir porte-greffe', __FILE__));
-    $nom = journalcultures_calc::texte($nom, 120);
-    if ($nom === '') throw new Exception(__('Nom de la plante obligatoire', __FILE__));
-    foreach (eqLogic::byObjectId($coll->getObject_id(), false) as $e) if (mb_strtolower($e->getName()) == mb_strtolower($nom) && $e->getId() != $this->getId())
-      throw new Exception(__('Un équipement de cet objet porte déjà ce nom', __FILE__));
-    $av = $this->getConfiguration('greffe_avant'); $av = is_array($av) ? $av : []; $avant = $this->getName();
-    foreach (array_merge(array_diff(array_keys(self::FICHE), ['sol']), self::GREFFE_CLES) as $k) $this->setConfiguration($k, $av[$k] ?? '');
-    foreach (array_keys(journalcultures_calc::CARACTERES) as $k) $this->setConfiguration('id_' . $k, $av['id_' . $k] ?? '');
-    $this->setName($nom); $this->setObject_id($coll->getObject_id()); $this->setConfiguration('collection', $coll->getId());
-    try { $this->save(); } catch (Exception $x) {
-      if (strpos($x->getMessage(), 'Duplicate') !== false) throw new Exception(__('Un équipement de cet objet porte déjà ce nom', __FILE__));
-      throw $x;
-    }
-    try {
-      self::inserer(['date' => date('Y-m-d'), 'plante_id' => $this->getId(), 'plante' => $this->getName(), 'lieu' => (string)$this->getConfiguration('emplacement'), 'action' => 'Greffe',
-        'note' => sprintf(__('Greffe échouée : %s redevient le porte-greffe « %s »', __FILE__), $avant, $this->getName())]);
-    } catch (Throwable $e) { log::add('journalcultures', 'error', $this->getHumanName() . ' : retour en porte-greffe non noté : ' . $e->getMessage()); }
-    return (int)$this->getId();
   }
 
   /* ---------- tuile et fenêtres ---------- */
@@ -691,6 +744,14 @@ class journalcultures extends eqLogic {
     return count($c);
   }
 
+  private function reff(array $c) { // [rusticité effective (pot, jeunesse), estimation ou null] d'une fiche (la plante, ou le greffon en attente)
+    $r = $c['rusticite'] ?? ''; $est = null; // fiche sans rusticité : estimée d'après le groupe (nom botanique ou caractères)
+    $car = []; foreach (array_keys(journalcultures_calc::CARACTERES) as $k) $car[$k] = $c['id_' . $k] ?? '';
+    if (journalcultures_calc::nombre($r) === null && ($est = journalcultures_calc::estimee($c['bota'] ?? '', $car))) $r = $est['r'];
+    $reff = journalcultures_calc::rusticite($r, $this->pot(), max(0, self::reglage('k', 50)), max(0, self::reglage('pmax', 8)));
+    $jeu = journalcultures_calc::jeunesse((string)($c['multiplication'] ?? ''), $c['date_mult'] ?? '', self::reglage('jeune', 6), self::reglage('jeune_ans', 5));
+    return [$reff === null ? null : round($reff + $jeu, 1), $est, $jeu];
+  }
   public function caracteres() { // [caractère => code saisi] pour journalcultures_calc::identifier
     $r = [];
     foreach (array_keys(journalcultures_calc::CARACTERES) as $k) $r[$k] = $this->getConfiguration('id_' . $k);
@@ -741,7 +802,7 @@ class journalcultures extends eqLogic {
   private static function taux() { $x = self::reglage('taux_n', 0.07); return $x > 0 && $x < 1 ? $x : 0.07; }
   private function facteurJeune() { // jeune plant (semis, greffe… datés) : besoin réduit, voir journalcultures_calc::facteurJeune
     $f = self::reglage('engrais_jeune', 25); $n = self::reglage('engrais_jeune_ans', 3);
-    return journalcultures_calc::facteurJeune((string)$this->getConfiguration('multiplication'), $this->getConfiguration('date_mult'), ($f > 0 ? $f : 100) / 100, $n);
+    return journalcultures_calc::facteurJeune($this->greffeVal('multiplication'), $this->greffeVal('date_mult'), ($f > 0 ? $f : 100) / 100, $n); // greffon en attente : jeune greffe
   }
 
   private function dosesActuelles(array $P) { // grammes déjà au calendrier pour les produits du plan (dose peut-être ajustée à la main) → proposés tels quels
@@ -761,7 +822,7 @@ class journalcultures extends eqLogic {
   // moins d'un an ou greffe en cours de suivi : pas de demi-dose hors saison, même au chaud (pas d'engrais l'hiver : 2 sources ; excès d'azote nuisible au jeune plant : Niu 2024 ; choix du plugin)
   public function jeuneHiver() {
     return in_array((string)$this->getConfiguration('greffe_statut'), ['attente', 'probable', 'dormant', 'pousse'], true)
-      || journalcultures_calc::jeunesse((string)$this->getConfiguration('multiplication'), $this->getConfiguration('date_mult'), 1, 1) > 0;
+      || journalcultures_calc::jeunesse($this->greffeVal('multiplication'), $this->greffeVal('date_mult'), 1, 1) > 0;
   }
   public function engraisFiche() {
     $P = self::produits(); $L = journalcultures_calc::volume($this->pot()); $fj = $this->facteurJeune(); $taux = self::taux() * $fj;
@@ -818,7 +879,8 @@ class journalcultures extends eqLogic {
       $sonde = trim($L[$p->getConfiguration('emplacement')][0] ?? '') !== ''; // lieu sans sonde : pas l'ancienne température
       $m = self::muette($p->valeur('raison')); // sonde muette ou emplacement inconnu
       $rust = journalcultures_calc::nombre($p->getConfiguration('rusticite')) !== null // rusticité effacée de la fiche : pas l'ancienne valeur
-        || journalcultures_calc::estimee($p->getConfiguration('bota'), $p->caracteres()) !== null; // … sauf si le groupe en donne une
+        || journalcultures_calc::estimee($p->getConfiguration('bota'), $p->caracteres()) !== null // … sauf si le groupe en donne une
+        || is_array($p->getConfiguration('greffe_greffon')); // … ou le greffon en attente
       $pl[] = ['id' => $p->getId(), 'nom' => $p->getName(), 'empl' => $p->valeur('emplacement'), 't' => $sonde && !$m ? $p->valeur('temperature') : null, 'muette' => $m,
         'reff' => $rust ? $p->valeur('rusticite') : null,
         'alerte' => $p->valeur('alerte'), 'raison' => $p->valeur('raison'), 'engrais' => $p->valeur('engrais'), 'rust' => $p->getConfiguration('rusticite'),

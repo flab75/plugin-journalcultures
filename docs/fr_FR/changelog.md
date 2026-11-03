@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.26 (2026-11-03)
+- « Greffer… » : la plante reste le porte-greffe tant qu'aucun œil du greffon n'est reparti ; le greffon attend dans la fiche (« greffon en attente »).
+  Au contrôle qui confirme le départ d'un œil, porte-greffe et greffon deviennent une nouvelle plante (même équipement : nom, fiche et collection du greffon).
+  Greffe morte : la plante reste porte-greffe, ou le redevient d'elle-même si la pousse meurt ; le bouton « Redevenir porte-greffe… » disparaît.
+- Mise à jour : une greffe en cours (en attente, probablement prise, œil dormant) ou échouée enregistrée avant 0.26 remet la plante en porte-greffe ;
+  le greffon attend le départ d'un œil. Une greffe déjà en pousse ne change pas. Une greffe échouée sans porte-greffe connu sort du suivi.
+- Greffon en attente : l'alerte de froid suit le plus fragile des deux, l'engrais celui d'une jeune greffe ; regreffer à la même date corrige le greffon sans relancer le suivi ;
+  regreffer pendant la pousse est refusé. Pont : la plante devient le greffon à la reprise.
+
 ## 0.25 (2026-11-03)
 - Export et import des plantes (fiche et journal) et des produits en stock, depuis la page du plugin : l'import ajoute ce qui manque sans rien remplacer.
 - Une collection qui contient encore des plantes ne peut plus être supprimée (les déplacer d'abord) ; la désinstallation garde le journal en base.

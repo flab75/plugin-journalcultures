@@ -149,7 +149,7 @@ Les groupes de la colonne du milieu sont ceux du plugin. La colonne de droite di
   Mais sur Poncirus, un tronc en goulot de bouteille autour de la greffe est normal et sans danger (Curk 2022).
 - Les pucerons installés sur les rejets du porte-greffe font craindre la tristeza (INRAE-Cirad, fiche technique porte-greffe, **une seule source**).
 - Distinguer un **Poncirus** d'un **hybride de Poncirus** par la seule feuille : le plugin reste souvent « Indécis ». Le feuillage persistant ou un mélange de 1 et 3 folioles orientent vers l'hybride (choix du plugin).
-- Après « **Greffer…** », les caractères sont vidés : la clé doit décrire le greffon, pas le porte-greffe (choix du plugin).
+- Quand un œil du greffon est reparti (après « **Greffer…** »), les caractères du porte-greffe sont remplacés par ceux saisis pour le greffon (vides sinon) : la clé doit décrire le greffon, pas le porte-greffe (choix du plugin).
 
 ## Pl@ntNet
 - Service en ligne d'identification par photo. Le plugin l'interroge avec la clé personnelle enregistrée sur la box ; 500 identifications par jour avec l'offre gratuite.

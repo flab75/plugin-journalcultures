@@ -220,7 +220,9 @@ if ($pl) {
   $refus(function () use ($p) { $p->ecrirePlan([0 => 150, 1 => -50]); }, 'plan avec une part hors 0-100');
   $refus(function () use ($p) { $p->ecrirePlan([0 => 100], [0 => 9999]); }, 'plan avec une dose de 9999 g');
   $ok($p->getConfiguration('engrais') === $av, 'plan refusé : calendrier inchangé');
-  foreach ($pl as $q) if ($q->getConfiguration('greffe_statut') != 'echouee') { $refus(function () use ($q, $co) { $q->degreffer($co, 'x'); }, 'retour en porte-greffe sans greffe échouée'); break; }
+  foreach ($pl as $q) if ((string)$q->getConfiguration('greffe_statut') === '') { $refus(function () use ($q) { $q->controlerGreffe('ok', ''); }, 'contrôle sans greffe en cours'); break; }
+  foreach ($pl as $q) if (!is_array($q->getConfiguration('greffe_avant'))) { $ok($q->migrerGreffe() === false, 'migration 0.26 : plante sans greffe laissée telle quelle'); break; }
+  foreach ($pl as $q) if (is_array($gf = $q->getConfiguration('greffe_greffon'))) { $ok(($gf['nom'] ?? '') !== '' && $q->suiviGreffe()['greffon'] === $gf['nom'] && $q->getName() !== '', 'greffe en attente : greffon nommé, plante encore porte-greffe'); break; }
   $refus(function () use ($co) { journalcultures::creer($co, ['nom' => ' ']); }, 'plante sans nom');
   $refus(function () use ($co, $p) { journalcultures::creer($co, ['nom' => mb_strtoupper($p->getName())]); }, 'plante au nom déjà pris');
   foreach ($pl as $q) if ($q->getId() != $p->getId() && $q->getObject_id() == $p->getObject_id()) { $refus(function () use ($co, $p, $q) { journalcultures::creer($co, ['nom' => $p->getName()], $q); }, 'greffe au nom d\'une autre plante'); break; }
