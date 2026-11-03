@@ -75,7 +75,7 @@ De l'extérieur vers le centre :
 
 ![Feuille de Citrus aurantium, Rendle 1911](../images/bota-feuille-agrume.webp)
 
-*Feuille de Citrus aurantium (oranger, au sens de 1911) : l = limbe, p = pétiole ailé, articulé au limbe. A. B. Rendle, Encyclopædia Britannica, 11ᵉ éd., 1911, vol. 16 p. 326, fig. 21, domaine public, via Wikimedia Commons.*
+*Feuille de Citrus aurantium (oranger, au sens de 1911) : l = limbe, p = pétiole ailé, articulé au limbe. A. B. Rendle, Encyclopædia Britannica, 11ᵉ éd., 1911, vol. 16 p. 326, fig. 21, domaine public, via [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:EB1911_Leaf_-_Leaf_of_Citrus_Aurantium.jpg).*
 
 - **Feuille d'agrume** : le pétiole est **ailé** (Ballve et al. 1997, **une seule source** ; Wikipédia « Citrus » confirme) ; la largeur de l'aile change selon l'espèce, et sert même à reconnaître des hybrides (Ballve et al. 1997).
   Le limbe est **articulé** sur le pétiole (Atkinson 1905 p. 389 ; Rendle 1911, légende ci-dessus) : la feuille d'oranger et de citronnier serait une feuille composée réduite à **une seule foliole** (Atkinson 1905 p. 389, **une seule source**, et ancienne).
@@ -117,7 +117,7 @@ De l'extérieur vers le centre :
 
 ![Bigaradier, Köhler 1897](../images/bota-bigaradier.webp)
 
-*Bigaradier (Citrus aurantium) : A rameau fleuri et fruit ; B fruit ; 1 fleur sans ses pétales ; 2 fleur coupée en long ; 3 pétale ; 4 faisceau d'étamines ; 5 pistil entouré des étamines ; 6 fruit mûr coupé (« en travers » selon la légende d'origine, le dessin semble coupé en long) ; 7 écorce de fruit vert au microscope. F. E. Köhler, Köhler's Medizinal-Pflanzen, 1897 (date de Commons), fichier n° 042, domaine public, via Wikimedia Commons (légende d'après la description de Wikimedia Commons).*
+*Bigaradier (Citrus aurantium) : A rameau fleuri et fruit ; B fruit ; 1 fleur sans ses pétales ; 2 fleur coupée en long ; 3 pétale ; 4 faisceau d'étamines ; 5 pistil entouré des étamines ; 6 fruit mûr coupé (« en travers » selon la légende d'origine, le dessin semble coupé en long) ; 7 écorce de fruit vert au microscope. F. E. Köhler, Köhler's Medizinal-Pflanzen, 1897 (date de Commons), fichier n° 042, domaine public, via [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Citrus_aurantium_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-042.jpg) (légende d'après la description de Wikimedia Commons).*
 
 - **Hespéride** : le nom du fruit des agrumes, à écorce épaisse et coriace (Wikipédia « Hesperidium » et « Citrus », **une seule source** : l'encyclopédie, qui en fait une baie particulière).
   Shipunov cite l'hespéride à côté de la baie parmi les fruits charnus (p. 166), et l'orange parmi les fruits charnus (p. 164).
@@ -129,7 +129,7 @@ De l'extérieur vers le centre :
 
 ![Orange coupée, légendée](../images/bota-orange.webp)
 
-*Orange coupée en travers (à gauche) et en long (à droite). Photo Kjetil Lenes (Ekko), Wikimedia Commons, [CC BY 2.5](https://creativecommons.org/licenses/by/2.5/) ; modifiée : recadrée, réduite, légendes en français ajoutées.*
+*Orange coupée en travers (à gauche) et en long (à droite). Photo Kjetil Lenes (Ekko), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Perpendicular_orange.png), [CC BY 2.5](https://creativecommons.org/licenses/by/2.5/) ; modifiée : recadrée, réduite, légendes en français ajoutées.*
 
 ## Nourrir la plante
 

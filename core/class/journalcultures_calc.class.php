@@ -538,7 +538,7 @@ class journalcultures_calc {
   }
 
   /* ---------- santé : problèmes surveillés et pistes ---------- */
-  /* Agrumes en pot sous serre (Île-de-France), du plus important au moins important. Références complètes : ressources.md §14.
+  /* Agrumes en pot sous serre (Île-de-France), du plus important au moins important. Références complètes : docs/fr_FR/sante.md, partie Sources.
      Chaque geste porte ses sources ; un geste ou un problème à une seule source est signalé (en chercher une autre). statut : present, quarantaine, absent, a_verifier, pour la France ; regional = statut propre à la France
      (ailleurs : « à vérifier pour ce pays », journalcultures::santeCat). Périodes de risque : hémisphère nord (Corse, PACA, Californie, Floride). */
   const SANTE = [

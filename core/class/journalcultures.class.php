@@ -432,12 +432,13 @@ class journalcultures extends eqLogic {
   public static function creer(journalcultures $coll, array $in, ?journalcultures $pg = null) {
     $nom = journalcultures_calc::texte($in['nom'] ?? '', 120);
     if ($nom === '') throw new Exception(__('Nom de la plante obligatoire', __FILE__));
+    if ($pg) $in['multiplication'] = 'greffe'; // avant nouvelle() : sinon le type de greffe est écarté
     $c = journalcultures_calc::nouvelle($in, array_map('strval', array_keys(self::emplacements()))); // contrôlé avant toute écriture ; strval : un nom « 2 » devient une clé entière
     foreach (eqLogic::byObjectId($coll->getObject_id(), false) as $e) if (mb_strtolower($e->getName()) == mb_strtolower($nom) && (!$pg || $e->getId() != $pg->getId())) // tous plugins : nom unique par objet
       throw new Exception(__('Un équipement de cet objet porte déjà ce nom', __FILE__));
     if ($pg) {
       if (!$pg->getIsEnable()) throw new Exception(__('Plante désactivée', __FILE__));
-      $p = $pg; $avant = $pg->getName(); $c['multiplication'] = 'greffe';
+      $p = $pg; $avant = $pg->getName();
       if (!(in_array((string)$pg->getConfiguration('greffe_statut'), ['echouee', 'attente', 'probable', 'dormant', 'pousse'], true) && is_array($pg->getConfiguration('greffe_avant'))))
         $p->setConfiguration('greffe_avant', self::instantane($pg)); // « Redevenir porte-greffe » si la greffe échoue ; regreffe d'une greffe pas prise : garder la fiche du vrai porte-greffe
       try { $c['date_mult'] = journalcultures_calc::date($c['date_mult'] ?? ''); } catch (Exception $x) { $c['date_mult'] = date('Y-m-d'); } // partielle (2026-05) ou absente : aujourd'hui, écrit (suivi, jeunesse, engrais du jeune plant)

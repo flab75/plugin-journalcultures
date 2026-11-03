@@ -98,7 +98,7 @@ if (!window.journalcultures || window.journalcultures.v !== 24) (function () { /
           var d = ct.querySelector('.jdc-toc details'); if (d && window.innerWidth <= 600) d.open = false // mobile : sommaire replié
           if (n.k == 'noms') chercher(ct)
         }] }), k2, {flottante: 1, classe: 'jdc-not'})
-        var e = a && document.getElementById('jdc-n-' + a)
+        var e = a && w.boite.querySelector('#' + CSS.escape('jdc-n-' + a)) // cette fenêtre, pas une notice déjà ouverte
         if (e) e.scrollIntoView(); else w.boite.scrollTop = 0
       }
       aller(k, ancre)
@@ -109,7 +109,7 @@ if (!window.journalcultures || window.journalcultures.v !== 24) (function () { /
   function chercher(ct) {
     var tx = ct.querySelector('.jdc-tx') || ct, sans = function (t) { return t.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase() }
     var q = document.createElement('input'); q.type = 'search'; q.placeholder = "{{Chercher un nom (genre, espèce, ancien nom)…}}"; q.className = 'form-control jdc-q'
-    tx.insertBefore(q, tx.querySelector('h3') || tx.firstChild)
+    tx.insertBefore(q, tx.querySelector(':scope > h3') || tx.firstChild)
     var haut = function () { var m = q.closest('.jdc-mb'), n = m && m.querySelector('nav'); q.style.top = (n ? n.offsetHeight - 10 : 0) + 'px' } // sous les onglets collants (plusieurs lignes sur mobile)
     setTimeout(haut); q.onfocus = haut
     var lis = [].slice.call(tx.querySelectorAll('li')).map(function (li) { return [li, sans(li.textContent)] })
@@ -172,7 +172,7 @@ if (!window.journalcultures || window.journalcultures.v !== 24) (function () { /
       '<p>' + (e.litres ? "{{Pot}}" + ' ' + nb(e.litres, ' L') + ' · ' + "{{besoin}}" + ' ' + nb(e.litres * e.taux * 2) + ' ' + "{{g d'azote toutes les 2 semaines en saison de croissance}}" + (e.jeune < 1 ? ' <small>(' + "{{jeune plant : dose réduite à}}" + ' ' + Math.round(e.jeune * 100) + ' %)</small><br><small>' + "{{Une dose déjà au calendrier n'est pas réduite d'elle-même : vider la case dose (elle se recalcule) puis écrire ; à refaire chaque printemps, la part remonte avec l'âge.}}" + '</small>' : '') + '<br><small>' + "{{Saison = quand la moyenne sur 7 jours de l'emplacement atteint}}" + ' ' + nb(e.seuil, ' °C') + ' (' + "{{zéro de végétation des agrumes}}" + ') : ' +
         (e.moy7 === null ? "{{sans sonde historisée, seul le calendrier compte}}" : e.moy7 === false ? '<b>' + "{{sonde muette depuis 7 jours : les apports attendent}}" + '</b>' : "{{maintenant}}" + ' ' + nb(e.moy7, ' °C') + ', ' + (e.moy7 >= e.seuil ? "{{en pousse}}" : '<b>' + "{{au repos : les apports attendent, rattrapés quand il fait plus doux}}" + '</b>')) +
         ' ; ' + "{{et seulement dans la fenêtre de chaque produit, ci-dessous}}" + (e.sud ? ' (' + "{{hémisphère sud : décalée de 6 mois}}" + ')' : '') + '.' +
-        (e.hiv ? ' ' + "{{Repos hivernal au frais : pas d'engrais hors de la fenêtre, même au chaud.}}" : e.chauffe && e.jeuneHiv ? ' ' + "{{Jeune plant (moins d'un an ou greffe en suivi) : pas d'engrais hors de la fenêtre, même au chaud.}}" : e.chauffe && e.moy7 ? ' ' + "{{Emplacement chauffé : hors de la fenêtre, apports à demi-dose tant que la moyenne atteint le seuil.}}" : '') + '</small>' : "{{Pot de dimensions inconnues ou pleine terre : pas de plan (dose de l'étiquette)}}") + '</p>' +
+        (e.hiv ? ' ' + "{{Repos hivernal au frais : pas d'engrais hors de la fenêtre, même au chaud.}}" : e.chauffe && e.jeuneHiv ? ' ' + "{{Jeune plant (moins d'un an ou greffe en suivi) : pas d'engrais hors de la fenêtre, même au chaud.}}" : e.chauffe && typeof e.moy7 == 'number' ? ' ' + "{{Emplacement chauffé : hors de la fenêtre, apports à demi-dose tant que la moyenne atteint le seuil.}}" : '') + '</small>' : "{{Pot de dimensions inconnues ou pleine terre : pas de plan (dose de l'étiquette)}}") + '</p>' +
       '<p><small>' + "{{Calendrier actuel}}" + ' : ' + (e.calendrier ? esc(e.calendrier).replace(/\n/g, ' ; ') : '–') + '</small>' +
         (e.calendrier.split('\n').some(function (l) { var c = l.split('|').map(function (x) { return x.trim() }), p = e.produits.filter(function (p) { return p.nom == c[1] })[0]
           return p && p.tous > 0 && /^\d+-\d+\/\d+$/.test(c[0]) && c[0].split('/')[0] != p.saison }) ? '<br><small class="jdc-er">' + "{{Une ligne du calendrier n'a pas la saison de son produit (latitude ou saison changée ?) : réécrire le plan, si ce n'est pas voulu.}}" + '</small>' : '') + '</p>' +
@@ -337,7 +337,7 @@ if (!window.journalcultures || window.journalcultures.v !== 24) (function () { /
           '<p><button type="submit">' + "{{Enregistrer au journal}}" + '</button> <span class="jdc-er"></span></p><p><small>' + "{{Les valeurs saisies dans tous les organes partent ensemble.}}" + '</small></p></form>'
         h += '<h4>' + "{{Courbe}}" + '</h4>' + (ks.length ? '<select class="jdc-cs">' + ks.map(function (k) { return '<option value="' + esc(k) + '">' + esc(lib(k)) + '</option>' }).join('') + '</select><div class="jdc-svg"></div>' :
           '<p><small>' + "{{Aucune mesure du catalogue pour l'instant.}}" + '</small></p>') +
-          '<h4>' + "{{Historiques}}" + '</h4><table>' + Object.keys(c).filter(function (x) { return x != 'raison' && x != 'engrais' }).map(function (x) {
+          '<h4>' + "{{Historiques}}" + '</h4><table>' + Object.keys(c).filter(function (x) { return ['raison', 'engrais', 'greffe'].indexOf(x) < 0 }) /* textes non historisés */.map(function (x) {
             return '<tr><td>' + esc(c[x].nom) + '</td><td class="n">' + (x == 'emplacement' ? esc(c[x].val) : nb(c[x].val, c[x].unite ? ' ' + c[x].unite : '')) + '</td><td><a class="b hist" data-id="' + esc(c[x].id) + '" data-nom="' + esc(c[x].nom) + '">' + "{{Historique}}" + '</a></td></tr>'
           }).join('') + '</table>'
         ct.innerHTML = h

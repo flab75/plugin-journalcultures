@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.19 (2026-11-03)
+- Droits : photo de l'aleurode épineux remplacée (celle de Commons n'avait pas de licence prouvée ; l'OEPP réserve ses photos) par deux photos INRAE du premier foyer français, 2023 (colonie de pupes, adulte) (Rossi et Streito, Licence Ouverte Etalab 2.0).
+- Santé, Cochenilles : photo de la cochenille farineuse (Planococcus citri, Khokhlov, CC BY-SA 4.0) ; HLB : psylle adulte tout juste émergé (USGS, domaine public).
+- Chaque légende de photo renvoie à sa page source (auteur, licence) ; références complètes de Burkhardt 2018 et du Wiktionnaire ; LICENSE renvoie aux licences des images.
+- Corrections : ligne « greffe » de l'onglet Mesures (NaN), phrase de l'emplacement chauffé à 0 °C, saut vers un titre dans la bonne fenêtre de la notice, type de greffe gardé par « Greffer… » côté serveur.
+
 ## 0.18 (2026-11-03)
 - Notice, onglet **Noms des plantes** : dictionnaire de l'origine des noms botaniques (481 genres et épithètes : nos agrumes, les plantes courantes du jardin, les noms changés depuis 1984), recherche au fil de la frappe (sans accents ni majuscules, anciens noms compris).
 - Noms qui ont changé : l'ancien nom (Ferrari 1984) garde son entrée et renvoie au nom accepté aujourd'hui (WCVP lue par GBIF) ; orthographes corrigées retrouvées par l'ancienne graphie.

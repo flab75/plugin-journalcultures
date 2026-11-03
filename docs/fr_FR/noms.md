@@ -13,8 +13,8 @@ Les botanistes renomment les plantes quand on comprend mieux leur parenté (aujo
 - Ferrari J.-P., *Dictionnaire étymologique de la flore française*, Lechevalier, 1984 : cité avec la page, jamais recopié (livre protégé) ; chaque notice est écrite avec nos mots.
 - Gentil A., *Dictionnaire étymologique de la flore française*, Lechevalier, 1923 (domaine public).
 - Théis A. de, *Glossaire de botanique ou dictionnaire étymologique*, 1810 (domaine public).
-- Burkhardt L., *Verzeichnis eponymischer Pflanzennamen*, 2018 (CC BY 4.0) : les noms dédiés à des personnes.
-- Wiktionnaire et Wiktionary (CC BY-SA) ; GBIF et WCVP pour les noms acceptés ; Swingle et Reece 1967 pour les agrumes.
+- Burkhardt L., *Verzeichnis eponymischer Pflanzennamen*, Jardin et musée botaniques de Berlin, 2018, [doi:10.3372/epolist2018](https://doi.org/10.3372/epolist2018) ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)) : les noms dédiés à des personnes, faits repris et reformulés.
+- [Wiktionnaire](https://fr.wiktionary.org) et [Wiktionary](https://en.wiktionary.org) ([CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), consultés en 2026, faits repris et reformulés) ; GBIF et WCVP pour les noms acceptés ; Swingle et Reece 1967 pour les agrumes.
 
 Chaque étymologie repose sur deux sources ; sinon la notice le dit (« **une seule source** », suivie entre parenthèses de la source unique ou de ce qu'elle concerne). Quand les sources ne s'accordent pas, les deux versions sont données. « À notre avis » marque une déduction de notre part.
 
