@@ -82,9 +82,9 @@ De l'extérieur vers le centre :
 
   Ces mots se lisent dans les flores et les clés d'identification ([Identification](identification.md)) ; le plugin ne les demande pas.
 
-![Vocabulaire de la feuille : forme du limbe, sommet, bord](../images/bota-feuilles.svg)
+![Vocabulaire de la feuille : forme du limbe, sommet, bord, base](../images/bota-feuilles.svg)
 
-*Formes du limbe, sommets et bords (la base n'est pas dessinée). Schéma dessiné pour ce plugin d'après les définitions de Shipunov p. 82 et d'IPGRI 1999 p. 32-33 (aucune figure recopiée), MIT comme le plugin.*
+*Formes du limbe, sommets, bords et bases. Schéma dessiné pour ce plugin d'après les définitions et dessins de Shipunov p. 82 (base) et d'IPGRI 1999 p. 32-33 (aucune figure recopiée), MIT comme le plugin.*
 
 ![Feuille de Citrus aurantium, Rendle 1911](../images/bota-feuille-agrume.webp)
 
