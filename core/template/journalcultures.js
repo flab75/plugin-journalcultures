@@ -32,7 +32,7 @@ if (!window.journalcultures || window.journalcultures.v !== 24) (function () { /
     '.jdc-toc{position:sticky;top:44px;max-height:calc(90vh - 70px);overflow:auto;font-size:13px;line-height:1.35;border-left:3px solid rgba(47,107,58,.5);padding-left:10px}' +
     '.jdc-toc summary{cursor:pointer;font-weight:600;margin-bottom:4px}.jdc-toc ul{list-style:none;margin:0;padding:0}.jdc-toc li{margin:5px 0}.jdc-toc li.s{padding-left:12px;font-size:12px;opacity:.85}.jdc-mb .jdc-toc a[data-n]{text-decoration:none}.jdc-toc a:hover{text-decoration:underline}' +
     '.jdc-tx h3{font-size:18px;margin:28px 0 8px;padding-bottom:4px;border-bottom:1px solid rgba(128,128,128,.35)}.jdc-tx h4{font-size:15.5px;margin:22px 0 6px;padding-left:8px;border-left:3px solid #2F6B3A}.jdc-tx h5{font-size:14px;margin:14px 0 4px}' +
-    '.jdc-tx li{margin:3px 0}.jdc-tw{overflow-x:auto;margin:10px 0 14px}.jdc-tw table{margin:0;min-width:480px;font-size:13px;line-height:1.4}.jdc-tw th,.jdc-tw td{padding:5px 8px!important;vertical-align:top!important}.jdc-tw th{background:rgba(47,107,58,.18);white-space:nowrap}.jdc-tw tr:nth-child(even) td{background:rgba(128,128,128,.07)}.jdc-tw td:first-child{min-width:9em}.jdc-ct code{color:inherit;background:rgba(128,128,128,.18);border:0;padding:1px 4px;border-radius:3px;font-size:.88em;white-space:normal;overflow-wrap:anywhere}.jdc-ct summary,.jdc-np summary{display:list-item;cursor:pointer}.jdc-not .jdc-ct img{max-width:100%;height:auto}' +
+    '.jdc-tx li{margin:3px 0}.jdc-tw{overflow-x:auto;margin:10px 0 14px}.jdc-tw table{margin:0;min-width:480px;font-size:13px;line-height:1.4}.jdc-tw th,.jdc-tw td{padding:5px 8px!important;vertical-align:top!important}.jdc-tw th{background:rgba(47,107,58,.18);white-space:nowrap}.jdc-tw tr:nth-child(even) td{background:rgba(128,128,128,.07)}.jdc-tw td:first-child{min-width:9em}.jdc-ct code{color:inherit;background:rgba(128,128,128,.18);border:0;padding:1px 4px;border-radius:3px;font-size:.88em;white-space:normal;overflow-wrap:anywhere}.jdc-ct summary,.jdc-np summary{display:list-item;cursor:pointer}.jdc-not .jdc-ct img{max-width:100%;height:auto}.jdc-q{position:sticky;top:0;z-index:2;margin:8px 0 12px}' +
     '@media (max-width:900px){.jdc-doc{display:block}.jdc-tx>*{max-width:none}.jdc-toc{position:static;max-height:none;margin-bottom:14px;padding:8px 10px;border:1px solid rgba(128,128,128,.3);border-radius:8px}}' +
     '@media (max-width:600px){.jdc-m{align-items:stretch}.jdc-mb{width:100vw;max-height:none;height:100%;border-radius:0;font-size:15px}.jdc-mb>nav a{padding:8px 12px}' +
     '.jdc-not .jdc-mb{width:100vw;padding:8px 14px 24px}.jdc-not .jdc-ct>h2{font-size:19px}.jdc-mb input,.jdc-mb select,.jdc-mb textarea{font-size:16px;min-height:40px}.jdc-mb button{min-height:44px}.jdc .xs{display:none}}'
@@ -96,11 +96,27 @@ if (!window.journalcultures || window.journalcultures.v !== 24) (function () { /
           ct.innerHTML = n.html
           ct.querySelectorAll('a[data-n]').forEach(function (l) { l.onclick = function () { aller(l.dataset.n || n.k, l.dataset.a) } })
           var d = ct.querySelector('.jdc-toc details'); if (d && window.innerWidth <= 600) d.open = false // mobile : sommaire replié
+          if (n.k == 'noms') chercher(ct)
         }] }), k2, {flottante: 1, classe: 'jdc-not'})
         var e = a && document.getElementById('jdc-n-' + a)
         if (e) e.scrollIntoView(); else w.boite.scrollTop = 0
       }
       aller(k, ancre)
+    }
+  }
+
+  // dictionnaire des noms : filtre les entrées (li) au fil de la frappe, sans accents ni casse ; lettres vides masquées
+  function chercher(ct) {
+    var tx = ct.querySelector('.jdc-tx') || ct, sans = function (t) { return t.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase() }
+    var q = document.createElement('input'); q.type = 'search'; q.placeholder = "{{Chercher un nom (genre, espèce, ancien nom)…}}"; q.className = 'form-control jdc-q'
+    tx.insertBefore(q, tx.querySelector('h3') || tx.firstChild)
+    var haut = function () { var m = q.closest('.jdc-mb'), n = m && m.querySelector('nav'); q.style.top = (n ? n.offsetHeight - 10 : 0) + 'px' } // sous les onglets collants (plusieurs lignes sur mobile)
+    setTimeout(haut); q.onfocus = haut
+    var lis = [].slice.call(tx.querySelectorAll('li')).map(function (li) { return [li, sans(li.textContent)] })
+    q.oninput = function () {
+      var v = sans(q.value.trim())
+      lis.forEach(function (x) { x[0].style.display = !v || x[1].indexOf(v) >= 0 ? '' : 'none' })
+      tx.querySelectorAll('h2,h3,h4').forEach(/* ### du .md = h4 une fois converti */function (h) { var u = h.nextElementSibling; if (u && u.tagName == 'UL') h.style.display = u.style.display = [].some.call(u.children, function (li) { return li.style.display != 'none' }) ? '' : 'none' })
     }
   }
 
@@ -224,6 +240,7 @@ if (!window.journalcultures || window.journalcultures.v !== 24) (function () { /
           (s.engrais ? '<tr><th>' + "{{Engrais cette semaine}}" + '</th><td>' + esc(s.engrais) + '</td></tr>' : '') +
           (g.nom ? '<tr><th>GBIF</th><td>' + esc(g.nom) + (g.famille ? ' · ' + esc(g.famille) : '') + ' <small>(' + esc(g.statut) + ', ' + esc(g.type) + ' ' + esc(g.confiance) + ' %)</small></td></tr>' :
             g.statut == 'NONE' ? '<tr><th>GBIF</th><td class="jdc-er">' + "{{nom botanique introuvable}}" + '</td></tr>' : '') +
+          (r.noms && r.noms.length ? '<tr><th>' + "{{Origine du nom}}" + '</th><td>' + r.noms.join('<br>') + ' <small><a class="nms">' + "{{dictionnaire}}" + '</a></small></td></tr>' : '') + // html converti par la box depuis notre noms.md
           r.fiche.map(function (x) { return '<tr><th>' + esc(x[0]) + '</th><td style="white-space:pre-wrap">' + esc(x[1]) + '</td></tr>' }).join('') + '</table>' +
           blocEngrais(r.engrais, d.admin == 1) + blocSante(r.sante, r.santeCat, r.geo) +
           (r.ident && r.ident.groupes ? '<h4>' + "{{Identification}}" + '</h4><p>' + (r.ident.verdict == 'probable' ? "{{Groupe probable}}" : "{{Indécis entre}}") + ' : ' +
@@ -234,6 +251,7 @@ if (!window.journalcultures || window.journalcultures.v !== 24) (function () { /
           (r.liens.length ? '<h4>' + "{{Sources en ligne}}" + '</h4>' + r.liens.map(function (l) { return '<a href="' + esc(l[1]) + '" target="_blank" rel="noopener noreferrer">' + esc(l[0]) + '</a>' }).join(' · ') : '') +
           (d.admin == 1 ? '<p><small>' + "{{La fiche se modifie dans la page du plugin (équipement de la plante).}}" + '</small> <a class="b grf" title="' +
             "{{La plante devient le greffon : nom, fiche et collection changent ; journal, photos, pot et mesures sont gardés}}" + '">' + "{{Greffer…}}" + '</a> <a class="b idn">' + "{{Identifier…}}" + '</a></p>' : '')
+        var nm = ct.querySelector('.nms'); if (nm) nm.onclick = function () { notice('noms') }
         var gb = ct.querySelector('.grf')
         if (gb) gb.onclick = function () { w.fermer(); nouvelle(d, d.apres, {id: id, nom: r.nom}) }
         ct.querySelectorAll('.gv').forEach(function (a) { a.onclick = function () { // « Non, mort » : deuxième clic pour confirmer

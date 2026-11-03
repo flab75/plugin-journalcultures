@@ -597,7 +597,8 @@ class journalcultures extends eqLogic {
     return ['id' => $this->getId(), 'nom' => $this->getName(), 'fiche' => $f, 'carac' => $carac, 'brut' => ['bota' => $bota, 'rusticite' => trim((string)$this->getConfiguration('rusticite')), 'carac' => $obs], 'ident' => journalcultures_calc::identifier($obs), 'gbif' => $g, 'pot' => $potTxt, 'etat' => $s, 'cmds' => $cmds,
       'journal' => self::journal([$this->getId()], 300), 'photos' => $ph = $this->photos(), 'liens' => array_values($liens),
       'etiquette' => in_array($this->getConfiguration('etiquette'), $ph, true) ? $this->getConfiguration('etiquette') : '', // photo supprimée : plus d'étiquette
-      'plantnet' => self::cle() !== '' ? 1 : 0, 'multiplication' => $this->multiplication(), 'greffe' => $this->suiviGreffe(), 'mesures' => journalcultures_calc::MESURES, 'calculs' => journalcultures_calc::CALCULS, 'engrais' => $this->engraisFiche(), 'sante' => $this->santeFiche(), 'santeCat' => self::santeCat(), 'geo' => self::geo()];
+      'plantnet' => self::cle() !== '' ? 1 : 0, 'multiplication' => $this->multiplication(), 'greffe' => $this->suiviGreffe(), 'mesures' => journalcultures_calc::MESURES, 'calculs' => journalcultures_calc::CALCULS, 'engrais' => $this->engraisFiche(), 'sante' => $this->santeFiche(), 'santeCat' => self::santeCat(), 'geo' => self::geo(),
+      'noms' => journalcultures_calc::etymologie([$bota, $g['espece'] ?? ''])]; // nom saisi puis nom retenu par GBIF (ancien nom → actuel)
   }
 
   /* Santé de la fiche : pistes d'après la dernière mesure qui parle de santé (signe, ravageur, maladie, écorce du tronc) */

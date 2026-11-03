@@ -167,6 +167,8 @@ preg_match('/aide: \{([^}]*)\}/', file_get_contents(__DIR__ . '/../core/template
 preg_match_all("/['\"]([\\w-]+)['\"]\s*[,}]?/", $a[1] ?? '', $a);
 $ok(count($a[1]) >= 4, 'notice : ancres du « ? » trouvées');
 foreach ($a[1] as $x) $ok(strpos($H['index'] ?? '', 'id="jdc-n-' . $x . '"') !== false, "notice : ancre du « ? » #$x introuvable");
+$e = $C::etymologie(['Poncirus trifoliata (Flying Dragon)', "Citrus junos 'Yuzu' × Citrus"]);
+$ok(isset($H['noms']) && count($e) >= 3 && strpos($e[0], '<b>Poncirus</b>') === 0 && strpos(implode('', $e), 'Yuzu') === false && strpos(implode('', $e), '<script') === false, 'noms : origine des mots du nom botanique, cultivar ignoré');
 $x = $C::markdown("# T\nintro\n## Un [l](#a)\n### Sous\n## Deux");
 $ok(strpos($x, '<h2 id="jdc-n-t">T</h2><div class="jdc-doc"><nav class="jdc-toc">') === 0 && strpos($x, '<li><a data-n="" data-a="un-la">Un l</a></li><li class="s"><a data-n="" data-a="sous">Sous</a></li>') !== false
   && strpos($x, '<div class="jdc-tx"><p>intro</p><h3') !== false && strpos($C::markdown("# T\n## Un"), 'jdc-toc') === false, 'notice : sommaire sous le titre, seulement à partir de 2 sections');

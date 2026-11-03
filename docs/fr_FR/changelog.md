@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.18 (2026-11-03)
+- Notice, onglet **Noms des plantes** : dictionnaire de l'origine des noms botaniques (481 genres et épithètes : nos agrumes, les plantes courantes du jardin, les noms changés depuis 1984), recherche au fil de la frappe (sans accents ni majuscules, anciens noms compris).
+- Noms qui ont changé : l'ancien nom (Ferrari 1984) garde son entrée et renvoie au nom accepté aujourd'hui (WCVP lue par GBIF) ; orthographes corrigées retrouvées par l'ancienne graphie.
+- Fiche d'une plante : ligne « Origine du nom » tirée du nom botanique saisi et du nom retenu par GBIF (formes -a/-um/-e retrouvées), lien vers le dictionnaire.
+- Sources : Ferrari 1984 (cité, jamais recopié), Gentil 1923 et Théis 1810 (domaine public), Burkhardt 2018, Wiktionnaire, GBIF/WCVP, Swingle et Reece 1967.
+
 ## 0.17 (2026-11-02)
 - Notice, onglet **Botanique** : « Multiplier les agrumes » (semis et pépins à plusieurs embryons, phase juvénile, greffe, bouture, marcotte aérienne ; tableau comparatif ; lien avec l'âge et la jeunesse dans le plugin), sources Curk 2022, UF/IFAS HS1309, de Rocca Serra 1992.
 - Correction : « Greffer… » écrit de nouveau l'entrée « Greffe » au journal (perdue depuis la 0.15) ; regreffer une greffe en dormance ou en pousse garde la fiche du vrai porte-greffe.

@@ -650,7 +650,21 @@ class journalcultures_calc {
 
   // Notice : Markdown restreint (titres, paragraphes, listes « - », tableaux, gras, italique, code, liens, images de docs/images) → HTML.
   // ponytail: pas un parseur complet, le texte vient de nos docs/ ; tout est échappé avant d'être balisé.
-  const NOTICES = ['index' => 'Mode d\'emploi', 'fertilisation' => 'Fertilisation', 'sante' => 'Santé', 'greffe' => 'Greffe', 'identification' => 'Identification', 'guide' => 'Botanique'];
+  const NOTICES = ['index' => 'Mode d\'emploi', 'fertilisation' => 'Fertilisation', 'sante' => 'Santé', 'greffe' => 'Greffe', 'identification' => 'Identification', 'guide' => 'Botanique', 'noms' => 'Noms des plantes'];
+  /* Origine des mots d'un nom botanique : entrées « - **Mot** … » de docs/fr_FR/noms.md (une entrée = une ligne), [html] dans l'ordre du nom.
+     Cultivar entre guillemets, parenthèses, ×, var., subsp. ignorés ; mot absent du dictionnaire : rien. */
+  public static function etymologie(array $noms) {
+    static $L = null;
+    if ($L === null) {
+      $L = []; $f = __DIR__ . '/../../docs/fr_FR/noms.md';
+      if (is_file($f)) foreach (file($f, FILE_IGNORE_NEW_LINES) as $l) if (preg_match('/^- \*\*([\p{L}-]+)\*\*(.*)$/u', $l, $m)) $L[mb_strtolower($m[1])] = '**' . $m[1] . '**' . $m[2];
+    }
+    $r = [];
+    foreach ($noms as $n) foreach (preg_split('/[^\p{L}-]+/u', preg_replace("/(['‘’\"«»]).*?['‘’\"«»]|\(.*?\)/u", ' ', (string)$n)) as $w)
+      foreach ([$k = mb_strtolower($w), preg_replace('/(a|um)$/u', 'us', $k), preg_replace('/e$/u', 'is', $k), preg_replace('/(us|um)$/u', 'a', $k)] as $v) // sativa, sativum → sativus ; officinale → officinalis
+        if (isset($L[$v])) { if (!isset($r[$v])) $r[$v] = self::enligne($L[$v]); break; }
+    return array_values($r);
+  }
   public static function ancre($t) { return trim(preg_replace('/[^\p{L}\p{N}_-]+/u', '', str_replace(' ', '-', mb_strtolower($t))), '-'); } // comme GitHub
   public static function enligne($t) {
     $t = htmlspecialchars($t, ENT_QUOTES | ENT_SUBSTITUTE);

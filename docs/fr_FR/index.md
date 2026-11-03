@@ -57,6 +57,7 @@ La fiche se modifie dans la page du plugin (équipement de la plante) ; l'onglet
   La dose en grammes peut être ajustée à la main avant d'écrire ; celle déjà au calendrier est reprise. « Écrire dans le calendrier » remplace
   les lignes de ces produits, garde les autres (fer, magnésium, lignes à la main) et le note au journal. Détails : [Fertilisation](fertilisation.md).
 - **Pistes de carence** et **Santé** : d'après la dernière mesure, jamais un diagnostic (voir [Santé](sante.md)).
+- **Origine du nom** : d'où viennent les mots du nom botanique (genre, épithète), avec l'ancien nom s'il a changé ; tout le dictionnaire, avec recherche : [Noms des plantes](noms.md).
 - **Sources et points à vérifier** : où vient chaque information, et ce qui reste à confirmer.
 
 ![Partie Engrais de la fiche](../images/engrais.webp)
