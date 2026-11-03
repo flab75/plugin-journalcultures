@@ -110,6 +110,37 @@ Un 12-6-6 ou 12-4-6 avec oligo-éléments collerait mieux à la lettre des sourc
 - Elle allonge la libération (effet 3 à 4 mois contre 2) : apport plus régulier, sans source qui en montre l'intérêt pour un agrume en pot.
 Bref, la corne est un complément d'azote à libération lente, pas un correctif des deux réserves ci-dessus.
 
+### Rééquilibrer le rapport N-P-K
+
+Le défaut d'un engrais « spécial agrumes » du commerce (7-3-10, 3-2-5, 5-4-9…) n'est pas un manque d'azote : le plan est calculé sur l'azote, la plante le reçoit.
+C'est un **excès de potassium**. On ne le réduit qu'en confiant une part de l'azote à des produits **sans potassium** (corne, sang séché) **à la place** d'une part de l'engrais de fond, jamais en plus : la dose en pot est déjà 3 à 6 fois le besoin réel (voir [la dose en pot](#combien--la-dose-en-pot)).
+
+Calculs du plugin pour un pot de 17,7 L (≈ 40 g d'azote par saison), corne et sang à 1 g par litre (la corne a cette dose sur son étiquette ; pour le sang, c'est un **choix du plugin**, l'étiquette ne donne rien) :
+
+| Engrais de fond | Compléments | Rapport obtenu | Remarque |
+|---|---|---|---|
+| spécial agrumes 7-3-10 seul | — | 2,3-1-3,3 | potassium au-dessus de l'azote |
+| spécial agrumes 7-3-10 (72 % de l'azote) | corne 18 % + sang 10 % | ≈ 3-1-3 | le potassium redescend au niveau de l'azote ; pour aller plus loin il faudrait ~160 g de sang par saison, azote rapide en masse : déconseillé |
+| engrais équilibré 2-1-1 (12-6-6) seul | — | 2-1-1 | le rapport des sources ; vérifier la libération (voir ci-dessous) |
+| engrais 2-1-1 (82 %) | corne 18 % | 2,4-1-1 | entre 2-1-1 et 3-1-1 ; azote lent en plus |
+| engrais 2-1-1 (72 %) | corne 18 % + sang 10 % | 2,8-1-1 | le 3-1-1 des sources |
+| organo-minéral 3-1-2 + Mg, libération 100 jours (82 %) | corne 18 % | 3,7-1-2 | forme et rapport conformes, magnésium compris |
+| n'importe quel fond (70 %) | liquide 2-1-1,7 à oligo-éléments chélatés (30 %), à chaque arrosage en saison | ≈ 2,1 à 2,9-1-1,2 à 2,7 | seule façon d'apporter Cu, Mn, Zn, Mo sans produit « oligo » à part |
+
+Conclusions :
+- avec la gamme de produits qu'on a (engrais 7-3-10, corne, sang), on ramène au mieux le potassium **au niveau** de l'azote ; pour atteindre 2-1-1, il faut **changer** l'engrais de fond, pas le compléter ;
+- le fer (chélate) et le magnésium (sel d'Epsom) **ne font pas partie d'un plan** : la notice les réserve au signe observé (voir [Reconnaître une carence](#reconnaître-une-carence)) ;
+- le manque le plus courant des engrais lents trouvés en Europe, ce sont les **oligo-éléments** (zinc, manganèse, cuivre) : seuls les engrais liquides en déclarent ; les donner sur signe, ou par un liquide léger en saison ;
+- aucune source ne montre qu'un engrais riche en potasse nuise à un agrume en pot : ce rééquilibrage suit la lettre des sources, pas un problème observé.
+
+**Avant d'acheter un engrais 2-1-1 ou 3-1-1**, lire sur le sac (ces produits sont souvent vendus pour la pelouse) :
+1. la **libération** : formes d'azote (ammoniacal, uréique = rapide ; organique, enrobé = lente) ; si rapide, fractionner en pot (apports toutes les 4 semaines à demi-dose, intervalle réglable dans le plugin) ;
+2. la présence de **magnésium** et d'**oligo-éléments** (le bore seul ne compte pas) ;
+3. l'absence de **désherbant** ou d'**anti-mousse**, fréquents dans les gammes pelouse ;
+4. la forme du potassium : sulfate plutôt que chlorure (sensibilité des agrumes au chlore : notion courante en verger, **aucune de nos sources ne la traite**, et rien en pot).
+
+Tout cela se saisit dans le plugin : la part d'azote de chaque produit découle de sa dose d'étiquette, le reste va à l'engrais de fond.
+
 ### En pratique
 
 | Ce qu'on voit | Que faire |
