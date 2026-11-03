@@ -27,7 +27,7 @@ try {
     $n = (string)init('n'); $f = __DIR__ . '/../../docs/images/' . $n;
     if (!preg_match('/^[\w.-]+\.(png|jpe?g|webp|svg)$/D', $n) || !is_file($f)) throw new Exception(__('Image introuvable', __FILE__));
     header('Content-Type: ' . ['png' => 'image/png', 'jpg' => 'image/jpeg', 'jpeg' => 'image/jpeg', 'webp' => 'image/webp', 'svg' => 'image/svg+xml'][strtolower(pathinfo($n, PATHINFO_EXTENSION))]);
-    header('X-Content-Type-Options: nosniff'); header("Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline'"); // svg ouvert seul : pas de script
+    header('X-Content-Type-Options: nosniff'); header("Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline'"); // ponytail: écrasée par la CSP d'Apache (JD-52) ; la vraie garde = le selftest, qui refuse script, on…= et foreignObject dans docs/images/*.svg
     header('Cache-Control: private, max-age=31536000, immutable'); // l'URL porte la date du fichier (v=)
     header('Content-Length: ' . filesize($f)); readfile($f); exit;
   }
@@ -105,6 +105,8 @@ try {
     'multiplications' => journalcultures_calc::MULTIPLICATIONS, 'greffes' => journalcultures_calc::GREFFES, 'greffe_saisons' => array_map('journalcultures_calc::greffeSaison', array_combine(array_keys(journalcultures_calc::GREFFES), array_keys(journalcultures_calc::GREFFES))), 'collections' => journalcultures::collections(),
     'cultivars' => init('pg') ? journalcultures::cultivars($eq(init('pg'), 'plante')) : [], 'plantnet' => journalcultures::cle() !== '' ? 1 : 0]);
   if ($a == 'reconnaitre') { $c = $liste('carac'); ajax::success(['ident' => journalcultures_calc::identifier($c), 'estimee' => journalcultures_calc::estimee((string)init('bota'), $c)]); }
+  if ($a == 'exporter') ajax::success(journalcultures::exporter());
+  if ($a == 'importer') ajax::success(journalcultures::importer($liste('donnees'), $eq(init('collection'), 'collection')));
   if ($a == 'creer') ajax::success(journalcultures::creer($eq(init('collection'), 'collection'), $liste('plante')));
   if ($a == 'accepter') ajax::success($eq(init('id'), 'plante')->accepter($liste('champs'), $liste('sources')));
   if ($a == 'plan') ajax::success($eq(init('id'), 'plante')->ecrirePlan($liste('parts'), $liste('doses')));

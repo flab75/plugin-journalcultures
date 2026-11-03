@@ -189,12 +189,17 @@ foreach ($H as $k => $h) {
 $im = glob(__DIR__ . '/../docs/images/*.{png,jpg,svg,webp}', GLOB_BRACE)[0] ?? null;
 if ($im) $ok(strpos($C::markdown('![a](images/' . basename($im) . ')'), '<p><img src="plugins/journalcultures/core/ajax/journalcultures.ajax.php?action=image&amp;n=' . rawurlencode(basename($im)) . '&amp;v=' . filemtime($im) . '"') === 0, 'notice : image par URL datée');
 $ok($C::notice('index') === $H['index'] && $C::notice('index') === $H['index'], 'notice : page en cache = page convertie');
+$ok((bool)glob(jeedom::getTmpFolder('journalcultures') . '/notice_index_*.html'), 'notice : page gardée en cache');
+$ok($C::taille(__DIR__ . '/../docs/images/rusticite.svg') === ' width="640" height="272" class="jdc-svgi"', 'notice : taille du schéma rusticite.svg');
+foreach (glob(__DIR__ . '/../docs/images/*.svg') ?: [] as $s) $ok(!preg_match('/<script|\bon\w+\s*=|foreignObject/i', (string)file_get_contents($s)), 'image ' . basename($s) . ' : script ou contenu actif'); // servies en image/svg+xml
 try { $C::notice('../index'); $ok(false, 'notice : page hors liste refusée'); } catch (Exception $x) {}
+$vu = false;
 foreach (journalcultures::byType('journalcultures') as $e) if ($e->type() == 'plante' && ($n = $e->photos())) { // vignette (dossier temporaire seulement)
   $m = $e->mini($n[0]); $t = getimagesize($m);
-  if ($m !== $e->photo($n[0])) $ok($t[2] == IMAGETYPE_JPEG && max($t[0], $t[1]) <= 400 && $e->mini($n[0]) === $m, 'photo : vignette de 400 px'); // sinon : original servi (GD, mémoire)
+  if ($vu = $m !== $e->photo($n[0])) $ok($t[2] == IMAGETYPE_JPEG && max($t[0], $t[1]) <= 400 && $e->mini($n[0]) === $m, 'photo : vignette de 400 px'); // sinon : original servi (GD, mémoire)
   break;
 }
+if (!$vu) echo "vignette non testée (aucune photo, ou GD absent)\n";
 echo "notice OK\n";
 
 $t = DB::Prepare("SHOW TABLES LIKE 'journalcultures_journal'", [], DB::FETCH_TYPE_ROW);
@@ -210,7 +215,7 @@ $refus = function ($f, $m) use ($ok) { try { $f(); } catch (Exception $x) { retu
 $pl = array_values(array_filter(eqLogic::byType('journalcultures'), function ($e) { return $e->type() == 'plante' && is_object($c = $e->collection()) && $e->getObject_id() == $c->getObject_id(); }));
 if ($pl) {
   $avecPot = array_values(array_filter($pl, function ($e) { return journalcultures_calc::volume($e->pot()) > 0; })); // sinon les 3 refus tomberaient sur « pot inconnu »
-  $p = $avecPot[0] ?? $pl[0]; $co = $p->collection(); $av = $p->getConfiguration('engrais');
+  $p = $avecPot[0] ?? $pl[0]; $co = $p->collection(); $av = $p->getConfiguration('engrais'); $nb = count(eqLogic::byType('journalcultures'));
   $refus(function () use ($p) { $p->ecrirePlan([0 => 50]); }, 'plan à 50 %');
   $refus(function () use ($p) { $p->ecrirePlan([0 => 150, 1 => -50]); }, 'plan avec une part hors 0-100');
   $refus(function () use ($p) { $p->ecrirePlan([0 => 100], [0 => 9999]); }, 'plan avec une dose de 9999 g');
@@ -219,7 +224,15 @@ if ($pl) {
   $refus(function () use ($co) { journalcultures::creer($co, ['nom' => ' ']); }, 'plante sans nom');
   $refus(function () use ($co, $p) { journalcultures::creer($co, ['nom' => mb_strtoupper($p->getName())]); }, 'plante au nom déjà pris');
   foreach ($pl as $q) if ($q->getId() != $p->getId() && $q->getObject_id() == $p->getObject_id()) { $refus(function () use ($co, $p, $q) { journalcultures::creer($co, ['nom' => $p->getName()], $q); }, 'greffe au nom d\'une autre plante'); break; }
-  $ok($p->getName() === journalcultures::byId($p->getId())->getName(), 'refus : rien d\'enregistré');
+  $ok($co->refusSuppression() !== '', 'collection non vide : suppression refusée');
+  $ok(json_encode(journalcultures::exporter()) !== false, 'export : JSON');
+  $refus(function () use ($co) { journalcultures::importer(['format' => 'autre', 'plantes' => []], $co); }, 'import d\'un fichier non reconnu');
+  $pr = (string)config::byKey('produits', 'journalcultures', '');
+  $x = [['nom' => $p->getName(), 'collection' => $co->getName(), 'journal' => [['date' => '2000-01-01', 'action' => 'x']]]];
+  foreach (eqLogic::byType('journalcultures') as $q) if ($q->type() == 'plante' && is_object($c = $q->collection()) && $q->getObject_id() != $c->getObject_id()) { $x[] = ['nom' => $q->getName(), 'collection' => $c->getName()]; break; } // rangée hors de l'objet de sa collection
+  $r = journalcultures::importer(['format' => 'journalcultures', 'produits' => $pr, 'plantes' => $x], $co);
+  $ok($r['plantes'] === 0 && $r['produits'] === 0 && $r['entrees'] === 0 && count($r['deja']) === count($x) && (string)config::byKey('produits', 'journalcultures', '') === $pr, 'import d\'une plante et de produits déjà là : rien d\'écrit');
+  $ok(count(eqLogic::byType('journalcultures')) === $nb, 'refus et import : aucun équipement créé');
   echo "refus OK\n";
 }
 

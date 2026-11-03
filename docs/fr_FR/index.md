@@ -133,6 +133,12 @@ Le plugin lit dans Jeedom (Réglages → Système → Configuration) la **latitu
 - **Rusticité et alertes froid** : mesurées par les sondes de chaque emplacement, donc valables partout.
 Latitude ou pays absents : le plugin fait comme pour la France, hémisphère nord (pays : `FR`, `FRA` ou `France`).
 
+## Exporter, importer
+Page du plugin (administrateurs) :
+- **Exporter** : télécharge un fichier `journalcultures_AAAA-MM-JJ.json` avec chaque plante (fiche, nom de sa collection, journal) et le catalogue des produits en stock. Pas les photos.
+- **Importer** : relit un tel fichier (d'une autre box, ou d'une sauvegarde) et **ajoute ce qui manque, sans rien remplacer** : produits absents du catalogue (même nom), plantes absentes (même nom dans l'objet de leur collection) avec leur journal. Une plante déjà là est laissée telle quelle. La plante va dans la collection de même nom ; sinon, dans celle choisie avant l'import. Les nouvelles plantes arrivent masquées (comme avec « ＋ Plante »).
+- **Avant de désinstaller le plugin** : exporter. La désinstallation supprime les équipements ; le journal reste en base, mais n'est plus relié à rien.
+
 ## Configuration du plugin
 - **Emplacements** : `Nom | température | humidité | température minimale prévue | chauffé`, une ligne chacun. Sans sonde, pas d'alerte.
   Le 5ᵉ champ, facultatif (un mot quelconque, ex. `chauffé`), marque une pièce chauffée l'hiver : voir [Géographie](#géographie).

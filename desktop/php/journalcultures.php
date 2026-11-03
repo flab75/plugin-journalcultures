@@ -29,6 +29,26 @@ $eqLogics = eqLogic::byType($plugin->getId());
 				<br>
 				<span>{{Notice}}</span>
 			</div>
+			<div class="cursor logoSecondary" id="jdc-exp" title="{{Fiches des plantes, leur journal et le catalogue des produits, dans un fichier (sans les photos)}}">
+				<i class="fas fa-file-export"></i>
+				<br>
+				<span>{{Exporter}}</span>
+			</div>
+			<label class="cursor logoSecondary" title="{{Ajoute les plantes et produits absents d'un fichier exporté ; ce qui existe déjà n'est pas modifié}}">
+				<i class="fas fa-file-import"></i>
+				<br>
+				<span>{{Importer}}</span>
+				<input type="file" id="jdc-imp" accept=".json,application/json" class="hidden">
+			</label>
+		</div>
+		<div id="jdc-imp-ok" class="alert alert-info" style="display:none">
+			<span class="res"></span>
+			<label style="margin:0 6px">{{Collection des plantes dont la collection n'existe pas ici}}
+				<select class="form-control input-sm" style="display:inline-block;width:auto">
+				<?php foreach ($eqLogics as $e) if ($e->type() == 'collection') echo '<option value="' . $e->getId() . '">' . htmlspecialchars($e->getName()) . '</option>'; ?>
+				</select></label>
+			<button type="button" class="btn btn-sm btn-success go">{{Importer}}</button>
+			<button type="button" class="btn btn-sm btn-default non">{{Annuler}}</button>
 		</div>
 		<legend><i class="fas fa-table"></i> {{Mes collections et plantes}}</legend>
 		<?php

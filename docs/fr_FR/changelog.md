@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.25 (2026-11-03)
+- Export et import des plantes (fiche et journal) et des produits en stock, depuis la page du plugin : l'import ajoute ce qui manque sans rien remplacer.
+- Une collection qui contient encore des plantes ne peut plus être supprimée (les déplacer d'abord) ; la désinstallation garde le journal en base.
+- Tuile : agrandie à son contenu seulement sur le dashboard (la hauteur enregistrée sert de minimum) ; une erreur d'affichage est distinguée d'une bibliothèque non chargée.
+- Vignette illisible signalée par ⚠ ; notice et dictionnaire des noms : cache renouvelé dès que le texte change.
+- Selftest : export/import, refus de suppression, schémas SVG sans script, cache de la notice.
+
 ## 0.24 (2026-11-03)
 - Tuiles plus légères : la bibliothèque du plugin est chargée une seule fois, puis gardée par le navigateur, au lieu d'être recopiée dans chaque tuile.
 - Le relevé du quart d'heure lit une seule fois la liste des plantes et les dernières mesures pour toutes les collections.

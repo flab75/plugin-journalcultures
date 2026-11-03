@@ -12,12 +12,14 @@
       var L = window.jdcLib = window.jdcLib || {}
       ;(L[u] = L[u] || new Promise(function (ok, ko) { var s = document.createElement('script'); s.src = u; s.onload = ok; s.onerror = ko; document.head.appendChild(s) }))
         .then(function () {
-          if (!window.journalcultures) throw 0 // session expirée : l'action a renvoyé une erreur, pas la bibliothèque
+          if (!window.journalcultures) { L[u] = null; throw 0 } // session expirée : l'action a renvoyé une erreur, pas la bibliothèque
           window.journalcultures.init(b, d)
           var t = b.closest('.eqLogic'), pk = b.closest('.div_displayEquipement'), g = pk && window.Packery && Packery.data && Packery.data(pk) // tuile remplie après le placement du dashboard (qui l'a mise à 30 px) : on l'agrandit au contenu et on refait le placement
-          if (t && t.scrollHeight > t.clientHeight) t.style.height = t.scrollHeight + 'px' // ponytail: agrandit aussi une tuile réduite à la main ; tenir compte de la hauteur enregistrée si quelqu'un en veut une plus petite que son contenu
+          if (g && t && t.scrollHeight > t.clientHeight) t.style.height = t.scrollHeight + 'px' // dashboard seulement (design, vue : case fixe) ; hauteur enregistrée = minimum (le mode édition enregistre toutes les tuiles)
           if (g) g.layout() // (pas positionEqLogic : sans hauteur enregistrée, il écrase la tuile à 30 px)
-        }).catch(function () { L[u] = null; if (b) b.textContent = '⚠ Journal de cultures : bibliothèque non chargée (recharger la page)' })
+        }, function () { L[u] = null; throw 0 }).catch(function (e) { // 0 = bibliothèque absente (nouvel essai à la tuile suivante) ; sinon erreur d'affichage, à lire dans la console
+          if (e !== 0) console.error('journalcultures', e)
+          if (b) b.textContent = e === 0 ? '⚠ Journal de cultures : bibliothèque non chargée (recharger la page)' : '⚠ Journal de cultures : erreur d\'affichage (console du navigateur)' })
     })(document.querySelector('.eqLogic[data-eqLogic_uid="#uid#"] .jdc'), @@DATA@@, '@@LIB@@')
   </script>
 </div>

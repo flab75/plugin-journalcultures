@@ -663,7 +663,7 @@ class journalcultures_calc {
   public static function etymologie(array $noms) {
     static $L = null;
     if ($L === null) { // dictionnaire lu une fois puis gardé en JSON dans le dossier temporaire, tant que noms.md n'a pas changé
-      $f = __DIR__ . '/../../docs/fr_FR/noms.md'; $c = jeedom::getTmpFolder('journalcultures') . '/noms.json';
+      $f = __DIR__ . '/../../docs/fr_FR/noms.md'; $c = jeedom::getTmpFolder('journalcultures') . '/noms_' . (is_file($f) ? substr(md5_file($f), 0, 8) : '') . '.json'; // contenu dans le nom : une mise à jour dans la même seconde ne sert pas l'ancien
       $L = is_file($f) && is_file($c) && filemtime($c) >= max(filemtime($f), filemtime(__FILE__)) ? json_decode((string)file_get_contents($c), true) : null;
       if (!is_array($L)) {
         $L = [];
@@ -685,7 +685,7 @@ class journalcultures_calc {
      (le convertisseur) et docs/images (dates des URL d'images). */
   public static function notice($k) {
     if (!isset(self::NOTICES[$k]) || !is_file($f = __DIR__ . '/../../docs/fr_FR/' . $k . '.md')) throw new Exception(__('Page de notice inconnue', __FILE__));
-    $c = jeedom::getTmpFolder('journalcultures') . '/notice_' . $k . '.html';
+    $c = jeedom::getTmpFolder('journalcultures') . '/notice_' . $k . '_' . substr(md5_file($f), 0, 8) . '.html'; // ponytail: anciennes versions laissées au dossier temporaire (vidé au redémarrage)
     $t = max(array_merge([filemtime($f), filemtime(__FILE__), filemtime(__DIR__ . '/../../docs/images')], array_map('filemtime', glob(__DIR__ . '/../../docs/images/*') ?: [])));
     if (is_file($c) && filemtime($c) >= $t) return (string)file_get_contents($c);
     self::cache($c, $h = self::markdown(file_get_contents($f)));

@@ -1,6 +1,6 @@
 /* Journal de cultures — tuile d'une collection et ses fenêtres (plante, journal, noter, déplacer). Recopié dans chaque tuile par
    journalcultures::toHtml(), chargé une seule fois par page. Textes entre doubles accolades traduits côté PHP (core/i18n). */
-if (!window.journalcultures || window.journalcultures.v !== 28) (function () { // v : un onglet ouvert avant une mise à jour recharge la bibliothèque
+if (!window.journalcultures || window.journalcultures.v !== 29) (function () { // v : un onglet ouvert avant une mise à jour recharge la bibliothèque
   var css = document.getElementById('jdc-css') || document.createElement('style')
   css.id = 'jdc-css'
   css.textContent =
@@ -451,7 +451,7 @@ if (!window.journalcultures || window.journalcultures.v !== 28) (function () { /
       phs.appendChild(dv); return dv
     }
     ex.forEach(function (n) { var dv = ligne(n.slice(6, 8) + '/' + n.slice(4, 6) + '/' + n.slice(2, 4) + ' ' + n.slice(9, 11) + ':' + n.slice(11, 13), 'n' + n, false)
-      dv.querySelector('img').src = photo(id, n, 1) })
+      var im = dv.querySelector('img'); im.onerror = function () { im.alt = '⚠'; im.title = "{{Photo illisible (session expirée ?)}}" }; im.src = photo(id, n, 1) })
     fi.onchange = function () { Array.prototype.forEach.call(fi.files, function (f) { nv.push(f); vignette(ligne(f.name, 'f' + (nv.length - 1), true), f) }); fi.value = '' }
     if (idf) idf.onclick = function () {
       var ch = {id: id}, noms = [], org = [], fs = []
@@ -611,7 +611,7 @@ if (!window.journalcultures || window.journalcultures.v !== 28) (function () { /
   }
 
   // opt.panel : colonnes en plus (porte-greffe, dernière mesure), masquées sur téléphone
-  window.journalcultures = {v: 28, notice: notice, ajax: ajax, esc: esc, nb: nb, init: function (b, d, opt) {
+  window.journalcultures = {v: 29, notice: notice, ajax: ajax, esc: esc, nb: nb, init: function (b, d, opt) {
     if (!b) return
     d.apres = opt && opt.apres // relu par « Greffer… » (fiche)
     var pa = opt && opt.panel

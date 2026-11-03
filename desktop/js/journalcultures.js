@@ -87,3 +87,35 @@ function printEqLogic(_eqLogic) { // nom retenu par GBIF à l'enregistrement (le
 }
 function jdcType() { $('.jdc-plante').toggle($('#jdc-type').value() != 'collection') }
 $('#jdc-type').on('change', jdcType)
+
+/* export / import (fichier JSON) : rien n'est remplacé, seules les plantes et produits absents sont ajoutés */
+$('#jdc-exp').on('click', function () {
+  window.journalcultures.ajax('exporter', {}, function (d) {
+    var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(d, null, 1)], {type: 'application/json'}))
+    a.download = 'journalcultures_' + d.date.slice(0, 10) + '.json'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(function () { URL.revokeObjectURL(a.href) }, 1000)
+  }, function (e) { $('#div_alert').showAlert({message: e, level: 'danger'}) })
+})
+$('#jdc-imp').on('change', function () {
+  var f = this.files[0], bx = $('#jdc-imp-ok'); this.value = ''; if (!f) return
+  f.text().then(function (t) {
+    var d = JSON.parse(t); if (d.format !== 'journalcultures' || !Array.isArray(d.plantes)) throw 0
+    var ici = bx.find('select option').map(function () { return this.textContent.toLowerCase() }).get(), abs = {}
+    d.plantes.forEach(function (p) { if (ici.indexOf(String(p.collection || '').toLowerCase()) < 0) abs[p.collection || '?'] = 1 })
+    if (!ici.length) throw "{{Créer d'abord une collection (« Ajouter »)}}"
+    bx.find('.res').text(f.name + ' : ' + d.plantes.length + ' {{plante(s)}}, ' + String(d.produits || '').split('\n').filter(function (l) { return l.trim() }).length + ' {{produit(s)}}' +
+      (Object.keys(abs).length ? ' — {{collections absentes ici}} : ' + Object.keys(abs).join(', ') : ''))
+    bx.find('label').toggle(Object.keys(abs).length > 0)
+    bx.data('d', d).show()
+  }).catch(function (e) { $('#div_alert').showAlert({message: typeof e == 'string' ? e : "{{Fichier non reconnu : export du Journal de cultures attendu}}", level: 'danger'}) })
+})
+$('#jdc-imp-ok .non').on('click', function () { $('#jdc-imp-ok').hide().removeData('d') })
+$('#jdc-imp-ok .go').on('click', function () {
+  var bx = $('#jdc-imp-ok'), b = this; b.disabled = true
+  window.journalcultures.ajax('importer', {donnees: JSON.stringify(bx.data('d')), collection: bx.find('select').val()}, function (r) {
+    bx.hide().removeData('d'); b.disabled = false
+    var m = r.plantes + ' {{plante(s) ajoutée(s)}}, ' + r.entrees + ' {{entrée(s) du journal}}, ' + r.produits + ' {{produit(s) ajouté(s)}}' +
+      (r.deja.length ? ' ; {{déjà présentes, laissées telles quelles}} : ' + r.deja.join(', ') : '') + (r.erreurs.length ? ' ; {{erreurs}} : ' + r.erreurs.join(' ; ') : '')
+    $('#div_alert').showAlert({message: m, level: r.erreurs.length ? 'warning' : 'success'})
+    if (r.plantes) setTimeout(function () { location.reload() }, 4000) // nouvelles cartes
+  }, function (e) { b.disabled = false; $('#div_alert').showAlert({message: e, level: 'danger'}) })
+})

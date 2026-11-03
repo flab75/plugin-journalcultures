@@ -23,12 +23,13 @@ class journalcultures extends eqLogic {
   private static $_memo = null; // pendant le cron seulement : liste des équipements et dernières mesures lues une fois pour toutes les collections
   public static function cron15() {
     self::$_memo = [];
-    $eqs = self::byType('journalcultures', true);
-    usort($eqs, function ($a, $b) { return ($a->type() == 'collection') <=> ($b->type() == 'collection'); }); // plantes d'abord
-    foreach ($eqs as $eq) {
-      try { $eq->maj(false); } catch (Throwable $e) { log::add('journalcultures', 'error', $eq->getHumanName() . ' : ' . $e->getMessage()); }
-    }
-    self::$_memo = null;
+    try {
+      $eqs = self::byType('journalcultures', true);
+      usort($eqs, function ($a, $b) { return ($a->type() == 'collection') <=> ($b->type() == 'collection'); }); // plantes d'abord
+      foreach ($eqs as $eq) {
+        try { $eq->maj(false); } catch (Throwable $e) { log::add('journalcultures', 'error', $eq->getHumanName() . ' : ' . $e->getMessage()); }
+      }
+    } finally { self::$_memo = null; } // le reste du cron (autres plugins) ne doit jamais voir un mémo actif
   }
 
   public function type() { return $this->getConfiguration('type', 'plante') == 'collection' ? 'collection' : 'plante'; }
@@ -134,17 +135,21 @@ class journalcultures extends eqLogic {
     if (is_object($c = $this->_ancColl)) try { $c->maj(); } catch (Throwable $e) { log::add('journalcultures', 'error', $e->getMessage()); }
   }
 
+  private static function desinstallation() { return in_array('update', array_column(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS), 'class'), true); } // suppression faite par la désinstallation du plugin
+  public function refusSuppression() { // message du refus, '' si la suppression peut se faire (lu par le selftest sans rien supprimer)
+    // ponytail: la désinstallation supprime tout, dans n'importe quel ordre : pas de refus là
+    return $this->type() == 'collection' && $this->plantes() && !self::desinstallation()
+      ? sprintf(__('La collection %s contient encore %d plante(s) : les déplacer ou les supprimer d\'abord', __FILE__), $this->getName(), count($this->plantes())) : '';
+  }
   public function remove() { // avant le core, qui supprime d'abord les commandes : une collection refusée garde les siennes
-    // ponytail: la désinstallation (classe update) supprime tout, dans n'importe quel ordre : pas de refus là
-    if ($this->type() == 'collection' && $this->plantes() && !in_array('update', array_column(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS), 'class'), true))
-      throw new Exception(sprintf(__('La collection %s contient encore %d plante(s) : les déplacer ou les supprimer d\'abord', __FILE__), $this->getName(), count($this->plantes())));
+    if (($m = $this->refusSuppression()) !== '') throw new Exception($m);
     return parent::remove();
   }
 
   public function preRemove() { // photos et entrées du journal de la plante
     if ($this->type() != 'plante') return;
     $this->_ancColl = $this->collection();
-    DB::Prepare('DELETE FROM ' . self::TABLE . ' WHERE plante_id = ?', [$this->getId()], DB::FETCH_TYPE_ROW);
+    if (!self::desinstallation()) DB::Prepare('DELETE FROM ' . self::TABLE . ' WHERE plante_id = ?', [$this->getId()], DB::FETCH_TYPE_ROW); // désinstallation : table gardée (install.php), entrées orphelines mais lisibles en base (nom de la plante) ; pour réinstaller : exporter avant
     $d = self::dossier($this->getId());
     if (is_dir($d)) { array_map('unlink', glob($d . '/*') ?: []); @rmdir($d); }
     array_map('unlink', glob(jeedom::getTmpFolder('journalcultures') . '/mini/' . (int)$this->getId() . '_*') ?: []); // vignettes
@@ -514,6 +519,73 @@ class journalcultures extends eqLogic {
           . (($g = journalcultures_calc::texte($in['greffon'] ?? '', 120)) !== '' ? ' ; ' . sprintf(__('greffon pris sur %s', __FILE__), $g) : '')]);
     } catch (Throwable $e) { log::add('journalcultures', 'error', $p->getHumanName() . ' : greffe non notée au journal : ' . $e->getMessage()); }
     return (int)$p->getId();
+  }
+
+  /* ---------- export / import : fiches des plantes, leur journal et le catalogue des produits ---------- */
+  // ponytail: ni photos (trop lourdes pour un JSON), ni historiques des sondes, ni entrées libres des collections ; à ajouter si une box doit être reprise à l'identique
+  const EXPORT_SAUF = ['collection', 'type', 'ident']; // id propres à cette box ; ident recalculé à l'enregistrement
+  public static function exporter() {
+    $noms = []; $pl = [];
+    foreach (self::byType('journalcultures') as $e) if ($e->type() == 'collection') $noms[$e->getId()] = [$e->getName(), is_object($o = $e->getObject()) ? $o->getName() : ''];
+    foreach (self::byType('journalcultures') as $p) if ($p->type() == 'plante') {
+      $c = array_diff_key((array)$p->getConfiguration(), array_flip(self::EXPORT_SAUF));
+      if (is_array($c['greffe_avant'] ?? null)) unset($c['greffe_avant']['collection']);
+      $j = DB::Prepare('SELECT date, lieu, action, cat, note, origine, valeurs FROM ' . self::TABLE . ' WHERE plante_id = ? ORDER BY date, id', [$p->getId()], DB::FETCH_TYPE_ALL) ?: [];
+      foreach ($j as &$x) { $x['valeurs'] = $x['valeurs'] ? json_decode($x['valeurs'], true) : null; $x = array_filter($x, function ($v) { return $v !== null && $v !== ''; }); }
+      unset($x);
+      [$cn, $on] = $noms[$p->getConfiguration('collection')] ?? ['', ''];
+      $pl[] = ['nom' => $p->getName(), 'collection' => $cn, 'objet' => $on, 'actif' => (int)$p->getIsEnable(), 'configuration' => $c, 'journal' => $j];
+    }
+    return ['format' => 'journalcultures', 'version' => 1, 'date' => date('c'), 'produits' => (string)config::byKey('produits', 'journalcultures', ''), 'plantes' => $pl];
+  }
+  /* Ajoute ce qui manque, ne remplace rien : produits absents (même nom) ajoutés au catalogue ; plantes absentes de l'objet de leur collection
+     créées (collection de même nom, sinon $defaut) avec leur journal ; plante déjà présente laissée telle quelle. → compte rendu */
+  public static function importer(array $d, journalcultures $defaut) {
+    if (($d['format'] ?? '') !== 'journalcultures' || !is_array($d['plantes'] ?? null)) throw new Exception(__('Fichier non reconnu : export du Journal de cultures attendu', __FILE__));
+    if (count($d['plantes']) > 1000) throw new Exception(__('Trop de plantes dans le fichier', __FILE__));
+    @set_time_limit(0); // coupé au milieu, une plante créée garderait un journal incomplet (relancer l'import la dit « déjà présente »)
+    $sans4 = function ($v) { if (is_string($v)) return preg_replace('/[\x{10000}-\x{10FFFF}]/u', '', $v) ?? ''; if (is_array($v)) array_walk_recursive($v, function (&$x) { if (is_string($x)) $x = preg_replace('/[\x{10000}-\x{10FFFF}]/u', '', $x) ?? ''; }); return $v; }; // configuration en utf8mb3
+    $r = ['produits' => 0, 'plantes' => 0, 'entrees' => 0, 'deja' => [], 'erreurs' => []];
+    $txt = (string)config::byKey('produits', 'journalcultures', '');
+    $ont = array_map(function ($p) { return mb_strtolower($p['nom']); }, journalcultures_calc::produits($txt));
+    foreach (preg_split('/\R/u', (string)($d['produits'] ?? '')) ?: [] as $l) {
+      $l = trim(preg_replace('/[\x{10000}-\x{10FFFF}]/u', '', $l) ?? ''); $q = journalcultures_calc::produits($l); // configuration en utf8mb3
+      if (!$q || in_array($k = mb_strtolower($q[0]['nom']), $ont, true)) continue;
+      $txt = rtrim($txt) . "\n" . $l; $ont[] = $k; $r['produits']++;
+    }
+    if ($r['produits']) config::save('produits', ltrim($txt), 'journalcultures');
+    $colls = [];
+    $pls = []; // plantes déjà là, quel que soit leur objet (une plante peut être rangée ailleurs que l'objet de sa collection)
+    foreach (self::byType('journalcultures') as $e) if ($e->type() == 'collection') $colls[mb_strtolower($e->getName())][] = $e; elseif ($e->type() == 'plante') $pls[mb_strtolower($e->getName())] = 1; // collections homonymes possibles (objets différents)
+    $gbif = self::$_sansGbif; self::$_sansGbif = true; // nom GBIF repris du fichier ; sans Internet, jusqu'à 3 s par plante
+    try {
+      foreach ($d['plantes'] as $x) {
+        $nom = journalcultures_calc::texte($x['nom'] ?? '', 120); if ($nom === '') continue;
+        try {
+          $cs = $colls[mb_strtolower((string)($x['collection'] ?? ''))] ?? [];
+          if (count($cs) > 1) $cs = array_values(array_filter($cs, function ($c) use ($x) { return is_object($o = $c->getObject()) && mb_strtolower($o->getName()) == mb_strtolower((string)($x['objet'] ?? '')); }));
+          $co = count($cs) == 1 ? $cs[0] : $defaut; // ambigu ou absente : collection choisie
+          if (isset($pls[mb_strtolower($nom)])) { $r['deja'][] = $nom; continue; }
+          foreach (eqLogic::byObjectId($co->getObject_id(), false) as $e) if (mb_strtolower($e->getName()) == mb_strtolower($nom)) { $r['deja'][] = $nom; continue 2; } // tous plugins : nom unique par objet
+          $p = new journalcultures();
+          $p->setEqType_name('journalcultures'); $p->setName($nom); $p->setObject_id($co->getObject_id()); $p->setIsVisible(0); $p->setIsEnable(isset($x['actif']) && !$x['actif'] ? 0 : 1);
+          foreach ((array)($x['configuration'] ?? []) as $k => $v) if (is_string($k) && preg_match('/^[a-z][a-z0-9_]{0,39}$/D', $k) && !in_array($k, self::EXPORT_SAUF, true)) $p->setConfiguration($k, $sans4($v));
+          $p->setConfiguration('type', 'plante'); $p->setConfiguration('collection', $co->getId());
+          try { $p->save(); } catch (Exception $y) { if (strpos($y->getMessage(), 'Duplicate') === false) throw $y; $r['deja'][] = $nom; continue; } // index du core : accents ignorés
+          $r['plantes']++; $pls[mb_strtolower($nom)] = 1; $ko = 0; // deux fois le même nom dans le fichier : une seule plante
+          foreach (array_slice((array)($x['journal'] ?? []), 0, 20000) as $j) try {
+            if (!is_array($j)) throw new Exception('?');
+            $v = null; // mesures relues comme une saisie (clés du catalogue, nombres), calculs refaits
+            if (is_array($j['valeurs'] ?? null)) { $v = journalcultures_calc::valeurs(array_map(function ($y) { return is_array($y) ? implode(';', array_filter($y, 'is_scalar')) : (is_scalar($y) ? (string)$y : ''); }, $j['valeurs'])); $v = $v ? $v + journalcultures_calc::calculs($v) : null; }
+            self::inserer(['plante_id' => $p->getId(), 'origine' => ($j['origine'] ?? '') ?: 'import', 'valeurs' => $v]
+              + array_intersect_key($j, array_flip(['date', 'lieu', 'action', 'cat', 'note'])));
+            $r['entrees']++;
+          } catch (Throwable $y) { $ko++; }
+          if ($ko) $r['erreurs'][] = $p->getName() . ' : ' . sprintf(__('%d entrée(s) du journal refusée(s)', __FILE__), $ko);
+        } catch (Throwable $y) { $r['erreurs'][] = $nom . ' : ' . $y->getMessage(); }
+      }
+    } finally { self::$_sansGbif = $gbif; }
+    return $r;
   }
 
   const GREFFE_CLES = ['etiquette', 'type_greffe', 'date_mult', 'multiplication', 'greffe_statut', 'greffe_controle', 'greffe_rep', 'greffe_avant'];
