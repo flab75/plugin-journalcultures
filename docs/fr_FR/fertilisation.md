@@ -79,6 +79,7 @@ La méthode ci-dessous assemble ce qui s'accorde entre eux. Elle suit le cadre d
 ### 4. Le bon moment
 - Seulement **pendant la pousse**, du printemps à la fin de l'été ; **au moins 3 apports** : printemps, début d'été, fin d'été ; arrêter au début de l'automne (période d'apport du plugin : jusqu'à début octobre), rien l'hiver (University of Maryland ; voir [La saison](#la-saison) pour les autres sources).
   Le plan du plugin (semaines 10, 18, 26, 34) suit ce rythme.
+  Un engrais **enrobé** libère en continu : un seul apport au début de la saison peut suffire (voir [L'engrais enrobé](#lengrais-enrobé)).
 
 ### 5. Le bon endroit : le substrat et l'eau
 - Au pied, sur un substrat **humide** et drainé (voir [Arroser juste](#arroser-juste)).
@@ -140,6 +141,22 @@ Conclusions :
 4. la forme du potassium : sulfate plutôt que chlorure (sensibilité des agrumes au chlore : notion courante en verger, **aucune de nos sources ne la traite**, et rien en pot).
 
 Tout cela se saisit dans le plugin : la part d'azote de chaque produit découle de sa dose d'étiquette, le reste va à l'engrais de fond.
+
+### L'engrais enrobé
+
+Des granulés d'engrais minéral entourés d'une fine enveloppe de résine : l'eau la traverse, dissout l'engrais, qui ressort peu à peu. C'est l'une des deux formes « à libération lente » conseillées en pot (voir [Le bon produit](#2-le-bon-produit)).
+Ce qu'en disent les étiquettes des fabricants :
+- la **durée** (3, 6, 8 à 9 mois…) est donnée pour une température fixe, souvent 21 °C : elle s'allonge au frais et raccourcit au chaud ; en serre l'été, un produit « 6 mois » peut être épuisé avant la fin de la saison ;
+- certains se **mélangent** au substrat au rempotage seulement, d'autres se posent **en surface** et se griffent : lire l'étiquette ;
+- la **dose** est donnée en grammes par litre de substrat pour toute la durée (souvent 2 à 5 g/L pour un 6 mois à environ 16 % d'azote, soit 0,3 à 0,8 g d'azote par litre), bien en dessous de ce que calcule le plugin pour une saison (0,07 g par litre et par semaine sur 30 semaines ≈ 2 g par litre) ; ces doses visent des pépinières en conteneur ; l'écart va dans le sens de la mise en garde de [la dose en pot](#combien--la-dose-en-pot) (déduction du plugin, aucune source ne compare).
+
+Dans le plugin (choix du plugin) :
+- saisir la dose de l'étiquette en 7e champ et une période d'apport courte, pour un seul apport en début de saison : `Engrais enrobé 16-8-12 6 mois | 16 | 30 | 10-12 | N P K Mg S Fe Mn Zn | enrobé 6 mois, en surface | 3` (pour un second apport, période `10-36` et intervalle 26) ;
+- le cocher **seul** dans le plan : un engrais de fond coché en même temps reçoit le reste de l'azote calculé, et le rapport repart vers celui de cet engrais ;
+- ne pas baisser « Azote par litre de pot » pour lui : ce réglage vaut pour tous les produits et toutes les plantes ;
+- si la plante pâlit en fin d'été (enrobé épuisé par la chaleur), un apport d'azote lent en plus (corne) plutôt qu'un second enrobé tardif.
+
+Avant d'acheter, mêmes points que pour un 2-1-1 (ci-dessus), plus : azote sans urée de préférence (libération plus régulière, notion d'étiquette), fer chélaté et oligo-éléments déclarés. Parmi les engrais lents vus pour ce plugin, seuls des enrobés déclarent à la fois un rapport proche de 2-1-1, du magnésium, du fer et les oligo-éléments.
 
 ### En pratique
 
