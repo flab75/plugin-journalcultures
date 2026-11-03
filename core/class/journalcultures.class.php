@@ -438,7 +438,7 @@ class journalcultures extends eqLogic {
     if ($pg) {
       if (!$pg->getIsEnable()) throw new Exception(__('Plante désactivée', __FILE__));
       $p = $pg; $avant = $pg->getName(); $c['multiplication'] = 'greffe';
-      if (!(in_array((string)$pg->getConfiguration('greffe_statut'), ['echouee', 'attente', 'probable'], true) && is_array($pg->getConfiguration('greffe_avant'))))
+      if (!(in_array((string)$pg->getConfiguration('greffe_statut'), ['echouee', 'attente', 'probable', 'dormant', 'pousse'], true) && is_array($pg->getConfiguration('greffe_avant'))))
         $p->setConfiguration('greffe_avant', self::instantane($pg)); // « Redevenir porte-greffe » si la greffe échoue ; regreffe d'une greffe pas prise : garder la fiche du vrai porte-greffe
       try { $c['date_mult'] = journalcultures_calc::date($c['date_mult'] ?? ''); } catch (Exception $x) { $c['date_mult'] = date('Y-m-d'); } // partielle (2026-05) ou absente : aujourd'hui, écrit (suivi, jeunesse, engrais du jeune plant)
       foreach (array_merge(array_diff(array_keys(self::FICHE), ['sol']), ['etiquette', 'type_greffe', 'date_mult', 'greffe_statut', 'greffe_controle', 'greffe_rep']) as $k) $p->setConfiguration($k, ''); // suivi d'une greffe précédente : effacé
@@ -461,7 +461,7 @@ class journalcultures extends eqLogic {
     // save : preSave : identification, GBIF si nom botanique ; postSave : commandes, tuile de la collection (et l'ancienne si greffe)
     if ($pg) try { // greffe déjà enregistrée : une erreur ici ne doit pas la faire refaire (« X greffé sur X »)
       $nom = $p->getName(); // nettoyé par le core (# [ ] & % retirés)
-      self::inserer(['date' => $jour, 'plante_id' => $p->getId(), 'plante' => $nom,
+      self::inserer(['date' => $c['date_mult'], 'plante_id' => $p->getId(), 'plante' => $nom,
         'lieu' => (string)$p->getConfiguration('emplacement'), 'action' => 'Greffe', 'note' => sprintf(__('%s greffé sur %s (%s)', __FILE__),
           implode(' ', array_filter([$c['bota'] ?? '', $c['cultivar'] ?? '', $nom !== ($c['bota'] ?? '') ? '« ' . $nom . ' »' : ''])), $avant,
           journalcultures_calc::GREFFES[$c['type_greffe'] ?? ''] ?? __('type de greffe non précisé', __FILE__))
@@ -522,6 +522,7 @@ class journalcultures extends eqLogic {
   public function controlerGreffe($verdict, $note) { // réponse au contrôle du bourgeon → nouveau statut, noté au journal
     $s = (string)$this->getConfiguration('greffe_statut'); $q = journalcultures_calc::greffeQuestion($s, $this->getConfiguration('type_greffe'));
     try { $g = journalcultures_calc::date($this->getConfiguration('date_mult')); } catch (Exception $x) { $g = date('Y-m-d'); } // « Greffer… » écrit toujours une date complète
+    if ($verdict == 'printemps' && ($s != 'probable' || $this->getConfiguration('type_greffe') == 'pont')) throw new Exception(__('« Au printemps » : seulement à J+42, pas pour un pont', __FILE__)); // comme le bouton de la fiche
     [$n, $c] = journalcultures_calc::controler($s, $verdict, $g, date('Y-m-d'), self::sud());
     if ($n == 'pousse' && $this->getConfiguration('type_greffe') == 'pont') [$n, $c] = ['reprise', '']; // pont soudé aux deux bouts : rien ne doit pousser
     self::$_sansGbif = true; $this->setConfiguration('greffe_statut', $n); $this->setConfiguration('greffe_rep', date('Y-m-d')); $this->setConfiguration('greffe_controle', $c); $this->save();

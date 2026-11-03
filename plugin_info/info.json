@@ -1,7 +1,7 @@
 {
 	"id": "journalcultures",
 	"name": "Journal de cultures",
-	"pluginVersion": "0.13",
+	"pluginVersion": "0.17",
 	"display": "panel",
 	"description": {
 		"fr_FR": "Fiches des plantes de la maison et du jardin (botanique, culture, pot), emplacement suivi et historisé, alerte de froid selon la rusticité et le pot, rappels d'engrais, mesures, photos et identification Pl@ntNet, journal unique des travaux.",

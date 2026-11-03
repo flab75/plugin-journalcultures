@@ -50,7 +50,7 @@ Ce qui vient du plugin lui-même (choix, seuil, déduction) est écrit comme tel
 | Groupe | Rusticité estimée | D'où vient la valeur |
 |---|---|---|
 | Poncirus | −15 °C | TyCitriK −16 (**une seule source**) ; −15 par prudence (choix du plugin) |
-| Hybride de Poncirus | −10 °C | Chopinet et Dupouy 1951, de seconde main : citranges de Montauban −10 à −14 (André 1905), satsumange −11 à −13 (Guillaumin), citrangedins et limonanges ≈ −10 (Kains, Guillaumin), citrangequat Thomasville −10 ; citranges Rusk et Willits sensibles aux coups de froid brusques. TyCitriK : C35 −10, Carrizo −11, citrumelo −12, FA5 −13 (commercial). −10 = la moins froide des deux |
+| Hybride de Poncirus | −10 °C | Chopinet et Dupouy 1951, de seconde main : citranges de Montauban −10 à −14 (André 1905, cité par Chopinet et Dupouy), satsumange −11 à −13 (Guillaumin), citrangedins et limonanges ≈ −10 (Kains, Guillaumin), citrangequat Thomasville −10 ; citranges Rusk et Willits sensibles aux coups de froid brusques. TyCitriK : C35 −10, Carrizo −11, citrumelo −12, FA5 −13 (commercial). −10 = la moins froide des deux |
 | Kumquat | −8 °C | TyCitriK −10, UF/IFAS HS-123 −12, Fortune 1870 cité par Swingle ≈ −8 |
 | Citron | −5 °C | TyCitriK −5, Blondel 1986 −5/−6 |
 | Yuzu | −5 °C | RHS −5 contre TyCitriK −14 (le plus prudent gardé) |
@@ -135,7 +135,7 @@ Les groupes de la colonne du milieu sont ceux du plugin. La colonne de droite di
 - **Mandarine** : peu d'épines, aile étroite ou réduite, peau qui s'enlève facilement, 7 à 14 quartiers (FoC 2008, **une seule source**).
 - **Orange douce** : pétiole long et étroit, fleurs blanches, rarement violacées, 9 à 12 quartiers (FoC 2008, **une seule source**). Le plugin accepte des boutons blancs ou violacés.
   Conséquence : des boutons violacés ne séparent plus le citron du yuzu, ni le cédrat de l'orange douce ; l'épluchage, la couleur ou la forme du fruit tranchent (déduction du plugin).
-- **Bigaradier** : épines jusqu'à 8 cm, pétiole en forme d'œuf renversé (FoC 2008, **une seule source**). Le plugin y range la **bergamote** (choix du plugin) ; la Flora of China la classe sous le citron.
+- **Bigaradier** : épines jusqu'à 8 cm, aile du pétiole obovale, en œuf renversé (FoC 2008, **une seule source**). Le plugin y range la **bergamote** (choix du plugin) ; la Flora of China la classe sous le citron.
   Le plugin n'accepte que des boutons blancs, sans source (la FoC dit « blancs ou violacés » pour *C. ×aurantium* au sens large).
   Le nom *C. ×aurantium* est rangé ici, alors que dans la FoC il englobe aussi l'orange douce et le pamplemousse (choix du plugin).
 - **Pomelo** : jeunes rameaux et dessous des feuilles poilus (rameaux glabres chez le pamplemousse) ; aile large ; fruit en général de plus de 10 cm, 10 à 15 quartiers (FoC 2008, **une seule source**).
@@ -153,7 +153,7 @@ Les groupes de la colonne du milieu sont ceux du plugin. La colonne de droite di
 
 ## Pl@ntNet
 - Service en ligne d'identification par photo. Le plugin l'interroge avec la clé personnelle enregistrée sur la box ; 500 identifications par jour avec l'offre gratuite.
-- Une à cinq photos par demande, au format JPEG, PNG ou WebP, 15 Mo au plus par photo et 40 Mo au total. Pour chaque photo, indiquer l'organe : feuille, fleur, fruit, écorce ou automatique.
+- Limites du plugin (et non de Pl@ntNet) : une à cinq photos par demande, au format JPEG, PNG ou WebP, 15 Mo au plus par photo et 40 Mo au total. Pour chaque photo, indiquer l'organe : feuille, fleur, fruit, écorce ou automatique.
 - Pl@ntNet renvoie les cinq espèces les plus proches, avec un score en %. « Aucune espèce reconnue » s'il ne trouve rien.
 - Le nom retenu est vérifié dans le référentiel GBIF à l'enregistrement.
 - Limites (déduction du plugin, aucune documentation de Pl@ntNet lue) : Pl@ntNet propose des **espèces** ; il ne reconnaît pas une variété, un porte-greffe ni un hybride récent (citrange, FA5). Un score faible ou cinq propositions proches se lisent comme un « Indécis ».

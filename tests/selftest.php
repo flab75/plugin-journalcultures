@@ -50,6 +50,7 @@ $Q = $C::produits("A | 10 | 4 | 10-40 | N\nB | 10 | 4 | 10-40 | N | | x");
 $ok($Q[1]['gl'] == 0.0 && array_column($C::plan(10, $Q, [0 => 30, 1 => 70]), 'g') == [8.0, 20.0] && $C::plan(10, $C::produits("C | 10 | 4 | 10-40 | N | | 20"), [0 => 100])[0]['g'] == 200.0, 'plan : parts sans étiquette, étiquette seule');
 $ok($C::plan(10, $P, [0 => 100], 0.07, [0 => 60]) == [['i' => 0, 'g' => 60.0, 'ligne' => '10-40/8 | Ferti Agrumes 7-3-10 | 60 g']] && $C::plan(10, $P, [0 => 100], 0.07, [0 => 12.5])[0]['ligne'] == '10-40/8 | Ferti Agrumes 7-3-10 | 12,5 g', 'plan : dose ajustée à la main');
 $ok($C::semaines(explode(' | ', $x[0]['ligne'])[0]) == [10, 18, 26, 34], 'ligne du plan lisible par le calendrier');
+$ok(array_column($C::plan(10, $P, [0 => 50, 1 => 50], 0.01), 'i') == [1], 'plan : besoin couvert par la corne, pas de 1 g de Ferti d\'office');
 $ok(array_column($C::carences(['feuilles.couleur' => 'jaunissement entre les nervures', 'feuilles.touchees' => 'jeunes', 'pot.substrat' => 'détrempé']), 'el') == ['EAU', 'FE']
   && array_column($C::carences(['feuilles.couleur' => 'jaunissement entre les nervures', 'feuilles.touchees' => 'vieilles']), 'el') == ['MG']
   && array_column($C::carences(['feuilles.couleur' => 'jaunissement entre les nervures']), 'el') == ['?']
@@ -139,6 +140,8 @@ $n = $C::nouvelle(['bota' => ' Citrus limon ', 'cultivar' => '', 'multiplication
 $ok($n == ['bota' => 'Citrus limon', 'multiplication' => 'greffe', 'pot_diam' => 30.0, 'pot_forme' => 'carre', 'emplacement' => 'Serre', 'id_folioles' => 'un'], 'nouvelle plante : champs gardés, vides et invalides écartés');
 $ok($C::nouvelle(['multiplication' => 'vol', 'carac' => 'x'], []) === [], 'nouvelle plante : multiplication hors liste, caractères illisibles');
 try { $C::nouvelle(['emplacement' => 'Cave'], ['Serre']); $ok(false, 'nouvelle plante : emplacement inconnu accepté'); } catch (Exception $x) {}
+try { $C::nouvelle(['date_mult' => 'mai 2024'], []); $ok(false, 'nouvelle plante : date illisible acceptée'); } catch (Exception $x) {}
+$ok($C::nouvelle(['date_mult' => '2024-05'], [])['date_mult'] == '2024-05', 'nouvelle plante : date partielle gardée');
 $ok($C::greffe(['type_greffe' => 'fente']) == ['type_greffe' => 'fente', 'multiplication' => 'greffe'] && $C::greffe(['multiplication' => 'semis', 'type_greffe' => 'fente']) == ['multiplication' => 'semis']
   && $C::greffe(['multiplication' => 'greffe', 'type_greffe' => 'x']) == ['multiplication' => 'greffe'], 'type de greffe : implique « greffe », écarté sinon ou hors liste');
 [$c, $l] = $C::accepter(['bota' => 'Citrus limon', 'id_folioles' => 'un', 'rusticite' => ''],

@@ -32,7 +32,7 @@ if (!window.journalcultures || window.journalcultures.v !== 24) (function () { /
     '.jdc-toc{position:sticky;top:44px;max-height:calc(90vh - 70px);overflow:auto;font-size:13px;line-height:1.35;border-left:3px solid rgba(47,107,58,.5);padding-left:10px}' +
     '.jdc-toc summary{cursor:pointer;font-weight:600;margin-bottom:4px}.jdc-toc ul{list-style:none;margin:0;padding:0}.jdc-toc li{margin:5px 0}.jdc-toc li.s{padding-left:12px;font-size:12px;opacity:.85}.jdc-mb .jdc-toc a[data-n]{text-decoration:none}.jdc-toc a:hover{text-decoration:underline}' +
     '.jdc-tx h3{font-size:18px;margin:28px 0 8px;padding-bottom:4px;border-bottom:1px solid rgba(128,128,128,.35)}.jdc-tx h4{font-size:15.5px;margin:22px 0 6px;padding-left:8px;border-left:3px solid #2F6B3A}.jdc-tx h5{font-size:14px;margin:14px 0 4px}' +
-    '.jdc-tx li{margin:3px 0}.jdc-tw{overflow-x:auto;margin:10px 0 14px}.jdc-tw table{margin:0;min-width:480px;font-size:13px;line-height:1.4}.jdc-tw th,.jdc-tw td{padding:5px 8px!important;vertical-align:top!important}.jdc-tw th{background:rgba(47,107,58,.18);white-space:nowrap}.jdc-tw tr:nth-child(even) td{background:rgba(128,128,128,.07)}.jdc-tw td:first-child{min-width:9em}.jdc-ct code{color:inherit;background:rgba(128,128,128,.18);border:0;padding:1px 4px;border-radius:3px;font-size:.88em;white-space:normal;overflow-wrap:anywhere;-webkit-box-decoration-break:clone;box-decoration-break:clone}.jdc-not .jdc-ct img{max-width:100%;height:auto}' +
+    '.jdc-tx li{margin:3px 0}.jdc-tw{overflow-x:auto;margin:10px 0 14px}.jdc-tw table{margin:0;min-width:480px;font-size:13px;line-height:1.4}.jdc-tw th,.jdc-tw td{padding:5px 8px!important;vertical-align:top!important}.jdc-tw th{background:rgba(47,107,58,.18);white-space:nowrap}.jdc-tw tr:nth-child(even) td{background:rgba(128,128,128,.07)}.jdc-tw td:first-child{min-width:9em}.jdc-ct code{color:inherit;background:rgba(128,128,128,.18);border:0;padding:1px 4px;border-radius:3px;font-size:.88em;white-space:normal;overflow-wrap:anywhere}.jdc-ct summary,.jdc-np summary{display:list-item;cursor:pointer}.jdc-not .jdc-ct img{max-width:100%;height:auto}' +
     '@media (max-width:900px){.jdc-doc{display:block}.jdc-tx>*{max-width:none}.jdc-toc{position:static;max-height:none;margin-bottom:14px;padding:8px 10px;border:1px solid rgba(128,128,128,.3);border-radius:8px}}' +
     '@media (max-width:600px){.jdc-m{align-items:stretch}.jdc-mb{width:100vw;max-height:none;height:100%;border-radius:0;font-size:15px}.jdc-mb>nav a{padding:8px 12px}' +
     '.jdc-not .jdc-mb{width:100vw;padding:8px 14px 24px}.jdc-not .jdc-ct>h2{font-size:19px}.jdc-mb input,.jdc-mb select,.jdc-mb textarea{font-size:16px;min-height:40px}.jdc-mb button{min-height:44px}.jdc .xs{display:none}}'
@@ -48,7 +48,7 @@ if (!window.journalcultures || window.journalcultures.v !== 24) (function () { /
     Object.keys(champs).forEach(function (k) { f.append(k, champs[k]) })
     fetch('plugins/journalcultures/core/ajax/journalcultures.ajax.php', {method: 'POST', body: f, credentials: 'same-origin'})
       .then(function (r) { return blob && (r.headers.get('Content-Type') || '').indexOf('image/') == 0 ? r.blob().then(ok) : r.json().then(function (j) { if (j.state == 'ok') ok(j.result); else ko(j.result) }) })
-      .catch(function (e) { ko(String(e)) })
+      .catch(function (e) { ko(e instanceof SyntaxError ? "{{Réponse illisible : session expirée ? Recharger la page.}}" : String(e)) })
   }
 
   // fenêtre à onglets : o = [[clé, titre, fonction(ct)], …]
@@ -115,7 +115,8 @@ if (!window.journalcultures || window.journalcultures.v !== 24) (function () { /
   }
   function brancherSuppr(ct, apres) {
     ct.querySelectorAll('.jdc-del').forEach(function (a) {
-      a.onclick = function () { ajax('supprimer', {entree: a.dataset.id}, apres, function (er) { a.textContent = er }) }
+      a.onclick = function () { if (!a.dataset.ok) { a.dataset.ok = 1; a.textContent = "{{Confirmer ✕}}"; return } // deuxième clic, comme les photos
+        ajax('supprimer', {entree: a.dataset.id}, apres, function (er) { a.textContent = er }) }
     })
   }
 
@@ -138,7 +139,7 @@ if (!window.journalcultures || window.journalcultures.v !== 24) (function () { /
   }
 
   var coches = {} // cases cochées par collection : gardées quand la tuile est redessinée
-  function cochees(b) { return Array.prototype.map.call(b.querySelectorAll('.jdc-ck:checked'), function (c) { return c.value }) }
+  function cochees(b) { return Array.prototype.filter.call(b.querySelectorAll('.jdc-ck:checked'), function (c) { return c.closest('tr').style.display != 'none' }).map(function (c) { return c.value }) } // masquées par la recherche : pas envoyées
   function noms(d, ids) { return d.plantes.filter(function (p) { return ids.indexOf(String(p.id)) >= 0 }).map(function (p) { return p.nom }).join(', ') }
 
   /* Engrais de la fiche : pistes de carence (dernière mesure), plan d'azote par volume du pot ; seuls les produits cochés, rien n'est écrit sans le bouton */
@@ -162,7 +163,7 @@ if (!window.journalcultures || window.journalcultures.v !== 24) (function () { /
       (e.litres && pl.length ? '<table class="jdc-plan">' + pl.map(function (x) {
         var p = x[0], i = x[1], v = e.parts[i] || 0
         return '<tr><td><label><input type="checkbox" class="pk" data-i="' + i + '"' + (v ? ' checked' : '') + (admin ? '' : ' disabled') + '> ' + esc(p.nom) + '</label> <small>' + esc(p.n) + ' % N, ' + "{{toutes les}}" + ' ' + p.tous + ' ' + "{{sem.}}" + ', ' + saison(p.saison) + (p.ge ? ', ' + "{{dose de l'étiquette}}" + ' ' + nb(p.gl) + ' g/L' : '') + '</small></td>' +
-          '<td><input class="pp" data-i="' + i + '" type="number" min="0" max="100" style="width:4.5em" value="' + v + '"' + (admin ? '' : ' disabled') + '> %</td><td><input class="pd" data-i="' + i + '" type="number" min="0" step="any" style="width:5em"' + (e.doses[i] ? ' value="' + e.doses[i] + '"' : '') + (admin ? '' : ' disabled') + '> g <small class="pg" data-i="' + i + '"></small></td></tr>' }).join('') + '</table>' +
+          '<td><input class="pp" data-i="' + i + '" type="number" min="0" max="100" style="width:4.5em" value="' + v + '"' + (admin ? '' : ' disabled') + '> %</td><td><input class="pd" data-i="' + i + '" type="text" inputmode="decimal" style="width:5em"' + (e.doses[i] ? ' value="' + e.doses[i] + '"' : '') + (admin ? '' : ' disabled') + '> g <small class="pg" data-i="' + i + '"></small></td></tr>' }).join('') + '</table>' +
         '<p><small>' + "{{Seuls les produits cochés reçoivent l'azote, réparti selon les parts (total 100 %). Un produit à dose d'étiquette garde cette dose ; son azote est retiré du besoin et le reste va aux autres. La dose calculée peut être ajustée à la main : c'est elle qui est écrite.}}" + '</small>' +
         (admin ? ' <a class="b pe">' + "{{Écrire dans le calendrier}}" + '</a> <span class="jdc-er pr"></span>' : '') + '</p>' : '')
   }
@@ -180,18 +181,19 @@ if (!window.journalcultures || window.journalcultures.v !== 24) (function () { /
   function brancherEngrais(ct, e, id, fini) {
     var t = ct.querySelector('.jdc-plan'); if (!t) return
     function parts() { var r = {}; t.querySelectorAll('.pk:checked').forEach(function (k) { r[k.dataset.i] = Number(t.querySelector('.pp[data-i="' + k.dataset.i + '"]').value) || 0 }); return r }
-    function doses() { var r = {}; t.querySelectorAll('.pk:checked').forEach(function (k) { var v = Number(t.querySelector('.pd[data-i="' + k.dataset.i + '"]').value); if (v > 0) r[k.dataset.i] = v }); return r }
-    function calc(re) { // re : parts changées → dose recalculée ; sinon la dose saisie (ou celle du calendrier) est gardée
+    function doses() { var r = {}; t.querySelectorAll('.pk:checked').forEach(function (k) { var v = num(t.querySelector('.pd[data-i="' + k.dataset.i + '"]').value); if (v > 0) r[k.dataset.i] = v }); return r }
+    function num(x) { return Number(String(x).replace(',', '.')) } // « 2,5 » (clavier français)
+    function calc(re, frappe) { // frappe : case en cours de saisie, jamais re-remplie ; re : parts changées → dose recalculée ; sinon la dose saisie (ou celle du calendrier) est gardée
       var r = parts(), s = 0, et = 0, au = 0 // comme journalcultures_calc::plan : dose d'étiquette fixe, son azote retiré du besoin, le reste aux autres selon leurs parts
       Object.keys(r).forEach(function (i) { if (!r[i]) return; if (e.produits[i].ge) et += e.produits[i].ne; else au += Math.min(r[i], 100) })
-      t.querySelectorAll('.pg').forEach(function (c) { var i = c.dataset.i, v = r[i], p = e.produits[i], g = v ? Math.max(1, Math.round(p.ge || p.g100 * Math.max(0, 1 - et) * Math.min(v, 100) / au)) : 0, d = t.querySelector('.pd[data-i="' + i + '"]'); s += v || 0
-        if (re || (v && !d.value)) d.value = g || ''; c.textContent = v && Number(d.value) !== g ? '(' + "{{calculé}}" + ' ' + g + ' g)' : '' })
+      t.querySelectorAll('.pg').forEach(function (c) { var i = c.dataset.i, v = r[i], p = e.produits[i], g = v && (p.ge || et < 1) ? Math.max(1, Math.round(p.ge || p.g100 * Math.max(0, 1 - et) * Math.min(v, 100) / au)) : 0, d = t.querySelector('.pd[data-i="' + i + '"]'); s += v || 0
+        if (re || (v && !d.value && !frappe)) d.value = g || ''; c.textContent = v && num(d.value) !== g ? '(' + "{{calculé}}" + ' ' + g + ' g)' : '' })
       var m = ct.querySelector('.pr'); if (m) m.textContent = Object.keys(r).length && Math.abs(s - 100) > 1 ? "{{total}}" + ' ' + s + ' %' : ''
     }
     t.querySelectorAll('.pk').forEach(function (k) { k.onchange = function () { // cocher : parts égales entre les cochés
       var c = t.querySelectorAll('.pk:checked'), k = 0; t.querySelectorAll('.pp').forEach(function (p) { p.value = t.querySelector('.pk[data-i="' + p.dataset.i + '"]').checked ? (++k < c.length ? Math.floor(100 / c.length) : 100 - (c.length - 1) * Math.floor(100 / c.length)) : 0 }); calc(true) } })
     t.querySelectorAll('.pp').forEach(function (p) { p.oninput = function () { calc(true) } })
-    t.querySelectorAll('.pd').forEach(function (p) { p.oninput = function () { calc() } })
+    t.querySelectorAll('.pd').forEach(function (p) { p.oninput = function () { calc(false, true) }; p.onchange = function () { calc() } })
     calc()
     var b = ct.querySelector('.pe')
     if (b) b.onclick = function () { b.style.pointerEvents = 'none'; ajax('plan', {id: id, parts: JSON.stringify(parts()), doses: JSON.stringify(doses())}, fini, function (er) { b.style.pointerEvents = ''; ct.querySelector('.pr').textContent = er }) }
@@ -199,7 +201,9 @@ if (!window.journalcultures || window.journalcultures.v !== 24) (function () { /
 
   function plante(d, id, depart) {
     var r = null, w, msg = ''
-    function avec(fn) { return function (ct) { if (r) fn(ct); else ajax('plante', {id: id}, function (x) { r = x; fn(ct) }, erreur(ct)) } }
+    var att = null // onglet demandé pendant le chargement : seul le dernier est dessiné
+    function avec(fn) { return function (ct) { if (r) return fn(ct); var premier = !att; att = [fn, ct]
+      if (premier) ajax('plante', {id: id}, function (x) { r = x; var a = att; att = null; a[0](a[1]) }, function (er) { var a = att; att = null; erreur(a[1])(er) }) } }
     function recharger(k) { r = null; w.montrer(k) }
     function charger(img, n, er) { ajax('photo', {id: id, nom: n}, function (b) { if (b instanceof Blob) { var u = w.url(URL.createObjectURL(b)), fr = new FileReader(); fr.onload = function () { img.src = fr.result }; fr.readAsDataURL(b); img.onclick = function () { window.open(u) } } }, er, true) } // CSP de Jeedom : img-src refuse blob: → data: pour l'image, blob: pour l'ouvrir en grand
     var p = d.plantes.filter(function (x) { return x.id == id })[0] || {nom: ''}
@@ -234,7 +238,8 @@ if (!window.journalcultures || window.journalcultures.v !== 24) (function () { /
         if (gb) gb.onclick = function () { w.fermer(); nouvelle(d, d.apres, {id: id, nom: r.nom}) }
         ct.querySelectorAll('.gv').forEach(function (a) { a.onclick = function () { // « Non, mort » : deuxième clic pour confirmer
           if (a.dataset.v == 'mort' && !a.dataset.ok) { a.dataset.ok = 1; a.textContent = "{{Confirmer : greffe échouée}}"; return }
-          ajax('controler', {id: id, verdict: a.dataset.v, note: ct.querySelector('.gnote').value}, function () { recharger('fic') }, function (er) { ct.querySelector('.grs .jdc-er').textContent = er })
+          var bs = ct.querySelectorAll('.gv'); bs.forEach(function (x) { x.style.pointerEvents = 'none' }) // double appui : une seule réponse
+          ajax('controler', {id: id, verdict: a.dataset.v, note: ct.querySelector('.gnote').value}, function () { recharger('fic') }, function (er) { bs.forEach(function (x) { x.style.pointerEvents = '' }); ct.querySelector('.grs .jdc-er').textContent = er })
         } })
         var db = ct.querySelector('.dgr')
         if (db) db.onclick = function () {
@@ -276,10 +281,12 @@ if (!window.journalcultures || window.journalcultures.v !== 24) (function () { /
           if (et) et.onclick = function () { ajax('etiquette', {id: id, nom: n == r.etiquette ? '' : n}, function () { recharger('pho') }, function (er) { res.textContent = er }) } // ★ = retirer
           if (s) s.onclick = function () { if (s.dataset.ok) ajax('photo_suppr', {id: id, nom: n}, function () { recharger('pho') }, function (er) { res.textContent = er }); else { s.dataset.ok = 1; s.textContent = "{{Confirmer ✕}}" } }
           if (i) i.onclick = function () {
+            if (i.dataset.envoi) return; i.dataset.envoi = 1 // double clic : quota Pl@ntNet compté une fois
             res.textContent = "{{Identification…}}"
             ajax('identifier', {id: id, noms: JSON.stringify([n]), organes: JSON.stringify([fg.querySelector('.org').value])}, function (l) {
+              delete i.dataset.envoi
               res.innerHTML = l.length ? l.map(function (x) { return '<div><b>' + esc(x.score) + ' %</b> <i>' + esc(x.nom) + '</i> ' + esc(x.auteur) + (x.communs ? ' — ' + esc(x.communs) : '') + ' <small>' + esc(x.famille) + '</small></div>' }).join('') : "{{Aucune espèce reconnue.}}"
-            }, function (er) { res.textContent = er })
+            }, function (er) { delete i.dataset.envoi; res.textContent = er })
           }
         })
         var fi = ct.querySelector('input[type=file]')
@@ -492,7 +499,7 @@ if (!window.journalcultures || window.journalcultures.v !== 24) (function () { /
           champ("{{Multiplication}}", '<span><select name="multiplication" style="width:auto"><option value=""></option>' + M.multiplications.map(function (m) { return '<option value="' + esc(m) + '">' + esc(m) + '</option>' }).join('') +
             '</select> <select name="type_greffe" style="width:auto;display:none"><option value="">' + "{{type de greffe ?}}" + '</option>' +
             Object.keys(M.greffes).map(function (k) { return '<option value="' + esc(k) + '">' + esc(M.greffes[k]) + '</option>' }).join('') +
-            '</select> <input name="date_mult" maxlength="10" placeholder="2024-05" style="width:8em"><br><small class="jdc-saison"></small></span>') +
+            '</select> <input name="date_mult" maxlength="10" pattern="\\d{4}(-\\d{2}(-\\d{2})?)?" title="AAAA, AAAA-MM ou AAAA-MM-JJ" placeholder="2024-05" style="width:8em"><br><small class="jdc-saison"></small></span>') +
           champ("{{Pot}}", '<span><select name="pot_forme" style="width:auto"><option value="">' + "{{rond, Ø}}" + '</option><option value="carre">' + "{{carré, côté}}" + '</option></select> ' +
             '<input name="pot_diam" inputmode="decimal" placeholder="cm" style="width:5em"> × <input name="pot_haut" inputmode="decimal" placeholder="' + "{{haut. cm}}" + '" style="width:6em"> ' +
             '<label style="display:inline"><input type="checkbox" name="pleine_terre" value="1"> ' + "{{pleine terre}}" + '</label></span>') +
@@ -578,7 +585,7 @@ if (!window.journalcultures || window.journalcultures.v !== 24) (function () { /
           var p = d.plantes.filter(function (x) { return x.id == tr.dataset.id })[0]
           if (e.target.dataset.envoi) return // double tap : une seule entrée
           e.target.dataset.envoi = 1; e.target.textContent = '…'
-          ajax('noter', {entree: JSON.stringify({plantes: [tr.dataset.id], date: auj(), action: 'Engrais', note: p.engrais})}, function () {}, function (er) { delete e.target.dataset.envoi; e.target.textContent = er })
+          ajax('noter', {entree: JSON.stringify({plantes: [tr.dataset.id], date: auj(), action: 'Engrais', note: p.engrais})}, function () { e.target.textContent = "{{noté}}"; if (opt && opt.apres) opt.apres() }, function (er) { delete e.target.dataset.envoi; e.target.textContent = er })
           return
         }
         plante(d, tr.dataset.id)
@@ -592,7 +599,7 @@ if (!window.journalcultures || window.journalcultures.v !== 24) (function () { /
           ajax('journal', {id: d.id}, function (l) { ct.innerHTML = tableJournal(d, l, true); brancherSuppr(ct, function () { charger(ct) }) }, erreur(ct))
         }]])
         if (a.dataset.b == 'noter') return fenetre("{{Noter}}", [['n', ids.length ? noms(d, ids) : "{{Entrée libre (cocher des plantes pour les viser)}}", function (ct) {
-          ct.innerHTML = ''; ct.appendChild(formNoter(d, ids, 'Observation', '', function () { ct.innerHTML = '<p>' + "{{Noté.}}" + '</p>' }))
+          ct.innerHTML = ''; ct.appendChild(formNoter(d, ids, 'Observation', '', function () { ct.innerHTML = '<p>' + "{{Noté.}}" + '</p>'; if (opt && opt.apres) opt.apres() }))
         }]])
         fenetre("{{Déplacer}}", [['d', ids.length ? noms(d, ids) : "{{cocher des plantes}}", function (ct) {
           if (!ids.length) { ct.innerHTML = '<p>' + "{{Cochez d'abord les plantes à déplacer dans la tuile.}}" + '</p>'; return }
@@ -604,7 +611,7 @@ if (!window.journalcultures || window.journalcultures.v !== 24) (function () { /
             var f = ct.querySelector('form'), bt = f.querySelector('button')
             f.onsubmit = function (ev) {
               ev.preventDefault(); bt.disabled = true
-              ajax('deplacer', {plantes: JSON.stringify(ids), emplacement: f.elements.e.value, collection: f.elements.c.value}, function (n) { ct.innerHTML = '<p>' + n + ' ' + "{{plante(s) déplacée(s).}}" + '</p>' }, function (er) { bt.disabled = false; f.querySelector('.jdc-er').textContent = er })
+              ajax('deplacer', {plantes: JSON.stringify(ids), emplacement: f.elements.e.value, collection: f.elements.c.value}, function (n) { ct.innerHTML = '<p>' + n + ' ' + "{{plante(s) déplacée(s).}}" + '</p>'; if (opt && opt.apres) opt.apres() }, function (er) { bt.disabled = false; f.querySelector('.jdc-er').textContent = er })
             }
           }, erreur(ct))
         }]])

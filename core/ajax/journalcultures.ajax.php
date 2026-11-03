@@ -39,7 +39,7 @@ try {
   // écritures : administrateurs seulement
   if (!isConnect('admin')) throw new Exception(__('401 - Accès non autorisé', __FILE__));
   if ($a == 'noter') { // une entrée par plante cochée, ou une entrée libre
-    $in = $liste('entree'); unset($in['valeurs']); $ids = array_values(array_filter((array)($in['plantes'] ?? []), 'is_numeric'));
+    $in = $liste('entree'); unset($in['valeurs'], $in['origine'], $in['plante']); $ids = array_values(array_filter((array)($in['plantes'] ?? []), 'is_numeric')); // origine et nom : jamais du client
     if (count($ids) > 200) throw new Exception(__('Trop de plantes', __FILE__));
     $maj = array_map(function ($id) use ($eq) { return $eq($id, 'plante'); }, $ids); // tout vérifier avant d'écrire : pas de saisie à moitié faite
     $coll = $maj ? null : $eq($in['collection_id'] ?? 0, 'collection'); // entrée libre : rattachée à la collection de la tuile

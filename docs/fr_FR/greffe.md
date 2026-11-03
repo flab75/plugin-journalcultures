@@ -90,13 +90,13 @@ Une seule fiche décrit ces étapes (INRAE, **une seule source**) :
 ![Greffe en fente herbacée](../images/greffe-fente-herbacee.svg)
 
 Une seule fiche décrit ces étapes (INRAE, **une seule source**) :
-1. **Écimer** un très jeune porte-greffe dont la tige fait au moins 5 mm à 35-45 cm ; le fendre verticalement sur 1 cm.
+1. **Écimer** à 35-45 cm du sol un très jeune porte-greffe dont la tige fait au moins 5 mm de diamètre ; le fendre verticalement sur 1 cm.
 2. **Greffon** : section de jeune pousse pas encore aoûtée, de même diamètre, coupée pour que son œil unique soit au milieu ; base taillée en double biseau.
 3. **Enchâsser** dans la fente, ligaturer au Parafilm en couvrant aussi le sommet du greffon ; ensacher avec 2 ou 3 feuilles du porte-greffe ; sac retiré 15 jours plus tard.
 
 ### Autres types : gravures anciennes
 
-Dessins publiés par L. H. Bailey (domaine public) : vigne, plantes en pot, arbres fruitiers ; l'espèce est rarement précisée et **aucune n'est présentée comme un agrume**. Ils montrent le geste, ne remplacent pas une marche à suivre et ne comptent pas comme source.
+Dessins publiés par L. H. Bailey (domaine public) : vigne, plantes en pot, arbres fruitiers ; l'espèce est rarement précisée et **aucune n'est présentée comme un agrume**. Ils montrent le geste et ne remplacent pas une marche à suivre ; les dessins seuls ne comptent pas comme source, le texte de Bailey quand il est cité compte comme **une seule source** (voir [Sources](#sources)).
 Légendes traduites de l'ouvrage, échelle du dessin entre parenthèses. *The Nursery-Book*, 11ᵉ éd., 1907 ; *The Nursery-Manual*, 1920 (scans Cornell et Internet Archive).
 
 **Anglaise** — à gauche, le greffon : coupe en biseau et languette (grandeur nature) ; à droite, greffon et porte-greffe emboîtés par leurs languettes (moitié) ; le texte ajoute un lien de raphia ou de liber.
@@ -159,7 +159,7 @@ c'est la sève du porte-greffe qui décide, pas le calendrier. La saison du type
 | Type | Saison et conditions |
 |---|---|
 | Écusson en T, en T inversé | porte-greffe **en sève** (l'écorce se soulève), en pleine croissance : en général d'avril à novembre selon le lieu (HS1309, **une seule source**) ; en Corse dès mars-avril sous tunnel, mai dehors (INRAE) ; le printemps de préférence (Curk, **une seule source**) |
-| Chip, chip inversé | quand l'écorce se soulève mal (HS1309, INRAE, qui l'appelle « plaquage ») ou est trop épaisse pour un écusson (HS1309, **une seule source**) ; variété épineuse, rameaux à section triangulaire (INRAE, **une seule source**) ; saison : règle générale |
+| Chip, chip inversé | quand l'écorce se soulève mal (HS1309, INRAE, qui l'appelle « placage ») ou est trop épaisse pour un écusson (HS1309, **une seule source**) ; variété épineuse, rameaux à section triangulaire (INRAE, **une seule source**) ; saison : règle générale |
 | Sous écorce (couronne) | porte-greffe âgé, de gros diamètre, écorce trop épaisse pour un écusson mais qui se décolle (INRAE, **une seule source**) ; saison : règle générale |
 | Minigreffe en fente | fente herbacée : très jeunes porte-greffes (tige d'environ 5 mm), greffon de jeune pousse ; sous abri presque toute l'année dans les pays plus chauds que la Corse (INRAE, **une seule source**) |
 | Anglaise | peu utilisée pour les agrumes (Curk 2022 p. 194) ; sinon printemps |
@@ -246,4 +246,8 @@ Un contrôle dû remplit la commande « Greffe à contrôler », reprise par le 
 - **Fiche INRAE-Cirad « Greffage »** : CRB Citrus INRAE-Cirad, San Giuliano (Corse), *La fiche technique : le greffage* 1/4 à 4/4, d'après Jacquemond
   et al. 2013 (même organisme que Curk 2022).
 - **Rutgers** : *Growing Citrus in Containers*, maître jardinier du comté de Hunterdon (reprend Mississippi State University P2542).
+- **Bailey** : Bailey L. H., *The Nursery-Book*, 11ᵉ éd., Macmillan, 1907 (Internet Archive cu31924097691087) et *The Nursery-Manual*, Macmillan, 1920 (Internet Archive nurserymanualcom00bailrich), domaine public ; texte cité = **une seule source**, souvent hors agrumes.
+- **UC Ventura** : University of California Cooperative Extension, comté de Ventura, conseils de greffage des agrumes (durée de la soudure) ; connue par la synthèse « Techniques de greffe », **non relue**.
+- **Non relues** (citées par la synthèse « Techniques de greffe », référence complète non retrouvée) : revue *Fruits* 1982 (Cirad, placage d'œil) ; guide du service du développement rural de Polynésie française ;
+  Carimi 2001 (Italie, microgreffe et embryogenèse somatique) ; essai colombien 2022 sur orange 'Valencia' (minigreffe en fente).
 - **Températures de soudure (21-32 °C)** : sources d'amateurs seulement (forums, sites de jardinage), d'où des seuils réglables.

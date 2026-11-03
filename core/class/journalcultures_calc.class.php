@@ -259,6 +259,7 @@ class journalcultures_calc {
   public static function nouvelle(array $in, array $empl) {
     $c = [];
     foreach (self::NOUVELLE as $k => $n) if (($v = self::texte($in[$k] ?? '', $n)) !== '') $c[$k] = $v;
+    if (isset($c['date_mult']) && self::age($c['date_mult']) === null) throw new Exception(__('Date de multiplication : AAAA, AAAA-MM ou AAAA-MM-JJ, pas dans le futur', __FILE__)); // sinon ni jeunesse, ni suivi de greffe, sans un mot
     if (in_array($in['multiplication'] ?? '', self::MULTIPLICATIONS, true)) $c['multiplication'] = $in['multiplication'];
     $c = self::greffe($c + (isset($in['type_greffe']) ? ['type_greffe' => (string)$in['type_greffe']] : []));
     foreach (['pot_diam', 'pot_haut', 'pot_terre'] as $k) if (($v = self::nombre($in[$k] ?? '')) !== null && $v > 0) $c[$k] = $v;
@@ -486,7 +487,7 @@ class journalcultures_calc {
   const PRODUITS = "Ferti Agrumes 7-3-10 | 7 | 8 | 10-40 | N P K | granulés à enfouir par léger griffage ; étiquette : 80 à 240 g par sujet tous les 2 mois, de mars à octobre\n"
     . "Corne broyée | 13 | 12 | 10-40 | N | effet sur 3 à 4 mois ; étiquette : en pot, 3 apports de 1 g par litre de terreau dans la saison | 1\n"
     . "Sang séché | 12 | 0 | 10-30 | N | coup de fouet (effet en 3 à 4 jours) ; étiquette : 1 à 2 apports par an, printemps et été\n"
-    . "Kélafer racinaire (fer EDDHA 6 %) | 0 | 0 | 6-44 | Fe | au pied seulement, jamais sur les feuilles ; dilué dans l'arrosage (10 à 40 g par litre d'eau) ; étiquette : jeunes plantations 5 à 15 g par pied, seulement en cas de besoin\n"
+    . "Kélafer racinaire (fer EDDHA 6 %) | 0 | 0 | 6-44 | Fe | au pied seulement, jamais sur les feuilles ; dilué dans l'arrosage (10 à 40 g par litre d'eau = concentration ; la dose par pied reste la limite) ; étiquette : jeunes plantations 5 à 15 g par pied, seulement en cas de besoin\n"
     . "Sel d'Epsom (sulfate de magnésium) | 0 | 0 | 10-40 | Mg S | pas de dose sur le seau (produit pour le bain)";
 
   public static function produits($texte) { // → [['nom', 'n' (%), 'tous' (semaines), 'saison', 'apporte' => [éléments], 'note', 'gl' (g/L de l'étiquette, 0 = calculé)], …]
@@ -514,6 +515,7 @@ class journalcultures_calc {
     foreach ($pris as $i => $p) if (($p['gl'] ?? 0) > 0) $etiq += $litres * $p['gl'] * $p['n'] / 100 / $p['tous']; else $autres += min(100, (float)$parts[$i]);
     $reste = max(0, 1 - $etiq / ($litres * $taux)); // part du besoin laissée aux produits calculés
     foreach ($pris as $i => $p) {
+      if (!(($doses[$i] ?? 0) > 0) && !(($p['gl'] ?? 0) > 0) && $reste <= 0) continue; // besoin déjà couvert par les doses d'étiquette : pas de 1 g d'office
       $g = ($doses[$i] ?? 0) > 0 ? round($doses[$i], 1) : max(1, round(($p['gl'] ?? 0) > 0 ? $litres * $p['gl']
         : $litres * $taux * $p['tous'] * $reste * min((float)$parts[$i], 100) / $autres * 100 / $p['n'])); // parts sur 100 sans étiquette : $reste = 1, $autres = 100
       $r[] = ['i' => $i, 'g' => $g, 'ligne' => $p['saison'] . '/' . $p['tous'] . ' | ' . $p['nom'] . ' | ' . str_replace('.', ',', (string)$g) . ' g'];
@@ -592,9 +594,9 @@ class journalcultures_calc {
         ['si besoin, produit de biocontrôle', ['BSV Corse 2024']]]],
     'mal_secco' => ['nom' => 'Mal secco (Plenodomus tracheiphilus, citronniers, limes, cédratiers)', 'statut' => 'present', 'regional' => 1,
       'signes' => 'feuilles qui tombent depuis la pointe des rameaux, rameaux qui sèchent, bois coloré saumon à rouge carotte sous l’écorce ; infections surtout de novembre à février (pic en janvier)',
-      'sources' => ['Chapot 1963', 'Migheli 2009', 'Nigro 2011', 'OEPP 2024 (mal secco)', 'Catane 2022-2023', 'Cirad 1983'],
+      'sources' => ['Chapot 1963', 'Migheli 2009', 'Nigro 2011', 'OEPP 2024 (mal secco)', 'Catane 2022-2023', 'Spina et Cutuli 1983'],
       'gestes' => [['couper jusqu’au bois sain (sans coloration) : le champignon gagne la plante par le bois ; déchets en sac fermé à la déchetterie, jamais au compost (Chapot dit brûler : interdit aux particuliers aujourd’hui)', ['Chapot 1963', 'Catane 2022-2023']],
-        ['protéger les plaies au cuivre (la lutte chimique repose sur le cuivre) ; éviter toute blessure l’hiver, c’est par elles qu’il entre', ['Chapot 1963', 'Cirad 1983']]],
+        ['protéger les plaies au cuivre (la lutte chimique repose sur le cuivre) ; éviter toute blessure l’hiver, c’est par elles qu’il entre', ['Chapot 1963', 'Spina et Cutuli 1983']]],
       'note' => 'désinfecter les outils entre deux coupes : alcool à 70° (choix du plugin) ; Chapot les trempait dans du sulfate de cuivre à 5 %. Organisme réglementé non de quarantaine (ORNQ) dans l’Union européenne : déclaration non obligatoire chez un particulier. Très sensibles : citronnier, lime vraie, cédratier (Chapot) ; l’OEPP cite aussi bergamote et bigaradier. Sensibilité comparée : observations au champ, pas toujours confirmées par des tests (OEPP 2024)'],
     'aleurode_epineux' => ['nom' => 'Aleurode épineux (Aleurocanthus spiniferus)', 'statut' => 'quarantaine', 'regional' => 1,
       'signes' => 'petites protubérances noires et épineuses sous les feuilles, miellat, fumagine, fourmis',

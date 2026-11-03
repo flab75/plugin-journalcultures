@@ -48,13 +48,13 @@ Feuilles jaunes **sans** insecte ni lésion : penser d'abord à une carence ou �
 ## Bonnes pratiques
 
 ### Surveiller
-- Regarder **les deux faces des jeunes feuilles**, à la loupe : c'est là que commencent acariens, pucerons et aleurodes (BSV PACA 2020, qui ne parle des deux faces que pour les acariens ; la loupe est un choix du plugin).
+- Regarder **les deux faces des jeunes feuilles**, à la loupe : c'est là que commencent acariens, pucerons et aleurodes (BSV PACA 2020, **une seule source**, qui ne parle des deux faces que pour les acariens ; la loupe est un choix du plugin).
 - Les pousses tendres sont les plus attaquées par les pucerons ; une feuille ferme et coriace convient mal aux grosses colonies (Brun 1990, **une seule source**).
-- Des **fourmis** qui montent et descendent signalent un insecte à miellat ; elles défendent les cochenilles contre leurs ennemis (BSV PACA 2020).
+- Des **fourmis** qui montent et descendent signalent un insecte à miellat ; elles défendent les cochenilles contre leurs ennemis (BSV PACA 2020, **une seule source**).
   Les écarter est une déduction du plugin : aucune méthode efficace contre les fourmis n'est connue (BSV Corse 2024).
 
 ### Prévenir
-- **Plants sains** : la principale voie d'arrivée du Phytophthora est un plant déjà infesté (Savita 2012) ; plants et greffons d'origine contrôlée contre les virus (Vogel 1990, Sáenz Pérez 2019).
+- **Plants sains** : la principale voie d'arrivée du Phytophthora est un plant déjà infesté (Savita 2012, **une seule source**) ; plants et greffons d'origine contrôlée contre les virus (Vogel 1990, Sáenz Pérez 2019).
   Précaution du plugin : garder une plante qui arrive à l'écart des autres quelques semaines et la regarder de près.
 - **Arrosage** : laisser le substrat ressuyer entre deux arrosages, un pot qui draine (UC IPM, BSV PACA 2020, NHB, UF/IFAS HS261) ; ne pas mouiller le tronc (NHB, Savita 2012).
 - **Collet et point de greffe jamais enterrés** (UC IPM, Sáenz Pérez 2019, Savita 2012, Whiteside 1971).
@@ -72,7 +72,7 @@ Du plus doux au plus fort : enlever à la main, couper, laver, auxiliaires, puis
 ## Problèmes, par priorité
 
 ### Gommose et pourriture des racines (Phytophthora)
-**Priorité 1.** La maladie la plus grave des agrumes en Corse (Vogel 1990) ; en pot, c'est surtout la pourriture des racines dans un substrat qui reste mouillé.
+**Priorité 1.** La maladie la plus grave des agrumes en Corse (Vogel 1990, **une seule source**) ; en pot, c'est surtout la pourriture des racines dans un substrat qui reste mouillé.
 
 **Signes** : gomme, écorce brune qui se fend au collet ou au point de greffe ; feuilles vert pâle à nervures jaunes (atteinte sévère), qui tombent ;
 racines fines molles dont l'écorce part en laissant un fil blanc (Savita 2012, UC IPM).
@@ -125,7 +125,7 @@ Un porte-greffe tolérant et une greffe haute sont la meilleure prévention (Vog
 - huile (blanche ou de colza), qui asphyxie, en couvrant tout le feuillage (Brun 1990, BSV JEVI Corse 2025).
 
 **Non retenu** : le mélange savon noir + huile végétale + alcool (5 cl de chaque par litre d'eau) du BSV JEVI Corse 2025 est un conseil donné pour le figuier ;
-ce n'est pas un produit autorisé, il contient 5 % d'huile (contre 1,5 à 2 % pour les huiles d'été) et **aucune étude publiée** n'a été trouvée sur les agrumes. Seul essai sur l'alcool : des vêtements, pas des plantes (UF/IFAS 2022).
+ce n'est pas un produit autorisé, il contient 5 % d'huile (contre 1,5 à 2 % pour les huiles d'été, chiffre non sourcé ici) et **aucune étude publiée** n'a été trouvée sur les agrumes. Seul essai sur l'alcool : des vêtements, pas des plantes (UF/IFAS 2022).
 
 ### Acariens (araignées rouges, tétranyques)
 **Priorité 3.**
@@ -222,7 +222,7 @@ ce n'est pas un produit autorisé, il contient 5 % d'huile (contre 1,5 à 2 % po
 
 ### Mal secco (citronniers, limes, cédratiers)
 **Priorité 8.** Champignon des vaisseaux (*Plenodomus tracheiphilus*, ancien *Phoma tracheiphila*), surtout destructeur sur citronnier (Migheli 2009, Nigro 2011) ;
-organisme réglementé (liste A2 de l'OEPP) ; dans l'Union européenne, organisme réglementé non de quarantaine (ORNQ) : il vise les plants vendus, la déclaration n'est pas obligatoire chez un particulier.
+organisme réglementé (liste A2 de l'OEPP) ; dans l'Union européenne, organisme réglementé non de quarantaine (ORNQ) : il vise les plants vendus, la déclaration n'est pas obligatoire chez un particulier (statuts non sourcés ici : à vérifier sur le site de l'OEPP).
 
 **Signes** : feuilles qui tombent depuis la pointe des rameaux, rameaux qui sèchent, bois coloré saumon à rouge carotte sous l'écorce.
 
@@ -235,15 +235,15 @@ organisme réglementé (liste A2 de l'OEPP) ; dans l'Union européenne, organism
 *Rameau malade coupé en travers : le bois est coloré. Mêmes auteurs, PaDIL, Wikimedia Commons, [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).*
 
 
-**Pourquoi** : il entre par les **blessures**, colonise le bois puis toute la plante (Catane 2022-2023, OEPP 2024) ; toute lésion, quelle qu'en soit l'origine, favorise l'infection (Cirad 1983).
-Les infections ont lieu surtout de novembre à février, avec un pic en janvier ; les organes qui produisent les spores apparaissent dès 5 °C (Chapot 1963).
+**Pourquoi** : il entre par les **blessures**, colonise le bois puis toute la plante (Catane 2022-2023, OEPP 2024) ; toute lésion, quelle qu'en soit l'origine, favorise l'infection (Spina et Cutuli 1983).
+Les infections ont lieu surtout de novembre à février, avec un pic en janvier ; les organes qui produisent les spores apparaissent dès 5 °C (Chapot 1963, **une seule source**).
 Très sensibles : citronnier, lime vraie, cédratier (Chapot 1963) ; l'OEPP cite aussi la bergamote et le bigaradier. Le plugin ne le propose que pour les citronniers et les limes.
 
 **Gestes** :
 - couper jusqu'au bois sain, sans coloration ; déchets en sac fermé à la déchetterie, jamais au compost (Chapot 1963, Catane 2022-2023 ; Chapot dit brûler, ce qui est interdit aux particuliers aujourd'hui) ;
 - désinfecter les outils entre deux coupes : **alcool à 70°** (choix du plugin) ; Chapot les trempait dans du sulfate de cuivre à 5 % ;
-- protéger les plaies au cuivre : hors des pratiques culturales, la lutte chimique repose sur le cuivre (Chapot 1963, Cirad 1983) ;
-- éviter toute blessure l'hiver.
+- protéger les plaies au cuivre : hors des pratiques culturales, la lutte chimique repose sur le cuivre (Chapot 1963, Spina et Cutuli 1983) ;
+- éviter toute blessure l'hiver (déduction du plugin, d'après Chapot 1963).
 
 La sensibilité comparée des espèces vient d'observations au champ, pas toujours confirmées par des tests (OEPP 2024).
 
@@ -265,7 +265,7 @@ Présent en France (continent et Corse), en Italie, en Grèce, en Croatie et ail
 Savons et mouillants ne le contrôlent qu'en partie (Cioffi 2013, **une seule source**).
 
 ### HLB (greening, absent)
-**Priorité 10. Absent de France métropolitaine.** Bactérie transmise par des psylles. Deux psylles vecteurs sont déjà dans l'Union européenne : *Trioza erytreae* en Espagne et au Portugal (BSV JEVI Corse 2025), *Diaphorina citri* à Chypre. Aucun traitement n'existe (BSV JEVI Corse 2025, Sáenz Pérez 2019).
+**Priorité 10. Absent de France métropolitaine.** Bactérie transmise par des psylles. Deux psylles vecteurs sont déjà dans l'Union européenne : *Trioza erytreae* en Espagne et au Portugal (BSV JEVI Corse 2025), *Diaphorina citri* à Chypre (BSV JEVI Corse 2025, **une seule source**). Aucun traitement n'existe (BSV JEVI Corse 2025, Sáenz Pérez 2019).
 
 **Signes** : marbrures jaunes **asymétriques** des feuilles, fruits déformés qui se colorent à l'envers, psylles sur les jeunes pousses.
 
@@ -324,9 +324,10 @@ Lues en entier, sauf : Whiteside 1971, El-Hamalawi et Menge 1994, Liu et Stansly
 - **Chapot 1963** : Chapot H., *Le mal secco*, *Al Awamia* 9:89-125.
 - **Chouikhi 2022** : Chouikhi S. et al., *Panonychus citri* en Tunisie.
 - **Cioffi 2013** : Cioffi M., Cornara D., Corrado I., Jansen M. G. M., Porcelli F., *Bulletin of Insectology* 66:273-281.
-- **Cirad 1983** : Spina P., Cutuli G., mal secco, *Fruits* 38(7-8):541-544.
+- **Spina et Cutuli 1983** : Spina P., Cutuli G., mal secco, *Fruits* 38(7-8):541-544.
 - **Cloyd 2016** : Cloyd R. A., *Greenhouse Management*, 4 octobre 2016 (vulgarisation).
 - **COCHORTI 2021** : projet COCHORTI (Valhor, INRAE), identification des cochenilles.
+- **Étude turque 1996** : connue seulement par la fiche « Agrumes — vérification des sources », référence complète non retrouvée.
 - **EFSA 2018** : EFSA Panel on Plant Health, *Pest categorisation of Aleurocanthus spp.*, *EFSA Journal* 16(10):e05436.
 - **El-Hamalawi et Menge 1994** : *Plant Disease* 78:700 (avocatier).
 - **Gómez-Marco 2016** : Gómez-Marco F. et al., *J. Pest Sci.* 89:69-79.

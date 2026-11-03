@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.17 (2026-11-02)
+- Notice, onglet **Botanique** : « Multiplier les agrumes » (semis et pépins à plusieurs embryons, phase juvénile, greffe, bouture, marcotte aérienne ; tableau comparatif ; lien avec l'âge et la jeunesse dans le plugin), sources Curk 2022, UF/IFAS HS1309, de Rocca Serra 1992.
+- Correction : « Greffer… » écrit de nouveau l'entrée « Greffe » au journal (perdue depuis la 0.15) ; regreffer une greffe en dormance ou en pousse garde la fiche du vrai porte-greffe.
+- « Au printemps » refusé aussi par le serveur hors J+42 ou pour un pont ; un double appui sur « Oui » ne saute plus d'étape.
+- Plan d'engrais : plus de « 1 g » d'office quand les doses d'étiquette couvrent déjà le besoin ; dose saisie avec une virgule, case vidée plus re-remplie pendant la frappe.
+- Date de multiplication illisible ou future refusée (avant : ni jeunesse ni suivi de greffe, sans message).
+- Journal : suppression d'une entrée sur deuxième clic ; « Noter » n'accepte plus le nom ni l'origine venant du navigateur ; tuile et page plein écran rafraîchies après ✓ engrais, « Noter » et « Déplacer » ; cases masquées par la recherche jamais envoyées.
+- Fiche : onglet changé pendant le chargement sans mélange ; Pl@ntNet de l'onglet Photos envoyé une fois ; « session expirée ? » au lieu d'une erreur JSON ; flèche des listes repliables ; code de la notice sans débordement sur téléphone.
+- Notice : sources complétées (Bailey, UC Ventura, sources non relues de la greffe, Spina et Cutuli 1983, Chypre), faits à une seule source marqués, Kélafer (concentration) et sel d'Epsom (aucune dose sourcée) précisés.
+
 ## 0.16 (2026-11-02)
 - Notice : onglet **Botanique** (bases : la plante, tige et bourgeons, sous l'écorce, feuille, racine, fleur et fruit, nourrir la plante, noms, multiplier),
   faits sourcés (Shipunov 2021, OpenStax 2018, UF/IFAS, articles sur les agrumes) et « une seule source » indiqués ; gravures d'Atkinson 1905 (domaine public), feuille de Rendle 1911, planche de Köhler 1897, orange légendée (CC BY 2.5).
@@ -96,8 +106,8 @@
 
 ## 0.2 (2026-10-29)
 - Identification du groupe d'un agrume par ses caractères observés (feuille, fleur, fruit) : groupe probable ou indécis, caractères en désaccord,
-  liens Citrus ID et UC Riverside. Jamais la variété. Bergamote rangée avec le bigaradier ; un citron Meyer rond, une bergamote
-  ou un petit pamplemousse restent indécis plutôt qu'un faux « probable » ; Poncirus et hybrides de Poncirus restent toujours indécis.
+  liens Citrus ID et UC Riverside (complétés ensuite par POWO, GBIF, Tela Botanica et PFAF). Jamais la variété. Bergamote rangée avec le bigaradier ; un citron Meyer rond, une bergamote
+  ou un petit pamplemousse restent indécis plutôt qu'un faux « probable » ; Poncirus et hybrides de Poncirus restent souvent indécis.
 - Marge d'alerte par défaut : 3 °C (au lieu de 2).
 
 ## 0.1 (2026-10-29)

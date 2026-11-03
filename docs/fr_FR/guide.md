@@ -15,8 +15,9 @@ les gravures montrent souvent une autre plante qu'un agrume, ce qui est dit sous
 1. Une plante a des **pousses** (tige, feuilles, bourgeons, fleurs) et des **racines** ([La plante](#la-plante)).
 2. Sous l'écorce, le **liber** porte les sucres des feuilles vers les racines, les pousses et les fruits, le **bois** monte l'eau ; entre les deux, le **cambium** fabrique les deux ; dans une greffe, les tissus conducteurs se soudent ([Sous l'écorce](#sous-lécorce)).
 3. Couper le **bourgeon du bout** réveille les bourgeons de côté : c'est la base de la taille ([La tige et les bourgeons](#la-tige-et-les-bourgeons)).
-4. Une carence se lit sur **les vieilles feuilles** (azote, magnésium, potassium…) ou sur **les jeunes pousses** (fer, zinc, manganèse…), **une seule source** ([Nourrir la plante](#nourrir-la-plante)).
-5. Le fruit est l'**ovaire** de la fleur qui a mûri ; chez les agrumes, on l'appelle **hespéride** (une seule source) ([La fleur et le fruit](#la-fleur-et-le-fruit)).
+4. Une carence se lit sur **les vieilles feuilles** (azote, magnésium, potassium…) ou sur **les jeunes pousses** (fer, zinc, manganèse…) ([Nourrir la plante](#nourrir-la-plante) ; trois sources concordent : voir [Reconnaître une carence](fertilisation.md#reconnaître-une-carence)).
+5. Le fruit est l'**ovaire** de la fleur qui a mûri ; chez les agrumes, on l'appelle **hespéride** (**une seule source**) ([La fleur et le fruit](#la-fleur-et-le-fruit)).
+6. Un **pépin** d'agrume donne souvent un plant identique à la mère (pas chez le cédratier ni le pamplemoussier), mais jeune et épineux pendant des années ; greffe, bouture et marcotte copient la mère et peuvent transmettre ses maladies ([Multiplier les agrumes](#multiplier-les-agrumes)).
 
 ## La plante
 
@@ -155,12 +156,78 @@ De l'extérieur vers le centre :
 - Les méthodes du jardinier : **greffe**, **bouture**, **marcotte**, micropropagation (OpenStax p. 942, **une seule source**). Le champ « Multiplication » du plugin note semis, greffe, bouture, marcotte ou achat.
 - **Greffe** : un **greffon** est fixé sur un **porte-greffe** enraciné ; leurs tissus conducteurs se soudent (OpenStax p. 942 ; Bailey 1907 p. 78).
   Les agrumes sont couramment greffés sur un porte-greffe choisi pour résister aux maladies (OpenStax p. 942, **une seule source**). Tout le détail : [Greffe](greffe.md).
-- **Semis** : chez beaucoup d'agrumes (Curk 2022 ; UF/IFAS HS1309), une graine peut donner un plant identique à la mère : des embryons nucellaires, formés sans fécondation à partir des tissus de la mère (Ballve et al. 1997 ; Shipunov p. 164, l'apomixie ; [Identification](identification.md)).
+- **Semis** : un pépin d'agrume peut donner un plant identique à la mère ; voir [Multiplier les agrumes](#multiplier-les-agrumes).
+
+## Multiplier les agrumes
+
+Quatre façons d'obtenir un agrume : semis, greffe, bouture, marcotte. Elles ne donnent pas le même plant :
+
+| Méthode | Plant identique à la mère ? | Premiers fruits | Racines | Transmet les maladies de la mère ? |
+|---|---|---|---|---|
+| Semis | souvent (pépins à plusieurs embryons), jamais garanti | après des années | les siennes | presque jamais |
+| Greffe | oui pour le greffon | plus tôt que le semis | celles du porte-greffe choisi | oui, si le greffon est malade |
+| Bouture | oui | (pas de chiffre dans nos sources) | les siennes, sans pivot profond | oui, si la mère est malade |
+| Marcotte aérienne | oui | moins de 12 mois (citronniers d'ornement) | les siennes | oui, si la mère est malade |
+
+Détail et sources dans les paragraphes ci-dessous. Le tableau résume, il n'ajoute rien.
+
+### Semis
+
+- **Pépins à plusieurs embryons** (polyembryonnés) : chez beaucoup d'agrumes, un pépin contient en général un embryon issu de la fécondation et un ou plusieurs embryons **nucellaires**, formés à partir des tissus de la mère ; ceux-ci donnent des plants **identiques à la mère** (Curk 2022 p. 56 et lexique p. 345 ; UF/IFAS HS1309 p. 1-2 ; de Rocca Serra 1992 p. 119).
+  Exception : le cédratier et le pamplemoussier n'ont que des pépins à un seul embryon, donc des semis hybrides (de Rocca Serra 1992 p. 119 ; pépins « monoembryonnés » : Curk 2022 p. 190 et lexique).
+- Le plant issu de la fécondation est un **hybride**, différent de la mère et souvent moins vigoureux : en pépinière, on l'élimine au repiquage ou au greffage (UF/IFAS HS1309 p. 1-2 ; Curk 2022 p. 197-199 ; de Rocca Serra 1992 p. 119).
+  Moins un pépin a d'embryons, plus ce risque est grand : en moyenne 1,1 à 1,5 embryon par pépin chez le citronnier Volkamer, 1,5 à 2 chez le Poncirus, 3 à 4 chez le bigaradier (principe : Curk 2022 p. 197 et de Rocca Serra 1992 p. 119 ; chiffres : Curk 2022 p. 197, **une seule source**).
+  Un plant de semis peut aussi être un hybride, même chez une espèce à plusieurs embryons : c'est ainsi qu'est née la clémentine, dans un semis de pépins de mandarine (Curk 2022 p. 68, **une seule source**).
+- **Phase juvénile** : un plant de semis, même nucellaire, porte des épines et fleurit tard (de Rocca Serra 1992 p. 119 ; Curk 2022 p. 187-188) ; il peut attendre des années avant ses premiers fruits (UF/IFAS HS1309).
+  Selon le climat et l'espèce, 4 à 10 ans, plus longtemps en limite nord de culture comme la Corse ou la Ligurie (Curk 2022 p. 187-188, **une seule source**). Voir aussi [La tige et les bourgeons](#la-tige-et-les-bourgeons) pour les épines.
+- **Plant sain** : la graine ne transmet presque jamais les maladies de la mère (de Rocca Serra 1992 p. 120 : « sauf rare exception » ; Curk 2022 p. 197 : aucune maladie de quarantaine démontrée).
+  L'Union européenne restreint pourtant l'entrée de graines d'agrumes venant des zones où le HLB est présent (Curk 2022 p. 198, **une seule source**) ; à notre avis, ne pas rapporter de pépins de voyage.
+- **Conserver** : graines sèches au froid, vers 4 à 10 °C (UF/IFAS HS1309 ; Curk 2022 p. 198 : environ 5 °C, plusieurs mois).
+- **Semer** (UF/IFAS HS1309 p. 1-2, **une seule source** pour tout ce point) : rincer le fruit à l'eau de Javel diluée (20 %), nettoyer et sécher les pépins à l'abri du soleil ;
+  semer à 0,6-1,3 cm de profondeur dans un terreau propre ; ôter le tégument ou faire tremper 8 h accélère la levée, qui vient en 2 à 3 semaines au chaud, au soleil et humide.
+- Les porte-greffes sont d'ordinaire multipliés par semis (UF/IFAS HS1309 ; Curk 2022 p. 186 et 197) ; quand les pépins ne donnent surtout que des hybrides, par bouture ou in vitro (UF/IFAS HS1309 ; in vitro aussi Curk 2022 p. 199).
+
+### Greffe
+
+- C'est la méthode la plus employée pour multiplier un agrume à l'identique (Curk 2022 p. 186 ; UF/IFAS HS1309 : un arbre du commerce est d'ordinaire un greffon sur un porte-greffe).
+- Le greffon, pris sur un arbre adulte, fructifie **2 à 4 ans plus tôt** qu'un semis et évite ou réduit les grandes épines de la jeunesse, plus de 10 cm (Curk 2022 p. 188, **une seule source**).
+- Le porte-greffe apporte ses racines : sol, maladies du sol, froid, vigueur (UF/IFAS HS1309 ; Curk 2022 p. 187-190 ; froid : fiche INRAE-Cirad du Poncirus p. 3). Tout le détail : [Greffe](greffe.md).
+- Le greffon transmet les maladies de l'arbre où il est pris : greffons sains indispensables (Curk 2022 p. 198 ; UF/IFAS HS1309 ; fiche INRAE-Cirad, sur le Poncirus et l'exocortis).
+
+### Bouture
+
+- Principe : un morceau de tige avec au moins un nœud, mis en terre humide, fait des racines (OpenStax p. 943 ; UF/IFAS HS1309 p. 5-6 pour les agrumes).
+- Pour des porte-greffes (UF/IFAS HS1309 p. 5-6, **une seule source** pour la méthode) : bouture d'un seul nœud, de 2,5 cm environ, prise sur la partie déjà ligneuse (aoûtée) d'une pousse de 2 à 5 mois, d'une plante saine ; garder la feuille, réduite à 20-30 % de sa taille ;
+  tremper la base dans une hormone de bouturage ; garder la bouture **à l'étouffée** (enceinte close ou brumisation) jusqu'aux racines, qui viennent en quelques semaines.
+  Une mini-serre peut servir d'enceinte close (idée du plugin, non sourcée).
+- Comme la greffe, la bouture et la marcotte transmettent les maladies de la plante mère : risque bien plus élevé que par la graine (Curk 2022 p. 198 ; boutures prises sur plantes saines certifiées : UF/IFAS HS1309).
+- Limites : une bouture ne fait pas de pivot profond et s'ancre mal (Curk 2022 p. 186) ; la plupart des variétés sur leurs propres racines craignent les *Phytophthora* (Curk 2022 p. 187 ; voir [Santé](sante.md)).
+  En Corse, les cédratiers bouturés avaient des racines peu profondes et fragiles, au vent, au froid, aux nématodes et aux *Phytophthora* (Curk 2022 p. 95) : les deux constats viennent du même livre, **une seule source**.
+
+### Marcotte
+
+- **Marcotte** : une tige encore attachée à la mère fait des racines, puis on la sépare (OpenStax p. 943 ; Curk 2022, lexique p. 341).
+- **Marcotte aérienne** : on retire un morceau d'écorce de la tige et on le couvre de mousse tenue par un film ; une fois les racines formées, on sépare cette partie et on la rempote (OpenStax p. 943, **une seule source** pour le geste).
+  En pratique, l'écorce est ôtée en anneau (non sourcé).
+  C'est une [annelure](#sous-lécorce) : les sucres qui descendent s'arrêtent au-dessus de l'anneau, là où les racines doivent pousser (lien fait par le plugin).
+- Pratiquée sur les citronniers d'ornement : plants qui portent des fruits en **moins de 12 mois** (Curk 2022 p. 188, **une seule source**). Racines propres, donc mêmes limites que la bouture (Curk 2022 p. 186-187).
+
+### Dans le plugin
+
+- Champ « Multiplication » (semis, greffe, bouture, marcotte, achat) et sa date dans la fiche : l'âge est affiché ([Mode d'emploi](index.md#fiche-dune-plante)).
+- Une plante semée, greffée, bouturée ou marcottée et datée compte comme **jeune** : rusticité diminuée les premières années, engrais réduit ([Mode d'emploi](index.md#configuration-du-plugin), [Fertilisation](fertilisation.md)).
+  Un achat ou une plante sans date ne l'est pas.
+  « Jeune » veut dire ici multipliée récemment : un greffon pris sur un arbre adulte n'a pas la phase juvénile d'un semis, mais le plant greffé reste fragile les premières années (lecture du plugin).
+- Une greffe datée a son suivi (contrôles, température pour souder) : [Greffe](greffe.md).
 
 ## Sources
 
 - **Shipunov 2021** : Shipunov A., *Introduction to Botany*, Minot State University, version du 7 juin 2021, 192 p., dédié au domaine public. Pages = pages du livre.
 - **OpenStax 2018** : Clark M. A., Douglas M., Choi J., *Biology 2e*, OpenStax, Rice University, 2018 (impression 2026 lue), CC BY-NC-SA 4.0 (rien n'en est recopié), https://openstax.org/details/books/biology-2e. Pages = pages du livre.
+- **Curk 2022** : Curk F., Luro F., Minuto G., Nieddu G., *Les agrumes du Nord de la Méditerranée*, Alain Piazzola, 2022, doi 10.17180/m6z4-d276, HAL hal-04646466. Pages = pages du livre (deux par page du PDF).
+- **de Rocca Serra 1992** : de Rocca Serra D., Ollitrault P., « L'amélioration des agrumes : I - Les ressources génétiques », *Fruits*, numéro spécial Agrumes 1992, p. 115-123.
+- **UF/IFAS HS1309** : Albrecht U., Zekri M., Williamson J., *Citrus Propagation*, UF/IFAS, 2017, revue en 2021 et 2024, doi 10.32473/edis-hs1309-2017.
+- **Fiche INRAE-Cirad** : *Porte-greffe d’agrumes*, fiches techniques, Centre de ressources biologiques Citrus INRAE-Cirad, San Giuliano, d'après Jacquemond et al. 2013.
 - **Atkinson 1905** : Atkinson G. F., *A College Text-book of Botany*, Henry Holt, 1905, Internet Archive collegetextbooko00atkiuoft (Biodiversity Heritage Library), domaine public.
 - **Bailey 1907** : Bailey L. H., *The Nursery-Book*, 11ᵉ éd., Macmillan, 1907, Internet Archive cu31924097691087, domaine public.
 - **UF/IFAS** (université de Floride), fiches EDIS : HS1373 *Movement of Plant Nutrients* (Vashisth T., Oswalt C., 2020, revue en 2025) ; SS420 *Macronutrient Deficiencies in Citrus* (2002, revue en 2024) ;
