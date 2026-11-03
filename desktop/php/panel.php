@@ -17,7 +17,7 @@ if (!isConnect()) throw new Exception('{{401 - Accès non autorisé}}');
   #jdc-panel .jdc-aside{flex:1 1 380px;min-width:0;border:1px solid rgba(128,128,128,.3);border-radius:10px;padding:8px}
   #jdc-panel .jdc{font-size:15px}#jdc-panel .jdc td,#jdc-panel .jdc th{padding:7px 6px}
   #jdc-panel .jdc input[type=checkbox]{width:20px;height:20px}
-  #jdc-panel .jdc-bt a{padding:8px 16px}
+  #jdc-panel .jdc-bt button{padding:8px 16px}
   @media (max-width:900px){#jdc-panel .jdc-aside{display:none}}
 </style>
 <div id="jdc-panel">
@@ -42,7 +42,7 @@ if (!isConnect()) throw new Exception('{{401 - Accès non autorisé}}');
   try { sel = localStorage.getItem('jdc-collection') } catch (e) {}
   function filtrer() {
     var t = q.value.trim().toLowerCase()
-    P.querySelectorAll('.jdc tr.p').forEach(function (tr) { tr.style.display = !t || tr.textContent.toLowerCase().indexOf(t) >= 0 ? '' : 'none' })
+    P.querySelectorAll('.jdc tr.p').forEach(function (tr) { var sr = tr.querySelector('.jdc-sr'); tr.style.display = !t || tr.textContent.replace(sr ? sr.textContent : '', '').toLowerCase().indexOf(t) >= 0 ? '' : 'none' })
   }
   function rendre() {
     var cs = data.collections, c = cs.filter(function (x) { return String(x.id) == sel })[0] || cs[0]

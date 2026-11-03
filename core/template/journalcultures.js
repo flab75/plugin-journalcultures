@@ -1,27 +1,30 @@
 /* Journal de cultures — tuile d'une collection et ses fenêtres (plante, journal, noter, déplacer). Recopié dans chaque tuile par
    journalcultures::toHtml(), chargé une seule fois par page. Textes entre doubles accolades traduits côté PHP (core/i18n). */
-if (!window.journalcultures || window.journalcultures.v !== 26) (function () { // v : un onglet ouvert avant une mise à jour recharge la bibliothèque
+if (!window.journalcultures || window.journalcultures.v !== 27) (function () { // v : un onglet ouvert avant une mise à jour recharge la bibliothèque
   var css = document.getElementById('jdc-css') || document.createElement('style')
   css.id = 'jdc-css'
   css.textContent =
+    ':root{--jdc-rouge:#b3261e;--jdc-vert:#2F6B3A}body[data-theme$=Dark]{--jdc-rouge:#ff8a80;--jdc-vert:#8fd19e}' + // A-7 : rouge et contour lisibles sur fond sombre
+    'button.jb{font:inherit;color:inherit;border:0;background:none;padding:0;margin:0;cursor:pointer;text-align:inherit;line-height:inherit}.jb.lk{text-decoration:underline}' +
+    '.jdc :focus-visible,.jdc-m :focus-visible{outline:2px solid var(--jdc-vert);outline-offset:1px}.jdc-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}' +
     '.jdc{box-sizing:border-box;width:100%;padding:4px 6px 8px;text-align:left;font-size:12px}' +
     '.jdc table{width:100%;border-collapse:collapse}.jdc td,.jdc th{padding:2px 3px;border-bottom:1px solid rgba(128,128,128,.2)}' +
-    '.jdc tr.p{cursor:pointer}.jdc tr.p:hover{background:rgba(128,128,128,.12)}.jdc .al{color:#d33;font-weight:600}.jdc .n{text-align:right;white-space:nowrap}' +
+    '.jdc tr.p{cursor:pointer}.jdc tr.p:hover{background:rgba(128,128,128,.12)}.jdc .al{color:var(--jdc-rouge);font-weight:600}.jdc .n{text-align:right;white-space:nowrap}' +
     '.jdc-r{margin-bottom:4px}.jdc-r .al{background:#b3261e;color:#fff;border-radius:8px;padding:1px 7px}' +
-    '.jdc-bt{display:flex;gap:5px;justify-content:center;margin-top:6px}.jdc-bt a,.jdc-m .b{cursor:pointer;border-radius:12px;padding:2px 10px;background:rgba(128,128,128,.2)}' +
+    '.jdc-bt{display:flex;gap:5px;justify-content:center;margin-top:6px}.jdc-bt button,.jdc-m .b{cursor:pointer;border-radius:12px;padding:2px 10px;background:rgba(128,128,128,.2)}' +
     '.jdc-m{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center}' +
     '.jdc-mb{background:var(--bg-modal-color,#fff);color:var(--txt-color,#222);width:min(800px,96vw);max-height:90vh;overflow:auto;border-radius:10px;padding:10px 14px;font-size:13px;text-align:left}' +
-    '.jdc-mb>nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;align-items:center}.jdc-mb>nav a{cursor:pointer;padding:3px 10px;border-radius:10px;background:rgba(128,128,128,.15)}' +
+    '.jdc-mb>nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;align-items:center}.jdc-mb>nav button{padding:3px 10px;border-radius:10px;background:rgba(128,128,128,.15)}' +
     '.jdc-m:not(.jdc-in) .jdc-mb>nav{position:sticky;top:-10px;z-index:1;background:var(--bg-modal-color,#fff);padding:6px 0}[id^=jdc-n-]{scroll-margin-top:50px}' +
-    '.jdc-mb a[data-n]{cursor:pointer;text-decoration:underline}.jdc-mb>nav a.on{background:#4a7;color:#fff}.jdc-mb>nav .z{margin-left:auto}.jdc-mb>nav b{margin-right:6px}' +
+    '.jdc-mb a[data-n]{cursor:pointer;text-decoration:underline}.jdc-mb>nav button.on{background:#2F6B3A;color:#fff}.jdc-mb>nav .z{margin-left:auto}.jdc-mb>nav b{margin-right:6px}' +
     '.jdc-mb table{width:100%;border-collapse:collapse}.jdc-mb td,.jdc-mb th{padding:3px 5px;border-bottom:1px solid rgba(128,128,128,.25);vertical-align:top;text-align:left}' +
     '.jdc-mb form{display:grid;grid-template-columns:fit-content(35%) minmax(0,1fr);gap:4px 8px;align-items:center;margin-bottom:10px}' +
     '.jdc-mb input,.jdc-mb select,.jdc-mb textarea{width:100%;box-sizing:border-box}.jdc-mb input[type=checkbox]{width:auto}' +
-    '.jdc-mb h4{margin:10px 0 3px}.jdc-er{color:#d33}.jdc-ph{display:flex;flex-wrap:wrap;gap:8px}.jdc-ph figure{margin:0;width:180px}' +
+    '.jdc-mb h4{margin:10px 0 3px}.jdc-er{color:var(--jdc-rouge)}.jdc-ph{display:flex;flex-wrap:wrap;gap:8px}.jdc-ph figure{margin:0;width:180px}' +
     '.jdc-ph img{width:180px;height:180px;object-fit:cover;border-radius:6px;cursor:zoom-in}.jdc-ph figcaption{font-size:11px}' +
     '.jdc-m.jdc-in{position:static;background:none;display:block}.jdc-in .jdc-mb{width:auto;max-height:none}' + // fenêtre posée dans le panel (écran large)
-    '.jdc-org{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px}.jdc-org a,.jdc-pil span{cursor:pointer;display:inline-block;border-radius:16px;padding:4px 11px;border:1px solid rgba(128,128,128,.4)}' +
-    '.jdc-org a.on,.jdc-pil input:checked+span{background:#2F6B3A;border-color:#2F6B3A;color:#fff}.jdc-pil{position:relative;margin:0 4px 4px 0}.jdc-mb .jdc-pil input{position:absolute;opacity:0;width:1px;height:1px;min-height:0;margin:0}.jdc-pil input:focus-visible+span{outline:2px solid #2F6B3A}' +
+    '.jdc-org{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px}.jdc-org button,.jdc-pil span{cursor:pointer;display:inline-block;border-radius:16px;padding:4px 11px;border:1px solid rgba(128,128,128,.4)}' +
+    '.jdc-org button.on,.jdc-pil input:checked+span{background:#2F6B3A;border-color:#2F6B3A;color:#fff}.jdc-pil{position:relative;margin:0 4px 4px 0}.jdc-mb .jdc-pil input{position:absolute;opacity:0;width:1px;height:1px;min-height:0;margin:0}.jdc-pil input:focus-visible+span{outline:2px solid var(--jdc-vert)}' +
     '.jdc-mb form.jdc-mf{display:block}.jdc-mb form>*{min-width:0}.jdc-mb input[type=file]{max-width:100%}.jdc-g{display:none}.jdc-g.on{display:block}.jdc-mf fieldset{border:0;padding:0;margin:0 0 6px}.jdc-mf legend{font-size:inherit;border:0;margin:0 0 3px;width:auto}' +
     '.jdc-lg{display:flex;align-items:center;gap:8px;margin:0 0 6px;font-weight:normal}.jdc-lg>span{flex:1}.jdc-lg input{width:110px;text-align:right}.jdc-lg small{width:42px}.jdc-lg textarea{flex:2}' +
     '.jdc-svg svg{width:100%;height:auto;max-height:220px}' +
@@ -34,7 +37,7 @@ if (!window.journalcultures || window.journalcultures.v !== 26) (function () { /
     '.jdc-tx h3{font-size:18px;margin:28px 0 8px;padding-bottom:4px;border-bottom:1px solid rgba(128,128,128,.35)}.jdc-tx h4{font-size:15.5px;margin:22px 0 6px;padding-left:8px;border-left:3px solid #2F6B3A}.jdc-tx h5{font-size:14px;margin:14px 0 4px}' +
     '.jdc-tx li{margin:3px 0}.jdc-tw{overflow-x:auto;margin:10px 0 14px}.jdc-tw table{margin:0;min-width:480px;font-size:13px;line-height:1.4}.jdc-tw th,.jdc-tw td{padding:5px 8px!important;vertical-align:top!important}.jdc-tw th{background:rgba(47,107,58,.18);white-space:nowrap}.jdc-tw tr:nth-child(even) td{background:rgba(128,128,128,.07)}.jdc-tw td:first-child{min-width:9em}.jdc-ct code{color:inherit;background:rgba(128,128,128,.18);border:0;padding:1px 4px;border-radius:3px;font-size:.88em;white-space:normal;overflow-wrap:anywhere}.jdc-ct summary,.jdc-np summary{display:list-item;cursor:pointer}.jdc-not .jdc-ct img{max-width:100%;height:auto}.jdc-q{position:sticky;top:0;z-index:2;margin:8px 0 12px}' +
     '@media (max-width:900px){.jdc-doc{display:block}.jdc-tx>*{max-width:none}.jdc-toc{position:static;max-height:none;margin-bottom:14px;padding:8px 10px;border:1px solid rgba(128,128,128,.3);border-radius:8px}}' +
-    '@media (max-width:600px){.jdc-m{align-items:stretch}.jdc-mb{width:100vw;max-height:none;height:100%;border-radius:0;font-size:15px}.jdc-mb>nav a{padding:8px 12px}' +
+    '@media (max-width:600px){.jdc-m{align-items:stretch}.jdc-mb{width:100vw;max-height:none;height:100%;border-radius:0;font-size:15px}.jdc-mb>nav button{padding:8px 12px}' +
     '.jdc-not .jdc-mb{width:100vw;padding:8px 14px 24px}.jdc-not .jdc-ct>h2{font-size:19px}.jdc-mb input,.jdc-mb select,.jdc-mb textarea{font-size:16px;min-height:40px}.jdc-mb button{min-height:44px}.jdc .xs{display:none}}'
   document.head.appendChild(css)
 
@@ -62,26 +65,46 @@ if (!window.journalcultures || window.journalcultures.v !== 26) (function () { /
     if (!cible || opt.flottante || !cible.isConnected || window.innerWidth <= 900) cible = null
     var m = document.createElement('div'); m.className = 'jdc-m' + (cible ? ' jdc-in' : '') + (opt.classe ? ' ' + opt.classe : '')
     if (cible) { if (posee) posee.fermer(); cible.innerHTML = '' }
-    m.innerHTML = '<div class="jdc-mb"><nav><b>' + esc(titre) + '</b>' + o.map(function (x) { return '<a data-o="' + x[0] + '">' + esc(x[1]) + '</a>' }).join('') +
-      (opt.aide ? '<a class="q" title="' + "{{Notice}}" + '">?</a>' : '') + '<a class="z">✕</a></nav><div class="jdc-ct"></div></div>';
+    m.innerHTML = '<div class="jdc-mb"><nav><b>' + esc(titre) + '</b>' + o.map(function (x) { return '<button type="button" class="jb" aria-pressed="false" data-o="' + x[0] + '">' + esc(x[1]) + '</button>' }).join('') +
+      (opt.aide ? '<button type="button" class="jb q" title="' + "{{Notice}}" + '" aria-label="' + "{{Notice}}" + '">?</button>' : '') + '<button type="button" class="jb z" title="' + "{{Fermer}}" + '" aria-label="' + "{{Fermer}}" + '">✕</button></nav><div class="jdc-ct"></div></div>';
     (cible || document.body).appendChild(m)
-    var ct = m.querySelector('.jdc-ct')
-    function fermer() { m.remove(); document.removeEventListener('keydown', touche) }
-    function touche(e) { if (e.key == 'Escape' && !cible && m === [].slice.call(document.querySelectorAll('body > .jdc-m')).pop() && !/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) fermer() } // posée dans le panel : ✕ seulement
+    var ct = m.querySelector('.jdc-ct'), mb = m.querySelector('.jdc-mb'), avant = document.activeElement // focus rendu à la fermeture
+    mb.setAttribute('role', cible ? 'region' : 'dialog'); mb.setAttribute('aria-label', titre); mb.tabIndex = -1; if (!cible) mb.setAttribute('aria-modal', 'true')
+    new MutationObserver(function () { a11y(ct) }).observe(ct, {childList: true, subtree: true}) // libellés et zones annoncées, quel que soit l'onglet
+    function fermer() { m.remove(); document.removeEventListener('keydown', touche); if (!cible && avant && avant.isConnected && avant.focus) avant.focus() }
+    function touche(e) { // posée dans le panel : ✕ seulement ; modale : Échap (dans un champ : sort du champ, puis ferme), Tab reste dedans
+      if (cible || m !== [].slice.call(document.querySelectorAll('body > .jdc-m')).pop()) return
+      if (e.key == 'Escape') { if (/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) mb.focus(); else fermer(); return }
+      if (e.key != 'Tab') return
+      var l = [].filter.call(mb.querySelectorAll('button,a[href],input,select,textarea,summary,[tabindex="0"]'), function (x) { return !x.disabled && x.offsetParent !== null })
+      if (!l.length) return
+      if (!mb.contains(e.target)) { e.preventDefault(); (e.shiftKey ? l[l.length - 1] : l[0]).focus(); return } // focus perdu (onglet redessiné, bouton désactivé) : on revient dans la fenêtre
+      if (e.shiftKey && (e.target == l[0] || e.target == mb)) { e.preventDefault(); l[l.length - 1].focus() } else if (!e.shiftKey && e.target == l[l.length - 1]) { e.preventDefault(); l[0].focus() }
+    }
     document.addEventListener('keydown', touche)
     m.onclick = function (e) { if (e.target == m || e.target.classList.contains('z')) fermer() }
     if (opt.aide) m.querySelector('nav .q').onclick = function () { notice('index', opt.aide[cour]) }
     function montrer(k) {
       cour = k
-      m.querySelectorAll('nav a[data-o]').forEach(function (a) { a.classList.toggle('on', a.dataset.o == k) })
-      ct.textContent = "{{Chargement…}}"
+      m.querySelectorAll('nav button[data-o]').forEach(function (a) { a.classList.toggle('on', a.dataset.o == k); a.setAttribute('aria-pressed', a.dataset.o == k) })
+      ct.innerHTML = '<p role="status">' + "{{Chargement…}}" + '</p>'
       o.filter(function (x) { return x[0] == k })[0][2](ct)
     }
-    m.querySelectorAll('nav a[data-o]').forEach(function (a) { a.onclick = function () { montrer(a.dataset.o) } })
+    m.querySelectorAll('nav button[data-o]').forEach(function (a) { a.onclick = function () { montrer(a.dataset.o) } })
     montrer(depart || o[0][0])
+    if (!cible) (m.querySelector('nav button.on') || mb).focus()
     var f = {montrer: montrer, fermer: fermer, boite: m.querySelector('.jdc-mb')}
     if (cible) posee = f
     return f
+  }
+  var nid = 0
+  function a11y(el) { // A-4 : <label>X</label> suivi de son champ (grille) relié au champ ; A-10 : messages d'erreur et résultats annoncés
+    el.querySelectorAll('label:not([for])').forEach(function (l) {
+      if (l.querySelector('input,select,textarea')) return
+      var s = l.nextElementSibling, c = s && (s.matches('input,select,textarea') ? s : s.querySelector('input,select,textarea'))
+      if (!c || c.closest('label')) return; if (!c.id) c.id = 'jdc-c' + (++nid); l.htmlFor = c.id
+    })
+    el.querySelectorAll('.jdc-er:not([aria-live]),.res:not([aria-live]),.rec:not([aria-live])').forEach(function (x) { x.setAttribute('aria-live', 'polite') })
   }
   var posee = null // fenêtre posée dans le panel : fermée (écouteur, photos) avant d'en poser une autre
 
@@ -104,7 +127,7 @@ if (!window.journalcultures || window.journalcultures.v !== 26) (function () { /
       }
       function poser(ct, n) {
         ct.innerHTML = n.html
-        ct.querySelectorAll('a[data-n]').forEach(function (l) { l.onclick = function () { aller(l.dataset.n || n.k, l.dataset.a) } })
+        ct.querySelectorAll('a[data-n]').forEach(function (l) { l.onclick = function (e) { e.preventDefault(); aller(l.dataset.n || n.k, l.dataset.a) } })
         var d = ct.querySelector('.jdc-toc details'); if (d && window.innerWidth <= 600) d.open = false // mobile : sommaire replié
         if (n.k == 'noms') chercher(ct)
         var b = ct.closest('.jdc-mb'), e = vise && b.querySelector('#' + CSS.escape('jdc-n-' + vise)); vise = null // cette fenêtre, pas une notice déjà ouverte
@@ -117,7 +140,7 @@ if (!window.journalcultures || window.journalcultures.v !== 26) (function () { /
   // dictionnaire des noms : filtre les entrées (li) au fil de la frappe, sans accents ni casse ; lettres vides masquées
   function chercher(ct) {
     var tx = ct.querySelector('.jdc-tx') || ct, sans = function (t) { return t.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase() }
-    var q = document.createElement('input'); q.type = 'search'; q.placeholder = "{{Chercher un nom (genre, espèce, ancien nom)…}}"; q.className = 'form-control jdc-q'
+    var q = document.createElement('input'); q.type = 'search'; q.placeholder = "{{Chercher un nom (genre, espèce, ancien nom)…}}"; q.className = 'form-control jdc-q'; q.setAttribute('aria-label', "{{Chercher un nom}}")
     tx.insertBefore(q, tx.querySelector(':scope > h3') || tx.firstChild)
     var haut = function () { var m = q.closest('.jdc-mb'), n = m && m.querySelector('nav'); q.style.top = (n ? n.offsetHeight - 10 : 0) + 'px' } // sous les onglets collants (plusieurs lignes sur mobile)
     setTimeout(haut); q.onfocus = haut
@@ -129,18 +152,18 @@ if (!window.journalcultures || window.journalcultures.v !== 26) (function () { /
     }
   }
 
-  function erreur(ct) { return function (er) { ct.innerHTML = '<p class="jdc-er">' + esc(er) + '</p>' } }
+  function erreur(ct) { return function (er) { ct.innerHTML = '<p class="jdc-er" role="alert">' + esc(er) + '</p>' } }
 
   function tableJournal(d, l, avecPlante, apres) { // entrées du journal + suppression (admins)
     return '<table><tr><th>' + "{{Date}}" + '</th><th>' + "{{Travail}}" + '</th><th></th></tr>' + l.map(function (x) {
       return '<tr><td>' + esc(x.date) + '</td><td><b>' + esc(d.actions[d.actionsCle.indexOf(x.action)] || x.action) + '</b>' + (avecPlante ? ' ' + esc(x.plante) : '') +
         (x.lieu ? ' <small>(' + esc(x.lieu) + ')</small>' : '') + (x.note ? '<br><small>' + esc(x.note) + '</small>' : '') + '</td><td>' +
-        (d.admin == 1 ? '<a class="jdc-del" data-id="' + esc(x.id) + '" title="' + "{{Supprimer}}" + '" style="cursor:pointer">✕</a>' : '') + '</td></tr>'
+        (d.admin == 1 ? '<button type="button" class="jb jdc-del" data-id="' + esc(x.id) + '" title="' + "{{Supprimer}}" + '" aria-label="' + "{{Supprimer l'entrée}}" + '">✕</button>' : '') + '</td></tr>'
     }).join('') + '</table>' + (l.length ? '' : '<p>' + "{{Rien de noté pour l'instant.}}" + '</p>')
   }
   function brancherSuppr(ct, apres) {
     ct.querySelectorAll('.jdc-del').forEach(function (a) {
-      a.onclick = function () { if (!a.dataset.ok) { a.dataset.ok = 1; a.textContent = "{{Confirmer ✕}}"; return } // deuxième clic, comme les photos
+      a.onclick = function () { if (!a.dataset.ok) { a.dataset.ok = 1; a.removeAttribute('aria-label'); a.textContent = "{{Confirmer ✕}}"; return } // deuxième clic, comme les photos
         if (a.dataset.envoi) return; a.dataset.envoi = 1 // pas de double envoi
         ajax('supprimer', {entree: a.dataset.id}, apres, function (er) { delete a.dataset.envoi; a.textContent = er }) }
     })
@@ -189,9 +212,9 @@ if (!window.journalcultures || window.journalcultures.v !== 26) (function () { /
       (e.litres && pl.length ? '<table class="jdc-plan">' + pl.map(function (x) {
         var p = x[0], i = x[1], v = e.parts[i] || 0
         return '<tr><td><label><input type="checkbox" class="pk" data-i="' + i + '"' + (v ? ' checked' : '') + (admin ? '' : ' disabled') + '> ' + esc(p.nom) + '</label> <small>' + esc(p.n) + ' % N, ' + "{{toutes les}}" + ' ' + p.tous + ' ' + "{{sem.}}" + ', ' + saison(p.saison) + (p.ge ? ', ' + "{{dose de l'étiquette}}" + ' ' + nb(p.gl) + ' g/L' : '') + '</small></td>' +
-          '<td><input class="pp" data-i="' + i + '" type="number" min="0" max="100" style="width:4.5em" value="' + v + '"' + (admin ? '' : ' disabled') + '> %</td><td><input class="pd" data-i="' + i + '" type="text" inputmode="decimal" style="width:5em"' + (e.doses[i] ? ' value="' + e.doses[i] + '"' : '') + (admin ? '' : ' disabled') + '> g <small class="pg" data-i="' + i + '"></small></td></tr>' }).join('') + '</table>' +
+          '<td><input class="pp" data-i="' + i + '" aria-label="' + esc(p.nom) + ' : ' + "{{part en %}}" + '" type="number" min="0" max="100" style="width:4.5em" value="' + v + '"' + (admin ? '' : ' disabled') + '> %</td><td><input class="pd" data-i="' + i + '" aria-label="' + esc(p.nom) + ' : ' + "{{dose en g}}" + '" type="text" inputmode="decimal" style="width:5em"' + (e.doses[i] ? ' value="' + e.doses[i] + '"' : '') + (admin ? '' : ' disabled') + '> g <small class="pg" data-i="' + i + '"></small></td></tr>' }).join('') + '</table>' +
         '<p><small>' + "{{Seuls les produits cochés reçoivent l'azote, réparti selon les parts (total 100 %). Un produit à dose d'étiquette garde cette dose ; son azote est retiré du besoin et le reste va aux autres. La dose calculée peut être ajustée à la main : c'est elle qui est écrite.}}" + '</small>' +
-        (admin ? ' <a class="b pe">' + "{{Écrire dans le calendrier}}" + '</a> <span class="jdc-er pr"></span>' : '') + '</p>' : '')
+        (admin ? ' <button type="button" class="jb b pe">' + "{{Écrire dans le calendrier}}" + '</button> <span class="jdc-er pr"></span>' : '') + '</p>' : '')
   }
   function blocSante(s, cat, geo) {
     function src(l) { return ' <small>(' + esc(l.join(', ')) + (l.length == 1 ? ' — <b>' + "{{une seule source}}" + '</b>' : '') + ')</small>' }
@@ -222,7 +245,7 @@ if (!window.journalcultures || window.journalcultures.v !== 26) (function () { /
     t.querySelectorAll('.pd').forEach(function (p) { p.oninput = function () { calc(false, true) }; p.onchange = function () { calc() } })
     calc()
     var b = ct.querySelector('.pe')
-    if (b) b.onclick = function () { b.style.pointerEvents = 'none'; ajax('plan', {id: id, parts: JSON.stringify(parts()), doses: JSON.stringify(doses())}, fini, function (er) { b.style.pointerEvents = ''; ct.querySelector('.pr').textContent = er }) }
+    if (b) b.onclick = function () { b.disabled = true; ajax('plan', {id: id, parts: JSON.stringify(parts()), doses: JSON.stringify(doses())}, fini, function (er) { b.disabled = false; ct.querySelector('.pr').textContent = er }) }
   }
 
   function plante(d, id, depart) {
@@ -243,14 +266,14 @@ if (!window.journalcultures || window.journalcultures.v !== 26) (function () { /
           (r.greffe ? '<tr><th>' + "{{Greffe}}" + '</th><td class="grs">' + esc(r.greffe.texte) + (r.greffe.controle ? ' · ' + "{{contrôle le}}" + ' ' + esc(r.greffe.controle.split('-').reverse().join('/')) : '') +
             (r.greffe.question ? '<br>' + (r.greffe.du ? '<b class="jdc-er">' + esc(r.greffe.question) + '</b>' : '<small>' + esc(r.greffe.question) + '</small>') : '') +
             (r.greffe.temp ? '<br><b class="jdc-er">' + esc(r.greffe.temp) + '</b>' : '') +
-            (d.admin == 1 && r.greffe.question ? '<br><input class="gnote" maxlength="200" placeholder="' + "{{note (facultatif)}}" + '"> <a class="b gv" data-v="ok">' + "{{Oui}}" + '</a> <a class="b gv" data-v="douteux" title="' + "{{revoir dans 7 jours}}" + '">' + "{{Douteux}}" + '</a> ' + (r.greffe.printemps ? '<a class="b gv" data-v="printemps" title="' + (r.geo && r.geo.sud ? "{{œil vivant, laissé dormant : contrôle le 15 septembre}}" : "{{œil vivant, laissé dormant : contrôle le 15 mars}}") + '">' + "{{Au printemps}}" + '</a> ' : '') + '<a class="b gv" data-v="mort">' + "{{Non, mort}}" + '</a>' : '') +
-            (d.admin == 1 && r.greffe.statut == 'echouee' ? ' <a class="b dgr">' + "{{Redevenir porte-greffe…}}" + '</a>' : '') + ' <span class="jdc-er"></span></td></tr>' : '') +
+            (d.admin == 1 && r.greffe.question ? '<br><input class="gnote" aria-label="' + "{{Note du contrôle (facultatif)}}" + '" maxlength="200" placeholder="' + "{{note (facultatif)}}" + '"> <button type="button" class="jb b gv" data-v="ok">' + "{{Oui}}" + '</button> <button type="button" class="jb b gv" data-v="douteux" title="' + "{{revoir dans 7 jours}}" + '">' + "{{Douteux}}" + '</button> ' + (r.greffe.printemps ? '<button type="button" class="jb b gv" data-v="printemps" title="' + (r.geo && r.geo.sud ? "{{œil vivant, laissé dormant : contrôle le 15 septembre}}" : "{{œil vivant, laissé dormant : contrôle le 15 mars}}") + '">' + "{{Au printemps}}" + '</button> ' : '') + '<button type="button" class="jb b gv" data-v="mort">' + "{{Non, mort}}" + '</button>' : '') +
+            (d.admin == 1 && r.greffe.statut == 'echouee' ? ' <button type="button" class="jb b dgr">' + "{{Redevenir porte-greffe…}}" + '</button>' : '') + ' <span class="jdc-er"></span></td></tr>' : '') +
           '<tr><th>' + "{{Rusticité effective}}" + '</th><td>' + (s.reff === null ? "{{inconnue (pas de rusticité dans la fiche)}}" : nb(s.reff, ' °C')) +
             (s.reff !== null && s.estimee ? ' <small>(' + "{{estimée}}" + ' ' + nb(s.estimee.r, ' °C') + ' : ' + esc(s.estimee.groupes.join(', ')) + (s.estimee.par == 'nom' ? '' : ', ' + "{{d'après les caractères}}") + ')</small>' : '') + (s.reff !== null && s.jeunesse > 0 ? ' <small>(' + "{{dont jeunesse}}" + ' +' + nb(s.jeunesse, ' °C') + ')</small>' : '') + (s.raison ? ' <b class="jdc-er">' + esc(s.raison) + '</b>' : '') + '</td></tr>' +
           (s.engrais ? '<tr><th>' + "{{Engrais cette semaine}}" + '</th><td>' + esc(s.engrais) + '</td></tr>' : '') +
           (g.nom ? '<tr><th>GBIF</th><td>' + esc(g.nom) + (g.famille ? ' · ' + esc(g.famille) : '') + ' <small>(' + esc(g.statut) + ', ' + esc(g.type) + ' ' + esc(g.confiance) + ' %)</small></td></tr>' :
             g.statut == 'NONE' ? '<tr><th>GBIF</th><td class="jdc-er">' + "{{nom botanique introuvable}}" + '</td></tr>' : '') +
-          (r.noms && r.noms.length ? '<tr><th>' + "{{Origine du nom}}" + '</th><td>' + r.noms.join('<br>') + ' <small><a class="nms">' + "{{dictionnaire}}" + '</a></small></td></tr>' : '') + // html converti par la box depuis notre noms.md
+          (r.noms && r.noms.length ? '<tr><th>' + "{{Origine du nom}}" + '</th><td>' + r.noms.join('<br>') + ' <small><button type="button" class="jb lk nms">' + "{{dictionnaire}}" + '</button></small></td></tr>' : '') + // html converti par la box depuis notre noms.md
           r.fiche.map(function (x) { return '<tr><th>' + esc(x[0]) + '</th><td style="white-space:pre-wrap">' + esc(x[1]) + '</td></tr>' }).join('') + '</table>' +
           blocEngrais(r.engrais, d.admin == 1) + blocSante(r.sante, r.santeCat, r.geo) +
           (r.ident && r.ident.groupes ? '<h4>' + "{{Identification}}" + '</h4><p>' + (r.ident.verdict == 'probable' ? "{{Groupe probable}}" : "{{Indécis entre}}") + ' : ' +
@@ -259,20 +282,20 @@ if (!window.journalcultures || window.journalcultures.v !== 26) (function () { /
             "{{Groupe seulement, jamais la variété. Comparer :}}" + ' <a href="https://idtools.org/id/citrus/citrusid/" target="_blank" rel="noopener noreferrer">Citrus ID</a> · ' +
             '<a href="https://citrusvariety.ucr.edu/" target="_blank" rel="noopener noreferrer">UC Riverside</a></small></p>' : '') +
           (r.liens.length ? '<h4>' + "{{Sources en ligne}}" + '</h4>' + r.liens.map(function (l) { return '<a href="' + esc(l[1]) + '" target="_blank" rel="noopener noreferrer">' + esc(l[0]) + '</a>' }).join(' · ') : '') +
-          (d.admin == 1 ? '<p><small>' + "{{La fiche se modifie dans la page du plugin (équipement de la plante).}}" + '</small> <a class="b grf" title="' +
-            "{{La plante devient le greffon : nom, fiche et collection changent ; journal, photos, pot et mesures sont gardés}}" + '">' + "{{Greffer…}}" + '</a> <a class="b idn">' + "{{Identifier…}}" + '</a></p>' : '')
+          (d.admin == 1 ? '<p><small>' + "{{La fiche se modifie dans la page du plugin (équipement de la plante).}}" + '</small> <button type="button" class="jb b grf" title="' +
+            "{{La plante devient le greffon : nom, fiche et collection changent ; journal, photos, pot et mesures sont gardés}}" + '">' + "{{Greffer…}}" + '</button> <button type="button" class="jb b idn">' + "{{Identifier…}}" + '</button></p>' : '')
         var nm = ct.querySelector('.nms'); if (nm) nm.onclick = function () { notice('noms') }
         var gb = ct.querySelector('.grf')
         if (gb) gb.onclick = function () { w.fermer(); nouvelle(d, d.apres, {id: id, nom: r.nom}) }
         ct.querySelectorAll('.gv').forEach(function (a) { a.onclick = function () { // « Non, mort » : deuxième clic pour confirmer
           if (a.dataset.v == 'mort' && !a.dataset.ok) { a.dataset.ok = 1; a.textContent = "{{Confirmer : greffe échouée}}"; return }
-          var bs = ct.querySelectorAll('.gv'); bs.forEach(function (x) { x.style.pointerEvents = 'none' }) // double appui : une seule réponse
-          ajax('controler', {id: id, verdict: a.dataset.v, note: ct.querySelector('.gnote').value}, function () { recharger('fic') }, function (er) { bs.forEach(function (x) { x.style.pointerEvents = '' }); ct.querySelector('.grs .jdc-er').textContent = er })
+          var bs = ct.querySelectorAll('.gv'); bs.forEach(function (x) { x.disabled = true }) // double appui : une seule réponse
+          ajax('controler', {id: id, verdict: a.dataset.v, note: ct.querySelector('.gnote').value}, function () { recharger('fic') }, function (er) { bs.forEach(function (x) { x.disabled = false }); ct.querySelector('.grs .jdc-er').textContent = er })
         } })
         var db = ct.querySelector('.dgr')
         if (db) db.onclick = function () {
           ajax('modele', {}, function (M) {
-            db.outerHTML = '<form class="dgf"><input name="nom" maxlength="120" required placeholder="' + "{{nom du porte-greffe}}" + '"> <select name="c">' +
+            db.outerHTML = '<form class="dgf"><input name="nom" aria-label="' + "{{Nom du porte-greffe}}" + '" maxlength="120" required placeholder="' + "{{nom du porte-greffe}}" + '"> <select name="c" aria-label="' + "{{Collection}}" + '">' +
               M.collections.map(function (c) { return '<option value="' + esc(c[0]) + '"' + (String(c[0]) == r.greffe.avant_coll ? ' selected' : '') + '>' + esc(c[1]) + '</option>' }).join('') +
               '</select> <button type="submit">' + "{{Redevenir porte-greffe}}" + '</button></form>'
             var f = ct.querySelector('.dgf'); f.elements.nom.value = r.greffe.avant
@@ -296,18 +319,18 @@ if (!window.journalcultures || window.journalcultures.v !== 26) (function () { /
         brancherSuppr(ct, function () { recharger('jou') })
       })],
       ['pho', "{{Photos}}", avec(function (ct) {
-        ct.innerHTML = (d.admin == 1 ? '<form><label>' + "{{Ajouter}}" + '</label><span><input type="file" accept="image/jpeg,image/png,image/webp,image/*"> <span class="jdc-er"></span></span></form>' : '') +
+        ct.innerHTML = (d.admin == 1 ? '<form><label>' + "{{Ajouter une photo}}" + '</label><span><input type="file" accept="image/jpeg,image/png,image/webp,image/*"> <span class="jdc-er"></span></span></form>' : '') +
           '<div class="jdc-ph">' + r.photos.map(function (n) {
-            return '<figure data-n="' + esc(n) + '"><img alt=""><figcaption>' + esc(n.slice(6, 8) + '/' + n.slice(4, 6) + '/' + n.slice(0, 4)) +
-              (d.admin == 1 ? (r.plantnet == 1 ? ' · <select class="org"><option value="auto">' + "{{auto}}" + '</option><option value="leaf">' + "{{feuille}}" + '</option><option value="flower">' + "{{fleur}}" + '</option><option value="fruit">' + "{{fruit}}" + '</option><option value="bark">' + "{{écorce}}" + '</option></select> <a class="b idf">Pl@ntNet</a>' : '') +
-                ' <a class="b eti">' + (n == r.etiquette ? "{{★ étiquette}}" : "{{☆ étiquette}}") + '</a> <a class="b sup" title="' + "{{Supprimer}}" + '">✕</a>' : n == r.etiquette ? ' · ' + "{{étiquette}}" : '') + '<div class="res"></div></figcaption></figure>'
+            return '<figure data-n="' + esc(n) + '"><img alt="' + "{{Photo du}}" + ' ' + esc(n.slice(6, 8) + '/' + n.slice(4, 6) + '/' + n.slice(0, 4)) + '"><figcaption>' + esc(n.slice(6, 8) + '/' + n.slice(4, 6) + '/' + n.slice(0, 4)) +
+              (d.admin == 1 ? (r.plantnet == 1 ? ' · <select class="org" aria-label="' + "{{Organe photographié}}" + '"><option value="auto">' + "{{auto}}" + '</option><option value="leaf">' + "{{feuille}}" + '</option><option value="flower">' + "{{fleur}}" + '</option><option value="fruit">' + "{{fruit}}" + '</option><option value="bark">' + "{{écorce}}" + '</option></select> <button type="button" class="jb b idf">Pl@ntNet</button>' : '') +
+                ' <button type="button" class="jb b eti" aria-pressed="' + (n == r.etiquette) + '">' + (n == r.etiquette ? "{{★ étiquette}}" : "{{☆ étiquette}}") + '</button> <button type="button" class="jb b sup" title="' + "{{Supprimer}}" + '" aria-label="' + "{{Supprimer la photo}}" + '">✕</button>' : n == r.etiquette ? ' · ' + "{{étiquette}}" : '') + '<div class="res"></div></figcaption></figure>'
           }).join('') + '</div>' + (r.photos.length ? '' : '<p>' + "{{Aucune photo.}}" + '</p>')
         ct.querySelectorAll('.jdc-ph figure').forEach(function (fg) {
           var n = fg.dataset.n, img = fg.querySelector('img'), res = fg.querySelector('.res')
           charger(img, n, function (er) { res.textContent = er })
           var s = fg.querySelector('.sup'), i = fg.querySelector('.idf'), et = fg.querySelector('.eti')
           if (et) et.onclick = function () { if (et.dataset.envoi) return; et.dataset.envoi = 1; ajax('etiquette', {id: id, nom: n == r.etiquette ? '' : n}, function () { recharger('pho') }, function (er) { delete et.dataset.envoi; res.textContent = er }) } // ★ = retirer
-          if (s) s.onclick = function () { if (s.dataset.envoi) return; if (s.dataset.ok) { s.dataset.envoi = 1; ajax('photo_suppr', {id: id, nom: n}, function () { recharger('pho') }, function (er) { delete s.dataset.envoi; res.textContent = er }) } else { s.dataset.ok = 1; s.textContent = "{{Confirmer ✕}}" } }
+          if (s) s.onclick = function () { if (s.dataset.envoi) return; if (s.dataset.ok) { s.dataset.envoi = 1; ajax('photo_suppr', {id: id, nom: n}, function () { recharger('pho') }, function (er) { delete s.dataset.envoi; res.textContent = er }) } else { s.dataset.ok = 1; s.removeAttribute('aria-label'); s.textContent = "{{Confirmer ✕}}" } }
           if (i) i.onclick = function () {
             if (i.dataset.envoi) return; i.dataset.envoi = 1 // double clic : quota Pl@ntNet compté une fois
             res.textContent = "{{Identification…}}"
@@ -332,7 +355,7 @@ if (!window.journalcultures || window.journalcultures.v !== 26) (function () { /
           var o = k.split('.'), f = o[0] == 'calc' ? r.calculs[k] && [0, r.calculs[k][0], r.calculs[k][1]] : M[o[0]] && M[o[0]][1][o[1]]
           return f ? (o[0] == 'calc' ? '' : M[o[0]][0] + ' · ') + f[1] + (f[2] && f[0] != 'c' ? ' (' + f[2] + ')' : '') : k
         }
-        if (d.admin == 1) h += '<div class="jdc-org">' + Object.keys(M).map(function (o) { return '<a data-o="' + o + '" tabindex="0">' + esc(M[o][0]) + '</a>' }).join('') + '</div>' +
+        if (d.admin == 1) h += '<div class="jdc-org">' + Object.keys(M).map(function (o) { return '<button type="button" class="jb" aria-pressed="false" data-o="' + o + '">' + esc(M[o][0]) + '</button>' }).join('') + '</div>' +
           '<form class="jdc-mf">' + Object.keys(M).map(function (o) {
             return '<div class="jdc-g" data-o="' + o + '">' + Object.keys(M[o][1]).map(function (k) {
               var f = M[o][1][k], n = o + '.' + k
@@ -345,14 +368,14 @@ if (!window.journalcultures || window.journalcultures.v !== 26) (function () { /
           '<label class="jdc-lg"><span>' + "{{Note}}" + '</span><textarea name="note" rows="2" maxlength="1000"></textarea></label>' +
           '<label class="jdc-lg"><span>' + "{{Photo (facultatif)}}" + '</span><input type="file" accept="image/jpeg,image/png,image/webp,image/*" style="width:auto"></label>' +
           '<p><button type="submit">' + "{{Enregistrer au journal}}" + '</button> <span class="jdc-er"></span></p><p><small>' + "{{Les valeurs saisies dans tous les organes partent ensemble.}}" + '</small></p></form>'
-        h += '<h4>' + "{{Courbe}}" + '</h4>' + (ks.length ? '<select class="jdc-cs">' + ks.map(function (k) { return '<option value="' + esc(k) + '">' + esc(lib(k)) + '</option>' }).join('') + '</select><div class="jdc-svg"></div>' :
+        h += '<h4>' + "{{Courbe}}" + '</h4>' + (ks.length ? '<select class="jdc-cs" aria-label="' + "{{Mesure affichée}}" + '">' + ks.map(function (k) { return '<option value="' + esc(k) + '">' + esc(lib(k)) + '</option>' }).join('') + '</select><div class="jdc-svg"></div>' :
           '<p><small>' + "{{Aucune mesure du catalogue pour l'instant.}}" + '</small></p>') +
           '<h4>' + "{{Historiques}}" + '</h4><table>' + Object.keys(c).filter(function (x) { return ['raison', 'engrais', 'greffe'].indexOf(x) < 0 }) /* textes non historisés */.map(function (x) {
-            return '<tr><td>' + esc(c[x].nom) + '</td><td class="n">' + (x == 'emplacement' ? esc(c[x].val) : nb(c[x].val, c[x].unite ? ' ' + c[x].unite : '')) + '</td><td><a class="b hist" data-id="' + esc(c[x].id) + '" data-nom="' + esc(c[x].nom) + '">' + "{{Historique}}" + '</a></td></tr>'
+            return '<tr><td>' + esc(c[x].nom) + '</td><td class="n">' + (x == 'emplacement' ? esc(c[x].val) : nb(c[x].val, c[x].unite ? ' ' + c[x].unite : '')) + '</td><td><button type="button" class="jb b hist" data-id="' + esc(c[x].id) + '" data-nom="' + esc(c[x].nom) + '" aria-label="' + "{{Historique}}" + ' : ' + esc(c[x].nom) + '">' + "{{Historique}}" + '</button></td></tr>'
           }).join('') + '</table>'
         ct.innerHTML = h
-        function organe(o) { ct.querySelectorAll('.jdc-org a, .jdc-g').forEach(function (e) { e.classList.toggle('on', e.dataset.o == o) }) }
-        ct.querySelectorAll('.jdc-org a').forEach(function (a) { a.onclick = function () { organe(a.dataset.o) }; a.onkeydown = function (e) { if (e.key == 'Enter') organe(a.dataset.o) } })
+        function organe(o) { ct.querySelectorAll('.jdc-org button, .jdc-g').forEach(function (e) { e.classList.toggle('on', e.dataset.o == o); if (e.tagName == 'BUTTON') e.setAttribute('aria-pressed', e.dataset.o == o) }) }
+        ct.querySelectorAll('.jdc-org button').forEach(function (a) { a.onclick = function () { organe(a.dataset.o) } })
         organe(org)
         var cs = ct.querySelector('.jdc-cs')
         function courbe() { // ponytail: SVG simple (points reliés, min et max) ; une bibliothèque de graphes si on veut superposer des mesures
@@ -390,7 +413,7 @@ if (!window.journalcultures || window.journalcultures.v !== 26) (function () { /
   }
 
   var IMG = 'image/jpeg,image/png,image/webp,image/*'
-  function orgHtml() { return '<select class="org" style="width:auto"><option value="auto">' + "{{auto}}" + '</option><option value="leaf">' + "{{feuille}}" + '</option><option value="flower">' + "{{fleur}}" +
+  function orgHtml() { return '<select class="org" aria-label="' + "{{Organe photographié}}" + '" style="width:auto"><option value="auto">' + "{{auto}}" + '</option><option value="leaf">' + "{{feuille}}" + '</option><option value="flower">' + "{{fleur}}" +
     '</option><option value="fruit">' + "{{fruit}}" + '</option><option value="bark">' + "{{écorce}}" + '</option></select>' }
   function cleHtml(C, val) { // clé des caractères en pastilles ; val = {caractère: code} coché au départ
     return Object.keys(C).map(function (k) {
@@ -408,7 +431,7 @@ if (!window.journalcultures || window.journalcultures.v !== 26) (function () { /
   }
   function plantnetHtml(l) { // espèces proposées, chacune avec « Retenir »
     return l.length ? l.map(function (x) {
-      return '<div><a class="b uti" data-nom="' + esc(x.nom) + '" data-commun="' + esc(x.communs.split(', ')[0]) + '" data-score="' + esc(x.score) + '">' + "{{Retenir}}" + '</a> <b>' + esc(x.score) + ' %</b> <i>' + esc(x.nom) + '</i> ' + esc(x.auteur) + (x.communs ? ' — ' + esc(x.communs) : '') + '</div>'
+      return '<div><button type="button" class="jb b uti" data-nom="' + esc(x.nom) + '" data-commun="' + esc(x.communs.split(', ')[0]) + '" data-score="' + esc(x.score) + '">' + "{{Retenir}}" + '</button> <b>' + esc(x.score) + ' %</b> <i>' + esc(x.nom) + '</i> ' + esc(x.auteur) + (x.communs ? ' — ' + esc(x.communs) : '') + '</div>'
     }).join('') : "{{Aucune espèce reconnue.}}"
   }
   /* Photos de « Identifier… » et « ＋ Plante » : ex = photos déjà rangées de la plante (non cochées), le champ fichier en ajoute plusieurs (cochées) ;
@@ -416,13 +439,13 @@ if (!window.journalcultures || window.journalcultures.v !== 26) (function () { /
      → fichiers() : photos nouvelles gardées (« ＋ Plante » les range dans la plante créée). */
   function photosPn(el, ex, pn, id, retenir) {
     var nv = [] // fichiers choisis ; un nouveau choix s'ajoute aux précédents, ✕ en retire un
-    el.innerHTML = '<div class="phs"></div><input type="file" multiple accept="' + IMG + '" style="width:auto">' + (pn ? ' <a class="b idf">Pl@ntNet</a>' : '') + '<div class="res"></div>'
+    el.innerHTML = '<div class="phs"></div><input type="file" multiple accept="' + IMG + '" aria-label="' + "{{Ajouter des photos}}" + '" style="width:auto">' + (pn ? ' <button type="button" class="jb b idf">Pl@ntNet</button>' : '') + '<div class="res"></div>'
     var phs = el.querySelector('.phs'), fi = el.querySelector('input[type=file]'), res = el.querySelector('.res'), idf = el.querySelector('.idf')
     function vignette(dv, b) { var fr = new FileReader(); fr.onload = function () { dv.querySelector('img').src = fr.result }; fr.readAsDataURL(b) } // data: (CSP de Jeedom)
     function ligne(lib, k, coche) {
       var dv = document.createElement('div'); dv.dataset.k = k; dv.style.cssText = 'display:flex;align-items:center;gap:6px;margin:2px 0' // une ligne par photo, même sur mobile
       dv.innerHTML = (pn ? '<label style="display:flex;align-items:center;gap:4px;margin:0;white-space:nowrap;min-width:0"><input type="checkbox" style="flex:none"' + (coche ? ' checked' : '') + '> ' : '') + '<img alt="" style="flex:none;height:40px;width:40px;object-fit:cover;vertical-align:middle;margin-right:4px"> <span style="overflow:hidden;text-overflow:ellipsis">' + esc(lib) + '</span>' + (pn ? '</label> ' + orgHtml() : '') +
-        (k[0] == 'f' ? ' <a class="b sup" title="' + "{{Retirer}}" + '">✕</a>' : '')
+        (k[0] == 'f' ? ' <button type="button" class="jb b sup" title="' + "{{Retirer}}" + '" aria-label="' + "{{Retirer}}" + ' ' + esc(lib) + '">✕</button>' : '')
       var x = dv.querySelector('.sup'); if (x) x.onclick = function () { nv[+k.slice(1)] = null; dv.remove() }
       phs.appendChild(dv); return dv
     }
@@ -470,7 +493,7 @@ if (!window.journalcultures || window.journalcultures.v !== 26) (function () { /
             L.push(['rusticite', "{{Rusticité (°C, pleine terre)}}", B.rusticite, v, v, (est.par == 'nom' ? "{{d'après le nom botanique}}" : "{{d'après les caractères}}") + ' : ' + est.groupes.join(', ')]) }
           lignes = L
           pro.innerHTML = L.length ? '<table><tr><th></th><th>' + "{{Champ}}" + '</th><th>' + "{{Actuel}}" + '</th><th>' + "{{Proposé}}" + '</th><th>' + "{{Source}}" + '</th></tr>' + L.map(function (x) {
-            return '<tr><td><input type="checkbox" data-k="' + esc(x[0] + '\u0001' + x[4]) + '"' + (coch[x[0] + '\u0001' + x[4]] ? ' checked' : '') + '></td><td>' + esc(x[1]) + '</td><td>' + esc(x[2] || '–') + '</td><td><b>' + esc(x[3]) + '</b></td><td><small>' + esc(x[5]) + '</small></td></tr>'
+            return '<tr><td><input type="checkbox" aria-label="' + esc(x[1]) + '" data-k="' + esc(x[0] + '\u0001' + x[4]) + '"' + (coch[x[0] + '\u0001' + x[4]] ? ' checked' : '') + '></td><td>' + esc(x[1]) + '</td><td>' + esc(x[2] || '–') + '</td><td><b>' + esc(x[3]) + '</b></td><td><small>' + esc(x[5]) + '</small></td></tr>'
           }).join('') + '</table>' : '<p>' + "{{Rien ne change par rapport à la fiche.}}" + '</p>'
           pro.querySelectorAll('input').forEach(function (i) { i.onchange = function () { coch[i.dataset.k] = i.checked } })
         }
@@ -587,39 +610,39 @@ if (!window.journalcultures || window.journalcultures.v !== 26) (function () { /
   }
 
   // opt.panel : colonnes en plus (porte-greffe, dernière mesure), masquées sur téléphone
-  window.journalcultures = {v: 26, notice: notice, ajax: ajax, esc: esc, nb: nb, init: function (b, d, opt) {
+  window.journalcultures = {v: 27, notice: notice, ajax: ajax, esc: esc, nb: nb, init: function (b, d, opt) {
     if (!b) return
     d.apres = opt && opt.apres // relu par « Greffer… » (fiche)
     var pa = opt && opt.panel
     var al = d.plantes.filter(function (p) { return p.alerte == 1 }), eng = d.plantes.filter(function (p) { return p.engrais })
     b.innerHTML = '<div class="jdc-r">' + d.plantes.length + ' ' + "{{plantes}}" + (al.length ? ' · <span class="al">' + al.length + ' ' + "{{en alerte}}" + '</span>' : '') +
       (eng.length ? ' · ' + eng.length + ' ' + "{{engrais à donner}}" : '') + '</div>' +
-      '<table><tr>' + (d.admin == 1 ? '<th><input type="checkbox" class="jdc-tt" title="' + "{{Tout cocher}}" + '"></th>' : '') + '<th>' + "{{Plante}}" + '</th>' + (pa ? '<th class="xs">' + "{{Porte-greffe}}" + '</th>' : '') + '<th>' + "{{Lieu}}" + '</th><th class="n">T°</th><th class="n" title="' + "{{Rusticité effective (pot compris)}}" + '">' + "{{Rust.}}" + '</th>' + (pa ? '<th class="xs">' + "{{Dernière mesure}}" + '</th>' : '') + '<th></th></tr>' +
+      '<table><tr>' + (d.admin == 1 ? '<th><input type="checkbox" class="jdc-tt" title="' + "{{Tout cocher}}" + '" aria-label="' + "{{Tout cocher}}" + '"></th>' : '') + '<th>' + "{{Plante}}" + '</th>' + (pa ? '<th class="xs">' + "{{Porte-greffe}}" + '</th>' : '') + '<th>' + "{{Lieu}}" + '</th><th class="n">T°</th><th class="n" title="' + "{{Rusticité effective (pot compris)}}" + '">' + "{{Rust.}}" + '</th>' + (pa ? '<th class="xs">' + "{{Dernière mesure}}" + '</th>' : '') + '<th></th></tr>' +
       d.plantes.map(function (p) {
-        return '<tr class="p" tabindex="0" data-id="' + esc(p.id) + '">' + (d.admin == 1 ? '<td><input type="checkbox" class="jdc-ck" value="' + esc(p.id) + '"></td>' : '') +
-          '<td' + (p.alerte == 1 ? ' class="al"' : '') + (p.raison ? ' title="' + esc(p.raison) + '"' : '') + '>' + esc(p.nom) + (p.raison && (p.alerte != 1 || p.muette) ? ' <span class="al">⚠</span>' : '') + '</td>' + (pa ? '<td class="xs">' + esc(p.pg || '–') + '</td>' : '') + '<td>' + esc(p.empl || '–') + '</td><td class="n">' + nb(p.t, '°') + '</td>' +
-          '<td class="n">' + nb(p.reff, '°') + '</td>' + (pa ? '<td class="xs">' + esc(p.mes || '–') + '</td>' : '') + '<td>' + (p.engrais ? '<span title="' + esc(p.engrais) + '">🌱</span>' + (d.admin == 1 ? ' <a class="jdc-eng" title="' + "{{Engrais donné}}" + '" style="cursor:pointer">✓</a>' : '') : '') + '</td></tr>'
+        return '<tr class="p" tabindex="0" data-id="' + esc(p.id) + '">' + (d.admin == 1 ? '<td><input type="checkbox" class="jdc-ck" aria-label="' + esc(p.nom) + '" value="' + esc(p.id) + '"></td>' : '') +
+          '<td' + (p.alerte == 1 ? ' class="al"' : '') + (p.raison ? ' title="' + esc(p.raison) + '"' : '') + '>' + esc(p.nom) + (p.alerte == 1 || p.raison ? ' <span class="al" aria-hidden="true">⚠</span><span class="jdc-sr">' + (p.alerte == 1 ? "{{en alerte}}" : '') + (p.raison ? ' : ' + esc(p.raison) : '') + '</span>' : '') + '</td>' + (pa ? '<td class="xs">' + esc(p.pg || '–') + '</td>' : '') + '<td>' + esc(p.empl || '–') + '</td><td class="n">' + nb(p.t, '°') + '</td>' +
+          '<td class="n">' + nb(p.reff, '°') + '</td>' + (pa ? '<td class="xs">' + esc(p.mes || '–') + '</td>' : '') + '<td>' + (p.engrais ? '<span title="' + esc(p.engrais) + '" role="img" aria-label="' + "{{Engrais à donner}}" + ' : ' + esc(p.engrais) + '">🌱</span>' + (d.admin == 1 ? ' <button type="button" class="jb jdc-eng" title="' + "{{Engrais donné}}" + '" aria-label="' + "{{Engrais donné}}" + '">✓</button>' : '') : '') + '</td></tr>'
       }).join('') + '</table>' + (d.plantes.length ? '' : '<p>' + "{{Aucune plante : « ＋ Plante » pour en ajouter.}}" + '</p>') +
-      '<div class="jdc-bt">' + (d.admin == 1 ? '<a data-b="nouvelle">＋ ' + "{{Plante}}" + '</a><a data-b="noter">＋ ' + "{{Noter}}" + '</a><a data-b="deplacer">' + "{{Déplacer…}}" + '</a>' : '') + '<a data-b="journal">' + "{{Journal}}" + '</a></div>'
+      '<div class="jdc-bt">' + (d.admin == 1 ? '<button type="button" class="jb" data-b="nouvelle">＋ ' + "{{Plante}}" + '</button><button type="button" class="jb" data-b="noter">＋ ' + "{{Noter}}" + '</button><button type="button" class="jb" data-b="deplacer">' + "{{Déplacer…}}" + '</button>' : '') + '<button type="button" class="jb" data-b="journal">' + "{{Journal}}" + '</button></div>'
 
     var tt = b.querySelector('.jdc-tt'), mem = coches[d.id] || (coches[d.id] = {})
     b.querySelectorAll('.jdc-ck').forEach(function (c) { c.checked = !!mem[c.value]; c.onchange = function () { mem[c.value] = c.checked } })
     if (tt) tt.onclick = function () { b.querySelectorAll('.jdc-ck').forEach(function (c) { if (c.closest('tr').style.display == 'none') return; c.checked = tt.checked; mem[c.value] = c.checked }) }
     b.querySelectorAll('tr.p').forEach(function (tr) {
-      tr.onkeydown = function (e) { if (e.key == 'Enter' && e.target == tr) plante(d, tr.dataset.id) } // clavier
+      tr.onkeydown = function (e) { if ((e.key == 'Enter' || e.key == ' ') && e.target == tr) { e.preventDefault(); plante(d, tr.dataset.id) } } // clavier : Entrée ou Espace
       tr.onclick = function (e) {
         if (e.target.classList.contains('jdc-ck')) return
         if (e.target.classList.contains('jdc-eng')) { // rappel d'engrais coché : entrée au journal avec le produit prévu
           var p = d.plantes.filter(function (x) { return x.id == tr.dataset.id })[0]
           if (e.target.dataset.envoi) return // double tap : une seule entrée
-          e.target.dataset.envoi = 1; e.target.textContent = '…'
+          e.target.dataset.envoi = 1; e.target.removeAttribute('aria-label'); e.target.textContent = '…'
           ajax('noter', {entree: JSON.stringify({plantes: [tr.dataset.id], date: auj(), action: 'Engrais', note: p.engrais})}, function () { e.target.textContent = "{{noté}}"; if (opt && opt.apres) opt.apres() }, function (er) { delete e.target.dataset.envoi; e.target.textContent = er })
           return
         }
         plante(d, tr.dataset.id)
       }
     })
-    b.querySelectorAll('.jdc-bt a').forEach(function (a) {
+    b.querySelectorAll('.jdc-bt button').forEach(function (a) {
       a.onclick = function () {
         if (a.dataset.b == 'nouvelle') return nouvelle(d, opt && opt.apres)
         var ids = cochees(b)

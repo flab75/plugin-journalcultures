@@ -698,7 +698,7 @@ class journalcultures_calc {
       return '<img src="plugins/journalcultures/core/ajax/journalcultures.ajax.php?action=image&amp;n=' . rawurlencode($m[2]) . '&amp;v=' . filemtime($f) . '" alt="' . $m[1] . '" loading="lazy" style="max-width:100%">'; }, $t);
     $t = preg_replace_callback('/\[([^\]]+)\]\(([^)\s]+)\)/', function ($m) {
       if (preg_match('/^https?:\/\//', $m[2])) return '<a href="' . $m[2] . '" target="_blank" rel="noopener noreferrer">' . $m[1] . '</a>';
-      if (preg_match('/^(?:(\w+)\.md)?(?:#([\p{L}\p{N}_-]+))?$/u', $m[2], $l)) return '<a data-n="' . ($l[1] ?? '') . '" data-a="' . ($l[2] ?? '') . '">' . $m[1] . '</a>';
+      if (preg_match('/^(?:(\w+)\.md)?(?:#([\p{L}\p{N}_-]+))?$/u', $m[2], $l)) return '<a data-n="' . ($l[1] ?? '') . '" data-a="' . ($l[2] ?? '') . '" href="#' . (($l[2] ?? '') === '' ? '' : 'jdc-n-' . $l[2]) . '">' . $m[1] . '</a>'; // href : lien au clavier (le clic est pris par la notice)
       return $m[1]; // autre cible : texte seul
     }, $t);
     $t = preg_replace(['/\*\*(.+?)\*\*/', '/(?<![\w*])\*(?!\s)(.+?)(?<!\s)\*(?![\w*])/'], ['<b>$1</b>', '<i>$1</i>'], $t);
@@ -724,7 +724,7 @@ class journalcultures_calc {
       if (preg_match('/^(#{1,4})\s+(.+)$/', $ligne, $m)) {
         $fin(); $n = strlen($m[1]) + 1;
         $a = htmlspecialchars(self::ancre($m[2]), ENT_QUOTES);
-        if ($n == 3 || $n == 4) $som[] = '<li' . ($n == 4 ? ' class="s"' : '') . '><a data-n="" data-a="' . $a . '">' . self::enligne(preg_replace('/\[([^\]]*)\]\([^)]*\)/', '$1', $m[2])) . '</a></li>';
+        if ($n == 3 || $n == 4) $som[] = '<li' . ($n == 4 ? ' class="s"' : '') . '><a data-n="" data-a="' . $a . '" href="#jdc-n-' . $a . '">' . self::enligne(preg_replace('/\[([^\]]*)\]\([^)]*\)/', '$1', $m[2])) . '</a></li>';
         $h .= "<h$n id=\"jdc-n-$a\">" . self::enligne($m[2]) . "</h$n>";
         continue;
       }

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.22 (2026-11-03)
+- Accessibilité : tous les boutons de la tuile et des fenêtres (onglets, ✕, ＋ Plante, ＋ Noter, Déplacer…, Journal, Oui / Douteux, Pl@ntNet…) sont de vrais boutons, utilisables au clavier et annoncés par VoiceOver.
+- Les fenêtres sont annoncées comme telles : le focus y entre à l'ouverture et revient au bouton de départ à la fermeture, Tab reste dans la fenêtre, Échap la ferme (dans un champ, un premier Échap sort du champ).
+- Tuile : une plante en alerte de froid porte aussi ⚠ (plus seulement la couleur rouge), avec la raison lue par VoiceOver.
+- Chaque champ a son libellé (doses, parts, recherche, cases à cocher, organe photographié…) ; les photos ont un texte (« Photo du … »).
+- Contrastes : onglet actif plus foncé, rouge et contour du focus lisibles sur le thème sombre ; contour visible au clavier.
+- Les erreurs, « Chargement… » et les résultats de Pl@ntNet sont annoncés ; une plante de la liste s'ouvre aussi avec Espace ; les liens de la notice se suivent au clavier.
+
 ## 0.21 (2026-11-03)
 - Notice plus rapide : chaque page est chargée à sa première ouverture (plus toute la notice d'un coup), gardée toute prête par la box, et ses images arrivent à part (le navigateur les garde).
 - Photos : la fiche et l'identification affichent une vignette de 400 px (photo redressée selon l'appareil) ; un clic ouvre l'original.
