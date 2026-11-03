@@ -76,6 +76,7 @@ Le limequat est rangé en lime (−3), plus prudent que TyCitriK (−6).
 - **Folioles** : compter sur plusieurs feuilles adultes. Chez le Poncirus, les feuilles des jeunes plants sont **le plus souvent simples ou à une foliole** (FoC 2008, **une seule source**) : sur un semis, « 1 foliole » peut donc contredire à tort le Poncirus (déduction du plugin).
 - **Aile** : c'est la partie élargie du pétiole, entre la tige et le limbe. Mesurer sa longueur et sa plus grande largeur, puis celles du limbe : la saisie dans **Mesures** fait le calcul.
 - **Jeunes rameaux** : les regarder **à la loupe**, sur la pousse de l'année ; les poils sont fins (choix du plugin).
+- **Mots des flores** : elliptique, obovale, émarginé, crénelé… sont expliqués dans [La feuille](guide.md#la-feuille) (onglet Botanique).
 
 ### Fleurs et fruits
 - Fleurs : observer le bouton terminal, en pleine floraison ; la fleur ouverte, le premier jour (UPOV TG/83, **une seule source**).

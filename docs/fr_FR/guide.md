@@ -42,6 +42,7 @@ les gravures montrent souvent une autre plante qu'un agrume, ce qui est dit sous
   Le mot n'est pas dans les deux manuels.
 - **Épines** : une épine peut être un **rameau** transformé (*thorn*) ou une **feuille** transformée (*spine*) (Shipunov p. 127 ; OpenStax p. 869 et 877).
   Chez les agrumes, l'épine naît d'un bourgeon à l'aisselle d'une feuille : c'est un **rameau transformé** (Zhang et al. 2020, **une seule source** ; Wikipédia « Citrus » confirme : « épines axillaires »).
+  À ne pas confondre avec l'**aiguillon** (*prickle*) du rosier, qui n'est qu'une excroissance de la surface de la tige (Shipunov p. 127, **une seule source**).
 
 ## Sous l'écorce
 
@@ -72,6 +73,18 @@ De l'extérieur vers le centre :
 - **Limbe** : la partie plate. **Pétiole** : la queue qui l'attache à la tige (OpenStax p. 872 ; Shipunov p. 79).
 - **Nervures** : les faisceaux conducteurs venus de la tige ; la nervure principale parcourt la feuille et se ramifie (Shipunov p. 85 ; OpenStax p. 873).
 - **Feuille simple ou composée** : une feuille composée est divisée en **folioles** (OpenStax p. 874 ; Shipunov p. 80). Le Poncirus a 3 folioles ([Identification](identification.md)).
+- **Disposition** : une feuille par nœud, c'est une disposition **alterne** (en spirale) (Shipunov p. 91) ; c'est le cas des agrumes (Wikipédia « Citrus » en anglais, **une seule source**).
+- **Décrire une feuille** : sa forme, son sommet, sa base et son bord (Shipunov p. 82). Les mots que les botanistes utilisent pour les agrumes (IPGRI 1999 p. 32-33, dessins pour la forme et le bord ; les définitions entre parenthèses sont les nôtres, d'après ces dessins et Shipunov p. 82) :
+  - **forme du limbe** : elliptique (large au milieu), ovée (en œuf, plus large vers la base), obovale (en œuf renversé, plus large vers le sommet), lancéolée (étroite, en fer de lance), orbiculaire (presque ronde), obcordée (en cœur renversé) ;
+  - **sommet** : atténué (qui s'amincit peu à peu en pointe), acuminé (étiré brusquement en longue pointe), aigu (en angle aigu), obtus (en angle ouvert), arrondi, émarginé (échancré, avec une petite encoche) ;
+  - **base** (Shipunov p. 82 ; l'IPGRI ne la décrit pas) : arrondie, tronquée (droite), cunéiforme (en coin), cordée (en cœur) ;
+  - **bord** : entier (lisse), crénelé (petites dents arrondies), denté (dents pointues), sinué (à larges festons, dans le plan de la feuille).
+
+  Ces mots se lisent dans les flores et les clés d'identification ([Identification](identification.md)) ; le plugin ne les demande pas.
+
+![Vocabulaire de la feuille : forme du limbe, sommet, bord](../images/bota-feuilles.svg)
+
+*Formes du limbe, sommets et bords (la base n'est pas dessinée). Schéma dessiné pour ce plugin d'après les définitions de Shipunov p. 82 et d'IPGRI 1999 p. 32-33 (aucune figure recopiée), MIT comme le plugin.*
 
 ![Feuille de Citrus aurantium, Rendle 1911](../images/bota-feuille-agrume.webp)
 
@@ -113,7 +126,11 @@ De l'extérieur vers le centre :
 - **Fécondation** : le pollen germe, traverse le style jusqu'à l'ovule ; l'ovule fécondé devient la **graine** (OpenStax p. 934-936 ; Shipunov p. 155).
 - **Le fruit est l'ovaire mûri** (OpenStax p. 938 ; Shipunov p. 155 et 164). En général, seule une fleur fécondée donne un fruit (OpenStax p. 938, **une seule source**).
   La **nouaison** est ce passage de la fleur au fruit (Wikipédia « Nouaison », **une seule source**) ; le mot n'est pas dans les deux manuels.
-  Ce que font les agrumes sans pépins n'est pas traité ici, faute de source lue.
+- **Parthénocarpie** : la formation d'un fruit **sans fécondation** des ovules (Wikipédia « Parthénocarpie », qui cite la clémentine ; de Rocca Serra 1992 p. 120 emploie le mot dans ce sens). Elle est très répandue chez les agrumes (de Rocca Serra 1992 p. 120, **une seule source**).
+  Sans fécondation, la fleur tombe d'ordinaire ; la parthénocarpie permet au fruit de se former quand même, et il est alors **sans pépins**. La fécondation manque quand le pollen ou les ovules sont stériles, ou par **auto-incompatibilité** : le pollen d'une variété ne féconde pas ses propres fleurs (de Rocca Serra 1992 p. 120 ; Honsho 2023, résumé : auto-incompatibilité et parthénocarpie donnent des fruits sans pépins).
+  Tous les pamplemoussiers sont auto-incompatibles ; le clémentinier l'est aussi, mais seulement en partie : quelques tubes polliniques atteignent l'ovaire, un clémentinier seul peut donc donner quelques pépins (de Rocca Serra 1992 p. 120).
+  Certaines variétés auto-incompatibles le sont aussi entre elles (même source). À notre avis, un clémentinier près d'une autre variété **compatible** qui fleurit en même temps peut donner des fruits à pépins (déduction du plugin).
+  Les variétés **triploïdes** sont sans pépins (de Rocca Serra 1992 p. 117) ; chez elles, la formation des graines est bloquée (Honsho 2023).
 
 ![Bigaradier, Köhler 1897](../images/bota-bigaradier.webp)
 
@@ -121,11 +138,13 @@ De l'extérieur vers le centre :
 
 - **Hespéride** : le nom du fruit des agrumes, à écorce épaisse et coriace (Wikipédia « Hesperidium » et « Citrus », **une seule source** : l'encyclopédie, qui en fait une baie particulière).
   Shipunov cite l'hespéride à côté de la baie parmi les fruits charnus (p. 166), et l'orange parmi les fruits charnus (p. 164).
-- **Zeste (flavédo)** : la couche colorée de l'écorce, avec les huiles essentielles.
-- **Albédo** : la partie blanche et spongieuse dessous.
-- **Quartiers (loges)** : chacun est un **carpelle**, une pièce du pistil, rempli de vésicules de jus.
+- **Péricarpe** : la paroi du fruit, faite de trois couches, de l'extérieur vers le centre : **exocarpe**, **mésocarpe**, **endocarpe** (OpenStax p. 939 ; Shipunov p. 164). Il vient surtout de la paroi de l'ovaire (Shipunov p. 164).
+- **Zeste (flavédo)** : la couche colorée de l'écorce, avec les huiles essentielles ; c'est l'**exocarpe** (Sadka et al. 2019).
+- **Albédo** : la partie blanche et spongieuse dessous ; c'est surtout du **mésocarpe** (Sadka et al. 2019).
+- **Endocarpe** : les deux ou trois couches de cellules les plus internes du péricarpe (Sadka et al. 2019) ; elles bordent les quartiers (à notre avis).
+- **Quartiers (loges)** : chacun est un **carpelle**, une pièce du pistil, rempli de **vésicules de jus**. Elles naissent de l'endocarpe peu après la fécondation ; certains auteurs les comptent dans l'endocarpe, d'autres non (Sadka et al. 2019).
 
-(Wikipédia « Hesperidium » et « Citrus », **une seule source** : l'encyclopédie.) Les quartiers servent à l'[identification](identification.md).
+(Hespéride, quartiers, huiles essentielles : Wikipédia « Hesperidium » et « Citrus », **une seule source** : l'encyclopédie ; couches : Sadka et al. 2019, article sans pages, **une seule source** pour les agrumes.) Les quartiers servent à l'[identification](identification.md).
 
 ![Orange coupée, légendée](../images/bota-orange.webp)
 
@@ -180,6 +199,9 @@ Détail et sources dans les paragraphes ci-dessous. Le tableau résume, il n'ajo
 - Le plant issu de la fécondation est un **hybride**, différent de la mère et souvent moins vigoureux : en pépinière, on l'élimine au repiquage ou au greffage (UF/IFAS HS1309 p. 1-2 ; Curk 2022 p. 197-199 ; de Rocca Serra 1992 p. 119).
   Moins un pépin a d'embryons, plus ce risque est grand : en moyenne 1,1 à 1,5 embryon par pépin chez le citronnier Volkamer, 1,5 à 2 chez le Poncirus, 3 à 4 chez le bigaradier (principe : Curk 2022 p. 197 et de Rocca Serra 1992 p. 119 ; chiffres : Curk 2022 p. 197, **une seule source**).
   Un plant de semis peut aussi être un hybride, même chez une espèce à plusieurs embryons : c'est ainsi qu'est née la clémentine, dans un semis de pépins de mandarine (Curk 2022 p. 68, **une seule source**).
+- **Germination hypogée** : chez les agrumes, les deux cotylédons, épais et charnus, restent dans le pépin, sous terre ; c'est la tige qui sort et porte les premières vraies feuilles (Hayward et Long 1942 p. 3 et 20 ; Citrus Academy, module 2 p. 7).
+  À l'inverse, chez le haricot, la germination est **épigée** : les cotylédons sont soulevés au-dessus du sol (Citrus Academy, module 2 p. 7, **une seule source**).
+  Un même pépin peut donner **plusieurs plantules**, souvent deux à quatre (Hayward et Long 1942 p. 2 ; Citrus Academy, module 2) : les embryons se gênent dans le tégument, et l'un est en général plus grand et plus vigoureux que les autres (Hayward et Long 1942 p. 2, **une seule source**).
 - **Phase juvénile** : un plant de semis, même nucellaire, porte des épines et fleurit tard (de Rocca Serra 1992 p. 119 ; Curk 2022 p. 187-188) ; il peut attendre des années avant ses premiers fruits (UF/IFAS HS1309).
   Selon le climat et l'espèce, 4 à 10 ans, plus longtemps en limite nord de culture comme la Corse ou la Ligurie (Curk 2022 p. 187-188, **une seule source**). Voir aussi [La tige et les bourgeons](#la-tige-et-les-bourgeons) pour les épines.
 - **Plant sain** : la graine ne transmet presque jamais les maladies de la mère (de Rocca Serra 1992 p. 120 : « sauf rare exception » ; Curk 2022 p. 197 : aucune maladie de quarantaine démontrée).
@@ -238,6 +260,11 @@ Détail et sources dans les paragraphes ci-dessous. Le tableau résume, il n'ajo
   SS618 *Molybdenum (Mo) and Nickel (Ni) for Citrus Trees* (2014, revue en 2025). https://edis.ifas.ufl.edu
 - **Zhang et al. 2020** : Zhang F., Rossignol P., Huang T. et al. (dont Irish V. F.), *Reprogramming of Stem Cell Activity to Convert Thorns into Branches*, Current Biology 30(15), 2020, p. 2951-2961, doi 10.1016/j.cub.2020.05.068 (résumé).
 - **Li et al. 2003** : Li C.-Y., Weiss D., Goldschmidt E. E., *Girdling affects carbohydrate-related gene expression in leaves, bark and roots of alternate-bearing citrus trees*, Annals of Botany 92(1), 2003, p. 137-143, doi 10.1093/aob/mcg108 (résumé).
+- **IPGRI 1999** : IPGRI, *Descriptors for Citrus*, International Plant Genetic Resources Institute, Rome, 1999 (descripteurs 7.2.9 à 7.2.11, p. 32-33).
+- **Sadka et al. 2019** : Sadka A., Shlizerman L., Kamara I., Blumwald E., *Primary Metabolism in Citrus Fruit as Affected by Its Unique Structure*, Frontiers in Plant Science 10:1167, 2019, doi 10.3389/fpls.2019.01167, CC BY.
+- **Honsho 2023** : Honsho C., *Self-incompatibility Related to Seedless Fruit Production in Citrus Plants*, The Horticulture Journal 92(1), 2023, p. 1-12, doi 10.2503/hortj.QH-R001 (accès libre, droits réservés : rien n'en est recopié).
+- **Hayward et Long 1942** : Hayward H. E., Long E. M., *The Anatomy of the Seedling and Roots of the Valencia Orange*, USDA Technical Bulletin 786, 1942, domaine public (gouvernement des États-Unis).
+- **Citrus Academy** : *Citrus Nursery Workers Learning Programme*, Learner Guide Module 2, *Rootstock Propagation*, Citrus Academy (Afrique du Sud), citrusresourcewarehouse.org.za, vers 2016.
 - **Ballve et al. 1997** : Ballve R. M. L., Medina-Filho H. P., Bordignon R., *Identification of reciprocal hybrids in citrus by the broadness of the leaf petiole wing*, Brazilian Journal of Genetics 20(4), 1997, doi 10.1590/S0100-84551997000400023 (texte seul, aucune figure reprise).
-- **Wikipédia** (CC BY-SA), articles lus le 2 novembre 2026 : « Collet (botanique) », « Débourrement », « Nouaison », « Hespéride », « Citrus », « Annélation » (français) ; « Hesperidium », « Citrus », « Girdling » (anglais).
+- **Wikipédia** (CC BY-SA), articles lus le 2 novembre 2026 : « Collet (botanique) », « Débourrement », « Nouaison », « Hespéride », « Citrus », « Annélation » (français), « Parthénocarpie » (français, lu le 3 novembre 2026) ; « Hesperidium », « Citrus », « Girdling » (anglais).
 - **Images** : Atkinson 1905 ; Rendle A. B., Encyclopædia Britannica 11ᵉ éd., 1911 ; Köhler F. E., *Köhler's Medizinal-Pflanzen*, 1897 ; photo Kjetil Lenes (CC BY 2.5). Détail dans `docs/images/LICENCES.md`.

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.28 (2026-11-03), suite : botanique
+- La feuille : mots pour décrire le limbe, le sommet, la base et le bord (IPGRI, Shipunov), avec un schéma dessiné pour le plugin ; feuilles alternes ; épine et aiguillon.
+- Le fruit : couches du péricarpe chez les agrumes (flavédo = exocarpe, albédo surtout mésocarpe, endocarpe et vésicules de jus) ; parthénocarpie, auto-incompatibilité et triploïdes (fruits sans pépins).
+- Le semis : germination hypogée, plusieurs plantules par pépin.
+
 ## 0.28 (2026-11-03)
 Vérification de JDC contre des sources crédibles (OEPP, UF/IFAS, UC, Alabama ACES, UC Riverside) :
 - Tristeza : présente en France, en Haute-Corse (déclarée en 2018, OEPP), et non plus « absence à vérifier » ; elle passe avant le HLB (priorité 10).
