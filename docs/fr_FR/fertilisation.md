@@ -146,12 +146,14 @@ Tout cela se saisit dans le plugin : la part d'azote de chaque produit découle 
 
 Des granulés d'engrais minéral entourés d'une fine enveloppe de résine : l'eau la traverse, dissout l'engrais, qui ressort peu à peu. C'est l'une des deux formes « à libération lente » conseillées en pot (voir [Le bon produit](#2-le-bon-produit)).
 Ce qu'en disent les étiquettes des fabricants :
-- la **durée** (3, 6, 8 à 9 mois…) est donnée pour une température fixe, souvent 21 °C : elle s'allonge au frais et raccourcit au chaud ; en serre l'été, un produit « 6 mois » peut être épuisé avant la fin de la saison ;
+- la **durée** (3, 6, 8 à 9 mois…) est donnée pour une température fixe, souvent 21 °C : elle s'allonge au frais et raccourcit au chaud (pour un « 6 mois » : 6-7 mois à 15 °C, 5-6 mois à 21 °C, 4-5 mois à 27 °C) ; en serre l'été, il peut être épuisé avant la fin de la saison ;
 - certains se **mélangent** au substrat au rempotage seulement, d'autres se posent **en surface** et se griffent : lire l'étiquette ;
-- la **dose** est donnée en grammes par litre de substrat pour toute la durée (souvent 2 à 5 g/L pour un 6 mois à environ 16 % d'azote, soit 0,3 à 0,8 g d'azote par litre), bien en dessous de ce que calcule le plugin pour une saison (0,07 g par litre et par semaine sur 30 semaines ≈ 2 g par litre) ; ces doses visent des pépinières en conteneur ; l'écart va dans le sens de la mise en garde de [la dose en pot](#combien--la-dose-en-pot) (déduction du plugin, aucune source ne compare).
+- un **fer** chélaté en EDTA n'est stable qu'entre pH 4 et 6,5 (fiche technique d'un enrobé) : au-dessus (eau dure, substrat calcaire), il devient peu disponible, et le fer EDDHA sur signe reste utile (voir [pH et eau du robinet](#ph-et-eau-du-robinet)) ;
+- la **dose** est donnée en grammes par litre de substrat pour toute la durée : pour des plantes en pot, 2-3 g/L en dose faible, **3-4 g/L en dose moyenne**, 4-5 g/L en dose forte (un 6 mois à environ 16 % d'azote : 0,5 à 0,6 g d'azote par litre en dose moyenne) ; elle vaut pour un substrat sans engrais et des plantes adultes : **demi-dose pour un jeune plant** ; c'est bien en dessous de ce que calcule le plugin pour une saison (0,07 g par litre et par semaine sur 30 semaines ≈ 2 g par litre) ; ces doses visent les plantes en pot et les pépinières en conteneur ; l'écart va dans le sens de la mise en garde de [la dose en pot](#combien--la-dose-en-pot) (déduction du plugin, aucune source ne compare).
 
 Dans le plugin (choix du plugin) :
 - saisir la dose de l'étiquette en 7e champ et une période d'apport courte, pour un seul apport en début de saison : `Engrais enrobé 16-8-12 6 mois | 16 | 30 | 10-12 | N P K Mg S Fe Mn Zn | enrobé 6 mois, en surface | 3` (pour un second apport, période `10-36` et intervalle 26) ;
+- un **jeune plant** : le plugin ne réduit pas une dose d'étiquette ; diviser la dose par deux à la main dans le plan (dose ajustable) ;
 - le cocher **seul** dans le plan : un engrais de fond coché en même temps reçoit le reste de l'azote calculé, et le rapport repart vers celui de cet engrais ;
 - ne pas baisser « Azote par litre de pot » pour lui : ce réglage vaut pour tous les produits et toutes les plantes ;
 - si la plante pâlit en fin d'été (enrobé épuisé par la chaleur), un apport d'azote lent en plus (corne) plutôt qu'un second enrobé tardif.
@@ -355,6 +357,7 @@ Lues en entier, sauf mention.
 - **Diggers** : étiquette Fruit & Citrus Fertiliser, Diggers (Australie, vendeur).
 - **Elavarasan 2019** : Elavarasan K., Premalatha A., *Journal of Pharmacognosy and Phytochemistry* 8(4):1705-1708 (Inde).
 - **Étiquettes** : Ferti Agrumes, Sang séché, Corne broyée, Kélafer (Agro Sens / Comptoir des Jardins), sel d'Epsom GiDe ; fiche de données de sécurité Ferti Agrumes (Comptoir des Jardins, 2026).
+- **Engrais enrobé** : fiche technique d'un engrais enrobé 16-8-12 « 6 mois » (revendeur italien, 2026) : durée selon la température, doses en pot, demi-dose pour un jeune plant, chélate EDTA stable entre pH 4 et 6,5.
 - **Fertiligène Performance Organics** : étiquette engrais agrumes (fiche du vendeur Truffaut).
 - **Guardiola 1975** : Guardiola J. L., Vivas S., González-Sicilia E., efficacité de l'analyse foliaire de l'azote, *Fruits* 30(2):113-118 (INIA, Espagne).
 - **Labanauskas 1967** : Labanauskas C. K., Nauer E. M., Roistacher C. N., *Hilgardia* 38(15), Université de Californie (semis d'oranger Valencia en pot).
