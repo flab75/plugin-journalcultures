@@ -82,7 +82,7 @@ La méthode ci-dessous assemble ce qui s'accorde entre eux. Elle suit le cadre d
 
 ### 5. Le bon endroit : le substrat et l'eau
 - Au pied, sur un substrat **humide** et drainé (voir [Arroser juste](#arroser-juste)).
-- Le **pH** du substrat décide de la disponibilité des oligo-éléments : en pot, au-dessus de pH 7 dans l'eau de drainage, les jeunes orangers ont montré plus de carences et moins poussé ; ajouter de la chaux au terreau a fait monter le pH et baisser le fer, le zinc et le manganèse des feuilles (Labanauskas 1967 ; même sens : UF/IFAS, voir [pH et eau du robinet](#ph-et-eau-du-robinet)).
+- Le **pH** du substrat décide de la disponibilité des oligo-éléments : en pot, au-dessus de pH 7 dans l'eau de drainage, les jeunes orangers ont montré plus de carences et moins poussé ; ajouter de la chaux au terreau a fait monter le pH et baisser le fer, le zinc et le manganèse des feuilles (Labanauskas 1967 ; même sens : UF/IFAS SL456, « un pH élevé réduit la disponibilité du calcium, du magnésium, du fer, du zinc et du manganèse », voir [pH et eau du robinet](#ph-et-eau-du-robinet)).
   Ne pas chauler le substrat d'un agrume (déduction du plugin).
 
 ### En pratique
@@ -211,15 +211,15 @@ mais pour un **jeune plant** il faut viser nettement **sous** la dose calculée 
 
 ### pH et eau du robinet
 - Un pH trop élevé rend les oligo-éléments moins disponibles : retenu, deux sources (UF/IFAS SL456, SL457 sur les sols de Floride ; Labanauskas 1967 en pot, au-dessus de pH 7).
-- pH idéal **6,0 à 6,5** (UF/IFAS, **une seule source**) ; plus haut, le fer, le manganèse, le zinc, le calcium et le magnésium deviennent moins disponibles ;
-- une eau d'arrosage calcaire fait **monter lentement le pH** ; le porte-greffe **Swingle** est le plus sensible aux bicarbonates (vergers de Floride) (UF/IFAS, **une seule source**).
+- pH idéal **6,0 à 6,5** (UF/IFAS SL456, pour des racines affaiblies par le HLB ou une eau à bicarbonates ; la même fiche vise 5,5 à 6,5 quand on chaule un sol acide ; **une seule source**) ; plus haut, le fer, le manganèse, le zinc, le calcium et le magnésium deviennent moins disponibles ;
+- une eau d'arrosage calcaire fait **monter lentement le pH** ; le porte-greffe **Swingle** est le plus sensible aux bicarbonates (vergers de Floride) (UF/IFAS SL456, **une seule source** : « l'eau des aquifères profonds de Floride contient souvent du calcaire dissous qui fait lentement monter le pH du sol » ; « tous les porte-greffes n'y sont pas aussi sensibles ; Swingle est le plus sensible »).
 
 L'eau du robinet d'Île-de-France est souvent calcaire (à vérifier, non sourcé) : c'est une cause possible de jaunissement des jeunes feuilles par manque de fer (déduction du plugin).
 Le chélate EDDHA reste efficace jusqu'à pH 12 (étiquette Kélafer).
 
 ### Sur les feuilles
 - La pulvérisation sur les feuilles corrige vite, mais n'apporte que de petites quantités : elle ne remplace pas l'engrais au pied, sauf en sol calcaire (UF/IFAS SL457, **une seule source**).
-- Le magnésium peut se donner en pulvérisation quand le sol est calcaire (UF/IFAS, Haifa).
+- Le magnésium peut se donner en pulvérisation quand le sol est calcaire (UF/IFAS SL457 : le magnésium fait partie des éléments qu'on peut pulvériser, « surtout utile quand un pH élevé bloque la disponibilité », et la voie foliaire ne doit pas être la seule « sauf si le sol est calcaire » ; Haifa).
 - Le Kélafer, au contraire : **jamais sur les feuilles**, il les tache (étiquette).
 
 ### Le potassium ne protège pas du froid
@@ -240,7 +240,7 @@ Toujours **regarder d'abord quelles feuilles** sont touchées : les vieilles ou 
 | Potassium (K) | feuilles adultes : vieilles feuilles pour Haifa, feuilles de la pousse de printemps tout juste mûres, en fin d'été, pour UF/IFAS (SL457) | jaune puis bronze, bout brun, feuilles qui s'enroulent | sulfate ou nitrate de potassium |
 | Molybdène (Mo) | feuilles adultes | taches jaunes entre les nervures (« yellow spot ») | rare ; aucun produit en stock (UF/IFAS SS618, **une seule source**) |
 
-- Fer, zinc et manganèse manquent souvent ensemble quand le pH est élevé (UF/IFAS).
+- Manganèse et zinc, parfois le fer, manquent ensemble sur sol calcaire (« marl chlorosis », UF/IFAS SL457) ; le manque de fer se voit aussi en sol alcalin ou gorgé d'eau (SL457).
 - Le manque de magnésium avancé peut se confondre avec celui d'azote (Zekri et Obreza 2013, **une seule source**).
 - Un jaunissement **pareil des deux côtés** de la nervure centrale est une carence ; asymétrique, il faut penser à une maladie (UF/IFAS PP328, **une seule source** ; voir [Santé](sante.md#hlb-greening-absent)).
 - Doses de correction : celles de l'**étiquette** de chaque produit. Les doses en kg pour 100 L d'Elavarasan 2019 sont faites pour des vergers indiens.
