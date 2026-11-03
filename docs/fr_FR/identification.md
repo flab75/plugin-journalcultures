@@ -27,6 +27,11 @@ Ce qui vient du plugin lui-même (choix, seuil, déduction) est écrit comme tel
   Exemple : limbe de 8 × 4 cm, aile de 3 × 1,5 cm → longueur 3/8, moins de la moitié = « moyenne » ; largeur 1,5/4, moins de la moitié.
   **Largeur** de l'aile rapportée à celle du limbe : moins de ½, de ½ à ¾, ¾ ou plus (« presque aussi large »).
   La longueur de la feuille est celle du **limbe** (d'une foliole chez le Poncirus), sans le pétiole : moins de 5 cm, 5 à 10 cm, plus de 10 cm.
+
+![Mesurer l'aile et le limbe](../images/id-aile-mesure.svg)
+
+*Mesurer l'aile et le limbe : chaque longueur se prend le long de la nervure, chaque largeur au plus large (choix du plugin). Seuils du plugin : aile longue à partir de la moitié du limbe, simple liseré sous 2 mm de large. Schéma dessiné pour ce plugin, MIT.*
+
 - La pulpe se décrit en deux caractères : **Saveur** (douce, acide, amère) et **Aspect** (en vésicules, la normale ; en perles, le citron caviar ; presque absente, peau très épaisse).
 
 ### Le bouton Identifier
@@ -82,16 +87,29 @@ Le limequat est rangé en lime (−3), plus prudent que TyCitriK (−6).
 - Fleurs : observer le bouton terminal, en pleine floraison ; la fleur ouverte, le premier jour (UPOV TG/83, **une seule source**).
 - Fruits : à maturité, cueillis à l'extérieur de l'arbre, pas déformés (UPOV TG/83, **une seule source**).
 - La peau s'observe au milieu du fruit, entre la base et le sommet ; la pulpe et les **quartiers (loges)** sur une coupe **en travers**, au milieu (UPOV TG/83, **une seule source**).
+
+![Formes de fruit et coupe en travers](../images/id-fruits.svg)
+
+*Formes de fruit (exemples du tableau ci-dessous ; calamondin aplati : FRPS 1997, **une seule source**, voir « Groupe par groupe ») et coupe en travers pour compter les quartiers : 6 ou moins orientent vers le kumquat (FoC 2008, **une seule source**). Schéma dessiné pour ce plugin, MIT.*
+
 - Couleur du fruit : à maturité seulement. La lime de Tahiti, par exemple, reste vert vif jusqu'à maturité puis devient jaune pâle (Morton 1987, site Purdue, **une seule source**).
 
 ### Pièges
-- **Jeunesse** : un agrume issu de semis a une phase juvénile de 4 à 10 ans, sans fruit, souvent avec de grandes épines (plus de 10 cm) ; le greffage réduit ce caractère juvénile (Curk 2022, **une seule source**).
+- **Jeunesse** : un agrume issu de semis a une phase juvénile de 4 à 10 ans, sans fruit, souvent avec de grandes épines, qui peuvent dépasser 10 cm ; le greffage réduit ce caractère juvénile (Curk 2022, **une seule source**).
   Sur un jeune semis, seuls les caractères de la feuille et des rameaux sont disponibles : le résultat reste souvent « Indécis » (déduction du plugin).
 - **Variabilité** : un caractère typique n'est pas présent chez tous les cultivars. La majorité des cédratiers ont des fleurs et des jeunes pousses violacées, mais pas le cédrat de Corse, dont la pulpe est en plus douce (Curk 2022).
 - **Porte-greffe qui repart** : une branche à 3 folioles sous le point de greffe vient du porte-greffe, pas de la plante ([Porte-greffes et rejets](#porte-greffes-et-rejets)).
 - **Semis** : beaucoup d'agrumes ont des graines à plusieurs embryons, dont des embryons « nucellaires » qui donnent des plants identiques à la mère (Curk 2022, UF/IFAS HS1309). Un plant issu de l'embryon fécondé, lui, est un hybride différent (UF/IFAS HS1309, **une seule source** pour le détail).
 
 ## Reconnaître : du caractère au groupe
+
+![1 foliole, 3 folioles, ou les deux mêlées](../images/id-folioles.svg)
+
+*1 foliole, d'ordinaire articulée sur le pétiole (la plupart des agrumes), ou 3 folioles (Poncirus, *C. trifoliata*) (FoC 2008). Les deux mêlées sur un même rameau : profil d'hybride de Poncirus, choix du plugin (FA5 « surtout trifolié », Agromillora, **une seule source**). Schéma dessiné pour ce plugin, MIT.*
+
+![L'aile du pétiole selon le groupe](../images/id-ailes-groupes.svg)
+
+*L'aile du pétiole selon le groupe, d'après le tableau ci-dessous et « Groupe par groupe » (FoC 2008, Curk 2022 ; mandarine, orange douce, bigaradier : FoC 2008, **une seule source**) : formes typiques, pas à l'échelle ; un cultivar peut s'en écarter. Schéma dessiné pour ce plugin, MIT.*
 
 Les groupes de la colonne du milieu sont ceux du plugin. La colonne de droite dit ce que les sources en disent.
 
@@ -150,6 +168,12 @@ Les groupes de la colonne du milieu sont ceux du plugin. La colonne de droite di
 - Des **rejets nombreux** près de la greffe peuvent signaler une incompatibilité entre porte-greffe et greffon (Curk 2022, NSW DPI).
   Un pli au point de greffe, ou un porte-greffe qui grossit plus que le greffon, aussi (NSW DPI, **une seule source**).
   Mais sur Poncirus, un tronc en goulot de bouteille autour de la greffe est normal et sans danger (Curk 2022).
+  Ses fentes d'écorce laissent toutefois entrer les spores de Phytophthora chez une variété sensible : Curk conseille un point de greffe à 40 cm au moins au-dessus du sol, contre les éclaboussures (Curk 2022 p. 195, **une seule source**).
+
+![Rejet du porte-greffe et goulot de bouteille](../images/id-rejet.svg)
+
+*Rejet à 3 folioles né sous le point de greffe, à couper (UF/IFAS HS1309) ; goulot de bouteille autour de la greffe, normal sur Poncirus avec la plupart des variétés, sans dépérissement (Curk 2022 p. 195). Schéma dessiné pour ce plugin, MIT.*
+
 - Les pucerons installés sur les rejets du porte-greffe font craindre la tristeza (INRAE-Cirad, fiche technique porte-greffe, **une seule source**).
 - Distinguer un **Poncirus** d'un **hybride de Poncirus** par la seule feuille : le plugin reste souvent « Indécis ». Le feuillage persistant ou un mélange de 1 et 3 folioles orientent vers l'hybride (choix du plugin).
 - Quand un œil du greffon a débourré (après « **Greffer…** »), les caractères du porte-greffe sont remplacés par ceux saisis pour le greffon (vides sinon) : la clé doit décrire le greffon, pas le porte-greffe (choix du plugin).

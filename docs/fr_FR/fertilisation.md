@@ -320,6 +320,11 @@ Beaucoup de potassium n'augmente pas la rusticité au froid (UF/IFAS SL457, **un
 ## Reconnaître une carence
 
 Toujours **regarder d'abord quelles feuilles** sont touchées : les vieilles ou les adultes (azote, magnésium, potassium) ou les jeunes pousses (fer, zinc, manganèse).
+
+![Où se voit une carence](../images/ferti-carences.svg)
+
+*Où se voit une carence, d'après le tableau ci-dessous : fer, zinc, manganèse sur les jeunes pousses ; azote et magnésium sur les vieilles feuilles ; potassium sur les feuilles adultes, selon la source. Schéma dessiné pour ce plugin, MIT.*
+
 **Retenu** pour l'azote, le magnésium, le fer, le zinc et le manganèse : les trois sources concordent (UF/IFAS SL457, Haifa, Elavarasan 2019). Le potassium est décrit par Haifa et UF/IFAS SL457, qui ne placent pas les symptômes sur les mêmes feuilles (voir le tableau).
 
 | Carence | Feuilles touchées d'abord | Aspect | Que faire |

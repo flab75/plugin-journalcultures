@@ -122,6 +122,11 @@ De l'extérieur vers le centre :
 - De l'extérieur vers le centre : **sépales** (le calice), **pétales** (la corolle), **étamines**, **pistil** (Shipunov p. 153 ; OpenStax p. 920).
 - **Étamine** : elle porte l'**anthère**, qui fait le pollen (Shipunov p. 154 ; OpenStax p. 920) ; l'anthère est au bout d'un **filet** (Shipunov p. 154 ; OpenStax p. 923).
 - **Pistil** : le **stigmate** (qui reçoit le pollen), le **style** et l'**ovaire**, qui contient les ovules (OpenStax p. 920 ; Shipunov p. 155).
+
+![Fleur d'agrume coupée en long](../images/bota-fleur-agrume.svg)
+
+*Fleur d'agrume coupée en long : calice en coupe à 3-5 lobes, 4-5 pétales épais, étamines en général 4 fois plus nombreuses que les pétales (jusqu'à 10 fois), libres ou soudées à la base, disque à nectar en anneau, ovaire de 5 à 14 loges, gros stigmate (FoC 2008, description du genre Citrus, **une seule source**). Schéma dessiné pour ce plugin, MIT.*
+
 - **Pollinisation** : le pollen va de l'anthère au stigmate, de la même fleur ou d'une autre (OpenStax p. 929 ; Shipunov p. 164).
 - **Fécondation** : le pollen germe, traverse le style jusqu'à l'ovule ; l'ovule fécondé devient la **graine** (OpenStax p. 934-936 ; Shipunov p. 155).
 - **Le fruit est l'ovaire mûri** (OpenStax p. 938 ; Shipunov p. 155 et 164). En général, seule une fleur fécondée donne un fruit (OpenStax p. 938, **une seule source**).
@@ -145,6 +150,10 @@ De l'extérieur vers le centre :
 - **Quartiers (loges)** : chacun est un **carpelle**, une pièce du pistil, rempli de **vésicules de jus**. Elles naissent de l'endocarpe peu après la fécondation ; certains auteurs les comptent dans l'endocarpe, d'autres non (Sadka et al. 2019).
 
 (Hespéride, quartiers, huiles essentielles : Wikipédia « Hesperidium » et « Citrus », **une seule source** : l'encyclopédie ; couches : Sadka et al. 2019, article sans pages, **une seule source** pour les agrumes.) Les quartiers servent à l'[identification](identification.md).
+
+![Coupe d'agrume légendée](../images/bota-coupe-agrume.svg)
+
+*Coupe en travers : zeste (flavédo), albédo, endocarpe, quartiers remplis de vésicules de jus, pépins du côté de l'axe (couches : Sadka et al. 2019 ; pépins : FoC 2008 ; **une seule source** pour chacun). Schéma dessiné pour ce plugin, MIT.*
 
 ![Orange coupée, légendée](../images/bota-orange.webp)
 
@@ -214,7 +223,7 @@ Détail et sources dans les paragraphes ci-dessous. Le tableau résume, il n'ajo
 ### Greffe
 
 - C'est la méthode la plus employée pour multiplier un agrume à l'identique (Curk 2022 p. 186 ; UF/IFAS HS1309 : un arbre du commerce est d'ordinaire un greffon sur un porte-greffe).
-- Le greffon, pris sur un arbre adulte, fructifie **2 à 4 ans plus tôt** qu'un semis et évite ou réduit les grandes épines de la jeunesse, plus de 10 cm (Curk 2022 p. 188, **une seule source**).
+- Le greffon, pris sur un arbre adulte, fructifie **2 à 4 ans plus tôt** qu'un semis et évite ou réduit les grandes épines de la jeunesse, qui peuvent dépasser 10 cm (Curk 2022 p. 188, **une seule source**).
 - Le porte-greffe apporte ses racines : sol, maladies du sol, froid, vigueur (UF/IFAS HS1309 ; Curk 2022 p. 187-190 ; froid : fiche INRAE-Cirad du Poncirus p. 3). Tout le détail : [Greffe](greffe.md).
 - Le greffon transmet les maladies de l'arbre où il est pris : greffons sains indispensables (Curk 2022 p. 198 ; UF/IFAS HS1309 ; fiche INRAE-Cirad, sur le Poncirus et l'exocortis).
 

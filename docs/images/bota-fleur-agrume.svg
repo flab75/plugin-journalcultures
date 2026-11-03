@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif" font-size="13" viewBox="0 0 700 500" width="700">
+<title>Fleur d'agrume coupée en long, légendée</title>
+<defs><marker id="a" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9 z" fill="#246"/></marker></defs>
+<rect width="700" height="500" rx="8" fill="#fbfaf6"/>
+<line x1="255" y1="460" x2="255" y2="400" stroke="#3d6b27" stroke-width="7"/>
+<path d="M210,388 Q255,428 300,388 L307,370 L291,382 Q255,406 219,382 L203,370 Z" fill="#7fb45c" stroke="#3d6b27"/>
+<path d="M217,380 C190,280 130,200 80,250 C115,230 175,310 205,382 Z" fill="#fffdf4" stroke="#b9ad86" stroke-width="1.5"/>
+<path d="M293,380 C320,280 380,200 430,250 C395,230 335,310 305,382 Z" fill="#fffdf4" stroke="#b9ad86" stroke-width="1.5"/>
+<ellipse cx="255" cy="378" rx="34" ry="10" fill="#e6c94a" stroke="#a88c1a"/>
+<path d="M229,374 C221,340 231,308 255,306 C279,308 289,340 281,374 Z" fill="#a8d37c" stroke="#3d6b27"/>
+<line x1="244" y1="370" x2="244" y2="312" stroke="#3d6b27" stroke-width=".8"/>
+<line x1="255" y1="370" x2="255" y2="312" stroke="#3d6b27" stroke-width=".8"/>
+<line x1="266" y1="370" x2="266" y2="312" stroke="#3d6b27" stroke-width=".8"/>
+<ellipse cx="239.0" cy="358" rx="3" ry="4.5" fill="#f4f0d0" stroke="#3d6b27" stroke-width=".7"/>
+<ellipse cx="239.0" cy="343" rx="3" ry="4.5" fill="#f4f0d0" stroke="#3d6b27" stroke-width=".7"/>
+<ellipse cx="239.0" cy="328" rx="3" ry="4.5" fill="#f4f0d0" stroke="#3d6b27" stroke-width=".7"/>
+<ellipse cx="250.0" cy="358" rx="3" ry="4.5" fill="#f4f0d0" stroke="#3d6b27" stroke-width=".7"/>
+<ellipse cx="250.0" cy="343" rx="3" ry="4.5" fill="#f4f0d0" stroke="#3d6b27" stroke-width=".7"/>
+<ellipse cx="250.0" cy="328" rx="3" ry="4.5" fill="#f4f0d0" stroke="#3d6b27" stroke-width=".7"/>
+<ellipse cx="261.0" cy="358" rx="3" ry="4.5" fill="#f4f0d0" stroke="#3d6b27" stroke-width=".7"/>
+<ellipse cx="261.0" cy="343" rx="3" ry="4.5" fill="#f4f0d0" stroke="#3d6b27" stroke-width=".7"/>
+<ellipse cx="261.0" cy="328" rx="3" ry="4.5" fill="#f4f0d0" stroke="#3d6b27" stroke-width=".7"/>
+<ellipse cx="272.0" cy="358" rx="3" ry="4.5" fill="#f4f0d0" stroke="#3d6b27" stroke-width=".7"/>
+<ellipse cx="272.0" cy="343" rx="3" ry="4.5" fill="#f4f0d0" stroke="#3d6b27" stroke-width=".7"/>
+<ellipse cx="272.0" cy="328" rx="3" ry="4.5" fill="#f4f0d0" stroke="#3d6b27" stroke-width=".7"/>
+<rect x="250" y="220" width="10" height="88" fill="#a8d37c" stroke="#3d6b27"/>
+<ellipse cx="255" cy="214" rx="17" ry="11" fill="#e3e88a" stroke="#8a8f2a"/>
+<path d="M215,376 Q211,310 207,250" fill="none" stroke="#e8e2c4" stroke-width="2.6"/>
+<ellipse cx="207" cy="244" rx="3.5" ry="7" fill="#e8b21a" stroke="#a87a0a" stroke-width=".8"/>
+<path d="M211,376 Q207,310 194,259" fill="none" stroke="#e8e2c4" stroke-width="2.6"/>
+<ellipse cx="194" cy="253" rx="3.5" ry="7" fill="#e8b21a" stroke="#a87a0a" stroke-width=".8"/>
+<path d="M207,376 Q203,310 181,268" fill="none" stroke="#e8e2c4" stroke-width="2.6"/>
+<ellipse cx="181" cy="262" rx="3.5" ry="7" fill="#e8b21a" stroke="#a87a0a" stroke-width=".8"/>
+<path d="M203,376 Q199,310 168,277" fill="none" stroke="#e8e2c4" stroke-width="2.6"/>
+<ellipse cx="168" cy="271" rx="3.5" ry="7" fill="#e8b21a" stroke="#a87a0a" stroke-width=".8"/>
+<path d="M295,376 Q299,310 303,250" fill="none" stroke="#e8e2c4" stroke-width="2.6"/>
+<ellipse cx="303" cy="244" rx="3.5" ry="7" fill="#e8b21a" stroke="#a87a0a" stroke-width=".8"/>
+<path d="M299,376 Q303,310 316,259" fill="none" stroke="#e8e2c4" stroke-width="2.6"/>
+<ellipse cx="316" cy="253" rx="3.5" ry="7" fill="#e8b21a" stroke="#a87a0a" stroke-width=".8"/>
+<path d="M303,376 Q307,310 329,268" fill="none" stroke="#e8e2c4" stroke-width="2.6"/>
+<ellipse cx="329" cy="262" rx="3.5" ry="7" fill="#e8b21a" stroke="#a87a0a" stroke-width=".8"/>
+<path d="M307,376 Q311,310 342,277" fill="none" stroke="#e8e2c4" stroke-width="2.6"/>
+<ellipse cx="342" cy="271" rx="3.5" ry="7" fill="#e8b21a" stroke="#a87a0a" stroke-width=".8"/>
+<line x1="255" y1="208" x2="459" y2="56" stroke="#777" stroke-width="0.9"/>
+<circle cx="255" cy="208" r="2.2" fill="#333"/>
+<text x="465" y="60" text-anchor="start" font-size="13" font-weight="bold" fill="#222">stigmate</text><text x="465" y="75" text-anchor="start" font-size="11" font-weight="normal" fill="#555">gros, reçoit le pollen</text>
+<line x1="260" y1="260" x2="459" y2="111" stroke="#777" stroke-width="0.9"/>
+<circle cx="260" cy="260" r="2.2" fill="#333"/>
+<text x="465" y="115" text-anchor="start" font-size="13" font-weight="bold" fill="#222">style</text>
+<line x1="343" y1="260" x2="459" y2="161" stroke="#777" stroke-width="0.9"/>
+<circle cx="343" cy="260" r="2.2" fill="#333"/>
+<text x="465" y="165" text-anchor="start" font-size="13" font-weight="bold" fill="#222">étamine (anthère + filet)</text><text x="465" y="180" text-anchor="start" font-size="11" font-weight="normal" fill="#555">en général 4 fois plus que les pétales</text>
+<line x1="275" y1="330" x2="459" y2="241" stroke="#777" stroke-width="0.9"/>
+<circle cx="275" cy="330" r="2.2" fill="#333"/>
+<text x="465" y="245" text-anchor="start" font-size="13" font-weight="bold" fill="#222">ovaire</text><text x="465" y="260" text-anchor="start" font-size="11" font-weight="normal" fill="#555">5 à 14 loges, plusieurs ovules chacune</text>
+<line x1="285" y1="380" x2="459" y2="296" stroke="#777" stroke-width="0.9"/>
+<circle cx="285" cy="380" r="2.2" fill="#333"/>
+<text x="465" y="300" text-anchor="start" font-size="13" font-weight="bold" fill="#222">disque</text><text x="465" y="315" text-anchor="start" font-size="11" font-weight="normal" fill="#555">en anneau, glandes à nectar</text>
+<line x1="305" y1="396" x2="459" y2="351" stroke="#777" stroke-width="0.9"/>
+<circle cx="305" cy="396" r="2.2" fill="#333"/>
+<text x="465" y="355" text-anchor="start" font-size="13" font-weight="bold" fill="#222">calice</text><text x="465" y="370" text-anchor="start" font-size="11" font-weight="normal" fill="#555">en coupe, 3 à 5 lobes</text>
+<line x1="120" y1="252" x2="126" y2="96" stroke="#777" stroke-width="0.9"/>
+<circle cx="120" cy="252" r="2.2" fill="#333"/>
+<text x="120" y="100" text-anchor="end" font-size="13" font-weight="bold" fill="#222">pétale</text><text x="120" y="115" text-anchor="end" font-size="11" font-weight="normal" fill="#555">4 ou 5, épais,</text>
+<line x1="255" y1="440" x2="126" y2="426" stroke="#777" stroke-width="0.9"/>
+<circle cx="255" cy="440" r="2.2" fill="#333"/>
+<text x="120" y="430" text-anchor="end" font-size="13" font-weight="bold" fill="#222">pédicelle</text>
+<text x="120" y="130" text-anchor="end" font-size="11" font-weight="normal" fill="#555">blancs ou rosés</text>
+<text x="350" y="485" text-anchor="middle" font-size="12" font-weight="normal" fill="#333">Fleur coupée en long ; le fruit naîtra de l'ovaire, les quartiers de ses loges.</text>
+</svg>

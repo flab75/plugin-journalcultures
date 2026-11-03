@@ -4,6 +4,8 @@
 - La feuille : mots pour décrire le limbe, le sommet, la base et le bord (IPGRI, Shipunov), avec un schéma dessiné pour le plugin (forme, sommet, bord, base) ; feuilles alternes ; épine et aiguillon.
 - Le fruit : couches du péricarpe chez les agrumes (flavédo = exocarpe, albédo surtout mésocarpe, endocarpe et vésicules de jus) ; parthénocarpie, auto-incompatibilité et triploïdes (fruits sans pépins).
 - Le semis : germination hypogée, plusieurs plantules par pépin.
+- Huit schémas dessinés pour le plugin : mesurer l'aile et le limbe, l'aile selon le groupe, 1 ou 3 folioles, formes de fruit et coupe pour compter les quartiers, rejet du porte-greffe et goulot (Identification) ; où se voit une carence (Fertilisation) ; fleur et coupe d'agrume légendées (Botanique).
+- Les grandes épines de la jeunesse « peuvent dépasser 10 cm » (Curk 2022), au lieu de « plus de 10 cm ».
 
 ## 0.28 (2026-11-03)
 Vérification de JDC contre des sources crédibles (OEPP, UF/IFAS, UC, Alabama ACES, UC Riverside) :
