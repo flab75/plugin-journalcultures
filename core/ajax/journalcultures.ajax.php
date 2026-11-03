@@ -35,7 +35,7 @@ try {
   if ($a == 'photo') { // mini=1 : vignette de 400 px ; sinon l'original
     $p = $eq(init('id'), 'plante'); $f = init('mini') ? $p->mini(init('nom')) : $p->photo(init('nom'));
     header('Content-Type: ' . ['jpg' => 'image/jpeg', 'png' => 'image/png', 'webp' => 'image/webp'][pathinfo($f, PATHINFO_EXTENSION)]);
-    header('X-Content-Type-Options: nosniff');
+    header('X-Content-Type-Options: nosniff'); header('Content-Disposition: inline; filename="' . basename($f) . '"');
     header('Content-Length: ' . filesize($f)); header('Cache-Control: private, max-age=86400'); // une photo ne change jamais sous son nom
     readfile($f);
     exit;

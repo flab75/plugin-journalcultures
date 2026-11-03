@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.23 (2026-11-03)
+- Sécurité : le nom botanique est vérifié chez GBIF avec contrôle du certificat (HTTPS seulement).
+- Les photos sont servies avec leur nom de fichier (affichage dans le navigateur, pas de téléchargement forcé).
+- La page plein écran ne montre à un utilisateur non administrateur que les emplacements où se trouvent ses plantes.
+- Dossiers `data/`, `tests/` et `plugin_info/` fermés avec la syntaxe d'Apache 2.4 (`Require all denied`).
+
 ## 0.22 (2026-11-03)
 - Accessibilité : tous les boutons de la tuile et des fenêtres (onglets, ✕, ＋ Plante, ＋ Noter, Déplacer…, Journal, Oui / Douteux, Pl@ntNet…) sont de vrais boutons, utilisables au clavier et annoncés par VoiceOver.
 - Les fenêtres sont annoncées comme telles : le focus y entre à l'ouverture et revient au bouton de départ à la fermeture, Tab reste dans la fenêtre, Échap la ferme (dans un champ, un premier Échap sort du champ).

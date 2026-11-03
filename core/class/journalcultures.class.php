@@ -353,7 +353,11 @@ class journalcultures extends eqLogic {
   /* ---------- botanique, photos, Pl@ntNet ---------- */
 
   private static function gbif($nom) { // GBIF species/match (sans clé) : nom retenu, famille, statut
-    $r = json_decode((string)(new com_http('https://api.gbif.org/v1/species/match?' . http_build_query(['name' => $nom, 'kingdom' => 'Plantae'])))->exec(3, 1), true); // 3 s : la fiche attend la réponse
+    $h = curl_init('https://api.gbif.org/v1/species/match?' . http_build_query(['name' => $nom, 'kingdom' => 'Plantae'])); // curl : certificat vérifié (com_http ne le garantit pas)
+    curl_setopt_array($h, [CURLOPT_RETURNTRANSFER => true, CURLOPT_TIMEOUT => 3, CURLOPT_CONNECTTIMEOUT => 3, CURLOPT_SSL_VERIFYPEER => true, CURLOPT_SSL_VERIFYHOST => 2, CURLOPT_PROTOCOLS => CURLPROTO_HTTPS]);
+    $t = curl_exec($h); $code = curl_getinfo($h, CURLINFO_HTTP_CODE); curl_close($h);
+    if ($t === false || $code != 200) throw new Exception('GBIF injoignable (' . $code . ')');
+    $r = json_decode($t, true); // 3 s : la fiche attend la réponse
     if (!is_array($r)) throw new Exception('réponse illisible');
     // HIGHERRANK sans genre = « Plantae » ou une famille (ex. hybride entre deux genres) : rien d'utile
     if (($r['matchType'] ?? 'NONE') == 'NONE' || (($r['matchType'] ?? '') == 'HIGHERRANK' && ($r['genus'] ?? '') === '')) return ['statut' => 'NONE'];
@@ -764,8 +768,9 @@ class journalcultures extends eqLogic {
   public static function page() { // panel plein écran : collections lisibles par l'utilisateur + températures des emplacements
     $cs = array_values(array_filter(self::byType('journalcultures', true), function ($c) { return $c->type() == 'collection' && $c->hasRight('r'); }));
     usort($cs, function ($a, $b) { return strnatcasecmp($a->getName(), $b->getName()); });
-    $lieux = [];
-    foreach (self::emplacements() as $nom => $s) if (trim($s[0]) !== '') $lieux[] = ['nom' => $nom, 't' => self::lire($s[0]), 'h' => self::lire($s[1])];
+    $lieux = []; $ids = array_map(function ($c) { return $c->getId(); }, $cs); $vus = []; // non-admin : seulement les emplacements de ses plantes
+    if (!isConnect('admin')) foreach (self::byType('journalcultures', true) as $p) if ($p->type() == 'plante' && in_array($p->getConfiguration('collection'), $ids)) $vus[(string)$p->getConfiguration('emplacement')] = 1;
+    foreach (self::emplacements() as $nom => $s) if (trim($s[0]) !== '' && (isConnect('admin') || isset($vus[$nom]))) $lieux[] = ['nom' => $nom, 't' => self::lire($s[0]), 'h' => self::lire($s[1])];
     return ['collections' => array_map(function ($c) { return $c->donnees(); }, $cs), 'lieux' => $lieux];
   }
 
