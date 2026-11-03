@@ -21,7 +21,7 @@
   <text x="580" y="70" text-anchor="middle" font-weight="bold" fill="#222">4 semaines après</text>
   <text x="580" y="115" text-anchor="middle" fill="#333">tuteurer, couper le haut du</text>
   <text x="580" y="131" text-anchor="middle" fill="#333">porte-greffe, ôter les rejets</text>
-  <text x="580" y="147" text-anchor="middle" fill="#173">Oui → « reprise »</text>
+  <text x="580" y="147" text-anchor="middle" fill="#173">Oui → « réussie »</text>
   <path d="M390 155 V180 H430" fill="none" stroke="#246" stroke-width="1.5" stroke-dasharray="4 3"/>
   <circle cx="440" cy="180" r="7" fill="#fff" stroke="#246" stroke-width="2"/>
   <text x="382" y="184" text-anchor="end" fill="#246">Au printemps</text>

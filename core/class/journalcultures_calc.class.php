@@ -318,7 +318,7 @@ class journalcultures_calc {
      Œil gardé dormant jusqu'au printemps (greffe d'automne), puis porte-greffe rabattu pour le forcer : Arizona (az1146), Kentucky (greffage).
      Après le débourrement (« pousse ») : rejets du porte-greffe ôtés dès qu'ils sortent (UF/IFAS HS1309, Curk 2022 p. 210) ; pousse tuteurée, puis haut
      du porte-greffe coupé à ≈ 1 cm au-dessus de la greffe quand elle fait quelques centimètres (HS1309 seul) ; contrôle 4 semaines après (choix du plugin). */
-  const GREFFE_STATUTS = ['attente' => 'en attente', 'probable' => 'probablement prise', 'dormant' => 'œil dormant jusqu’au printemps', 'pousse' => 'pousse du greffon', 'reprise' => 'reprise', 'echouee' => 'échouée'];
+  const GREFFE_STATUTS = ['attente' => 'en attente', 'probable' => 'probablement prise', 'dormant' => 'greffon dormant jusqu’au printemps', 'pousse' => 'pousse du greffon', 'reprise' => 'réussie (suivi terminé)', 'echouee' => 'échouée'];
   const GREFFE_JOURS = ['attente' => 21, 'probable' => 42, 'pousse' => 28];
   /* Marche à suivre selon le type : œil (le forcer en rabattant le porte-greffe : HS1309, Alabama ACES) ; rameau sur porte-greffe déjà coupé
      (lien ou sac retiré quand le greffon pousse : Curk 2022 p. 186, fiche INRAE couronne 15 jours) ; latérale et approche, porte-greffe pas coupé
@@ -337,7 +337,7 @@ class journalcultures_calc {
         'dormant' => 'printemps : les bourgeons du greffon ont-ils démarré ?',
         'pousse' => 'greffon tuteuré, lien retiré, ' . $rej . ' ?'],
       'cote' => ['attente' => 'greffon vert, sans se ratatiner ?',
-        'probable' => 'soudure faite ? couper le porte-greffe au-dessus de la greffe (approche : sevrer aussi le greffon de sa plante) ; le greffon pousse-t-il ?',
+        'probable' => 'le greffon pousse-t-il (un œil reparti) ? une fois soudé, couper le porte-greffe au-dessus de la greffe (approche : sevrer aussi le greffon de sa plante)',
         'dormant' => 'printemps : couper le porte-greffe au-dessus de la greffe ; le greffon a-t-il démarré ?',
         'pousse' => 'greffon tuteuré, ' . $rej . ' ?'],
       'pont' => ['attente' => 'greffons du pont verts, sans se ratatiner ?', 'probable' => 'greffons du pont toujours verts et soudés aux deux bouts ?',
@@ -357,7 +357,7 @@ class journalcultures_calc {
   /* Œil dormant : soudure faite, plus besoin de 21 °C ; reste à le protéger du gel (UC ANR : greffe d'automne à protéger du gel).
      ponytail: 0 °C fixe sur le minimum 24 h, à rendre réglable si la sonde est loin de la plante */
   public static function greffeGel($min) {
-    return $min !== null && $min < 0 ? sprintf('gel : protéger l’œil, %s °C au plus bas sur 24 h', self::virgule(floor($min * 10) / 10)) : '';
+    return $min !== null && $min < 0 ? sprintf('gel : protéger la greffe, %s °C au plus bas sur 24 h', self::virgule(floor($min * 10) / 10)) : '';
   }
   // verdict d'un contrôle (ok, douteux = revoir dans 7 jours, printemps = œil laissé dormant, mort) → [statut, prochain contrôle 'Y-m-d' ou '']
   public static function controler($statut, $verdict, $greffe, $jour, $sud = false) {

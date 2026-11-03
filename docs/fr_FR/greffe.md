@@ -1,6 +1,6 @@
 # Greffe des agrumes
 
-Choisir un type de greffe, savoir quand la faire, puis la suivre jusqu'à la reprise : chaque contrôle pose une question, le statut n'avance que sur réponse.
+Choisir un type de greffe, savoir quand la faire, puis la suivre jusqu'au bout : chaque contrôle pose une question, le statut n'avance que sur réponse.
 
 Règle suivie : un fait n'est retenu que si **deux sources indépendantes** le donnent ; sinon il est marqué **une seule source**.
 Curk 2022 et les fiches INRAE-Cirad viennent de la même équipe (Corse) : ensemble, elles comptent pour **une** source.
@@ -11,7 +11,7 @@ Ce qui vient du plugin lui-même est écrit **choix du plugin**. Références co
 1. **Choisir le type** selon le but (multiplier, changer de variété, réparer) et l'écorce du porte-greffe ([Types de greffe](#types-de-greffe)).
 2. **Greffer à la bonne saison** : porte-greffe sorti du repos, œil du greffon pas encore débourré ; le printemps de préférence ([Quand greffer](#quand-greffer)).
 3. **Saisir la greffe** : « Greffer… » sur le porte-greffe, ou « ＋ Plante » avec la multiplication « greffe » ([Dans le plugin](#dans-le-plugin)).
-4. **Répondre aux contrôles** à J+21, J+42 puis 4 semaines après avoir répondu « débourré » ([Suivi et points de contrôle](#suivi-et-points-de-contrôle)).
+4. **Répondre aux contrôles** à J+21, J+42 puis 4 semaines après le « Oui » qui confirme le départ d'un œil ([Suivi et points de contrôle](#suivi-et-points-de-contrôle)).
 5. **Tenir au chaud** jusqu'à la soudure (21-32 °C), puis seulement **hors gel** ; pas d'engrais hors saison ([Température, hiver, engrais](#température-hiver-engrais)).
 
 ## Types de greffe
@@ -107,7 +107,7 @@ Légendes traduites de l'ouvrage, échelle du dessin entre parenthèses. *The Nu
 
 **Placage de rameau** (*veneer-grafting*, variante de la latérale selon Bailey ; à ne pas confondre avec le placage d'œil) — A : porte-greffe entaillé à travers l'écorce, une petite languette d'écorce à la base ;
 au-dessus, le greffon coupé en biais, une plaque d'écorce retirée sur le grand côté ; B : greffon posé et lié au raphia ; C : la soudure faite (en D) (moitié).
-Selon Bailey, inutile de rabattre le porte-greffe avant la reprise.
+Selon Bailey, inutile de rabattre le porte-greffe avant le départ du greffon.
 
 ![Placage de rameau, L. H. Bailey 1907](../images/greffe-placage-bailey.webp)
 
@@ -171,13 +171,13 @@ c'est la sève du porte-greffe qui décide, pas le calendrier. La saison du type
 **Greffer…** (bas de l'onglet Fiche, administrateurs) : saisit la greffe faite sur cette plante, le porte-greffe. Même formulaire que « ＋ Plante » :
 - **greffon** choisi parmi nos plantes des autres collections (nom botanique, cultivar et caractères recopiés, nom proposé « greffon sur porte-greffe »)
   ou écrit à la main (nouveau cultivar) ;
-- **nom après reprise** (celui de la future plante), nom botanique du greffon, **collection après reprise** (par défaut l'actuelle : choisir celle du greffon), type et date de greffe ;
+- **nom de la nouvelle plante** (pris au départ d'un œil), nom botanique du greffon, **collection de la nouvelle plante** (par défaut l'actuelle : choisir celle du greffon), type et date de greffe ;
 - le porte-greffe est déduit du nom (Poncirus, Flying Dragon, FA5…), modifiable.
 
 **Tant qu'aucun œil n'est reparti**, la plante **reste le porte-greffe** : son nom, sa fiche et sa collection ne changent pas ; la fiche indique
 le greffon en attente. L'alerte de froid se règle sur le plus fragile des deux (rusticité et jeunesse du greffon, ou du porte-greffe) et l'engrais sur une jeune greffe (choix du plugin). Une entrée « Greffe » est ajoutée au journal.
 
-**Au départ d'un œil**, confirmé au contrôle (réponse « Oui » qui fait passer à *pousse du greffon* ; pont : à *reprise*), porte-greffe et greffon deviennent
+**Au départ d'un œil**, confirmé au contrôle (réponse « Oui » qui fait passer à *pousse du greffon* ; pont : quand il est soudé, *réussie*), porte-greffe et greffon deviennent
 **une nouvelle plante**. C'est le **même équipement** : journal, photos, pot, emplacement, courbes et champ « Sol » sont gardés (ce sont toujours ses racines) ;
 il prend le nom, la collection et la fiche du greffon ; le reste de la fiche, les caractères observés et la photo d'étiquette, qui décrivaient le porte-greffe,
 sont remplacés par ceux du greffon (vides s'il n'en a pas). Le champ « Porte-greffe » du greffon reçoit le nom du porte-greffe s'il est laissé vide. Le journal note le changement.
@@ -186,15 +186,15 @@ sont remplacés par ceux du greffon (vides s'il n'en a pas). Le champ « Porte-g
 elle **redevient le porte-greffe** : nom, collection et fiche d'avant le départ de l'œil (si ce nom est pris entre-temps, la réponse est refusée : renommer d'abord).
 
 Le suivi démarre pour une greffe de **moins de 60 jours** : par « Greffer… » (date partielle ou vide : la date du jour est écrite), ou par « ＋ Plante » avec une date complète
-(plante déjà greffée, achetée ou greffée ailleurs : elle est déjà le greffon, rien ne change à la reprise). Les contrôles comptent depuis la date de greffe.
-Greffe de **plus de 60 jours** saisie par « Greffer… » : considérée comme prise, la plante devient le greffon tout de suite, sans suivi.
+(plante déjà greffée, achetée ou greffée ailleurs : elle est déjà la plante greffée : rien ne change au départ d'un œil). Les contrôles comptent depuis la date de greffe.
+Greffe de **plus de 60 jours** saisie par « Greffer… » : œil considéré comme déjà reparti : porte-greffe et greffon deviennent tout de suite la nouvelle plante, sans suivi.
 Regreffer une greffe pas encore partie remplace le greffon en attente : à la même date de greffe, c'est une correction et le suivi continue ;
-à une autre date, le suivi recommence. Pendant la *pousse du greffon*, regreffer est refusé : répondre d'abord au contrôle (reprise ou échec).
+à une autre date, le suivi recommence. Pendant la *pousse du greffon*, regreffer est refusé : répondre d'abord au contrôle (réussite ou échec).
 
 ## Suivi et points de contrôle
 
-**Statut** : *en attente* → *probablement prise* → *pousse du greffon* → *reprise*, ou *œil dormant jusqu'au printemps* (puis *pousse du greffon*),
-ou greffe morte (le suivi s'arrête, sans statut) ; pont : *probablement prise* → *reprise*, et la plante devient le greffon à la reprise.
+**Statut** : *en attente* → *probablement prise* → *pousse du greffon* → *réussie (suivi terminé)*, ou *greffon dormant jusqu'au printemps* (puis *pousse du greffon*),
+ou greffe morte (le suivi s'arrête, sans statut) ; pont : *probablement prise* → *réussie* ; porte-greffe et greffon deviennent la nouvelle plante quand le pont est soudé.
 
 ![Suivi d'une greffe](../images/greffe-suivi.svg)
 
@@ -203,7 +203,7 @@ ou greffe morte (le suivi s'arrête, sans statut) ; pont : *probablement prise* 
 | Contrôle | Œil | Rameau | Côté | Pont |
 |---|---|---|---|---|
 | J+21 | œil vert et gonflé, sans se ratatiner ; retirer le lien | bourgeons du greffon verts et gonflés ; sac retiré | greffon vert | greffons verts |
-| J+42 | l'œil a-t-il débourré ? sinon le **forcer** en rabattant le porte-greffe au-dessus, ou « Au printemps » | le greffon pousse-t-il ? retirer le lien quand les feuilles sortent | soudure faite : couper le porte-greffe au-dessus (approche : sevrer le greffon de sa plante) | greffons soudés aux deux bouts ; oui → *reprise* (rien ne doit pousser, pas de « Au printemps ») |
+| J+42 | l'œil a-t-il débourré ? sinon le **forcer** en rabattant le porte-greffe au-dessus, ou « Au printemps » | le greffon pousse-t-il ? retirer le lien quand les feuilles sortent | le greffon pousse-t-il ? une fois soudé, couper le porte-greffe au-dessus (approche : sevrer le greffon de sa plante) | greffons soudés aux deux bouts ; oui → *réussie* (rien ne doit pousser, pas de « Au printemps ») |
 | Pousse (4 semaines après) | tuteurer la pousse, couper le haut du porte-greffe à environ 1 cm au-dessus de la greffe, ôter les rejets | greffon tuteuré, lien retiré, rejets ôtés | greffon tuteuré, rejets ôtés | — |
 
 *Œil* : écussons, chip, placage ; *rameau* sur porte-greffe coupé : fente, couronne, anglaise, incrustation, sur souche, minigreffe ;
@@ -212,13 +212,13 @@ ou greffe morte (le suivi s'arrête, sans statut) ; pont : *probablement prise* 
 Sources : forcer l'œil, HS1309 et Alabama ACES (HS1309 le force dès le lien retiré ; attendre J+42 et ne forcer qu'un œil qui n'a pas débourré est un choix du plugin) ; rejets du porte-greffe à ôter dès qu'ils sortent, HS1309 et Curk 2022 p. 210 ;
 tuteurer puis couper le haut du porte-greffe, HS1309 (**une seule source**) ; lien d'un œil coupé vers J+21, HS1309 (14 à 21 jours, 30 au plus) et fiche INRAE-Cirad (une vingtaine de jours) ;
 lien ou sac d'un rameau retiré quand le greffon pousse, Curk 2022 p. 186 (couronne : sac retiré à 15 jours, fiche INRAE-Cirad), même filiation, **une seule source** ; latérale, approche et pont : **aucune source relue**, choix du plugin ;
-contrôle de la pousse 4 semaines après la réponse « débourré », choix du plugin. Délais J+21 et J+42 d'après la vulgarisation des universités de Floride, d'Alabama et
+contrôle de la pousse 4 semaines après le « Oui » qui confirme le départ d'un œil, choix du plugin. Délais J+21 et J+42 d'après la vulgarisation des universités de Floride, d'Alabama et
 de Californie : le bourgeon, plus que le calendrier, décide.
 
 **Répondre** (chaque réponse est notée au journal) :
 - **Oui** : étape suivante ;
 - **Douteux** : revoir dans 7 jours ;
-- **Au printemps** (à J+42 seulement, sauf pont) : œil vivant (vert, gonflé) laissé dormant, pour une greffe d'automne ; à J+42 la soudure est considérée comme faite (choix du plugin ; elle demande 3-4 semaines au printemps, 6-8 sinon : UC Ventura, **une seule source**) ; contrôle le 15 mars (15 septembre dans l'hémisphère sud),
+- **Au printemps** (à J+42 seulement, sauf pont) : greffon vivant (œil ou bourgeons verts, gonflés) laissé dormant, pour une greffe d'automne ; à J+42 la soudure est considérée comme faite (choix du plugin ; elle demande 3-4 semaines au printemps, 6-8 sinon : UC Ventura, **une seule source**) ; contrôle le 15 mars (15 septembre dans l'hémisphère sud),
   avancé jusqu'à 8 semaines si la moyenne sur 7 jours de l'emplacement dépasse déjà 13 °C (seuil réglable, sonde historisée), au plus tôt 4 semaines après la réponse (choix du plugin) ;
   au contrôle, rabattre le porte-greffe au-dessus de l'œil ;
 - **Non, mort** (deux clics) : greffe morte ; la plante reste, ou redevient, le porte-greffe, et le suivi s'arrête (le journal garde la trace).
@@ -234,7 +234,7 @@ Un contrôle dû remplit la commande « Greffe à contrôler », reprise par le 
 - **Avant la soudure** (*en attente*, *probablement prise*) : la moyenne sur 24 h de la sonde de l'emplacement (historisée) est comparée aux seuils
   de la configuration (21 et 32 °C par défaut, choix du plugin d'après des sources d'amateurs, réglables) ; en dehors, la fiche et la commande disent
   « trop froid (ou trop chaud) pour souder ». Sous 21 °C de jour le Poncirus s'endort (Alabama ACES, **une seule source**) et la greffe attend le printemps ; l'appliquer à la moyenne sur 24 h, nuits comprises, est un choix du plugin.
-- **Œil dormant, pousse du greffon** : la soudure est faite, le seuil de 21 °C ne s'applique plus ; seul le gel compte (« gel : protéger l'œil » si la sonde
+- **Greffon dormant, pousse du greffon** : la soudure est faite, le seuil de 21 °C ne s'applique plus ; seul le gel compte (« gel : protéger la greffe » si la sonde
   descend sous 0 °C sur 24 h, choix du plugin).
 - **En hiver** (novembre à février, mai à août dans l'hémisphère sud), le contrôle J+42 (soudure faite) ajoute : « Au printemps », au frais hors gel, sans engrais ;
   avant J+21, la greffe a besoin de chaleur pour souder. Un œil peut ne pas démarrer tant qu'on ne rabat pas le porte-greffe

@@ -7,7 +7,8 @@
 - Mise à jour : une greffe en cours (en attente, probablement prise, œil dormant) ou échouée enregistrée avant 0.26 remet la plante en porte-greffe ;
   le greffon attend le départ d'un œil. Une greffe déjà en pousse ne change pas. Une greffe échouée sans porte-greffe connu sort du suivi.
 - Greffon en attente : l'alerte de froid suit le plus fragile des deux, l'engrais celui d'une jeune greffe ; regreffer à la même date corrige le greffon sans relancer le suivi ;
-  regreffer pendant la pousse est refusé. Pont : la plante devient le greffon à la reprise.
+  regreffer pendant la pousse est refusé. Pont : porte-greffe et greffon deviennent la nouvelle plante quand le pont est soudé.
+- Vocabulaire : statut final « réussie (suivi terminé) » (au lieu de « reprise »), « greffon dormant », « non, greffe morte » ; « Nom / Collection de la nouvelle plante ».
 
 ## 0.25 (2026-11-03)
 - Export et import des plantes (fiche et journal) et des produits en stock, depuis la page du plugin : l'import ajoute ce qui manque sans rien remplacer.
