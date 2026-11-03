@@ -18,7 +18,7 @@ Ce qui vient du plugin lui-même (choix, déduction) est écrit comme tel.
   Un produit qui a une **dose d'étiquette** (7e champ) garde cette dose ; l'azote qu'il apporte est retiré du besoin et le reste va aux autres produits cochés, selon leurs parts. La corne seule ne couvre qu'environ 15 % du besoin d'une plante adulte : cocher aussi un engrais calculé (Ferti Agrumes).
 - **Écrire dans le calendrier** (administrateurs) : rien n'est écrit dans le calendrier de la plante sans ce bouton ; les lignes des produits du plan sont remplacées,
   les autres (fer, magnésium, lignes à la main) gardées, et l'écriture est notée au journal.
-- **Fiche**, partie *Engrais* : volume du pot, besoin, plan proposé, calendrier actuel, et des **pistes de carence** d'après la dernière mesure des feuilles
+- **Fiche**, partie *Engrais* : des **pistes de carence** d'après la dernière mesure des feuilles, puis volume du pot et besoin, calendrier actuel, plan proposé
   (couleur, feuilles touchées, forme), avec les produits en stock qui apportent l'élément.
   Un substrat noté « détrempé » **dans la même mesure** est signalé d'abord : il faut arroser moins avant tout apport.
 - Le volume du pot vient de ses mesures (diamètre ou côté, hauteur de terre, sinon hauteur du pot) : saisir le pot dans la fiche, ou dans les **Mesures** (Racines / pot) au rempotage.
@@ -130,7 +130,7 @@ la corne (12 semaines) en semaines 10, 22 et 34, soit les 3 apports de son étiq
 - au printemps, les nouvelles pousses et les fleurs vivent d'abord sur **l'azote mis en réserve** dans le bois et les vieilles feuilles (Asadi Kangarshahi 2023, Vannière et Marchal 1992 III) ;
 - l'arbre absorbe très peu d'azote en hiver et au tout début de la saison de pousse (Asadi Kangarshahi 2023, **une seule source**) ;
 - peu ou pas d'engrais en automne et en hiver (Asadi Kangarshahi 2023 ; UF/IFAS SL457, pour une raison propre à la Floride) ;
-- les étiquettes disent « de mars à octobre » (Ferti Agrumes) ou de mars à septembre (Performance Organics).
+- les étiquettes disent « de mars à octobre » (Ferti Agrumes) ou de mars à septembre (Fertiligène Performance Organics).
 
 **Limites connues** :
 - l'étude iranienne conseille **au plus 10 à 15 % de la dose annuelle avant la floraison**, puis une montée progressive (Asadi Kangarshahi 2023, **une seule source**) ;
@@ -162,7 +162,7 @@ Elle ne couvre alors qu'environ 15 % du besoin en azote (plante adulte) ; le res
 (Morgan et Hanlon 2006, Asadi Kangarshahi 2023).
 Ordre de grandeur (calcul du plugin, à prendre avec prudence) : d'après Morgan et Hanlon, un jeune arbre stocke environ 32 g d'azote (arbre entier) par m³ de frondaison gagné, et les fruits environ 1,1 g par kg, avec une efficacité de 50 % (chiffres de pleine terre) ;
 une plante en pot de 18 L qui gagne 0,05 à 0,15 m³ par an, plus 2 kg de fruits, demanderait 7 à 14 g d'azote apporté par an, contre environ 40 g avec la dose du plugin, soit **3 à 6 fois moins**.
-Dans un pot drainé, la perte est sans doute plus forte qu'au verger. La dose en pot est donc une **dose de pratique**, pas une mesure du besoin : en cas de doute, viser le bas de la fourchette et régler à l'usage.
+Dans un pot drainé, la perte est sans doute plus forte qu'au verger. La dose en pot est donc une **dose de pratique**, pas une mesure du besoin : en cas de doute, viser le bas de la fourchette et régler à l'usage (réglage « Azote par litre de pot » : 0,05 pour le bas de la fourchette, 0,07 par défaut, le milieu).
 
 **Mise en garde, jeunes plants** : en Chine, des orangers greffés d'un an, en pot de 25,5 × 30 cm (environ 15 L, 8 kg de terre) dehors, ont reçu de mars à octobre 14 apports d'urée, soit **0,8 g d'azote en tout** (dose N100) ou **3,2 g** (N400).
 Avec 3,2 g, les plants ont perdu **la moitié de leur masse** (14,2 → 7,0 g) par **réduction des racines**, et n'ont gardé que 4 % de l'azote donné, contre 57 % avec 0,8 g (Niu 2024, **une seule source**).
@@ -174,7 +174,7 @@ mais pour un **jeune plant** il faut viser nettement **sous** la dose calculée 
 
 - Plante **semée, greffée, bouturée ou marcottée avec sa date** : besoin en azote réduit à **25 %** à 0 an, puis remontée linéaire jusqu'à **100 % à 3 ans** (greffe d'un an → 50 %). Réglable dans la configuration (« Engrais d'un jeune plant »).
 - La fiche l'indique à côté du besoin : « jeune plant : dose réduite à … % ».
-- Pas de réduction pour une plante achetée ou sans date, ni pour les doses d'étiquette et les doses corrigées à la main. Avec les réglages par défaut, la corne (dose d'étiquette) couvre 31 % du besoin d'une greffe d'un an (62 % à 0 an) ; si un réglage plus bas lui fait dépasser le besoin, les autres produits cochés tombent à 1 g : les décocher.
+- Pas de réduction pour une plante achetée ou sans date, ni pour les doses d'étiquette et les doses corrigées à la main. Avec les réglages par défaut, la corne (dose d'étiquette) couvre 31 % du besoin d'une greffe d'un an (62 % à 0 an) ; si un réglage plus bas lui fait dépasser le besoin, les autres produits cochés ne sont plus écrits (ou 1 g si le besoin est à peine dépassé) : les décocher.
 - La réduction s'applique quand le plan est **calculé** : une dose déjà au calendrier reste telle quelle. Vider la case dose du produit (elle se recalcule) puis « Écrire dans le calendrier », et le refaire chaque printemps : la part remonte avec l'âge. Recocher le produit marche aussi, mais remet des parts égales et recalcule **toutes** les doses, y compris celles corrigées à la main.
 - Même réduite, la dose reste au-dessus de celle qui a nui dans l'essai (greffe d'un an : environ 17 g dans la saison à 15 L, calcul du plugin) : surveiller la plante.
 
@@ -232,12 +232,12 @@ Toujours **regarder d'abord quelles feuilles** sont touchées : les vieilles ou 
 
 | Carence | Feuilles touchées d'abord | Aspect | Que faire |
 |---|---|---|---|
-| Azote (N) | vieilles feuilles d'abord, puis tout le feuillage ; les vieilles tombent tôt | vert pâle à jaune uniforme, feuillage clairsemé ; manque ancien : les vieilles feuilles sont tombées, l'intérieur de la ramure est dégarni et les feuilles restantes peuvent rester presque vertes (UF/IFAS SL457) | un apport d'azote ; le manque de soufre donne le même aspect (UF/IFAS, Haifa), mais d'abord sur les **jeunes feuilles** : le soufre bouge peu dans la plante (déduction du plugin) |
-| Magnésium (Mg) | vieilles feuilles, près des fruits | jaune des deux côtés de la nervure, un **V vert à l'envers** reste à la base ; puis bronze et chute | sulfate de magnésium (sel d'Epsom) ; en pulvérisation si le sol est calcaire |
+| Azote (N) | vieilles feuilles d'abord, puis tout le feuillage ; les vieilles tombent tôt | vert pâle à jaune uniforme, feuillage clairsemé ; manque ancien : les vieilles feuilles sont tombées, l'intérieur de la ramure est dégarni et les feuilles restantes peuvent rester presque vertes (UF/IFAS SL457) | un apport d'azote ; le manque de soufre donne le même aspect (UF/IFAS, Haifa) ; sur quelles feuilles d'abord, les sources ne s'accordent pas (HS1373 : vieilles ; d'autres : jeunes), le plugin ne propose donc pas de piste soufre |
+| Magnésium (Mg) | vieilles feuilles, près des fruits | jaune des deux côtés de la nervure, un **V vert à l'envers** reste à la base ; puis bronze et chute | sulfate de magnésium (sel d'Epsom : en stock, mais sans dose pour les plantes, voir plus bas) ; en pulvérisation si le sol est calcaire |
 | Fer (Fe) | **jeunes pousses** | jaune clair à ivoire, **nervures restées vertes**, feuilles plus petites | chélate de fer au pied ; d'abord chercher la cause : substrat détrempé, pH élevé, excès de cuivre |
 | Zinc (Zn) | pousses du bout | bandes vertes le long des nervures sur fond jaune pâle ; **feuilles petites, étroites, pointues**, en rosette | sulfate de zinc en pulvérisation (Elavarasan 2019, **une seule source** ; aucun produit en stock) |
 | Manganèse (Mn) | jeunes feuilles | marbrure légère, bandes vert foncé le long des nervures ; ressemble au zinc | rien si c'est passager : ne corriger que si ça dure (UF/IFAS SL457) |
-| Potassium (K) | feuilles adultes : vieilles feuilles pour Haifa, feuilles de la pousse de printemps tout juste mûres, en fin d'été, pour UF/IFAS (SL457 et fiche EDIS) | jaune puis bronze, bout brun, feuilles qui s'enroulent | sulfate ou nitrate de potassium |
+| Potassium (K) | feuilles adultes : vieilles feuilles pour Haifa, feuilles de la pousse de printemps tout juste mûres, en fin d'été, pour UF/IFAS (SL457) | jaune puis bronze, bout brun, feuilles qui s'enroulent | sulfate ou nitrate de potassium |
 | Molybdène (Mo) | feuilles adultes | taches jaunes entre les nervures (« yellow spot ») | rare ; aucun produit en stock (UF/IFAS SS618, **une seule source**) |
 
 - Fer, zinc et manganèse manquent souvent ensemble quand le pH est élevé (UF/IFAS).
@@ -256,7 +256,7 @@ D'après leurs étiquettes et fiches (relevées le 2 novembre 2026).
 |---|---|---|---|
 | Ferti Agrumes 7-3-10 (Agro Sens), granulés | 7 %, organique | 80 à 240 g par sujet « en fonction de la taille », tous les 2 mois, de mars à octobre, enfoui par léger griffage, en pot comme en pleine terre | engrais de fond, toutes les 8 semaines, semaines 10-40 ; le calcul tombe dans la fourchette |
 | Corne broyée (Agro-Sens Pro) | 13 %, organique | effet sur 3 à 4 mois ; en pot, 3 apports de 1 g par litre de terreau dans la saison | toutes les 12 semaines, semaines 10-40, **dose de l'étiquette** (1 g par litre) ; l'azote restant va aux autres produits |
-| Sang séché (Agro Sens) | 12 %, organique | « coup de fouet », effet en 3 à 4 jours ; 1 à 2 apports par an, printemps et été ; aucune dose en grammes | ponctuel (hors plan), semaines 10-30 |
+| Sang séché (Agro Sens) | 12 %, organique | « coup de fouet », effet en 3 à 4 jours ; 1 à 2 apports par an, printemps et été ; aucune dose en grammes | ponctuel (hors plan) ; semaines 10-30 dans le plugin : fin juillet, plus tôt que l'été de l'étiquette (choix du plugin) |
 | Kélafer racinaire (fer EDDHA 6 %) | — | au pied seulement ; dilué dans l'arrosage (étiquette : 10 à 40 g par litre d'eau, c'est la **concentration** de la solution ; la dose par pied ci-après reste la limite, lecture du plugin) ou griffé ; « horticulture » 1 à 3 g par pied, jeunes plantations 5 à 15 g ; « seulement en cas de besoin reconnu » | fer, seulement si les jeunes feuilles le montrent ; en pot, la dose « horticulture » est la plus proche |
 | Sel d'Epsom (sulfate de magnésium) | — | vendu pour le bain : **aucune dose pour les plantes** (9,9 % de Mg par la chimie) ; **aucune dose sourcée** : le plugin n'en propose pas, ne pas improviser | magnésium, seulement si les vieilles feuilles le montrent |
 
@@ -299,6 +299,7 @@ Lues en entier, sauf mention.
 - **Tuzcu 1984** : *Fruits* 39(9), croissance de 14 porte-greffes à basse température ; Poncirus, satsuma et Nagami ne poussent qu'au-dessus de ≈ 15 °C.
 - **UF/IFAS SL454** : interprétation des analyses de sol pour les agrumes (EDIS SS667, 2020).
 - **UF/IFAS SL456, SL457** : chapitres 2 (Obreza, Collins, Morgan, Graham, Alferez) et 3 (Obreza, Zekri, Futch) de *Nutrition of Florida Citrus Trees*, 3e éd., UF/IFAS SL253, 2020.
+- **UF/IFAS SS618** : *Molybdenum (Mo) and Nickel (Ni) for Citrus Trees* (fiche EDIS, 2014, revue en 2025), https://edis.ifas.ufl.edu
 - **UF/IFAS PP328** : test du stylo, carence ou HLB (University of Florida).
 - **Vannière et Marchal 1992 III** : *Fruits* 47(1):45-49 ; **Vannière 1992 IV** : *Fruits* 47(1):50-54 (INRA-CIRAD, Corse, clémentinier).
 - **Zekri et Obreza 2013** : Zekri M., Obreza T., *Nitrogen (N) for Citrus Trees*, UF/IFAS SL378.

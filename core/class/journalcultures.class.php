@@ -863,7 +863,7 @@ class journalcultures extends eqLogic {
     $r = array_fill_keys($i, floor(100 / count($i))); $r[end($i)] += 100 - array_sum($r); return $r; // reste au dernier : total juste 100
   }
 
-  // moins d'un an ou greffe en cours de suivi (pont compris) : pas de demi-dose hors période d'apport, même au chaud (pas d'engrais l'hiver : 2 sources ; excès d'azote nuisible au jeune plant : Niu 2024 ; choix du plugin)
+  // moins d'un an ou greffe en cours de suivi (sauf le pont) : pas de demi-dose hors période d'apport, même au chaud (pas d'engrais l'hiver : 2 sources ; excès d'azote nuisible au jeune plant : Niu 2024 ; choix du plugin)
   public function jeuneHiver() {
     return (!$this->pontSuivi() && in_array((string)$this->getConfiguration('greffe_statut'), ['attente', 'probable', 'dormant', 'pousse'], true)) // pont = réparation d'une plante déjà en place, pas un jeune plant
       || journalcultures_calc::jeunesse($this->greffeVal('multiplication'), $this->greffeVal('date_mult'), 1, 1) > 0;

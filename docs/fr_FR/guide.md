@@ -138,7 +138,7 @@ De l'extérieur vers le centre :
   Le classement « éléments secondaires » (Ca, Mg, S) des étiquettes d'engrais n'est pas dans ce manuel, qui les met avec les macroéléments.
 - Un manque se voit par une pousse lente ou une **chlorose**, un jaunissement des feuilles (OpenStax p. 904, **une seule source**).
 - **Éléments mobiles** : la plante les déplace vers ce qui pousse ; quand ils manquent, les **vieilles feuilles** jaunissent d'abord. Ce sont N, P, K, Mg, S (UF/IFAS HS1373).
-  Chez les agrumes, le soufre bouge pourtant peu : son manque se voit d'abord sur les **jeunes feuilles**, celui d'azote sur les vieilles (déduction du plugin, voir [Reconnaître une carence](fertilisation.md#reconnaître-une-carence)).
+  Pour le soufre, les sources ne s'accordent pas : HS1373 le classe parmi les mobiles (vieilles feuilles), d'autres le disent peu mobile (jeunes feuilles d'abord) ; le plugin ne propose pas de piste soufre (voir [Reconnaître une carence](fertilisation.md#reconnaître-une-carence)).
   Pour l'azote des agrumes : UF/IFAS SS420. Le nickel est mobile lui aussi (UF/IFAS SS618).
 - **Éléments immobiles** : ils restent où ils sont ; le manque se voit d'abord sur les **jeunes pousses**. Ce sont Ca, Fe, Zn, Cu, Mn, B, Mo (UF/IFAS HS1373).
   Exception chez les agrumes : le manque de molybdène donne des taches jaunes (« yellow spot ») sur les **feuilles adultes** (UF/IFAS SS618, **une seule source**).
@@ -227,6 +227,7 @@ Détail et sources dans les paragraphes ci-dessous. Le tableau résume, il n'ajo
 - **Shipunov 2021** : Shipunov A., *Introduction to Botany*, Minot State University, version du 7 juin 2021, 192 p., dédié au domaine public. Pages = pages du livre.
 - **OpenStax 2018** : Clark M. A., Douglas M., Choi J., *Biology 2e*, OpenStax, Rice University, 2018 (impression 2026 lue), CC BY-NC-SA 4.0 (rien n'en est recopié), https://openstax.org/details/books/biology-2e. Pages = pages du livre.
 - **Aleza 2010** : Aleza P., Juárez J., Ollitrault P., Navarro L., « Polyembryony in non-apomictic citrus genotypes », *Annals of Botany* 106:533-545 ([PMC2944972](https://pmc.ncbi.nlm.nih.gov/articles/PMC2944972/)).
+- **UC Riverside, fiche Clementine** : University of California Riverside, Citrus Variety Collection, fiche *Clementine mandarin* (CRC 279), [citrusvariety.ucr.edu](https://citrusvariety.ucr.edu/) : pépins monoembryonnés.
 - **Curk 2022** : Curk F., Luro F., Minuto G., Nieddu G., *Les agrumes du Nord de la Méditerranée*, Alain Piazzola, 2022, doi 10.17180/m6z4-d276, HAL hal-04646466. Pages = pages du livre (deux par page du PDF).
 - **de Rocca Serra 1992** : de Rocca Serra D., Ollitrault P., « L'amélioration des agrumes : I - Les ressources génétiques », *Fruits*, numéro spécial Agrumes 1992, p. 115-123.
 - **UF/IFAS HS1309** : Albrecht U., Zekri M., Williamson J., *Citrus Propagation*, UF/IFAS, 2017, revue en 2021 et 2024, doi 10.32473/edis-hs1309-2017.

@@ -36,7 +36,7 @@ if (!isConnect('admin')) {
     </div>
     <div class="form-group">
       <label class="col-md-4 control-label">{{Greffe : température pour souder}} : min / max °C
-        <sup><i class="fas fa-question-circle tooltips" title="{{Tant que la greffe n'est pas reprise, la moyenne sur 24 h de la sonde de l'emplacement est comparée à ces seuils ; hors limites, la fiche et la commande « Greffe à contrôler » le disent. Par défaut 21 °C (le Poncirus s'endort en dessous) et 32 °C.}}"></i></sup>
+        <sup><i class="fas fa-question-circle tooltips" title="{{Tant que la greffe n'est pas réussie, la moyenne sur 24 h de la sonde de l'emplacement est comparée à ces seuils ; hors limites, la fiche et la commande « Greffe à contrôler » le disent. Par défaut 21 °C (le Poncirus s'endort en dessous) et 32 °C.}}"></i></sup>
       </label>
       <div class="col-md-1"><input class="configKey form-control" data-l1key="greffe_tmin" placeholder="21"></div>
       <div class="col-md-1"><input class="configKey form-control" data-l1key="greffe_tmax" placeholder="32"></div>

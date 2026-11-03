@@ -198,7 +198,7 @@ Regreffer une greffe dont aucun œil n'a débourré remplace le greffon en atten
 ## Suivi et points de contrôle
 
 **Statut** : *en attente* → *probablement prise* → *pousse du greffon* → *réussie (suivi terminé)*, ou *greffon dormant jusqu'au printemps* (puis *pousse du greffon*),
-ou greffe morte (le suivi s'arrête, sans statut) ; pont : *probablement prise* → *réussie* (réparation : la plante garde son nom et sa fiche).
+ou *échouée* (greffe morte : le suivi s'arrête et le statut est aussitôt effacé) ; pont : *probablement prise* → *réussie* (réparation : la plante garde son nom et sa fiche).
 
 ![Suivi d'une greffe](../images/greffe-suivi.svg)
 

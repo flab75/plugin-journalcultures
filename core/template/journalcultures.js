@@ -218,7 +218,7 @@ if (!window.journalcultures || window.journalcultures.v !== 30) (function () { /
   }
   function blocSante(s, cat, geo) {
     function src(l) { return ' <small>(' + esc(l.join(', ')) + (l.length == 1 ? ' — <b>' + "{{une seule source}}" + '</b>' : '') + ')</small>' }
-    function statut(p) { return p.statut == 'absent' ? ' <b>' + "{{absent de France}}" + '</b>' : p.statut == 'a_verifier' ? ' <b>' + "{{absence à vérifier}}" + '</b>' : p.statut == 'quarantaine' ? ' <b class="jdc-er">' + "{{quarantaine : à signaler}}" + '</b>' : p.statut == 'pays' ? ' <b' + (p.quar ? ' class="jdc-er"' : '') + '>' + "{{statut à vérifier pour ce pays (connu pour la France)}}" + '</b>' : '' }
+    function statut(p) { return p.statut == 'absent' ? ' <b>' + "{{absent de France}}" + '</b>' : p.statut == 'quarantaine' ? ' <b class="jdc-er">' + "{{quarantaine : à signaler}}" + '</b>' : p.statut == 'pays' ? ' <b' + (p.quar ? ' class="jdc-er"' : '') + '>' + "{{statut à vérifier pour ce pays (connu pour la France)}}" + '</b>' : '' }
     function gestes(p) { return '<ol>' + p.gestes.map(function (g) { return '<li>' + esc(g[0]) + src(g[1]) + '</li>' }).join('') + '</ol>' + (p.note ? '<p><small>' + esc(p.note) + '</small></p>' : '') }
     return '<h4>' + "{{Santé}}" + '</h4>' + (geo && geo.sud ? '<p><small class="jdc-er">' + "{{Les périodes citées (mois, saisons) viennent de l'hémisphère nord : les décaler de 6 mois.}}" + '</small></p>' : '') +
       (s.pistes.length ? '<p><b>' + "{{Pistes d'après la mesure du}}" + ' ' + esc(s.date.slice(0, 10)) + '</b> <small>(' + "{{pas un diagnostic ; gestes du plus doux au plus fort}}" + ')</small></p>' + s.pistes.map(function (x) {

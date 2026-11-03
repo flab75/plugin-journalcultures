@@ -123,9 +123,9 @@ class journalcultures_calc {
   ];
   /* Profils : groupe => [caractère => codes compatibles] ; un caractère absent du profil ne compte pas.
      Recoupés avec la clé du genre de la Flora of China, vol. 11 (aile > moitié du limbe = papedas, « très large » ; cédrat sans aile, peau plus épaisse que la pulpe ;
-     citron : boutons teintés de pourpre ou de rose, mamelon ; lime de Tahiti : fleurs blanches (UCR) ou un peu violacées (Morton), les deux acceptées ; bergamote = bigaradier jaune, ronde ou en poire ; citron Meyer souvent rond ; yuzu et mandarine : peau qui s'enlève ; pomelo : fruit ≥ 10 cm ;
+     citron : boutons teintés de pourpre ou de rose, mamelon ; lime de Tahiti : fleurs blanches (UCR) ou un peu violacées (Morton), les deux acceptées ; bergamote = bigaradier jaune, ronde ou en poire ; citron Meyer souvent rond ; yuzu et mandarine : peau qui s'enlève ; pomelo : fruit de 6 à 10 cm ou plus ;
      quartiers : kumquat 3-6 loges contre 7-15 pour les autres Citrus (Flora of China), calamondin 8-9 (中国植物志 1997 p. 175, relu le 2026-11-02) ;
-     pas imposé aux papedas (combava 6-7), au caviar, au cédrat ni au Poncirus) ;
+     pas imposé aux papedas (combava 6-7), au caviar, au cédrat, au Poncirus ni à ses hybrides) ;
      largeur de l'aile : combava presque aussi large que le limbe (Flora of China : limbe 0,5-1 cm plus large ; Sofiyanti 2022), ichang plus large que le limbe (FoC),
      pamplemousse (C. maxima, « pomelo » de la FoC) nettement plus étroite (FoC : aile 0,5-3 cm, limbe 4-8 cm ; Sofiyanti 2022) ; non imposée aux autres groupes (aucune source) ;
      jeunes rameaux : glabres chez l'orange et le bigaradier (C. ×aurantium, clé FoC 8b ; Swingle & Reece : les rameaux poilus séparent le pamplemousse C. maxima
@@ -216,7 +216,7 @@ class journalcultures_calc {
   ];
   /* Rusticité d'un groupe (°C, pleine terre) quand la fiche n'en donne pas : la moins froide des sources (prudence), à remplacer par une valeur de la fiche.
      Kumquat : TyCitriK −10, UF −12, Fortune 1870 (via Swingle) « 10-15 °F de gel » = −5,6 à −8,3, UF/IFAS (Zekri 2001) feuilles ≈ −6,7 → −6 (choix du plugin, entre −5,6 et −6,7) ; citron : TyCitriK −5, Blondel −5/−6 ; cédrat : TyCitriK −3, Guo −4/−5 (feuilles) ; lime : TyCitriK −4, mais UF/IFAS CH093 : bois abîmé dès −3, mort sous −4 (lime de Tahiti) → −3 ; calamondin, caviar, papeda : TyCitriK seul ;
-     yuzu : RHS H3 −5 contre TyCitriK −14 (le plus prudent gardé) ; Poncirus : TyCitriK −16, fiches −15 ; hybrides : Chopinet & Dupouy 1951, de seconde main (citranges de Montauban −10/−14, satsumange −11/−13, citrangedins, limonanges,
+     yuzu : RHS H3 −5 contre TyCitriK −14 (le plus prudent gardé) ; Poncirus : TyCitriK −16 (une seule source) → −15 par prudence (choix du plugin) ; hybrides : Chopinet & Dupouy 1951, de seconde main (citranges de Montauban −10/−14, satsumange −11/−13, citrangedins, limonanges,
      citrangequat ≈ −10 ; citranges Rusk et Willits sensibles aux coups de froid brusques), TyCitriK C35 −10, Carrizo −11, citrumelo −12, FA5 −13 → −10 ;
      bigaradier, mandarine, orange, pomelo et pamplemousse : aucune valeur chiffrée sur la plante, encadrés par l'ordre UF (Jackson & Fasulo HS-123 : calamondin > bigaradier > mandarinier
      > oranger > pomelo C. ×paradisi (grapefruit) > citronnier) entre calamondin −5 et citron −5 → −5. */
@@ -325,7 +325,7 @@ class journalcultures_calc {
   /* Suivi d'une greffe récente : contrôle du bourgeon à J+21 (œil ou bourgeons verts et gonflés, lien retiré), puis à J+42 (débourrement,
      sinon forcer l'œil : porte-greffe entaillé aux 2/3 au-dessus de l'œil, haut couché ; décision de l'utilisateur, 2026-11-03) ; un statut n'avance que sur confirmation. Repères : UF/IFAS (lien retiré à 2-3 semaines),
      Alabama ACES (œil vert = pris ; vert sans pousse : forcer), UC Ventura (soudure en 3-4 semaines au printemps, 6-8 pour une greffe d'automne), minigreffe Valencia (bilan à 6 semaines).
-     Œil gardé dormant jusqu'au printemps (greffe d'automne), puis forcé : Arizona (az1146), Kentucky (greffage).
+     Œil gardé dormant jusqu'au printemps (greffe d'automne), puis forcé : UC Ventura (greffe d'automne) ; Arizona (az1146) et Kentucky disent de même, non cités dans la notice.
      Après le débourrement (« pousse ») : rejets du porte-greffe ôtés dès qu'ils sortent (UF/IFAS HS1309, Curk 2022 p. 210) ; pousse tuteurée, puis porte-greffe
      (haut couché compris) coupé à ≈ 1,3 cm (1/2 inch) au-dessus de l'œil une fois qu'il pousse (HS1309 seul) ; contrôle 4 semaines après (choix du plugin). */
   const GREFFE_STATUTS = ['attente' => 'en attente', 'probable' => 'probablement prise', 'dormant' => 'greffon dormant jusqu’au printemps', 'pousse' => 'pousse du greffon', 'reprise' => 'réussie (suivi terminé)', 'echouee' => 'échouée'];
@@ -364,7 +364,7 @@ class journalcultures_calc {
     if ($moy > $max) return sprintf('trop chaud pour souder : %s °C en moyenne sur 24 h (> %s °C)', self::virgule(ceil($moy * 10) / 10), self::virgule($max));
     return '';
   }
-  /* Œil dormant : soudure faite, plus besoin de 21 °C ; reste à le protéger du gel (UC ANR : greffe d'automne à protéger du gel).
+  /* Œil dormant : soudure faite, plus besoin de 21 °C ; reste à le protéger du gel (UC Ventura : greffe d'automne à protéger du gel).
      ponytail: 0 °C fixe sur le minimum 24 h, à rendre réglable si la sonde est loin de la plante */
   public static function greffeGel($min) {
     return $min !== null && $min < 0 ? sprintf('gel : protéger la greffe, %s °C au plus bas sur 24 h', self::virgule(floor($min * 10) / 10)) : '';
@@ -504,7 +504,7 @@ class journalcultures_calc {
   const PRODUITS = "Ferti Agrumes 7-3-10 | 7 | 8 | 10-40 | N P K | granulés à enfouir par léger griffage ; étiquette : 80 à 240 g par sujet tous les 2 mois, de mars à octobre\n"
     . "Corne broyée | 13 | 12 | 10-40 | N | effet sur 3 à 4 mois ; étiquette : en pot, 3 apports de 1 g par litre de terreau dans la saison | 1\n"
     . "Sang séché | 12 | 0 | 10-30 | N | coup de fouet (effet en 3 à 4 jours) ; étiquette : 1 à 2 apports par an, printemps et été\n"
-    . "Kélafer racinaire (fer EDDHA 6 %) | 0 | 0 | 6-44 | Fe | au pied seulement, jamais sur les feuilles ; dilué dans l'arrosage (10 à 40 g par litre d'eau = concentration ; la dose par pied reste la limite) ; étiquette : jeunes plantations 5 à 15 g par pied, seulement en cas de besoin\n"
+    . "Kélafer racinaire (fer EDDHA 6 %) | 0 | 0 | 6-44 | Fe | au pied seulement, jamais sur les feuilles ; dilué dans l'arrosage (10 à 40 g par litre d'eau = concentration ; la dose par pied reste la limite) ; étiquette : « horticulture » 1 à 3 g par pied (le plus proche du pot), jeunes plantations 5 à 15 g, seulement en cas de besoin\n"
     . "Sel d'Epsom (sulfate de magnésium) | 0 | 0 | 10-40 | Mg S | pas de dose sur le seau (produit pour le bain)";
 
   public static function produits($texte) { // → [['nom', 'n' (%), 'tous' (semaines), 'saison', 'apporte' => [éléments], 'note', 'gl' (g/L de l'étiquette, 0 = calculé)], …]
@@ -540,24 +540,24 @@ class journalcultures_calc {
     return $r;
   }
 
-  /* Carence probable d'après la dernière mesure des feuilles (ressources §14 : UF/IFAS, Haifa, Elavarasan & Premalatha 2019).
-     → [['el' => élément, 'txt' => raison], …] (soufre peu mobile : jeunes feuilles d'abord ; azote mobile : vieilles feuilles) ; substrat détrempé : averti d'abord (l'asphyxie bloque le fer). Jamais un diagnostic : des pistes. */
+  /* Carence probable d'après la dernière mesure des feuilles (ressources §14 : UF/IFAS, Haifa, Elavarasan 2019).
+     → [['el' => élément, 'txt' => raison], …] (azote mobile : vieilles feuilles d'abord ; soufre : sources en désaccord sur l'organe, pas de piste) ; substrat détrempé : averti d'abord (l'asphyxie bloque le fer). Jamais un diagnostic : des pistes. */
   public static function carences(array $v) {
     $c = $v['feuilles.couleur'] ?? ''; $o = $v['feuilles.touchees'] ?? ''; $r = [];
     if (($v['pot.substrat'] ?? '') == 'détrempé') $r[] = ['el' => 'EAU', 'txt' => 'substrat détrempé : racines asphyxiées, le fer n’est plus absorbé ; arroser moins avant tout apport'];
-    if (in_array($c, ['jaune uniforme', 'vert clair'], true)) $r[] = $o == 'jeunes' ? ['el' => 'S', 'txt' => 'jeunes feuilles pâles ou jaunes d’abord : soufre (ou azote) ; le soufre bouge peu dans la plante, l’azote quitte les vieilles feuilles pour les jeunes']
-      : ['el' => 'N', 'txt' => $o == 'vieilles' ? 'feuilles pâles ou jaunes, vieilles feuilles d’abord : azote' : 'feuilles pâles ou jaunes partout : azote (soufre si les jeunes feuilles ont pâli les premières)'];
+    if (in_array($c, ['jaune uniforme', 'vert clair'], true)) $r[] = $o == 'jeunes' ? ['el' => '?', 'txt' => 'jeunes feuilles pâles ou jaunes d’abord : pas l’azote (il quitte d’abord les vieilles feuilles) ; soufre possible, mais les sources ne s’accordent pas sur l’organe atteint']
+      : ['el' => 'N', 'txt' => $o == 'vieilles' ? 'feuilles pâles ou jaunes, vieilles feuilles d’abord : azote' : 'feuilles pâles ou jaunes partout : azote'];
     if ($c == 'V vert à la base, reste jaune' || ($c == 'jaunissement entre les nervures' && $o == 'vieilles')) $r[] = ['el' => 'MG', 'txt' => 'vieilles feuilles jaunes entre les nervures, V vert à la base : magnésium'];
     if ($c == 'jaunissement entre les nervures' && $o == 'jeunes') $r[] = ['el' => 'FE', 'txt' => 'jeunes feuilles pâles à nervures vertes : fer (pH élevé, calcaire, excès d’eau ou de cuivre)'];
-    if ($c == 'jaunissement entre les nervures' && !in_array($o, ['jeunes', 'vieilles'], true)) $r[] = ['el' => '?', 'txt' => 'jaunissement entre les nervures : fer si ce sont les jeunes feuilles, magnésium si ce sont les vieilles (préciser « Feuilles touchées »)'];
-    if ($c == 'bronzé') $r[] = ['el' => 'K', 'txt' => 'feuilles adultes bronzées' . (($v['feuilles.forme'] ?? '') == 'enroulées' ? ' et enroulées' : '') . ' : potassium (ou magnésium)'];
+    if ($c == 'jaunissement entre les nervures' && !in_array($o, ['jeunes', 'vieilles'], true)) $r[] = ['el' => '?', 'txt' => $o == 'toutes' ? 'jaunissement entre les nervures sur tout le feuillage : fer si les jeunes feuilles ont commencé, magnésium si ce sont les vieilles' : 'jaunissement entre les nervures : fer si ce sont les jeunes feuilles, magnésium si ce sont les vieilles (préciser « Feuilles touchées »)'];
+    if ($c == 'bronzé') $r[] = $o == 'jeunes' ? ['el' => '?', 'txt' => 'jeunes feuilles bronzées : plutôt des acariens qu’une carence (voir Santé)'] : ['el' => 'K', 'txt' => 'feuilles adultes bronzées' . (($v['feuilles.forme'] ?? '') == 'enroulées' ? ' et enroulées' : '') . ' : potassium (ou magnésium)'];
     if (($v['feuilles.forme'] ?? '') == 'petites et étroites') $r[] = ['el' => 'ZN', 'txt' => 'feuilles petites, étroites et pointues, en rosette : zinc (souvent avec fer et manganèse quand le pH est élevé)'];
     return $r;
   }
 
   /* ---------- santé : problèmes surveillés et pistes ---------- */
   /* Agrumes en pot sous serre (Île-de-France), du plus important au moins important. Références complètes : docs/fr_FR/sante.md, partie Sources.
-     Chaque geste porte ses sources ; un geste ou un problème à une seule source est signalé (en chercher une autre). statut : present, quarantaine, absent, a_verifier, pour la France ; regional = statut propre à la France
+     Chaque geste porte ses sources ; un geste ou un problème à une seule source est signalé (en chercher une autre). statut : present, quarantaine, absent, pour la France ; regional = statut propre à la France
      (ailleurs : « à vérifier pour ce pays », journalcultures::santeCat). Périodes de risque : hémisphère nord (Corse, PACA, Californie, Floride). */
   const SANTE = [
     'gommose' => ['nom' => 'Gommose et pourriture des racines (Phytophthora)', 'statut' => 'present',
@@ -629,8 +629,8 @@ class journalcultures_calc {
       'note' => 'présente en France seulement en Haute-Corse : déclarée en 2018, souches européennes établies, qu’on ne peut plus éradiquer ; jamais trouvée en Corse-du-Sud (OEPP 2026) ; en 1990, l’interdiction d’importer des plants la tenait hors de Corse (Vogel 1990). Réglementée dans l’Union européenne : quarantaine pour les souches venues d’ailleurs, organisme réglementé non de quarantaine (ORNQ) pour les plants vendus (règlement 2019/2072). Hors de Corse, le risque vient d’un plant ou d’un greffon importé'],
     'hlb' => ['nom' => 'HLB (greening, dragon jaune)', 'statut' => 'absent', 'regional' => 1,
       'signes' => 'marbrures jaunes asymétriques des feuilles, fruits déformés qui se colorent à l’envers, psylles sur les jeunes pousses',
-      'sources' => ['PP328', 'BSV JEVI Corse 2025', 'Sáenz Pérez 2019', 'OEPP 2026 (Diaphorina citri)'],
-      'gestes' => [['d’abord le test de symétrie : jaunissement pareil des deux côtés de la nervure = carence (zinc, magnésium…), asymétrique = suspect', ['PP328']],
+      'sources' => ['UF/IFAS PP328', 'BSV JEVI Corse 2025', 'Sáenz Pérez 2019', 'OEPP 2026 (Diaphorina citri)'],
+      'gestes' => [['d’abord le test de symétrie : jaunissement pareil des deux côtés de la nervure = carence (zinc, magnésium…), asymétrique = suspect', ['UF/IFAS PP328']],
         ['asymétrique avec psylles : signaler à la DRAAF-SRAL (service de l’État) ou à la FREDON de sa région ; aucun traitement n’existe', ['BSV JEVI Corse 2025', 'Sáenz Pérez 2019']]],
       'note' => 'bactérie absente de France métropolitaine ; deux psylles vecteurs sont présents dans l’Union européenne : Trioza erytreae en Espagne et au Portugal (BSV JEVI Corse 2025), Diaphorina citri à Chypre, de passage en Grèce, seulement intercepté en France (OEPP 2026) ; décolorations asymétriques aussi décrites par BSV JEVI ; peut se confondre avec un manque de zinc (Sáenz Pérez 2019)'],
   ];

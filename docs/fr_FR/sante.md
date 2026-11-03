@@ -366,4 +366,5 @@ Lues en entier, sauf : Whiteside 1971, El-Hamalawi et Menge 1994, Liu et Stansly
 - **UF/IFAS HS261, PP328** : University of Florida (HS261 : Futch et Graham, *Field Diagnosis and Management of Phytophthora Diseases* ; PP328 : test du stylo, HLB ou carence). **UF/IFAS 2022** : alcool sur les cochenilles farineuses (vêtements).
 - **Vanderweyen 1980** : influence du cultivar greffé sur la sensibilité du porte-greffe à la gommose.
 - **Vogel 1990** : Vogel R., maladies des agrumes en Corse (partie II), *Fruits* 45.
+- **Règlement 2019/2072** : règlement d'exécution (UE) 2019/2072 de la Commission, annexes II (organismes de quarantaine) et IV (ORNQ), [eur-lex.europa.eu](https://eur-lex.europa.eu/eli/reg_impl/2019/2072/oj).
 - **Whiteside 1971** : Whiteside J. O., *Phytopathology* 61:1233-1238.

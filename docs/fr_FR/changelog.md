@@ -4,7 +4,8 @@
 Vérification de JDC contre des sources crédibles (OEPP, UF/IFAS, UC, Alabama ACES, UC Riverside) :
 - Tristeza : présente en France, en Haute-Corse (déclarée en 2018, OEPP), et non plus « absence à vérifier » ; elle passe avant le HLB (priorité 10).
 - Aleurode épineux : présent en France depuis 2023 (Gard, Hérault, puis Menton), sources OEPP corrigées ; *Diaphorina citri* aussi de passage en Grèce ; statuts du mal secco sourcés (OEPP).
-- Rusticité estimée : lime −3 °C (au lieu de −4 : UF/IFAS, bois abîmé dès −3, mort sous −4) ; kumquat −6 °C (au lieu de −8 : la moins froide des sources).
+- Rusticité estimée : lime −3 °C (au lieu de −4 : UF/IFAS, bois abîmé dès −3, mort sous −4) ; kumquat −6 °C (au lieu de −8 : choix du plugin entre Fortune −5,6 et UF/IFAS −6,7).
+- Revue de cohérence (code, notice, sources) : treize points alignés (Poncirus −15 = choix du plugin, pomelo *C. ×paradisi* rangé sous *C. ×aurantium* par GBIF/WCVP, sources UC Riverside et règlement 2019/2072 listées, statut « a_verifier » retiré, libellés UF/IFAS PP328 et UC Ventura harmonisés). Passe fertilisation : Kélafer 1-3 g en pot, feuilles jeunes bronzées = acariens plutôt que potassium, piste soufre retirée (sources en désaccord sur l'organe), « toutes » les feuilles traité, source SS618 listée, ordre des blocs de la fiche.
 - Pépins à un seul embryon : aussi le clémentinier et certains hybrides de mandarinier.
 - Greffe : Alabama ACES entaille et couche le haut comme le plugin ; soudure en 6-8 semaines pour une greffe d'automne (UC Ventura, relue) ;
   porte-greffe coupé à environ 1,3 cm au-dessus de l'œil (HS1309) ; divergences des sources signalées (hauteur du point de greffe, œil couvert ou non, saison).

@@ -55,7 +55,7 @@ $ok(array_column($C::carences(['feuilles.couleur' => 'jaunissement entre les ner
   && array_column($C::carences(['feuilles.couleur' => 'jaunissement entre les nervures', 'feuilles.touchees' => 'vieilles']), 'el') == ['MG']
   && array_column($C::carences(['feuilles.couleur' => 'jaunissement entre les nervures']), 'el') == ['?']
   && array_column($C::carences(['feuilles.couleur' => 'jaune uniforme', 'feuilles.forme' => 'petites et étroites']), 'el') == ['N', 'ZN']
-  && array_column($C::carences(['feuilles.couleur' => 'vert clair', 'feuilles.touchees' => 'jeunes']), 'el') == ['S']
+  && array_column($C::carences(['feuilles.couleur' => 'vert clair', 'feuilles.touchees' => 'jeunes']), 'el') == ['?']
   && $C::carences(['feuilles.couleur' => 'vert foncé']) === [] && $C::carences([]) === [], 'pistes de carence');
 $m = $C::migrerPulpe(['id_pulpe' => 'perles']);
 $ok($m == ['id_pulpe' => '', 'id_pulpe_aspect' => 'perles'] && $C::migrerPulpe($m) == $m && $C::migrerPulpe(['id_pulpe' => 'peu', 'id_pulpe_aspect' => 'vesicules']) == ['id_pulpe' => '', 'id_pulpe_aspect' => 'vesicules']
@@ -65,7 +65,7 @@ $ok(array_column($C::sante(['sante.signe' => 'feuilles collantes (miellat)', 'sa
   && $C::sante(['sante.signe' => 'aucun', 'sante.ravageur' => 'autre'], true) === [] && $C::sante([], false) === [], 'pistes de santé');
 $ok(!array_diff(array_merge(...array_values($C::SIGNES)), array_keys($C::SANTE)) && !array_diff(array_keys($C::SIGNES), $C::MESURES['sante'][1]['signe'][2])
   && !array_diff(array_diff($C::MESURES['sante'][1]['ravageur'][2], ['aucun', 'autre']), array_keys($C::SANTE))
-  && !array_filter($C::SANTE, function ($p) { return !in_array($p['statut'], ['present', 'absent', 'a_verifier', 'quarantaine'], true) || !$p['sources'] || !$p['gestes']; })
+  && !array_filter($C::SANTE, function ($p) { return !in_array($p['statut'], ['present', 'absent', 'quarantaine'], true) || !$p['sources'] || !$p['gestes']; })
   && !array_filter($C::SANTE, function ($p) { foreach ($p['gestes'] as $g) if (!$g[1] || array_diff($g[1], $p['sources'])) return true; return false; })
   && $C::SANTE['hlb']['statut'] == 'absent' && $C::SANTE['tristeza']['statut'] == 'present' && array_search('tristeza', array_keys($C::SANTE)) < array_search('hlb', array_keys($C::SANTE)), 'catalogue santé cohérent');
 $e = $C::emplacements("Serre | #1# | #2#\nJardin | #3# | | #4#\n\nMaison");
