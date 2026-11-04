@@ -3,6 +3,7 @@
 | Fichier | Origine | Licence |
 |---|---|---|
 | panel.webp, tuile.webp, journal.webp, mesures.webp, engrais.webp, nouvelle-plante.webp, greffe.webp | captures d'écran du plugin, collection de démonstration (données fictives) | MIT, comme le plugin |
+| ferti-carences-feuilles.svg | dessin façon gravure coloriée pour ce plugin d'après le tableau « Reconnaître une carence » (UF/IFAS SL457, Haifa, Elavarasan 2019 ; aucune figure recopiée) | MIT, comme le plugin |
 | rusticite.svg, greffe-suivi.svg | schémas dessinés pour ce plugin d'après son propre calcul | MIT, comme le plugin |
 | bota-feuilles.svg | schéma dessiné pour ce plugin d'après les définitions de Shipunov 2021 p. 82 (dont la base) et d'IPGRI 1999 p. 32-33 (aucune figure recopiée) | MIT, comme le plugin |
 | id-aile-mesure.svg | schéma dessiné pour ce plugin d'après les seuils de l'onglet Identification et la clé de la FoC 2008 (aucune figure recopiée) | MIT, comme le plugin |

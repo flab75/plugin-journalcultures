@@ -5,6 +5,7 @@
 - Santé : saison de *Panonychus citri* (hiver en Tunisie seulement, NC State n'en donne pas) ; température du mal secco, Chapot et OEPP en désaccord ; aleurode épineux en Italie d'après la fiche OEPP (Porcelli 2008).
 - Noms des plantes : aurantium (pomelo, clémentine et satsuma rangés en formes ; pamplemousse et mandarine à part), Citrofortunella, jambhiri, reshni et unshiu sourcés ou marqués « déduction ».
 - Schéma de la rusticité : légende sur deux lignes.
+- Fertilisation : planche « à quoi ressemble chaque carence » (saine, azote, magnésium, fer, zinc), dessin façon gravure coloriée ; légende du schéma « Où se voit une carence » précisée pour le potassium.
 
 ## 0.28 (2026-11-03), suite : botanique
 - La feuille : mots pour décrire le limbe, le sommet, la base et le bord (IPGRI, Shipunov), avec un schéma dessiné pour le plugin (forme, sommet, bord, base) ; feuilles alternes ; épine et aiguillon.

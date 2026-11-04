@@ -323,7 +323,11 @@ Toujours **regarder d'abord quelles feuilles** sont touchées : les vieilles ou 
 
 ![Où se voit une carence](../images/ferti-carences.svg)
 
-*Où se voit une carence, d'après le tableau ci-dessous : fer, zinc, manganèse sur les jeunes pousses ; azote et magnésium sur les vieilles feuilles ; potassium sur les feuilles adultes, selon la source. Schéma dessiné pour ce plugin, MIT.*
+*Où se voit une carence, d'après le tableau ci-dessous : fer, zinc, manganèse sur les jeunes pousses ; azote et magnésium sur les vieilles feuilles ; potassium sur les feuilles adultes (les vieilles pour Haifa, celles de la pousse de printemps tout juste mûres pour UF/IFAS SL457). Schéma dessiné pour ce plugin, MIT.*
+
+![Carences sur feuille d'agrume : saine, azote, magnésium, fer, zinc](../images/ferti-carences-feuilles.svg)
+
+*À quoi ressemble chaque carence, d'après le tableau ci-dessous (UF/IFAS SL457, Haifa, Elavarasan 2019) : A saine ; B azote, vert pâle à jaune uniforme, vieilles feuilles ; C magnésium, V vert à l'envers à la base, vieilles feuilles ; D fer, réseau fin de nervures vertes sur limbe jaune pâle, jeunes pousses aux feuilles plus petites ; E zinc, bandes vertes le long des nervures, feuilles petites, étroites et pointues. Dessin façon gravure coloriée pour ce plugin, MIT.*
 
 **Retenu** pour l'azote, le magnésium, le fer, le zinc et le manganèse : les trois sources concordent (UF/IFAS SL457, Haifa, Elavarasan 2019). Le potassium est décrit par Haifa et UF/IFAS SL457, qui ne placent pas les symptômes sur les mêmes feuilles (voir le tableau).
 
