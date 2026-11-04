@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.28 (2026-11-04), suite : relecture de la notice
+- Fertilisation : la corne couvre 15 % de l'azote du plan (et non 18 %), rapports recalculés (2,7-1-3,3 ; 2,4-1-1 ; 3,5-1-2) ; aucune part de corne ne mène à 2-1-1 ; certains enrobés déclarent des oligo-éléments ; durées de l'enrobé selon la température marquées « une seule source » (fiche ICL de l'Osmocote : 16, 21 et 26 °C).
+- Santé : saison de *Panonychus citri* (hiver en Tunisie seulement, NC State n'en donne pas) ; température du mal secco, Chapot et OEPP en désaccord ; aleurode épineux en Italie d'après la fiche OEPP (Porcelli 2008).
+- Noms des plantes : aurantium (pomelo, clémentine et satsuma rangés en formes ; pamplemousse et mandarine à part), Citrofortunella, jambhiri, reshni et unshiu sourcés ou marqués « déduction ».
+- Schéma de la rusticité : légende sur deux lignes.
+
 ## 0.28 (2026-11-03), suite : botanique
 - La feuille : mots pour décrire le limbe, le sommet, la base et le bord (IPGRI, Shipunov), avec un schéma dessiné pour le plugin (forme, sommet, bord, base) ; feuilles alternes ; épine et aiguillon.
 - Le fruit : couches du péricarpe chez les agrumes (flavédo = exocarpe, albédo surtout mésocarpe, endocarpe et vésicules de jus) ; parthénocarpie, auto-incompatibilité et triploïdes (fruits sans pépins).

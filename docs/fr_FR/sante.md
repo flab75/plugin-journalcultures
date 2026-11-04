@@ -152,7 +152,7 @@ ce n'est pas un produit autorisé, il contient 5 % d'huile (contre 1,5 à 2 % po
 | Tétranyque tisserand (*Tetranychus urticae*) | vers 30 °C | supporte l'air sec | réseau d'alerte d'Andalousie ; BSV PACA 2020 pour l'air sec |
 | Acarien rouge des agrumes (*Panonychus citri*) | vers 25 °C ; à 35 °C, 76 % meurent sans pondre | modérée (Kasap n'a testé que 65 %) ; très chaud et sec défavorable | Andalousie, Kasap 2009 ; NC State pour le chaud et sec |
 
-*P. citri* pullule surtout au printemps ; ensuite à l'automne (NC State) ou l'hiver (Tunisie : Chouikhi 2022). Sous serre, les deux sont possibles ; des toiles nettes font penser à *T. urticae* (déduction du plugin).
+Saison de *Panonychus citri* : l'hiver en Tunisie (Chouikhi 2022, **une seule source**) ; la fiche NC State ne donne pas de saison (elle signale seulement des invasions au printemps et à l'automne sur les agrumes de véranda). Sous serre, les deux sont possibles ; des toiles nettes font penser à *T. urticae* (déduction du plugin).
 
 **Gestes** :
 - regarder les deux faces des jeunes feuilles à la loupe (BSV PACA 2020, **une seule source**) ;
@@ -240,7 +240,7 @@ organisme réglementé (liste A2 de l'OEPP) ; dans l'Union européenne, organism
 
 
 **Pourquoi** : il entre par les **blessures**, colonise le bois puis toute la plante (Catane 2022-2023, OEPP 2024) ; toute lésion, quelle qu'en soit l'origine, favorise l'infection (Spina et Cutuli 1983).
-Les infections ont lieu surtout de novembre à février, avec un pic en janvier ; les organes qui produisent les spores apparaissent dès 5 °C (Chapot 1963, **une seule source**).
+Les infections ont lieu surtout de novembre à février, avec un pic en janvier ; les organes qui produisent les spores apparaissent dès 5 °C pour Chapot (1963), vers 10 °C pour l'OEPP, qui situe l'infection entre 14 et 28 °C (OEPP 2024) : **les deux sources ne s'accordent pas**.
 Très sensibles : citronnier, lime vraie, cédratier (Chapot 1963) ; l'OEPP cite aussi la bergamote et le bigaradier. Le plugin ne le propose que pour les citronniers et les limes.
 
 **Gestes** :
@@ -269,7 +269,7 @@ La sensibilité comparée des espèces vient d'observations au champ, pas toujou
 - photographier le dessous des feuilles et signaler à la DRAAF-SRAL (service de l'État) ou à la FREDON de sa région, photos jointes (fiche SORE, **une seule source**) ;
 - en attendant, ne pas déplacer ni donner la plante (précaution du plugin).
 
-Présent en France depuis 2023 : premier foyer confirmé dans le Gard (et Lunel, Hérault) en juin 2023 (OEPP RS 2023/160), puis à Menton (OEPP RS 2024/217) ; aujourd'hui en France continentale et en Corse, en Italie, en Grèce, en Croatie et ailleurs autour de la Méditerranée (OEPP 2026) ; en Italie depuis 2008, dans les Pouilles (EFSA 2018).
+Présent en France depuis 2023 : premier foyer confirmé dans le Gard (et Lunel, Hérault) en juin 2023 (OEPP RS 2023/160), puis à Menton (OEPP RS 2024/217) ; aujourd'hui en France continentale et en Corse, en Italie, en Grèce, en Croatie et ailleurs autour de la Méditerranée (OEPP 2026) ; en Italie depuis 2008, dans les Pouilles (fiche OEPP, d'après Porcelli 2008).
 Savons et mouillants ne le contrôlent qu'en partie (Cioffi 2013, **une seule source**).
 
 ### Tristeza (présente en Haute-Corse)
@@ -344,14 +344,15 @@ Lues en entier, sauf : Whiteside 1971, El-Hamalawi et Menge 1994, Liu et Stansly
 - **EFSA 2018** : EFSA Panel on Plant Health, *Pest categorisation of Aleurocanthus spp.*, *EFSA Journal* 16(10):e05436.
 - **El-Hamalawi et Menge 1994** : *Plant Disease* 78:700 (avocatier).
 - **Gómez-Marco 2016** : Gómez-Marco F. et al., *J. Pest Sci.* 89:69-79.
-- **J. Econ. Entomol. 2019** : micro-coccinelles *Scymnus* et pucerons des agrumes.
+- **J. Econ. Entomol. 2019** : micro-coccinelles *Scymnus* et pucerons des agrumes ; auteurs non relevés (à compléter) : si c'est l'équipe de Gómez-Marco 2016, les deux ne comptent que pour une source.
 - **Kasap 2009** : Kasap İ., *Turkish J. Agric. For.* 33:593-600.
 - **Liu et Stansly 2000** : *Pest Management Science* 56:861.
 - **Migheli 2009** : Migheli Q. et al., *Plant Disease* 93:852-867.
-- **NC State** : fiche *Citrus red mite* (*Panonychus citri*), NC State University.
+- **NC State** : fiche *Citrus red mite* (*Panonychus citri*), NC State University : très chaud et sec défavorable ; aucune saison de pullulation.
 - **NHB** : National Horticulture Board (Inde), fiche fumagine et maladies des agrumes.
 - **Nigro 2011** : Nigro F., Ippolito A., Salerno M. G., *Journal of Plant Pathology* 93(3):523-560.
-- **OEPP 2024** : fiche de l'Organisation européenne et méditerranéenne pour la protection des plantes (mal secco).
+- **OEPP 2024** : fiche de l'Organisation européenne et méditerranéenne pour la protection des plantes (mal secco) : pycnides vers 10 °C, infection entre 14 et 28 °C.
+- **OEPP, fiche aleurode épineux** ([gd.eppo.int/taxon/ALECSN/datasheet](https://gd.eppo.int/taxon/ALECSN/datasheet)) : premier signalement en Italie en 2008 dans les Pouilles (Porcelli 2008).
 - **OEPP 2026** : base de données de l'OEPP ([gd.eppo.int](https://gd.eppo.int)), répartition et statut réglementaire consultés le 3 novembre 2026 : tristeza (CTV000), aleurode épineux (ALECSN), *Diaphorina citri* (DIAACI), mal secco (DEUTTR).
 - **OEPP RS 2023/160, RS 2024/217** : Service d'information de l'OEPP, premier signalement de l'aleurode épineux en France ([2023/160](https://gd.eppo.int/reporting/article-7642)), puis à Menton.
 - **Oliveira 1981** : Oliveira et al., Embrapa, *Pesquisa Agropecuária Brasileira* 16(6).

@@ -106,8 +106,8 @@ Un 12-6-6 ou 12-4-6 avec oligo-éléments collerait mieux à la lettre des sourc
 
 **Et si on ajoute la corne broyée ?** Elle n'apporte que de l'azote (13 %, organique, lent) : ni phosphore, ni potassium, ni oligo-éléments.
 - Elle ne compense donc **pas** l'absence d'oligo-éléments.
-- Elle **rapproche un peu** le rapport de celui conseillé : à la dose de l'étiquette, elle couvre environ 15 % de l'azote du plan, et le Ferti le reste ; l'ensemble passe d'environ 2,3-1-3,3 à 2,8-1-3,4 (calcul du plugin), le potassium reste au-dessus de l'azote.
-  Pour atteindre 2-1-1, il faudrait que la corne fournisse près des deux tiers de l'azote, soit environ quatre fois sa dose d'étiquette : le plugin ne le propose pas.
+- Elle **rapproche un peu** le rapport de celui conseillé : à la dose de l'étiquette, elle couvre environ 15 % de l'azote du plan, et le Ferti le reste ; l'ensemble passe d'environ 2,3-1-3,3 à 2,7-1-3,3 (calcul du plugin), le potassium reste au-dessus de l'azote.
+  Aucune part de corne ne mène à 2-1-1 : sans phosphore ni potassium, elle laisse le rapport P-K du Ferti (1-3,3) et ne fait que monter l'azote (deux tiers de corne : environ 7-1-3,3).
 - Elle allonge la libération (effet 3 à 4 mois contre 2) : apport plus régulier, sans source qui en montre l'intérêt pour un agrume en pot.
 Bref, la corne est un complément d'azote à libération lente, pas un correctif des deux réserves ci-dessus.
 
@@ -117,21 +117,21 @@ Le défaut d'un engrais « spécial agrumes » du commerce (7-3-10, 3-2-5, 5-4-9
 C'est un **excès de potassium**. On ne le réduit qu'en confiant une part de l'azote à des produits **sans potassium** et **lents** (corne) **à la place** d'une part de l'engrais de fond, jamais en plus : la dose en pot est déjà 3 à 6 fois le besoin réel (voir [la dose en pot](#combien--la-dose-en-pot)).
 Le sang séché ne compte pas : azote rapide (effet en 3 à 4 jours, étiquette), il ne remplace pas une part de l'azote d'une saison ; c'est un coup de fouet ponctuel, hors plan.
 
-Calculs du plugin pour un pot de 17,7 L (≈ 40 g d'azote par saison), corne à 1 g par litre, 3 apports (dose de son étiquette) :
+Calculs du plugin pour un pot de 17,7 L (≈ 40 g d'azote par saison), corne à 1 g par litre, 3 apports (dose de son étiquette, environ 15 % de l'azote du plan) :
 
 | Engrais de fond | Compléments | Rapport obtenu | Remarque |
 |---|---|---|---|
 | spécial agrumes 7-3-10 seul | — | 2,3-1-3,3 | potassium au-dessus de l'azote |
-| spécial agrumes 7-3-10 (82 % de l'azote) | corne 18 % | 2,8-1-3,4 | le potassium reste au-dessus de l'azote |
+| spécial agrumes 7-3-10 (85 % de l'azote) | corne 15 % | 2,7-1-3,3 | le potassium reste au-dessus de l'azote |
 | engrais équilibré 2-1-1 (12-6-6) seul | — | 2-1-1 | le rapport des sources ; vérifier la libération (voir ci-dessous) |
-| engrais 2-1-1 (82 %) | corne 18 % | 2,4-1-1 | entre 2-1-1 et 3-1-1 ; azote lent en plus |
-| organo-minéral 3-1-2 + Mg, libération 100 jours (82 %) | corne 18 % | 3,7-1-2 | forme et rapport conformes, magnésium compris |
+| engrais 2-1-1 (85 %) | corne 15 % | 2,4-1-1 | entre 2-1-1 et 3-1-1 ; azote lent en plus |
+| organo-minéral 3-1-2 + Mg, libération 100 jours (85 %) | corne 15 % | 3,5-1-2 | forme et rapport conformes, magnésium compris |
 | n'importe quel fond (70 %) | liquide 2-1-1,7 à oligo-éléments chélatés (30 %), à chaque arrosage en saison | ≈ 2,1 à 2,9-1-1,2 à 2,7 | seule façon d'apporter Cu, Mn, Zn, Mo sans produit « oligo » à part |
 
 Conclusions :
 - avec la gamme de produits qu'on a (engrais 7-3-10, corne), le potassium reste au-dessus de l'azote ; pour atteindre 2-1-1, il faut **changer** l'engrais de fond, pas le compléter ;
 - le fer (chélate) et le magnésium (sel d'Epsom) **ne font pas partie d'un plan** : la notice les réserve au signe observé (voir [Reconnaître une carence](#reconnaître-une-carence)) ;
-- le manque le plus courant des engrais lents trouvés en Europe, ce sont les **oligo-éléments** (zinc, manganèse, cuivre) : seuls les engrais liquides en déclarent ; les donner sur signe, ou par un liquide léger en saison ;
+- le manque le plus courant des engrais lents trouvés en Europe, ce sont les **oligo-éléments** (zinc, manganèse, cuivre) : parmi les engrais lents, seuls certains enrobés en déclarent (voir [L'engrais enrobé](#lengrais-enrobé)), sinon un engrais liquide ; les donner sur signe, ou par un liquide léger en saison ;
 - aucune source ne montre qu'un engrais riche en potasse nuise à un agrume en pot : ce rééquilibrage suit la lettre des sources, pas un problème observé.
 
 **Avant d'acheter un engrais 2-1-1 ou 3-1-1**, lire sur le sac (ces produits sont souvent vendus pour la pelouse) :
@@ -146,7 +146,7 @@ Tout cela se saisit dans le plugin : la part d'azote de chaque produit découle 
 
 Des granulés d'engrais minéral entourés d'une fine enveloppe de résine : l'eau la traverse, dissout l'engrais, qui ressort peu à peu. C'est l'une des deux formes « à libération lente » conseillées en pot (voir [Le bon produit](#2-le-bon-produit)).
 Ce qu'en disent les étiquettes des fabricants :
-- la **durée** (3, 6, 8 à 9 mois…) est donnée pour une température fixe, souvent 21 °C : elle s'allonge au frais et raccourcit au chaud (pour un « 6 mois » : 6-7 mois à 15 °C, 5-6 mois à 21 °C, 4-5 mois à 27 °C) ; en serre l'été, il peut être épuisé avant la fin de la saison ;
+- la **durée** (3, 6, 8 à 9 mois…) est donnée pour une température fixe, souvent 21 °C : elle s'allonge au frais et raccourcit au chaud (pour un « 6 mois » : 6-7 mois à 15 °C, 5-6 mois à 21 °C, 4-5 mois à 27 °C, fiche d'un revendeur, **une seule source** ; la fiche ICL de l'Osmocote donne ses durées à 16, 21 et 26 °C) ; en serre l'été, il peut être épuisé avant la fin de la saison ;
 - certains se **mélangent** au substrat au rempotage seulement, d'autres se posent **en surface** et se griffent : lire l'étiquette ;
 - un **fer** chélaté en EDTA n'est stable qu'entre pH 4 et 6,5 (fiche technique d'un enrobé) : au-dessus (eau dure, substrat calcaire), il devient peu disponible, et le fer EDDHA sur signe reste utile (voir [pH et eau du robinet](#ph-et-eau-du-robinet)) ;
 - la **dose** est donnée en grammes par litre de substrat pour toute la durée : pour des plantes en pot, 2-3 g/L en dose faible, **3-4 g/L en dose moyenne**, 4-5 g/L en dose forte (un 6 mois à environ 16 % d'azote : 0,5 à 0,6 g d'azote par litre en dose moyenne) ; elle vaut pour un substrat sans engrais et des plantes adultes : **demi-dose pour un jeune plant** ; c'est bien en dessous de ce que calcule le plugin pour une saison (0,07 g par litre et par semaine sur 30 semaines ≈ 2 g par litre) ; ces doses visent les plantes en pot et les pépinières en conteneur ; l'écart va dans le sens de la mise en garde de [la dose en pot](#combien--la-dose-en-pot) (déduction du plugin, aucune source ne compare).
@@ -169,7 +169,7 @@ Ce qu'en disent l'étiquette et la fiche d'un 8-5-5 « utilisable en agriculture
 - la **durée** (« nourrit jusqu'à 3 mois ») n'est pas l'intervalle : la même étiquette dit de réappliquer **après 5 semaines** ; c'est l'intervalle qu'on saisit ;
 - la **dose** est en **poignées** (« 2 à 5 selon la plante ») : imprécis ; peser une fois sa poignée, ou laisser le plugin calculer les grammes ; une étiquette « agrumes » de la même gamme donne **5 g par litre de pot sous 10 L, 3 g/L au-dessus**, toutes les 5 semaines de mars à septembre ;
 - un 8-5-5 fait **1,6-1-1** : proche du 2-1-1 conseillé, avec un peu plus de phosphore ; **ni magnésium ni oligo-éléments** déclarés : fer et magnésium à part, sur signe seulement ;
-- « **utilisable en agriculture biologique** » renvoie à la liste des engrais autorisés en bio (règlement (UE) 2021/1165, annexe II) : les engrais azotés de synthèse n'y sont pas ; un engrais enrobé à base de nitrate d'ammonium (voir [L'engrais enrobé](#lengrais-enrobé)) ne l'est donc pas.
+- « **utilisable en agriculture biologique** » renvoie à la liste des engrais autorisés en bio (règlement (UE) 2021/1165, annexe II) : les engrais azotés de synthèse n'y sont pas ; un engrais enrobé (azote minéral de synthèse, voir [L'engrais enrobé](#lengrais-enrobé)) ne l'est donc pas.
 
 Le plugin, pour un 8 % d'azote toutes les 5 semaines, calcule environ **4,4 g par litre** et par apport (0,07 × 5 ÷ 0,08) : l'étiquette agrumes (3 g/L au-dessus de 10 L) donne environ 70 % du calcul (l'enrobé est bien plus bas), dans le sens de la mise en garde de [la dose en pot](#combien--la-dose-en-pot) (déduction du plugin, aucune source ne compare).
 
@@ -380,6 +380,7 @@ Lues en entier, sauf mention.
 - **Elavarasan 2019** : Elavarasan K., Premalatha A., *Journal of Pharmacognosy and Phytochemistry* 8(4):1705-1708 (Inde).
 - **Étiquettes** : Ferti Agrumes, Sang séché, Corne broyée, Kélafer (Agro Sens / Comptoir des Jardins), sel d'Epsom GiDe ; fiche de données de sécurité Ferti Agrumes (Comptoir des Jardins, 2026).
 - **Engrais enrobé** : fiche technique d'un engrais enrobé 16-8-12 « 6 mois » (revendeur italien, 2026) : durée selon la température, doses en pot, demi-dose pour un jeune plant, chélate EDTA stable entre pH 4 et 6,5.
+- **ICL Osmocote** : fiche technique du fabricant (ICL Growing Solutions) : durées de libération données à 16, 21 et 26 °C.
 - **Fertiligène Performance Organics** : étiquette engrais agrumes (fiche du vendeur Truffaut) ; engrais universel 8-5-5 (fiche du vendeur Truffaut, norme NF U 42-001, poignées, réappliquer après 5 semaines) et sa fiche de données de sécurité (Evergreen Garden Care, 2023).
 - **Règlement (UE) 2021/1165** : annexe II, engrais et amendements autorisés en agriculture biologique.
 - **Guardiola 1975** : Guardiola J. L., Vivas S., González-Sicilia E., efficacité de l'analyse foliaire de l'azote, *Fruits* 30(2):113-118 (INIA, Espagne).
