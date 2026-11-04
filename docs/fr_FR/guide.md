@@ -81,7 +81,7 @@ Ces règles valent pour les arbres en général ; qu'elles s'appliquent aux agru
 
 - **Annelure** : enlever un anneau d'écorce coupe le liber, pas le bois. Les sucres ne descendent plus : ils s'accumulent au-dessus de l'anneau et manquent dans les racines (Li et al. 2003, sur l'hybride de mandarinier « Murcott », **une seule source** ; Wikipédia « Annélation » et « Girdling » confirment).
   Chez Li et al., l'accumulation au-dessus ne se voit pas sur un arbre très chargé de fruits, qui consomment les sucres.
-  Un anneau complet qui ne se referme pas finit par tuer les racines, puis l'arbre (Wikipédia « Annélation » et « Girdling », **une seule source** : l'encyclopédie). Une écorce rongée tout autour peut se réparer par une [greffe en pont](greffe.md#autres-types--gravures-anciennes), souvent inutile si le bois n'est pas atteint : un anneau fait au printemps, bien bandé, se referme d'ordinaire (Bailey 1907 p. 129-130, **une seule source**, ancienne).
+  Un anneau complet qui ne se referme pas finit par tuer les racines, puis l'arbre (Wikipédia « Annélation » et « Girdling », **une seule source** : l'encyclopédie). Une écorce rongée tout autour peut se réparer par une [greffe en pont](greffe.md#autres-types--daprès-bailey), souvent inutile si le bois n'est pas atteint : un anneau fait au printemps, bien bandé, se referme d'ordinaire (Bailey 1907 p. 129-130, **une seule source**, ancienne).
 
 ## La feuille
 
