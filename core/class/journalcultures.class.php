@@ -667,7 +667,7 @@ class journalcultures extends eqLogic {
     config::save('coll_greffes', $c->getId(), 'journalcultures');
     return $c;
   }
-  public function versGreffes() { // sans sauvegarder ; dans « Greffes », le champ Porte-greffe nomme le porte-greffe du greffon (ailleurs : « pied franc » pour un porte-greffe), l'ancien est gardé dans greffe_pgori
+  public function versGreffes() { // sans sauvegarder ; dans « Greffes », le champ Porte-greffe nomme le porte-greffe du greffon (ailleurs : « franc de pied » pour un porte-greffe), l'ancien est gardé dans greffe_pgori
     $g = self::collGreffes(is_object($c = $this->collection()) ? $c->getObject_id() : $this->getObject_id());
     if ($g->getId() != $this->getConfiguration('collection')) {
       self::nomLibre($g->getObject_id(), $this->getName(), $this->getId());
