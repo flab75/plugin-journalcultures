@@ -30,7 +30,7 @@ Ce qui vient du plugin lui-même (choix, seuil, déduction) est écrit comme tel
 
 ![Mesurer l'aile et le limbe](../images/id-aile-mesure.svg)
 
-*Fig. I1 – Mesurer l'aile et le limbe : chaque longueur se prend le long de la nervure, chaque largeur au plus large (choix du plugin). Seuils du plugin : aile longue à partir de la moitié du limbe, simple liseré sous 2 mm de large. Schéma dessiné pour ce plugin, MIT.*
+*Fig. I1 – Mesurer l'aile et le limbe : chaque longueur se prend le long de la nervure, chaque largeur au plus large (choix du plugin). Seuils du plugin : aile longue à partir de la moitié du limbe, simple liseré sous 2 mm de large ; aile presque aussi large que le limbe à partir des ¾ de sa largeur. Schéma dessiné pour ce plugin, MIT.*
 
 - La pulpe se décrit en deux caractères : **Saveur** (douce, acide, amère) et **Aspect** (en vésicules, la normale ; en perles, le citron caviar ; presque absente, peau très épaisse).
 
@@ -172,7 +172,7 @@ Les groupes de la colonne du milieu sont ceux du plugin. La colonne de droite di
 
 ![Rejet du porte-greffe et goulot de bouteille](../images/id-rejet.svg)
 
-*Fig. I5 – Rejet à 3 folioles né sous le point de greffe, à couper (UF/IFAS HS1309) ; goulot de bouteille autour de la greffe, normal sur Poncirus avec la plupart des variétés, sans dépérissement (Curk 2022 p. 195). Schéma dessiné pour ce plugin, MIT.*
+*Fig. I5 – Rejet à 3 folioles né sous le point de greffe, à couper (UF/IFAS HS1309) ; goulot de bouteille autour de la greffe, normal sur Poncirus avec la plupart des variétés, sans dépérissement ; ses fentes d'écorce laissent entrer les spores de Phytophthora chez une variété sensible, d'où une greffe à 40 cm au moins du sol (Curk 2022 p. 195, **une seule source**). Schéma dessiné pour ce plugin, MIT.*
 
 - Les pucerons installés sur les rejets du porte-greffe font craindre la tristeza (INRAE-Cirad, fiche technique porte-greffe, **une seule source**).
 - Distinguer un **Poncirus** d'un **hybride de Poncirus** par la seule feuille : le plugin reste souvent « Indécis ». Le feuillage persistant ou un mélange de 1 et 3 folioles orientent vers l'hybride (choix du plugin).

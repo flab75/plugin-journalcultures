@@ -142,7 +142,7 @@ Ces règles valent pour les arbres en général ; qu'elles s'appliquent aux agru
 
 ![Fleur d'agrume coupée en long](../images/bota-fleur-agrume.svg)
 
-*Fig. B11 – Fleur d'agrume coupée en long : calice en coupe à 3-5 lobes, 4-5 pétales épais, étamines en général 4 fois plus nombreuses que les pétales (jusqu'à 10 fois), libres ou soudées à la base, disque à nectar en anneau, ovaire de 5 à 14 loges, gros stigmate (FoC 2008, description du genre Citrus, **une seule source**). Schéma dessiné pour ce plugin, MIT.*
+*Fig. B11 – Fleur d'agrume coupée en long : calice en coupe à 3-5 lobes, 4-5 pétales épais, étamines en général 4 fois plus nombreuses que les pétales (jusqu'à 10 fois), libres ou soudées à la base, disque à nectar en anneau, ovaire de 5 à 14 loges, gros stigmate (FoC 2008, description du genre Citrus, **une seule source**). Le fruit naîtra de l'ovaire, les quartiers de ses loges. Schéma dessiné pour ce plugin, MIT.*
 
 - **Pollinisation** : le pollen va de l'anthère au stigmate, de la même fleur ou d'une autre (OpenStax p. 929 ; Shipunov p. 164).
 - **Fécondation** : le pollen germe, traverse le style jusqu'à l'ovule ; l'ovule fécondé devient la **graine** (OpenStax p. 934-936 ; Shipunov p. 155).
@@ -170,7 +170,7 @@ Ces règles valent pour les arbres en général ; qu'elles s'appliquent aux agru
 
 ![Coupe d'agrume légendée](../images/bota-coupe-agrume.svg)
 
-*Fig. B13 – Coupe en travers : zeste (flavédo), albédo, endocarpe, quartiers remplis de vésicules de jus, pépins du côté de l'axe (couches : Sadka et al. 2019 ; pépins : FoC 2008 ; **une seule source** pour chacun). Schéma dessiné pour ce plugin, MIT.*
+*Fig. B13 – Coupe en travers, au milieu du fruit : zeste (flavédo), albédo, endocarpe, quartiers remplis de vésicules de jus, pépins du côté de l'axe ; péricarpe = exocarpe + mésocarpe + endocarpe (couches : Sadka et al. 2019 ; pépins : FoC 2008 ; **une seule source** pour chacun). Schéma dessiné pour ce plugin, MIT.*
 
 ![Orange coupée, légendée](../images/bota-orange.webp)
 

@@ -13,6 +13,7 @@
 - Santé : chaque légende dit quoi repérer et où regarder (loupe pour les acariens) ; pour les photos incertaines ou prises sur une autre plante, ce qui serait pareil sur un agrume.
 - Greffe : lettres de la gravure de la greffe en approche (Bailey, fig. 139) regrossies.
 - Toutes les figures sont numérotées par onglet (M, B, I, F, G, S) : « Fig. S5 ».
+- Douze schémas redessinés en gravure fine : fleur et coupe d'agrume (Botanique) ; où se voit une carence, avec « jaunissement asymétrique : penser au HLB (marbrure) » (UF/IFAS PP328) (Fertilisation) ; écusson (charnière du forçage), chip budding, couronne (lèvre d'écorce, bois intact), fente herbacée (Greffe) ; mesurer l'aile (seuils de largeur), formes de fruit, folioles, ailes par groupe, rejet du porte-greffe (Phytophthora, Curk 2022) (Identification) ; légendes alignées sur les planches.
 
 ## 0.28 (2026-11-03), suite : botanique
 - La feuille : mots pour décrire le limbe, le sommet, la base et le bord (IPGRI, Shipunov), avec un schéma dessiné pour le plugin (forme, sommet, bord, base) ; feuilles alternes ; épine et aiguillon.

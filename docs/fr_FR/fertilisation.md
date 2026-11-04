@@ -335,7 +335,7 @@ Toujours **regarder d'abord quelles feuilles** sont touchées : les vieilles ou 
 
 ![Où se voit une carence](../images/ferti-carences.svg)
 
-*Fig. F4 – Où se voit une carence, d'après le tableau ci-dessous : fer, zinc, manganèse sur les jeunes pousses ; azote et magnésium sur les vieilles feuilles ; potassium sur les feuilles adultes (les vieilles pour Haifa, celles de la pousse de printemps tout juste mûres pour UF/IFAS SL457). Schéma dessiné pour ce plugin, MIT.*
+*Fig. F4 – Où se voit une carence, d'après le tableau ci-dessous : fer, zinc, manganèse sur les jeunes pousses ; azote et magnésium sur les vieilles feuilles ; potassium sur les feuilles adultes (les vieilles pour Haifa, celles de la pousse de printemps tout juste mûres pour UF/IFAS SL457). Regarder d'abord quelles feuilles jaunissent ; jaunissement asymétrique : penser au HLB (marbrure) (UF/IFAS PP328, **une seule source**). Schéma dessiné pour ce plugin, MIT.*
 
 ![Carences sur feuille d'agrume : saine, azote, magnésium, fer, zinc](../images/ferti-carences-feuilles.svg)
 
@@ -355,7 +355,7 @@ Toujours **regarder d'abord quelles feuilles** sont touchées : les vieilles ou 
 
 - Manganèse et zinc, parfois le fer, manquent ensemble sur sol calcaire (« marl chlorosis », UF/IFAS SL457) ; le manque de fer se voit aussi en sol alcalin ou gorgé d'eau (SL457).
 - Le manque de magnésium avancé peut se confondre avec celui d'azote (Zekri et Obreza 2013, **une seule source**).
-- Un jaunissement **pareil des deux côtés** de la nervure centrale est une carence ; asymétrique, il faut penser à une maladie (UF/IFAS PP328, **une seule source** ; voir [Santé](sante.md#hlb-greening-absent)).
+- Un jaunissement **pareil des deux côtés** de la nervure centrale est une carence ; asymétrique, penser au HLB (marbrure) (UF/IFAS PP328, **une seule source** ; voir [Santé](sante.md#hlb-greening-absent)).
 - Doses de correction : celles de l'**étiquette** de chaque produit. Les doses en kg pour 100 L d'Elavarasan 2019 sont faites pour des vergers indiens.
 
 L'**analyse des feuilles** en laboratoire ne sert guère à un particulier : ses normes sont établies en verger, sur des feuilles de printemps de 4 à 6 mois prises sur des rameaux sans fruits
