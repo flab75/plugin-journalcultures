@@ -187,7 +187,7 @@ la plante **garde son nom, sa fiche et sa collection** ; seuls le greffon (d'où
 Une réparation de moins de 60 jours a son suivi J+21 et J+42 (*réussie* quand les greffons sont soudés aux deux bouts) ; sinon, rien n'est suivi.
 
 **Tant qu'aucun œil n'a débourré**, la plante **reste le porte-greffe** : son nom et sa fiche ne changent pas, sauf le champ « Porte-greffe » : un porte-greffe y porte « franc de pied », et dans la collection **Greffes**
-(créée à la première greffe), où elle est rangée, le nom du porte-greffe du greffon (ex. FA5), puis « franc de pied » de nouveau si la greffe meurt ; avec une étiquette de couleur selon l'état de la greffe ; la fiche indique le greffon en attente. L'alerte de froid se règle sur le plus fragile des deux (rusticité et jeunesse du greffon, ou du porte-greffe) et l'engrais sur une jeune greffe (choix du plugin). Une entrée « Greffe » est ajoutée au journal.
+(créée à la première greffe), où elle est rangée, le nom du porte-greffe du greffon (ex. FA5), puis « franc de pied » de nouveau si la greffe meurt ; avec une étiquette de couleur selon l'état de la greffe ; la fiche indique le greffon en attente, la tuile aussi (colonne Greffon). L'alerte de froid se règle sur le plus fragile des deux (rusticité et jeunesse du greffon, ou du porte-greffe) et l'engrais sur une jeune greffe (choix du plugin). Une entrée « Greffe » est ajoutée au journal.
 
 **Au débourrement d'un œil**, confirmé au contrôle (réponse « Oui » qui fait passer à *pousse du greffon*), porte-greffe et greffon deviennent
 **une nouvelle plante**. C'est le **même équipement** : journal, photos, pot, emplacement, courbes et champ « Sol » sont gardés (ce sont toujours ses racines) ;

@@ -758,7 +758,7 @@ class journalcultures extends eqLogic {
 
   public function enGreffe() { // étiquette de la tuile : greffe en cours (ni réussie ni échouée) → statut + texte, sinon null
     $s = (string)$this->getConfiguration('greffe_statut'); $gf = $this->getConfiguration('greffe_greffon');
-    return in_array($s, ['attente', 'probable', 'dormant', 'pousse']) ? ['s' => $s, 't' => __('Greffe', __FILE__) . ' : ' . journalcultures_calc::GREFFE_STATUTS[$s] . (is_array($gf) && ($gf['nom'] ?? '') !== '' ? ' — ' . $gf['nom'] : '')] : null;
+    return in_array($s, ['attente', 'probable', 'dormant', 'pousse']) ? ['s' => $s, 't' => __('Greffe', __FILE__) . ' : ' . journalcultures_calc::GREFFE_STATUTS[$s] . (is_array($gf) && ($gf['nom'] ?? '') !== '' ? ' — ' . $gf['nom'] : ''), 'g' => is_array($gf) ? (string)($gf['nom'] ?? '') : ''] : null; // g : colonne Greffon (greffon en attente)
   }
 
   public function suiviGreffe() { // null si la plante n'a pas de greffe suivie

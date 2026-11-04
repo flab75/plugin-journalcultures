@@ -1,6 +1,6 @@
 /* Journal de cultures — tuile d'une collection et ses fenêtres (plante, journal, noter, déplacer). Recopié dans chaque tuile par
    journalcultures::toHtml(), chargé une seule fois par page. Textes entre doubles accolades traduits côté PHP (core/i18n). */
-if (!window.journalcultures || window.journalcultures.v !== 32) (function () { // v : un onglet ouvert avant une mise à jour recharge la bibliothèque
+if (!window.journalcultures || window.journalcultures.v !== 33) (function () { // v : un onglet ouvert avant une mise à jour recharge la bibliothèque
   var css = document.getElementById('jdc-css') || document.createElement('style')
   css.id = 'jdc-css'
   css.textContent =
@@ -601,17 +601,17 @@ if (!window.journalcultures || window.journalcultures.v !== 32) (function () { /
   }
 
   // opt.panel : colonnes en plus (porte-greffe, dernière mesure), masquées sur téléphone
-  window.journalcultures = {v: 32, notice: notice, ajax: ajax, esc: esc, nb: nb, init: function (b, d, opt) {
+  window.journalcultures = {v: 33, notice: notice, ajax: ajax, esc: esc, nb: nb, init: function (b, d, opt) {
     if (!b) return
     d.apres = opt && opt.apres // relu par « Greffer… » (fiche)
     var pa = opt && opt.panel
-    var al = d.plantes.filter(function (p) { return p.alerte == 1 }), gr = d.plantes.filter(function (p) { return p.gr }), eng = d.plantes.filter(function (p) { return p.engrais })
+    var al = d.plantes.filter(function (p) { return p.alerte == 1 }), gr = d.plantes.filter(function (p) { return p.gr }), eng = d.plantes.filter(function (p) { return p.engrais }), gc = gr.some(function (p) { return p.gr.g }) // colonne Greffon : collection Greffes
     b.innerHTML = '<div class="jdc-r">' + d.plantes.length + ' ' + "{{plantes}}" + (al.length ? ' · <span class="al">' + al.length + ' ' + "{{en alerte}}" + '</span>' : '') +
       (gr.length ? ' · <span class="jdc-gr">' + gr.length + ' ' + "{{en greffe}}" + '</span>' : '') + (eng.length ? ' · ' + eng.length + ' ' + "{{engrais à donner}}" : '') + '</div>' +
-      '<table><tr>' + (d.admin == 1 ? '<th><input type="checkbox" class="jdc-tt" title="' + "{{Tout cocher}}" + '" aria-label="' + "{{Tout cocher}}" + '"></th>' : '') + '<th>' + "{{Plante}}" + '</th>' + (pa ? '<th class="xs">' + "{{Porte-greffe}}" + '</th>' : '') + '<th>' + "{{Lieu}}" + '</th><th class="n">T°</th><th class="n" title="' + "{{Rusticité effective (pot, âge et greffon compris)}}" + '">' + "{{Rust.}}" + '</th>' + (pa ? '<th class="xs">' + "{{Dernière mesure}}" + '</th>' : '') + '<th></th></tr>' +
+      '<table><tr>' + (d.admin == 1 ? '<th><input type="checkbox" class="jdc-tt" title="' + "{{Tout cocher}}" + '" aria-label="' + "{{Tout cocher}}" + '"></th>' : '') + '<th>' + "{{Plante}}" + '</th>' + (gc ? '<th>' + "{{Greffon}}" + '</th>' : '') + (pa ? '<th class="xs">' + "{{Porte-greffe}}" + '</th>' : '') + '<th>' + "{{Lieu}}" + '</th><th class="n">T°</th><th class="n" title="' + "{{Rusticité effective (pot, âge et greffon compris)}}" + '">' + "{{Rust.}}" + '</th>' + (pa ? '<th class="xs">' + "{{Dernière mesure}}" + '</th>' : '') + '<th></th></tr>' +
       d.plantes.map(function (p) {
         return '<tr class="p" tabindex="0" data-id="' + esc(p.id) + '">' + (d.admin == 1 ? '<td><input type="checkbox" class="jdc-ck" aria-label="' + esc(p.nom) + '" value="' + esc(p.id) + '"></td>' : '') +
-          '<td' + (p.alerte == 1 ? ' class="al"' : '') + (p.raison ? ' title="' + esc(p.raison) + '"' : '') + '>' + esc(p.nom) + (p.gr ? ' <span class="jdc-gr jdc-gr-' + esc(p.gr.s) + '" title="' + esc(p.gr.t) + '">' + ({attente: '⏳ ' + "{{greffe en attente}}", probable: '✓ ' + "{{greffe prise ?}}", dormant: '❄ ' + "{{œil dormant}}", pousse: '🌿 ' + "{{greffon pousse}}"}[p.gr.s] || "{{greffe}}") + '</span>' : '') + (p.alerte == 1 || p.raison ? ' <span class="al" aria-hidden="true">⚠</span><span class="jdc-sr">' + (p.alerte == 1 ? "{{en alerte}}" : '') + (p.raison ? ' : ' + esc(p.raison) : '') + '</span>' : '') + '</td>' + (pa ? '<td class="xs">' + esc(p.pg || '–') + '</td>' : '') + '<td>' + esc(p.empl || '–') + '</td><td class="n">' + nb(p.t, '°') + '</td>' +
+          '<td' + (p.alerte == 1 ? ' class="al"' : '') + (p.raison ? ' title="' + esc(p.raison) + '"' : '') + '>' + esc(p.nom) + (p.gr ? ' <span class="jdc-gr jdc-gr-' + esc(p.gr.s) + '" title="' + esc(p.gr.t) + '">' + ({attente: '⏳ ' + "{{greffe en attente}}", probable: '✓ ' + "{{greffe prise ?}}", dormant: '❄ ' + "{{œil dormant}}", pousse: '🌿 ' + "{{greffon pousse}}"}[p.gr.s] || "{{greffe}}") + '</span>' : '') + (p.alerte == 1 || p.raison ? ' <span class="al" aria-hidden="true">⚠</span><span class="jdc-sr">' + (p.alerte == 1 ? "{{en alerte}}" : '') + (p.raison ? ' : ' + esc(p.raison) : '') + '</span>' : '') + '</td>' + (gc ? '<td>' + esc(p.gr && p.gr.g || '–') + '</td>' : '') + (pa ? '<td class="xs">' + esc(p.pg || '–') + '</td>' : '') + '<td>' + esc(p.empl || '–') + '</td><td class="n">' + nb(p.t, '°') + '</td>' +
           '<td class="n">' + nb(p.reff, '°') + '</td>' + (pa ? '<td class="xs">' + esc(p.mes || '–') + '</td>' : '') + '<td>' + (p.engrais ? '<span title="' + esc(p.engrais) + '" role="img" aria-label="' + "{{Engrais à donner}}" + ' : ' + esc(p.engrais) + '">🌱</span>' + (d.admin == 1 ? ' <button type="button" class="jb jdc-eng" title="' + "{{Engrais donné}}" + '" aria-label="' + "{{Engrais donné}}" + '">✓</button>' : '') : '') + '</td></tr>'
       }).join('') + '</table>' + (d.plantes.length ? '' : '<p>' + "{{Aucune plante : « ＋ Plante » pour en ajouter.}}" + '</p>') +
       '<div class="jdc-bt">' + (d.admin == 1 ? '<button type="button" class="jb" data-b="nouvelle">＋ ' + "{{Plante}}" + '</button><button type="button" class="jb" data-b="noter">＋ ' + "{{Noter}}" + '</button><button type="button" class="jb" data-b="deplacer">' + "{{Déplacer…}}" + '</button>' : '') + '<button type="button" class="jb" data-b="journal">' + "{{Journal}}" + '</button></div>'
