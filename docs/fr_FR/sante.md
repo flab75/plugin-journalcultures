@@ -77,9 +77,9 @@ Du plus doux au plus fort : enlever à la main, couper, laver, auxiliaires, puis
 **Signes** : gomme, écorce brune qui se fend au collet ou au point de greffe ; feuilles vert pâle à nervures jaunes (atteinte sévère), qui tombent ;
 racines fines molles dont l'écorce part en laissant un fil blanc (Savita 2012, UC IPM).
 
-![Gomme au pied d'un citronnier](../images/sante-gommose.webp)
+![Gommose du collet : la lésion et le grattage](../images/sante-gommose.svg)
 
-*Fig. S1 – Gomme qui suinte au pied d'un citronnier (gommose du collet, Phytophthora probable selon l'auteur). Photo Eiku, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Lemon_tree_with_phytophtora_02_-_foot_rot_gummosis.jpg), [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).*
+*Fig. S1 – Gommose du collet (Phytophthora) : A, gomme qui suinte d'une écorce brune fendue au collet ou au point de greffe ; B, lésion de moins de la moitié du tour du tronc, grattée jusqu'à l'écorce saine. Détail et sources sur le dessin. Dessin façon gravure fine pour ce plugin, MIT.*
 
 
 **Pourquoi** : *Phytophthora* est un oomycète (proche des algues brunes, longtemps classé parmi les champignons) ; il vit dans le sol et nage dans l'eau. Il entre par les **plaies** : une plaie fraîche est envahie le plus facilement,
@@ -92,11 +92,11 @@ Savita 2012 dit qu'une plaie reste sensible jusqu'à 14 jours, sans référence 
 - arroser moins, laisser ressuyer, pot qui draine (UC IPM, BSV PACA 2020, NHB, UF/IFAS HS261) ; ne pas mouiller le tronc (NHB, Savita 2012) ;
 - collet et point de greffe hors de la terre (UC IPM, Sáenz Pérez 2019, Savita 2012, Whiteside 1971) ;
 - ne pas blesser le bas du tronc ni les racines (Savita 2012, Whiteside 1971, Oliveira 1981) ;
-- lésion de **moins de la moitié** du tour du tronc : enlever l'écorce brune et une bande d'écorce saine autour, laisser sécher, revoir pendant quelques mois (UC IPM, NHB, TNAU) ;
+- lésion de **moins de la moitié** du tour du tronc : enlever l'écorce brune et une bande d'écorce saine autour (environ 1,3 cm pour TNAU ; fig. S1<!-- sante-gommose -->), laisser sécher, revoir souvent pendant quelques mois (UC IPM) ; le seuil de la moitié vient de TNAU seul ; NHB dit seulement de gratter les parties malades ;
 - badigeon de cuivre (bouillie bordelaise) sur la plaie et le bas du tronc (UC IPM, NHB) ; sur l'avocatier, la bouillie bordelaise n'a pas freiné les chancres (El-Hamalawi et Menge 1994).
   En pot, le cuivre s'accumule dans le substrat ; un excès de cuivre est aussi une cause de manque de fer (voir [Reconnaître une carence](fertilisation.md#reconnaître-une-carence)) ;
 - en dernier, un fongicide autorisé au jardin, s'il en existe un pour cet usage (vérifier sur ephy.anses.fr), à la dose et pour l'usage de l'étiquette (les professionnels utilisent phosphonates ou fosétyl-Al : UC IPM, Vogel 1990, NHB, Sáenz Pérez 2019, Savita 2012) ;
-- **plus de la moitié** du tour du tronc : le déclin se voit dans le feuillage et le grattage ne suffit plus (UF/IFAS HS261, TNAU) ; remplacer la plante est un conseil économique
+- **plus de la moitié** du tour du tronc : le déclin se voit dans le feuillage (UF/IFAS HS261) ; TNAU ne réserve le grattage qu'aux lésions plus petites, sans dire quoi faire au-delà ; remplacer la plante est un conseil économique
   de UC IPM, pas un résultat d'essai.
 
 **Porte-greffe** : la sensibilité dépend du porte-greffe. Les bigaradiers, le Poncirus, les citranges et le citrumelo résistent (UF/IFAS HS261, Boccas et Laville 1976).
@@ -112,13 +112,13 @@ Un porte-greffe résistant et une greffe haute sont la meilleure prévention (Vo
 
 *Fig. S2 – Cochenille australienne (Icerya purchasi) et son sac à œufs blanc cannelé, sur un rameau de citronnier, en Inde. Photo Vijay Cavale, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Icerya_purchasi_feeding_on_Citrus.jpg), [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).*
 
-![Cochenilles sur une orange](../images/sante-cochenille-virgule.webp)
+![Cochenille virgule : feuille, fruit et boucliers](../images/sante-cochenille-virgule.svg)
 
-*Fig. S3 – Petits boucliers bruns sur un agrume vendu au marché, à Hawaï : probablement la cochenille virgule (Lepidosaphes beckii) selon l'auteur. Quelle que soit l'espèce, à repérer : boucliers bruns ou noirs collés à l'écorce, sur les rameaux et le long des nervures, ici sur le fruit ; miellat, fumagine, fourmis. Photo Scot Nelson, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Scale_insects_on_locally_grown_citrus_fruit.jpg), CC0 (domaine public).*
+*Fig. S3 – Cochenille virgule (Lepidosaphes beckii) : A, halos jaunâtres sur la feuille, points piqués restés verts sur le jeune fruit ; B, boucliers de la femelle (2 à 3 mm) et du mâle (environ 1 mm), à la même échelle, et un jeune couvert de fils cireux. Détail et sources sur le dessin. Dessin façon gravure fine pour ce plugin, MIT.*
 
-![Cochenille farineuse sur une tige](../images/sante-cochenille-farineuse.webp)
+![Cochenille farineuse : la colonie et une femelle](../images/sante-cochenille-farineuse.svg)
 
-*Fig. S4 – Cochenille farineuse des agrumes (Planococcus citri) : corps ovale couvert de cire blanche, bordé de courts filaments, ici seule sur une tige ligneuse. À repérer : amas cotonneux blancs sur les rameaux et le long des nervures. Photo Mikhail Khokhlov, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Planococcus_citri_on_a_plant.jpg), [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) ; réduite.*
+*Fig. S4 – Cochenille farineuse des agrumes (Planococcus citri) : A, colonies au pédoncule, sous le calice et là où feuille et fruit se touchent, fumagine à côté ; B, une femelle, corps mou rosé couvert de cire blanche, bordé de courts filaments. Détail et sources sur le dessin. Dessin façon gravure fine pour ce plugin, MIT.*
 
 
 **Gestes** :
@@ -139,10 +139,16 @@ ce n'est pas un produit autorisé, il contient 5 % d'huile (contre 1,5 à 2 % po
 ![Acarien rouge des agrumes](../images/sante-acarien-rouge.webp)
 
 *Fig. S5 – Acarien rouge des agrumes (Panonychus citri) adulte, sur citronnier Meyer. À repérer : à peine visible à l'œil nu, il se cherche à la loupe sur les deux faces des jeunes feuilles, qui se piquettent puis jaunissent ou bronzent. Photo Jim Baker, North Carolina State University, [Bugwood.org](https://www.ipmimages.org/browse/detail.cfm?imgnum=5204069), [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/).*
+![Acarien rouge : la feuille piquetée et une femelle](../images/sante-acarien-rouge.svg)
+
+*Fig. S6 – Acarien rouge des agrumes : A, petits points décolorés sur le dessus des jeunes feuilles, puis aspect grisâtre ou argenté ; B, une femelle, rouge, dodue, soies blanches à base rouge, environ 0,5 mm. Détail et sources sur le dessin. Dessin façon gravure fine pour ce plugin, MIT.*
 
 ![Tétranyque tisserand](../images/sante-tetranyque.webp)
 
-*Fig. S6 – Tétranyque tisserand (Tetranychus urticae), femelle et deux fils de soie, sur une feuille de haricot. Sur un agrume, mêmes signes : feuilles piquetées, petites toiles nettes, surtout sur les jeunes feuilles ; loupe nécessaire. Photo Gilles San Martin, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Tetranychus_urticae_with_silk_threads.jpg), [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/).*
+*Fig. S7 – Tétranyque tisserand (Tetranychus urticae), femelle et deux fils de soie, sur une feuille de haricot. Sur un agrume, mêmes signes : feuilles piquetées, petites toiles nettes, surtout sur les jeunes feuilles ; loupe nécessaire. Photo Gilles San Martin, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Tetranychus_urticae_with_silk_threads.jpg), [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/).*
+![Tétranyque : le dessous de la feuille et une femelle](../images/sante-tetranyque.svg)
+
+*Fig. S8 – Tétranyque tisserand sur agrume : A, sous la feuille, fines toiles et taches jaunes ou brunes entre les nervures ; B, une femelle, jaune verdâtre, deux taches sombres, une de chaque côté du dos, moins de 0,4 mm. Détail et sources sur le dessin. Dessin façon gravure fine pour ce plugin, MIT.*
 
 
 **Pourquoi le climat compte** : les sources ne parlent pas du même acarien.
@@ -167,11 +173,11 @@ Saison de *Panonychus citri* : l'hiver en Tunisie (Chouikhi 2022, **une seule so
 
 ![Aleurode floconneux sur une feuille](../images/sante-aleurode-floconneux.webp)
 
-*Fig. S7 – Aleurode floconneux (Aleurothrixus floccosus) : flocons cireux blancs sur une feuille de citronnier. À repérer : sous les feuilles ; les adultes, petites mouches blanches, s'envolent quand on secoue la plante ; miellat, fumagine. Photo VictorCegarra, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Aleurothrixus_floccosus.JPG), [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).*
+*Fig. S9 – Aleurode floconneux (Aleurothrixus floccosus) : flocons cireux blancs sur une feuille de citronnier. À repérer : sous les feuilles ; les adultes, petites mouches blanches, s'envolent quand on secoue la plante ; miellat, fumagine. Photo VictorCegarra, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Aleurothrixus_floccosus.JPG), [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).*
 
 ![Larve d'aleurode des agrumes](../images/sante-aleurode-larve.webp)
 
-*Fig. S8 – Larve plate de l'aleurode des agrumes (Dialeurodes citri) sur une feuille d'agrume, en Californie. À repérer : sous les feuilles, collée au limbe. Photo Kaldari, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Dialeurodes_citri_larva.jpg), domaine public.*
+*Fig. S10 – Larve plate de l'aleurode des agrumes (Dialeurodes citri) sur une feuille d'agrume, en Californie. À repérer : sous les feuilles, collée au limbe. Photo Kaldari, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Dialeurodes_citri_larva.jpg), domaine public.*
 
 
 **Gestes** :
@@ -187,7 +193,7 @@ Saison de *Panonychus citri* : l'hiver en Tunisie (Chouikhi 2022, **une seule so
 
 ![Puceron noir de l'oranger](../images/sante-puceron-noir.webp)
 
-*Fig. S9 – Puceron noir de l'oranger (Aphis aurantii, ancien Toxoptera aurantii) ; le trait mesure 1 mm. À repérer : colonies sur les jeunes pousses tendres, feuilles enroulées, miellat. Photo Jesse Rorabaugh, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Toxoptera_aurantii.jpg), CC0 (domaine public).*
+*Fig. S11 – Puceron noir de l'oranger (Aphis aurantii, ancien Toxoptera aurantii) ; le trait mesure 1 mm. À repérer : colonies sur les jeunes pousses tendres, feuilles enroulées, miellat. Photo Jesse Rorabaugh, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Toxoptera_aurantii.jpg), CC0 (domaine public).*
 
 
 **Gestes** :
@@ -200,9 +206,9 @@ Saison de *Panonychus citri* : l'hiver en Tunisie (Chouikhi 2022, **une seule so
 
 **Signes** : dépôt noir comme de la suie, qui s'essuie, sur les feuilles et les fruits.
 
-![Fumagine sur feuilles et fruit](../images/sante-fumagine.webp)
+![Fumagine : la suie sous la colonie, qui s'essuie](../images/sante-fumagine.svg)
 
-*Fig. S10 – Fumagine (selon l'auteur) : taches noires sur les feuilles d'un agrume, quelques points sur le fruit. À repérer : un dépôt noir comme de la suie, qui s'essuie (une tache qui ne part pas est autre chose) ; chercher au-dessus l'insecte qui fait le miellat (cochenille, aleurode, puceron). Photo EdilEGrand2000, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Enfermedades_en_citr%C3%ADcos.jpg), [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).*
+*Fig. S12 – Fumagine : la suie se dépose sous les insectes qui font le miellat ; elle s'essuie au doigt (une tache qui ne part pas est autre chose). Détail et sources sur le dessin. Dessin façon gravure fine pour ce plugin, MIT.*
 
 
 **Gestes** :
@@ -216,7 +222,7 @@ Saison de *Panonychus citri* : l'hiver en Tunisie (Chouikhi 2022, **une seule so
 
 ![Galeries de la mineuse](../images/sante-mineuse.webp)
 
-*Fig. S11 – Galeries de la mineuse des agrumes (Phyllocnistis citrella) sous une feuille de combava, avec deux larves. À repérer : galeries sinueuses argentées dans les jeunes feuilles, qui se crispent et s'enroulent. Photo A. Ariosti, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Larve_di_su_Phyllocnistis_citrella_su_Citrus_hystrix.jpg), [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).*
+*Fig. S13 – Galeries de la mineuse des agrumes (Phyllocnistis citrella) sous une feuille de combava, avec deux larves. À repérer : galeries sinueuses argentées dans les jeunes feuilles, qui se crispent et s'enroulent. Photo A. Ariosti, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Larve_di_su_Phyllocnistis_citrella_su_Citrus_hystrix.jpg), [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).*
 
 
 **Gestes** :
@@ -232,11 +238,11 @@ organisme réglementé (liste A2 de l'OEPP) ; dans l'Union européenne, organism
 
 ![Feuille de citronnier atteinte de mal secco](../images/sante-malsecco-feuille.webp)
 
-*Fig. S12 – Feuille de citronnier jaunie autour des nervures (mal secco). Photo Liberato, Cacciola et Magnano di San Lio 2006, PaDIL, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Leaf_symptoms.jpg), [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).*
+*Fig. S14 – Feuille de citronnier jaunie autour des nervures (mal secco). Photo Liberato, Cacciola et Magnano di San Lio 2006, PaDIL, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Leaf_symptoms.jpg), [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).*
 
 ![Rameau atteint de mal secco coupé](../images/sante-malsecco-coupe.webp)
 
-*Fig. S13 – Rameau malade coupé en travers : le bois est coloré. Mêmes auteurs, PaDIL, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Mal_Secco_Disease_Branch_Cross_Section.jpg), [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).*
+*Fig. S15 – Rameau malade coupé en travers : le bois est coloré. Mêmes auteurs, PaDIL, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Mal_Secco_Disease_Branch_Cross_Section.jpg), [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).*
 
 
 **Pourquoi** : il entre par les **blessures**, colonise le bois puis toute la plante (Catane 2022-2023, OEPP 2024) ; toute lésion, quelle qu'en soit l'origine, favorise l'infection (Spina et Cutuli 1983).
@@ -258,11 +264,11 @@ La sensibilité comparée des espèces vient d'observations au champ, pas toujou
 
 ![Aleurode épineux : colonie de pupes sous une feuille](../images/sante-aleurode-epineux.webp)
 
-*Fig. S14 – Aleurode épineux (Aleurocanthus spiniferus) : pupes noires bordées de cire blanche et œufs jaunâtres, sous la loupe (le trait mesure 1 mm). Spécimens du premier foyer français, 2023. Photo Rossi J.-P., Streito J.-C., INRAE, 2023, [Recherche Data Gouv](https://doi.org/10.57745/WOHBMY), [Licence Ouverte Etalab 2.0](https://www.etalab.gouv.fr/licence-ouverte-open-licence/) ; réduite, sans autre modification. Autres stades : même lien.*
+*Fig. S16 – Aleurode épineux (Aleurocanthus spiniferus) : pupes noires bordées de cire blanche et œufs jaunâtres, sous la loupe (le trait mesure 1 mm). Spécimens du premier foyer français, 2023. Photo Rossi J.-P., Streito J.-C., INRAE, 2023, [Recherche Data Gouv](https://doi.org/10.57745/WOHBMY), [Licence Ouverte Etalab 2.0](https://www.etalab.gouv.fr/licence-ouverte-open-licence/) ; réduite, sans autre modification. Autres stades : même lien.*
 
 ![Aleurode épineux adulte à côté d'une pupe](../images/sante-aleurode-epineux-adulte.webp)
 
-*Fig. S15 – Adulte : petite mouche aux ailes gris-bleu tachées de blanc, à côté d'une pupe (le trait mesure 0,5 mm). Même foyer, 2023. Photo Rossi J.-P., Streito J.-C., INRAE, 2023, [Recherche Data Gouv](https://doi.org/10.57745/WOHBMY), [Licence Ouverte Etalab 2.0](https://www.etalab.gouv.fr/licence-ouverte-open-licence/) ; réduite, sans autre modification.*
+*Fig. S17 – Adulte : petite mouche aux ailes gris-bleu tachées de blanc, à côté d'une pupe (le trait mesure 0,5 mm). Même foyer, 2023. Photo Rossi J.-P., Streito J.-C., INRAE, 2023, [Recherche Data Gouv](https://doi.org/10.57745/WOHBMY), [Licence Ouverte Etalab 2.0](https://www.etalab.gouv.fr/licence-ouverte-open-licence/) ; réduite, sans autre modification.*
 
 
 **Gestes** :
@@ -280,19 +286,19 @@ Le pomelo (*C. ×paradisi*, grapefruit), très sensible, peut aussi décliner su
 
 ![Agrume dépérissant (tristeza)](../images/sante-tristeza-declin.webp)
 
-*Fig. S16 – Agrume dépérissant, classé « symptômes de tristeza » par Bugwood, sans autre description. Un dépérissement seul ne suffit pas à reconnaître la tristeza (déduction du plugin) ; ce qui doit alerter : un arbre greffé sur bigaradier qui décline (Vogel 1990, Sáenz Pérez 2019). Photo Florida Division of Plant Industry, Florida Department of Agriculture and Consumer Services, [Bugwood.org](https://www.ipmimages.org/browse/detail.cfm?imgnum=5202027), [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/).*
+*Fig. S18 – Agrume dépérissant, classé « symptômes de tristeza » par Bugwood, sans autre description. Un dépérissement seul ne suffit pas à reconnaître la tristeza (déduction du plugin) ; ce qui doit alerter : un arbre greffé sur bigaradier qui décline (Vogel 1990, Sáenz Pérez 2019). Photo Florida Division of Plant Industry, Florida Department of Agriculture and Consumer Services, [Bugwood.org](https://www.ipmimages.org/browse/detail.cfm?imgnum=5202027), [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/).*
 
 ![Rameau écorcé, bois creusé de sillons (tristeza)](../images/sante-tristeza-bois.webp)
 
-*Fig. S17 – Rameau d'agrume écorcé, classé « symptômes de tristeza » par Bugwood, sans autre description : le bois creusé de sillons ressemble, à notre avis, au bois piqueté (« stem pitting ») ; Sáenz Pérez 2019 parle de « stem bite » sur la tige, sans photo ni détail. Photo Florida Division of Plant Industry, Florida Department of Agriculture and Consumer Services, [Bugwood.org](https://www.ipmimages.org/browse/detail.cfm?imgnum=5202034), [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/).*
+*Fig. S19 – Rameau d'agrume écorcé, classé « symptômes de tristeza » par Bugwood, sans autre description : le bois creusé de sillons ressemble, à notre avis, au bois piqueté (« stem pitting ») ; Sáenz Pérez 2019 parle de « stem bite » sur la tige, sans photo ni détail. Photo Florida Division of Plant Industry, Florida Department of Agriculture and Consumer Services, [Bugwood.org](https://www.ipmimages.org/browse/detail.cfm?imgnum=5202034), [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/).*
 
 ![Jeunes orangers atteints de tristeza](../images/sante-tristeza-jeunes.webp)
 
-*Fig. S18 – Virus de la tristeza sur de jeunes orangers doux greffés sur bigaradier : sévère à gauche, faible à droite (selon Bugwood, sans autre précision). Photo Florida Division of Plant Industry, Florida Department of Agriculture and Consumer Services, [Bugwood.org](https://www.ipmimages.org/browse/detail.cfm?imgnum=5265046), [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/).*
+*Fig. S20 – Virus de la tristeza sur de jeunes orangers doux greffés sur bigaradier : sévère à gauche, faible à droite (selon Bugwood, sans autre précision). Photo Florida Division of Plant Industry, Florida Department of Agriculture and Consumer Services, [Bugwood.org](https://www.ipmimages.org/browse/detail.cfm?imgnum=5265046), [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/).*
 
 ![Puceron brun des agrumes](../images/sante-puceron-brun.webp)
 
-*Fig. S19 – Puceron brun des agrumes (Aphis citricidus, ancien Toxoptera citricida) sur une jeune pousse. Photo Florida Division of Plant Industry, Florida Department of Agriculture and Consumer Services, [Bugwood.org](https://www.ipmimages.org/browse/detail.cfm?imgnum=5194050), [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/).*
+*Fig. S21 – Puceron brun des agrumes (Aphis citricidus, ancien Toxoptera citricida) sur une jeune pousse. Photo Florida Division of Plant Industry, Florida Department of Agriculture and Consumer Services, [Bugwood.org](https://www.ipmimages.org/browse/detail.cfm?imgnum=5194050), [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/).*
 
 
 **Gestes** : plants et greffons d'origine contrôlée (Vogel 1990, Sáenz Pérez 2019).
@@ -306,22 +312,25 @@ Contre la tristeza : Poncirus résistant, citranges et citrumelo tolérants ; to
 
 ![Psylle asiatique des agrumes](../images/sante-psylle.webp)
 
-*Fig. S20 – Psylle asiatique des agrumes (Diaphorina citri), adulte de 2 à 3 mm, sur une jeune feuille. Photo David Hall, USDA ARS, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Asian_Citrus_Psyllid_adult.jpg), domaine public.*
+*Fig. S22 – Psylle asiatique des agrumes (Diaphorina citri), adulte de 2 à 3 mm, sur une jeune feuille. Photo David Hall, USDA ARS, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Asian_Citrus_Psyllid_adult.jpg), domaine public.*
 
-![Psylle asiatique tout juste émergé](../images/sante-psylle-emergence.webp)
+![Psylle asiatique : œufs et adultes, posture à 45°](../images/sante-psylle.svg)
 
-*Fig. S21 – Psylle asiatique vu de face, adulte tout juste émergé : encore blanc, yeux rouges, antennes fines (spécimen photographié au laboratoire, sur fond noir). Photo USGS Bee Inventory and Monitoring Lab, [USGS](https://www.usgs.gov/media/images/citrus-psyllid-u-recently-emerged-2-head-ft-detrick), domaine public ; réduite.*
+*Fig. S23 – Psylle asiatique des agrumes : A, œufs jaune orangé dans la pousse tendre, adultes tête en bas ; B, un adulte d'environ 3 mm, tête contre la feuille, corps relevé à environ 45°. Détail et sources sur le dessin. Dessin façon gravure fine pour ce plugin, MIT.*
 
 ![Marbrure de feuilles atteintes de HLB](../images/sante-hlb-feuille.webp)
 
-*Fig. S22 – Marbrure (« blotchy mottle ») causée par le HLB sur des feuilles d'agrume, dans un verger d'orangers doux au Texas. À repérer : le jaune n'est pas le même des deux côtés de la nervure centrale (voir le test de symétrie). Photo David Bartels, USDA, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Citrus_Greening_%2820120120-APHIS-DB-0064%29.jpg), domaine public.*
+*Fig. S24 – Marbrure (« blotchy mottle ») causée par le HLB sur des feuilles d'agrume, dans un verger d'orangers doux au Texas. À repérer : le jaune n'est pas le même des deux côtés de la nervure centrale (voir le test de symétrie). Photo David Bartels, USDA, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Citrus_Greening_%2820120120-APHIS-DB-0064%29.jpg), domaine public.*
+![Test du stylo : HLB ou manque de zinc](../images/sante-hlb-zinc.svg)
+
+*Fig. S25 – Test du stylo : un cercle de chaque côté de la nervure centrale ; A, HLB, les deux cercles ne se ressemblent pas ; B, manque de zinc, pareil des deux côtés. Détail et sources sur le dessin. Dessin façon gravure fine pour ce plugin, MIT.*
 
 ![Fruits d'agrume colorés à l'envers (HLB)](../images/sante-hlb-fruits.webp)
 
-*Fig. S23 – Fruits d'agrume qui se colorent à l'envers à cause du HLB, au Texas. Photo David Bartels, USDA, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Citrus_Greening_%2820120120-APHIS-DB-0065%29.jpg), domaine public.*
+*Fig. S26 – Fruits d'agrume qui se colorent à l'envers à cause du HLB, au Texas. Photo David Bartels, USDA, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Citrus_Greening_%2820120120-APHIS-DB-0065%29.jpg), domaine public.*
 
 
-**Test de symétrie** : un jaunissement pareil des deux côtés de la nervure centrale est une carence (zinc, magnésium…) ; asymétrique, il est suspect (UF/IFAS PP328, **une seule source** ; les décolorations asymétriques sont aussi décrites par BSV JEVI Corse 2025).
+**Test de symétrie** : un jaunissement pareil des deux côtés de la nervure centrale est une carence (zinc, magnésium…) ; asymétrique, il est suspect : dessiner un cercle au stylo de chaque côté de la nervure, côte à côte, et comparer (fig. S25<!-- sante-hlb-zinc -->, UF/IFAS PP328, **une seule source** ; les décolorations asymétriques sont aussi décrites par BSV JEVI Corse 2025).
 Le HLB peut se confondre avec un manque de zinc (Sáenz Pérez 2019).
 Asymétrique avec des psylles : signaler à la DRAAF-SRAL (service de l'État) ou à la FREDON de sa région.
 
@@ -348,7 +357,10 @@ Lues en entier, sauf : Whiteside 1971, El-Hamalawi et Menge 1994, Liu et Stansly
 - **Kasap 2009** : Kasap İ., *Turkish J. Agric. For.* 33:593-600.
 - **Liu et Stansly 2000** : *Pest Management Science* 56:861.
 - **Migheli 2009** : Migheli Q. et al., *Plant Disease* 93:852-867.
-- **NC State** : fiche *Citrus red mite* (*Panonychus citri*), NC State University : très chaud et sec défavorable ; aucune saison de pullulation.
+- **NC State** : fiches *Citrus red mite* (*Panonychus citri*), NC State University : très chaud et sec défavorable ; aucune saison de pullulation ; femelle d'environ 0,5 mm, soies blanches à base rouge ; et *Twospotted spider mite* (Walgenbach 2015) : femelle jaune verdâtre à deux taches sombres, moins de 0,4 mm (forme d'été, observée sur pommier).
+- **MAPA, fiche 343** : ministère espagnol de l'Agriculture, *Lepidosaphes beckii*, « serpeta gruesa » ([fd_343.pdf](https://www.mapa.gob.es/ministerio/pags/plataforma_conocimiento/fichas/pdf/fd_343.pdf)) : bouclier de la femelle 2,5 à 3 mm, du mâle environ 1 mm.
+- **Naturalis** : clé des Diaspididae (Watson, [diaspididae.linnaeus.naturalis.nl](https://diaspididae.linnaeus.naturalis.nl/linnaeus_ng/app/views/species/taxon.php?id=113091)) : bouclier de la femelle 1 à 3 mm.
+- **Pacific Pests 340** : *Pacific Pests, Pathogens & Weeds*, fiche 340 « Citrus mussel scale » ([lucidcentral.org](https://apps.lucidcentral.org/ppp/text/web_full/entities/citrus_mussel_scale_340.htm)) : femelle 2 à 3 mm.
 - **NHB** : National Horticulture Board (Inde), fiche fumagine et maladies des agrumes.
 - **Nigro 2011** : Nigro F., Ippolito A., Salerno M. G., *Journal of Plant Pathology* 93(3):523-560.
 - **OEPP 2024** : fiche de l'Organisation européenne et méditerranéenne pour la protection des plantes (mal secco) : pycnides vers 10 °C, infection entre 14 et 28 °C.
@@ -362,9 +374,9 @@ Lues en entier, sauf : Whiteside 1971, El-Hamalawi et Menge 1994, Liu et Stansly
 - **Savita 2012** : Savita et al., *Citrus diseases caused by Phytophthora species*, GERF Bull. Biosci. 3(1):18-27.
 - **Fiche SORE** : fiche de diagnostic *Aleurocanthus spiniferus*, plateforme ESV.
 - **Soto 2001** : Soto A. et al., *Bol. San. Veg. Plagas* 27:3-20.
-- **TNAU** : Tamil Nadu Agricultural University, maladies des agrumes.
-- **UC IPM** : University of California, *Pest Management Guidelines: Citrus*, fiche *Phytophthora gummosis*.
-- **UF/IFAS HS261, PP328** : University of Florida (HS261 : Futch et Graham, *Field Diagnosis and Management of Phytophthora Diseases* ; PP328 : test du stylo, HLB ou carence). **UF/IFAS 2022** : alcool sur les cochenilles farineuses (vêtements).
+- **TNAU** : Tamil Nadu Agricultural University, portail Agritech, maladies des agrumes : gratter une lésion de moins de la moitié du tour du tronc avec une marge d'un demi-pouce (seule source de ce seuil).
+- **UC IPM** : University of California, *Pest Management Guidelines: Citrus*, fiches *Phytophthora gummosis* (bande saine, sécher, revoir ; 50 % ou plus : remplacer l'arbre peut revenir moins cher), *Citrus mealybug*, *Citrus red mite*, *Twospotted spider mite*, *Purple scale* (cochenille virgule : forme et couleur des boucliers, halos, points verts, jeunes cireux, aucune taille), *Asian citrus psyllid* (posture à 45°, œufs dans la pousse tendre, environ 3 mm).
+- **UF/IFAS HS261, PP328** : University of Florida (HS261 : Futch et Graham, *Field Diagnosis and Management of Phytophthora Diseases* ; PP328 : Vashisth, Dewdney et Burrow, *HLB and Nutrient Deficiency Identification*, 2016, révisée 2019, encadré « Pen test »). **UF/IFAS 2022** : alcool sur les cochenilles farineuses (vêtements).
 - **Vanderweyen 1980** : influence du cultivar greffé sur la sensibilité du porte-greffe à la gommose.
 - **Vogel 1990** : Vogel R., maladies des agrumes en Corse (partie II), *Fruits* 45.
 - **Règlement 2019/2072** : règlement d'exécution (UE) 2019/2072 de la Commission, annexes II (organismes de quarantaine) et IV (ORNQ), [eur-lex.europa.eu](https://eur-lex.europa.eu/eli/reg_impl/2019/2072/oj).

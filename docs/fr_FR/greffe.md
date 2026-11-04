@@ -102,57 +102,57 @@ Une seule fiche décrit ces étapes (INRAE, **une seule source**) :
 2. **Greffon** : section de jeune pousse pas encore aoûtée, de même diamètre, coupée pour que son œil unique soit au milieu ; base taillée en double biseau.
 3. **Enchâsser** dans la fente, ligaturer au Parafilm en couvrant aussi le sommet du greffon ; ensacher avec 2 ou 3 feuilles du porte-greffe ; sac retiré 15 jours plus tard.
 
-### Autres types : gravures anciennes
+### Autres types : d'après Bailey
 
-Dessins publiés par L. H. Bailey (domaine public) : vigne, plantes en pot, arbres fruitiers ; l'espèce est rarement précisée et **aucune n'est présentée comme un agrume**. Ils montrent le geste et ne remplacent pas une marche à suivre ; les dessins seuls ne comptent pas comme source, le texte de Bailey quand il est cité compte comme **une seule source** (voir [Sources](#sources)).
-Légendes traduites de l'ouvrage, échelle du dessin entre parenthèses. *The Nursery-Book*, 11ᵉ éd., 1907 ; *The Nursery-Manual*, 1920 (scans Cornell et Internet Archive).
+Dessins refaits pour ce plugin d'après les gravures de L. H. Bailey (domaine public) : vigne, plantes en pot, arbres fruitiers ; l'espèce est rarement précisée et **aucune n'est présentée comme un agrume**. Ils montrent le geste et ne remplacent pas une marche à suivre ; les dessins seuls ne comptent pas comme source, le texte de Bailey quand il est cité compte comme **une seule source** (voir [Sources](#sources)).
+Légendes traduites de l'ouvrage ; dessins pas à l'échelle. *The Nursery-Book*, 11ᵉ éd., 1907 ; *The Nursery-Manual*, 1920 (scans Cornell et Internet Archive).
 
-**Anglaise** — à gauche, le greffon : coupe en biseau et languette (grandeur nature) ; à droite, greffon et porte-greffe emboîtés par leurs languettes (moitié) ; le texte ajoute un lien de raphia ou de liber.
+**Anglaise** — 1 : le greffon coupé en biseau, puis fendu pour former une languette ; 2 : le porte-greffe taillé de même ; 3 : les deux emboîtés par leurs languettes ; 4 : liés au raphia ou au liber. Bailey ne dessine que 1 et 3 : 2 et 4 sont tirés de son texte.
 
-![Greffe anglaise, L. H. Bailey 1907](../images/greffe-anglaise-bailey.webp)
+![Greffe anglaise, d'après L. H. Bailey 1907](../images/greffe-anglaise.svg)
 
-*Fig. G5 – Bailey 1907, fig. 101-102, [p. 108](https://archive.org/details/cu31924097691087/page/108), domaine public.*
+*Fig. G5 – Greffe anglaise, en quatre temps. Détail et sources sur le dessin. Dessin façon gravure fine pour ce plugin d'après Bailey 1907, fig. 101-102, [p. 108](https://archive.org/details/cu31924097691087/page/108), domaine public ; MIT.*
 
 **Placage de rameau** (*veneer-grafting*, variante de la latérale selon Bailey ; à ne pas confondre avec le placage d'œil) — A : porte-greffe entaillé à travers l'écorce, une petite languette d'écorce à la base ;
-au-dessus, le greffon coupé en biais, une plaque d'écorce retirée sur le grand côté ; B : greffon posé et lié au raphia ; C : la soudure faite (en D) (moitié).
+à côté, le greffon coupé en biais, une plaque d'écorce retirée sur le grand côté ; B : greffon posé et lié au raphia ; C : la soudure faite (D chez Bailey).
 Selon Bailey, inutile de couper le haut du porte-greffe avant que le greffon ne débourre.
 
-![Placage de rameau, L. H. Bailey 1907](../images/greffe-placage-bailey.webp)
+![Placage de rameau, d'après L. H. Bailey 1907](../images/greffe-placage.svg)
 
-*Fig. G6 – Bailey 1907, fig. 111, [p. 114](https://archive.org/details/cu31924097691087/page/114), domaine public.*
+*Fig. G6 – Placage de rameau : A, l'entaille et le greffon ; B, posé et lié ; C, soudé. Détail et sources sur le dessin. Dessin façon gravure fine pour ce plugin d'après Bailey 1907, fig. 111, [p. 114](https://archive.org/details/cu31924097691087/page/114), domaine public ; MIT.*
 
-**Latérale** — à droite, le greffon inséré dans une entaille oblique du porte-greffe non coupé, puis lié ; à gauche, le bas d'un ciseau à lame mince et tige coudée, en place dans l'entaille (moitié).
+**Latérale** — A : entaille oblique dans le porte-greffe, qu'on ne coupe pas, le bas d'un ciseau à lame mince et tige coudée en place dans l'entaille ; B : le greffon inséré dans l'entaille, puis lié.
 
-![Greffe latérale, L. H. Bailey 1907](../images/greffe-laterale-bailey.webp)
+![Greffe latérale, d'après L. H. Bailey 1907](../images/greffe-laterale.svg)
 
-*Fig. G7 – Bailey 1907, fig. 113, [p. 115](https://archive.org/details/cu31924097691087/page/115), domaine public.*
+*Fig. G7 – Greffe latérale : A, l'entaille et le ciseau ; B, le greffon inséré et lié. Détail et sources sur le dessin. Dessin façon gravure fine pour ce plugin d'après Bailey 1907, fig. 113, [p. 115](https://archive.org/details/cu31924097691087/page/115), domaine public ; MIT.*
 
-**Incrustation** — porte-greffe (ici une vigne) coupé, une rainure en V taillée dans la coupe (une ou deux selon le texte), greffon taillé à la même forme (un tiers).
+**Incrustation** — A : porte-greffe coupé (ici une vigne), une rainure en V taillée dans la coupe (une ou deux selon le texte) ; B : greffon taillé à la même forme, pour s'y encastrer.
 
-![Greffe en incrustation, L. H. Bailey 1907](../images/greffe-incrustation-bailey.webp)
+![Greffe en incrustation, d'après L. H. Bailey 1907](../images/greffe-incrustation.svg)
 
-*Fig. G8 – Bailey 1907, fig. 116, [p. 117](https://archive.org/details/cu31924097691087/page/117), domaine public.*
+*Fig. G8 – Greffe en incrustation : A, la rainure en V ; B, le greffon taillé à sa forme. Détail et sources sur le dessin. Dessin façon gravure fine pour ce plugin d'après Bailey 1907, fig. 116, [p. 117](https://archive.org/details/cu31924097691087/page/117), domaine public ; MIT.*
 
-**Fente** — à gauche, le porte-greffe coupé net et fendu, un greffon en coin de chaque côté ; à droite, le greffon : trois yeux, le plus bas juste au-dessus du coin (grandeur nature).
+**Fente** — A : porte-greffe coupé net et fendu, un greffon en coin de chaque côté de la fente ; B : le greffon, trois yeux, le plus bas juste au-dessus du coin.
 
-![Greffe en fente, L. H. Bailey 1907](../images/greffe-fente-bailey.webp)
+![Greffe en fente, d'après L. H. Bailey 1907](../images/greffe-fente.svg)
 
-*Fig. G9 – Bailey 1907, fig. 118-119, [p. 118](https://archive.org/details/cu31924097691087/page/118), domaine public.*
+*Fig. G9 – Greffe en fente : A, deux greffons dans la fente ; B, le greffon taillé en coin. Détail et sources sur le dessin. Dessin façon gravure fine pour ce plugin d'après Bailey 1907, fig. 118-119, [p. 118](https://archive.org/details/cu31924097691087/page/118), domaine public ; MIT.*
 
-**En approche** — à gauche, deux plantes en pot, tiges entaillées et liées ensemble ; à droite (M), un rameau C de la plante voisine joint en O au porte-greffe H, d'autres rameaux comme T pouvant être joints de même ;
-(N) la taille des surfaces accolées, en R. Bailey note que les orangers se multipliaient autrefois ainsi, mais (en 1907) plus facilement par placage.
+**En approche** — A : deux plantes en pot, tiges entaillées et liées ensemble ; B (M chez Bailey) : un rameau C de la plante voisine joint en O au porte-greffe H, d'autres rameaux comme T pouvant être joints de même ;
+C (N chez Bailey) : la taille des surfaces accolées, en R. Bailey note que les orangers se multipliaient autrefois ainsi, mais (en 1907) plus facilement par placage.
 
-![Greffe en approche, L. H. Bailey 1907](../images/greffe-approche-bailey.webp)
+![Greffe en approche, d'après L. H. Bailey 1907](../images/greffe-approche.svg)
 
-*Fig. G10 – Bailey 1907, fig. 138-139, [p. 133](https://archive.org/details/cu31924097691087/page/133), domaine public ; lettres H, O, C, T, R regrossies pour la lecture.*
+*Fig. G10 – Greffe en approche : A, deux plantes en pot ; B, un rameau joint au porte-greffe ; C, les surfaces accolées. Détail et sources sur le dessin. Dessin façon gravure fine pour ce plugin d'après Bailey 1907, fig. 138-139, [p. 133](https://archive.org/details/cu31924097691087/page/133), domaine public ; MIT.*
 
 **Pont** — A : tronc annelé (écorce rongée tout autour) ; B : bords de la plaie parés, greffons biseautés aux deux bouts, à côté ;
-C : greffons posés dans des entailles faites à environ 1,3 cm au-dessus et au-dessous de la plaie, jusqu'à l'aubier, et cloués ; D : variante, logements à la forme des greffons ; en bas, le canif.
+C : greffons posés dans des entailles faites à environ 1,3 cm au-dessus et au-dessous de la plaie, jusqu'à l'aubier, et cloués ; D : variante, logements à la forme des greffons ; en bas, le greffoir.
 Bailey (p. 161) la juge souvent inutile si l'annelure n'atteint pas le bois : un bon enduit de cire ou d'argile bandé est souvent bien meilleur (**une seule source**).
 
-![Greffe en pont, L. H. Bailey 1920](../images/greffe-pont-bailey.webp)
+![Greffe en pont, d'après L. H. Bailey 1920](../images/greffe-pont.svg)
 
-*Fig. G11 – Bailey 1920, fig. 191, [p. 161-162](https://archive.org/details/nurserymanualcom00bailrich/page/161) (lettres d'après Peck, cité par Bailey), domaine public.*
+*Fig. G11 – Greffe en pont : A, l'annelure ; B, la plaie parée et les greffons ; C, posés et cloués ; D, la variante. Détail et sources sur le dessin. Dessin façon gravure fine pour ce plugin d'après Bailey 1920, fig. 191, [p. 161-162](https://archive.org/details/nurserymanualcom00bailrich/page/161) (lettres d'après Peck, cité par Bailey), domaine public ; MIT.*
 
 ## Quand greffer
 
