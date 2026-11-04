@@ -3,7 +3,7 @@
 ## 0.29 (2026-11-04)
 - Collection **Greffes** : « Greffer… » y range le porte-greffe tant que la greffe est en cours ; un œil parti, la plante greffée va dans la collection choisie pour le greffon ; greffe morte, le porte-greffe retourne dans sa collection d'origine. Créée à la première greffe ; à la mise à jour, les greffes en cours y sont rangées.
 - Tuile : étiquette de greffe à côté des plantes en cours de greffe, une couleur et un symbole par état (⏳ en attente, ✓ prise ?, ❄ œil dormant, 🌿 pousse ; statut et greffon au survol), et leur nombre en haut de la tuile.
-- Tuile : colonne **Greffon** (nom du greffon en attente) quand la collection a des greffes en cours, comme Greffes.
+- Tuile : colonne **Greffon** quand la collection a des greffes en cours, comme Greffes : la plante greffée sur le porte-greffe, marquée 🏡 collection si le greffon a été pris sur une de nos plantes, 📦 introduit sinon.
 - Champ « Porte-greffe » : « franc de pied » pour les porte-greffes (ils sont sur leurs racines) ; dans la collection Greffes, le nom du porte-greffe du greffon (ex. FA5), rendu « franc de pied » si la greffe meurt.
 - « ＋ Noter » un **Déplacement** vers un emplacement connu déplace vraiment la plante (il ne faisait qu'écrire au journal) ; la note saisie s'ajoute si elle n'est pas vide.
 

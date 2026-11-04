@@ -523,6 +523,8 @@ class journalcultures extends eqLogic {
     try { $c['date_mult'] = journalcultures_calc::date($c['date_mult'] ?? ''); } catch (Exception $x) { $c['date_mult'] = date('Y-m-d'); } // partielle (2026-05) ou absente : aujourd'hui (suivi, jeunesse, engrais du jeune plant)
     $gf = ['nom' => $nom, 'collection' => $coll->getId()] + array_intersect_key($c, array_flip(self::identite()));
     if (trim($gf['porte_greffe'] ?? '') === '') $gf['porte_greffe'] = $this->getName();
+    $gf['source'] = $source; $gf['maison'] = 0; // colonne Greffon : la plante greffée, prise sur une de nos plantes (maison) ou introduite
+    if ($source !== '') foreach (self::byType('journalcultures') as $p) if ($p->type() == 'plante' && mb_strtolower($p->getName()) === mb_strtolower($source)) { $gf['maison'] = 1; break; }
     $pg = $this->getName(); $recente = $c['date_mult'] >= date('Y-m-d', strtotime('-60 days'));
     $this->setConfiguration('greffe_avant', null); // greffe précédente : son retour en arrière n'a plus lieu d'être
     $this->setConfiguration('greffe_greffon', $gf);
@@ -758,7 +760,8 @@ class journalcultures extends eqLogic {
 
   public function enGreffe() { // étiquette de la tuile : greffe en cours (ni réussie ni échouée) → statut + texte, sinon null
     $s = (string)$this->getConfiguration('greffe_statut'); $gf = $this->getConfiguration('greffe_greffon');
-    return in_array($s, ['attente', 'probable', 'dormant', 'pousse']) ? ['s' => $s, 't' => __('Greffe', __FILE__) . ' : ' . journalcultures_calc::GREFFE_STATUTS[$s] . (is_array($gf) && ($gf['nom'] ?? '') !== '' ? ' — ' . $gf['nom'] : ''), 'g' => is_array($gf) ? (string)($gf['nom'] ?? '') : ''] : null; // g : colonne Greffon (greffon en attente)
+    return in_array($s, ['attente', 'probable', 'dormant', 'pousse']) ? ['s' => $s, 't' => __('Greffe', __FILE__) . ' : ' . journalcultures_calc::GREFFE_STATUTS[$s] . (is_array($gf) && ($gf['nom'] ?? '') !== '' ? ' — ' . $gf['nom'] : ''), 'g' => is_array($gf) ? ((string)($gf['source'] ?? '') ?: trim(($gf['bota'] ?? '') . (($gf['cultivar'] ?? '') !== '' && strpos($gf['bota'] ?? '', $gf['cultivar']) === false ? ' ' . $gf['cultivar'] : '')) ?: (string)($gf['nom'] ?? '')) : '',
+      'm' => is_array($gf) && !empty($gf['maison']) ? 1 : 0] : null; // colonne Greffon : la plante greffée (greffon en attente), m = prise dans nos collections, sinon introduite
   }
 
   public function suiviGreffe() { // null si la plante n'a pas de greffe suivie
