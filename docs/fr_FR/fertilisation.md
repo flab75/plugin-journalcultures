@@ -327,9 +327,9 @@ Toujours **regarder d'abord quelles feuilles** sont touchées : les vieilles ou 
 
 ![Carences sur feuille d'agrume : saine, azote, magnésium, fer, zinc](../images/ferti-carences-feuilles.svg)
 
-*À quoi ressemble chaque carence, d'après le tableau ci-dessous (UF/IFAS SL457, Haifa, Elavarasan 2019) : A saine ; B azote, vert pâle à jaune uniforme, vieilles feuilles ; C magnésium, V vert à l'envers à la base, vieilles feuilles ; D fer, réseau fin de nervures vertes sur limbe jaune pâle, jeunes pousses aux feuilles plus petites ; E zinc, bandes vertes le long des nervures, feuilles petites, étroites et pointues. Dessin façon gravure coloriée pour ce plugin, MIT.*
+*À quoi ressemble chaque carence, d'après le tableau ci-dessous (UF/IFAS SL457, chapitre 3 ; fiche commerciale Haifa ; revue Elavarasan 2019) : A saine ; B azote, vert pâle à jaune uniforme, vieilles feuilles ; C magnésium, V vert à l'envers à la base, vieilles feuilles ; D fer, réseau fin de nervures vertes sur limbe jaune pâle, jeunes pousses aux feuilles plus petites ; E zinc, bandes vertes le long des nervures, feuilles petites, étroites et pointues. Dessin façon gravure coloriée pour ce plugin, MIT.*
 
-**Retenu** pour l'azote, le magnésium, le fer, le zinc et le manganèse : les trois sources concordent (UF/IFAS SL457, Haifa, Elavarasan 2019). Le potassium est décrit par Haifa et UF/IFAS SL457, qui ne placent pas les symptômes sur les mêmes feuilles (voir le tableau).
+**Retenu** pour l'azote, le magnésium, le fer, le zinc et le manganèse : trois sources décrivent les mêmes signes, mais elles n'ont pas le même poids. UF/IFAS SL457 (chapitre 3 de *Nutrition of Florida Citrus Trees*) est la référence ; Elavarasan 2019 est une revue de synthèse sans observations propres (sa bibliographie est indienne, californienne et chinoise, sans travail de Floride) ; Haifa est une fiche commerciale de fabricant d'engrais. Le potassium est décrit par Haifa et UF/IFAS SL457, qui ne placent pas les symptômes sur les mêmes feuilles (voir le tableau).
 
 | Carence | Feuilles touchées d'abord | Aspect | Que faire |
 |---|---|---|---|
@@ -381,7 +381,7 @@ Lues en entier, sauf mention.
 - **BSV PACA 2020** : Bulletin de santé du végétal, zones non agricoles, PACA, novembre 2020.
 - **Curk 2022** : Curk F., Luro F., Minuto G., Nieddu G., *Les agrumes du Nord de la Méditerranée*, Alain Piazzola, 2022 (HAL hal-04646466) ; seuils de croissance (zéro de végétation ≈ 13 °C).
 - **Diggers** : étiquette Fruit & Citrus Fertiliser, Diggers (Australie, vendeur).
-- **Elavarasan 2019** : Elavarasan K., Premalatha A., *Journal of Pharmacognosy and Phytochemistry* 8(4):1705-1708 (Inde).
+- **Elavarasan 2019** : Elavarasan K., Premalatha A., revue de synthèse, *Journal of Pharmacognosy and Phytochemistry* 8(4):1705-1708 (Inde ; 14 références, aucune de Floride).
 - **Étiquettes** : Ferti Agrumes, Sang séché, Corne broyée, Kélafer (Agro Sens / Comptoir des Jardins), sel d'Epsom GiDe ; fiche de données de sécurité Ferti Agrumes (Comptoir des Jardins, 2026).
 - **Engrais enrobé** : fiche technique d'un engrais enrobé 16-8-12 « 6 mois » (revendeur italien, 2026) : durée selon la température, doses en pot, demi-dose pour un jeune plant, chélate EDTA stable entre pH 4 et 6,5.
 - **ICL Osmocote** : fiche technique du fabricant (ICL Growing Solutions) : durées de libération données à 16, 21 et 26 °C.
@@ -389,7 +389,7 @@ Lues en entier, sauf mention.
 - **Règlement (UE) 2021/1165** : annexe II, engrais et amendements autorisés en agriculture biologique.
 - **Guardiola 1975** : Guardiola J. L., Vivas S., González-Sicilia E., efficacité de l'analyse foliaire de l'azote, *Fruits* 30(2):113-118 (INIA, Espagne).
 - **Labanauskas 1967** : Labanauskas C. K., Nauer E. M., Roistacher C. N., *Hilgardia* 38(15), Université de Californie (semis d'oranger Valencia en pot).
-- **Haifa** : Deficiency Pro: Citrus, Haifa Group (Israël, vendeur d'engrais).
+- **Haifa** : Haifa Group (Israël, fabricant d'engrais), fiche commerciale « Deficiency Pro: Citrus », haifa-group.com.
 - **Machado 2011** : Magalhães Machado D. L. et al., *Revista Ceres* 58(3):359-365 (Brésil ; limettier Rangpur en pépinière).
 - **Mattos 2010** : Mattos Jr. D. et al., *Bragantia* 69(1):135-147 (IAC, Brésil ; plants d'oranger en sacs, fertirrigation).
 - **Melgar 2010** : Melgar J. C., Schumann A. W., Syvertsen J. P., *Fertigation frequency affects growth and water and nitrogen use efficiencies of Swingle citrumelo citrus rootstock seedlings*, *HortScience* 45(8):1255-1259 (UF/IFAS, Floride ; lu en ligne).
@@ -402,7 +402,7 @@ Lues en entier, sauf mention.
 - **Niu 2024** : Niu R. et al., *Root reduction caused directly or indirectly by high application of nitrogen fertilizer…*, *Plants* 13(7):938, doi 10.3390/plants13070938 (Université du Sud-Ouest, Chongqing ; lu en ligne).
 - **Tuzcu 1984** : *Fruits* 39(9), croissance de 14 porte-greffes à basse température ; Poncirus, satsuma et Nagami ne poussent qu'au-dessus de ≈ 15 °C.
 - **UF/IFAS SL454** : interprétation des analyses de sol pour les agrumes (EDIS SS667, 2020).
-- **UF/IFAS SL456, SL457** : chapitres 2 (Obreza, Collins, Morgan, Graham, Alferez) et 3 (Obreza, Zekri, Futch) de *Nutrition of Florida Citrus Trees*, 3e éd., UF/IFAS SL253, 2020.
+- **UF/IFAS SL456, SL457** : *Nutrition of Florida Citrus Trees*, 3e éd. (UF/IFAS SL253, dir. Morgan et Kadyampakeni, février 2020) ; SL456 = chapitre 2, « Production Areas, Soils, and Land Preparation » (Obreza, Collins, Morgan, Graham, Alferez ; EDIS SS669) ; SL457 = chapitre 3, « General Soil Fertility and Citrus Tree Nutrition » (Obreza, Zekri, Futch ; EDIS SS670).
 - **UF/IFAS SS618** : *Molybdenum (Mo) and Nickel (Ni) for Citrus Trees* (fiche EDIS, 2014, revue en 2025), https://edis.ifas.ufl.edu
 - **UF/IFAS PP328** : test du stylo, carence ou HLB (University of Florida).
 - **Vannière et Marchal 1992 III** : *Fruits* 47(1):45-49 ; **Vannière 1992 IV** : *Fruits* 47(1):50-54 (INRA-CIRAD, Corse, clémentinier).

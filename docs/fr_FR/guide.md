@@ -15,7 +15,7 @@ les gravures montrent souvent une autre plante qu'un agrume, ce qui est dit sous
 1. Une plante a des **pousses** (tige, feuilles, bourgeons, fleurs) et des **racines** ([La plante](#la-plante)).
 2. Sous l'écorce, le **liber** porte les sucres des feuilles vers les racines, les pousses et les fruits, le **bois** monte l'eau ; entre les deux, le **cambium** fabrique les deux ; dans une greffe, les tissus conducteurs se soudent ([Sous l'écorce](#sous-lécorce)).
 3. Couper le **bourgeon du bout** réveille les bourgeons de côté : c'est la base de la taille ([La tige et les bourgeons](#la-tige-et-les-bourgeons)).
-4. Une carence se lit sur **les vieilles feuilles ou les feuilles adultes** (azote, magnésium, potassium…) ou sur **les jeunes pousses** (fer, zinc, manganèse…) ([Nourrir la plante](#nourrir-la-plante) ; trois sources concordent : voir [Reconnaître une carence](fertilisation.md#reconnaître-une-carence)).
+4. Une carence se lit sur **les vieilles feuilles ou les feuilles adultes** (azote, magnésium, potassium…) ou sur **les jeunes pousses** (fer, zinc, manganèse…) ([Nourrir la plante](#nourrir-la-plante) ; trois sources décrivent les mêmes signes : voir [Reconnaître une carence](fertilisation.md#reconnaître-une-carence)).
 5. Le fruit est l'**ovaire** de la fleur qui a mûri ; chez les agrumes, on l'appelle **hespéride** (**une seule source**) ([La fleur et le fruit](#la-fleur-et-le-fruit)).
 6. Un **pépin** d'agrume donne souvent un plant identique à la mère (pas chez le cédratier, le pamplemoussier *C. maxima*, le clémentinier ni certains hybrides de mandarinier), mais jeune et épineux pendant des années ; greffe, bouture et marcotte copient la mère et peuvent transmettre ses maladies ([Multiplier les agrumes](#multiplier-les-agrumes)).
 

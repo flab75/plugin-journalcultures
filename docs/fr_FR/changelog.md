@@ -6,6 +6,7 @@
 - Noms des plantes : aurantium (pomelo, clémentine et satsuma rangés en formes ; pamplemousse et mandarine à part), Citrofortunella, jambhiri, reshni et unshiu sourcés ou marqués « déduction ».
 - Schéma de la rusticité : légende sur deux lignes.
 - Fertilisation : planche « à quoi ressemble chaque carence » (saine, azote, magnésium, fer, zinc), dessin façon gravure coloriée ; légende du schéma « Où se voit une carence » précisée pour le potassium.
+- Sources des carences vérifiées dans les PDF : UF/IFAS SL457 = chapitre 3 de *Nutrition of Florida Citrus Trees* (« General Soil Fertility and Citrus Tree Nutrition », EDIS SS670), SL456 = chapitre 2 (SS669) ; Elavarasan 2019 présentée comme revue de synthèse (aucune référence de Floride) et Haifa comme fiche commerciale ; « les trois sources concordent » nuancé, légende de la planche refaite.
 
 ## 0.28 (2026-11-03), suite : botanique
 - La feuille : mots pour décrire le limbe, le sommet, la base et le bord (IPGRI, Shipunov), avec un schéma dessiné pour le plugin (forme, sommet, bord, base) ; feuilles alternes ; épine et aiguillon.
