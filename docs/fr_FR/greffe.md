@@ -54,6 +54,8 @@ Pour tous : lame désinfectée avant chaque incision (HS1309, **une seule source
 
 ![Greffe en écusson](../images/greffe-ecusson.svg)
 
+*Fig. G1 – Greffe en écusson.*
+
 1. **Inciser** l'écorce jusqu'au bois, dans une partie lisse entre deux nœuds : un trait vertical de 2,5 à 4 cm (HS1309), puis un trait horizontal en haut (T : HS1309, INRAE)
    ou en bas (⊥, T inversé : HS1309). Tige d'au moins 8 mm (INRAE ; 6 à 10 mm pour HS1309), porte-greffe en sève : l'écorce se soulève (INRAE).
 2. **Lever l'écusson** sur la baguette : lame presque parallèle, depuis environ 1,3 cm au-dessus de l'œil jusque sous lui (HS1309) ; 2 à 2,5 cm de long (HS1309, INRAE).
@@ -70,6 +72,8 @@ Pour tous : lame désinfectée avant chaque incision (HS1309, **une seule source
 
 ![Chip budding](../images/greffe-chip.svg)
 
+*Fig. G2 – Chip budding.*
+
 1. **Entailler** le porte-greffe entre deux nœuds : une coupe d'environ 2 à 2,5 cm juste dans le bois (HS1309, INRAE), terminée par une base en biseau,
    pas plus de 2 mm d'épaisseur (INRAE, **une seule source**).
 2. **Prélever le copeau** portant l'œil sur la baguette, de même forme et de même taille (HS1309, INRAE).
@@ -80,6 +84,8 @@ Pour tous : lame désinfectée avant chaque incision (HS1309, **une seule source
 
 ![Greffe en couronne](../images/greffe-couronne.svg)
 
+*Fig. G3 – Greffe en couronne.*
+
 Une seule fiche décrit ces étapes (INRAE, **une seule source**) :
 1. **Couper** le porte-greffe à 30 cm (Poncirus) ou 40 cm (citranges) du collet ; fendre l'écorce sur quelques centimètres depuis la coupe et la décoller.
 2. **Greffon** : petite baguette de 2 ou 3 yeux, bas taillé très finement en « bec de flûte » ; retailler légèrement ses bords.
@@ -88,6 +94,8 @@ Une seule fiche décrit ces étapes (INRAE, **une seule source**) :
 ### Fente herbacée (minigreffe)
 
 ![Greffe en fente herbacée](../images/greffe-fente-herbacee.svg)
+
+*Fig. G4 – Greffe en fente herbacée.*
 
 Une seule fiche décrit ces étapes (INRAE, **une seule source**) :
 1. **Écimer** à 35-45 cm du sol un très jeune porte-greffe dont la tige fait au moins 5 mm de diamètre ; le fendre verticalement sur 1 cm.
@@ -103,7 +111,7 @@ Légendes traduites de l'ouvrage, échelle du dessin entre parenthèses. *The Nu
 
 ![Greffe anglaise, L. H. Bailey 1907](../images/greffe-anglaise-bailey.webp)
 
-*Bailey 1907, fig. 101-102, [p. 108](https://archive.org/details/cu31924097691087/page/108), domaine public.*
+*Fig. G5 – Bailey 1907, fig. 101-102, [p. 108](https://archive.org/details/cu31924097691087/page/108), domaine public.*
 
 **Placage de rameau** (*veneer-grafting*, variante de la latérale selon Bailey ; à ne pas confondre avec le placage d'œil) — A : porte-greffe entaillé à travers l'écorce, une petite languette d'écorce à la base ;
 au-dessus, le greffon coupé en biais, une plaque d'écorce retirée sur le grand côté ; B : greffon posé et lié au raphia ; C : la soudure faite (en D) (moitié).
@@ -111,32 +119,32 @@ Selon Bailey, inutile de couper le haut du porte-greffe avant que le greffon ne 
 
 ![Placage de rameau, L. H. Bailey 1907](../images/greffe-placage-bailey.webp)
 
-*Bailey 1907, fig. 111, [p. 114](https://archive.org/details/cu31924097691087/page/114), domaine public.*
+*Fig. G6 – Bailey 1907, fig. 111, [p. 114](https://archive.org/details/cu31924097691087/page/114), domaine public.*
 
 **Latérale** — à droite, le greffon inséré dans une entaille oblique du porte-greffe non coupé, puis lié ; à gauche, le bas d'un ciseau à lame mince et tige coudée, en place dans l'entaille (moitié).
 
 ![Greffe latérale, L. H. Bailey 1907](../images/greffe-laterale-bailey.webp)
 
-*Bailey 1907, fig. 113, [p. 115](https://archive.org/details/cu31924097691087/page/115), domaine public.*
+*Fig. G7 – Bailey 1907, fig. 113, [p. 115](https://archive.org/details/cu31924097691087/page/115), domaine public.*
 
 **Incrustation** — porte-greffe (ici une vigne) coupé, une rainure en V taillée dans la coupe (une ou deux selon le texte), greffon taillé à la même forme (un tiers).
 
 ![Greffe en incrustation, L. H. Bailey 1907](../images/greffe-incrustation-bailey.webp)
 
-*Bailey 1907, fig. 116, [p. 117](https://archive.org/details/cu31924097691087/page/117), domaine public.*
+*Fig. G8 – Bailey 1907, fig. 116, [p. 117](https://archive.org/details/cu31924097691087/page/117), domaine public.*
 
 **Fente** — à gauche, le porte-greffe coupé net et fendu, un greffon en coin de chaque côté ; à droite, le greffon : trois yeux, le plus bas juste au-dessus du coin (grandeur nature).
 
 ![Greffe en fente, L. H. Bailey 1907](../images/greffe-fente-bailey.webp)
 
-*Bailey 1907, fig. 118-119, [p. 118](https://archive.org/details/cu31924097691087/page/118), domaine public.*
+*Fig. G9 – Bailey 1907, fig. 118-119, [p. 118](https://archive.org/details/cu31924097691087/page/118), domaine public.*
 
-**En approche** — à gauche, deux plantes en pot, tiges entaillées et liées ensemble ; à droite (M), un rameau C de la plante voisine joint en O au porte-greffe H ;
+**En approche** — à gauche, deux plantes en pot, tiges entaillées et liées ensemble ; à droite (M), un rameau C de la plante voisine joint en O au porte-greffe H, d'autres rameaux comme T pouvant être joints de même ;
 (N) la taille des surfaces accolées, en R. Bailey note que les orangers se multipliaient autrefois ainsi, mais (en 1907) plus facilement par placage.
 
 ![Greffe en approche, L. H. Bailey 1907](../images/greffe-approche-bailey.webp)
 
-*Bailey 1907, fig. 138-139, [p. 133](https://archive.org/details/cu31924097691087/page/133), domaine public.*
+*Fig. G10 – Bailey 1907, fig. 138-139, [p. 133](https://archive.org/details/cu31924097691087/page/133), domaine public ; lettres H, O, C, T, R regrossies pour la lecture.*
 
 **Pont** — A : tronc annelé (écorce rongée tout autour) ; B : bords de la plaie parés, greffons biseautés aux deux bouts, à côté ;
 C : greffons posés dans des entailles faites à environ 1,3 cm au-dessus et au-dessous de la plaie, jusqu'à l'aubier, et cloués ; D : variante, logements à la forme des greffons ; en bas, le canif.
@@ -144,7 +152,7 @@ Bailey (p. 161) la juge souvent inutile si l'annelure n'atteint pas le bois : un
 
 ![Greffe en pont, L. H. Bailey 1920](../images/greffe-pont-bailey.webp)
 
-*Bailey 1920, fig. 191, [p. 161-162](https://archive.org/details/nurserymanualcom00bailrich/page/161) (lettres d'après Peck, cité par Bailey), domaine public.*
+*Fig. G11 – Bailey 1920, fig. 191, [p. 161-162](https://archive.org/details/nurserymanualcom00bailrich/page/161) (lettres d'après Peck, cité par Bailey), domaine public.*
 
 ## Quand greffer
 
@@ -202,11 +210,13 @@ ou *échouée* (greffe morte : le suivi s'arrête et le statut est aussitôt eff
 
 ![Suivi d'une greffe](../images/greffe-suivi.svg)
 
+*Fig. G12 – Suivi d'une greffe.*
+
 **Marche à suivre** (chaque étape est la question du contrôle) :
 
 | Contrôle | Œil | Rameau | Côté | Pont |
 |---|---|---|---|---|
-| J+21 | œil vert et gonflé, sans se ratatiner (retirer le lien pour voir) | bourgeons du greffon verts et gonflés (retirer le sac pour voir) | greffon vert | greffons verts |
+| J+21 | œil vert et gonflé, sans se ratatiner, un cal au bord de l'écusson (HS1309) ; brun et sec : la greffe est morte (déduction du plugin) (retirer le lien pour voir) | bourgeons du greffon verts et gonflés (retirer le sac pour voir) | greffon vert | greffons verts |
 | J+42 | l'œil a-t-il débourré ? sinon le **forcer** (entailler le porte-greffe aux 2/3 au-dessus de l'œil et coucher le haut), ou « Au printemps » | le greffon pousse-t-il ? retirer le lien quand les feuilles sortent | le greffon pousse-t-il ? une fois soudé, couper le porte-greffe au-dessus (approche : sevrer le greffon de sa plante) | greffons soudés aux deux bouts ; oui → *réussie* (rien ne doit pousser, pas de « Au printemps ») |
 | Pousse (4 semaines après) | tuteurer la pousse, couper le haut du porte-greffe à environ 1,3 cm au-dessus de la greffe, ôter les rejets | greffon tuteuré, lien retiré, rejets ôtés | greffon tuteuré, rejets ôtés | — |
 
@@ -218,6 +228,10 @@ tuteurer puis couper le haut du porte-greffe, HS1309 (**une seule source**) ; li
 lien ou sac d'un rameau retiré quand le greffon pousse, Curk 2022 p. 186 (couronne : sac retiré à 15 jours, fiche INRAE-Cirad), même filiation, **une seule source** ; latérale, approche et pont : **aucune source relue**, choix du plugin ;
 contrôle de la pousse 4 semaines après le « Oui » qui confirme le débourrement d'un œil, choix du plugin. Délais J+21 et J+42 d'après la vulgarisation des universités de Floride, d'Alabama et
 de Californie : le bourgeon, plus que le calendrier, décide.
+
+![Écusson pris ou raté au contrôle](../images/greffe-ecusson-controle.svg)
+
+*Fig. G13 – Au contrôle d'un écusson : A, pris (œil vert, cal au bord) ; B, raté ; C, forcer l'œil à J+42 s'il n'a pas débourré ; D, la pousse : tuteurer, couper le haut, ôter les rejets. Détail et sources sur le dessin. Dessin façon gravure coloriée pour ce plugin, MIT.*
 
 **Répondre** (chaque réponse est notée au journal) :
 - **Oui** : étape suivante ;
@@ -231,7 +245,7 @@ Un contrôle dû remplit la commande « Greffe à contrôler », reprise par le 
 
 ![Fiche d'une greffe en attente](../images/greffe.webp)
 
-*Poncirus greffé d'un Yuzu il y a 12 jours : la plante reste le porte-greffe, avec le greffon en attente ; porte-greffe et greffon deviendront « Yuzu sur Poncirus n°2 » au débourrement d'un œil. On y voit le contrôle prévu le 12/11 (J+21), la question à se poser, l'avertissement de température (10,1 °C en moyenne sur 24 h) et la rusticité effective, celle du greffon, plus fragile. Les boutons répondent au contrôle.*
+*Fig. G14 – Poncirus greffé d'un Yuzu il y a 12 jours : la plante reste le porte-greffe, avec le greffon en attente ; porte-greffe et greffon deviendront « Yuzu sur Poncirus n°2 » au débourrement d'un œil. On y voit le contrôle prévu le 12/11 (J+21), la question à se poser, l'avertissement de température (10,1 °C en moyenne sur 24 h) et la rusticité effective, celle du greffon, plus fragile. Les boutons répondent au contrôle.*
 
 ## Température, hiver, engrais
 

@@ -30,7 +30,7 @@ les gravures montrent souvent une autre plante qu'un agrume, ce qui est dit sous
 
 ![Rameau et bourgeons qui s'ouvrent, Atkinson 1905](../images/bota-bourgeons.webp)
 
-*À gauche, rameau de marronnier d'Inde : bourgeons de côté et cicatrices des feuilles (sans bourgeon du bout, ce que la légende d'origine regrette) ; à droite, bourgeons de caryer qui s'ouvrent (photo). Atkinson 1905, fig. 427 [p. 374](https://archive.org/details/collegetextbooko00atkiuoft/page/374) et fig. 431 [p. 379](https://archive.org/details/collegetextbooko00atkiuoft/page/379), domaine public.*
+*Fig. B1 – À gauche, rameau de marronnier d'Inde : bourgeons de côté et cicatrices des feuilles (sans bourgeon du bout, ce que la légende d'origine regrette) ; à droite, bourgeons de caryer qui s'ouvrent (photo). Atkinson 1905, fig. 427 [p. 374](https://archive.org/details/collegetextbooko00atkiuoft/page/374) et fig. 431 [p. 379](https://archive.org/details/collegetextbooko00atkiuoft/page/379), domaine public.*
 
 - **Nœud** : l'endroit où une feuille est (ou était) attachée. **Entre-nœud** : la portion de tige entre deux nœuds (OpenStax p. 862 ; Shipunov p. 91).
 - **Bourgeon de côté (axillaire)** : il naît à l'**aisselle** d'une feuille, entre la feuille et la tige, et donne une branche (OpenStax p. 862 ; Shipunov p. 124) ou une fleur (OpenStax p. 862, **une seule source**).
@@ -41,28 +41,45 @@ les gravures montrent souvent une autre plante qu'un agrume, ce qui est dit sous
 - **Débourrement** : l'ouverture des bourgeons au printemps (Wikipédia « Débourrement » ; Atkinson 1905 p. 379, qui le décrit sans ce mot) ; « à la fin de la dormance » : Wikipédia, **une seule source**.
   Le mot n'est pas dans les deux manuels.
 - **Épines** : une épine peut être un **rameau** transformé (*thorn*) ou une **feuille** transformée (*spine*) (Shipunov p. 127 ; OpenStax p. 869 et 877).
-  Chez les agrumes, l'épine naît d'un bourgeon à l'aisselle d'une feuille : c'est un **rameau transformé** (Zhang et al. 2020, **une seule source** ; Wikipédia « Citrus » confirme : « épines axillaires »).
-  À ne pas confondre avec l'**aiguillon** (*prickle*) du rosier, qui n'est qu'une excroissance de la surface de la tige (Shipunov p. 127, **une seule source**).
+  Chez les agrumes, chaque nœud porte une feuille à une foliole sur un pétiole ailé (FoC 2008) ; l'épine est dans son aisselle (FoC 2008 ; Zhang et al. 2020),
+  et à côté d'elle, au même niveau, un bourgeon dormant (Zhang et al. 2020 p. 2952 ; Leichty et Sinha 2021).
+  L'épine est un **rameau transformé** (Zhang et al. 2020 ; Wikipédia « Citrus » : « épines axillaires »).
+  À ne pas confondre avec l'**aiguillon** (*prickle*) du rosier, qui n'est qu'une excroissance de la surface de la tige, n'importe où (Shipunov p. 127 ; Morrow § 12.4) ;
+  OpenStax p. 869 range pourtant le rosier parmi les épines.
+  Chez l'ocotillo, l'épine est le pétiole, avec un bourgeon dans l'aisselle de l'épine (Morrow § 12.4, **une seule source**).
+  Pour reconnaître : épine et bourgeon côte à côte à l'aisselle d'une feuille, un rameau ; bourgeon à l'aisselle de l'épine, une feuille ;
+  ni l'un ni l'autre, n'importe où sur l'écorce, un aiguillon (**déduction du plugin**).
+
+![Épine d'agrume, aiguillon de rosier, épine-feuille](../images/bota-epine.svg)
+
+*Fig. B2 – A, épine d'agrume à l'aisselle d'une feuille, avec son bourgeon ; B, aiguillon du rosier ; C, épine issue d'une feuille. Détail et sources sur le dessin. Dessin façon gravure coloriée pour ce plugin, MIT.*
 
 ## Sous l'écorce
 
 ![Rameau de frêne de trois ans et ses cernes, Atkinson 1905](../images/bota-cernes.webp)
 
-*Rameau de frêne de trois ans, coupé dans chaque pousse annuelle : un cerne de plus chaque année vers le bas. Atkinson 1905, fig. 432, [p. 381](https://archive.org/details/collegetextbooko00atkiuoft/page/381), domaine public.*
+*Fig. B3 – Rameau de frêne de trois ans, coupé dans chaque pousse annuelle : un cerne de plus chaque année vers le bas. Atkinson 1905, fig. 432, [p. 381](https://archive.org/details/collegetextbooko00atkiuoft/page/381), domaine public.*
 
 De l'extérieur vers le centre :
 
-- **Écorce** : tout ce qui est à l'extérieur du cambium (OpenStax p. 866 ; Shipunov p. 123). Elle contient le liber.
+- **Écorce** : tout ce qui est à l'extérieur du cambium (OpenStax p. 866 ; Shipunov p. 123). Elle contient le liber et, tout à l'extérieur, le **liège** (OpenStax p. 867 ; Shipunov p. 123).
 - **Liber (phloème)** : des cellules **vivantes**, côté extérieur. Il transporte les **sucres** fabriqués par les feuilles **dans tous les sens** : vers le haut (pousses, fleurs, fruits) et vers le bas (racines)
   (cellules vivantes et sucres : Shipunov p. 74 ; OpenStax p. 861 et 885 ; dans tous les sens : Shipunov p. 103). La « sève élaborée » des livres français, c'est cela ; le mot n'est pas dans les deux manuels.
 - **Cambium** : une couche très fine qui fabrique du liber vers l'extérieur et du bois vers l'intérieur : la tige s'épaissit (OpenStax p. 867 ; Shipunov p. 119).
-  Dans une greffe, ce sont les cambiums du greffon et du porte-greffe qui doivent se toucher (Bailey 1907 p. 78, **une seule source**, ancienne) ; les tissus conducteurs des deux plantes se soudent (OpenStax p. 942).
+  Dans une greffe, ce sont les cambiums du greffon et du porte-greffe qui doivent se toucher (Bailey 1907 p. 78 ; Curk 2022 p. 183) ; pour un chip, des deux côtés quand c'est possible (UF/IFAS HS1309) ; les tissus conducteurs des deux plantes se soudent (OpenStax p. 942).
 - **Bois (xylème)** : des cellules **mortes**, côté intérieur. Il fait **monter** l'eau et les minéraux des racines vers les feuilles, **dans un seul sens** (OpenStax p. 861 et 885 ; Shipunov p. 74).
   Le bois de l'arbre est du xylème fabriqué par le cambium (Shipunov p. 74 ; Bailey 1907 p. 78) ; le bois clair près de l'écorce, l'**aubier**, est celui qui conduit encore l'eau (Shipunov p. 121 ; Atkinson 1905 p. 381).
+- **Cernes** : le cambium ne travaille pas de la même façon toute l'année ; il laisse un cerne par saison de pousse, donc un par an en climat à saisons. Sans saisons marquées, les cernes ne sont pas nets (OpenStax p. 867-868 ; Shipunov p. 120).
+
+Ces règles valent pour les arbres en général ; qu'elles s'appliquent aux agrumes est une déduction du plugin.
 
 ![Faisceau conducteur en coupe, Atkinson 1905](../images/bota-faisceau.webp)
 
-*Coupe d'un faisceau conducteur de tige de tournesol, au microscope : à gauche le **bois** (gros vaisseaux ronds), au centre le **cambium** (petites cellules en rangs), à droite le **liber**. Atkinson 1905, fig. 58, [p. 50](https://archive.org/details/collegetextbooko00atkiuoft/page/50), domaine public (légende anglaise d'origine retirée).*
+*Fig. B4 – Coupe d'un faisceau conducteur de tige de tournesol, au microscope : à gauche le **bois** (gros vaisseaux ronds), au centre le **cambium** (petites cellules en rangs), à droite le **liber**. Atkinson 1905, fig. 58, [p. 50](https://archive.org/details/collegetextbooko00atkiuoft/page/50), domaine public (légende anglaise d'origine retirée).*
+
+![Écorce, cambium et bois ; les deux cambiums d'une greffe](../images/bota-cambium.svg)
+
+*Fig. B5 – A, de l'écorce au bois autour du cambium ; B, dans une greffe, les cambiums du greffon et du porte-greffe doivent se toucher (voir [Greffe](greffe.md)). Détail et sources sur le dessin. Dessin façon gravure coloriée pour ce plugin, MIT.*
 
 - **Annelure** : enlever un anneau d'écorce coupe le liber, pas le bois. Les sucres ne descendent plus : ils s'accumulent au-dessus de l'anneau et manquent dans les racines (Li et al. 2003, sur l'hybride de mandarinier « Murcott », **une seule source** ; Wikipédia « Annélation » et « Girdling » confirment).
   Chez Li et al., l'accumulation au-dessus ne se voit pas sur un arbre très chargé de fruits, qui consomment les sucres.
@@ -84,19 +101,19 @@ De l'extérieur vers le centre :
 
 ![Vocabulaire de la feuille : forme du limbe, sommet, bord, base](../images/bota-feuilles.svg)
 
-*Formes du limbe, sommets, bords et bases. Dessin façon gravure coloriée pour ce plugin d'après les définitions et dessins de Shipunov p. 82 (base) et d'IPGRI 1999 p. 32-33 (aucune figure recopiée), MIT comme le plugin.*
+*Fig. B6 – Formes du limbe, sommets, bords et bases. Dessin façon gravure coloriée pour ce plugin d'après les définitions et dessins de Shipunov p. 82 (base) et d'IPGRI 1999 p. 32-33 (aucune figure recopiée), MIT comme le plugin.*
 
 ![Feuille de Citrus aurantium, Rendle 1911](../images/bota-feuille-agrume.webp)
 
-*Feuille de Citrus aurantium (oranger, au sens de 1911) : l = limbe, p = pétiole ailé, articulé au limbe. A. B. Rendle, Encyclopædia Britannica, 11ᵉ éd., 1911, vol. 16 p. 326, fig. 21, domaine public, via [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:EB1911_Leaf_-_Leaf_of_Citrus_Aurantium.jpg).*
+*Fig. B7 – Feuille de Citrus aurantium (oranger, au sens de 1911) : l = limbe, p = pétiole ailé, articulé au limbe. A. B. Rendle, Encyclopædia Britannica, 11ᵉ éd., 1911, vol. 16 p. 326, fig. 21, domaine public, via [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:EB1911_Leaf_-_Leaf_of_Citrus_Aurantium.jpg).*
 
 - **Feuille d'agrume** : le pétiole est **ailé** (Ballve et al. 1997, **une seule source** ; Wikipédia « Citrus » confirme) ; la largeur de l'aile change selon l'espèce, et sert même à reconnaître des hybrides (Ballve et al. 1997).
-  Le limbe est **articulé** sur le pétiole (Atkinson 1905 p. 389 ; Rendle 1911, légende ci-dessus) : la feuille d'oranger et de citronnier serait une feuille composée réduite à **une seule foliole** (Atkinson 1905 p. 389, **une seule source**, et ancienne).
+  Le limbe est **articulé** sur le pétiole (Atkinson 1905 p. 389 ; Rendle 1911, fig. B7<!-- bota-feuille-agrume -->) : la feuille d'oranger et de citronnier serait une feuille composée réduite à **une seule foliole** (Atkinson 1905 p. 389, **une seule source**, et ancienne).
 - **Stomates** : de petites ouvertures de l'épiderme, par où passent les gaz et l'eau qui s'évapore (OpenStax p. 865 ; Shipunov p. 88) ; plus nombreux **sous** la feuille (Shipunov p. 90, **une seule source**).
 
 ![Épiderme et stomates, Atkinson 1905](../images/bota-stomates.webp)
 
-*Épiderme de feuille de lierre vu au microscope : cellules à bords ondulés, deux stomates (les ovales à deux lèvres). Atkinson 1905, fig. 53, [p. 42](https://archive.org/details/collegetextbooko00atkiuoft/page/42), domaine public.*
+*Fig. B8 – Épiderme de feuille de lierre vu au microscope : cellules à bords ondulés, deux stomates (les ovales à deux lèvres). Atkinson 1905, fig. 53, [p. 42](https://archive.org/details/collegetextbooko00atkiuoft/page/42), domaine public.*
 
 - **Transpiration** : la perte d'eau par évaporation à la surface des feuilles (OpenStax p. 882 ; Shipunov p. 88).
 - **Photosynthèse** : avec la lumière, la feuille fabrique des **sucres** à partir du gaz carbonique de l'air et de l'eau, et rejette de l'oxygène (Shipunov p. 39 ; OpenStax p. 860 et 865).
@@ -108,7 +125,7 @@ De l'extérieur vers le centre :
 
 ![Poils absorbants collés au sol, Atkinson 1905](../images/bota-poils-absorbants.webp)
 
-*Poils absorbants d'une plantule de maïs, avec des grains de terre collés. Atkinson 1905, fig. 44, [p. 32](https://archive.org/details/collegetextbooko00atkiuoft/page/32), domaine public.*
+*Fig. B9 – Poils absorbants d'une plantule de maïs, avec des grains de terre collés. Atkinson 1905, fig. 44, [p. 32](https://archive.org/details/collegetextbooko00atkiuoft/page/32), domaine public.*
 
 - Les racines **respirent** : elles ont besoin d'oxygène (Shipunov p. 97 ; OpenStax p. 878). Un bon sol a environ **moitié eau, moitié air** dans ses vides (OpenStax p. 906, **une seule source**).
   D'où le danger d'un pot détrempé : voir [Arroser juste](fertilisation.md#arroser-juste) et la [gommose](sante.md#gommose-et-pourriture-des-racines-phytophthora).
@@ -117,7 +134,7 @@ De l'extérieur vers le centre :
 
 ![Pièces d'une fleur et fleur en coupe, Atkinson 1905](../images/bota-fleur.webp)
 
-*À gauche, de Trillium : sépale, pétale, étamine, pistil ; à droite, fleur de poirier coupée en long : pétales, étamines, pistil au centre. Atkinson 1905, fig. 379 [p. 320](https://archive.org/details/collegetextbooko00atkiuoft/page/320) et fig. 570 [p. 682](https://archive.org/details/collegetextbooko00atkiuoft/page/682) (d'après Warming), domaine public.*
+*Fig. B10 – À gauche, de Trillium : sépale, pétale, étamine, pistil ; à droite, fleur de poirier coupée en long : pétales, étamines, pistil au centre. Atkinson 1905, fig. 379 [p. 320](https://archive.org/details/collegetextbooko00atkiuoft/page/320) et fig. 570 [p. 682](https://archive.org/details/collegetextbooko00atkiuoft/page/682) (d'après Warming), domaine public.*
 
 - De l'extérieur vers le centre : **sépales** (le calice), **pétales** (la corolle), **étamines**, **pistil** (Shipunov p. 153 ; OpenStax p. 920).
 - **Étamine** : elle porte l'**anthère**, qui fait le pollen (Shipunov p. 154 ; OpenStax p. 920) ; l'anthère est au bout d'un **filet** (Shipunov p. 154 ; OpenStax p. 923).
@@ -125,7 +142,7 @@ De l'extérieur vers le centre :
 
 ![Fleur d'agrume coupée en long](../images/bota-fleur-agrume.svg)
 
-*Fleur d'agrume coupée en long : calice en coupe à 3-5 lobes, 4-5 pétales épais, étamines en général 4 fois plus nombreuses que les pétales (jusqu'à 10 fois), libres ou soudées à la base, disque à nectar en anneau, ovaire de 5 à 14 loges, gros stigmate (FoC 2008, description du genre Citrus, **une seule source**). Schéma dessiné pour ce plugin, MIT.*
+*Fig. B11 – Fleur d'agrume coupée en long : calice en coupe à 3-5 lobes, 4-5 pétales épais, étamines en général 4 fois plus nombreuses que les pétales (jusqu'à 10 fois), libres ou soudées à la base, disque à nectar en anneau, ovaire de 5 à 14 loges, gros stigmate (FoC 2008, description du genre Citrus, **une seule source**). Schéma dessiné pour ce plugin, MIT.*
 
 - **Pollinisation** : le pollen va de l'anthère au stigmate, de la même fleur ou d'une autre (OpenStax p. 929 ; Shipunov p. 164).
 - **Fécondation** : le pollen germe, traverse le style jusqu'à l'ovule ; l'ovule fécondé devient la **graine** (OpenStax p. 934-936 ; Shipunov p. 155).
@@ -139,7 +156,7 @@ De l'extérieur vers le centre :
 
 ![Bigaradier, Köhler 1897](../images/bota-bigaradier.webp)
 
-*Bigaradier (Citrus aurantium) : A rameau fleuri et fruit ; B fruit ; 1 fleur sans ses pétales ; 2 fleur coupée en long ; 3 pétale ; 4 faisceau d'étamines ; 5 pistil entouré des étamines ; 6 fruit mûr coupé (« en travers » selon la légende d'origine, le dessin semble coupé en long) ; 7 écorce de fruit vert au microscope. F. E. Köhler, Köhler's Medizinal-Pflanzen, 1897 (date de Commons), fichier n° 042, domaine public, via [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Citrus_aurantium_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-042.jpg) (légende d'après la description de Wikimedia Commons).*
+*Fig. B12 – Bigaradier (Citrus aurantium) : A rameau fleuri et fruit ; B fruit ; 1 fleur sans ses pétales ; 2 fleur coupée en long ; 3 pétale ; 4 faisceau d'étamines ; 5 pistil entouré des étamines ; 6 fruit mûr coupé (« en travers » selon la légende d'origine, le dessin semble coupé en long) ; 7 écorce de fruit vert au microscope. F. E. Köhler, Köhler's Medizinal-Pflanzen, 1897 (date de Commons), fichier n° 042, domaine public, via [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Citrus_aurantium_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-042.jpg) (légende d'après la description de Wikimedia Commons).*
 
 - **Hespéride** : le nom du fruit des agrumes, à écorce épaisse et coriace (Wikipédia « Hesperidium » et « Citrus », **une seule source** : l'encyclopédie, qui en fait une baie particulière).
   Shipunov cite l'hespéride à côté de la baie parmi les fruits charnus (p. 166), et l'orange parmi les fruits charnus (p. 164).
@@ -153,11 +170,11 @@ De l'extérieur vers le centre :
 
 ![Coupe d'agrume légendée](../images/bota-coupe-agrume.svg)
 
-*Coupe en travers : zeste (flavédo), albédo, endocarpe, quartiers remplis de vésicules de jus, pépins du côté de l'axe (couches : Sadka et al. 2019 ; pépins : FoC 2008 ; **une seule source** pour chacun). Schéma dessiné pour ce plugin, MIT.*
+*Fig. B13 – Coupe en travers : zeste (flavédo), albédo, endocarpe, quartiers remplis de vésicules de jus, pépins du côté de l'axe (couches : Sadka et al. 2019 ; pépins : FoC 2008 ; **une seule source** pour chacun). Schéma dessiné pour ce plugin, MIT.*
 
 ![Orange coupée, légendée](../images/bota-orange.webp)
 
-*Orange coupée en travers (à gauche) et en long (à droite). Photo Kjetil Lenes (Ekko), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Perpendicular_orange.png), [CC BY 2.5](https://creativecommons.org/licenses/by/2.5/) ; modifiée : recadrée, réduite, légendes en français ajoutées.*
+*Fig. B14 – Orange coupée en travers (à gauche) et en long (à droite). Photo Kjetil Lenes (Ekko), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Perpendicular_orange.png), [CC BY 2.5](https://creativecommons.org/licenses/by/2.5/) ; modifiée : recadrée, réduite, légendes en français ajoutées.*
 
 ## Nourrir la plante
 
@@ -209,6 +226,8 @@ Détail et sources dans les paragraphes ci-dessous. Le tableau résume, il n'ajo
   Moins un pépin a d'embryons, plus ce risque est grand : en moyenne 1,1 à 1,5 embryon par pépin chez le citronnier Volkamer, 1,5 à 2 chez le Poncirus, 3 à 4 chez le bigaradier (principe : Curk 2022 p. 197 et de Rocca Serra 1992 p. 119 ; chiffres : Curk 2022 p. 197, **une seule source**).
   Un plant de semis peut aussi être un hybride, même chez une espèce à plusieurs embryons : c'est ainsi qu'est née la clémentine, dans un semis de pépins de mandarine (Curk 2022 p. 68, **une seule source**).
 - **Germination hypogée** : chez les agrumes, les deux cotylédons, épais et charnus, restent dans le pépin, sous terre ; c'est la tige qui sort et porte les premières vraies feuilles (Hayward et Long 1942 p. 3 et 20 ; Citrus Academy, module 2 p. 7).
+  La racine sort la première, par la pointe du pépin (Citrus Academy, module 2, **une seule source**) ; la tige monte ensuite, courbée en crosse tant qu'elle est sous terre (règle générale : OpenStax p. 937, **une seule source**).
+  Les premières feuilles sont opposées, les suivantes alternes (Hayward et Long 1942 p. 22, **une seule source**).
   À l'inverse, chez le haricot, la germination est **épigée** : les cotylédons sont soulevés au-dessus du sol (Citrus Academy, module 2 p. 7, **une seule source**).
   Un même pépin peut donner **plusieurs plantules**, souvent deux à quatre (Hayward et Long 1942 p. 2 ; Citrus Academy, module 2) : les embryons se gênent dans le tégument, et l'un est en général plus grand et plus vigoureux que les autres (Hayward et Long 1942 p. 2, **une seule source**).
 - **Phase juvénile** : un plant de semis, même nucellaire, porte des épines et fleurit tard (de Rocca Serra 1992 p. 119 ; Curk 2022 p. 187-188) ; il peut attendre des années avant ses premiers fruits (UF/IFAS HS1309).
@@ -219,6 +238,10 @@ Détail et sources dans les paragraphes ci-dessous. Le tableau résume, il n'ajo
 - **Semer** (UF/IFAS HS1309 p. 1-2, **une seule source** pour tout ce point) : rincer le fruit à l'eau de Javel diluée (20 %), nettoyer et sécher les pépins à l'abri du soleil ;
   semer à 0,6-1,3 cm de profondeur dans un terreau propre ; ôter le tégument ou faire tremper 8 h accélère la levée, qui vient en 2 à 3 semaines au chaud, au soleil et humide.
 - Les porte-greffes sont d'ordinaire multipliés par semis (UF/IFAS HS1309 ; Curk 2022 p. 186 et 197) ; quand les pépins ne donnent surtout que des hybrides, par bouture ou in vitro (UF/IFAS HS1309 ; in vitro aussi Curk 2022 p. 199).
+
+![Pépin à plusieurs embryons, germination hypogée et épigée](../images/bota-semis.svg)
+
+*Fig. B15 – A, pépin d'agrume ouvert : plusieurs embryons ; B, germination hypogée de l'agrume, le pépin reste sous terre ; C, germination épigée du haricot. Détail et sources sur le dessin. Dessin façon gravure coloriée pour ce plugin, MIT.*
 
 ### Greffe
 
@@ -240,10 +263,14 @@ Détail et sources dans les paragraphes ci-dessous. Le tableau résume, il n'ajo
 ### Marcotte
 
 - **Marcotte** : une tige encore attachée à la mère fait des racines, puis on la sépare (OpenStax p. 943 ; Curk 2022, lexique p. 341).
-- **Marcotte aérienne** : on retire un morceau d'écorce de la tige et on le couvre de mousse tenue par un film ; une fois les racines formées, on sépare cette partie et on la rempote (OpenStax p. 943, **une seule source** pour le geste).
-  En pratique, l'écorce est ôtée en anneau (non sourcé).
-  C'est une [annelure](#sous-lécorce) : les sucres qui descendent s'arrêtent au-dessus de l'anneau, là où les racines doivent pousser (lien fait par le plugin).
+- **Marcotte aérienne** : on retire un morceau d'écorce de la tige et on le couvre de mousse tenue par un film ; une fois les racines formées, on sépare cette partie et on la rempote (OpenStax p. 943 ; Bailey 1907 p. 40-41).
+  Couramment, l'écorce est ôtée en anneau (Bailey 1907 p. 40) : c'est une [annelure](#sous-lécorce).
+  Les racines partent au-dessus de l'anneau (Bailey 1907 p. 40, **une seule source**), là où s'arrêtent les sucres qui descendent (lien fait par le plugin).
 - Pratiquée sur les citronniers d'ornement : plants qui portent des fruits en **moins de 12 mois** (Curk 2022 p. 188, **une seule source**). Racines propres, donc mêmes limites que la bouture (Curk 2022 p. 186-187).
+
+![Annelure et marcotte aérienne](../images/bota-marcotte.svg)
+
+*Fig. B16 – A, annelure : l'anneau ôté coupe le liber, pas le bois ; marcotte aérienne posée sur l'anneau, puis sevrée et rempotée. Détail et sources sur le dessin. Dessin façon gravure coloriée pour ce plugin, MIT.*
 
 ### Dans le plugin
 
@@ -268,6 +295,9 @@ Détail et sources dans les paragraphes ci-dessous. Le tableau résume, il n'ajo
 - **UF/IFAS** (université de Floride), fiches EDIS : HS1373 *Movement of Plant Nutrients* (Vashisth T., Oswalt C., 2020, revue en 2025) ; SS420 *Macronutrient Deficiencies in Citrus* (2002, revue en 2024) ;
   SS618 *Molybdenum (Mo) and Nickel (Ni) for Citrus Trees* (2014, revue en 2025). https://edis.ifas.ufl.edu
 - **Zhang et al. 2020** : Zhang F., Rossignol P., Huang T. et al. (dont Irish V. F.), *Reprogramming of Stem Cell Activity to Convert Thorns into Branches*, Current Biology 30(15), 2020, p. 2951-2961, doi 10.1016/j.cub.2020.05.068 (résumé).
+- **Leichty et Sinha 2021** : Leichty A. R., Sinha N. R., *Plant development: How competing modes of growth coexist in close proximity*, Current Biology 31, 2021, p. R472-R474, doi 10.1016/j.cub.2021.03.073 (aucune figure reprise).
+- **FoC 2008** : Zhang D., Mabberley D. J., *Citrus*, in *Flora of China* vol. 11 : 90-96, Science Press et Missouri Botanical Garden, 2008.
+- **Morrow** : Morrow M., *A Photographic Atlas for Botany*, College of the Redwoods, LibreTexts, § 12.4 *Modified Shoots*, CC BY-NC 4.0 (lu seulement, rien n'en est repris).
 - **Li et al. 2003** : Li C.-Y., Weiss D., Goldschmidt E. E., *Girdling affects carbohydrate-related gene expression in leaves, bark and roots of alternate-bearing citrus trees*, Annals of Botany 92(1), 2003, p. 137-143, doi 10.1093/aob/mcg108 (résumé).
 - **IPGRI 1999** : IPGRI, *Descriptors for Citrus*, International Plant Genetic Resources Institute, Rome, 1999 (descripteurs 7.2.9 à 7.2.11, p. 32-33).
 - **Sadka et al. 2019** : Sadka A., Shlizerman L., Kamara I., Blumwald E., *Primary Metabolism in Citrus Fruit as Affected by Its Unique Structure*, Frontiers in Plant Science 10:1167, 2019, doi 10.3389/fpls.2019.01167, CC BY.

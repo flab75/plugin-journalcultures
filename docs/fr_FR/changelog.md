@@ -8,6 +8,11 @@
 - Fertilisation : planche « à quoi ressemble chaque carence » (saine, azote, magnésium, fer, zinc), dessin façon gravure coloriée ; légende du schéma « Où se voit une carence » précisée pour le potassium.
 - Sources des carences vérifiées dans les PDF : UF/IFAS SL457 = chapitre 3 de *Nutrition of Florida Citrus Trees* (« General Soil Fertility and Citrus Tree Nutrition », EDIS SS670), SL456 = chapitre 2 (SS669) ; Elavarasan 2019 présentée comme revue de synthèse (aucune référence de Floride) et Haifa comme fiche commerciale ; « les trois sources concordent » nuancé, légende de la planche refaite.
 - Botanique : le schéma « Vocabulaire de la feuille » (formes du limbe, sommets, bords, bases) redessiné façon gravure coloriée, contours inchangés.
+- Illustrations demandées par les relecteurs, façon gravure coloriée : saison d'engrais, lire une étiquette N-P-K, où mettre l'engrais (Fertilisation) ; épine à l'aisselle, cambium et greffe, pépin à plusieurs embryons et germination, annelure et marcotte aérienne (Botanique) ; écusson pris ou raté au contrôle (Greffe).
+- Botanique : épines précisées (bourgeon dormant à côté de l'épine, ocotillo, comment reconnaître une épine, une épine-feuille ou un aiguillon).
+- Santé : chaque légende dit quoi repérer et où regarder (loupe pour les acariens) ; pour les photos incertaines ou prises sur une autre plante, ce qui serait pareil sur un agrume.
+- Greffe : lettres de la gravure de la greffe en approche (Bailey, fig. 139) regrossies.
+- Toutes les figures sont numérotées par onglet (M, B, I, F, G, S) : « Fig. S5 ».
 
 ## 0.28 (2026-11-03), suite : botanique
 - La feuille : mots pour décrire le limbe, le sommet, la base et le bord (IPGRI, Shipunov), avec un schéma dessiné pour le plugin (forme, sommet, bord, base) ; feuilles alternes ; épine et aiguillon.

@@ -179,6 +179,7 @@ $x = $C::markdown("# T\nintro\n## Un [l](#a)\n### Sous\n## Deux");
 $ok(strpos($x, '<h2 id="jdc-n-t">T</h2><div class="jdc-doc"><nav class="jdc-toc" aria-label="Sommaire">') === 0 && strpos($x, '<li><a data-n="" data-a="un-la" href="#jdc-n-un-la">Un l</a></li><li class="s"><a data-n="" data-a="sous" href="#jdc-n-sous">Sous</a></li>') !== false
   && strpos($x, '<div class="jdc-tx"><p>intro</p><h3') !== false && strpos($C::markdown("# T\n## Un"), 'jdc-toc') === false, 'notice : sommaire sous le titre, seulement à partir de 2 sections');
 $ok(strpos($C::markdown("x\n1. a\n   b\n2. c\n- d"), '<p>x</p><ol><li>a b</li><li>c</li></ol><ul><li>d</li></ul>') !== false, 'notice : liste numérotée');
+$ok(strpos($C::markdown("voir fig. B7<!-- bota-x --> ici"), '<p>voir fig. B7 ici</p>') !== false, 'notice : repère caché d\'un renvoi retiré');
 $ok(strpos($C::markdown("vers\n2026. suite"), '<p>vers 2026. suite</p>') !== false, 'notice : « 2026. » ne coupe pas un paragraphe');
 $ok(strpos($C::markdown("**\u{2605}** retire"), "<b>\u{2605}</b> retire") !== false, 'notice : caractère à octet 0x85 (★) pas coupé en deux lignes');
 foreach ($H as $k => $h) {

@@ -30,7 +30,7 @@ Ce qui vient du plugin lui-même (choix, seuil, déduction) est écrit comme tel
 
 ![Mesurer l'aile et le limbe](../images/id-aile-mesure.svg)
 
-*Mesurer l'aile et le limbe : chaque longueur se prend le long de la nervure, chaque largeur au plus large (choix du plugin). Seuils du plugin : aile longue à partir de la moitié du limbe, simple liseré sous 2 mm de large. Schéma dessiné pour ce plugin, MIT.*
+*Fig. I1 – Mesurer l'aile et le limbe : chaque longueur se prend le long de la nervure, chaque largeur au plus large (choix du plugin). Seuils du plugin : aile longue à partir de la moitié du limbe, simple liseré sous 2 mm de large. Schéma dessiné pour ce plugin, MIT.*
 
 - La pulpe se décrit en deux caractères : **Saveur** (douce, acide, amère) et **Aspect** (en vésicules, la normale ; en perles, le citron caviar ; presque absente, peau très épaisse).
 
@@ -90,7 +90,7 @@ Le limequat est rangé en lime (−3), plus prudent que TyCitriK (−6).
 
 ![Formes de fruit et coupe en travers](../images/id-fruits.svg)
 
-*Formes de fruit (exemples du tableau ci-dessous ; calamondin aplati : FRPS 1997, **une seule source**, voir « Groupe par groupe ») et coupe en travers pour compter les quartiers : 6 ou moins orientent vers le kumquat (FoC 2008, **une seule source**). Schéma dessiné pour ce plugin, MIT.*
+*Fig. I2 – Formes de fruit (exemples du tableau ci-dessous ; calamondin aplati : FRPS 1997, **une seule source**, voir « Groupe par groupe ») et coupe en travers pour compter les quartiers : 6 ou moins orientent vers le kumquat (FoC 2008, **une seule source**). Schéma dessiné pour ce plugin, MIT.*
 
 - Couleur du fruit : à maturité seulement. La lime de Tahiti, par exemple, reste vert vif jusqu'à maturité puis devient jaune pâle (Morton 1987, site Purdue, **une seule source**).
 
@@ -105,11 +105,11 @@ Le limequat est rangé en lime (−3), plus prudent que TyCitriK (−6).
 
 ![1 foliole, 3 folioles, ou les deux mêlées](../images/id-folioles.svg)
 
-*1 foliole, d'ordinaire articulée sur le pétiole (la plupart des agrumes), ou 3 folioles (Poncirus, *C. trifoliata*) (FoC 2008). Les deux mêlées sur un même rameau : profil d'hybride de Poncirus, choix du plugin (FA5 « surtout trifolié », Agromillora, **une seule source**). Schéma dessiné pour ce plugin, MIT.*
+*Fig. I3 – 1 foliole, d'ordinaire articulée sur le pétiole (la plupart des agrumes), ou 3 folioles (Poncirus, *C. trifoliata*) (FoC 2008). Les deux mêlées sur un même rameau : profil d'hybride de Poncirus, choix du plugin (FA5 « surtout trifolié », Agromillora, **une seule source**). Schéma dessiné pour ce plugin, MIT.*
 
 ![L'aile du pétiole selon le groupe](../images/id-ailes-groupes.svg)
 
-*L'aile du pétiole selon le groupe, d'après le tableau ci-dessous et « Groupe par groupe » (FoC 2008, Curk 2022 ; mandarine, orange douce, bigaradier : FoC 2008, **une seule source**) : formes typiques, pas à l'échelle ; un cultivar peut s'en écarter. Schéma dessiné pour ce plugin, MIT.*
+*Fig. I4 – L'aile du pétiole selon le groupe, d'après le tableau ci-dessous et « Groupe par groupe » (FoC 2008, Curk 2022 ; mandarine, orange douce, bigaradier : FoC 2008, **une seule source**) : formes typiques, pas à l'échelle ; un cultivar peut s'en écarter. Schéma dessiné pour ce plugin, MIT.*
 
 Les groupes de la colonne du milieu sont ceux du plugin. La colonne de droite dit ce que les sources en disent.
 
@@ -172,7 +172,7 @@ Les groupes de la colonne du milieu sont ceux du plugin. La colonne de droite di
 
 ![Rejet du porte-greffe et goulot de bouteille](../images/id-rejet.svg)
 
-*Rejet à 3 folioles né sous le point de greffe, à couper (UF/IFAS HS1309) ; goulot de bouteille autour de la greffe, normal sur Poncirus avec la plupart des variétés, sans dépérissement (Curk 2022 p. 195). Schéma dessiné pour ce plugin, MIT.*
+*Fig. I5 – Rejet à 3 folioles né sous le point de greffe, à couper (UF/IFAS HS1309) ; goulot de bouteille autour de la greffe, normal sur Poncirus avec la plupart des variétés, sans dépérissement (Curk 2022 p. 195). Schéma dessiné pour ce plugin, MIT.*
 
 - Les pucerons installés sur les rejets du porte-greffe font craindre la tristeza (INRAE-Cirad, fiche technique porte-greffe, **une seule source**).
 - Distinguer un **Poncirus** d'un **hybride de Poncirus** par la seule feuille : le plugin reste souvent « Indécis ». Le feuillage persistant ou un mélange de 1 et 3 folioles orientent vers l'hybride (choix du plugin).

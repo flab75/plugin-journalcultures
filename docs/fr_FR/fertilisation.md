@@ -86,6 +86,10 @@ La méthode ci-dessous assemble ce qui s'accorde entre eux. Elle suit le cadre d
 - Le **pH** du substrat décide de la disponibilité des oligo-éléments : en pot, au-dessus de pH 7 dans l'eau de drainage, les jeunes orangers ont montré plus de carences et moins poussé ; ajouter de la chaux au terreau a fait monter le pH et baisser le fer, le zinc et le manganèse des feuilles (Labanauskas 1967 ; même sens : UF/IFAS SL456, « un pH élevé réduit la disponibilité du calcium, du magnésium, du fer, du zinc et du manganèse », voir [pH et eau du robinet](#ph-et-eau-du-robinet)).
   Ne pas chauler le substrat d'un agrume (déduction du plugin).
 
+![Où mettre l'engrais dans le pot](../images/ferti-pot.svg)
+
+*Fig. F1 – Où mettre l'engrais : A, granulés au pied sur substrat humide, puis griffés ; B, certains enrobés se mélangent au substrat, au rempotage seulement (lire l'étiquette) ; C, un arrosage en excès lessive l'azote par le fond. Détail et sources sur le dessin. Dessin façon gravure coloriée pour ce plugin, MIT.*
+
 ### Le Ferti Agrumes face à ces critères
 
 Bilan du plugin (déduction à partir des critères ci-dessus et de l'étiquette) :
@@ -231,6 +235,10 @@ la corne (12 semaines) en semaines 10, 22 et 34, soit les 3 apports de son étiq
   l'étude iranienne baisse ou arrête au milieu du 2e stade de croissance du fruit, vers la fin de l'été selon le cultivar (Asadi Kangarshahi 2023).
   Début octobre est un choix du plugin, réglable produit par produit (champ période d'apport).
 
+![Période d'apport et saison de pousse](../images/ferti-saison.svg)
+
+*Fig. F2 – La saison d'engrais : période d'apport du produit et moyenne sur 7 jours de la sonde ; courbe d'exemple. Détail et sources sur le dessin. Dessin façon gravure coloriée pour ce plugin, MIT.*
+
 ## Combien : la dose en pot
 
 **Retenu** : en pleine saison, environ **0,10 à 0,16 g d'azote par litre de pot toutes les 2 semaines**
@@ -269,6 +277,10 @@ mais pour un **jeune plant** il faut viser nettement **sous** la dose calculée 
 - Pas de réduction pour une plante achetée ou sans date, ni pour les doses d'étiquette et les doses corrigées à la main. Avec les réglages par défaut, la corne (dose d'étiquette) couvre 31 % du besoin d'une greffe d'un an (62 % à 0 an) ; si un réglage plus bas lui fait dépasser le besoin, les autres produits cochés ne sont plus écrits (ou 1 g si le besoin est à peine dépassé) : les décocher.
 - La réduction s'applique quand le plan est **calculé** : une dose déjà au calendrier reste telle quelle. Vider la case dose du produit (elle se recalcule) puis « Écrire dans le calendrier », et le refaire chaque printemps : la part remonte avec l'âge. Recocher le produit marche aussi, mais remet des parts égales et recalcule **toutes** les doses, y compris celles corrigées à la main.
 - Même réduite, la dose reste au-dessus de celle qui a nui dans l'essai (greffe d'un an : environ 17 g dans la saison à 15 L, calcul du plugin) : surveiller la plante.
+
+![Lire une étiquette N-P-K](../images/ferti-npk.svg)
+
+*Fig. F3 – Lire une étiquette N-P-K : pourcentages d'azote, de phosphore et de potassium ; le plugin calcule le plan sur l'azote ; rapport conseillé en pot. Détail et sources sur le dessin. Dessin façon gravure coloriée pour ce plugin, MIT.*
 
 ## Bonnes pratiques
 
@@ -323,11 +335,11 @@ Toujours **regarder d'abord quelles feuilles** sont touchées : les vieilles ou 
 
 ![Où se voit une carence](../images/ferti-carences.svg)
 
-*Où se voit une carence, d'après le tableau ci-dessous : fer, zinc, manganèse sur les jeunes pousses ; azote et magnésium sur les vieilles feuilles ; potassium sur les feuilles adultes (les vieilles pour Haifa, celles de la pousse de printemps tout juste mûres pour UF/IFAS SL457). Schéma dessiné pour ce plugin, MIT.*
+*Fig. F4 – Où se voit une carence, d'après le tableau ci-dessous : fer, zinc, manganèse sur les jeunes pousses ; azote et magnésium sur les vieilles feuilles ; potassium sur les feuilles adultes (les vieilles pour Haifa, celles de la pousse de printemps tout juste mûres pour UF/IFAS SL457). Schéma dessiné pour ce plugin, MIT.*
 
 ![Carences sur feuille d'agrume : saine, azote, magnésium, fer, zinc](../images/ferti-carences-feuilles.svg)
 
-*À quoi ressemble chaque carence, d'après le tableau ci-dessous (UF/IFAS SL457, chapitre 3 ; fiche commerciale Haifa ; revue Elavarasan 2019) : A saine ; B azote, vert pâle à jaune uniforme, vieilles feuilles ; C magnésium, V vert à l'envers à la base, vieilles feuilles ; D fer, réseau fin de nervures vertes sur limbe jaune pâle, jeunes pousses aux feuilles plus petites ; E zinc, bandes vertes le long des nervures, feuilles petites, étroites et pointues. Dessin façon gravure coloriée pour ce plugin, MIT.*
+*Fig. F5 – À quoi ressemble chaque carence, d'après le tableau ci-dessous (UF/IFAS SL457, chapitre 3 ; fiche commerciale Haifa ; revue Elavarasan 2019) : A saine ; B azote, vert pâle à jaune uniforme, vieilles feuilles ; C magnésium, V vert à l'envers à la base, vieilles feuilles ; D fer, réseau fin de nervures vertes sur limbe jaune pâle, jeunes pousses aux feuilles plus petites ; E zinc, bandes vertes le long des nervures, feuilles petites, étroites et pointues. Dessin façon gravure coloriée pour ce plugin, MIT.*
 
 **Retenu** pour l'azote, le magnésium, le fer, le zinc et le manganèse : trois sources décrivent les mêmes signes, mais elles n'ont pas le même poids. UF/IFAS SL457 (chapitre 3 de *Nutrition of Florida Citrus Trees*) est la référence ; Elavarasan 2019 est une revue de synthèse sans observations propres (sa bibliographie est indienne, californienne et chinoise, sans travail de Floride) ; Haifa est une fiche commerciale de fabricant d'engrais. Le potassium est décrit par Haifa et UF/IFAS SL457, qui ne placent pas les symptômes sur les mêmes feuilles (voir le tableau).
 

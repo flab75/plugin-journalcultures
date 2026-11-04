@@ -704,6 +704,7 @@ class journalcultures_calc {
   }
   public static function ancre($t) { return trim(preg_replace('/[^\p{L}\p{N}_-]+/u', '', str_replace(' ', '-', mb_strtolower($t))), '-'); } // comme GitHub
   public static function enligne($t) {
+    $t = preg_replace('/<!--.*?-->/', '', $t); // repère caché d'un renvoi « fig. B7 » (outils/figures_jdc.py)
     $t = htmlspecialchars($t, ENT_QUOTES | ENT_SUBSTITUTE);
     $c = []; // code mis de côté : rien n'est balisé dedans
     $t = preg_replace_callback('/`([^`]+)`/', function ($m) use (&$c) { $c[] = '<code>' . $m[1] . '</code>'; return "\x01" . (count($c) - 1) . "\x01"; }, $t);
