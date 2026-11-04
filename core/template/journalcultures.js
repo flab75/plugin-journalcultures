@@ -1,16 +1,16 @@
 /* Journal de cultures — tuile d'une collection et ses fenêtres (plante, journal, noter, déplacer). Recopié dans chaque tuile par
    journalcultures::toHtml(), chargé une seule fois par page. Textes entre doubles accolades traduits côté PHP (core/i18n). */
-if (!window.journalcultures || window.journalcultures.v !== 34) (function () { // v : un onglet ouvert avant une mise à jour recharge la bibliothèque
+if (!window.journalcultures || window.journalcultures.v !== 35) (function () { // v : un onglet ouvert avant une mise à jour recharge la bibliothèque
   var css = document.getElementById('jdc-css') || document.createElement('style')
   css.id = 'jdc-css'
   css.textContent =
-    ':root{--jdc-rouge:#b3261e;--jdc-vert:#2F6B3A}body[data-theme$=Dark]{--jdc-rouge:#ff8a80;--jdc-vert:#8fd19e}' + // A-7 : rouge et contour lisibles sur fond sombre
+    ':root{--jdc-rouge:#b3261e;--jdc-vert:#2F6B3A}body[data-theme$=Dark]{--jdc-rouge:#ff8a80;--jdc-vert:#8fd19e}.jdc-so,body[data-theme$=Dark] .jdc-cl{display:none!important}body[data-theme$=Dark] .jdc-so{display:inline!important}' + // A-7 : rouge et contour lisibles sur fond sombre ; captures claire / sombre de la notice
     'button.jb{font:inherit;color:inherit;border:0;background:none;padding:0;margin:0;cursor:pointer;text-align:inherit;line-height:inherit}.jb.lk{text-decoration:underline}' +
     '.jdc :focus-visible,.jdc-m :focus-visible{outline:2px solid var(--jdc-vert);outline-offset:1px}.jdc-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}' +
     '.jdc{box-sizing:border-box;width:100%;padding:4px 6px 8px;text-align:left;font-size:12px}' +
     '.jdc table{width:100%;border-collapse:collapse}.jdc td,.jdc th{padding:2px 3px;border-bottom:1px solid rgba(128,128,128,.2)}' +
     '.jdc tr.p{cursor:pointer}.jdc tr.p:hover{background:rgba(128,128,128,.12)}.jdc .al{color:var(--jdc-rouge);font-weight:600}.jdc .n{text-align:right;white-space:nowrap}' +
-    '.jdc .jdc-gs{font-size:.8em;white-space:nowrap;color:var(--jdc-vert)}.jdc .jdc-gi{color:#7a5c99}.jdc .jdc-gr{font-size:.8em;font-weight:600;color:var(--jdc-vert);border:1px solid var(--jdc-vert);border-radius:8px;padding:0 5px;white-space:nowrap}.jdc .jdc-gr-attente{color:#b26a00;border-color:#b26a00}.jdc .jdc-gr-probable{color:#6b7f2a;border-color:#6b7f2a}.jdc .jdc-gr-dormant{color:#3a6ea5;border-color:#3a6ea5}.jdc-r{margin-bottom:4px}.jdc-r .al{background:#b3261e;color:#fff;border-radius:8px;padding:1px 7px}' +
+    '.jdc .jdc-gs{font-size:.8em;white-space:nowrap;color:var(--jdc-vert)}.jdc .jdc-gi{color:#7a5c99}body[data-theme$=Dark] .jdc .jdc-gi{color:#b9a3d6}.jdc .jdc-gr{font-size:.8em;font-weight:600;color:var(--jdc-vert);border:1px solid var(--jdc-vert);border-radius:8px;padding:0 5px;white-space:nowrap}.jdc .jdc-gr-attente{color:#b26a00;border-color:#b26a00}.jdc .jdc-gr-probable{color:#6b7f2a;border-color:#6b7f2a}.jdc .jdc-gr-dormant{color:#3a6ea5;border-color:#3a6ea5}.jdc-r{margin-bottom:4px}.jdc-r .al{background:#b3261e;color:#fff;border-radius:8px;padding:1px 7px}' +
     '.jdc-bt{display:flex;gap:5px;justify-content:center;margin-top:6px}.jdc-bt button,.jdc-m .b{cursor:pointer;border-radius:12px;padding:2px 10px;background:rgba(128,128,128,.2)}' +
     '.jdc-m{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center}' +
     '.jdc-mb{background:var(--bg-modal-color,#fff);color:var(--txt-color,#222);width:min(800px,96vw);max-height:90vh;overflow:auto;border-radius:10px;padding:10px 14px;font-size:13px;text-align:left}' +
@@ -601,7 +601,7 @@ if (!window.journalcultures || window.journalcultures.v !== 34) (function () { /
   }
 
   // opt.panel : colonnes en plus (porte-greffe, dernière mesure), masquées sur téléphone
-  window.journalcultures = {v: 34, notice: notice, ajax: ajax, esc: esc, nb: nb, init: function (b, d, opt) {
+  window.journalcultures = {v: 35, notice: notice, ajax: ajax, esc: esc, nb: nb, init: function (b, d, opt) {
     if (!b) return
     d.apres = opt && opt.apres // relu par « Greffer… » (fiche)
     var pa = opt && opt.panel

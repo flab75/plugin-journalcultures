@@ -5,6 +5,8 @@
 - Tuile : étiquette de greffe à côté des plantes en cours de greffe, une couleur et un symbole par état (⏳ en attente, ✓ prise ?, ❄ œil dormant, 🌿 pousse ; statut et greffon au survol), et leur nombre en haut de la tuile.
 - Tuile : colonne **Greffon** quand la collection a des greffes en cours, comme Greffes : la plante greffée sur le porte-greffe, marquée 🏡 collection si le greffon a été pris sur une de nos plantes, 📦 introduit sinon.
 - Champ « Porte-greffe » : « franc de pied » pour les porte-greffes (ils sont sur leurs racines) ; dans la collection Greffes, le nom du porte-greffe du greffon (ex. FA5), rendu « franc de pied » si la greffe meurt.
+- Notice : captures d'écran refaites avec les nouveautés de greffe, en clair et en sombre ; la notice affiche celles du thème actif de Jeedom (le PDF et GitHub, les claires).
+- Raison de l'alerte de froid écrite avec une virgule décimale (« 9,3 °C mesurés »).
 - « ＋ Noter » un **Déplacement** vers un emplacement connu déplace vraiment la plante (il ne faisait qu'écrire au journal) ; la note saisie s'ajoute si elle n'est pas vide.
 
 ## 0.28 (2026-11-04), suite : relecture de la notice

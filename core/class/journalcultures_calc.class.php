@@ -30,8 +30,8 @@ class journalcultures_calc {
   public static function alerte($reff, $t, $tmin, $marge = 3) {
     if ($reff === null || ($t === null && $tmin === null)) return null;
     $seuil = $reff + $marge;
-    if ($t !== null && $t <= $seuil) return ['alerte' => 1, 'raison' => sprintf(__('%s °C mesurés (rusticité %s °C)', __FILE__), round($t, 1), $reff)];
-    if ($tmin !== null && $tmin <= $seuil) return ['alerte' => 1, 'raison' => sprintf(__('%s °C prévus (rusticité %s °C)', __FILE__), round($tmin, 1), $reff)];
+    if ($t !== null && $t <= $seuil) return ['alerte' => 1, 'raison' => str_replace('.', ',', sprintf(__('%s °C mesurés (rusticité %s °C)', __FILE__), round($t, 1), $reff))];
+    if ($tmin !== null && $tmin <= $seuil) return ['alerte' => 1, 'raison' => str_replace('.', ',', sprintf(__('%s °C prévus (rusticité %s °C)', __FILE__), round($tmin, 1), $reff))];
     return ['alerte' => 0, 'raison' => ''];
   }
 
@@ -713,7 +713,9 @@ class journalcultures_calc {
       // ../images/x : comme sur GitHub, le .md est dans docs/fr_FR/ et les images dans docs/images/
       $f = __DIR__ . '/../../docs/images/' . $m[2];
       if (!is_file($f)) return '[image manquante : images/' . $m[2] . ']';
-      return '<img src="plugins/journalcultures/core/ajax/journalcultures.ajax.php?action=image&amp;n=' . rawurlencode($m[2]) . '&amp;v=' . filemtime($f) . '" alt="' . $m[1] . '"' . self::taille($f) . ' loading="lazy" style="max-width:100%">'; }, $t);
+      $img = function ($n, $f, $cl = '') use ($m) { return '<img src="plugins/journalcultures/core/ajax/journalcultures.ajax.php?action=image&amp;n=' . rawurlencode($n) . '&amp;v=' . filemtime($f) . '" alt="' . $m[1] . '"' . self::taille($f) . ' loading="lazy" style="max-width:100%"' . ($cl ? ' class="' . $cl . '"' : '') . '>'; };
+      $so = preg_replace('/(\.\w+)$/', '-sombre$1', $m[2]); // capture en thème sombre à côté (x-sombre.webp) : montrée selon le thème Jeedom (CSS .jdc-cl / .jdc-so de la bibliothèque) ; GitHub et le PDF gardent la claire
+      return is_file($fs = __DIR__ . '/../../docs/images/' . $so) ? $img($m[2], $f, 'jdc-cl') . $img($so, $fs, 'jdc-so') : $img($m[2], $f); }, $t);
     $t = preg_replace_callback('/\[([^\]]+)\]\(([^)\s]+)\)/', function ($m) {
       if (preg_match('/^https?:\/\//', $m[2])) return '<a href="' . $m[2] . '" target="_blank" rel="noopener noreferrer">' . $m[1] . '</a>';
       if (preg_match('/^(?:(\w+)\.md)?(?:#([\p{L}\p{N}_-]+))?$/u', $m[2], $l)) return '<a data-n="' . ($l[1] ?? '') . '" data-a="' . ($l[2] ?? '') . '" href="#' . (($l[2] ?? '') === '' ? '' : 'jdc-n-' . $l[2]) . '">' . $m[1] . '</a>'; // href : lien au clavier (le clic est pris par la notice)

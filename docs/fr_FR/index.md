@@ -12,11 +12,11 @@ Les captures de cette notice viennent d'une collection de démonstration (plante
 
 ![Page plein écran](../images/panel.webp)
 
-*Fig. M1 – Page plein écran (Accueil → Journal de cultures) : un onglet par collection, les emplacements avec leur température et humidité, la liste des plantes ; la fiche s'ouvre à droite. Le bouton Notice ouvre ce texte.*
+*Fig. M1 – Page plein écran (Accueil → Journal de cultures) : un onglet par collection (dont **Greffes**, créée à la première greffe), les emplacements avec leur température et humidité, la liste des plantes ; la fiche s'ouvre à droite (ici celle d'un porte-greffe greffé d'un Yuzu). En haut de la liste, le nombre de plantes en alerte et en greffe ; l'étiquette ⏳ marque la greffe en attente, la colonne Greffon la plante greffée (📦 introduite), et le porte-greffe d'un semis est « franc de pied ». Le bouton Notice ouvre ce texte. L'image suit le thème clair ou sombre de Jeedom.*
 
 ![Tuile d'une collection](../images/tuile.webp)
 
-*Fig. M2 – La tuile de la collection sur le dashboard : T° = température de l'emplacement, Rust. = rusticité effective de la plante (voir [Configuration du plugin](#configuration-du-plugin)).*
+*Fig. M2 – La tuile de la collection sur le dashboard : T° = température de l'emplacement, Rust. = rusticité effective de la plante (voir [Configuration du plugin](#configuration-du-plugin)) ; colonne Greffon et étiquette de greffe quand une plante est en cours de greffe.*
 
 ## Principe
 - **Collection** (ex. Agrumes, Porte-greffes, Plantes de la maison) : c'est la tuile. Elle affiche le tableau de ses plantes
@@ -30,6 +30,8 @@ Les captures de cette notice viennent d'une collection de démonstration (plante
 - Cliquer une plante : fenêtre **Fiche** (avec liens POWO, GBIF si le nom y a été trouvé, Tela Botanica, PFAF), **Journal**, **Photos**, **Mesures** (et courbes) ; **?** ouvre cette notice.
 - **Journal** (bouton sous le tableau) : le journal de toutes les plantes de la collection.
 - Étiquette de greffe à côté du nom, une couleur par état : **⏳ greffe en attente** (orange), **✓ greffe prise ?** (vert olive), **❄ œil dormant** (bleu), **🌿 greffon pousse** (vert) ; réussie ou échouée, elle disparaît. Le survol donne le statut et le greffon attendu. Le haut de la tuile les compte (« en greffe »).
+- Colonne **Greffon** quand la collection a des greffes en cours (toujours dans Greffes) : la plante greffée sur le porte-greffe, **🏡 collection** si le greffon a été pris sur une de nos plantes, **📦 introduit** sinon.
+- Colonne **Porte-greffe** : « franc de pied » pour une plante sur ses propres racines (semis, bouture, porte-greffe) ; dans Greffes, le porte-greffe du greffon (ex. FA5).
 - Administrateurs : cocher des plantes, puis **＋ Noter** (une entrée pour chacune ; sans plante cochée, une entrée libre avec un champ Plante ; le travail « Déplacement » vers un emplacement connu déplace vraiment la plante)
   ou **Déplacer…** (changer l'emplacement, la collection, ou les deux : rentrée à la serre en un geste, noté au journal) ; **✓** à côté de 🌱 = engrais donné.
 - **⚠** : sonde muette ou emplacement inconnu, la température n'est pas à jour.

@@ -196,6 +196,8 @@ $im = glob(__DIR__ . '/../docs/images/*.{png,jpg,svg,webp}', GLOB_BRACE)[0] ?? n
 if ($im) $ok(strpos($C::markdown('![a](images/' . basename($im) . ')'), '<p><img src="plugins/journalcultures/core/ajax/journalcultures.ajax.php?action=image&amp;n=' . rawurlencode(basename($im)) . '&amp;v=' . filemtime($im) . '"') === 0, 'notice : image par URL datée');
 $ok($C::notice('index') === $H['index'] && $C::notice('index') === $H['index'], 'notice : page en cache = page convertie');
 $ok((bool)glob(jeedom::getTmpFolder('journalcultures') . '/notice_index_*.html'), 'notice : page gardée en cache');
+foreach (glob(__DIR__ . '/../docs/images/*-sombre.*') ?: [] as $so) { $cl = str_replace('-sombre.', '.', basename($so)); $h = $C::markdown('![a](images/' . $cl . ')');
+  $ok(is_file(dirname($so) . '/' . $cl) && strpos($h, 'class="jdc-cl"') !== false && strpos($h, 'n=' . rawurlencode(basename($so))) !== false, "notice : $cl en clair et en sombre"); }
 $ok($C::taille(__DIR__ . '/../docs/images/rusticite.svg') === ' width="640" height="286" class="jdc-svgi"', 'notice : taille du schéma rusticite.svg');
 foreach (glob(__DIR__ . '/../docs/images/*.svg') ?: [] as $s) $ok(!preg_match('/<script|\bon\w+\s*=|foreignObject/i', (string)file_get_contents($s)), 'image ' . basename($s) . ' : script ou contenu actif'); // servies en image/svg+xml
 try { $C::notice('../index'); $ok(false, 'notice : page hors liste refusée'); } catch (Exception $x) {}

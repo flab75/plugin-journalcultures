@@ -245,7 +245,7 @@ Un contrôle dû remplit la commande « Greffe à contrôler », reprise par le 
 
 ![Fiche d'une greffe en attente](../images/greffe.webp)
 
-*Fig. G14 – Poncirus greffé d'un Yuzu il y a 12 jours : la plante reste le porte-greffe, avec le greffon en attente ; porte-greffe et greffon deviendront « Yuzu sur Poncirus n°2 » au débourrement d'un œil. On y voit le contrôle prévu le 12/11 (J+21), la question à se poser, l'avertissement de température (10,1 °C en moyenne sur 24 h) et la rusticité effective, celle du greffon, plus fragile. Les boutons répondent au contrôle.*
+*Fig. G14 – Poncirus greffé d'un Yuzu il y a deux semaines : la plante reste le porte-greffe, avec le greffon en attente ; porte-greffe et greffon deviendront « Yuzu sur Poncirus n°2 » au débourrement d'un œil. On y voit le contrôle prévu le 12/11 (J+21), la question à se poser, l'avertissement de température (8,5 °C en moyenne sur 24 h, trop froid pour souder) et la rusticité effective, celle du greffon, plus fragile. Les boutons répondent au contrôle.*
 
 ## Température, hiver, engrais
 
