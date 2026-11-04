@@ -667,16 +667,22 @@ class journalcultures extends eqLogic {
     config::save('coll_greffes', $c->getId(), 'journalcultures');
     return $c;
   }
-  public function versGreffes() { // sans sauvegarder
+  public function versGreffes() { // sans sauvegarder ; dans « Greffes », le champ Porte-greffe nomme le porte-greffe du greffon (ailleurs : « pied franc » pour un porte-greffe), l'ancien est gardé dans greffe_pgori
     $g = self::collGreffes(is_object($c = $this->collection()) ? $c->getObject_id() : $this->getObject_id());
-    if ($g->getId() == $this->getConfiguration('collection')) return;
-    self::nomLibre($g->getObject_id(), $this->getName(), $this->getId());
-    $this->setConfiguration('greffe_coll', (string)$this->getConfiguration('collection'));
-    $this->setConfiguration('collection', $g->getId()); $this->setObject_id($g->getObject_id());
+    if ($g->getId() != $this->getConfiguration('collection')) {
+      self::nomLibre($g->getObject_id(), $this->getName(), $this->getId());
+      $this->setConfiguration('greffe_coll', (string)$this->getConfiguration('collection'));
+      $this->setConfiguration('greffe_pgori', (string)$this->getConfiguration('porte_greffe'));
+      $this->setConfiguration('collection', $g->getId()); $this->setObject_id($g->getObject_id());
+    }
+    $gf = $this->getConfiguration('greffe_greffon');
+    if (is_array($gf) && trim((string)($gf['porte_greffe'] ?? '')) !== '') $this->setConfiguration('porte_greffe', $gf['porte_greffe']);
   }
   private function horsGreffes() { // sans sauvegarder ; collection d'origine disparue : reste dans « Greffes »
     $ori = (string)$this->getConfiguration('greffe_coll'); $this->setConfiguration('greffe_coll', '');
+    $po = (string)$this->getConfiguration('greffe_pgori'); $this->setConfiguration('greffe_pgori', '');
     if ((string)$this->getConfiguration('collection') !== (string)config::byKey('coll_greffes', 'journalcultures', '')) return;
+    $this->setConfiguration('porte_greffe', $po);
     $co = self::byId($ori);
     if (!is_object($co) || $co->getEqType_name() != 'journalcultures' || $co->type() != 'collection') return;
     self::nomLibre($co->getObject_id(), $this->getName(), $this->getId());
@@ -684,9 +690,9 @@ class journalcultures extends eqLogic {
   }
   private function basculer() { // un œil du greffon a débourré : porte-greffe et greffon deviennent la nouvelle plante ; l'identité du porte-greffe est gardée (pousse qui meurt)
     $gf = $this->getConfiguration('greffe_greffon'); $av = self::instantane($this); $g = config::byKey('coll_greffes', 'journalcultures', ''); $ori = (string)$this->getConfiguration('greffe_coll');
-    if ($ori !== '' && (string)$av['collection'] === (string)$g) $av['collection'] = $ori; // pousse morte plus tard : retour dans la collection d'origine
+    if ($ori !== '' && (string)$av['collection'] === (string)$g) { $av['collection'] = $ori; $av['porte_greffe'] = (string)$this->getConfiguration('greffe_pgori'); } // pousse morte plus tard : retour dans la collection d'origine, avec son champ Porte-greffe
     if (is_array($gf) && $ori !== '' && (string)($gf['collection'] ?? '') === (string)$g) $gf['collection'] = $ori; // greffon rangé dans « Greffes » : la plante n'y reste pas
-    $this->setConfiguration('greffe_coll', '');
+    $this->setConfiguration('greffe_coll', ''); $this->setConfiguration('greffe_pgori', '');
     $this->prendre(is_array($gf) ? $gf : []);
     $this->setConfiguration('greffe_avant', $av); $this->setConfiguration('greffe_greffon', null);
   }
