@@ -1,7 +1,7 @@
 # Changelog
 
 ## 0.29 (2026-11-04)
-- Tuile : étiquette **greffe** à côté des plantes en cours de greffe (statut et greffon au survol), et leur nombre en haut de la tuile.
+- Tuile : étiquette de greffe à côté des plantes en cours de greffe, une couleur et un symbole par état (⏳ en attente, ✓ prise ?, ❄ œil dormant, 🌿 pousse ; statut et greffon au survol), et leur nombre en haut de la tuile.
 - « ＋ Noter » un **Déplacement** vers un emplacement connu déplace vraiment la plante (il ne faisait qu'écrire au journal) ; la note saisie s'ajoute si elle n'est pas vide.
 
 ## 0.28 (2026-11-04), suite : relecture de la notice
