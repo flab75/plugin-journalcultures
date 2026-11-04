@@ -52,7 +52,7 @@ les gravures montrent souvent une autre plante qu'un agrume, ce qui est dit sous
 
 ![Épine d'agrume, aiguillon de rosier, épine-feuille](../images/bota-epine.svg)
 
-*Fig. B2 – A, épine d'agrume à l'aisselle d'une feuille, avec son bourgeon ; B, aiguillon du rosier ; C, épine issue d'une feuille. Détail et sources sur le dessin. Dessin façon gravure coloriée pour ce plugin, MIT.*
+*Fig. B2 – A, épine d'agrume à l'aisselle d'une feuille, avec son bourgeon ; A′, l'aisselle vue de face ; B, aiguillon du rosier ; C, épine issue d'une feuille. Détail et sources sur le dessin. Dessin façon gravure coloriée pour ce plugin, MIT.*
 
 ## Sous l'écorce
 
@@ -79,7 +79,7 @@ Ces règles valent pour les arbres en général ; qu'elles s'appliquent aux agru
 
 ![Écorce, cambium et bois ; les deux cambiums d'une greffe](../images/bota-cambium.svg)
 
-*Fig. B5 – A, de l'écorce au bois autour du cambium ; B, dans une greffe, les cambiums du greffon et du porte-greffe doivent se toucher (voir [Greffe](greffe.md)). Détail et sources sur le dessin. Dessin façon gravure coloriée pour ce plugin, MIT.*
+*Fig. B5 – A, la tige en coupe, de l'écorce au bois ; B, le cambium grossi : il fait du bois vers l'intérieur et du liber vers l'extérieur ; C, dans une greffe (écusson en chip), les cambiums du greffon et du porte-greffe doivent se toucher (voir [Greffe](greffe.md)). Détail et sources sur le dessin. Dessin façon gravure coloriée pour ce plugin, MIT.*
 
 - **Annelure** : enlever un anneau d'écorce coupe le liber, pas le bois. Les sucres ne descendent plus : ils s'accumulent au-dessus de l'anneau et manquent dans les racines (Li et al. 2003, sur l'hybride de mandarinier « Murcott », **une seule source** ; Wikipédia « Annélation » et « Girdling » confirment).
   Chez Li et al., l'accumulation au-dessus ne se voit pas sur un arbre très chargé de fruits, qui consomment les sucres.
@@ -241,7 +241,7 @@ Détail et sources dans les paragraphes ci-dessous. Le tableau résume, il n'ajo
 
 ![Pépin à plusieurs embryons, germination hypogée et épigée](../images/bota-semis.svg)
 
-*Fig. B15 – A, pépin d'agrume ouvert : plusieurs embryons ; B, germination hypogée de l'agrume, le pépin reste sous terre ; C, germination épigée du haricot. Détail et sources sur le dessin. Dessin façon gravure coloriée pour ce plugin, MIT.*
+*Fig. B15 – A, pépin d'agrume ouvert : plusieurs embryons ; B, germination hypogée de l'agrume, le pépin reste sous terre ; C, un pépin, trois plantules, l'une plus vigoureuse ; D, germination épigée du haricot, pour comparer. Détail et sources sur le dessin. Dessin façon gravure coloriée pour ce plugin, MIT.*
 
 ### Greffe
 
@@ -270,7 +270,7 @@ Détail et sources dans les paragraphes ci-dessous. Le tableau résume, il n'ajo
 
 ![Annelure et marcotte aérienne](../images/bota-marcotte.svg)
 
-*Fig. B16 – A, annelure : l'anneau ôté coupe le liber, pas le bois ; marcotte aérienne posée sur l'anneau, puis sevrée et rempotée. Détail et sources sur le dessin. Dessin façon gravure coloriée pour ce plugin, MIT.*
+*Fig. B16 – A, annelure : l'anneau ôté coupe le liber, pas le bois ; B à D, marcotte aérienne : anneau d'écorce ôté, mousse humide sous film, puis, les racines formées au-dessus de l'anneau, couper sous la mousse et rempoter. Détail et sources sur le dessin. Dessin façon gravure coloriée pour ce plugin, MIT.*
 
 ### Dans le plugin
 

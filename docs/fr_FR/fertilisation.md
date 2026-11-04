@@ -88,7 +88,7 @@ La méthode ci-dessous assemble ce qui s'accorde entre eux. Elle suit le cadre d
 
 ![Où mettre l'engrais dans le pot](../images/ferti-pot.svg)
 
-*Fig. F1 – Où mettre l'engrais : A, granulés au pied sur substrat humide, puis griffés ; B, certains enrobés se mélangent au substrat, au rempotage seulement (lire l'étiquette) ; C, un arrosage en excès lessive l'azote par le fond. Détail et sources sur le dessin. Dessin façon gravure coloriée pour ce plugin, MIT.*
+*Fig. F1 – Où mettre l'engrais : A, granulés répartis en surface sur substrat humide, sans toucher la tige, puis griffés ; B, certains enrobés se mélangent au substrat, au rempotage seulement (lire l'étiquette) ; C, un arrosage en excès lessive l'azote par le fond. Détail et sources sur le dessin. Dessin façon gravure coloriée pour ce plugin, MIT.*
 
 ### Le Ferti Agrumes face à ces critères
 
@@ -280,7 +280,7 @@ mais pour un **jeune plant** il faut viser nettement **sous** la dose calculée 
 
 ![Lire une étiquette N-P-K](../images/ferti-npk.svg)
 
-*Fig. F3 – Lire une étiquette N-P-K : pourcentages d'azote, de phosphore et de potassium ; le plugin calcule le plan sur l'azote ; rapport conseillé en pot. Détail et sources sur le dessin. Dessin façon gravure coloriée pour ce plugin, MIT.*
+*Fig. F3 – Lire une étiquette N-P-K : pourcentages d'azote, de phosphore exprimé en P₂O₅ et de potassium exprimé en K₂O (pas P et K eux-mêmes) ; le plugin calcule le plan sur l'azote ; rapport conseillé en pot. Détail et sources sur le dessin. Dessin façon gravure coloriée pour ce plugin, MIT.*
 
 ## Bonnes pratiques
 
