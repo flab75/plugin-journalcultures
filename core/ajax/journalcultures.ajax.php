@@ -52,7 +52,9 @@ try {
     if (count($ids) > 200) throw new Exception(__('Trop de plantes', __FILE__));
     $maj = array_map(function ($id) use ($eq) { return $eq($id, 'plante'); }, $ids); // tout vérifier avant d'écrire : pas de saisie à moitié faite
     $coll = $maj ? null : $eq($in['collection_id'] ?? 0, 'collection'); // entrée libre : rattachée à la collection de la tuile
+    $vers = ($in['action'] ?? '') == 'Déplacement' && array_key_exists((string)($in['lieu'] ?? ''), journalcultures::emplacements()) ? (string)$in['lieu'] : ''; // « Noter » un déplacement vers un emplacement connu : la plante y va vraiment
     foreach ($maj ?: [null] as $p) {
+      if ($p && $vers !== '' && $p->getConfiguration('emplacement') != $vers) { journalcultures::$_sansGbif = true; $p->setConfiguration('emplacement', $vers); $p->save(); if (trim((string)($in['note'] ?? '')) === '') continue; } // postSave note « ancien → nouveau » ; la note saisie s'ajoute si elle n'est pas vide
       journalcultures::inserer(['plante_id' => $p ? $p->getId() : null, 'collection_id' => $coll ? $coll->getId() : null,
         'lieu' => ($in['lieu'] ?? '') !== '' || !$p ? ($in['lieu'] ?? '') : $p->getConfiguration('emplacement')] + $in);
     }

@@ -722,6 +722,11 @@ class journalcultures extends eqLogic {
   }
   public static function geo() { return ['sud' => self::sud(), 'pays' => self::pays()]; }
 
+  public function enGreffe() { // étiquette « greffe » de la tuile : greffe en cours (ni réussie ni échouée), sinon ''
+    $s = (string)$this->getConfiguration('greffe_statut'); $gf = $this->getConfiguration('greffe_greffon');
+    return in_array($s, ['attente', 'probable', 'dormant', 'pousse']) ? __('Greffe', __FILE__) . ' : ' . journalcultures_calc::GREFFE_STATUTS[$s] . (is_array($gf) && ($gf['nom'] ?? '') !== '' ? ' — ' . $gf['nom'] : '') : '';
+  }
+
   public function suiviGreffe() { // null si la plante n'a pas de greffe suivie
     $s = (string)$this->getConfiguration('greffe_statut');
     if (!isset(journalcultures_calc::GREFFE_STATUTS[$s])) return null;
@@ -928,7 +933,7 @@ class journalcultures extends eqLogic {
       $pl[] = ['id' => $p->getId(), 'nom' => $p->getName(), 'empl' => $p->valeur('emplacement'), 't' => $sonde && !$m ? $p->valeur('temperature') : null, 'muette' => $m,
         'reff' => $rust ? $p->valeur('rusticite') : null,
         'alerte' => $p->valeur('alerte'), 'raison' => $p->valeur('raison'), 'engrais' => $p->valeur('engrais'), 'rust' => $p->getConfiguration('rusticite'),
-        'pg' => (string)$p->getConfiguration('porte_greffe'), 'mes' => $mes[$p->getId()] ?? ''];
+        'pg' => (string)$p->getConfiguration('porte_greffe'), 'mes' => $mes[$p->getId()] ?? '', 'gr' => $p->enGreffe()];
     }
     return ['id' => $this->getId(), 'nom' => $this->getName(), 'plantes' => $pl, 'emplacements' => array_keys(self::emplacements()), 'admin' => isConnect('admin') ? 1 : 0,
       'actions' => array_map(function ($a) { return __($a, __FILE__); }, journalcultures_calc::ACTIONS), 'actionsCle' => journalcultures_calc::ACTIONS];

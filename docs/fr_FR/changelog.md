@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.29 (2026-11-04)
+- Tuile : étiquette **greffe** à côté des plantes en cours de greffe (statut et greffon au survol), et leur nombre en haut de la tuile.
+- « ＋ Noter » un **Déplacement** vers un emplacement connu déplace vraiment la plante (il ne faisait qu'écrire au journal) ; la note saisie s'ajoute si elle n'est pas vide.
+
 ## 0.28 (2026-11-04), suite : relecture de la notice
 - Fertilisation : la corne couvre 15 % de l'azote du plan (et non 18 %), rapports recalculés (2,7-1-3,3 ; 2,4-1-1 ; 3,5-1-2) ; aucune part de corne ne mène à 2-1-1 ; certains enrobés déclarent des oligo-éléments ; durées de l'enrobé selon la température marquées « une seule source » (fiche ICL de l'Osmocote : 16, 21 et 26 °C).
 - Santé : saison de *Panonychus citri* (hiver en Tunisie seulement, NC State n'en donne pas) ; température du mal secco, Chapot et OEPP en désaccord ; aleurode épineux en Italie d'après la fiche OEPP (Porcelli 2008).

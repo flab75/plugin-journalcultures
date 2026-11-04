@@ -29,7 +29,8 @@ Les captures de cette notice viennent d'une collection de démonstration (plante
 ## Tuile
 - Cliquer une plante : fenêtre **Fiche** (avec liens POWO, GBIF si le nom y a été trouvé, Tela Botanica, PFAF), **Journal**, **Photos**, **Mesures** (et courbes) ; **?** ouvre cette notice.
 - **Journal** (bouton sous le tableau) : le journal de toutes les plantes de la collection.
-- Administrateurs : cocher des plantes, puis **＋ Noter** (une entrée pour chacune ; sans plante cochée, une entrée libre avec un champ Plante)
+- **greffe** à côté du nom : une greffe en cours (ni réussie ni échouée) ; le survol donne son statut et le greffon attendu. Le haut de la tuile les compte (« en greffe »).
+- Administrateurs : cocher des plantes, puis **＋ Noter** (une entrée pour chacune ; sans plante cochée, une entrée libre avec un champ Plante ; le travail « Déplacement » vers un emplacement connu déplace vraiment la plante)
   ou **Déplacer…** (changer l'emplacement, la collection, ou les deux : rentrée à la serre en un geste, noté au journal) ; **✓** à côté de 🌱 = engrais donné.
 - **⚠** : sonde muette ou emplacement inconnu, la température n'est pas à jour.
 
