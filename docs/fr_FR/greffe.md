@@ -31,7 +31,7 @@ avec une autre multiplication (semis, bouture…), le type est effacé.
 | Fente | Le porte-greffe coupé est fendu, un greffon taillé en biseau y est inséré. Sur les charpentières, pour surgreffer. |
 | Sous écorce (couronne) | Greffons glissés entre l'écorce et le bois d'une branche coupée, en sève. Surgreffage. |
 | Anglaise | Porte-greffe et greffon de même diamètre, coupés en biseau et emboîtés. Peu utilisée pour les agrumes (Curk 2022 p. 194). |
-| Pont | Greffons qui enjambent une plaie du tronc pour rétablir la sève. Réparation : la plante garde son nom et sa fiche (souvent inutile si le bois n'est pas atteint, voir les [gravures](#autres-types--gravures-anciennes)). |
+| Pont | Greffons qui enjambent une plaie du tronc pour rétablir la sève. Réparation : la plante garde son nom et sa fiche (souvent inutile si le bois n'est pas atteint, voir les [dessins d'après Bailey](#autres-types--daprès-bailey)). |
 | Incrustation | Greffon inséré dans une entaille en V du porte-greffe. Renforcer ou réparer. |
 | En approche | Deux plantes enracinées soudées côte à côte, séparées après la reprise. Renforcer ou réparer (ex. nouveau porte-greffe au pied d'un arbre). |
 | Latérale | Greffon inséré sur le côté du porte-greffe, sans le couper d'abord. |
@@ -46,7 +46,7 @@ Descriptions : relues dans HS1309 et la fiche INRAE-Cirad « Greffage » quand e
 ## Comment greffer
 
 Schémas dessinés pour ce plugin d'après le texte des deux fiches (pas à l'échelle). Pour les photos, voir HS1309 (fig. 5 à 8) ;
-pour les dessins d'origine, la fiche INRAE-Cirad (fig. 5 à 8). Les autres types n'ont pas de marche à suivre dans nos sources relues : voir les [gravures anciennes](#autres-types--gravures-anciennes).
+pour les dessins d'origine, la fiche INRAE-Cirad (fig. 5 à 8). Les autres types n'ont pas de marche à suivre dans nos sources relues : voir les [dessins d'après Bailey](#autres-types--daprès-bailey).
 
 Pour tous : lame désinfectée avant chaque incision (HS1309, **une seule source**) ; point de greffe à 25-40 cm du collet, contre le *Phytophthora* (INRAE) ; 15-20 cm en Floride (HS1309) : les sources divergent, le plugin garde la plus haute.
 
