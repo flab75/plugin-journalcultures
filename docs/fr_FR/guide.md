@@ -84,7 +84,7 @@ De l'extérieur vers le centre :
 
 ![Vocabulaire de la feuille : forme du limbe, sommet, bord, base](../images/bota-feuilles.svg)
 
-*Formes du limbe, sommets, bords et bases. Schéma dessiné pour ce plugin d'après les définitions et dessins de Shipunov p. 82 (base) et d'IPGRI 1999 p. 32-33 (aucune figure recopiée), MIT comme le plugin.*
+*Formes du limbe, sommets, bords et bases. Dessin façon gravure coloriée pour ce plugin d'après les définitions et dessins de Shipunov p. 82 (base) et d'IPGRI 1999 p. 32-33 (aucune figure recopiée), MIT comme le plugin.*
 
 ![Feuille de Citrus aurantium, Rendle 1911](../images/bota-feuille-agrume.webp)
 
