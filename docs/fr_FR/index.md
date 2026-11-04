@@ -105,9 +105,9 @@ Racines / pot, Santé), saisir ce qu'on a mesuré, une note et, au besoin, une p
 
 ## Greffe
 Tout est dans l'onglet [Greffe](greffe.md) : types, saison de chaque type, marche à suivre et points de contrôle, température, hiver, sources.
-- **Greffer…** (bas de l'onglet Fiche, administrateurs) : la plante reste le porte-greffe, avec le greffon en attente. Quand un œil du greffon a débourré
+- **Greffer…** (bas de l'onglet Fiche, administrateurs) : la plante reste le porte-greffe, avec le greffon en attente, rangée dans la collection **Greffes**. Quand un œil du greffon a débourré
   (confirmé au contrôle), porte-greffe et greffon deviennent une nouvelle plante : le même équipement prend le nom, la fiche et la collection du greffon
-  (journal, photos, pot gardés). Greffe morte : la plante reste, ou redevient, le porte-greffe.
+  (journal, photos, pot gardés). Greffe morte : la plante reste, ou redevient, le porte-greffe, dans sa collection d'origine.
   **Greffe en pont** (même bouton, type « pont ») : une réparation de l'écorce, pas une multiplication ; la plante garde son nom,
   sa fiche et sa collection, seul le suivi J+21/J+42 s'applique.
 - **Suivi** (greffe de moins de 60 jours) : contrôles à J+21, J+42 puis 4 semaines après le « Oui » qui confirme le débourrement d'un œil ; le statut n'avance que sur réponse (**Oui**, **Douteux**,

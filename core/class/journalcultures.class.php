@@ -527,8 +527,8 @@ class journalcultures extends eqLogic {
     $this->setConfiguration('greffe_avant', null); // greffe précédente : son retour en arrière n'a plus lieu d'être
     $this->setConfiguration('greffe_greffon', $gf);
     $garde = is_array($ga) && ($ga['date_mult'] ?? '') === $c['date_mult'] && in_array($s, ['attente', 'probable', 'dormant'], true); // greffon en attente corrigé (même date) : suivi gardé
-    if ($garde) {
-    } elseif ($recente) {
+    if ($garde) { $this->versGreffes();
+    } elseif ($recente) { $this->versGreffes();
       $this->setConfiguration('greffe_rep', ''); // contrôles du bourgeon ; la plante reste le porte-greffe d'ici là
       $this->setConfiguration('greffe_statut', 'attente');
       $this->setConfiguration('greffe_controle', date('Y-m-d', strtotime($c['date_mult'] . ' +' . journalcultures_calc::GREFFE_JOURS['attente'] . ' days')));
@@ -573,7 +573,7 @@ class journalcultures extends eqLogic {
 
   /* ---------- export / import : fiches des plantes, leur journal et le catalogue des produits ---------- */
   // ponytail: ni photos (trop lourdes pour un JSON), ni historiques des sondes, ni entrées libres des collections ; à ajouter si une box doit être reprise à l'identique
-  const EXPORT_SAUF = ['collection', 'type', 'ident']; // id propres à cette box ; ident recalculé à l'enregistrement
+  const EXPORT_SAUF = ['collection', 'type', 'ident', 'greffe_coll']; // id propres à cette box ; ident recalculé à l'enregistrement
   public static function exporter() {
     $noms = []; $pl = [];
     foreach (self::byType('journalcultures') as $e) if ($e->type() == 'collection') $noms[$e->getId()] = [$e->getName(), is_object($o = $e->getObject()) ? $o->getName() : ''];
@@ -657,8 +657,36 @@ class journalcultures extends eqLogic {
     $this->setName($nom);
     foreach (self::identite() as $k) $this->setConfiguration($k, $id[$k] ?? '');
   }
+  /* Collection « Greffes » : un porte-greffe y entre quand on commence une greffe (« Greffer… »), en sort quand un œil part (collection du greffon)
+     ou quand la greffe meurt (collection d'origine, greffe_coll). Créée à la première greffe, dans l'objet de la collection du porte-greffe ; son id : config coll_greffes. */
+  public static function collGreffes($objet) {
+    $c = self::byId(config::byKey('coll_greffes', 'journalcultures', ''));
+    if (is_object($c) && $c->getEqType_name() == 'journalcultures' && $c->type() == 'collection') return $c;
+    $c = new journalcultures(); $c->setEqType_name('journalcultures'); $c->setIsEnable(1); $c->setIsVisible(1); $c->setObject_id($objet); $c->setConfiguration('type', 'collection');
+    $c->setName(__('Greffes', __FILE__)); self::nomLibre($objet, $c->getName()); $c->sauver();
+    config::save('coll_greffes', $c->getId(), 'journalcultures');
+    return $c;
+  }
+  public function versGreffes() { // sans sauvegarder
+    $g = self::collGreffes(is_object($c = $this->collection()) ? $c->getObject_id() : $this->getObject_id());
+    if ($g->getId() == $this->getConfiguration('collection')) return;
+    self::nomLibre($g->getObject_id(), $this->getName(), $this->getId());
+    $this->setConfiguration('greffe_coll', (string)$this->getConfiguration('collection'));
+    $this->setConfiguration('collection', $g->getId()); $this->setObject_id($g->getObject_id());
+  }
+  private function horsGreffes() { // sans sauvegarder ; collection d'origine disparue : reste dans « Greffes »
+    $ori = (string)$this->getConfiguration('greffe_coll'); $this->setConfiguration('greffe_coll', '');
+    if ((string)$this->getConfiguration('collection') !== (string)config::byKey('coll_greffes', 'journalcultures', '')) return;
+    $co = self::byId($ori);
+    if (!is_object($co) || $co->getEqType_name() != 'journalcultures' || $co->type() != 'collection') return;
+    self::nomLibre($co->getObject_id(), $this->getName(), $this->getId());
+    $this->setConfiguration('collection', $co->getId()); $this->setObject_id($co->getObject_id());
+  }
   private function basculer() { // un œil du greffon a débourré : porte-greffe et greffon deviennent la nouvelle plante ; l'identité du porte-greffe est gardée (pousse qui meurt)
-    $gf = $this->getConfiguration('greffe_greffon'); $av = self::instantane($this);
+    $gf = $this->getConfiguration('greffe_greffon'); $av = self::instantane($this); $g = config::byKey('coll_greffes', 'journalcultures', ''); $ori = (string)$this->getConfiguration('greffe_coll');
+    if ($ori !== '' && (string)$av['collection'] === (string)$g) $av['collection'] = $ori; // pousse morte plus tard : retour dans la collection d'origine
+    if (is_array($gf) && $ori !== '' && (string)($gf['collection'] ?? '') === (string)$g) $gf['collection'] = $ori; // greffon rangé dans « Greffes » : la plante n'y reste pas
+    $this->setConfiguration('greffe_coll', '');
     $this->prendre(is_array($gf) ? $gf : []);
     $this->setConfiguration('greffe_avant', $av); $this->setConfiguration('greffe_greffon', null);
   }
@@ -762,7 +790,7 @@ class journalcultures extends eqLogic {
       if ($n == 'echouee') $this->setConfiguration('greffe_pont', '');
     }
     elseif ($attend && in_array($n, ['pousse', 'reprise'], true)) { $this->basculer(); $id = sprintf(__('un œil a débourré : %s devient « %s »', __FILE__), $avant, $this->getName()); }
-    elseif ($n == 'echouee' && $attend) { $this->setConfiguration('greffe_greffon', null); $id = sprintf(__('%s reste le porte-greffe', __FILE__), $avant); }
+    elseif ($n == 'echouee' && $attend) { $this->setConfiguration('greffe_greffon', null); $this->horsGreffes(); $id = sprintf(__('%s reste le porte-greffe', __FILE__), $avant); }
     elseif ($n == 'echouee' && is_array($av = $this->getConfiguration('greffe_avant'))) { $this->prendre($av); $id = sprintf(__('%s redevient le porte-greffe « %s »', __FILE__), $avant, $this->getName()); }
     if ($n == 'echouee' || $n == 'reprise') $this->setConfiguration('greffe_avant', null); // greffe terminée
     $this->setConfiguration('greffe_statut', $n == 'echouee' ? '' : $n); $this->setConfiguration('greffe_rep', $n == 'echouee' ? '' : date('Y-m-d')); $this->setConfiguration('greffe_controle', $c);

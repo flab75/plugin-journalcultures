@@ -186,15 +186,15 @@ c'est la sève du porte-greffe qui décide, pas le calendrier. La saison du type
 la plante **garde son nom, sa fiche et sa collection** ; seuls le greffon (d'où viennent les greffons, facultatif) et la date sont notés au journal.
 Une réparation de moins de 60 jours a son suivi J+21 et J+42 (*réussie* quand les greffons sont soudés aux deux bouts) ; sinon, rien n'est suivi.
 
-**Tant qu'aucun œil n'a débourré**, la plante **reste le porte-greffe** : son nom, sa fiche et sa collection ne changent pas ; la fiche indique
-le greffon en attente. L'alerte de froid se règle sur le plus fragile des deux (rusticité et jeunesse du greffon, ou du porte-greffe) et l'engrais sur une jeune greffe (choix du plugin). Une entrée « Greffe » est ajoutée au journal.
+**Tant qu'aucun œil n'a débourré**, la plante **reste le porte-greffe** : son nom et sa fiche ne changent pas ; elle est rangée dans la collection **Greffes**
+(créée à la première greffe), avec une étiquette de couleur selon l'état de la greffe ; la fiche indique le greffon en attente. L'alerte de froid se règle sur le plus fragile des deux (rusticité et jeunesse du greffon, ou du porte-greffe) et l'engrais sur une jeune greffe (choix du plugin). Une entrée « Greffe » est ajoutée au journal.
 
 **Au débourrement d'un œil**, confirmé au contrôle (réponse « Oui » qui fait passer à *pousse du greffon*), porte-greffe et greffon deviennent
 **une nouvelle plante**. C'est le **même équipement** : journal, photos, pot, emplacement, courbes et champ « Sol » sont gardés (ce sont toujours ses racines) ;
 il prend le nom, la collection et la fiche du greffon ; le reste de la fiche, les caractères observés et la photo d'étiquette, qui décrivaient le porte-greffe,
 sont remplacés par ceux du greffon (vides s'il n'en a pas). Le champ « Porte-greffe » du greffon reçoit le nom du porte-greffe s'il est laissé vide. Le journal note le changement.
 
-**Greffe morte** (« Non, mort ») : le suivi s'arrête. Avant le débourrement d'un œil, la plante reste le porte-greffe et le greffon en attente est oublié ; après (la pousse meurt),
+**Greffe morte** (« Non, mort ») : le suivi s'arrête. Avant le débourrement d'un œil, la plante reste le porte-greffe, retourne dans sa collection d'origine et le greffon en attente est oublié ; après (la pousse meurt),
 elle **redevient le porte-greffe** : nom, collection et fiche d'avant le débourrement de l'œil (si ce nom est pris entre-temps, la réponse est refusée : renommer d'abord).
 
 Le suivi démarre pour une greffe de **moins de 60 jours** : par « Greffer… » (date partielle ou vide : la date du jour est écrite), ou par « ＋ Plante » avec une date complète
