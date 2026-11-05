@@ -92,7 +92,8 @@ $('#jdc-type').on('change', jdcType)
 $('#jdc-exp').on('click', function () {
   window.journalcultures.ajax('exporter', {}, function (d) {
     var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(d, null, 1)], {type: 'application/json'}))
-    a.download = 'journalcultures_' + d.date.slice(0, 10) + '.json'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(function () { URL.revokeObjectURL(a.href) }, 1000)
+    a.download = 'journalcultures_' + d.date.slice(0, 10) + '.json'; a.click(); // lien hors de la page : sinon Jeedom intercepte le clic et charge le blob: comme une page (Failed to fetch)
+    setTimeout(function () { URL.revokeObjectURL(a.href) }, 1000)
   }, function (e) { $('#div_alert').showAlert({message: e, level: 'danger'}) })
 })
 $('#jdc-froid-maj').on('click', function () { // téléchargement des fichiers Météo-France des départements voisins : quelques minutes
