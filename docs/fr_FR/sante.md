@@ -225,7 +225,7 @@ Saison de *Panonychus citri* : l'hiver en Tunisie (Chouikhi 2022, **une seule so
 
 **Gestes** :
 - sur une plante adulte, dégâts surtout esthétiques (BSV PACA 2020) ; risque réel pour les jeunes plantes (BSV Corse 2024) ;
-- couper les jeunes pousses atteintes (BSV PACA 2020, **une seule source**) ;
+- couper les jeunes pousses atteintes (BSV PACA 2020, **une seule source**) ; Curk 2022 dit au contraire de **ne pas** les couper, la coupe relançant les pousses : les sources divergent, voir [Taille](taille.md#après-la-taille) ;
 - si besoin, un produit de biocontrôle (BSV Corse 2024, **une seule source**).
 
 ### Mal secco (citronniers, limes, cédratiers)
@@ -249,7 +249,7 @@ Très sensibles : citronnier, lime vraie, cédratier (Chapot 1963) ; l'OEPP cite
 
 **Gestes** :
 - couper jusqu'au bois sain, sans coloration ; déchets en sac fermé à la déchetterie, jamais au compost (Chapot 1963, Catane 2022-2023 ; Chapot dit brûler, ce qui est interdit aux particuliers aujourd'hui) ;
-- désinfecter les outils entre deux coupes : **alcool à 70°** (choix du plugin) ; Chapot les trempait dans du sulfate de cuivre à 5 % ;
+- désinfecter les outils entre deux coupes : **alcool à 70°** (choix du plugin ; UF/IFAS CMG16 donne alcool ou eau de Javel à 5 %, voir [Taille](taille.md#comment-couper)) ; Chapot les trempait dans du sulfate de cuivre à 5 % ;
 - protéger les plaies au cuivre : hors des pratiques culturales, la lutte chimique repose sur le cuivre (Chapot 1963, Spina et Cutuli 1983) ;
 - éviter toute blessure l'hiver (déduction du plugin, d'après Chapot 1963).
 

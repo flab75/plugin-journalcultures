@@ -21,7 +21,7 @@ La clé Pl@ntNet (gratuite) est facultative ; sans elle, l'identification par ph
 
 ## Documentation
 - [Notice](docs/fr_FR/index.md) · [Changelog](docs/fr_FR/changelog.md)
-- [Santé des agrumes](docs/fr_FR/sante.md) · [Greffe](docs/fr_FR/greffe.md) · [Fertilisation](docs/fr_FR/fertilisation.md) · [Botanique](docs/fr_FR/guide.md) · [Identification](docs/fr_FR/identification.md) · [Noms des plantes](docs/fr_FR/noms.md)
+- [Santé des agrumes](docs/fr_FR/sante.md) · [Greffe](docs/fr_FR/greffe.md) · [Taille](docs/fr_FR/taille.md) · [Fertilisation](docs/fr_FR/fertilisation.md) · [Botanique](docs/fr_FR/guide.md) · [Identification](docs/fr_FR/identification.md) · [Noms des plantes](docs/fr_FR/noms.md)
 
 ## Licence
 Code sous licence [MIT](LICENSE). Les images de `docs/images` ont leur propre licence (domaine public, CC0, CC BY, CC BY-SA, Licence Ouverte Etalab 2.0) : voir [LICENCES.md](docs/images/LICENCES.md).

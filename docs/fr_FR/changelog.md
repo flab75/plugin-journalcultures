@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.33 (2026-11-05)
+- Notice : nouvel onglet **Taille** (quand, combien, comment couper, jeune plant, gourmands et rejets, plaies, après un gel, kumquat), d'après Curk 2022, Matias 2023 (CC BY 4.0) et UF/IFAS CMG16 ; planche T1 « où couper une branche ». Santé : désaccord des sources sur la coupe des pousses minées signalé.
+
 ## 0.32 (2026-11-05)
 - Notice : les 44 dessins repassés façon **gravure ancienne aquarellée** (papier Canson vieilli, lavis d'aquarelle, encrage léger ; flèches reprises à la plume) ; contenu et légendes inchangés.
 - **Étiquettes à QR code** : bouton « Étiquettes » de la tuile et de la page plein écran ; le QR ouvre la fiche de la plante (code de 5 caractères gardé à l'export/import). QR dessiné avec bacon/bacon-qr-code, déjà fourni par le core de Jeedom.

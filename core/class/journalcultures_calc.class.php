@@ -704,7 +704,7 @@ class journalcultures_calc {
 
   // Notice : Markdown restreint (titres, paragraphes, listes « - », tableaux, gras, italique, code, liens, images de docs/images) → HTML.
   // ponytail: pas un parseur complet, le texte vient de nos docs/ ; tout est échappé avant d'être balisé.
-  const NOTICES = ['index' => 'Mode d\'emploi', 'fertilisation' => 'Fertilisation', 'sante' => 'Santé', 'greffe' => 'Greffe', 'identification' => 'Identification', 'guide' => 'Botanique', 'noms' => 'Noms des plantes'];
+  const NOTICES = ['index' => 'Mode d\'emploi', 'fertilisation' => 'Fertilisation', 'sante' => 'Santé', 'greffe' => 'Greffe', 'taille' => 'Taille', 'identification' => 'Identification', 'guide' => 'Botanique', 'noms' => 'Noms des plantes'];
   /* Origine des mots d'un nom botanique : entrées « - **Mot** … » de docs/fr_FR/noms.md (une entrée = une ligne), [html] dans l'ordre du nom.
      Cultivar entre guillemets, parenthèses, ×, var., subsp. ignorés ; mot absent du dictionnaire : rien. */
   public static function etymologie(array $noms) {
