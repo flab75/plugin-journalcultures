@@ -264,7 +264,7 @@ class journalcultures_calc {
   }
   // lien posé à la greffe (« Greffer… ») : il décide de ce qu'on fait au contrôle J+21 (greffe.md, « Les liens »)
   const LIENS = ['polyethylene' => 'ruban de polyéthylène', 'elastique' => 'élastique de greffage', 'parafilm' => 'film qui se dégrade (Parafilm)',
-    'degradable' => 'ruban qui se dégrade à la lumière (type Buddy Tape)', 'raphia' => 'raphia ou ficelle cirée'];
+    'degradable' => 'ruban qui se dégrade à la lumière (type Buddy Tape)', 'degradable_elastique' => 'ruban qui se dégrade + élastique', 'raphia' => 'raphia ou ficelle cirée'];
   public static function greffe(array $c) { // type de greffe gardé seulement s'il est connu, et il implique la multiplication « greffe » ; le pont est une réparation, pas une multiplication
     if (!array_key_exists($c['type_greffe'] ?? '', self::GREFFES) || $c['type_greffe'] === 'pont') { unset($c['type_greffe']); return $c; }
     if (($c['multiplication'] ?? '') === '') $c['multiplication'] = 'greffe';
@@ -369,8 +369,8 @@ class journalcultures_calc {
       'hiver' => 'premier hiver passé : ôter les pousses sous la greffe, retirer les liens restants ?',
       'fleur' => 'première floraison : ôter toutes les fleurs et petits fruits (pas encore de fleurs : « Douteux ») ?'];
     $fond = in_array($lien, ['parafilm', 'degradable'], true); // film qui se dégrade : rien à retirer (Hayashi 2012 pour le type Buddy Tape)
-    if ($g == 'oeil' && $lien !== '' && isset(self::LIENS[$lien])) $Q['oeil']['attente'] = 'œil vert et gonflé, sans se ratatiner (' . ($fond ? 'film qui se dégrade : rien à retirer, regarder l’œil à travers'
-      : ($lien == 'raphia' ? 'raphia : le couper s’il n’a pas lâché, avant qu’il n’entaille l’écorce' : ($lien == 'elastique' ? 'retirer l’élastique pour voir' : 'retirer le ruban pour voir'))) . ') ?';
+    if ($g == 'oeil' && $lien !== '' && isset(self::LIENS[$lien])) $Q['oeil']['attente'] = 'œil vert et gonflé, sans se ratatiner (' . ($lien == 'degradable_elastique' ? 'retirer l’élastique, laisser le ruban qui se dégrade et regarder l’œil à travers' : ($fond ? 'film qui se dégrade : rien à retirer, regarder l’œil à travers'
+      : ($lien == 'raphia' ? 'raphia : le couper s’il n’a pas lâché, avant qu’il n’entaille l’écorce' : ($lien == 'elastique' ? 'retirer l’élastique pour voir' : 'retirer le ruban pour voir')))) . ') ?';
     if ($g == 'rameau' && $fond) { $Q['rameau']['probable'] = 'le greffon pousse-t-il ? (film qui se dégrade : rien à retirer)'; $Q['rameau']['pousse'] = 'greffon tuteuré, ' . $rej . ' ?'; }
     if ($g == 'rameau' && $lien == 'raphia') $Q['rameau']['probable'] = 'le greffon pousse-t-il ? (couper le raphia s’il n’a pas lâché, avant qu’il n’entaille l’écorce)';
     return $Q[$g][$statut] ?? ($g == 'pont' ? '' : ($S[$statut] ?? '')); // pont : pas de soins de jeune plant
