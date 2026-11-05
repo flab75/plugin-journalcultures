@@ -141,6 +141,16 @@ Le plugin lit dans Jeedom (Réglages → Système → Configuration) la **latitu
 - **Rusticité et alertes froid** : températures mesurées par les sondes de chaque emplacement ; la rusticité vient de la fiche. Valables partout.
 Latitude ou pays absents : le plugin fait comme pour la France, hémisphère nord (pays : `FR`, `FRA` ou `France`).
 
+### Froid du lieu
+Combien de froid fait-il vraiment l'hiver là où sont les plantes ? Le plugin le calcule d'après les **températures minimales quotidiennes de Météo-France** (données climatologiques de base quotidiennes, data.gouv.fr, Licence Ouverte 2.0), en France seulement.
+- **Lieu** : la position saisie dans la configuration du plugin (serre, jardin), sinon celle de Jeedom.
+- **Stations** : les 5 stations Météo-France les plus proches, à moins de 30 km, qui ont au moins 25 des 30 derniers hivers complets (90 % des nuits de novembre à mars mesurées). Chaque station est calculée seule, puis pondérée par l'inverse de sa distance : la plus proche compte le plus. L'altitude n'est pas corrigée : en moyenne l'air se refroidit d'environ 0,65 °C tous les 100 m, mais les nuits claires et calmes (celles des fortes gelées) l'air froid coule dans les fonds et un plateau peut être plus doux qu'une vallée voisine ; quelques dizaines de mètres d'écart avec les stations changent donc peu, dans un sens ou dans l'autre. En montagne, l'écart compte : comparer à une sonde dehors.
+- **Hivers** : les 30 derniers hivers finis (du 1er août au 31 juillet ; celui en cours n'entre pas). De chacun, on garde la **nuit la plus froide**.
+- **Repères** (page du plugin, encadré « Froid du lieu ») : le plus froid en 30 ans ; le froid atteint **1 hiver sur 10** et **1 hiver sur 5** ; la moyenne des 30 nuits les plus froides (c'est la définition des zones de rusticité USDA) ; celui d'un hiver sur 2 ; le nombre moyen de nuits à −2 °C ou moins et à −5 °C ou moins ; la date de la dernière nuit à −2 °C (fleurs et jeunes pousses) et celle de la première à −5 °C (fruits encore sur l'arbre).
+- **Fiche d'une plante** : ligne « Dehors, ici » : combien des 30 derniers hivers sont descendus à sa rusticité effective ou plus bas, donc combien l'auraient gelée **dehors, sans abri**, dans son pot actuel (pénalités comprises). Une moyenne descend plus bas qu'on ne croit : à Noisy-le-Sec, la moyenne est d'environ −6 °C, mais −5 °C est atteint 21 hivers sur 30.
+- **Mise à jour** : une fois par an (en août, quand un hiver de plus est fini) et quand la position change, la nuit ; bouton **Froid du lieu** de la page du plugin pour le faire tout de suite (quelques secondes à quelques minutes : les fichiers des départements voisins sont téléchargés, plusieurs dizaines de Mo) ; en cas d'échec (réseau, aucune station), nouvel essai une fois par semaine. La position sert à trouver les départements (geo.api.gouv.fr) ; rien d'autre n'est envoyé.
+- Méthode de climatologie courante (choix du plugin pour les seuils −2 et −5 °C et les repères) : les risques de gel sont présentés de la même façon par plusieurs sites de jardinage ; une seule source relue pour cette présentation (Greffeur d'agrumes, site commercial), méthode réécrite ici.
+
 ## Exporter, importer
 Page du plugin (administrateurs) :
 - **Exporter** : télécharge un fichier `journalcultures_AAAA-MM-JJ.json` avec chaque plante (fiche, nom de sa collection, journal) et le catalogue des produits en stock. Pas les photos.
@@ -168,6 +178,7 @@ Page du plugin (administrateurs) :
 - **Azote par litre de pot** : 0,07 g par semaine par défaut (choix du plugin, dans la fourchette 0,10-0,16 g toutes les 2 semaines,
   voir [la dose](fertilisation.md#combien--la-dose-en-pot)) ; 0, négatif ou 1 et plus : 0,07.
 - Dans tous ces réglages, la virgule ou le point conviennent (2,5 = 2.5) ; un texte ou une case vide = valeur par défaut.
+- **Froid du lieu : latitude / longitude** (facultatif) : position de la serre ou du jardin en degrés décimaux ; vide = celle de Jeedom. Voir [Froid du lieu](#froid-du-lieu).
 - **Clé Pl@ntNet** (facultative) : compte gratuit sur my.plantnet.org, 500 identifications par jour.
 
 ![Calcul de la rusticité effective](../images/rusticite.svg)

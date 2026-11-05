@@ -34,6 +34,11 @@ $eqLogics = eqLogic::byType($plugin->getId());
 				<br>
 				<span>{{Exporter}}</span>
 			</div>
+			<div class="cursor logoSecondary" id="jdc-froid-maj" title="{{Recalculer le froid des 30 derniers hivers autour de la box (ou de la position saisie dans la configuration), d'après Météo-France : quelques minutes}}">
+				<i class="fas fa-snowflake"></i>
+				<br>
+				<span>{{Froid du lieu}}</span>
+			</div>
 			<label class="cursor logoSecondary" title="{{Ajoute les plantes et produits absents d'un fichier exporté ; ce qui existe déjà n'est pas modifié}}">
 				<i class="fas fa-file-import"></i>
 				<br>
@@ -50,6 +55,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
 			<button type="button" class="btn btn-sm btn-success go">{{Importer}}</button>
 			<button type="button" class="btn btn-sm btn-default non">{{Annuler}}</button>
 		</div>
+		<div id="jdc-froid" class="alert alert-info"<?php $fr = journalcultures::froidResume(); echo $fr ? '' : ' style="display:none"'; ?>><b>{{Froid du lieu}}</b> · <?php echo implode('<br>', array_map('htmlspecialchars', $fr)); ?></div>
 		<legend><i class="fas fa-table"></i> {{Mes collections et plantes}}</legend>
 		<?php
 		if (count($eqLogics) == 0) {

@@ -67,6 +67,13 @@ if (!isConnect('admin')) {
       <div class="col-md-1"><input class="configKey form-control" data-l1key="engrais_jeune_ans" placeholder="3"></div>
     </div>
     <div class="form-group">
+      <label class="col-md-4 control-label">{{Froid du lieu : latitude / longitude}}
+        <sup><i class="fas fa-question-circle tooltips" title="{{Facultatif : position de la serre ou du jardin, en degrés décimaux (ex. 48,8913 / 2,4597). Vide : celle de Jeedom (Réglages → Système → Configuration). Le plugin calcule le froid des 30 derniers hivers d'après les stations Météo-France à moins de 30 km (France seulement), une fois par an ou quand la position change ; bouton « Froid du lieu » de la page du plugin pour le faire tout de suite.}}"></i></sup>
+      </label>
+      <div class="col-md-1"><input class="configKey form-control" data-l1key="froid_lat"></div>
+      <div class="col-md-1"><input class="configKey form-control" data-l1key="froid_lon"></div>
+    </div>
+    <div class="form-group">
       <label class="col-md-4 control-label">{{Clé API Pl@ntNet}}
         <sup><i class="fas fa-question-circle tooltips" title="{{Compte gratuit sur my.plantnet.org (500 identifications par jour). Facultatif : sans clé, pas d'identification des photos.}}"></i></sup>
       </label>

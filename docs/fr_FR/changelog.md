@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.31 (2026-11-05)
+- **Froid du lieu** : nuits les plus froides des 30 derniers hivers autour de la box (ou de la position saisie pour la serre), d'après les stations Météo-France à moins de 30 km (data.gouv.fr, Licence Ouverte 2.0) : repères 1 hiver sur 10, 1 sur 5, moyenne, jours de gel, dates du dernier −2 °C et du premier −5 °C ; dans la fiche, combien de ces hivers auraient gelé la plante dehors. Calcul une fois par an ou quand la position change ; bouton « Froid du lieu » sur la page du plugin.
+
 ## 0.30 (2026-11-05)
 - « Greffer… » : champ **Lien de la greffe** (ruban de polyéthylène, élastique, Parafilm, ruban qui se dégrade à la lumière, seul ou tenu par un élastique, raphia ou ficelle cirée), noté au journal ; la question du contrôle J+21 en dépend (retirer le ruban ou l'élastique, rien à retirer pour un film qui se dégrade, couper le raphia).
 - Notice (relecture R19) : chip seul quand l'écorce ne se décolle pas ; T inversé seul, le plus employé en Floride ; faits non vérifiés du tableau des types retirés ou marqués (minigreffe, microgreffe, chip inversé, placage) ; HO-39 (Stoltz L. P., toile cirée à 3 mois, pointes avec P3402) ; greffons de 20 à 25 cm, jusqu'à 30 ; forçage sourcé ; hauteur du point de greffe INRAE contre Curk ; corne : calcul par semaine expliqué ; auteurs de J. Econ. Entomol. 2019 ; « déduction du plugin » dans les noms.

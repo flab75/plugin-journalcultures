@@ -37,6 +37,18 @@ $ok(strpos($C::greffeQuestion('attente', 'chip', 'degradable'), 'rien à retirer
 $ok($C::controler('probable', 'printemps', '2026-09-13', '2026-11-01', true) == ['dormant', '2027-09-15'] && $C::controler('attente', 'printemps', '2026-03-01', '2026-04-10', true) == ['dormant', '2026-09-15'], 'printemps : 15 septembre dans l\'hémisphère sud');
 $ok($C::decaler('10-40', 26) === '36-14' && $C::decaler('6-44', 26) === '32-18' && $C::decaler('1-53', 26) === '1-53' && $C::decaler('53-1', 26) === '27-27' && in_array(1, $C::semaines('36-14')) && !in_array(20, $C::semaines('36-14')), 'saison décalée de 6 mois (hémisphère sud)');
 $ok($C::pousse(null, 13) === null && $C::pousse(12.9, 13) === false && $C::pousse(13.0, 13) === true && $C::pousse(false, 13) === false, 'zéro de végétation : null sans sonde, en dessous = au repos');
+$h = []; // froid du lieu : 30 hivers, une seule nuit froide (15 janvier) de −1 à −30 °C, le reste à 5 °C
+for ($a = 1997; $a <= 2026; $a++) for ($u = mktime(12, 0, 0, 11, 1, $a - 1); $u <= mktime(12, 0, 0, 3, 31, $a); $u += 86400) $C::froidNuit($h, date('Ymd', $u), date('md', $u) == '0115' ? (float)(1996 - $a) : 5.0);
+$s1 = $C::froidStation($h, 2026); $st = [['d' => 0.5] + $s1, ['d' => 10] + $s1]; $r = $C::froidReperes($st);
+$ok($C::hiver('20251231') === 2026 && $C::hiver('20260731') === 2026 && $C::hiver('20260801') === 2027 && $C::dernierHiver(mktime(12, 0, 0, 11, 5, 2026)) === 2026
+  && $s1['hivers'] === 30 && $s1['min'][0] === -30.0 && $C::froidStation(array_slice($h, 0, 24, true), 2026) === null && $C::froidStation($h, 2050) === null
+  && $C::froidFrequence($st, -10) === 21 && $C::froidFrequence($st, -31) === 0 && $C::froidFrequence([], -10) === null
+  && $r['record'] === -30.0 && $r['un_sur_10'] === -28.0 && $r['mediane'] === -16.0 && $r['moyenne'] === -15.5 && $r['j2'] === 1.0 && $r['der2'] === '15 janvier' && $r['pre5'] === '15 janvier'
+  && abs($C::km(48.8913, 2.4597, 48.8598, 2.5463) - 7.24) < 0.01, 'froid du lieu : hivers, stations, repères pondérés');
+$z = function ($d, $mins) { return ['d' => $d, 'hivers' => 30, 'min' => $mins, 'der2' => array_fill(0, 30, 0), 'pre5' => array_fill(0, 30, 366), 'j2' => 0, 'j5' => 0]; };
+$A = $z(1, array_fill(0, 30, -2.0)); $st = [$A, $z(3, array_fill(0, 30, -10.0))]; $r = $C::froidReperes($st); $hh = []; $C::froidNuit($hh, '20240320', -6.0);
+$ok($r['moyenne'] === -4.0 && $r['record'] === -10.0 && $C::froidFrequence($st, -5) === 8 && $C::froidFrequence($st, -11) === 0 && $r['pre5'] === null && $r['der2'] === null
+  && $C::froidFrequence([$A, $z(3, array_merge([-10.0], array_fill(0, 29, -2.0)))], -5) === 1 && $hh[2024]['der2'] === 231 && $hh[2024]['pre5'] === 231, 'froid du lieu : pondération 1 / distance, au moins 1 hiver, 29 février');
 try { $C::controler('echouee', 'ok', '2026-09-13', '2026-11-01'); $ok(false, 'greffe échouée : plus de contrôle'); } catch (Exception $e) {}
 $ok($C::alerte(-5.0, 1.0, null)['alerte'] === 0 && $C::alerte(-5.0, -3.0, null)['alerte'] === 1 && $C::alerte(-5.0, 4.0, -3.5)['alerte'] === 1, 'alerte : mesurée, prévue');
 $ok($C::alerte(null, -10.0, null) === null && $C::alerte(-5.0, null, null) === null, 'alerte : inconnue');

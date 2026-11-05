@@ -1,6 +1,6 @@
 /* Journal de cultures — tuile d'une collection et ses fenêtres (plante, journal, noter, déplacer). Recopié dans chaque tuile par
    journalcultures::toHtml(), chargé une seule fois par page. Textes entre doubles accolades traduits côté PHP (core/i18n). */
-if (!window.journalcultures || window.journalcultures.v !== 35) (function () { // v : un onglet ouvert avant une mise à jour recharge la bibliothèque
+if (!window.journalcultures || window.journalcultures.v !== 37) (function () { // v : un onglet ouvert avant une mise à jour recharge la bibliothèque
   var css = document.getElementById('jdc-css') || document.createElement('style')
   css.id = 'jdc-css'
   css.textContent =
@@ -282,6 +282,7 @@ if (!window.journalcultures || window.journalcultures.v !== 35) (function () { /
             ' <span class="jdc-er"></span></td></tr>' : '') +
           '<tr><th scope="row">' + "{{Rusticité effective}}" + '</th><td>' + (s.reff === null ? "{{inconnue (pas de rusticité dans la fiche)}}" : nb(s.reff, ' °C') + (s.du_greffon ? ' <small>(' + "{{celle du greffon en attente, plus fragile}}" + ')</small>' : '')) +
             (s.reff !== null && s.estimee ? ' <small>(' + "{{estimée}}" + ' ' + nb(s.estimee.r, ' °C') + ' : ' + esc(s.estimee.groupes.join(', ')) + (s.estimee.par == 'nom' ? '' : ', ' + "{{d'après les caractères}}") + ')</small>' : '') + (s.reff !== null && s.jeunesse > 0 ? ' <small>(' + "{{dont jeunesse}}" + ' +' + nb(s.jeunesse, ' °C') + ')</small>' : '') + (s.raison ? ' <b class="jdc-er">' + esc(s.raison) + '</b>' : '') + '</td></tr>' +
+          (r.froid !== null && r.froid !== undefined ? '<tr><th scope="row">' + "{{Dehors, ici}}" + '</th><td>' + (r.froid ? "{{gèlerait}} " + r.froid + ' ' + "{{hivers sur 30}}" : "{{aucun des 30 derniers hivers assez froid pour la geler}}") + ' <small>(' + "{{nuit la plus froide de chaque hiver, Météo-France ; rusticité effective, sans abri}}" + ')</small></td></tr>' : '') +
           (s.engrais ? '<tr><th scope="row">' + "{{Engrais cette semaine}}" + '</th><td>' + esc(s.engrais) + '</td></tr>' : '') +
           (g.nom ? '<tr><th scope="row">GBIF</th><td><span lang="la">' + esc(g.nom) + '</span>' + (g.famille ? ' · ' + esc(g.famille) : '') + ' <small>(' + esc(g.statut) + ', ' + esc(g.type) + ' ' + esc(g.confiance) + ' %)</small></td></tr>' :
             g.statut == 'NONE' ? '<tr><th scope="row">GBIF</th><td class="jdc-er">' + "{{nom botanique introuvable}}" + '</td></tr>' : '') +
@@ -614,7 +615,7 @@ if (!window.journalcultures || window.journalcultures.v !== 35) (function () { /
   }
 
   // opt.panel : colonnes en plus (porte-greffe, dernière mesure), masquées sur téléphone
-  window.journalcultures = {v: 36, notice: notice, ajax: ajax, esc: esc, nb: nb, init: function (b, d, opt) {
+  window.journalcultures = {v: 37, notice: notice, ajax: ajax, esc: esc, nb: nb, init: function (b, d, opt) {
     if (!b) return
     d.apres = opt && opt.apres // relu par « Greffer… » (fiche)
     var pa = opt && opt.panel

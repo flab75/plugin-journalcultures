@@ -784,4 +784,60 @@ class journalcultures_calc {
     $t = preg_match('/^<h2 [^>]*>.*?<\/h2>/s', $h, $m) ? $m[0] : ''; // titre de la page (#) au-dessus
     return $t . '<div class="jdc-doc"><nav class="jdc-toc" aria-label="Sommaire"><details open><summary>Sommaire</summary><ul>' . implode('', $som) . '</ul></details></nav><div class="jdc-tx">' . substr($h, strlen($t)) . '</div></div>';
   }
+
+  /* ---------- Froid du lieu : températures minimales quotidiennes (TN) de Météo-France, data.gouv.fr, Licence Ouverte 2.0 ----------
+     Hiver = 1er août → 31 juillet, désigné par l'année de son 1er janvier (2025-2026 → 2026). Repères calculés pour chaque station, puis
+     pondérés par 1 / distance (méthode courante de climatologie locale, réécrite pour ce plugin). */
+  const FROID_HIVERS = 30, FROID_MIN = 25, FROID_RAYON = 30, FROID_STATIONS = 5;
+  public static function hiver($ymd) { return (int)substr($ymd, 0, 4) + ((int)substr($ymd, 4, 2) >= 8 ? 1 : 0); }
+  public static function dernierHiver($t = null) { return self::hiver(date('Ymd', $t ?? time())) - 1; } // le dernier hiver fini (celui en cours est exclu)
+  public static function km($la1, $lo1, $la2, $lo2) { // distance à vol d'oiseau (haversine)
+    $a = sin(deg2rad($la2 - $la1) / 2) ** 2 + cos(deg2rad($la1)) * cos(deg2rad($la2)) * sin(deg2rad($lo2 - $lo1) / 2) ** 2;
+    return 12742 * asin(min(1, sqrt($a)));
+  }
+  // ajoute une nuit (AAAAMMJJ, TN en °C) aux hivers d'une station : nuits comptées de novembre à mars, minimum, jours ≤ −2 et ≤ −5,
+  // dernière nuit ≤ −2 et première ≤ −5, en jours depuis le 1er août
+  public static function froidNuit(array &$h, $ymd, $t) {
+    $a = self::hiver($ymd); $m = (int)substr($ymd, 4, 2);
+    $j = (int)round((mktime(12, 0, 0, $m, (int)substr($ymd, 6, 2), $m >= 8 ? 2001 : 2002) - mktime(12, 0, 0, 8, 1, 2001)) / 86400); // sur 2001-2002 : pas de décalage après un 29 février
+    $x = $h[$a] ?? ['n' => 0, 'min' => INF, 'j2' => 0, 'j5' => 0, 'der2' => 0, 'pre5' => 366];
+    if ($m >= 11 || $m <= 3) $x['n']++;
+    $x['min'] = min($x['min'], $t);
+    if ($t <= -2) { $x['j2']++; $x['der2'] = max($x['der2'], $j); }
+    if ($t <= -5) { $x['j5']++; $x['pre5'] = min($x['pre5'], $j); }
+    $h[$a] = $x;
+  }
+  // hivers complets (90 % des nuits de novembre à mars) parmi les 30 derniers ; null si moins de 25
+  public static function froidStation(array $h, $dernier) {
+    $h = array_filter($h, function ($x, $a) use ($dernier) { return $x['n'] >= 136 && $a <= $dernier && $a > $dernier - self::FROID_HIVERS; }, ARRAY_FILTER_USE_BOTH);
+    if (count($h) < self::FROID_MIN) return null;
+    $c = function ($k) use ($h) { $v = array_column($h, $k); sort($v); return $v; };
+    return ['hivers' => count($h), 'min' => $c('min'), 'der2' => $c('der2'), 'pre5' => $c('pre5'),
+      'j2' => round(array_sum(array_column($h, 'j2')) / count($h), 1), 'j5' => round(array_sum(array_column($h, 'j5')) / count($h), 1)];
+  }
+  // quantile pondéré : chaque hiver d'une station pèse (1 / distance) / nombre d'hivers de la station
+  private static function froidQ(array $st, $k, $p) {
+    $v = [];
+    foreach ($st as $s) foreach ($s[$k] as $x) $v[] = [$x, 1 / max(1, $s['d']) / count($s[$k])];
+    usort($v, function ($a, $b) { return $a[0] <=> $b[0]; });
+    $W = array_sum(array_column($v, 1)); $c = 0;
+    foreach ($v as [$x, $w]) if (($c += $w) >= $p * $W - 1e-9) return $x;
+    return end($v)[0];
+  }
+  private static function froidMoy(array $st, $f) { $r = $W = 0; foreach ($st as $s) { $w = 1 / max(1, $s['d']); $r += $w * $f($s); $W += $w; } return $r / $W; }
+  // part des hivers dont la nuit la plus froide descend à $t ou plus bas, ramenée à 30 hivers
+  public static function froidFrequence(array $st, $t) {
+    if (!$st || $t === null) return null;
+    $p = self::froidMoy($st, function ($s) use ($t) { return count(array_filter($s['min'], function ($x) use ($t) { return $x <= $t; })) / count($s['min']); });
+    return $p > 0 ? max(1, (int)round(self::FROID_HIVERS * $p)) : 0; // au moins 1 si une station l'a vu : sinon « aucun hiver » contredirait le record
+  }
+  public static function froidReperes(array $st) {
+    $r = function ($x) { return round($x, 1); };
+    $date = function ($j) { return $j <= 0 || $j >= 366 ? null : (int)date('j', $u = mktime(12, 0, 0, 8, 1 + $j, 2001)) . ' ' . ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'][date('n', $u) - 1]; };
+    return ['record' => $r(self::froidQ($st, 'min', 0)), 'un_sur_10' => $r(self::froidQ($st, 'min', 0.1)), 'un_sur_5' => $r(self::froidQ($st, 'min', 0.2)),
+      'moyenne' => $r(self::froidMoy($st, function ($s) { return array_sum($s['min']) / count($s['min']); })), 'mediane' => $r(self::froidQ($st, 'min', 0.5)),
+      'j2' => $r(self::froidMoy($st, function ($s) { return $s['j2']; })), 'j5' => $r(self::froidMoy($st, function ($s) { return $s['j5']; })),
+      'der2' => $date(self::froidQ($st, 'der2', 0.5)), 'der2_tard' => $date(self::froidQ($st, 'der2', 0.9)), // gel de printemps : la moitié des hivers, 1 sur 10 plus tard
+      'pre5' => $date(self::froidQ($st, 'pre5', 0.5)), 'pre5_tot' => $date(self::froidQ($st, 'pre5', 0.1))]; // −5 d'automne : null = moins d'un hiver sur 2 (sur 10)
+  }
 }

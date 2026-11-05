@@ -759,6 +759,86 @@ class journalcultures extends eqLogic {
   }
   public static function geo() { return ['sud' => self::sud(), 'pays' => self::pays()]; }
 
+  /* ---------- Froid du lieu (Météo-France) : nuits les plus froides des 30 derniers hivers autour de la box ou de la serre ---------- */
+  const FROID_JEU = 'https://www.data.gouv.fr/api/1/datasets/donnees-climatologiques-de-base-quotidiennes/';
+  public static function froidPosition() { // position saisie dans la configuration du plugin (la serre), sinon celle de Jeedom ; null si aucune
+    foreach ([['froid_lat', 'froid_lon', 'journalcultures'], ['info::latitude', 'info::longitude', 'core']] as [$a, $b, $p]) {
+      $la = journalcultures_calc::nombre(config::byKey($a, $p, '')); $lo = journalcultures_calc::nombre(config::byKey($b, $p, ''));
+      if ($la !== null && $lo !== null && abs($la) <= 90 && abs($lo) <= 180) return [round($la, 4), round($lo, 4)];
+    }
+    return null;
+  }
+  private static function telecharger($url, $fichier = null) { // curl, certificat vérifié ; dans un fichier pour les gros .csv.gz
+    $h = curl_init($url); $f = $fichier ? fopen($fichier, 'w') : null;
+    curl_setopt_array($h, [CURLOPT_TIMEOUT => $f ? 300 : 30, CURLOPT_CONNECTTIMEOUT => 10, CURLOPT_SSL_VERIFYPEER => true, CURLOPT_SSL_VERIFYHOST => 2, CURLOPT_PROTOCOLS => CURLPROTO_HTTPS, CURLOPT_FOLLOWLOCATION => false]
+      + ($f ? [CURLOPT_FILE => $f] : [CURLOPT_RETURNTRANSFER => true]));
+    $t = curl_exec($h); $code = curl_getinfo($h, CURLINFO_HTTP_CODE); curl_close($h); if ($f) fclose($f);
+    if ($t === false || $code != 200) throw new Exception(parse_url($url, PHP_URL_HOST) . ' : ' . __('injoignable', __FILE__) . ' (' . $code . ')');
+    return $t;
+  }
+  public static function froidMaj() {
+    if (!($pos = self::froidPosition())) throw new Exception(__('position inconnue : latitude et longitude de Jeedom (Réglages → Système → Configuration) ou de la configuration du plugin', __FILE__));
+    [$la, $lo] = $pos; $C = 'journalcultures_calc'; $dernier = $C::dernierHiver(); $debut = ($dernier - $C::FROID_HIVERS) . '0801';
+    if (php_sapi_name() != 'cli') set_time_limit(900); // en cron (CLI) pas de limite : ne pas en imposer une aux plugins suivants
+    $deps = []; // départements à moins de 30 km : le centre et trois couronnes (≈ 5, 15 et 30 km ; 8, 8 et 16 points)
+    // ponytail: un département qui n'effleure le cercle qu'entre deux points est manqué ; ses stations seraient au bord, de peu de poids
+    foreach ([[0, 1], [0.045, 8], [0.135, 8], [0.27, 16]] as [$r, $n]) for ($k = 0; $k < $n; $k++) { $g = 360 * $k / $n;
+      $q = ['lat' => round($la + $r * cos(deg2rad($g)), 4), 'lon' => round($lo + $r * sin(deg2rad($g)) / cos(deg2rad($la)), 4), 'fields' => 'codeDepartement'];
+      foreach ((array)json_decode(self::telecharger('https://geo.api.gouv.fr/communes?' . http_build_query($q)), true) as $c)
+        if (preg_match('/^(\d\d\d?|2[AB])$/', $c['codeDepartement'] ?? '')) $deps[in_array($c['codeDepartement'], ['2A', '2B']) ? '20' : $c['codeDepartement']] = 1; // Corse : un seul fichier
+    }
+    if (!$deps) throw new Exception(__('hors de France : pas de données Météo-France à cet endroit', __FILE__));
+    preg_match_all('~https://[\w./-]+/Q_(\w+)_(?:previous-1950-\d{4}|latest-\d{4}-\d{4})_RR-T-Vent\.csv\.gz~', self::telecharger(self::FROID_JEU), $m, PREG_SET_ORDER);
+    $urls = array_unique(array_column(array_filter($m, function ($x) use ($deps) { return isset($deps[$x[1]]); }), 0));
+    if (!$urls) throw new Exception(__('fichiers Météo-France introuvables sur data.gouv.fr', __FILE__));
+    $tmp = tempnam(jeedom::getTmpFolder('journalcultures'), 'froid'); $st = []; $info = []; $vu = []; // vu : un jour déjà lu (deux fichiers qui se recouvrent)
+    try {
+      foreach ($urls as $u) {
+        self::telecharger($u, $tmp);
+        if (!($z = gzopen($tmp, 'r'))) throw new Exception(basename($u) . ' : ' . __('illisible', __FILE__));
+        gzgets($z); // en-tête : NUM_POSTE;NOM_USUEL;LAT;LON;ALTI;AAAAMMJJ;RR;QRR;TN;…
+        while (($l = gzgets($z)) !== false) {
+          $c = explode(';', $l, 10);
+          if (count($c) < 9 || $c[8] === '' || $c[5] < $debut) continue;
+          if (!isset($info[$c[0]])) $info[$c[0]] = ['nom' => mb_convert_encoding(trim($c[1]), 'UTF-8', 'ISO-8859-1'), 'd' => round($C::km($la, $lo, (float)$c[2], (float)$c[3]), 1), 'alt' => (int)$c[4]];
+          if ($info[$c[0]]['d'] > $C::FROID_RAYON || isset($vu[$c[0]][$c[5]])) continue;
+          $vu[$c[0]][$c[5]] = 1;
+          $h = $st[$c[0]] ?? []; $C::froidNuit($h, $c[5], (float)$c[8]); $st[$c[0]] = $h;
+        }
+        gzclose($z);
+      }
+    } finally { @unlink($tmp); }
+    $ok = [];
+    foreach ($st as $id => $h) if ($s = $C::froidStation($h, $dernier)) $ok[] = ['id' => (string)$id] + $info[$id] + $s;
+    usort($ok, function ($a, $b) { return $a['d'] <=> $b['d']; });
+    $ok = array_slice($ok, 0, $C::FROID_STATIONS);
+    if (!$ok) throw new Exception(sprintf(__('aucune station Météo-France à moins de %d km avec %d hivers complets', __FILE__), $C::FROID_RAYON, $C::FROID_MIN));
+    // ponytail: altitude ignorée : −0,65 °C / 100 m en moyenne, mais inversion les nuits de gel (plateau parfois plus doux que la vallée) ; réglage d'écart si une sonde dehors le mesure
+    $r = ['date' => date('Y-m-d'), 'pos' => $pos, 'dernier' => $dernier, 'stations' => $ok, 'reperes' => $C::froidReperes($ok)];
+    config::save('froid', json_encode($r), 'journalcultures');
+    return $r;
+  }
+  public static function froid() { $r = json_decode((string)config::byKey('froid', 'journalcultures', ''), true); return is_array($r) && !empty($r['stations']) ? $r : null; }
+  public static function froidResume() { // texte de la page du plugin (lignes simples, échappées à l'affichage)
+    if (!($f = self::froid())) return [];
+    $r = $f['reperes']; $n = function ($x) { return str_replace(['.', '-'], [',', '−'], (string)$x) . ' °C'; };
+    return [sprintf(__('Hivers %d-%d à %d-%d autour de %s, calcul du %s (nuit la plus froide de chaque hiver) :', __FILE__), $f['dernier'] - 30, $f['dernier'] - 29, $f['dernier'] - 1, $f['dernier'], implode(', ', $f['pos']), $f['date']),
+      sprintf(__('le plus froid en 30 ans %s ; 1 hiver sur 10 %s ; 1 sur 5 %s ; moyenne %s ; un hiver sur 2 %s ;', __FILE__), $n($r['record']), $n($r['un_sur_10']), $n($r['un_sur_5']), $n($r['moyenne']), $n($r['mediane'])),
+      sprintf(__('par hiver : %s nuits à −2 °C ou moins, %s à −5 °C ou moins ;', __FILE__), str_replace('.', ',', $r['j2']), str_replace('.', ',', $r['j5'])),
+      __('dernière nuit à −2 °C', __FILE__) . ' : ' . ($r['der2'] ? sprintf(__('%s un hiver sur 2, %s ou plus tard 1 sur 10', __FILE__), $r['der2'], $r['der2_tard'] ?? '–') : __('moins d\'un hiver sur 2', __FILE__))
+      . ' ; ' . __('première à −5 °C', __FILE__) . ' : ' . ($r['pre5'] ? sprintf(__('%s un hiver sur 2', __FILE__), $r['pre5']) : ($r['pre5_tot'] ? sprintf(__('moins d\'un hiver sur 2 ; 1 sur 10 dès le %s', __FILE__), $r['pre5_tot']) : __('moins d\'un hiver sur 10', __FILE__))) . '.',
+      __('Stations', __FILE__) . ' : ' . implode(' ; ', array_map(function ($s) { return sprintf('%s (%s km, %d m, %d hivers)', $s['nom'], str_replace('.', ',', $s['d']), $s['alt'], $s['hivers']); }, $f['stations'])) . '.',
+      __('Source : Météo-France, données climatologiques quotidiennes (data.gouv.fr, Licence Ouverte 2.0) ; chaque station calculée seule, puis pondérée par 1 / distance.', __FILE__)];
+  }
+  public static function cronDaily() { // une fois par an (nouvel hiver fini, en août) ou quand la position change ; sinon rien à télécharger
+    $f = self::froid();
+    $d = journalcultures_calc::dernierHiver(); $e = json_decode((string)config::byKey('froid_essai', 'journalcultures', ''), true); // dernier échec
+    if (!($p = self::froidPosition()) || ($f && $f['pos'] == $p && $f['dernier'] == $d)) return; // à jour
+    if (is_array($e) && $e['pos'] == $p && $e['dernier'] == $d && time() - $e['t'] < 7 * 86400) return; // en échec : réessai une fois par semaine, pas chaque nuit
+    try { self::froidMaj(); config::remove('froid_essai', 'journalcultures'); }
+    catch (Throwable $x) { config::save('froid_essai', json_encode(['pos' => $p, 'dernier' => $d, 't' => time()]), 'journalcultures'); log::add('journalcultures', 'warning', 'Froid du lieu (Météo-France) : ' . $x->getMessage()); }
+  }
+
   public function enGreffe() { // étiquette de la tuile : greffe en cours (ni réussie ni échouée) → statut + texte, sinon null
     $s = (string)$this->getConfiguration('greffe_statut'); $gf = $this->getConfiguration('greffe_greffon');
     return in_array($s, journalcultures_calc::GREFFE_SUIVI) ? ['s' => $s, 't' => __('Greffe', __FILE__) . ' : ' . journalcultures_calc::GREFFE_STATUTS[$s] . (is_array($gf) && ($gf['nom'] ?? '') !== '' ? ' — ' . $gf['nom'] : ''), 'g' => is_array($gf) ? ((string)($gf['source'] ?? '') ?: trim(($gf['bota'] ?? '') . (($gf['cultivar'] ?? '') !== '' && strpos($gf['bota'] ?? '', $gf['cultivar']) === false ? ' ' . $gf['cultivar'] : '')) ?: (string)($gf['nom'] ?? '')) : '',
@@ -864,6 +944,7 @@ class journalcultures extends eqLogic {
       'journal' => self::journal([$this->getId()], 300), 'releves' => self::releves($this->getId()), 'photos' => $ph = $this->photos(), 'liens' => array_values($liens),
       'etiquette' => in_array($this->getConfiguration('etiquette'), $ph, true) ? $this->getConfiguration('etiquette') : '', // photo supprimée : plus d'étiquette
       'plantnet' => self::cle() !== '' ? 1 : 0, 'multiplication' => $this->multiplication(), 'greffe' => $this->suiviGreffe(), 'mesures' => journalcultures_calc::MESURES, 'calculs' => journalcultures_calc::CALCULS, 'engrais' => $this->engraisFiche(), 'sante' => $this->santeFiche(), 'santeCat' => self::santeCat(), 'geo' => self::geo(),
+      'froid' => ($fr = self::froid()) && $s['reff'] !== null ? journalcultures_calc::froidFrequence($fr['stations'], $s['reff']) : null, // hivers sur 30 où elle gèlerait dehors, dans son pot
       'noms' => journalcultures_calc::etymologie([$bota, $g['espece'] ?? ''])]; // nom saisi puis nom retenu par GBIF (ancien nom → actuel)
   }
 

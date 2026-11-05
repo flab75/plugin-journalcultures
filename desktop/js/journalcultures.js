@@ -95,6 +95,14 @@ $('#jdc-exp').on('click', function () {
     a.download = 'journalcultures_' + d.date.slice(0, 10) + '.json'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(function () { URL.revokeObjectURL(a.href) }, 1000)
   }, function (e) { $('#div_alert').showAlert({message: e, level: 'danger'}) })
 })
+$('#jdc-froid-maj').on('click', function () { // téléchargement des fichiers Météo-France des départements voisins : quelques minutes
+  var b = $(this); if (b.data('en')) return; b.data('en', 1).css('opacity', .5)
+  $('#div_alert').showAlert({message: "{{Froid du lieu : téléchargement des données Météo-France, quelques minutes…}}", level: 'info'})
+  window.journalcultures.ajax('froid', {}, function (r) {
+    b.removeData('en').css('opacity', 1); $('#div_alert').hide()
+    $('#jdc-froid').show().html('<b>{{Froid du lieu}}</b> · ' + r.map(window.journalcultures.esc).join('<br>'))
+  }, function (e) { b.removeData('en').css('opacity', 1); $('#div_alert').showAlert({message: e, level: 'danger'}) })
+})
 $('#jdc-imp').on('change', function () {
   var f = this.files[0], bx = $('#jdc-imp-ok'); this.value = ''; if (!f) return
   f.text().then(function (t) {

@@ -108,6 +108,7 @@ try {
     'cultivars' => init('pg') ? journalcultures::cultivars($eq(init('pg'), 'plante')) : [], 'plantnet' => journalcultures::cle() !== '' ? 1 : 0]);
   if ($a == 'reconnaitre') { $c = $liste('carac'); ajax::success(['ident' => journalcultures_calc::identifier($c), 'estimee' => journalcultures_calc::estimee((string)init('bota'), $c)]); }
   if ($a == 'exporter') ajax::success(journalcultures::exporter());
+  if ($a == 'froid') { journalcultures::froidMaj(); ajax::success(journalcultures::froidResume()); } // téléchargement : jusqu'à quelques minutes
   if ($a == 'importer') ajax::success(journalcultures::importer($liste('donnees'), $eq(init('collection'), 'collection')));
   if ($a == 'creer') ajax::success(journalcultures::creer($eq(init('collection'), 'collection'), $liste('plante')));
   if ($a == 'accepter') ajax::success($eq(init('id'), 'plante')->accepter($liste('champs'), $liste('sources')));
