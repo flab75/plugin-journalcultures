@@ -539,6 +539,7 @@ if (!window.journalcultures || window.journalcultures.v !== 35) (function () { /
             Object.keys(M.greffes).filter(function (k) { return pg || k != 'pont' }).map(function (k) { // pont : réparation (« Greffer… »), pas une multiplication
                return '<option value="' + esc(k) + '">' + esc(M.greffes[k]) + '</option>' }).join('') +
             '</select> <input name="date_mult" maxlength="10" pattern="\\d{4}(-\\d{2}(-\\d{2})?)?" title="AAAA, AAAA-MM ou AAAA-MM-JJ" placeholder="2024-05" style="width:8em"><br><small class="jdc-saison"></small></span>') +
+          (pg ? champ("{{Lien de la greffe}}", '<select name="lien_greffe"><option value="">' + "{{non précisé}}" + '</option>' + Object.keys(M.liens || {}).map(function (k) { return '<option value="' + esc(k) + '">' + esc(M.liens[k]) + '</option>' }).join('') + '</select>') : '') +
           champ("{{Pot}}", '<span><select name="pot_forme" style="width:auto"><option value="">' + "{{rond, Ø}}" + '</option><option value="carre">' + "{{carré, côté}}" + '</option></select> ' +
             '<input name="pot_diam" inputmode="decimal" placeholder="cm" style="width:5em"> × <input name="pot_haut" inputmode="decimal" placeholder="' + "{{haut. cm}}" + '" style="width:6em"> ' +
             '<label style="display:inline"><input type="checkbox" name="pleine_terre" value="1"> ' + "{{pleine terre}}" + '</label></span>') +
@@ -556,7 +557,7 @@ if (!window.journalcultures || window.journalcultures.v !== 35) (function () { /
         F.type_greffe.onchange = function () { var t = (M.greffe_saisons || {})[F.type_greffe.value], po = pg && F.type_greffe.value == 'pont'; f.querySelector('.jdc-saison').textContent = t ? "{{Saison}} : " + t : ''
           if (!pg) return // pont : réparation, la plante garde nom, collection et fiche ; ces champs sont masqués (et ignorés par le serveur)
           F.nom.required = !po; f.querySelector('details').style.display = rec.style.display = f.querySelector('.pv').style.display = po ? 'none' : ''
-          ;[F.collection, F.nom, F.bota, F.cultivar, F.porte_greffe, F.rusticite].forEach(function (e) { e.style.display = e.previousElementSibling.style.display = po ? 'none' : '' }) }
+          ;[F.collection, F.nom, F.bota, F.cultivar, F.porte_greffe, F.rusticite, F.lien_greffe].forEach(function (e) { e.style.display = e.previousElementSibling.style.display = po ? 'none' : '' }) }
         F.multiplication.onchange = function () { var g = F.multiplication.value == 'greffe'; F.type_greffe.style.display = g ? '' : 'none'; if (!g) F.type_greffe.value = ''; F.type_greffe.onchange() }
         if (pg) { // greffe : multiplication imposée, date du jour, porte-greffe déduit du nom (« Flying Dragon 3 » → Flying Dragon), emplacement et pot inchangés
           F.multiplication.value = 'greffe'; F.multiplication.onchange(); F.multiplication.style.display = 'none'; F.date_mult.value = auj()

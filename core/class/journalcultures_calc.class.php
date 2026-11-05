@@ -262,6 +262,9 @@ class journalcultures_calc {
     if (!is_string($c['id_pulpe_aspect'] ?? null) || $c['id_pulpe_aspect'] === '') $c['id_pulpe_aspect'] = $c['id_pulpe'];
     $c['id_pulpe'] = ''; return $c;
   }
+  // lien posé à la greffe (« Greffer… ») : il décide de ce qu'on fait au contrôle J+21 (greffe.md, « Les liens »)
+  const LIENS = ['polyethylene' => 'ruban de polyéthylène', 'elastique' => 'élastique de greffage', 'parafilm' => 'film qui se dégrade (Parafilm)',
+    'degradable' => 'ruban qui se dégrade à la lumière (type Buddy Tape)', 'raphia' => 'raphia ou ficelle cirée'];
   public static function greffe(array $c) { // type de greffe gardé seulement s'il est connu, et il implique la multiplication « greffe » ; le pont est une réparation, pas une multiplication
     if (!array_key_exists($c['type_greffe'] ?? '', self::GREFFES) || $c['type_greffe'] === 'pont') { unset($c['type_greffe']); return $c; }
     if (($c['multiplication'] ?? '') === '') $c['multiplication'] = 'greffe';
@@ -278,6 +281,7 @@ class journalcultures_calc {
     if (isset($c['date_mult']) && self::age($c['date_mult']) === null) throw new Exception(__('Date de multiplication : AAAA, AAAA-MM ou AAAA-MM-JJ, pas dans le futur', __FILE__)); // sinon ni jeunesse, ni suivi de greffe, sans un mot
     if (in_array($in['multiplication'] ?? '', self::MULTIPLICATIONS, true)) $c['multiplication'] = $in['multiplication'];
     $c = self::greffe($c + (isset($in['type_greffe']) ? ['type_greffe' => (string)$in['type_greffe']] : []));
+    if (($c['multiplication'] ?? '') === 'greffe' && isset(self::LIENS[$l = (string)($in['lien_greffe'] ?? '')])) $c['lien_greffe'] = $l;
     foreach (['pot_diam', 'pot_haut', 'pot_terre'] as $k) if (($v = self::nombre($in[$k] ?? '')) !== null && $v > 0) $c[$k] = $v;
     if (($in['pot_forme'] ?? '') === 'carre') $c['pot_forme'] = 'carre';
     if (!empty($in['pleine_terre'])) $c['pleine_terre'] = 1;
@@ -340,7 +344,7 @@ class journalcultures_calc {
   /* Marche à suivre selon le type : œil (le forcer : entaille aux 2/3 au-dessus, haut couché) ; rameau sur porte-greffe déjà coupé
      (lien ou sac retiré quand le greffon pousse : Curk 2022 p. 186, fiche INRAE couronne 15 jours) ; latérale et approche, porte-greffe pas coupé
      (le couper au-dessus une fois la soudure faite, et sevrer le greffon d'approche : aucune source relue) ; pont : réparation d'une écorce blessée, la plante reste elle-même, pas de pousse attendue. */
-  public static function greffeQuestion($statut, $type) {
+  public static function greffeQuestion($statut, $type, $lien = '') { // $lien : clé de LIENS, '' = non précisé (texte général)
     $g = in_array($type, ['ecusson_t_inverse', 'ecusson_t', 'chip', 'chip_inverse', 'placage'], true) ? 'oeil'
       : (in_array($type, ['laterale', 'approche'], true) ? 'cote' : ($type == 'pont' ? 'pont' : 'rameau')); // type inconnu : rameau
     $rej = 'ôter les rejets du porte-greffe';
@@ -364,6 +368,11 @@ class journalcultures_calc {
       'taille2' => 'deuxième pousse durcie : raccourcir les nouvelles pousses à 5 feuilles ?',
       'hiver' => 'premier hiver passé : ôter les pousses sous la greffe, retirer les liens restants ?',
       'fleur' => 'première floraison : ôter toutes les fleurs et petits fruits (pas encore de fleurs : « Douteux ») ?'];
+    $fond = in_array($lien, ['parafilm', 'degradable'], true); // film qui se dégrade : rien à retirer (Hayashi 2012 pour le type Buddy Tape)
+    if ($g == 'oeil' && $lien !== '' && isset(self::LIENS[$lien])) $Q['oeil']['attente'] = 'œil vert et gonflé, sans se ratatiner (' . ($fond ? 'film qui se dégrade : rien à retirer, regarder l’œil à travers'
+      : ($lien == 'raphia' ? 'raphia : le couper s’il n’a pas lâché, avant qu’il n’entaille l’écorce' : ($lien == 'elastique' ? 'retirer l’élastique pour voir' : 'retirer le ruban pour voir'))) . ') ?';
+    if ($g == 'rameau' && $fond) { $Q['rameau']['probable'] = 'le greffon pousse-t-il ? (film qui se dégrade : rien à retirer)'; $Q['rameau']['pousse'] = 'greffon tuteuré, ' . $rej . ' ?'; }
+    if ($g == 'rameau' && $lien == 'raphia') $Q['rameau']['probable'] = 'le greffon pousse-t-il ? (couper le raphia s’il n’a pas lâché, avant qu’il n’entaille l’écorce)';
     return $Q[$g][$statut] ?? ($g == 'pont' ? '' : ($S[$statut] ?? '')); // pont : pas de soins de jeune plant
   }
   /* Température pour souder (moyenne 24 h de l'emplacement) : sous ~21 °C le Poncirus s'endort (Alabama ACES : dormance quand le jour reste < 70 °F),

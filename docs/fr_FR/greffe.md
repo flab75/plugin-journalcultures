@@ -282,6 +282,7 @@ c'est la sève du porte-greffe qui décide, pas le calendrier. La saison du type
 - **greffon** choisi parmi nos plantes des autres collections (nom botanique, cultivar et caractères recopiés, nom proposé « greffon sur porte-greffe »)
   ou écrit à la main (nouveau cultivar) ;
 - **nom de la nouvelle plante** (nom donné au débourrement d'un œil, ex. Yuzu n°2), nom botanique du greffon, **collection de la nouvelle plante** (par défaut l'actuelle : choisir celle du greffon), type et date de greffe ;
+- **lien de la greffe** (ruban de polyéthylène, élastique, Parafilm, ruban qui se dégrade à la lumière type Buddy Tape, raphia ou ficelle cirée ; facultatif) : la question du contrôle J+21 en dépend, voir « Les liens » dans [Le matériel](#le-matériel) ;
 - le porte-greffe est déduit du nom (Poncirus, Flying Dragon, FA5…), modifiable.
 
 **Greffe en pont** (type « Pont ») : c'est une **réparation** de l'écorce, pas une multiplication. Le formulaire ne demande ni nom ni collection :
@@ -330,6 +331,9 @@ ou *échouée* (greffe morte : le suivi s'arrête et le statut est aussitôt eff
 *côté* : latérale, en approche. Type de greffe inconnu : traité comme une greffe de rameau.
 
 Lien : à J+21, le ruban de polyéthylène se retire (14 à 21 jours, jamais plus de 30, HS1309) : voir [Le matériel](#le-matériel).
+Si le lien a été choisi dans « Greffer… », la question J+21 d'une greffe d'œil le suit : ruban ou élastique, le retirer pour voir l'œil ; Parafilm
+ou ruban qui se dégrade, rien à retirer ; raphia, le couper s'il n'a pas lâché, avant qu'il n'entaille l'écorce. Pour un rameau, un film qui se dégrade
+n'a pas à être retiré quand le greffon pousse. Lien non précisé : la question générale du tableau.
 
 Sources : forcer l'œil, HS1309 et Alabama ACES (HS1309 le force dès le lien retiré ; attendre J+42 et ne forcer qu'un œil qui n'a pas débourré est un choix du plugin) ; rejets du porte-greffe à ôter dès qu'ils sortent, HS1309 et Curk 2022 p. 210 ;
 tuteurer puis couper le haut du porte-greffe, HS1309 (**une seule source**) ; lien d'un œil coupé vers J+21, HS1309 (14 à 21 jours, 30 au plus) et fiche INRAE-Cirad (une vingtaine de jours) ;

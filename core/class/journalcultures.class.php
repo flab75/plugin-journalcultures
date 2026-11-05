@@ -544,6 +544,7 @@ class journalcultures extends eqLogic {
         'lieu' => (string)$this->getConfiguration('emplacement'), 'action' => 'Greffe', 'note' => sprintf(__('%s greffé sur %s (%s)', __FILE__),
           implode(' ', array_filter([$c['bota'] ?? '', $c['cultivar'] ?? ''])) ?: '« ' . $nom . ' »', $pg,
           journalcultures_calc::GREFFES[$c['type_greffe'] ?? ''] ?? __('type de greffe non précisé', __FILE__))
+          . (isset(journalcultures_calc::LIENS[$c['lien_greffe'] ?? '']) ? ' ; ' . sprintf(__('lien : %s', __FILE__), journalcultures_calc::LIENS[$c['lien_greffe']]) : '')
           . ($source !== '' ? ' ; ' . sprintf(__('greffon pris sur %s', __FILE__), $source) : '')
           . ' ; ' . ($garde ? __('greffon corrigé, suivi inchangé', __FILE__) : '') . ($garde ? '' : ($recente ? sprintf(__('%s reste le porte-greffe ; porte-greffe et greffon deviendront « %s » au débourrement d\'un œil', __FILE__), $pg, $nom)
             : sprintf(__('greffe ancienne, un œil a déjà débourré : porte-greffe et greffon deviennent « %s »', __FILE__), $this->getName())))]);
@@ -643,7 +644,7 @@ class journalcultures extends eqLogic {
 
   // identité d'une plante (ce qui change à la greffe) ; le sol (ce sont toujours ses racines), le pot, l'emplacement, le journal et les photos restent
   private static function identite() {
-    return array_merge(array_diff(array_keys(self::FICHE), ['sol']), ['etiquette', 'gbif', 'multiplication', 'type_greffe', 'date_mult'],
+    return array_merge(array_diff(array_keys(self::FICHE), ['sol']), ['etiquette', 'gbif', 'multiplication', 'type_greffe', 'lien_greffe', 'date_mult'],
       array_map(function ($k) { return 'id_' . $k; }, array_keys(journalcultures_calc::CARACTERES)));
   }
   private static function instantane(journalcultures $p) {
@@ -777,7 +778,7 @@ class journalcultures extends eqLogic {
     $du = $c !== '' && ($c <= date('Y-m-d') // œil dormant : contrôle avancé (8 semaines au plus) si l'emplacement est déjà au-dessus du zéro de végétation
       || ($s == 'dormant' && $c <= date('Y-m-d', strtotime('+56 days')) && (string)$this->getConfiguration('greffe_rep') <= date('Y-m-d', strtotime('-28 days'))
         && journalcultures_calc::pousse($this->moyenne7(), self::seuil()))); // pas avant 4 semaines après la réponse (choix du plugin)
-    $q = journalcultures_calc::greffeQuestion($s, $type);
+    $q = journalcultures_calc::greffeQuestion($s, $type, $this->greffeVal('lien_greffe'));
     $pont = $type == 'pont'; // pont : pas d'œil à faire dormir ni de pousse attendue
     if ($s == 'probable' && !$pont && $q !== '' && in_array((int)date('W'), journalcultures_calc::semaines(self::sud() ? journalcultures_calc::decaler(self::HIVER, 26) : self::HIVER)))
       $q .= ' — ' . __('en hiver : « Au printemps », au frais hors gel, sans engrais ; le forcer maintenant demande chaleur et lumière (aucune source sur ce cas)', __FILE__); // soudure faite (J+21 confirmé) ; avant, la greffe a besoin de chaleur pour souder ; agrumes arrêtés sous ≈ 13 °C, pas d'engrais l'hiver (2 sources)
@@ -788,7 +789,7 @@ class journalcultures extends eqLogic {
   /* Réponse au contrôle de greffe → nouveau statut, noté au journal. Un œil a débourré (pousse) : porte-greffe et greffon deviennent la nouvelle plante.
      Greffe morte : avant le débourrement, la plante reste le porte-greffe ; après (la pousse meurt), elle le redevient. Pont (réparation) : soudé = réussie, la plante ne change pas. */
   public function controlerGreffe($verdict, $note) {
-    $s = (string)$this->getConfiguration('greffe_statut'); $type = $this->greffeVal('type_greffe'); $q = journalcultures_calc::greffeQuestion($s, $type);
+    $s = (string)$this->getConfiguration('greffe_statut'); $type = $this->greffeVal('type_greffe'); $q = journalcultures_calc::greffeQuestion($s, $type, $this->greffeVal('lien_greffe'));
     try { $g = journalcultures_calc::date($type == 'pont' ? (string)$this->getConfiguration('greffe_pont') : $this->greffeVal('date_mult')); } catch (Exception $x) { $g = date('Y-m-d'); } // « Greffer… » écrit toujours une date complète
     if ($verdict == 'printemps' && ($s != 'probable' || $type == 'pont')) throw new Exception(__('« Au printemps » : seulement à J+42, pas pour un pont', __FILE__)); // comme le bouton de la fiche
     [$n, $c] = journalcultures_calc::controler($s, $verdict, $g, date('Y-m-d'), self::sud());

@@ -104,7 +104,7 @@ try {
   }
   // « ＋ Plante » : listes du formulaire, groupe et rusticité estimée au fil de la saisie, création
   if ($a == 'modele') ajax::success(['caracteres' => journalcultures_calc::CARACTERES, 'porte_greffes' => journalcultures::PORTE_GREFFES,
-    'multiplications' => journalcultures_calc::MULTIPLICATIONS, 'greffes' => journalcultures_calc::GREFFES, 'greffe_saisons' => array_map('journalcultures_calc::greffeSaison', array_combine(array_keys(journalcultures_calc::GREFFES), array_keys(journalcultures_calc::GREFFES))), 'collections' => journalcultures::collections(),
+    'multiplications' => journalcultures_calc::MULTIPLICATIONS, 'greffes' => journalcultures_calc::GREFFES, 'liens' => journalcultures_calc::LIENS, 'greffe_saisons' => array_map('journalcultures_calc::greffeSaison', array_combine(array_keys(journalcultures_calc::GREFFES), array_keys(journalcultures_calc::GREFFES))), 'collections' => journalcultures::collections(),
     'cultivars' => init('pg') ? journalcultures::cultivars($eq(init('pg'), 'plante')) : [], 'plantnet' => journalcultures::cle() !== '' ? 1 : 0]);
   if ($a == 'reconnaitre') { $c = $liste('carac'); ajax::success(['ident' => journalcultures_calc::identifier($c), 'estimee' => journalcultures_calc::estimee((string)init('bota'), $c)]); }
   if ($a == 'exporter') ajax::success(journalcultures::exporter());
