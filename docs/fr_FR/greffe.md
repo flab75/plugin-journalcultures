@@ -205,7 +205,7 @@ Regreffer une greffe dont aucun œil n'a débourré remplace le greffon en atten
 
 ## Suivi et points de contrôle
 
-**Statut** : *en attente* → *probablement prise* → *pousse du greffon* → *réussie (suivi terminé)*, ou *greffon dormant jusqu'au printemps* (puis *pousse du greffon*),
+**Statut** : *en attente* → *probablement prise* → *pousse du greffon* → quatre soins (*1re pousse à raccourcir*, *2e pousse à raccourcir*, *après le premier hiver*, *première floraison*) → *réussie (suivi terminé)*, ou *greffon dormant jusqu'au printemps* (puis *pousse du greffon*),
 ou *échouée* (greffe morte : le suivi s'arrête et le statut est aussitôt effacé) ; pont : *probablement prise* → *réussie* (réparation : la plante garde son nom et sa fiche).
 
 ![Suivi d'une greffe](../images/greffe-suivi.svg)
@@ -219,6 +219,10 @@ ou *échouée* (greffe morte : le suivi s'arrête et le statut est aussitôt eff
 | J+21 | œil vert et gonflé, sans se ratatiner, un cal au bord de l'écusson (HS1309) ; brun et sec : la greffe est morte (déduction du plugin) (retirer le lien pour voir) | bourgeons du greffon verts et gonflés (retirer le sac pour voir) | greffon vert | greffons verts |
 | J+42 | l'œil a-t-il débourré ? sinon le **forcer** (entailler le porte-greffe aux 2/3 au-dessus de l'œil et coucher le haut), ou « Au printemps » | le greffon pousse-t-il ? retirer le lien quand les feuilles sortent | le greffon pousse-t-il ? une fois soudé, couper le porte-greffe au-dessus (approche : sevrer le greffon de sa plante) | greffons soudés aux deux bouts ; oui → *réussie* (rien ne doit pousser, pas de « Au printemps ») |
 | Pousse (4 semaines après) | tuteurer la pousse, couper le haut du porte-greffe à environ 1,3 cm au-dessus de la greffe, ôter les rejets | greffon tuteuré, lien retiré, rejets ôtés | greffon tuteuré, rejets ôtés | — |
+| 1re pousse (4 semaines après) | 1re pousse durcie : raccourcir les charpentières à 5 feuilles, ôter les rejets | idem | idem | — |
+| 2e pousse (8 semaines après) | 2e pousse durcie : raccourcir les nouvelles pousses à 5 feuilles | idem | idem | — |
+| Après le premier hiver (1er mars ; 1er septembre au sud) | ôter les pousses sous la greffe, retirer les liens restants | idem | idem | — |
+| Première floraison (6 semaines après) | ôter toutes les fleurs et petits fruits ; pas encore de fleurs : « Douteux » | idem | idem | — |
 
 *Œil* : écussons, chip, placage ; *rameau* sur porte-greffe coupé : fente, couronne, anglaise, incrustation, sur souche, minigreffe ;
 *côté* : latérale, en approche. Type de greffe inconnu : traité comme une greffe de rameau.
@@ -228,6 +232,8 @@ tuteurer puis couper le haut du porte-greffe, HS1309 (**une seule source**) ; li
 lien ou sac d'un rameau retiré quand le greffon pousse, Curk 2022 p. 186 (couronne : sac retiré à 15 jours, fiche INRAE-Cirad), même filiation, **une seule source** ; latérale, approche et pont : **aucune source relue**, choix du plugin ;
 contrôle de la pousse 4 semaines après le « Oui » qui confirme le débourrement d'un œil, choix du plugin. Délais J+21 et J+42 d'après la vulgarisation des universités de Floride, d'Alabama et
 de Californie : le bourgeon, plus que le calendrier, décide.
+Soins après la pousse (5 feuilles après chaque pousse, pousses sous la greffe et liens après le premier hiver, fruits ôtés à la première floraison) : Lévy 2026, *Greffeur d'agrumes*, tutoriels (sous droits, faits seulement), **une seule source** ;
+délais de ces contrôles (4 et 8 semaines, 1er mars, 6 semaines) : choix du plugin. Une greffe morte pendant les soins est encore notée « Non, mort » : la plante redevient le porte-greffe.
 
 ![Écusson pris ou raté au contrôle](../images/greffe-ecusson-controle.svg)
 
@@ -274,6 +280,7 @@ Un contrôle dû remplit la commande « Greffe à contrôler », reprise par le 
 - **Rutgers** : *Growing Citrus in Containers*, maître jardinier du comté de Hunterdon (reprend Mississippi State University P2542).
 - **Bailey** : Bailey L. H., *The Nursery-Book*, 11ᵉ éd., Macmillan, 1907 (Internet Archive cu31924097691087) et *The Nursery-Manual*, Macmillan, 1920 (Internet Archive nurserymanualcom00bailrich), domaine public ; texte cité = **une seule source**, souvent hors agrumes.
 - **UC Ventura** : University of California Cooperative Extension, comté de Ventura, [Budding and grafting citrus and avocados in the home garden](https://ucanr.edu/county/cooperative-extension-ventura-county/budding-and-grafting-citrus-and-avocados-home-garden) (soudure en 3-4 semaines au printemps, 6-8 à l'automne ; œil laissé à l'air sous le lien).
+- **Lévy 2026** : Lévy L., greffeur, *Greffeur d'agrumes*, tutoriels en photos (fente, anglaise, couronne, chip budding, semis et sélection des porte-greffes), [greffeurdagrumes.com](https://www.greffeurdagrumes.com/fr/content/6-comment-faire-une-greffe-en-fente), 2026 ; site commercial **sous droits** : faits seulement, reformulés, ni texte ni photo repris.
 - **Non relues** (citées par la synthèse « Techniques de greffe », référence complète non retrouvée) : revue *Fruits* 1982 (Cirad, placage d'œil) ; guide du service du développement rural de Polynésie française ;
   Carimi 2001 (Italie, microgreffe et embryogenèse somatique) ; essai colombien 2022 sur orange 'Valencia' (minigreffe en fente).
 - **Températures de soudure (21-32 °C)** : sources d'amateurs seulement (forums, sites de jardinage), d'où des seuils réglables.

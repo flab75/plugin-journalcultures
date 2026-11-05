@@ -517,7 +517,7 @@ class journalcultures extends eqLogic {
   private function greffer(journalcultures $coll, $nom, array $c, $source) {
     if (!$this->getIsEnable()) throw new Exception(__('Plante désactivée', __FILE__));
     $s = (string)$this->getConfiguration('greffe_statut'); $ga = $this->getConfiguration('greffe_greffon');
-    if ($s == 'pousse') throw new Exception(__('Greffe en train de pousser : répondre d\'abord à son contrôle (réussite ou échec)', __FILE__)); // sinon le vrai porte-greffe serait perdu
+    if (in_array($s, journalcultures_calc::GREFFE_SUIVI, true) && !in_array($s, ['attente', 'probable', 'dormant'], true)) throw new Exception(__('Greffe en train de pousser : répondre d\'abord à son contrôle (réussite ou échec)', __FILE__)); // sinon le vrai porte-greffe serait perdu
     if ($this->pontSuivi()) throw new Exception(__('Greffe en pont en suivi : répondre d\'abord à son contrôle', __FILE__));
     $this->setConfiguration('greffe_pont', ''); // réparation terminée : le suivi devient celui de cette greffe
     try { $c['date_mult'] = journalcultures_calc::date($c['date_mult'] ?? ''); } catch (Exception $x) { $c['date_mult'] = date('Y-m-d'); } // partielle (2026-05) ou absente : aujourd'hui (suivi, jeunesse, engrais du jeune plant)
@@ -553,10 +553,10 @@ class journalcultures extends eqLogic {
 
   /* Greffe en pont : réparation d'une écorce blessée (rongeur, gel, gommose grattée). La plante garde son nom, sa fiche, sa collection et sa multiplication ;
      greffe_pont = date de la réparation (type et date du suivi), contrôles à J+21 et J+42 si elle est récente, rien d'autre. */
-  private function pontSuivi() { return (string)$this->getConfiguration('greffe_pont') !== '' && in_array((string)$this->getConfiguration('greffe_statut'), ['attente', 'probable', 'dormant', 'pousse'], true); }
+  private function pontSuivi() { return (string)$this->getConfiguration('greffe_pont') !== '' && in_array((string)$this->getConfiguration('greffe_statut'), journalcultures_calc::GREFFE_SUIVI, true); }
   private function ponter($date, $source) {
     if (!$this->getIsEnable()) throw new Exception(__('Plante désactivée', __FILE__));
-    if (!$this->pontSuivi() && in_array((string)$this->getConfiguration('greffe_statut'), ['attente', 'probable', 'dormant', 'pousse'], true))
+    if (!$this->pontSuivi() && in_array((string)$this->getConfiguration('greffe_statut'), journalcultures_calc::GREFFE_SUIVI, true))
       throw new Exception(__('Greffe en suivi : répondre d\'abord à son contrôle', __FILE__)); // sinon le greffon en attente serait perdu
     try { $d = journalcultures_calc::date($date); } catch (Exception $x) { $d = date('Y-m-d'); }
     if ($d > date('Y-m-d')) throw new Exception(__('Date du pont dans le futur', __FILE__));
@@ -760,7 +760,7 @@ class journalcultures extends eqLogic {
 
   public function enGreffe() { // étiquette de la tuile : greffe en cours (ni réussie ni échouée) → statut + texte, sinon null
     $s = (string)$this->getConfiguration('greffe_statut'); $gf = $this->getConfiguration('greffe_greffon');
-    return in_array($s, ['attente', 'probable', 'dormant', 'pousse']) ? ['s' => $s, 't' => __('Greffe', __FILE__) . ' : ' . journalcultures_calc::GREFFE_STATUTS[$s] . (is_array($gf) && ($gf['nom'] ?? '') !== '' ? ' — ' . $gf['nom'] : ''), 'g' => is_array($gf) ? ((string)($gf['source'] ?? '') ?: trim(($gf['bota'] ?? '') . (($gf['cultivar'] ?? '') !== '' && strpos($gf['bota'] ?? '', $gf['cultivar']) === false ? ' ' . $gf['cultivar'] : '')) ?: (string)($gf['nom'] ?? '')) : '',
+    return in_array($s, journalcultures_calc::GREFFE_SUIVI) ? ['s' => $s, 't' => __('Greffe', __FILE__) . ' : ' . journalcultures_calc::GREFFE_STATUTS[$s] . (is_array($gf) && ($gf['nom'] ?? '') !== '' ? ' — ' . $gf['nom'] : ''), 'g' => is_array($gf) ? ((string)($gf['source'] ?? '') ?: trim(($gf['bota'] ?? '') . (($gf['cultivar'] ?? '') !== '' && strpos($gf['bota'] ?? '', $gf['cultivar']) === false ? ' ' . $gf['cultivar'] : '')) ?: (string)($gf['nom'] ?? '')) : '',
       'm' => is_array($gf) && !empty($gf['maison']) ? 1 : 0] : null; // colonne Greffon : la plante greffée (greffon en attente), m = prise dans nos collections, sinon introduite
   }
 
@@ -771,7 +771,7 @@ class journalcultures extends eqLogic {
     if ($s != 'reprise' && $s != 'echouee' && ($i = self::info((self::emplacements()[(string)$this->getConfiguration('emplacement')] ?? [''])[0]))) {
       $st = history::getStatistique($i->getId(), date('Y-m-d H:i:s', time() - 86400), date('Y-m-d H:i:s')); // ponytail: sonde non historisée → pas d'avis
       $v = function ($k) use ($st) { return is_numeric($st[$k] ?? null) && ($st['count'] ?? 0) > 0 ? (float)$st[$k] : null; };
-      $temp = $s == 'dormant' || $s == 'pousse' ? journalcultures_calc::greffeGel($v('min')) // soudure faite : seulement le gel
+      $temp = !in_array($s, ['attente', 'probable'], true) ? journalcultures_calc::greffeGel($v('min')) // soudure faite : seulement le gel
         : journalcultures_calc::greffeTemp($v('avg'), self::reglage('greffe_tmin', 21), self::reglage('greffe_tmax', 32)); // la soudure a-t-elle assez chaud ?
     }
     $du = $c !== '' && ($c <= date('Y-m-d') // œil dormant : contrôle avancé (8 semaines au plus) si l'emplacement est déjà au-dessus du zéro de végétation
@@ -792,7 +792,7 @@ class journalcultures extends eqLogic {
     try { $g = journalcultures_calc::date($type == 'pont' ? (string)$this->getConfiguration('greffe_pont') : $this->greffeVal('date_mult')); } catch (Exception $x) { $g = date('Y-m-d'); } // « Greffer… » écrit toujours une date complète
     if ($verdict == 'printemps' && ($s != 'probable' || $type == 'pont')) throw new Exception(__('« Au printemps » : seulement à J+42, pas pour un pont', __FILE__)); // comme le bouton de la fiche
     [$n, $c] = journalcultures_calc::controler($s, $verdict, $g, date('Y-m-d'), self::sud());
-    if ($n == 'pousse' && $type == 'pont') [$n, $c] = ['reprise', '']; // pont soudé aux deux bouts : rien ne doit pousser
+    if ($type == 'pont' && ($n == 'pousse' || in_array($n, journalcultures_calc::GREFFE_SOINS, true))) [$n, $c] = ['reprise', '']; // pont soudé aux deux bouts : rien ne doit pousser
     $avant = $this->getName(); $attend = is_array($this->getConfiguration('greffe_greffon')); $id = ''; $info = '';
     if ($type == 'pont') { // réparation : ni bascule, ni retour au porte-greffe
       $info = $n == 'reprise' ? __('pont soudé aux deux bouts : réparation réussie', __FILE__) : ($n == 'echouee' ? __('greffons du pont morts : réparation échouée', __FILE__) : '');
@@ -907,7 +907,7 @@ class journalcultures extends eqLogic {
 
   // moins d'un an ou greffe en cours de suivi (sauf le pont) : pas de demi-dose hors période d'apport, même au chaud (pas d'engrais l'hiver : 2 sources ; excès d'azote nuisible au jeune plant : Niu 2024 ; choix du plugin)
   public function jeuneHiver() {
-    return (!$this->pontSuivi() && in_array((string)$this->getConfiguration('greffe_statut'), ['attente', 'probable', 'dormant', 'pousse'], true)) // pont = réparation d'une plante déjà en place, pas un jeune plant
+    return (!$this->pontSuivi() && in_array((string)$this->getConfiguration('greffe_statut'), journalcultures_calc::GREFFE_SUIVI, true)) // pont = réparation d'une plante déjà en place, pas un jeune plant
       || journalcultures_calc::jeunesse($this->greffeVal('multiplication'), $this->greffeVal('date_mult'), 1, 1) > 0;
   }
   public function engraisFiche() {

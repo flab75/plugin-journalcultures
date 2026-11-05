@@ -327,9 +327,16 @@ class journalcultures_calc {
      Alabama ACES (œil vert = pris ; vert sans pousse : forcer), UC Ventura (soudure en 3-4 semaines au printemps, 6-8 pour une greffe d'automne), minigreffe Valencia (bilan à 6 semaines).
      Œil gardé dormant jusqu'au printemps (greffe d'automne), puis forcé : UC Ventura (greffe d'automne) ; Arizona (az1146) et Kentucky disent de même, non cités dans la notice.
      Après le débourrement (« pousse ») : rejets du porte-greffe ôtés dès qu'ils sortent (UF/IFAS HS1309, Curk 2022 p. 210) ; pousse tuteurée, puis porte-greffe
-     (haut couché compris) coupé à ≈ 1,3 cm (1/2 inch) au-dessus de l'œil une fois qu'il pousse (HS1309 seul) ; contrôle 4 semaines après (choix du plugin). */
-  const GREFFE_STATUTS = ['attente' => 'en attente', 'probable' => 'probablement prise', 'dormant' => 'greffon dormant jusqu’au printemps', 'pousse' => 'pousse du greffon', 'reprise' => 'réussie (suivi terminé)', 'echouee' => 'échouée'];
-  const GREFFE_JOURS = ['attente' => 21, 'probable' => 42, 'pousse' => 28];
+     (haut couché compris) coupé à ≈ 1,3 cm (1/2 inch) au-dessus de l'œil une fois qu'il pousse (HS1309 seul) ; contrôle 4 semaines après (choix du plugin).
+     Soins après la greffe (Lévy 2026, Greffeur d'agrumes, sous droits, faits seulement ; une seule source) : charpentières raccourcies à 5 feuilles après la 1re pousse,
+     nouvelles pousses à 5 feuilles après la 2e, pousses sous la greffe ôtées et liens restants retirés après le premier hiver (février-mars), tous les fruits ôtés à la 1re floraison.
+     Délais (4 puis 8 semaines, 1er mars / 1er septembre, 6 semaines) : choix du plugin. */
+  const GREFFE_STATUTS = ['attente' => 'en attente', 'probable' => 'probablement prise', 'dormant' => 'greffon dormant jusqu’au printemps', 'pousse' => 'pousse du greffon',
+    'taille1' => 'soins : 1re pousse à raccourcir', 'taille2' => 'soins : 2e pousse à raccourcir', 'hiver' => 'soins après le premier hiver', 'fleur' => 'soins : première floraison',
+    'reprise' => 'réussie (suivi terminé)', 'echouee' => 'échouée'];
+  const GREFFE_SUIVI = ['attente', 'probable', 'dormant', 'pousse', 'taille1', 'taille2', 'hiver', 'fleur']; // greffe en cours de suivi (ni réussie ni échouée)
+  const GREFFE_SOINS = ['taille1', 'taille2', 'hiver', 'fleur']; // après la pousse, dans cet ordre, puis « reprise »
+  const GREFFE_JOURS = ['attente' => 21, 'probable' => 42, 'pousse' => 28, 'taille1' => 28, 'taille2' => 56, 'fleur' => 42];
   /* Marche à suivre selon le type : œil (le forcer : entaille aux 2/3 au-dessus, haut couché) ; rameau sur porte-greffe déjà coupé
      (lien ou sac retiré quand le greffon pousse : Curk 2022 p. 186, fiche INRAE couronne 15 jours) ; latérale et approche, porte-greffe pas coupé
      (le couper au-dessus une fois la soudure faite, et sevrer le greffon d'approche : aucune source relue) ; pont : réparation d'une écorce blessée, la plante reste elle-même, pas de pousse attendue. */
@@ -353,7 +360,11 @@ class journalcultures_calc {
       'pont' => ['attente' => 'greffons du pont verts, sans se ratatiner ?', 'probable' => 'greffons du pont toujours verts et soudés aux deux bouts ?',
         'dormant' => 'printemps : greffons du pont toujours verts ?', 'pousse' => 'pousses sur les greffons du pont ôtées, ' . $rej . ' ?'],
     ];
-    return $Q[$g][$statut] ?? '';
+    $S = ['taille1' => 'première pousse durcie : raccourcir les charpentières à 5 feuilles, ' . $rej . ' ?',
+      'taille2' => 'deuxième pousse durcie : raccourcir les nouvelles pousses à 5 feuilles ?',
+      'hiver' => 'premier hiver passé : ôter les pousses sous la greffe, retirer les liens restants ?',
+      'fleur' => 'première floraison : ôter toutes les fleurs et petits fruits (pas encore de fleurs : « Douteux ») ?'];
+    return $Q[$g][$statut] ?? ($g == 'pont' ? '' : ($S[$statut] ?? '')); // pont : pas de soins de jeune plant
   }
   /* Température pour souder (moyenne 24 h de l'emplacement) : sous ~21 °C le Poncirus s'endort (Alabama ACES : dormance quand le jour reste < 70 °F),
      cal le plus rapide vers 21-29 °C, prise moindre au-dessus de ~32 °C (sources d'amateurs : growingfruit.org, forum) → seuils réglables */
@@ -371,7 +382,7 @@ class journalcultures_calc {
   }
   // verdict d'un contrôle (ok, douteux = revoir dans 7 jours, printemps = œil laissé dormant, mort) → [statut, prochain contrôle 'Y-m-d' ou '']
   public static function controler($statut, $verdict, $greffe, $jour, $sud = false) {
-    if (!in_array($statut, ['attente', 'probable', 'dormant', 'pousse'], true)) throw new Exception(__('Pas de contrôle de greffe en cours', __FILE__));
+    if (!in_array($statut, self::GREFFE_SUIVI, true)) throw new Exception(__('Pas de contrôle de greffe en cours', __FILE__));
     $j = function ($d, $n) { return date('Y-m-d', strtotime($d . ' +' . $n . ' days')); };
     if ($verdict == 'mort') return ['echouee', ''];
     if ($verdict == 'douteux') return [$statut, $j($jour, 7)];
@@ -379,7 +390,12 @@ class journalcultures_calc {
       $md = $sud ? '-09-15' : '-03-15'; $p = substr($jour, 0, 4) . $md; return ['dormant', $p > $jour ? $p : ((int)substr($jour, 0, 4) + 1) . $md];
     }
     if ($verdict != 'ok') throw new Exception(__('Verdict inconnu', __FILE__));
-    if ($statut == 'pousse') return ['reprise', ''];
+    if (($k = array_search($statut, self::GREFFE_SOINS, true)) !== false || $statut == 'pousse') { // soins l'un après l'autre
+      $n = $statut == 'pousse' ? 'taille1' : (self::GREFFE_SOINS[$k + 1] ?? 'reprise');
+      if ($n == 'reprise') return ['reprise', ''];
+      if ($n == 'hiver') { $md = $sud ? '-09-01' : '-03-01'; $p = substr($jour, 0, 4) . $md; return ['hiver', $p > $jour ? $p : ((int)substr($jour, 0, 4) + 1) . $md]; } // après le premier hiver
+      return [$n, $j($jour, self::GREFFE_JOURS[$n])]; // délai pour atteindre l'étape suivante
+    }
     if ($statut != 'attente') return ['pousse', $j($jour, self::GREFFE_JOURS['pousse'])]; // débourré : soins de la pousse, revus dans 4 semaines
     return ['probable', max($j($greffe, self::GREFFE_JOURS['probable']), $jour)]; // J+42 déjà passé (réponse tardive) : la question suivante tout de suite
   }
