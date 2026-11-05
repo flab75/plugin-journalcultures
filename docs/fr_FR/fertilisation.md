@@ -306,6 +306,9 @@ mais pour un **jeune plant** il faut viser nettement **sous** la dose calculée 
 
 **Quand arroser**
 - **En pot** : quand le substrat est sec sur les premiers centimètres, par temps chaud et sec parfois tous les jours, dans un pot qui draine très bien (Rutgers 2026 : 2,5 à 5 cm ; Greffeur d'agrumes : 2 cm, site commercial).
+  Arroser jusqu'à ce que l'eau sorte par le fond, puis vider la soucoupe (University of Maryland : doigt enfoncé d'environ 5 cm ; Utah State University : laisser sécher 2,5 à 5 cm). Trois fiches de vulgarisation disent la même chose ; aucun article ne donne de règle simple pour un agrume en pot.
+  En pépinière, juger au toucher est « empirique et imprécis » : peser le pot, ou une sonde, est plus fiable (UF/IFAS HS1333, **une seule source**) ; laisser ressortir environ 15 à 20 % de l'eau versée (UF/IFAS EP529, pépinière, **une seule source**).
+- **En hiver, au frais, arroser moins** : des orangers et des satsumas en pot tenus au froid sans gel transpirent moins, et leur terre reste plus humide (Barkataky, Ebel et Morgan 2013) ; à l'intérieur l'hiver, vérifier 1 à 2 fois par semaine (University of Maryland) ; arroser tous les 2 ou 3 jours, c'est trop, les racines pourrissent (Utah State University).
 - **Pleine terre, vérifier avant d'arroser** : enfoncer le doigt à 10-15 cm **dans la zone des racines, sous le bord de la frondaison**, et arroser quand c'est sec à cette profondeur (AZ1151 : laisser sécher environ 15 cm ; UC Master Gardeners : vérifier dans la zone des racines). **Pas au pied du tronc** : il n'y a pas de racines qui absorbent l'eau, et l'humidité contre le tronc favorise les champignons (UC Master Gardeners, **une seule source** ; voir la [gommose](sante.md#gommose-et-pourriture-des-racines-phytophthora)).
 - **Au goutte-à-goutte** : arrosages plus fréquents qu'au tuyau (AZ1151, **une seule source**) ; garder à peu près la même quantité par semaine, en 2 ou 3 fois, est un choix du plugin.
 
@@ -318,6 +321,11 @@ mais pour un **jeune plant** il faut viser nettement **sous** la dose calculée 
 - AZ1151 ne le recommande plus, sauf les feuilles tombées de l'arbre : un paillis épais favorise les maladies du sol.
 - Les deux s'accordent sur un **tronc dégagé** : pas de paillis contre le tronc (UC Master Gardeners), pas de terre buttée contre lui (AZ1151).
 - Écarter le paillis du pied à la fin de l'automne : précaution du plugin contre la [gommose](sante.md#gommose-et-pourriture-des-racines-phytophthora), aucune source trouvée.
+
+**Pourquoi un pot sèche vite** : un terreau ne garde qu'une petite réserve utilisable. Entre l'égouttage et le flétrissement, 25 à 35 % de son volume (Bilderback 2005) ; l'eau **facilement** utilisable, environ 20 % dans un mélange à la tourbe, 9 % dans un mélange à l'écorce (Havis et Hamilton 1976). Deux sources, de pépinière, aucune sur agrume ; les seuils de succion qui séparent ces eaux sont arbitraires (*HortScience* 46(4):627, 2011, non relue).
+Le calcul de pleine terre ci-dessous **ne vaut pas pour un pot**.
+
+**Sous serre**, l'évaporation mesurée dehors ne s'applique pas : sous abri elle est mal corrélée à celle du dehors, plus forte en hiver, plus faible en été (UC Davis) ; dans une serre plastique d'Almería, un peu moins de 1 mm par jour en hiver et environ 4 mm en juillet (Fernández et al. 2010). Le plugin ne calcule donc rien sous serre ni dans la maison : test du doigt.
 
 **Combien, en pleine terre : ordres de grandeur**
 - L'arbre perd chaque jour **l'évaporation de référence × un coefficient de l'agrume**.
@@ -418,9 +426,18 @@ Lues en entier, sauf mention.
 - **Conesa 2018** : Conesa M. R. et al., *Spanish Journal of Agricultural Research* 16(3) (mandarinier) ; vérifiée par extraits.
 - **FAO** : Land & Water, *Crop information : Citrus* (besoins en eau, d'après les guides FAO-56 et FAO-66) ; le tableau 12 de FAO-56 lui-même n'a pas été relu.
 - **González-Altozano et Castel** : *Regulated deficit irrigation in 'Clementina de Nules' citrus trees*, *Spanish Journal of Agricultural Research* (4 ans d'essai) ; vérifiée par extraits.
+- **Barkataky 2013** : Barkataky S., Ebel R. C., Morgan K. T., *HortScience*, octobre 2013 (agrumes en pot au froid) ; résumé seul (ScienceDaily).
+- **Bilderback 2005** : Bilderback T. E. et al., *Healthy substrates need physicals too!*, *HortTechnology* 15(4):747-751 (NC State) ; relue (PDF).
+- **Fernández et al. 2010** : *Irrigation Science*, doi 10.1007/s00271-010-0210-z (serre plastique, Almería, 1993-2004) ; vérifiée par extraits.
 - **Greffeur d'agrumes** : page « arrosage » et climat de Noisy-le-Sec du site de la pépinière (Lévy, commercial, sous droits : faits seulement).
+- **Havis et Hamilton 1976** : Havis J. R., Hamilton W. W., *Physical properties of container media*, *Arboriculture & Urban Forestry* 2(7):139-140 ; relue.
+- **HortScience 46(4):627** (2011, eau disponible des substrats) : auteurs non relevés, non relue.
 - **LibreTexts** : *Tabulated Values of Typical Soil Properties*, cours *Irrigation Systems Management* (AET 021) ; vérifiée par extraits.
 - **Météo-France ETP** : données ETP spatialisées quotidiennes, data.gouv.fr (Licence Ouverte 2.0) ; la variante exacte de Penman-Monteith n'est pas précisée.
+- **UC Davis** : UC Nursery and Floriculture Alliance, *Greenhouse evapotranspiration* (page sans auteur ni date) ; vérifiée par extraits.
+- **UF/IFAS EP529** : Million J., Yeager T., *Monitoring leaching fraction* ; vérifiée par extraits.
+- **UF/IFAS HS1333** : Ferrarezi R. S., *Citrus Nursery Production Guide*, chap. 8 ; vérifiée par extraits.
+- **Utah State University** : Extension, Garden Help Desk (presse, 2025) ; vérifiée par extraits.
 - **UC Master Gardeners** : programme du comté de Contra Costa, *Growing a happy, healthy Meyer lemon* (ucanr.edu) ; vérifiée par extraits.
 - **Asadi Kangarshahi 2023** : Asadi Kangarshahi A., Akhlaghi Amiri N., gestion de l'azote dans les vergers d'agrumes, *Land Management Journal* 11(2):209-228, doi 10.22092/lmj.2023.362505.333 (Iran ; **résumé seul**, texte en persan).
 - **Aubert 1969** : Aubert B., synthèse sur le froid et les agrumes, *Fruits* 24(3), IFAC ; seuil de croissance ≈ 12,5 °C.
