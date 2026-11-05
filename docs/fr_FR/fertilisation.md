@@ -304,6 +304,34 @@ mais pour un **jeune plant** il faut viser nettement **sous** la dose calculée 
   Il favorise aussi la gommose (voir [Santé](sante.md#gommose-et-pourriture-des-racines-phytophthora)).
 - Donner l'engrais sur un substrat **humide**, pas sec (précaution du plugin ; rien trouvé dans les sources).
 
+**Quand arroser**
+- **En pot** : quand le substrat est sec sur les premiers centimètres, par temps chaud et sec parfois tous les jours, dans un pot qui draine très bien (Rutgers 2026 : 2,5 à 5 cm ; Greffeur d'agrumes : 2 cm, site commercial).
+- **Pleine terre, vérifier avant d'arroser** : enfoncer le doigt à 10-15 cm **dans la zone des racines, sous le bord de la frondaison**, et arroser quand c'est sec à cette profondeur (AZ1151 : laisser sécher environ 15 cm ; UC Master Gardeners : vérifier dans la zone des racines). **Pas au pied du tronc** : il n'y a pas de racines qui absorbent l'eau, et l'humidité contre le tronc favorise les champignons (UC Master Gardeners, **une seule source** ; voir la [gommose](sante.md#gommose-et-pourriture-des-racines-phytophthora)).
+- **Au goutte-à-goutte** : arrosages plus fréquents qu'au tuyau (AZ1151, **une seule source**) ; garder à peu près la même quantité par semaine, en 2 ou 3 fois, est un choix du plugin.
+
+**Les moments sensibles**
+- **De la floraison à la chute de juin, ne pas laisser manquer d'eau** : la floraison est très sensible au manque d'eau, et un manque pendant la nouaison fait tomber les petits fruits en juin (FAO) ; sur clémentinier, le printemps est la période la plus critique, avec une forte baisse de récolte (González-Altozano et Castel). Deux sources. Une étude contraire existe : sur mandarinier, un manque d'eau à la floraison a donné plus de fruits (Conesa 2018).
+- **Le moment le moins risqué pour économiser l'eau est le plein été, au début de la croissance du fruit** (González-Altozano et Castel ; la FAO dit seulement que l'arbre est moins sensible après la chute de juin). **Pas la fin de l'été** : un manque en fin d'été et au début de l'automne donne des fruits plus petits et déformés (González-Altozano et Castel, **une seule source**).
+
+**Le paillage** (pleine terre) : les sources divergent.
+- UC Master Gardeners conseille 7 à 10 cm de paillis, tenu à environ 15 cm du tronc.
+- AZ1151 ne le recommande plus, sauf les feuilles tombées de l'arbre : un paillis épais favorise les maladies du sol.
+- Les deux s'accordent sur un **tronc dégagé** : pas de paillis contre le tronc (UC Master Gardeners), pas de terre buttée contre lui (AZ1151).
+- Écarter le paillis du pied à la fin de l'automne : précaution du plugin contre la [gommose](sante.md#gommose-et-pourriture-des-racines-phytophthora), aucune source trouvée.
+
+**Combien, en pleine terre : ordres de grandeur**
+- L'arbre perd chaque jour **l'évaporation de référence × un coefficient de l'agrume**.
+  - L'évaporation de référence : Météo-France publie chaque jour une ETP calculée par la formule de Penman-Monteith, sur une grille d'environ 12 km (data.gouv.fr).
+  - Le coefficient : environ 0,65 à 0,75 pour un verger où les arbres couvrent environ 70 % du sol, désherbé ; 0,45 à 0,55 quand ils n'en couvrent que 20 % (FAO). On prend 0,70, plutôt 0,65 en juillet d'après la FAO.
+  - Ce coefficient vaut pour **toute la surface d'un verger**. L'appliquer au seul disque sous la frondaison d'un arbre isolé est un choix du plugin, qui sous-estime sans doute l'eau consommée.
+- La terre garde de l'eau selon sa nature : environ 90 mm par mètre de profondeur pour un sable, 110 à 125 pour une argile, 143 pour un limon (AFES, d'après Al Majou 2008) ; 120 pour un limon sableux, 150 pour une terre franche (LibreTexts). **130 mm par mètre** est un choix pour une terre moyenne : la vôtre peut être différente.
+- On arrose quand **la moitié** de cette réserve est partie (FAO) ; de la floraison à la chute de juin, plus tôt, quand **40 %** est parti (FAO, **une seule source**).
+- La profondeur des racines : 1,2 à 2 m dans un verger (FAO). Les exemples ci-dessous supposent 0,4 m pour un jeune plant et 0,7 m pour un adulte : choix du plugin.
+- **Exemple en juillet ordinaire**, sans pluie (évaporation d'environ 4,6 mm par jour, l'arbre en perd environ 3,2) :
+  - jeune plant, 80 cm de large (0,50 m²), racines sur 40 cm : réserve à vider 130 × 0,4 × 0,5 = 26 mm, soit **13 L tous les 8 jours** ;
+  - adulte, 2 m de large (3,14 m²), racines sur 0,7 m : 130 × 0,7 × 0,5 ≈ 45 mm, soit **141 L tous les 14 jours**.
+  - Mêmes chiffres chez Greffeur d'agrumes (site commercial), recalculés ici. La pluie tombée se retire du besoin.
+
 ### Organique ou minéral
 - Les engrais azotés en stock sont **organiques** (Ferti Agrumes, corne, sang séché).
 - Pour nourrir l'arbre, l'organique **ne fait pas mieux** que le minéral : un essai de 20 ans (Winnik, cité par Bar-Akiva 1966) n'a montré aucune différence de récolte ;
@@ -385,6 +413,15 @@ Ni Mg, ni fer, ni oligo-éléments ne sont déclarés dans le Ferti Agrumes (fic
 
 ## Sources
 Lues en entier, sauf mention.
+- **AFES** : Association française pour l'étude du sol, fiche technique « Réserve utile », d'après Al Majou et al. 2008 (afes.fr) ; vérifiée par extraits.
+- **AZ1151** : Wright G., *Irrigating Citrus Trees*, University of Arizona Cooperative Extension, AZ1151, 2021 ; vérifiée par extraits.
+- **Conesa 2018** : Conesa M. R. et al., *Spanish Journal of Agricultural Research* 16(3) (mandarinier) ; vérifiée par extraits.
+- **FAO** : Land & Water, *Crop information : Citrus* (besoins en eau, d'après les guides FAO-56 et FAO-66) ; le tableau 12 de FAO-56 lui-même n'a pas été relu.
+- **González-Altozano et Castel** : *Regulated deficit irrigation in 'Clementina de Nules' citrus trees*, *Spanish Journal of Agricultural Research* (4 ans d'essai) ; vérifiée par extraits.
+- **Greffeur d'agrumes** : page « arrosage » et climat de Noisy-le-Sec du site de la pépinière (Lévy, commercial, sous droits : faits seulement).
+- **LibreTexts** : *Tabulated Values of Typical Soil Properties*, cours *Irrigation Systems Management* (AET 021) ; vérifiée par extraits.
+- **Météo-France ETP** : données ETP spatialisées quotidiennes, data.gouv.fr (Licence Ouverte 2.0) ; la variante exacte de Penman-Monteith n'est pas précisée.
+- **UC Master Gardeners** : programme du comté de Contra Costa, *Growing a happy, healthy Meyer lemon* (ucanr.edu) ; vérifiée par extraits.
 - **Asadi Kangarshahi 2023** : Asadi Kangarshahi A., Akhlaghi Amiri N., gestion de l'azote dans les vergers d'agrumes, *Land Management Journal* 11(2):209-228, doi 10.22092/lmj.2023.362505.333 (Iran ; **résumé seul**, texte en persan).
 - **Aubert 1969** : Aubert B., synthèse sur le froid et les agrumes, *Fruits* 24(3), IFAC ; seuil de croissance ≈ 12,5 °C.
 - **Bar-Akiva 1966** : Bar-Akiva A., problème de la fumure organique en orangeraie, *Fruits* 21(7):343-346 (Israël) ; l'essai de Winnik y est cité de seconde main.
