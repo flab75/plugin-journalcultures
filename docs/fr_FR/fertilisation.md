@@ -87,7 +87,7 @@ La méthode ci-dessous assemble ce qui s'accorde entre eux. Elle suit le cadre d
 
 ![Où mettre l'engrais dans le pot](../images/ferti-pot.svg)
 
-*Fig. F1 – Où mettre l'engrais : A, granulés répartis en surface sur substrat humide, sans toucher la tige, puis griffés ; B, certains enrobés se mélangent au substrat, au rempotage seulement (lire l'étiquette) ; C, un arrosage en excès lessive l'azote par le fond. Détail et sources sur le dessin. Dessin façon gravure coloriée pour ce plugin, MIT.*
+*Fig. F1 – Où mettre l'engrais : A, granulés répartis en surface sur substrat humide, sans toucher la tige, puis griffés ; B, certains enrobés se mélangent au substrat, au rempotage seulement (lire l'étiquette) ; C, un arrosage en excès lessive l'azote par le fond. Détail et sources sur le dessin. Dessin façon gravure ancienne aquarellée pour ce plugin, MIT.*
 
 ### Le Ferti Agrumes face à ces critères
 
@@ -233,7 +233,7 @@ la corne (12 semaines) en semaines 10, 22 et 34, soit les 3 apports de son étiq
 
 ![Période d'apport et saison de pousse](../images/ferti-saison.svg)
 
-*Fig. F2 – La saison d'engrais : période d'apport du produit et moyenne sur 7 jours de la sonde ; courbe d'exemple. Détail et sources sur le dessin. Dessin façon gravure coloriée pour ce plugin, MIT.*
+*Fig. F2 – La saison d'engrais : période d'apport du produit et moyenne sur 7 jours de la sonde ; courbe d'exemple. Détail et sources sur le dessin. Dessin façon gravure ancienne aquarellée pour ce plugin, MIT.*
 
 ## Combien : la dose en pot
 
@@ -276,7 +276,7 @@ mais pour un **jeune plant** il faut viser nettement **sous** la dose calculée 
 
 ![Lire une étiquette N-P-K](../images/ferti-npk.svg)
 
-*Fig. F3 – Lire une étiquette N-P-K : pourcentages d'azote, de phosphore exprimé en P₂O₅ et de potassium exprimé en K₂O (pas P et K eux-mêmes) ; le plugin calcule le plan sur l'azote ; rapport conseillé en pot. Détail et sources sur le dessin. Dessin façon gravure coloriée pour ce plugin, MIT.*
+*Fig. F3 – Lire une étiquette N-P-K : pourcentages d'azote, de phosphore exprimé en P₂O₅ et de potassium exprimé en K₂O (pas P et K eux-mêmes) ; le plugin calcule le plan sur l'azote ; rapport conseillé en pot. Détail et sources sur le dessin. Dessin façon gravure ancienne aquarellée pour ce plugin, MIT.*
 
 ## Bonnes pratiques
 
@@ -372,7 +372,7 @@ Toujours **regarder d'abord quelles feuilles** sont touchées : les vieilles ou 
 
 ![Carences sur feuille d'agrume : saine, azote, magnésium, fer, zinc](../images/ferti-carences-feuilles.svg)
 
-*Fig. F5 – À quoi ressemble chaque carence, d'après le tableau ci-dessous (UF/IFAS SL457, chapitre 3 ; fiche commerciale Haifa ; revue Elavarasan 2019) : A saine ; B azote, vert pâle à jaune uniforme, vieilles feuilles ; C magnésium, V vert à l'envers à la base, vieilles feuilles ; D fer, réseau fin de nervures vertes sur limbe jaune pâle, jeunes pousses aux feuilles plus petites ; E zinc, bandes vertes le long des nervures, feuilles petites, étroites et pointues. Dessin façon gravure coloriée pour ce plugin, MIT.*
+*Fig. F5 – À quoi ressemble chaque carence, d'après le tableau ci-dessous (UF/IFAS SL457, chapitre 3 ; fiche commerciale Haifa ; revue Elavarasan 2019) : A saine ; B azote, vert pâle à jaune uniforme, vieilles feuilles ; C magnésium, V vert à l'envers à la base, vieilles feuilles ; D fer, réseau fin de nervures vertes sur limbe jaune pâle, jeunes pousses aux feuilles plus petites ; E zinc, bandes vertes le long des nervures, feuilles petites, étroites et pointues. Dessin façon gravure ancienne aquarellée pour ce plugin, MIT.*
 
 **Retenu** pour l'azote, le magnésium, le fer, le zinc et le manganèse : trois sources décrivent les mêmes signes, mais elles n'ont pas le même poids. UF/IFAS SL457 (chapitre 3 de *Nutrition of Florida Citrus Trees*) est la référence ; Elavarasan 2019 est une revue de synthèse sans observations propres (sa bibliographie est indienne, californienne et chinoise, sans travail de Floride) ; Haifa est une fiche commerciale de fabricant d'engrais. Le potassium est décrit par Haifa et UF/IFAS SL457, qui ne placent pas les symptômes sur les mêmes feuilles (voir le tableau).
 

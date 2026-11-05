@@ -173,7 +173,7 @@ Pour tous : lame désinfectée avant chaque incision (HS1309, **une seule source
 
 ![Placage d'œil, d'après L. H. Bailey 1907](../images/greffe-placage-oeil.svg)
 
-*Fig. G6 – Placage d'œil : 1, retirer une plaque d'écorce ; 2, lever une plaque identique portant l'œil ; 3, la poser à la place ; 4, lier. Détail et sources sur le dessin. Dessin façon gravure fine pour ce plugin d'après le texte de Bailey 1907, [p. 106](https://archive.org/details/cu31924097691087/page/106), domaine public ; MIT.*
+*Fig. G6 – Placage d'œil : 1, retirer une plaque d'écorce ; 2, lever une plaque identique portant l'œil ; 3, la poser à la place ; 4, lier. Détail et sources sur le dessin. Dessin façon gravure ancienne aquarellée pour ce plugin d'après le texte de Bailey 1907, [p. 106](https://archive.org/details/cu31924097691087/page/106), domaine public ; MIT.*
 
 Bailey l'appelle *flute-budding* (nom général de la plaque rectangulaire, fig. 99), ou *veneer-budding* quand la plaque ne fait pas le tour de la tige.
 Méthode occasionnelle, de fin de printemps, la mieux adaptée aux écorces très épaisses ; faite tout autour de la tige, c'est la greffe en anneau (*ring-* ou *annular-budding*)
@@ -225,7 +225,7 @@ Légendes traduites de l'ouvrage ; dessins pas à l'échelle. *The Nursery-Book*
 
 ![Greffe anglaise, d'après L. H. Bailey 1907](../images/greffe-anglaise.svg)
 
-*Fig. G10 – Greffe anglaise : 1, le greffon ; 2, simple ; 3, compliquée ; 4, liée. Détail et sources sur le dessin. Dessin façon gravure fine pour ce plugin d'après Bailey 1907 et Lévy 2026, fig. 101-102, [p. 108](https://archive.org/details/cu31924097691087/page/108), domaine public ; MIT.*
+*Fig. G10 – Greffe anglaise : 1, le greffon ; 2, simple ; 3, compliquée ; 4, liée. Détail et sources sur le dessin. Dessin façon gravure ancienne aquarellée pour ce plugin d'après Bailey 1907 et Lévy 2026, fig. 101-102, [p. 108](https://archive.org/details/cu31924097691087/page/108), domaine public ; MIT.*
 
 **Placage de rameau** (*veneer-grafting*, variante de la latérale selon Bailey ; à ne pas confondre avec le placage d'œil) — A : porte-greffe entaillé à travers l'écorce, une petite languette d'écorce à la base ;
 à côté, le greffon coupé en biais, une plaque d'écorce retirée sur le grand côté ; B : greffon posé et lié au raphia ; C : la soudure faite (D chez Bailey).
@@ -233,32 +233,32 @@ Selon Bailey, inutile de couper le haut du porte-greffe avant que le greffon ne 
 
 ![Placage de rameau, d'après L. H. Bailey 1907](../images/greffe-placage.svg)
 
-*Fig. G11 – Placage de rameau : A, l'entaille et le greffon ; B, posé et lié ; C, soudé. Détail et sources sur le dessin. Dessin façon gravure fine pour ce plugin d'après Bailey 1907, fig. 111, [p. 114](https://archive.org/details/cu31924097691087/page/114), domaine public ; MIT.*
+*Fig. G11 – Placage de rameau : A, l'entaille et le greffon ; B, posé et lié ; C, soudé. Détail et sources sur le dessin. Dessin façon gravure ancienne aquarellée pour ce plugin d'après Bailey 1907, fig. 111, [p. 114](https://archive.org/details/cu31924097691087/page/114), domaine public ; MIT.*
 
 **Latérale** — A : entaille oblique dans le porte-greffe, qu'on ne coupe pas, le bas d'un ciseau à lame mince et tige coudée en place dans l'entaille ; B : le greffon inséré dans l'entaille, puis lié.
 
 ![Greffe latérale, d'après L. H. Bailey 1907](../images/greffe-laterale.svg)
 
-*Fig. G12 – Greffe latérale : A, l'entaille et le ciseau ; B, le greffon inséré et lié. Détail et sources sur le dessin. Dessin façon gravure fine pour ce plugin d'après Bailey 1907, fig. 113, [p. 115](https://archive.org/details/cu31924097691087/page/115), domaine public ; MIT.*
+*Fig. G12 – Greffe latérale : A, l'entaille et le ciseau ; B, le greffon inséré et lié. Détail et sources sur le dessin. Dessin façon gravure ancienne aquarellée pour ce plugin d'après Bailey 1907, fig. 113, [p. 115](https://archive.org/details/cu31924097691087/page/115), domaine public ; MIT.*
 
 **Incrustation** — A : porte-greffe coupé (ici une vigne), une rainure en V taillée dans la coupe (une ou deux selon le texte) ; B : greffon taillé à la même forme, pour s'y encastrer.
 
 ![Greffe en incrustation, d'après L. H. Bailey 1907](../images/greffe-incrustation.svg)
 
-*Fig. G13 – Greffe en incrustation : A, la rainure en V ; B, le greffon taillé à sa forme. Détail et sources sur le dessin. Dessin façon gravure fine pour ce plugin d'après Bailey 1907, fig. 116, [p. 117](https://archive.org/details/cu31924097691087/page/117), domaine public ; MIT.*
+*Fig. G13 – Greffe en incrustation : A, la rainure en V ; B, le greffon taillé à sa forme. Détail et sources sur le dessin. Dessin façon gravure ancienne aquarellée pour ce plugin d'après Bailey 1907, fig. 116, [p. 117](https://archive.org/details/cu31924097691087/page/117), domaine public ; MIT.*
 
 **Fente** — A : porte-greffe coupé net et fendu, un greffon en coin de chaque côté de la fente ; B : le greffon, trois yeux, le plus bas juste au-dessus du coin.
 
 ![Greffe en fente, d'après L. H. Bailey 1907](../images/greffe-fente.svg)
 
-*Fig. G14 – Greffe en fente : A, deux greffons dans la fente ; B, le greffon taillé en coin. Détail et sources sur le dessin. Dessin façon gravure fine pour ce plugin d'après Bailey 1907, fig. 118-119, [p. 118](https://archive.org/details/cu31924097691087/page/118), domaine public ; MIT.*
+*Fig. G14 – Greffe en fente : A, deux greffons dans la fente ; B, le greffon taillé en coin. Détail et sources sur le dessin. Dessin façon gravure ancienne aquarellée pour ce plugin d'après Bailey 1907, fig. 118-119, [p. 118](https://archive.org/details/cu31924097691087/page/118), domaine public ; MIT.*
 
 **En approche** — A : deux plantes en pot, tiges entaillées et liées ensemble ; B (M chez Bailey) : un rameau C de la plante voisine joint en O au porte-greffe H, d'autres rameaux comme T pouvant être joints de même ;
 C (N chez Bailey) : la taille des surfaces accolées, en R. Bailey note que les orangers se multipliaient autrefois ainsi, mais (en 1907) plus facilement par placage.
 
 ![Greffe en approche, d'après L. H. Bailey 1907](../images/greffe-approche.svg)
 
-*Fig. G15 – Greffe en approche : A, deux plantes en pot ; B, un rameau joint au porte-greffe ; C, les surfaces accolées. Détail et sources sur le dessin. Dessin façon gravure fine pour ce plugin d'après Bailey 1907, fig. 138-139, [p. 133](https://archive.org/details/cu31924097691087/page/133), domaine public ; MIT.*
+*Fig. G15 – Greffe en approche : A, deux plantes en pot ; B, un rameau joint au porte-greffe ; C, les surfaces accolées. Détail et sources sur le dessin. Dessin façon gravure ancienne aquarellée pour ce plugin d'après Bailey 1907, fig. 138-139, [p. 133](https://archive.org/details/cu31924097691087/page/133), domaine public ; MIT.*
 
 **Pont** — A : tronc annelé (écorce rongée tout autour) ; B : bords de la plaie parés, greffons biseautés aux deux bouts, à côté ;
 C : greffons posés dans des entailles faites à environ 1,3 cm au-dessus et au-dessous de la plaie, jusqu'à l'aubier, et cloués ; D : variante, logements à la forme des greffons ; en bas, le greffoir.
@@ -266,7 +266,7 @@ Bailey (p. 161) la juge souvent inutile si l'annelure n'atteint pas le bois : un
 
 ![Greffe en pont, d'après L. H. Bailey 1920](../images/greffe-pont.svg)
 
-*Fig. G16 – Greffe en pont : A, l'annelure ; B, la plaie parée et les greffons ; C, posés et cloués ; D, la variante. Détail et sources sur le dessin. Dessin façon gravure fine pour ce plugin d'après Bailey 1920, fig. 191, [p. 161-162](https://archive.org/details/nurserymanualcom00bailrich/page/161) (lettres d'après Peck, cité par Bailey), domaine public ; MIT.*
+*Fig. G16 – Greffe en pont : A, l'annelure ; B, la plaie parée et les greffons ; C, posés et cloués ; D, la variante. Détail et sources sur le dessin. Dessin façon gravure ancienne aquarellée pour ce plugin d'après Bailey 1920, fig. 191, [p. 161-162](https://archive.org/details/nurserymanualcom00bailrich/page/161) (lettres d'après Peck, cité par Bailey), domaine public ; MIT.*
 
 ## Quand greffer
 
@@ -358,7 +358,7 @@ délais de ces contrôles (4 et 8 semaines, 1er mars, 6 semaines) : choix du plu
 
 ![Écusson pris ou raté au contrôle](../images/greffe-ecusson-controle.svg)
 
-*Fig. G18 – Au contrôle d'un écusson : A, pris (œil vert, cal au bord) ; B, raté ; C, forcer l'œil à J+42 s'il n'a pas débourré ; D, la pousse : tuteurer, couper le haut, ôter les rejets. Détail et sources sur le dessin. Dessin façon gravure coloriée pour ce plugin, MIT.*
+*Fig. G18 – Au contrôle d'un écusson : A, pris (œil vert, cal au bord) ; B, raté ; C, forcer l'œil à J+42 s'il n'a pas débourré ; D, la pousse : tuteurer, couper le haut, ôter les rejets. Détail et sources sur le dessin. Dessin façon gravure ancienne aquarellée pour ce plugin, MIT.*
 
 ![Soins après le départ de la pousse](../images/greffe-soins.svg)
 

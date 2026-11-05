@@ -1,6 +1,7 @@
 # Changelog
 
 ## 0.32 (2026-11-05)
+- Notice : les 44 dessins repassés façon **gravure ancienne aquarellée** (papier Canson vieilli, lavis d'aquarelle, encrage léger ; flèches reprises à la plume) ; contenu et légendes inchangés.
 - **Étiquettes à QR code** : bouton « Étiquettes » de la tuile et de la page plein écran ; le QR ouvre la fiche de la plante (code de 5 caractères gardé à l'export/import). QR dessiné avec bacon/bacon-qr-code, déjà fourni par le core de Jeedom.
 
 ## 0.31 (2026-11-05)

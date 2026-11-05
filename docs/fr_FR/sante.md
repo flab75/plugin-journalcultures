@@ -79,7 +79,7 @@ racines fines molles dont l'écorce part en laissant un fil blanc (Savita 2012, 
 
 ![Gommose du collet : la lésion et le grattage](../images/sante-gommose.svg)
 
-*Fig. S1 – Gommose du collet (Phytophthora) : A, gomme qui suinte d'une écorce brune fendue au collet ou au point de greffe ; B, lésion de moins de la moitié du tour du tronc, grattée jusqu'à l'écorce saine. Détail et sources sur le dessin. Dessin façon gravure fine pour ce plugin, MIT.*
+*Fig. S1 – Gommose du collet (Phytophthora) : A, gomme qui suinte d'une écorce brune fendue au collet ou au point de greffe ; B, lésion de moins de la moitié du tour du tronc, grattée jusqu'à l'écorce saine. Détail et sources sur le dessin. Dessin façon gravure ancienne aquarellée pour ce plugin, MIT.*
 
 
 **Pourquoi** : *Phytophthora* est un oomycète (proche des algues brunes, longtemps classé parmi les champignons) ; il vit dans le sol et nage dans l'eau. Il entre par les **plaies** : une plaie fraîche est envahie le plus facilement,
@@ -112,11 +112,11 @@ Un porte-greffe résistant et une greffe haute sont la meilleure prévention (Vo
 
 ![Cochenille virgule : feuille, fruit et boucliers](../images/sante-cochenille-virgule.svg)
 
-*Fig. S3 – Cochenille virgule (Lepidosaphes beckii) : A, halos jaunâtres sur la feuille, points piqués restés verts sur le jeune fruit ; B, boucliers de la femelle (2 à 3 mm) et du mâle (environ 1 mm), à la même échelle, et un jeune couvert de fils cireux. Détail et sources sur le dessin. Dessin façon gravure fine pour ce plugin, MIT.*
+*Fig. S3 – Cochenille virgule (Lepidosaphes beckii) : A, halos jaunâtres sur la feuille, points piqués restés verts sur le jeune fruit ; B, boucliers de la femelle (2 à 3 mm) et du mâle (environ 1 mm), à la même échelle, et un jeune couvert de fils cireux. Détail et sources sur le dessin. Dessin façon gravure ancienne aquarellée pour ce plugin, MIT.*
 
 ![Cochenille farineuse : la colonie et une femelle](../images/sante-cochenille-farineuse.svg)
 
-*Fig. S4 – Cochenille farineuse des agrumes (Planococcus citri) : A, colonies au pédoncule, sous le calice et là où feuille et fruit se touchent, fumagine à côté ; B, une femelle, corps mou rosé couvert de cire blanche, bordé de courts filaments. Détail et sources sur le dessin. Dessin façon gravure fine pour ce plugin, MIT.*
+*Fig. S4 – Cochenille farineuse des agrumes (Planococcus citri) : A, colonies au pédoncule, sous le calice et là où feuille et fruit se touchent, fumagine à côté ; B, une femelle, corps mou rosé couvert de cire blanche, bordé de courts filaments. Détail et sources sur le dessin. Dessin façon gravure ancienne aquarellée pour ce plugin, MIT.*
 
 
 **Gestes** :
@@ -139,14 +139,14 @@ ce n'est pas un produit autorisé, il contient 5 % d'huile (contre 1,5 à 2 % po
 *Fig. S5 – Acarien rouge des agrumes (Panonychus citri) adulte, sur citronnier Meyer. À repérer : à peine visible à l'œil nu, il se cherche à la loupe sur les deux faces des jeunes feuilles. Photo Jim Baker, North Carolina State University, [Bugwood.org](https://www.ipmimages.org/browse/detail.cfm?imgnum=5204069), [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/).*
 ![Acarien rouge : la feuille piquetée et une femelle](../images/sante-acarien-rouge.svg)
 
-*Fig. S6 – Acarien rouge des agrumes : A, petits points décolorés sur le dessus des jeunes feuilles, puis aspect grisâtre ou argenté ; B, une femelle, rouge, dodue, soies blanches à base rouge, environ 0,5 mm. Détail et sources sur le dessin. Dessin façon gravure fine pour ce plugin, MIT.*
+*Fig. S6 – Acarien rouge des agrumes : A, petits points décolorés sur le dessus des jeunes feuilles, puis aspect grisâtre ou argenté ; B, une femelle, rouge, dodue, soies blanches à base rouge, environ 0,5 mm. Détail et sources sur le dessin. Dessin façon gravure ancienne aquarellée pour ce plugin, MIT.*
 
 ![Tétranyque tisserand](../images/sante-tetranyque.webp)
 
 *Fig. S7 – Tétranyque tisserand (Tetranychus urticae), femelle et deux fils de soie, sur une feuille de haricot. Sur un agrume : petites toiles nettes ; voir fig. S8. Photo Gilles San Martin, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Tetranychus_urticae_with_silk_threads.jpg), [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/).*
 ![Tétranyque : le dessous de la feuille et une femelle](../images/sante-tetranyque.svg)
 
-*Fig. S8 – Tétranyque tisserand sur agrume : A, sous la feuille, fines toiles et taches jaunes ou brunes entre les nervures ; B, une femelle, jaune verdâtre, deux taches sombres, une de chaque côté du dos, moins de 0,4 mm. Détail et sources sur le dessin. Dessin façon gravure fine pour ce plugin, MIT.*
+*Fig. S8 – Tétranyque tisserand sur agrume : A, sous la feuille, fines toiles et taches jaunes ou brunes entre les nervures ; B, une femelle, jaune verdâtre, deux taches sombres, une de chaque côté du dos, moins de 0,4 mm. Détail et sources sur le dessin. Dessin façon gravure ancienne aquarellée pour ce plugin, MIT.*
 
 
 **Pourquoi le climat compte** : les sources ne parlent pas du même acarien.
@@ -206,7 +206,7 @@ Saison de *Panonychus citri* : l'hiver en Tunisie (Chouikhi 2022, **une seule so
 
 ![Fumagine : la suie sous la colonie, qui s'essuie](../images/sante-fumagine.svg)
 
-*Fig. S12 – Fumagine : la suie se dépose sous les insectes qui font le miellat ; elle s'essuie au doigt (une tache qui ne part pas est autre chose). Détail et sources sur le dessin. Dessin façon gravure fine pour ce plugin, MIT.*
+*Fig. S12 – Fumagine : la suie se dépose sous les insectes qui font le miellat ; elle s'essuie au doigt (une tache qui ne part pas est autre chose). Détail et sources sur le dessin. Dessin façon gravure ancienne aquarellée pour ce plugin, MIT.*
 
 
 **Gestes** :
@@ -314,14 +314,14 @@ Contre la tristeza : Poncirus résistant, citranges et citrumelo tolérants ; to
 
 ![Psylle asiatique : œufs et adultes, posture à 45°](../images/sante-psylle.svg)
 
-*Fig. S23 – Psylle asiatique des agrumes : A, œufs jaune orangé dans la pousse tendre, adultes tête en bas ; B, un adulte d'environ 3 mm, tête contre la feuille, corps relevé à environ 45°. Détail et sources sur le dessin. Dessin façon gravure fine pour ce plugin, MIT.*
+*Fig. S23 – Psylle asiatique des agrumes : A, œufs jaune orangé dans la pousse tendre, adultes tête en bas ; B, un adulte d'environ 3 mm, tête contre la feuille, corps relevé à environ 45°. Détail et sources sur le dessin. Dessin façon gravure ancienne aquarellée pour ce plugin, MIT.*
 
 ![Marbrure de feuilles atteintes de HLB](../images/sante-hlb-feuille.webp)
 
 *Fig. S24 – Marbrure (« blotchy mottle ») causée par le HLB sur des feuilles d'agrume, dans un verger d'orangers doux au Texas. À repérer : le jaune n'est pas le même des deux côtés de la nervure centrale (voir le test de symétrie). Photo David Bartels, USDA, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Citrus_Greening_%2820120120-APHIS-DB-0064%29.jpg), domaine public.*
 ![Test du stylo : HLB ou manque de zinc](../images/sante-hlb-zinc.svg)
 
-*Fig. S25 – Test du stylo : un cercle de chaque côté de la nervure centrale ; A, HLB, les deux cercles ne se ressemblent pas ; B, manque de zinc, pareil des deux côtés. Détail et sources sur le dessin. Dessin façon gravure fine pour ce plugin, MIT.*
+*Fig. S25 – Test du stylo : un cercle de chaque côté de la nervure centrale ; A, HLB, les deux cercles ne se ressemblent pas ; B, manque de zinc, pareil des deux côtés. Détail et sources sur le dessin. Dessin façon gravure ancienne aquarellée pour ce plugin, MIT.*
 
 ![Fruits d'agrume colorés à l'envers (HLB)](../images/sante-hlb-fruits.webp)
 
