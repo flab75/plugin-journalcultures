@@ -109,7 +109,7 @@ Le ruban qui se dégrade fait débourrer plus tôt ; à la fin, le ruban polyét
 *Fig. G2 – Les outils : A, écussonnoir, lame à bout arrondi et spatule pour soulever l'écorce (os chez Bailey) (Bailey 1907, **une seule source**) ; B, greffoir, lame droite plate d'un côté (P3402, **une seule source**) ; C, cutter ; D, pierre à aiguiser. Détail et sources sur le dessin. Dessin pour ce plugin, MIT.*
 
 - Une lame **très affûtée**, entretenue à la pierre (à huile, ou diamant sans huile) (HS1309 ; HO-39), désinfectée avant chaque incision (HS1309, **une seule source**).
-- Un cutter à lame fine dépanne : mais trop fragile sur du gros bois (P3402, **une seule source**).
+- Un cutter à lame fine dépanne, mais trop fragile sur du gros bois (P3402, **une seule source**).
 - Pour la fente sur une branche : une serpette à fendre (ou une hachette) et un maillet, un coin ou un tournevis pour tenir la fente ouverte (HO-39 ; P3402) ; pour la couronne, de petites pointes peuvent tenir le greffon (HO-39 ; P3402, greffe sous écorce des fruitiers tempérés).
 
 **Le reste, étape par étape**

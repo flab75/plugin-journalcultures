@@ -171,7 +171,7 @@ Saison de *Panonychus citri* : l'hiver en Tunisie (Chouikhi 2022, **une seule so
 
 ![Aleurode floconneux sur une feuille](../images/sante-aleurode-floconneux.webp)
 
-*Fig. S9 – Aleurode floconneux (Aleurothrixus floccosus) : flocons cireux blancs sur une feuille de citronnier. À repérer : flocons cireux sous les feuilles. Photo VictorCegarra, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Aleurothrixus_floccosus.JPG), [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).*
+*Fig. S9 – Aleurode floconneux (Aleurothrixus floccosus) : flocons cireux blancs sur une feuille de citronnier. À repérer : sous les feuilles. Photo VictorCegarra, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Aleurothrixus_floccosus.JPG), [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).*
 
 ![Larve d'aleurode des agrumes](../images/sante-aleurode-larve.webp)
 
