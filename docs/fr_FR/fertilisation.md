@@ -309,7 +309,7 @@ mais pour un **jeune plant** il faut viser nettement **sous** la dose calculée 
   Arroser jusqu'à ce que l'eau sorte par le fond, puis vider la soucoupe (University of Maryland : doigt enfoncé d'environ 5 cm ; Utah State University : laisser sécher 2,5 à 5 cm). Trois fiches de vulgarisation disent la même chose ; aucun article ne donne de règle simple pour un agrume en pot.
   En pépinière, juger au toucher est « empirique et imprécis » : peser le pot, ou une sonde, est plus fiable (UF/IFAS HS1333, **une seule source**) ; laisser ressortir environ 15 à 20 % de l'eau versée (UF/IFAS EP529, pépinière, **une seule source**).
 - **En hiver, au frais, arroser moins** : des orangers et des satsumas en pot tenus au froid sans gel transpirent moins, et leur terre reste plus humide (Barkataky, Ebel et Morgan 2013) ; à l'intérieur l'hiver, vérifier 1 à 2 fois par semaine (University of Maryland) ; arroser tous les 2 ou 3 jours, c'est trop, les racines pourrissent (Utah State University).
-- **Pleine terre, vérifier avant d'arroser** : enfoncer le doigt à 10-15 cm **dans la zone des racines, sous le bord de la frondaison**, et arroser quand c'est sec à cette profondeur (AZ1151 : laisser sécher environ 15 cm ; UC Master Gardeners : vérifier dans la zone des racines). **Pas au pied du tronc** : il n'y a pas de racines qui absorbent l'eau, et l'humidité contre le tronc favorise les champignons (UC Master Gardeners, **une seule source** ; voir la [gommose](sante.md#gommose-et-pourriture-des-racines-phytophthora)).
+- **Pleine terre, vérifier avant d'arroser** : vérifier l'humidité à 10-15 cm **dans la zone des racines, sous le bord de la frondaison**, et arroser quand c'est sec à cette profondeur : un doigt n'atteint que 7-8 cm, prendre une petite pelle ou une tige enfoncée (UC Master Gardeners : « petite pelle ou appareil de mesure ») (AZ1151 : laisser sécher environ 15 cm ; UC Master Gardeners : vérifier dans la zone des racines). **Pas au pied du tronc** : il n'y a pas de racines qui absorbent l'eau, et l'humidité contre le tronc favorise les champignons (UC Master Gardeners, **une seule source** ; voir la [gommose](sante.md#gommose-et-pourriture-des-racines-phytophthora)).
 - **Au goutte-à-goutte** : arrosages plus fréquents qu'au tuyau (AZ1151, **une seule source**) ; garder à peu près la même quantité par semaine, en 2 ou 3 fois, est un choix du plugin.
 
 **Les moments sensibles**
@@ -330,15 +330,15 @@ Le calcul de pleine terre ci-dessous **ne vaut pas pour un pot**.
 **Combien, en pleine terre : ordres de grandeur**
 - L'arbre perd chaque jour **l'évaporation de référence × un coefficient de l'agrume**.
   - L'évaporation de référence : Météo-France publie chaque jour une ETP calculée par la formule de Penman-Monteith, sur une grille d'environ 12 km (data.gouv.fr).
-  - Le coefficient : environ 0,65 à 0,75 pour un verger où les arbres couvrent environ 70 % du sol, désherbé ; 0,45 à 0,55 quand ils n'en couvrent que 20 % (FAO). On prend 0,70, plutôt 0,65 en juillet d'après la FAO.
+  - Le coefficient : environ 0,65 à 0,75 pour un verger où les arbres couvrent environ 70 % du sol, désherbé ; 0,45 à 0,55 quand ils n'en couvrent que 20 % (FAO). On prend 0,70 (choix du plugin), 0,65 en juillet d'après la FAO.
   - Ce coefficient vaut pour **toute la surface d'un verger**. L'appliquer au seul disque sous la frondaison d'un arbre isolé est un choix du plugin, qui sous-estime sans doute l'eau consommée.
 - La terre garde de l'eau selon sa nature : environ 90 mm par mètre de profondeur pour un sable, 110 à 125 pour une argile, 143 pour un limon (AFES, d'après Al Majou 2008) ; 120 pour un limon sableux, 150 pour une terre franche (LibreTexts). **130 mm par mètre** est un choix pour une terre moyenne : la vôtre peut être différente.
 - On arrose quand **la moitié** de cette réserve est partie (FAO) ; de la floraison à la chute de juin, plus tôt, quand **40 %** est parti (FAO, **une seule source**).
 - La profondeur des racines : 1,2 à 2 m dans un verger (FAO). Les exemples ci-dessous supposent 0,4 m pour un jeune plant et 0,7 m pour un adulte : choix du plugin.
-- **Exemple en juillet ordinaire**, sans pluie (évaporation d'environ 4,6 mm par jour, l'arbre en perd environ 3,2) :
-  - jeune plant, 80 cm de large (0,50 m²), racines sur 40 cm : réserve à vider 130 × 0,4 × 0,5 = 26 mm, soit **13 L tous les 8 jours** ;
-  - adulte, 2 m de large (3,14 m²), racines sur 0,7 m : 130 × 0,7 × 0,5 ≈ 45 mm, soit **141 L tous les 14 jours**.
-  - Mêmes chiffres chez Greffeur d'agrumes (site commercial), recalculés ici. La pluie tombée se retire du besoin.
+- **Exemple en juillet ordinaire**, sans pluie (évaporation d'environ 4,5 mm par jour : moyenne de juillet 2016-2025 à Noisy-le-Sec, de 3,7 à 5,4 selon l'année, Open-Meteo d'après la réanalyse ERA5, **une seule source** ; avec 0,65, l'arbre en perd environ 2,9) :
+  - jeune plant, 80 cm de large (0,50 m²), racines sur 40 cm : réserve à vider 130 × 0,4 × 0,5 = 26 mm, soit **13 L tous les 9 jours** ;
+  - adulte, 2 m de large (3,14 m²), racines sur 0,7 m : 130 × 0,7 × 0,5 ≈ 45 mm, soit **141 L tous les 15 jours**.
+  - Ordres de grandeur proches de ceux de Greffeur d'agrumes (site commercial), recalculés ici. La pluie tombée se retire du besoin.
 
 ### Organique ou minéral
 - Les engrais azotés en stock sont **organiques** (Ferti Agrumes, corne, sang séché).
@@ -434,6 +434,7 @@ Lues en entier, sauf mention.
 - **HortScience 46(4):627** (2011, eau disponible des substrats) : auteurs non relevés, non relue.
 - **LibreTexts** : *Tabulated Values of Typical Soil Properties*, cours *Irrigation Systems Management* (AET 021) ; vérifiée par extraits.
 - **Météo-France ETP** : données ETP spatialisées quotidiennes, data.gouv.fr (Licence Ouverte 2.0) ; la variante exacte de Penman-Monteith n'est pas précisée.
+- **Open-Meteo** : API d'archive (`archive-api.open-meteo.com`, variable `et0_fao_evapotranspiration`, réanalyse ERA5), point de Noisy-le-Sec, juillets 2016-2025, interrogée le 2026-11-05 (CC BY 4.0).
 - **UC Davis** : UC Nursery and Floriculture Alliance, *Greenhouse evapotranspiration* (page sans auteur ni date) ; vérifiée par extraits.
 - **UF/IFAS EP529** : Million J., Yeager T., *Monitoring leaching fraction* ; vérifiée par extraits.
 - **UF/IFAS HS1333** : Ferrarezi R. S., *Citrus Nursery Production Guide*, chap. 8 ; vérifiée par extraits.
