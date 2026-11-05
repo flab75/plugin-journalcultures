@@ -68,7 +68,7 @@ ce tableau vient de fiches d'universités et de services agricoles (HS1309 compt
 4. **La santé** : greffons pris sur des arbres certifiés sains ; c'est ce qui justifie le microgreffage chez les obtenteurs (HS1309 ; Carimi et al. 2001).
 
 Pas trouvé : une comparaison chiffrée de l'écusson en T et du chip budding sur agrumes.
-Tableau d'après une synthèse du 2026-11-05, dont l'auteur a lu les sources par extraits (le PDF NSW DPI 2007 en entier) ; NSW DPI 2007, UC ANR, Carimi 2001 et HS261 n'ont pas été relus ici (voir [Sources](#sources)).
+Tableau d'après une synthèse du 2026-11-05, dont les sources (NSW DPI 2007, UC ANR, Carimi 2001, HS261) ont été lues par extraits pour cette synthèse (le PDF NSW DPI 2007 en entier), mais pas relues en entier pour la notice (voir [Sources](#sources)).
 
 ## Le matériel
 
@@ -452,7 +452,7 @@ Dans le plugin : chaque plant se saisit par « ＋ Plante », multiplication « 
 - **NSW DPI 2015** : Donovan, Tahir, Falivene et Khurshid, *Citrus budding in Pakistan*, fiche ASLP (NSW Department of Primary Industries / ACIAR), juillet 2015, libre de réutilisation avec attribution (chip budding, rabattre environ 2 cm au-dessus).
 - **AZ1146** : Wright G. C., *Budding citrus trees*, University of Arizona Cooperative Extension, AZ1146, février 2000 (rabattre à environ 2,5 cm au-dessus de l'œil ; ruban plastique ou bandes de caoutchouc couvrant tout l'œil, retirés à 2-3 semaines ; greffons gardés 3-4 semaines à 2-7 °C, sans geler).
 - **Alabama ANR-3275** : Kelley J., O'Neill M., *Citrus Budding: A Step-by-Step Guide*, ANR-3275, Alabama Cooperative Extension System, juillet 2026 (œil et pétiole laissés à l'air, ruban gardé 3 à 4 semaines ; greffons à 0-4 °C jusqu'à 2 semaines).
-- **Synthèse « Choisir sa greffe »** (2026-11-05), sources lues par extraits par son auteur (le PDF NSW DPI en entier), **non relues ici** : NSW DPI, *Reworking citrus trees* (Sanderson, Falivene, Hardy, 2007),
+- **Synthèse « Choisir sa greffe »** (2026-11-05), sources lues par extraits pour cette synthèse (le PDF NSW DPI en entier), **pas relues en entier pour la notice** : NSW DPI, *Reworking citrus trees* (Sanderson, Falivene, Hardy, 2007),
   [PDF](https://dpird-web.matrix.squiz.cloud/__data/assets/pdf_file/0010/136675/Reworking-citrus-trees.pdf) ; UC ANR, topworking des agrumes, [page](https://ucanr.edu/node/153844), sans auteur ni date ;
   Carimi et al. 2001, CIHEAM *Options Méditerranéennes* B 33 (microgreffage, d'après Navarro et al. 1975), [PDF](https://ressources.ciheam.org/ressources/om/pdf/b33/02001694.pdf) ;
   UF/IFAS HS261, *Phytophthora* (Futch et Graham), [fiche](https://ask.ifas.ufl.edu/publication/HS261).
