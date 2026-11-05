@@ -138,7 +138,7 @@ Pour tous : lame désinfectée avant chaque incision (HS1309, **une seule source
 
 ![Greffe en écusson](../images/greffe-ecusson.svg)
 
-*Fig. G3 – Greffe en écusson.*
+*Fig. G3 – Greffe en écusson : 1, inciser en T (1′, ou en T inversé) ; 2, lever l'écusson ; 3, le glisser dessous ; 4, ligaturer ; 5, forcer.*
 
 1. **Inciser** l'écorce jusqu'au bois, dans une partie lisse entre deux nœuds : un trait vertical de 2,5 à 4 cm (HS1309), puis un trait horizontal en haut (T : HS1309, INRAE)
    ou en bas (⊥, T inversé : HS1309). Tige d'au moins 8 mm (INRAE ; 6 à 10 mm pour HS1309), porte-greffe en sève : l'écorce se soulève (INRAE).
@@ -197,7 +197,7 @@ ont le même diamètre : contact des deux côtés. Si le porte-greffe est plus g
 
 ![Greffe en fente herbacée](../images/greffe-fente-herbacee.svg)
 
-*Fig. G7 – Greffe en fente herbacée.*
+*Fig. G7 – Greffe en fente herbacée : 1, écimer un très jeune porte-greffe et le fendre sur 1 cm ; 2, greffon de jeune pousse, base en double biseau ; 3, l'enchâsser, ligaturer, ensacher (INRAE, une seule source).*
 
 Une seule fiche décrit ces étapes (INRAE, **une seule source**) :
 1. **Écimer** à 35-45 cm du sol un très jeune porte-greffe dont la tige fait au moins 5 mm de diamètre ; le fendre verticalement sur 1 cm.

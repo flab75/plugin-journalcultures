@@ -2,7 +2,7 @@
 
 | Fichier | Origine | Licence |
 |---|---|---|
-| panel.webp, tuile.webp, journal.webp, mesures.webp, engrais.webp, nouvelle-plante.webp, greffe.webp, et leurs variantes sombres (panel-sombre.webp, etc.) | captures d'écran du plugin, thème clair et sombre, collection de démonstration (données fictives) | MIT, comme le plugin |
+| panel-liste.webp, panel-fiche.webp, tuile.webp, journal.webp, mesures.webp, engrais.webp, nouvelle-plante.webp, greffe.webp, et leurs variantes sombres (panel-liste-sombre.webp, etc.) | captures d'écran du plugin, thème clair et sombre, collection de démonstration (données fictives) | MIT, comme le plugin |
 | ferti-saison.svg, ferti-npk.svg, ferti-pot.svg | dessins façon gravure coloriée pour ce plugin d'après les sources de l'onglet Fertilisation citées sur chaque dessin (aucune figure recopiée) | MIT, comme le plugin |
 | bota-epine.svg, bota-cambium.svg, bota-semis.svg, bota-marcotte.svg | dessins façon gravure coloriée pour ce plugin d'après les sources de l'onglet Botanique citées sur chaque dessin (aucune figure recopiée) | MIT, comme le plugin |
 | greffe-ecusson-controle.svg | dessin façon gravure coloriée pour ce plugin d'après UF/IFAS HS1309 et Alabama ACES (aucune figure recopiée) | MIT, comme le plugin |

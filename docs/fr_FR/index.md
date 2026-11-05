@@ -10,9 +10,11 @@ Les captures de cette notice viennent d'une collection de démonstration (plante
 - **＋ Plante** pour chaque plante : emplacement, collection, nom ; le reste peut attendre (voir [Nouvelle plante](#nouvelle-plante)).
 - Au fil des jours : **＋ Noter** les travaux, l'onglet **Mesures** pour la croissance, **Déplacer…** quand les plantes changent de place.
 
-![Page plein écran](../images/panel.webp)
+![Page plein écran : collections, emplacements et liste des plantes](../images/panel-liste.webp)
 
-*Fig. M1 – Page plein écran (Accueil → Journal de cultures) : un onglet par collection (dont **Greffes**, créée à la première greffe), les emplacements avec leur température et humidité, la liste des plantes ; la fiche s'ouvre à droite (ici celle d'un porte-greffe greffé d'un Yuzu). En haut de la liste, le nombre de plantes en alerte et en greffe ; l'étiquette ⏳ marque la greffe en attente, la colonne Greffon la plante greffée (📦 introduite), et le porte-greffe d'un semis est « franc de pied ». Le bouton Notice ouvre ce texte. L'image suit le thème clair ou sombre de Jeedom.*
+![Page plein écran : la fiche d'une plante](../images/panel-fiche.webp)
+
+*Fig. M1 – Page plein écran (Accueil → Journal de cultures), en deux gros plans. En haut, un onglet par collection (dont **Greffes**, créée à la première greffe), les emplacements avec leur température et humidité, la liste des plantes. En bas, la fiche, qui s'ouvre à droite de la liste (ici celle d'un porte-greffe greffé d'un Yuzu). En haut de la liste, le nombre de plantes en alerte et en greffe ; l'étiquette ⏳ marque la greffe en attente, la colonne Greffon la plante greffée (📦 introduite), et le porte-greffe d'un semis est « franc de pied ». Le bouton Notice ouvre ce texte. Les images suivent le thème clair ou sombre de Jeedom.*
 
 ![Tuile d'une collection](../images/tuile.webp)
 

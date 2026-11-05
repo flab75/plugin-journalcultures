@@ -4,7 +4,7 @@ Plugin [Jeedom](https://www.jeedom.com) pour tenir le journal des plantes de la 
 fiches botaniques, emplacement suivi (serre, intérieur, terrasse…), alerte de froid selon la rusticité, l'âge et le pot,
 rappels d'engrais, mesures et courbes, photos, identification par [Pl@ntNet](https://plantnet.org), suivi des greffes.
 
-![Page plein écran du plugin : collections, emplacements avec température et humidité, liste des plantes et fiche](docs/images/panel.webp)
+![Page plein écran du plugin : collections, emplacements avec température et humidité, liste des plantes et fiche](docs/images/panel-liste.webp)
 
 ## Fonctions
 - **Collections** (une tuile par collection) et **plantes** rangées dedans, déplaçables d'un emplacement à l'autre.
