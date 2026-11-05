@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" width="700" font-family="Helvetica, Arial, sans-serif" font-size="13">
-  <title>Suivi d'une greffe d'œil : contrôles à J+21, J+42 et pousse du greffon</title>
-  <rect width="700" height="300" rx="8" fill="#fbfaf6"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 500" width="700" font-family="Helvetica, Arial, sans-serif" font-size="13">
+  <title>Suivi d'une greffe d'œil : contrôles à J+21, J+42, pousse du greffon et soins</title>
+  <rect width="700" height="500" rx="8" fill="#fbfaf6"/>
   <text x="20" y="28" font-size="15" font-weight="bold" fill="#222">Suivi d'une greffe d'œil : le statut n'avance que sur réponse</text>
   <line x1="40" y1="90" x2="680" y2="90" stroke="#555" stroke-width="2"/>
   <circle cx="60" cy="90" r="7" fill="#555"/>
@@ -18,17 +18,47 @@
   <text x="390" y="131" text-anchor="middle" fill="#333">sinon le forcer (rabattre au-dessus)</text>
   <text x="390" y="147" text-anchor="middle" fill="#173">Oui → « pousse du greffon »</text>
   <circle cx="580" cy="90" r="7" fill="#2a6"/>
-  <text x="580" y="70" text-anchor="middle" font-weight="bold" fill="#222">4 semaines après</text>
+  <text x="580" y="56" text-anchor="middle" font-weight="bold" fill="#222">4 semaines après</text>
+  <text x="580" y="72" text-anchor="middle" font-size="11" fill="#555">le « Oui » de J+42</text>
   <text x="580" y="115" text-anchor="middle" fill="#333">tuteurer, couper le haut du</text>
   <text x="580" y="131" text-anchor="middle" fill="#333">porte-greffe, ôter les rejets</text>
-  <text x="580" y="147" text-anchor="middle" fill="#173">Oui → « réussie »</text>
+  <text x="580" y="147" text-anchor="middle" fill="#173">Oui → soins (ci-dessous)</text>
   <path d="M390 155 V180 H430" fill="none" stroke="#246" stroke-width="1.5" stroke-dasharray="4 3"/>
   <circle cx="440" cy="180" r="7" fill="#fff" stroke="#246" stroke-width="2"/>
   <text x="382" y="184" text-anchor="end" fill="#246">Au printemps</text>
   <text x="455" y="176" fill="#333">15 mars : œil dormant, rabattre ;</text>
   <text x="455" y="192" fill="#333">débourré → « pousse du greffon »</text>
-  <text x="20" y="226" fill="#555">À chaque contrôle : <tspan font-weight="bold">Douteux</tspan> = revoir dans 7 jours ; <tspan font-weight="bold" fill="#c22">Non, mort</tspan> = « échouée ».</text>
-  <text x="20" y="244" fill="#555">« Au printemps » : proposé à J+42 (15 septembre dans l'hémisphère sud).</text>
-  <text x="20" y="262" fill="#555">En attente, probablement prise : « trop froid / trop chaud pour souder » hors 21-32 °C (24 h, par défaut) ;</text>
-  <text x="20" y="280" fill="#555">œil dormant (soudure considérée faite) et pousse : seulement « gel » sous 0 °C.</text>
+  <path d="M656 152 H684 V214 H22 V266 H40" fill="none" stroke="#555" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <g transform="translate(0,30)">
+  <line x1="40" y1="236" x2="680" y2="236" stroke="#555" stroke-width="2"/>
+  <circle cx="90" cy="236" r="7" fill="#a8322a"/>
+  <text x="90" y="208" text-anchor="middle" font-weight="bold" fill="#222">+4 semaines</text>
+  <text x="90" y="223" text-anchor="middle" font-size="11" fill="#555">après la taille du haut</text>
+  <text x="90" y="258" text-anchor="middle" fill="#333">1re pousse durcie :</text>
+  <text x="90" y="274" text-anchor="middle" fill="#333">raccourcir à 5 feuilles</text>
+  <circle cx="250" cy="236" r="7" fill="#a8322a"/>
+  <text x="250" y="208" text-anchor="middle" font-weight="bold" fill="#222">+8 semaines</text>
+  <text x="250" y="223" text-anchor="middle" font-size="11" fill="#555">après la 1re taille</text>
+  <text x="250" y="258" text-anchor="middle" fill="#333">2e pousse durcie :</text>
+  <text x="250" y="274" text-anchor="middle" fill="#333">de même, 5 feuilles</text>
+  <circle cx="420" cy="236" r="7" fill="#a8322a"/>
+  <text x="420" y="208" text-anchor="middle" font-weight="bold" fill="#222">1er mars</text>
+  <text x="420" y="223" text-anchor="middle" font-size="11" fill="#555">(1er septembre au sud)</text>
+  <text x="420" y="258" text-anchor="middle" fill="#333">après le 1er hiver : ôter</text>
+  <text x="420" y="274" text-anchor="middle" fill="#333">rejets et liens restants</text>
+  <circle cx="590" cy="236" r="7" fill="#a8322a"/>
+  <text x="590" y="208" text-anchor="middle" font-weight="bold" fill="#222">+6 semaines</text>
+  <text x="590" y="223" text-anchor="middle" font-size="11" fill="#555">après le soin d'hiver</text>
+  <text x="590" y="258" text-anchor="middle" fill="#333">1re floraison : ôter</text>
+  <text x="590" y="274" text-anchor="middle" fill="#333">fleurs et petits fruits</text>
+  <text x="590" y="290" text-anchor="middle" fill="#173">Oui → « réussie »</text>
+  <text x="20" y="326" fill="#555">À chaque contrôle : <tspan font-weight="bold">Douteux</tspan> = revoir dans 7 jours (choix du plugin) ; <tspan font-weight="bold" fill="#c22">Non, mort</tspan> = « échouée ».</text>
+  <text x="20" y="344" fill="#555">« Au printemps » : proposé à J+42 (15 septembre dans l'hémisphère sud).</text>
+  <text x="20" y="362" fill="#555">En attente, probablement prise : « trop froid / trop chaud pour souder » hors 21-32 °C sur 24 h (réglable ;</text>
+  <text x="20" y="380" fill="#555">sources d'amateurs seulement : choix du plugin) ; ensuite, seulement « gel » sous 0 °C.</text>
+  <text x="20" y="398" fill="#555">Délais : comptés depuis le « Oui » au contrôle précédent (choix du plugin).</text>
+  <text x="20" y="424" font-size="11" fill="#555">Sources : lien retiré à J+21 (14 à 21 jours, 30 au plus), forcer l'œil, tuteurer et couper le haut : HS1309 ; rejets : HS1309,</text>
+  <text x="20" y="439" font-size="11" fill="#555">Curk 2022 ; soins (5 feuilles, fleurs) : Lévy 2026, site commercial d'un pépiniériste, une seule source. Détail dans la notice.</text>
+  <text x="20" y="456" font-size="11" fill="#555">Schéma pour ce plugin, MIT.</text>
+  </g>
 </svg>
