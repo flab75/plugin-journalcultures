@@ -97,7 +97,6 @@ HO-39 et P3402 parlent d'arbres fruitiers tempérés (pommier, poirier, pêcher)
 Le ruban qui se dégrade fait débourrer plus tôt ; à la fin, le ruban polyéthylène rattrape. Sur citrumelo Swingle, avec le Buddy Tape, laisser l'œil à l'air.
 
 - **Retirer le ruban de polyéthylène vers 3 semaines** : 14 à 21 jours, jamais plus de 30 (HS1309) ; 2 à 3 semaines, ruban ou élastique, puis regarder si l'œil est vert (AZ1146) ; 3 à 4 semaines (Alabama ANR-3275) ; 15 jours dans l'essai de Hayashi et al. 2012 : c'est le contrôle J+21 du plugin. Film qui se dégrade (Parafilm, Buddy Tape) : rien à retirer, seulement regarder l'œil (P3402 ; Hayashi et al. 2012). Seul le ruban polyéthylène a des délais de retrait sourcés pour les agrumes. Sur une greffe de rameau, P3402 fend le lien sur deux côtés 6 à 8 semaines après le départ et le laisse tomber.
-  Dans tous les cas, un lien oublié étrangle la tige (HO-39 ; P3402 ; UC Circ. 475).
 
 ![Les liens de greffe](../images/greffe-liens.svg)
 
@@ -110,7 +109,7 @@ Le ruban qui se dégrade fait débourrer plus tôt ; à la fin, le ruban polyét
 *Fig. G2 – Les outils : A, écussonnoir, lame à bout arrondi et spatule pour soulever l'écorce (os chez Bailey) (Bailey 1907, **une seule source**) ; B, greffoir, lame droite plate d'un côté (P3402, **une seule source**) ; C, cutter ; D, pierre à aiguiser. Détail et sources sur le dessin. Dessin pour ce plugin, MIT.*
 
 - Une lame **très affûtée**, entretenue à la pierre (à huile, ou diamant sans huile) (HS1309 ; HO-39), désinfectée avant chaque incision (HS1309, **une seule source**).
-- Un cutter à lame fine dépanne : lame changée quand elle s'émousse, mais trop fragile sur du gros bois (P3402, **une seule source**).
+- Un cutter à lame fine dépanne : mais trop fragile sur du gros bois (P3402, **une seule source**).
 - Pour la fente sur une branche : une serpette à fendre (ou une hachette) et un maillet, un coin ou un tournevis pour tenir la fente ouverte (HO-39 ; P3402) ; pour la couronne, de petites pointes peuvent tenir le greffon (HO-39 ; P3402, greffe sous écorce des fruitiers tempérés).
 
 **Le reste, étape par étape**
@@ -119,8 +118,7 @@ Le ruban qui se dégrade fait débourrer plus tôt ; à la fin, le ruban polyét
 |---|---|---|
 | Prendre les greffons | sécateur ; rameaux ronds et droits, aux yeux bien formés, de l'avant-dernière pousse ou d'une pousse qui a durci (HS1309) ; feuilles coupées tout de suite en gardant un bout de pétiole qui protège l'œil (HS1309 ; HO-39 ; P3402) ; bâtonnets de 20 à 25 cm (HS1309 ; ANR-3275), jusqu'à 30 cm (HO-39) ; une glacière au champ (P3402) | HS1309 ; HO-39 ; P3402 |
 | Préparer le porte-greffe | zone à greffer nettoyée des épines et des brindilles | HS1309, **une seule source** |
-| Les conserver | sac plastique au réfrigérateur 1 à 2 semaines (HS1309) ; sur agrumes : 0 à 4 °C jusqu'à 2 semaines, avec un essuie-tout humide (pas ruisselant), en sac de polyéthylène fermé (Alabama ANR-3275) ; 2 à 7 °C jusqu'à 3-4 semaines dans du papier humide, sans geler (AZ1146) ; vers 4 °C, en sac fermé sans ajouter d'eau, ou dans de la tourbe ou de la vermiculite humides (UC Circ. 475) ; pour des fruitiers tempérés, au frais et humide (sphagnum, papier humide) à 0-7 °C (P3402) ou 4-7 °C (HO-39) ; étiqueter cultivar, date, arbre d'origine (HS1309 ; P3402) ; pas avec des pommes ou des poires, leur éthylène abîme les greffons (HO-39, **une seule source**) | HS1309 ; ANR-3275 ; AZ1146 ; UC Circ. 475 ; HO-39 ; P3402 |
-| Greffer | greffoir, lien, étiquettes | voir plus haut |
+| Les conserver | sac plastique au réfrigérateur 1 à 2 semaines (HS1309) ; sur agrumes : 0 à 4 °C jusqu'à 2 semaines, avec un essuie-tout humide (pas ruisselant), en sac de polyéthylène fermé (Alabama ANR-3275) ; 2 à 7 °C jusqu'à 3-4 semaines dans du papier humide, sans geler (AZ1146) ; vers 4 °C, en sac fermé sans ajouter d'eau, ou dans de la tourbe ou de la vermiculite humides (UC Circ. 475) ; pour des fruitiers tempérés, au frais et humide (sphagnum, papier humide) à 0-7 °C (P3402) ou 4-7 °C (HO-39) ; étiqueter (HS1309 ; P3402) ; pas avec des pommes ou des poires, leur éthylène abîme les greffons (HO-39, **une seule source**) | HS1309 ; ANR-3275 ; AZ1146 ; UC Circ. 475 ; HO-39 ; P3402 |
 | Après | mastic sur les plaies d'une fente ou d'une couronne (émulsion appliquée à froid ; une cire trop chaude brûle les tissus) (HO-39) ; sac plastique blanc ôté au bout de 15 jours (INRAE) ou sac et papier aluminium (P3402) ; tuteur et attaches (HS1309) ; badigeon blanc contre le coup de soleil des arbres rabattus (HS1309, **une seule source**) | HO-39 ; P3402 ; INRAE ; HS1309 |
 
 ![Prendre et conserver les greffons](../images/greffe-greffons.svg)
@@ -178,7 +176,6 @@ Pour tous : lame désinfectée avant chaque incision (HS1309, **une seule source
 *Fig. G6 – Placage d'œil : 1, retirer une plaque d'écorce ; 2, lever une plaque identique portant l'œil ; 3, la poser à la place ; 4, lier. Détail et sources sur le dessin. Dessin façon gravure fine pour ce plugin d'après le texte de Bailey 1907, [p. 106](https://archive.org/details/cu31924097691087/page/106), domaine public ; MIT.*
 
 Bailey l'appelle *flute-budding* (nom général de la plaque rectangulaire, fig. 99), ou *veneer-budding* quand la plaque ne fait pas le tour de la tige.
-Contrairement à l'écusson, l'œil n'est pas glissé sous l'écorce du porte-greffe : la plaque remplace celle qu'on a ôtée, bord à bord.
 Méthode occasionnelle, de fin de printemps, la mieux adaptée aux écorces très épaisses ; faite tout autour de la tige, c'est la greffe en anneau (*ring-* ou *annular-budding*)
 (Bailey 1907, fruitiers en général, **une seule source** ; la revue *Fruits* 1982, qui la cite pour les agrumes, non relue ici).
 
@@ -198,7 +195,7 @@ rabattre le moins vigoureux à 1 œil : il fait du cal et referme la plaie plus 
 
 ### Fente sur un porte-greffe plus gros
 
-Le cambium du greffon doit toucher celui du porte-greffe : c'est là que la greffe soude (HS1309 ; Bailey 1907, p. 78). Avec deux tiges de même grosseur, fendre là où elles
+Les cambiums doivent se toucher : c'est là que la greffe soude (HS1309 ; Bailey 1907, p. 78). Avec deux tiges de même grosseur, fendre là où elles
 ont le même diamètre : contact des deux côtés. Si le porte-greffe est plus gros (Lévy 2026, **une seule source**) :
 - garder la fente au milieu et **décaler le greffon** contre un bord : un seul côté en contact ;
 - ou **décaler la fente** sur une corde aussi longue que le greffon est large : contact des deux côtés (le greffon peut alors être taillé en biseau asymétrique) ;
@@ -283,7 +280,7 @@ c'est la sève du porte-greffe qui décide, pas le calendrier. La saison du type
 
 | Type | Saison et conditions |
 |---|---|
-| Écusson en T, en T inversé | porte-greffe **en sève** (l'écorce se soulève), en pleine croissance : d'avril à novembre en Floride (HS1309), de mai à août en Alabama (Alabama ACES), au printemps ou à l'automne en Californie (UC Ventura) : les dates varient avec le lieu, le critère est le même, l'écorce qui se soulève ; en Corse dès mars-avril sous tunnel, mai dehors (INRAE) ; le printemps de préférence (Curk, **une seule source**) |
+| Écusson en T, en T inversé | porte-greffe **en sève** (l'écorce se soulève), en pleine croissance : d'avril à novembre en Floride (HS1309), de mai à août en Alabama (Alabama ACES), au printemps ou à l'automne en Californie (UC Ventura) ; en Corse dès mars-avril sous tunnel, mai dehors (INRAE) ; le printemps de préférence (Curk, **une seule source**) |
 | Chip, chip inversé | quand l'écorce se soulève mal (HS1309, INRAE, qui l'appelle « placage ») ou est trop épaisse pour un écusson (HS1309, **une seule source**) ; cultivar épineux, rameaux à section triangulaire (INRAE, **une seule source**) ; saison : règle générale |
 | Sous écorce (couronne) | porte-greffe âgé, de gros diamètre, écorce trop épaisse pour un écusson mais qui se décolle (INRAE, **une seule source**) ; saison : règle générale |
 | Minigreffe en fente | fente herbacée : très jeunes porte-greffes (tige d'environ 5 mm), greffon de jeune pousse ; sous abri presque toute l'année dans les pays plus chauds que la Corse (INRAE, **une seule source**) |
@@ -308,7 +305,7 @@ Une réparation de moins de 60 jours a son suivi J+21 et J+42 (*réussie* quand 
 (créée à la première greffe), où elle est rangée, le nom du porte-greffe du greffon (ex. FA5), puis « franc de pied » de nouveau si la greffe meurt ; avec une étiquette de couleur selon l'état de la greffe ; la fiche indique le greffon en attente, la tuile aussi (colonne Greffon : la plante greffée, 🏡 prise sur une de nos plantes ou 📦 introduite). L'alerte de froid se règle sur le plus fragile des deux (rusticité et jeunesse du greffon, ou du porte-greffe) et l'engrais sur une jeune greffe (choix du plugin). Une entrée « Greffe » est ajoutée au journal.
 
 **Au débourrement d'un œil**, confirmé au contrôle (réponse « Oui » qui fait passer à *pousse du greffon*), porte-greffe et greffon deviennent
-**une nouvelle plante**. C'est le **même équipement** : journal, photos, pot, emplacement, courbes et champ « Sol » sont gardés (ce sont toujours ses racines) ;
+**une nouvelle plante**. C'est le **même équipement** : journal, photos, pot, emplacement, courbes et champ « Sol » sont gardés ;
 il prend le nom, la collection et la fiche du greffon ; le reste de la fiche, les caractères observés et la photo d'étiquette, qui décrivaient le porte-greffe,
 sont remplacés par ceux du greffon (vides s'il n'en a pas). Le champ « Porte-greffe » du greffon reçoit le nom du porte-greffe s'il est laissé vide. Le journal note le changement.
 
@@ -356,7 +353,7 @@ lien ou sac d'un rameau retiré quand le greffon pousse, Curk 2022 p. 186 (couro
 contrôle de la pousse 4 semaines après le « Oui » qui confirme le débourrement d'un œil, choix du plugin. Délais J+21 et J+42 d'après la vulgarisation des universités de Floride, d'Alabama et
 de Californie : le bourgeon, plus que le calendrier, décide.
 Soins après la pousse : raccourcir à 5 feuilles après chaque pousse et ôter fleurs et petits fruits à la première floraison, Lévy 2026 (site commercial d'un pépiniériste, sous droits, faits seulement), **une seule source** ;
-pincer ou raccourcir une pousse la fait ramifier, HS1309 et UC Circ. 475 ; pousses sous la greffe ôtées, HS1309, UC Circ. 475 et Curk 2022 p. 210 ; liens restants retirés avant qu'ils n'entaillent l'écorce, UC Circ. 475 et Lévy 2026 ;
+pincer ou raccourcir une pousse la fait ramifier, HS1309 et UC Circ. 475 ; pousses sous la greffe ôtées, HS1309, UC Circ. 475 et Curk 2022 p. 210 ; liens restants retirés avant qu'ils n'entaillent l'écorce, UC Circ. 475, HO-39, P3402 et Lévy 2026 ;
 délais de ces contrôles (4 et 8 semaines, 1er mars, 6 semaines) : choix du plugin. Une greffe morte pendant les soins est encore notée « Non, mort » : la plante redevient le porte-greffe.
 
 ![Écusson pris ou raté au contrôle](../images/greffe-ecusson-controle.svg)
@@ -372,7 +369,7 @@ délais de ces contrôles (4 et 8 semaines, 1er mars, 6 semaines) : choix du plu
 - **Douteux** : revoir dans 7 jours ;
 - **Au printemps** (à J+42 seulement, sauf pont) : greffon vivant (œil ou bourgeons verts, gonflés) laissé dormant, pour une greffe d'automne ; à J+42 la soudure est considérée comme faite (choix du plugin ; elle demande 3-4 semaines au printemps, 6-8 pour une greffe d'automne : UC Ventura, **une seule source**) ; contrôle le 15 mars (15 septembre dans l'hémisphère sud ; plus tôt si l'emplacement est assez chaud),
   avancé jusqu'à 8 semaines si la moyenne sur 7 jours de l'emplacement dépasse déjà 13 °C (seuil réglable, sonde historisée), au plus tôt 4 semaines après la réponse (choix du plugin) ;
-  au contrôle, forcer l'œil (entailler le porte-greffe aux 2/3 au-dessus de l'œil et coucher le haut ; couper à environ 1,3 cm au-dessus de l'œil une fois que l'œil pousse) ;
+  au contrôle, forcer l'œil (voir J+42 dans le tableau ci-dessus) ; couper à environ 1,3 cm au-dessus de l'œil une fois que l'œil pousse ;
 - **Non, mort** (deux clics) : greffe morte ; la plante reste, ou redevient, le porte-greffe, et le suivi s'arrête (le journal garde la trace).
 
 Un contrôle dû remplit la commande « Greffe à contrôler », reprise par le rapport du matin.
@@ -389,9 +386,8 @@ Un contrôle dû remplit la commande « Greffe à contrôler », reprise par le 
 - **Greffon dormant, pousse du greffon** : la soudure est faite, le seuil de 21 °C ne s'applique plus ; seul le gel compte (« gel : protéger la greffe » si la sonde
   descend sous 0 °C sur 24 h, choix du plugin).
 - **En hiver** (novembre à février, mai à août dans l'hémisphère sud), le contrôle J+42 (soudure faite) ajoute : « Au printemps », au frais hors gel, sans engrais ;
-  avant J+21, la greffe a besoin de chaleur pour souder. Un œil peut ne pas débourrer tant qu'on ne le force pas (porte-greffe entaillé et couché au-dessus)
-  (HS1309, Alabama ACES) ; les agrumes ne poussent plus sous ≈ 13 °C (**une seule source**, voir [Fertilisation](fertilisation.md)) ; pas d'engrais
-  l'hiver (2 sources). Le forcer en hiver demanderait chaleur et lumière (au moins 6 h de soleil ou une lampe horticole : Rutgers, **une seule source**) :
+  les agrumes ne poussent plus sous ≈ 13 °C (**une seule source**, voir [Fertilisation](fertilisation.md)) ; pas d'engrais
+  l'hiver (2 sources). Forcer l'œil en hiver demanderait chaleur et lumière (au moins 6 h de soleil ou une lampe horticole : Rutgers, **une seule source**) :
   **aucune source** ne traite d'une greffe forcée en hiver.
 - **Engrais** : une greffe en cours de suivi compte comme un jeune plant ; elle ne reçoit pas d'engrais hors de la période d'apport des produits, même dans un
   emplacement chauffé, et sa dose est réduite les premières années (25 % à la greffe, 100 % à 3 ans par défaut) (voir [Fertilisation](fertilisation.md)).
@@ -412,10 +408,10 @@ Le FA5 ne se vend pas en graines : c'est une obtention protégée (Lévy 2026, *
 - **Quand** : de janvier à avril selon la région ; sous serre dès la mi-janvier (Lévy 2026, **une seule source**).
 - **Contenant** le plus profond possible, plaque de culture ou pot de 7 × 7 × 18 cm : la racine pivot mesure déjà 4 à 5 cm quand la plantule sort (Lévy 2026, **une seule source**) ;
   le semis a une racine pivot unique (HS1329), qui doit pousser vers le bas (UC Circ. 475).
-- **Une graine par alvéole** (HS1329 ; Lévy 2026), à environ 1 cm de profondeur : 0,6 à 1,3 cm (HS1329), 1,3 cm (UC Circ. 475). Recouvrir et tasser pour que la graine ne bouge pas à l'arrosage, étiqueter, arroser (Lévy 2026).
+- **Une graine par alvéole** (HS1329 ; Lévy 2026), à environ 1 cm de profondeur : 0,6 à 1,3 cm (HS1329), 1,3 cm (UC Circ. 475). Recouvrir et tasser pour que la graine ne bouge pas à l'arrosage (Lévy 2026).
 - **Substrat** professionnel et fin : il limite les cols de cygne (Lévy 2026, **une seule source**).
 - **Chaleur par le dessous** : elle accélère la germination, sol à 27-29 °C (UC Circ. 475) ; couche chaude sous serre (Lévy 2026).
-- **Germination** lente : une trentaine de jours (UC Circ. 475), jusqu'à plusieurs mois (Lévy 2026). Surveiller l'humidité, les rongeurs, les escargots et les limaces (Lévy 2026, **une seule source**).
+- **Germination** lente : une trentaine de jours (UC Circ. 475), jusqu'à plusieurs mois (Lévy 2026). Surveiller l'humidité, les limaces et les rongeurs (Lévy 2026, **une seule source**).
 
 **Trier**, puis greffer après environ un an de culture (Lévy 2026, **une seule source**) :
 - un pépin peut donner **plusieurs plantules** : les marquer, puis au rempotage couper la plus chétive (Lévy 2026) ; écarter les plants faibles (UC Circ. 475).

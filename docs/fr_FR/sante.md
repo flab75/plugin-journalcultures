@@ -89,9 +89,7 @@ Le travail mécanique du sol donnait le plus de gommose, sans doute par les bles
 Savita 2012 dit qu'une plaie reste sensible jusqu'à 14 jours, sans référence ; un essai sur l'avocatier donne un chiffre proche (El-Hamalawi et Menge 1994).
 
 **Gestes**, dans l'ordre :
-- arroser moins, laisser ressuyer, pot qui draine (UC IPM, BSV PACA 2020, NHB, UF/IFAS HS261) ; ne pas mouiller le tronc (NHB, Savita 2012) ;
-- collet et point de greffe hors de la terre (UC IPM, Sáenz Pérez 2019, Savita 2012, Whiteside 1971) ;
-- ne pas blesser le bas du tronc ni les racines (Savita 2012, Whiteside 1971, Oliveira 1981) ;
+- arroser moins ; puis les gestes de [Prévenir](#prévenir) : ressuyer et tronc sec, collet hors de terre, pas de blessure au pied ;
 - lésion de **moins de la moitié** du tour du tronc : enlever l'écorce brune et une bande d'écorce saine autour (environ 1,3 cm pour TNAU ; fig. S1<!-- sante-gommose -->), laisser sécher, revoir souvent pendant quelques mois (UC IPM) ; le seuil de la moitié vient de TNAU seul ; NHB dit seulement de gratter les parties malades ;
 - badigeon de cuivre (bouillie bordelaise) sur la plaie et le bas du tronc (UC IPM, NHB) ; sur l'avocatier, la bouillie bordelaise n'a pas freiné les chancres (El-Hamalawi et Menge 1994).
   En pot, le cuivre s'accumule dans le substrat ; un excès de cuivre est aussi une cause de manque de fer (voir [Reconnaître une carence](fertilisation.md#reconnaître-une-carence)) ;
@@ -134,18 +132,18 @@ ce n'est pas un produit autorisé, il contient 5 % d'huile (contre 1,5 à 2 % po
 ### Acariens (araignées rouges, tétranyques)
 **Priorité 3.**
 
-**Signes** : feuilles piquetées, jaunies, blanchies ou bronzées, petites toiles, surtout sur les jeunes feuilles ; les acariens se voient à peine à l'œil nu.
+**Signes** : feuilles piquetées, jaunies, blanchies ou bronzées, petites toiles, surtout sur les jeunes feuilles.
 
 ![Acarien rouge des agrumes](../images/sante-acarien-rouge.webp)
 
-*Fig. S5 – Acarien rouge des agrumes (Panonychus citri) adulte, sur citronnier Meyer. À repérer : à peine visible à l'œil nu, il se cherche à la loupe sur les deux faces des jeunes feuilles, qui se piquettent puis jaunissent ou bronzent. Photo Jim Baker, North Carolina State University, [Bugwood.org](https://www.ipmimages.org/browse/detail.cfm?imgnum=5204069), [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/).*
+*Fig. S5 – Acarien rouge des agrumes (Panonychus citri) adulte, sur citronnier Meyer. À repérer : à peine visible à l'œil nu, il se cherche à la loupe sur les deux faces des jeunes feuilles. Photo Jim Baker, North Carolina State University, [Bugwood.org](https://www.ipmimages.org/browse/detail.cfm?imgnum=5204069), [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/).*
 ![Acarien rouge : la feuille piquetée et une femelle](../images/sante-acarien-rouge.svg)
 
 *Fig. S6 – Acarien rouge des agrumes : A, petits points décolorés sur le dessus des jeunes feuilles, puis aspect grisâtre ou argenté ; B, une femelle, rouge, dodue, soies blanches à base rouge, environ 0,5 mm. Détail et sources sur le dessin. Dessin façon gravure fine pour ce plugin, MIT.*
 
 ![Tétranyque tisserand](../images/sante-tetranyque.webp)
 
-*Fig. S7 – Tétranyque tisserand (Tetranychus urticae), femelle et deux fils de soie, sur une feuille de haricot. Sur un agrume, mêmes signes : feuilles piquetées, petites toiles nettes, surtout sur les jeunes feuilles ; loupe nécessaire. Photo Gilles San Martin, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Tetranychus_urticae_with_silk_threads.jpg), [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/).*
+*Fig. S7 – Tétranyque tisserand (Tetranychus urticae), femelle et deux fils de soie, sur une feuille de haricot. Sur un agrume : petites toiles nettes ; voir fig. S8. Photo Gilles San Martin, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Tetranychus_urticae_with_silk_threads.jpg), [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/).*
 ![Tétranyque : le dessous de la feuille et une femelle](../images/sante-tetranyque.svg)
 
 *Fig. S8 – Tétranyque tisserand sur agrume : A, sous la feuille, fines toiles et taches jaunes ou brunes entre les nervures ; B, une femelle, jaune verdâtre, deux taches sombres, une de chaque côté du dos, moins de 0,4 mm. Détail et sources sur le dessin. Dessin façon gravure fine pour ce plugin, MIT.*
@@ -173,7 +171,7 @@ Saison de *Panonychus citri* : l'hiver en Tunisie (Chouikhi 2022, **une seule so
 
 ![Aleurode floconneux sur une feuille](../images/sante-aleurode-floconneux.webp)
 
-*Fig. S9 – Aleurode floconneux (Aleurothrixus floccosus) : flocons cireux blancs sur une feuille de citronnier. À repérer : sous les feuilles ; les adultes, petites mouches blanches, s'envolent quand on secoue la plante ; miellat, fumagine. Photo VictorCegarra, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Aleurothrixus_floccosus.JPG), [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).*
+*Fig. S9 – Aleurode floconneux (Aleurothrixus floccosus) : flocons cireux blancs sur une feuille de citronnier. À repérer : flocons cireux sous les feuilles. Photo VictorCegarra, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Aleurothrixus_floccosus.JPG), [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).*
 
 ![Larve d'aleurode des agrumes](../images/sante-aleurode-larve.webp)
 
@@ -193,11 +191,11 @@ Saison de *Panonychus citri* : l'hiver en Tunisie (Chouikhi 2022, **une seule so
 
 ![Puceron noir de l'oranger](../images/sante-puceron-noir.webp)
 
-*Fig. S11 – Puceron noir de l'oranger (Aphis aurantii, ancien Toxoptera aurantii) ; le trait mesure 1 mm. À repérer : colonies sur les jeunes pousses tendres, feuilles enroulées, miellat. Photo Jesse Rorabaugh, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Toxoptera_aurantii.jpg), CC0 (domaine public).*
+*Fig. S11 – Puceron noir de l'oranger (Aphis aurantii, ancien Toxoptera aurantii) ; le trait mesure 1 mm. Photo Jesse Rorabaugh, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Toxoptera_aurantii.jpg), CC0 (domaine public).*
 
 
 **Gestes** :
-- surveiller les pousses tendres au moment des poussées ; sur pomelo (*C. ×paradisi*), il est rarement nécessaire d'intervenir (Brun 1990, **une seule source**) ;
+- sur pomelo (*C. ×paradisi*), il est rarement nécessaire d'intervenir (Brun 1990, **une seule source**) ;
 - favoriser les auxiliaires (coccinelles, surtout les petites *Scymnus*, chrysopes, syrphes) : la taille et la durée des colonies dépendent de la date d'arrivée des prédateurs,
   il faut qu'ils soient là **dès les premières colonies** (Gómez-Marco 2016 ; Bouvet et al. 2019, J. Econ. Entomol. : même équipe, **une seule source**).
 
@@ -222,7 +220,7 @@ Saison de *Panonychus citri* : l'hiver en Tunisie (Chouikhi 2022, **une seule so
 
 ![Galeries de la mineuse](../images/sante-mineuse.webp)
 
-*Fig. S13 – Galeries de la mineuse des agrumes (Phyllocnistis citrella) sous une feuille de combava, avec deux larves. À repérer : galeries sinueuses argentées dans les jeunes feuilles, qui se crispent et s'enroulent. Photo A. Ariosti, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Larve_di_su_Phyllocnistis_citrella_su_Citrus_hystrix.jpg), [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).*
+*Fig. S13 – Galeries de la mineuse des agrumes (Phyllocnistis citrella) sous une feuille de combava, avec deux larves. Photo A. Ariosti, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Larve_di_su_Phyllocnistis_citrella_su_Citrus_hystrix.jpg), [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).*
 
 
 **Gestes** :
@@ -272,7 +270,7 @@ La sensibilité comparée des espèces vient d'observations au champ, pas toujou
 
 
 **Gestes** :
-- photographier le dessous des feuilles et signaler à la DRAAF-SRAL (service de l'État) ou à la FREDON de sa région, photos jointes (fiche SORE, **une seule source**) ;
+- photographier le dessous des feuilles et signaler à la DRAAF-SRAL (service de l'État) ou à la FREDON de sa région (fiche SORE, **une seule source**) ;
 - en attendant, ne pas déplacer ni donner la plante (précaution du plugin).
 
 Présent en France depuis 2023 : premier foyer confirmé dans le Gard (et Lunel, Hérault) en juin 2023 (OEPP RS 2023/160), puis à Menton (OEPP RS 2024/217) ; aujourd'hui en France continentale et en Corse, en Italie, en Grèce, en Croatie et ailleurs autour de la Méditerranée (OEPP 2026) ; en Italie depuis 2008, dans les Pouilles (fiche OEPP, d'après Porcelli 2008).

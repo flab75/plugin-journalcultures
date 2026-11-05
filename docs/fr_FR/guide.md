@@ -4,7 +4,7 @@ Les mots de base pour comprendre une plante et le reste de la notice : bourgeon,
 Les exemples sont pris sur les agrumes quand une source en parle ; sinon, la règle est générale.
 
 Règle suivie : un fait n'est retenu que si **deux sources indépendantes** le donnent ; sinon il est marqué **une seule source**.
-Les deux manuels de base sont Shipunov 2021 et OpenStax 2018 ; Wikipédia, une encyclopédie, ne sert qu'à confirmer un mot français ou un détail.
+Les deux manuels de base sont Shipunov 2021 et OpenStax 2018 ; Wikipédia ne sert qu'à confirmer un mot français ou un détail.
 Un mot français d'usage qu'aucun manuel n'emploie est signalé. Références complètes : [Sources](#sources).
 
 Les images sont des gravures anciennes (domaine public, via Internet Archive / Biodiversity Heritage Library ou Wikimedia Commons) et une photo sous CC BY 2.5 :
@@ -197,9 +197,9 @@ Ces règles valent pour les arbres en général ; qu'elles s'appliquent aux agru
 
 ## Multiplier
 
-- **Multiplication sans graine** (asexuée) : les plants obtenus sont **identiques** au parent, des clones (OpenStax p. 940 ; Shipunov p. 58).
+- **Multiplication sans graine** (asexuée) : les plants sont des **clones** du parent (OpenStax p. 940 ; Shipunov p. 58).
 - Les méthodes du jardinier : **greffe**, **bouture**, **marcotte**, micropropagation (OpenStax p. 942, **une seule source**). Le champ « Multiplication » du plugin note semis, greffe, bouture, marcotte ou achat.
-- **Greffe** : un **greffon** est fixé sur un **porte-greffe** enraciné ; leurs tissus conducteurs se soudent (OpenStax p. 942 ; Bailey 1907 p. 78).
+- **Greffe** : **greffon** sur **porte-greffe** enraciné ; leurs tissus conducteurs se soudent (OpenStax p. 942 ; Bailey 1907 p. 78).
   Les agrumes sont couramment greffés sur un porte-greffe choisi pour résister aux maladies (OpenStax p. 942, **une seule source**). Tout le détail : [Greffe](greffe.md).
 - **Semis** : un pépin d'agrume peut donner un plant identique à la mère ; voir [Multiplier les agrumes](#multiplier-les-agrumes).
 
@@ -214,7 +214,7 @@ Quatre façons d'obtenir un agrume : semis, greffe, bouture, marcotte. Elles ne 
 | Bouture | oui | (pas de chiffre dans nos sources) | les siennes, sans pivot profond | oui, si la mère est malade |
 | Marcotte aérienne | oui | moins de 12 mois (citronniers d'ornement) | les siennes | oui, si la mère est malade |
 
-Détail et sources dans les paragraphes ci-dessous. Le tableau résume, il n'ajoute rien.
+Détail et sources dans les paragraphes ci-dessous.
 
 ### Semis
 
@@ -260,7 +260,7 @@ Détail et sources dans les paragraphes ci-dessous. Le tableau résume, il n'ajo
 
 ### Marcotte
 
-- **Marcotte** : une tige encore attachée à la mère fait des racines, puis on la sépare (OpenStax p. 943 ; Curk 2022, lexique p. 341).
+- **Marcotte** : tige enracinée avant d'être séparée de la mère (OpenStax p. 943 ; Curk 2022, lexique p. 341).
 - **Marcotte aérienne** : on retire un morceau d'écorce de la tige et on le couvre de mousse tenue par un film ; une fois les racines formées, on sépare cette partie et on la rempote (OpenStax p. 943 ; Bailey 1907 p. 40-41).
   Couramment, l'écorce est ôtée en anneau (Bailey 1907 p. 40) : c'est une [annelure](#sous-lécorce).
   Les racines partent au-dessus de l'anneau (Bailey 1907 p. 40, **une seule source**), là où s'arrêtent les sucres qui descendent (lien fait par le plugin).

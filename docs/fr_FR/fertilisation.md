@@ -46,7 +46,6 @@ Exemples :
 - un engrais à dose d'étiquette : `Corne broyée | 13 | 12 | 10-40 | N | 3 apports de 1 g par litre de terreau | 1`
 - un correcteur ponctuel (pistes de carence seulement) : `Kélafer racinaire | 0 | 0 | 6-44 | Fe | au pied, si besoin reconnu`
 
-Seuls les produits qui ont un % d'azote **et** un intervalle entrent dans le plan d'azote ; les autres ne servent qu'aux pistes de carence.
 Pour retirer un produit, effacer sa ligne : les plans qui le cochaient le perdent (vérifier le plan des plantes concernées).
 Le champ **dose de l'étiquette** est à remplir quand l'étiquette donne une dose **par litre de pot** : le plugin la suit à la lettre.
 Si elle donne une dose par sujet ou par m², laisser vide : le plugin calcule d'après le besoin en azote ([la dose](#combien--la-dose-en-pot)).
@@ -58,7 +57,7 @@ La méthode ci-dessous assemble ce qui s'accorde entre eux. Elle suit le cadre d
 
 ### 1. Observer avant de décider
 - En verger, on décide d'après l'**analyse des feuilles**, avec celle du sol : chaque résultat du sol renvoie à vérifier la teneur des feuilles (UF/IFAS SL454 ; CDFA, Californie). Pour un particulier en pot, elle ne sert guère (voir [Reconnaître une carence](#reconnaître-une-carence)) :
-  on la remplace par l'**observation** : quelles feuilles jaunissent, comment pousse la plante, le substrat est-il détrempé (déduction du plugin).
+  on la remplace par l'**observation** des feuilles, de la pousse et du substrat (déduction du plugin).
 - Noter ce qu'on voit dans les **Mesures** de la fiche : le plugin en tire les pistes de carence.
 
 ### 2. Le bon produit
@@ -105,15 +104,12 @@ Bilan du plugin (déduction à partir des critères ci-dessus et de l'étiquette
 | Moment | pendant la pousse, au moins 3 apports, rien l'hiver | tous les 2 mois de mars à octobre (semaines 10, 18, 26, 34) | conforme |
 | Endroit | au pied, substrat humide, pas de chaulage | enfoui par léger griffage | conforme |
 
-En somme : bon engrais de fond ; deux réserves, le rapport N-P-K inversé (trop de potassium plutôt que pas assez d'azote, sans conséquence connue) et l'absence d'oligo-éléments, qui oblige à surveiller les feuilles.
 Un 12-6-6 ou 12-4-6 avec oligo-éléments collerait mieux à la lettre des sources ; aucune ne montre que le Ferti Agrumes fait moins bien.
 
 **Et si on ajoute la corne broyée ?** Elle n'apporte que de l'azote (13 %, organique, lent) : ni phosphore, ni potassium, ni oligo-éléments.
-- Elle ne compense donc **pas** l'absence d'oligo-éléments.
 - Elle **rapproche un peu** le rapport de celui conseillé : à la dose de l'étiquette, elle couvre environ 15 % de l'azote du plan, et le Ferti le reste ; l'ensemble passe d'environ 2,3-1-3,3 à 2,7-1-3,3 (calcul du plugin), le potassium reste au-dessus de l'azote.
   Aucune part de corne ne mène à 2-1-1 : sans phosphore ni potassium, elle laisse le rapport P-K du Ferti (1-3,3) et ne fait que monter l'azote (deux tiers de corne : environ 7-1-3,3).
 - Elle allonge la libération (effet 3 à 4 mois contre 2) : apport plus régulier, sans source qui en montre l'intérêt pour un agrume en pot.
-Bref, la corne est un complément d'azote à libération lente, pas un correctif des deux réserves ci-dessus.
 
 ### Rééquilibrer le rapport N-P-K
 
@@ -148,7 +144,7 @@ Tout cela se saisit dans le plugin : la part d'azote de chaque produit découle 
 
 ### L'engrais enrobé
 
-Des granulés d'engrais minéral entourés d'une fine enveloppe de résine : l'eau la traverse, dissout l'engrais, qui ressort peu à peu. C'est l'une des deux formes « à libération lente » conseillées en pot (voir [Le bon produit](#2-le-bon-produit)).
+Granulés d'engrais minéral sous une enveloppe de résine qui le libère peu à peu. C'est l'une des deux formes « à libération lente » conseillées en pot (voir [Le bon produit](#2-le-bon-produit)).
 Ce qu'en disent les étiquettes des fabricants :
 - la **durée** (3, 6, 8 à 9 mois…) est donnée pour une température fixe, souvent 21 °C : elle s'allonge au frais et raccourcit au chaud (pour un « 6 mois » : 6-7 mois à 15 °C, 5-6 mois à 21 °C, 4-5 mois à 27 °C, fiche d'un revendeur, **une seule source** ; la fiche ICL de l'Osmocote donne ses durées à 16, 21 et 26 °C) ; en serre l'été, il peut être épuisé avant la fin de la saison ;
 - certains se **mélangent** au substrat au rempotage seulement, d'autres se posent **en surface** et se griffent : lire l'étiquette ;
@@ -171,7 +167,7 @@ Des granulés d'origine végétale ou animale (tourteaux, guano, vinasse) avec u
 Ce qu'en disent l'étiquette et la fiche d'un 8-5-5 « utilisable en agriculture biologique » :
 - l'**azote** est surtout organique (6,5 % sur 8) : environ un cinquième d'azote minéral, qui agit vite (déduction du plugin), le reste attend que les microbes le libèrent, lentement dans un pot froid (voir [Organique ou minéral](#organique-ou-minéral)) ;
 - la **durée** (« nourrit jusqu'à 3 mois ») n'est pas l'intervalle : la même étiquette dit de réappliquer **après 5 semaines** ; c'est l'intervalle qu'on saisit ;
-- la **dose** est en **poignées** (« 2 à 5 selon la plante ») : imprécis ; peser une fois sa poignée, ou laisser le plugin calculer les grammes ; une étiquette « agrumes » de la même gamme donne **5 g par litre de pot sous 10 L, 3 g/L au-dessus**, toutes les 5 semaines de mars à septembre ;
+- la **dose** est en **poignées** (« 2 à 5 selon la plante ») : peser une fois sa poignée, ou laisser le plugin calculer les grammes ; une étiquette « agrumes » de la même gamme donne **5 g par litre de pot sous 10 L, 3 g/L au-dessus**, toutes les 5 semaines de mars à septembre ;
 - un 8-5-5 fait **1,6-1-1** : proche du 2-1-1 conseillé, avec un peu plus de phosphore ; **ni magnésium ni oligo-éléments** déclarés : fer et magnésium à part, sur signe seulement ;
 - « **utilisable en agriculture biologique** » renvoie à la liste des engrais autorisés en bio (règlement (UE) 2021/1165, annexe II) : les engrais azotés de synthèse n'y sont pas ; un engrais enrobé (azote minéral de synthèse, voir [L'engrais enrobé](#lengrais-enrobé)) ne l'est donc pas.
 
@@ -204,14 +200,14 @@ Dans le plugin, un apport n'est annoncé qu'à **deux conditions**, les deux à 
 2. **la saison de pousse**, d'après la température mesurée : la moyenne sur 7 jours de la sonde de l'emplacement doit atteindre le **zéro de végétation** des agrumes,
    environ 13 °C (Curk 2022, INRAE ; ≈ 12,5 °C pour Aubert 1969, IFAC ; même filiation, IFAC puis Cirad : **une seule source**, à confirmer ; 13 °C par défaut : choix du plugin).
    Les porte-greffes Poncirus, la satsuma et le kumquat Nagami ne poussent qu'au-dessus d'environ 15 °C (Tuzcu 1984, **une seule source**) : régler le seuil plus haut si la collection en est faite.
-   En dessous, l'arbre ne pousse pas : la fiche affiche « au repos » et l'apport prévu **attend** ; il est **rattrapé** la première semaine où la moyenne remonte,
+   En dessous, la fiche affiche « au repos » et l'apport prévu **attend** ; il est **rattrapé** la première semaine où la moyenne remonte,
    tant que la période d'apport du produit court, que rien n'a été donné depuis (ce produit, ou un apport noté sans précision) et qu'on est dans la première moitié de l'intervalle (3 semaines au plus pour le Ferti, 5 pour la corne) ;
    plus tard, on attend l'apport suivant, pour ne pas donner deux doses rapprochées (choix du plugin).
    Moyenne sur 7 jours et seuil réglable (configuration, « Zéro de végétation ») : choix du plugin. Sans sonde historisée, seule la période d'apport compte (pas de rattrapage) ; une sonde muette depuis 7 jours, elle, fait attendre les apports (la fiche le dit).
 
 **Deux jours chauds en plein hiver** : rien ne se passe. Hors de la période d'apport du produit (au nord, d'octobre à février), pas d'engrais, quelle que soit la température (sauf emplacement marqué chauffé, voir plus bas).
 Et pendant la période d'apport, deux jours chauds pèsent peu dans une moyenne de 7 jours : 5 jours à 9 °C et 2 jours à 20 °C font 12,1 °C, sous le seuil.
-Une semaine entière de douceur début mars, elle, ouvre la saison de pousse : c'est voulu (l'arbre reprend sa pousse).
+Une semaine entière de douceur début mars, elle, ouvre la saison de pousse.
 Limite : la moyenne est celle des mesures enregistrées ; une sonde muette depuis quelques jours garde la moyenne de ses dernières mesures (au-delà de 7 jours, les apports attendent).
 
 Ainsi un printemps froid, un hiver doux ou une région plus chaude ou plus fraîche que l'Île-de-France sont pris en compte par la mesure ;
@@ -343,7 +339,7 @@ Le calcul de pleine terre ci-dessous **ne vaut pas pour un pot**.
 ### Organique ou minéral
 - Les engrais azotés en stock sont **organiques** (Ferti Agrumes, corne, sang séché).
 - Pour nourrir l'arbre, l'organique **ne fait pas mieux** que le minéral : un essai de 20 ans (Winnik, cité par Bar-Akiva 1966) n'a montré aucune différence de récolte ;
-  une revue indienne trouve l'organique seul moins productif (Barooah 2022). Les deux s'accordent seulement sur ce point : il ne fait pas mieux.
+  une revue indienne trouve l'organique seul moins productif (Barooah 2022). Seul point commun : l'engrais organique ne fait pas mieux que le minéral.
 - L'organique agit **lentement** (UF/IFAS SL457, Barooah 2022) : les microbes doivent d'abord le décomposer, plus vite au chaud et à l'humidité (UF/IFAS SL457, **une seule source**).
   Un pot froid au printemps libère donc peu d'azote (déduction du plugin ; aucun seuil de température trouvé).
   Le sang séché est l'exception, « coup de fouet » visible en 3 à 4 jours (étiquette).
@@ -354,7 +350,8 @@ Le calcul de pleine terre ci-dessous **ne vaut pas pour un pot**.
 - pH idéal **6,0 à 6,5** (UF/IFAS SL456, pour des racines affaiblies par le HLB ou une eau à bicarbonates ; la même fiche vise 5,5 à 6,5 quand on chaule un sol acide ; **une seule source**) ; plus haut, le fer, le manganèse, le zinc, le calcium et le magnésium deviennent moins disponibles ;
 - une eau d'arrosage calcaire fait **monter lentement le pH** ; le porte-greffe **Swingle** est le plus sensible aux bicarbonates (vergers de Floride) (UF/IFAS SL456, **une seule source** : « l'eau des aquifères profonds de Floride contient souvent du calcaire dissous qui fait lentement monter le pH du sol » ; « tous les porte-greffes n'y sont pas aussi sensibles ; Swingle est le plus sensible »).
 
-L'eau du robinet d'Île-de-France est souvent calcaire (à vérifier, non sourcé) : c'est une cause possible de jaunissement des jeunes feuilles par manque de fer (déduction du plugin).
+Dans la zone du SEDIF (Syndicat des eaux d'Île-de-France, banlieue de Paris), l'eau du robinet est calcaire : 23 °f en moyenne en 2023, de 18 à 27 °f (lettre SEDIF d'avril 2024, d'après le contrôle sanitaire de l'ARS, **non relue**), et jusqu'à 30 à 32 °f en sortie de certaines usines (étude Deloitte-IRH pour le SEDIF, 2018) ; **une seule source** (le SEDIF). La valeur de sa commune est sur la fiche de l'ARS jointe à la facture d'eau.
+Une eau calcaire est une cause possible de jaunissement des jeunes feuilles par manque de fer (déduction du plugin).
 Le chélate EDDHA reste efficace jusqu'à pH 12 (étiquette Kélafer).
 
 ### Sur les feuilles
@@ -371,7 +368,7 @@ Toujours **regarder d'abord quelles feuilles** sont touchées : les vieilles ou 
 
 ![Où se voit une carence](../images/ferti-carences.svg)
 
-*Fig. F4 – Où se voit une carence, d'après le tableau ci-dessous : fer, zinc, manganèse sur les jeunes pousses ; azote et magnésium sur les vieilles feuilles ; potassium sur les feuilles adultes (les vieilles pour Haifa, celles de la pousse de printemps tout juste mûres pour UF/IFAS SL457). Regarder d'abord quelles feuilles jaunissent ; jaunissement asymétrique : penser au HLB (marbrure) (UF/IFAS PP328, **une seule source**). Schéma dessiné pour ce plugin, MIT.*
+*Fig. F4 – Où se voit une carence, d'après le tableau ci-dessous : fer, zinc, manganèse sur les jeunes pousses ; azote et magnésium sur les vieilles feuilles ; potassium sur les feuilles adultes (les vieilles pour Haifa, celles de la pousse de printemps tout juste mûres pour UF/IFAS SL457). Jaunissement asymétrique : penser au HLB (marbrure) (UF/IFAS PP328, **une seule source**). Schéma dessiné pour ce plugin, MIT.*
 
 ![Carences sur feuille d'agrume : saine, azote, magnésium, fer, zinc](../images/ferti-carences-feuilles.svg)
 
@@ -416,7 +413,6 @@ Ni Mg, ni fer, ni oligo-éléments ne sont déclarés dans le Ferti Agrumes (fic
 - **Forcer la dose** pour « rattraper » : rien de plus, parfois moins de fruits, plus de ravageurs.
 - Mettre de l'engrais sur une plante au substrat **détrempé** qui jaunit : c'est l'eau qu'il faut corriger d'abord.
 - Prendre une carence en fer pour un manque d'azote : regarder **quelles feuilles** jaunissent.
-- Pulvériser le Kélafer sur les feuilles.
 - Appliquer une dose « par arbre » ou « par hectare » lue dans une étude de verger à un pot.
 
 ## Sources
@@ -469,6 +465,8 @@ Lues en entier, sauf mention.
 - **Niu 2024** : Niu R. et al., *Root reduction caused directly or indirectly by high application of nitrogen fertilizer…*, *Plants* 13(7):938, doi 10.3390/plants13070938 (Université du Sud-Ouest, Chongqing ; lu en ligne).
 - **Tuzcu 1984** : *Fruits* 39(9), croissance de 14 porte-greffes à basse température ; Poncirus, satsuma et Nagami ne poussent qu'au-dessus de ≈ 15 °C.
 - **UF/IFAS SL454** : interprétation des analyses de sol pour les agrumes (EDIS SS667, 2020).
+- **SEDIF 2018** : Deloitte Conseil et IRH, *Benchmark sur le traitement du calcaire dans le monde*, rapport final volet 1, septembre 2018, pour le SEDIF (p. 7 : peut dépasser 30 °f ; p. 20, maximum en sortie d'usine : 30 °f Choisy-le-Roi, 32 °f Neuilly-sur-Marne, 22 °f Méry-sur-Oise), https://debatpublic.fr, relu le 2026-11-05.
+- **SEDIF 2024** : *La lettre*, avril 2024 (édition de Choisy-le-Roi), dureté 2023 d'après l'ARS Île-de-France, site vedif.eau.veolia.fr, **non relue** (site injoignable le 2026-11-05).
 - **UF/IFAS SL456, SL457** : *Nutrition of Florida Citrus Trees*, 3e éd. (UF/IFAS SL253, dir. Morgan et Kadyampakeni, février 2020) ; SL456 = chapitre 2, « Production Areas, Soils, and Land Preparation » (Obreza, Collins, Morgan, Graham, Alferez ; EDIS SS669) ; SL457 = chapitre 3, « General Soil Fertility and Citrus Tree Nutrition » (Obreza, Zekri, Futch ; EDIS SS670).
 - **UF/IFAS SS618** : *Molybdenum (Mo) and Nickel (Ni) for Citrus Trees* (fiche EDIS, 2014, revue en 2025), https://edis.ifas.ufl.edu
 - **UF/IFAS PP328** : test du stylo, carence ou HLB (University of Florida).

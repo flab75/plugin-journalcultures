@@ -29,7 +29,7 @@ Les captures de cette notice viennent d'une collection de démonstration (plante
 - **Commandes d'une collection** : Plantes en alerte, Engrais à donner, Résumé des alertes.
 
 ## Tuile
-- Cliquer une plante : fenêtre **Fiche** (avec liens POWO, GBIF si le nom y a été trouvé, Tela Botanica, PFAF), **Journal**, **Photos**, **Mesures** (et courbes) ; **?** ouvre cette notice ; dans la notice, cliquer une image l'affiche en plein écran (clic ou Échap pour revenir).
+- Cliquer une plante : fenêtre **Fiche** (avec liens POWO, GBIF si le nom y a été trouvé, Tela Botanica, PFAF), **Journal**, **Photos**, **Mesures** (et courbes) ; **?** ouvre cette notice ; dans la notice, cliquer une image l'agrandit (Échap pour revenir).
 - **Journal** (bouton sous le tableau) : le journal de toutes les plantes de la collection.
 - Étiquette de greffe à côté du nom, une couleur par état : **⏳ greffe en attente** (orange), **✓ greffe prise ?** (vert olive), **❄ œil dormant** (bleu), **🌿 greffon pousse** (vert) ; réussie ou échouée, elle disparaît. Le survol donne le statut et le greffon attendu. Le haut de la tuile les compte (« en greffe »).
 - Colonne **Greffon** quand la collection a des greffes en cours (toujours dans Greffes) : la plante greffée sur le porte-greffe, **🏡 collection** si le greffon a été pris sur une de nos plantes, **📦 introduit** sinon.
@@ -78,7 +78,7 @@ La fiche se modifie dans la page du plugin (équipement de la plante) ; l'onglet
 - les photos choisies sont rangées dans la plante créée ; le reste de la fiche se complète dans la page du plugin.
 
 **Pl@ntNet** (« ＋ Plante » et « Identifier… ») : choisir une ou plusieurs photos, donner à chacune son type (feuille, fleur, fruit, écorce, ou auto),
-cocher celles à envoyer (5 au plus) puis « Pl@ntNet » : une seule demande pour toutes, plus sûre qu'une photo seule.
+cocher celles à envoyer (5 au plus) puis « Pl@ntNet » : une seule demande pour toutes.
 
 ![Formulaire Nouvelle plante](../images/nouvelle-plante.webp)
 
@@ -86,7 +86,7 @@ cocher celles à envoyer (5 au plus) puis « Pl@ntNet » : une seule demande pou
 
 ## Mesures
 Onglet **Mesures** de la fenêtre d'une plante (administrateurs) : choisir l'organe (Plante, Tronc / greffe, Épines, Feuilles, Fleurs, Fruits,
-Racines / pot, Santé), saisir ce qu'on a mesuré, une note et, au besoin, une photo. Tout part au journal en une entrée « Mesure ».
+Racines / pot, Santé), saisir les mesures (note et photo facultatives). Tout part au journal en une entrée « Mesure ».
 - Les champs vides sont ignorés ; plusieurs Ø de fruits séparés par des espaces, virgule décimale : `32 35,5 41`.
 - **Rapports calculés** : aile / limbe en longueur (≥ 0,5 = aile longue, typique des papedas) et en largeur (mesurés au plus large) ;
   greffon / porte-greffe (bourrelet, incompatibilité).
@@ -120,7 +120,7 @@ Tout est dans l'onglet [Greffe](greffe.md) : types, saison de chaque type, march
 
 ## Identification (agrumes)
 - **Clé des caractères** (fiche de la plante, dans la page du plugin) : choisir ce qui est observé (folioles, aile du pétiole, boutons floraux, fruit…),
-  laisser « non observé » le reste, enregistrer. Le plugin classe les groupes du plus au moins compatible et nomme les caractères en désaccord ;
+  laisser « non observé » le reste. Le plugin classe les groupes du plus au moins compatible et nomme les caractères en désaccord ;
   « Probable » : un seul groupe sans désaccord, avec au moins 3 accords, tous les autres contredits ; sinon « Indécis entre… ».
   Groupe seulement, jamais le cultivar.
 - **Identifier…** (bas de la fiche, administrateurs) : Pl@ntNet sur des photos, puis la clé ; un tableau montre chaque champ qui changerait
@@ -183,4 +183,4 @@ Page du plugin (administrateurs) :
 
 ![Calcul de la rusticité effective](../images/rusticite.svg)
 
-*Fig. M7 – Rusticité effective = rusticité en pleine terre + pénalité du pot + pénalité de jeunesse ; l'alerte part à la rusticité effective + la marge. Mêmes chiffres que le Citronnier Meyer des captures, au 2 novembre 2026 (la pénalité de jeunesse baisse avec le temps).*
+*Fig. M7 – Rusticité effective = rusticité en pleine terre + pénalité du pot + pénalité de jeunesse ; l'alerte part à la rusticité effective + la marge. Mêmes chiffres que le Citronnier Meyer des captures, au 2 novembre 2026.*

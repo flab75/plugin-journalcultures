@@ -20,7 +20,7 @@ Ce qui vient du plugin lui-même (choix, seuil, déduction) est écrit comme tel
 - « **Probable** » : un seul groupe sans aucun désaccord, avec au moins 3 accords, et tous les autres contredits. Sinon : « **Indécis** entre … ».
 - Un caractère absent du profil d'un groupe ne compte ni pour ni contre lui (choix du plugin).
 - Jeunes rameaux poilus : comptent **pour** le groupe pomelo-pamplemousse (poils du pamplemousse, *C. maxima*) et le yuzu ; des rameaux glabres (sans poils) ne les excluent pas (choix du plugin, voir [Reconnaître](#reconnaître--du-caractère-au-groupe)).
-- **Mesures**, organe **Feuilles** : la longueur et la largeur du limbe (la partie plate de la feuille) et de l'aile donnent l'aile, sa largeur et la longueur de la feuille.
+- **Mesures**, organe **Feuilles** : la longueur et la largeur du limbe et de l'aile donnent l'aile, sa largeur et la longueur de la feuille.
   Organe **Fruit** : le diamètre moyen donne la taille du fruit (sauf fruit en doigt ou en main).
   Un caractère vide est rempli d'office. S'il était déjà saisi autrement, le journal note « saisi … mesuré … » et rien n'est changé.
 - Seuils du plugin : aile de moins de 2 mm de large = « aucune ou simple liseré ». Sinon, **longueur** de l'aile rapportée à celle du limbe : moins d'un quart = courte, moins de la moitié = moyenne, la moitié ou plus = longue.
@@ -79,7 +79,7 @@ Le limequat est rangé en lime (−3), plus prudent que TyCitriK (−6).
 - Éviter les **gourmands** : les épines y sont plus fréquentes et plus longues (Curk 2022, chez l'oranger) ; les jeunes pousses du kumquat portent des épines jusqu'à 5 cm, contre quelques millimètres sur les rameaux à fleurs (FoC 2008).
   Le plugin n'utilise pas les épines.
 - **Folioles** : compter sur plusieurs feuilles adultes. Chez le Poncirus, les feuilles des jeunes plants sont **le plus souvent simples ou à une foliole** (FoC 2008, **une seule source**) : sur un semis, « 1 foliole » peut donc contredire à tort le Poncirus (déduction du plugin).
-- **Aile** : c'est la partie élargie du pétiole, entre la tige et le limbe. Mesurer sa longueur et sa plus grande largeur, puis celles du limbe : la saisie dans **Mesures** fait le calcul.
+- **Aile** : partie élargie du pétiole. Mesurer sa longueur et sa plus grande largeur, puis celles du limbe : la saisie dans **Mesures** fait le calcul.
 - **Jeunes rameaux** : les regarder **à la loupe**, sur la pousse de l'année ; les poils sont fins (choix du plugin).
 - **Mots des flores** : elliptique, obovale, émarginé, crénelé… sont expliqués dans [La feuille](guide.md#la-feuille) (onglet Botanique).
 
@@ -172,7 +172,7 @@ Les groupes de la colonne du milieu sont ceux du plugin. La colonne de droite di
 
 ## Porte-greffes et rejets
 - Les porte-greffes issus du Poncirus (citranges, citrumelos) ont, comme lui, des feuilles à **3 folioles** (UF/IFAS HS982, Agromillora).
-- Les pousses du porte-greffe se forment le long du tronc, surtout près du point de greffe ; elles sont à supprimer dès qu'elles apparaissent (UF/IFAS HS1309). Sur un agrume à une foliole greffé sur Poncirus ou un hybride de Poncirus (citrange, citrumelo, FA5), une branche à 3 folioles est donc un rejet (déduction du plugin).
+- Les pousses du porte-greffe se forment le long du tronc, surtout près du point de greffe ; à supprimer (UF/IFAS HS1309). Sur un agrume à une foliole greffé sur Poncirus ou un hybride de Poncirus (citrange, citrumelo, FA5), une branche à 3 folioles est donc un rejet (déduction du plugin).
 - Des **rejets nombreux** près de la greffe peuvent signaler une incompatibilité entre porte-greffe et greffon (Curk 2022, NSW DPI).
   Un pli au point de greffe, ou un porte-greffe qui grossit plus que le greffon, aussi (NSW DPI, **une seule source**).
   Mais sur Poncirus, un tronc en goulot de bouteille autour de la greffe est normal et sans danger (Curk 2022).
@@ -209,7 +209,6 @@ Les groupes de la colonne du milieu sont ceux du plugin. La colonne de droite di
 - Observer une feuille de **gourmand** ou de **jeune semis** : épines et feuilles y sont juvéniles ([Bien observer](#bien-observer)).
 - Prendre un **rejet** du porte-greffe pour la plante ([Porte-greffes et rejets](#porte-greffes-et-rejets)).
 - Cocher par habitude : laisser « non observé » ce qui n'a pas été vu. Un mauvais choix contredit le bon groupe.
-- Juger la couleur ou le goût d'un fruit **pas mûr**.
 - Lire « Probable » comme une certitude : c'est un groupe compatible avec ce qui a été coché, rien de plus.
 - Appliquer une rusticité « estimée » sans regarder d'où elle vient (nom ou caractères).
 
