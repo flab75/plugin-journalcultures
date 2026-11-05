@@ -29,7 +29,7 @@ Les captures de cette notice viennent d'une collection de démonstration (plante
 - **Commandes d'une collection** : Plantes en alerte, Engrais à donner, Résumé des alertes.
 
 ## Tuile
-- Cliquer une plante : fenêtre **Fiche** (avec liens POWO, GBIF si le nom y a été trouvé, Tela Botanica, PFAF), **Journal**, **Photos**, **Mesures** (et courbes) ; **?** ouvre cette notice.
+- Cliquer une plante : fenêtre **Fiche** (avec liens POWO, GBIF si le nom y a été trouvé, Tela Botanica, PFAF), **Journal**, **Photos**, **Mesures** (et courbes) ; **?** ouvre cette notice ; dans la notice, cliquer une image l'affiche en plein écran (clic ou Échap pour revenir).
 - **Journal** (bouton sous le tableau) : le journal de toutes les plantes de la collection.
 - Étiquette de greffe à côté du nom, une couleur par état : **⏳ greffe en attente** (orange), **✓ greffe prise ?** (vert olive), **❄ œil dormant** (bleu), **🌿 greffon pousse** (vert) ; réussie ou échouée, elle disparaît. Le survol donne le statut et le greffon attendu. Le haut de la tuile les compte (« en greffe »).
 - Colonne **Greffon** quand la collection a des greffes en cours (toujours dans Greffes) : la plante greffée sur le porte-greffe, **🏡 collection** si le greffon a été pris sur une de nos plantes, **📦 introduit** sinon.

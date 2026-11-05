@@ -27,6 +27,7 @@ if (!window.journalcultures || window.journalcultures.v !== 35) (function () { /
     '.jdc-org button.on,.jdc-pil input:checked+span{background:#2F6B3A;border-color:#2F6B3A;color:#fff}.jdc-pil{position:relative;margin:0 4px 4px 0}.jdc-mb .jdc-pil input{position:absolute;opacity:0;width:1px;height:1px;min-height:0;margin:0}.jdc-pil input:focus-visible+span{outline:2px solid var(--jdc-vert)}' +
     '.jdc-mb form.jdc-mf{display:block}.jdc-mb form>*{min-width:0}.jdc-mb input[type=file]{max-width:100%}.jdc-g{display:none}.jdc-g.on{display:block}.jdc-mf fieldset{border:0;padding:0;margin:0 0 6px}.jdc-mf legend{font-size:inherit;border:0;margin:0 0 3px;width:auto}' +
     '.jdc-lg{display:flex;align-items:center;gap:8px;margin:0 0 6px;font-weight:normal}.jdc-lg>span{flex:1}.jdc-lg input{width:110px;text-align:right}.jdc-lg small{width:42px}.jdc-lg textarea{flex:2}' +
+    '.jdc-pl{position:fixed;inset:0;z-index:100000;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;cursor:zoom-out}.jdc-pl img{max-width:100vw;max-height:100vh;height:auto;background:#fff}' +
     '.jdc-svg svg{width:100%;height:auto;max-height:220px}' +
     '.jdc-np details,.jdc-np .rec{grid-column:1/-1}.jdc-np summary{cursor:pointer;margin:4px 0}.jdc-np fieldset{border:0;padding:0;margin:0 0 6px}.jdc-np legend{font-size:inherit;border:0;margin:0 0 3px;width:auto}' +
     // notice : large, sommaire à gauche (ordinateur), au-dessus (tablette), replié (mobile), lignes de 75 caractères au plus, tableaux défilants
@@ -129,12 +130,23 @@ if (!window.journalcultures || window.journalcultures.v !== 35) (function () { /
         ct.innerHTML = n.html
         ct.querySelectorAll('a[data-n]').forEach(function (l) { l.onclick = function (e) { e.preventDefault(); aller(l.dataset.n || n.k, l.dataset.a) } })
         var d = ct.querySelector('.jdc-toc details'); if (d && window.innerWidth <= 600) d.open = false // mobile : sommaire replié
+        ct.querySelectorAll('.jdc-tx img').forEach(function (im) { im.tabIndex = 0; im.setAttribute('role', 'button'); im.style.cursor = 'zoom-in'; im.onclick = function () { plein(im) }; im.onkeydown = function (e) { if (e.key == 'Enter' || e.key == ' ') { e.preventDefault(); plein(im) } } })
         if (n.k == 'noms') chercher(ct)
         var b = ct.closest('.jdc-mb'), e = vise && b.querySelector('#' + CSS.escape('jdc-n-' + vise)); vise = null // cette fenêtre, pas une notice déjà ouverte
         if (e) e.scrollIntoView(); else b.scrollTop = 0
       }
       aller(k, ancre)
     }
+  }
+
+  // image de la notice en plein écran : clic, Entrée ou Échap pour refermer (Échap ne ferme pas la notice dessous)
+  function plein(im) {
+    var o = document.createElement('div'); o.className = 'jdc-pl'; o.setAttribute('role', 'dialog'); o.setAttribute('aria-label', im.alt || "{{Image}}"); o.tabIndex = -1
+    var g = new Image(), r = (im.naturalWidth || im.width || 4) / (im.naturalHeight || im.height || 3); g.src = im.currentSrc || im.src; g.alt = im.alt; o.appendChild(g)
+    g.style.width = 'min(100vw, ' + (100 * r).toFixed(2) + 'vh)' // agrandie jusqu'au bord de l'écran, proportions gardées (petites photos comprises)
+    function fermer() { o.remove(); window.removeEventListener('keydown', touche, true); im.focus() }
+    function touche(e) { if (e.key == 'Escape' || e.key == 'Enter' || e.key == ' ') { e.preventDefault(); e.stopImmediatePropagation(); fermer() } }
+    o.onclick = fermer; window.addEventListener('keydown', touche, true); document.body.appendChild(o); o.focus()
   }
 
   // dictionnaire des noms : filtre les entrées (li) au fil de la frappe, sans accents ni casse ; lettres vides masquées
@@ -602,7 +614,7 @@ if (!window.journalcultures || window.journalcultures.v !== 35) (function () { /
   }
 
   // opt.panel : colonnes en plus (porte-greffe, dernière mesure), masquées sur téléphone
-  window.journalcultures = {v: 35, notice: notice, ajax: ajax, esc: esc, nb: nb, init: function (b, d, opt) {
+  window.journalcultures = {v: 36, notice: notice, ajax: ajax, esc: esc, nb: nb, init: function (b, d, opt) {
     if (!b) return
     d.apres = opt && opt.apres // relu par « Greffer… » (fiche)
     var pa = opt && opt.panel
