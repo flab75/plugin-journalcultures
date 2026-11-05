@@ -335,9 +335,9 @@ Le calcul de pleine terre ci-dessous **ne vaut pas pour un pot**.
 - La terre garde de l'eau selon sa nature : environ 90 mm par mètre de profondeur pour un sable, 110 à 125 pour une argile, 143 pour un limon (AFES, d'après Al Majou 2008) ; 120 pour un limon sableux, 150 pour une terre franche (LibreTexts). **130 mm par mètre** est un choix pour une terre moyenne : la vôtre peut être différente.
 - On arrose quand **la moitié** de cette réserve est partie (FAO) ; de la floraison à la chute de juin, plus tôt, quand **40 %** est parti (FAO, **une seule source**).
 - La profondeur des racines : 1,2 à 2 m dans un verger (FAO). Les exemples ci-dessous supposent 0,4 m pour un jeune plant et 0,7 m pour un adulte : choix du plugin.
-- **Exemple en juillet ordinaire**, sans pluie (évaporation d'environ 4,5 mm par jour : moyenne de juillet 2016-2025 à Noisy-le-Sec, de 3,7 à 5,4 selon l'année, Open-Meteo d'après la réanalyse ERA5, **une seule source** ; avec 0,65, l'arbre en perd environ 2,9) :
+- **Exemple en juillet ordinaire**, sans pluie (évaporation d'environ 4,5 mm par jour : moyenne de juillet 2016-2025 à Noisy-le-Sec, de 3,7 à 5,4 selon l'année, Open-Meteo d'après la réanalyse ERA5, même méthode FAO de Penman-Monteith que l'ETP de Météo-France, **une seule source** ; avec 0,65, l'arbre en perd environ 2,9) :
   - jeune plant, 80 cm de large (0,50 m²), racines sur 40 cm : réserve à vider 130 × 0,4 × 0,5 = 26 mm, soit **13 L tous les 9 jours** ;
-  - adulte, 2 m de large (3,14 m²), racines sur 0,7 m : 130 × 0,7 × 0,5 ≈ 45 mm, soit **141 L tous les 15 jours**.
+  - adulte, 2 m de large (3,14 m²), racines sur 0,7 m : 130 × 0,7 × 0,5 ≈ 45 mm, soit **141 L tous les 15 à 16 jours**.
   - Ordres de grandeur proches de ceux de Greffeur d'agrumes (site commercial), recalculés ici. La pluie tombée se retire du besoin.
 
 ### Organique ou minéral
