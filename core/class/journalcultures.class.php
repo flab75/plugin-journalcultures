@@ -815,10 +815,10 @@ class journalcultures extends eqLogic {
     if (!$ok) throw new Exception(sprintf(__('aucune station Météo-France à moins de %d km avec %d hivers complets', __FILE__), $C::FROID_RAYON, $C::FROID_MIN));
     // ponytail: altitude ignorée : −0,65 °C / 100 m en moyenne, mais inversion les nuits de gel (plateau parfois plus doux que la vallée) ; réglage d'écart si une sonde dehors le mesure
     $r = ['date' => date('Y-m-d'), 'pos' => $pos, 'dernier' => $dernier, 'stations' => $ok, 'reperes' => $C::froidReperes($ok)];
-    config::save('froid', json_encode($r), 'journalcultures');
+    config::save('froid', $r, 'journalcultures'); // Jeedom encode le tableau en JSON et le redécode à la lecture
     return $r;
   }
-  public static function froid() { $r = json_decode((string)config::byKey('froid', 'journalcultures', ''), true); return is_array($r) && !empty($r['stations']) ? $r : null; }
+  public static function froid() { $r = config::byKey('froid', 'journalcultures', ''); return is_array($r) && !empty($r['stations']) ? $r : null; }
   public static function froidResume() { // texte de la page du plugin (lignes simples, échappées à l'affichage)
     if (!($f = self::froid())) return [];
     $r = $f['reperes']; $n = function ($x) { return str_replace(['.', '-'], [',', '−'], (string)$x) . ' °C'; };
@@ -832,11 +832,11 @@ class journalcultures extends eqLogic {
   }
   public static function cronDaily() { // une fois par an (nouvel hiver fini, en août) ou quand la position change ; sinon rien à télécharger
     $f = self::froid();
-    $d = journalcultures_calc::dernierHiver(); $e = json_decode((string)config::byKey('froid_essai', 'journalcultures', ''), true); // dernier échec
+    $d = journalcultures_calc::dernierHiver(); $e = config::byKey('froid_essai', 'journalcultures', ''); // dernier échec
     if (!($p = self::froidPosition()) || ($f && $f['pos'] == $p && $f['dernier'] == $d)) return; // à jour
     if (is_array($e) && $e['pos'] == $p && $e['dernier'] == $d && time() - $e['t'] < 7 * 86400) return; // en échec : réessai une fois par semaine, pas chaque nuit
     try { self::froidMaj(); config::remove('froid_essai', 'journalcultures'); }
-    catch (Throwable $x) { config::save('froid_essai', json_encode(['pos' => $p, 'dernier' => $d, 't' => time()]), 'journalcultures'); log::add('journalcultures', 'warning', 'Froid du lieu (Météo-France) : ' . $x->getMessage()); }
+    catch (Throwable $x) { config::save('froid_essai', ['pos' => $p, 'dernier' => $d, 't' => time()], 'journalcultures'); log::add('journalcultures', 'warning', 'Froid du lieu (Météo-France) : ' . $x->getMessage()); }
   }
 
   public function enGreffe() { // étiquette de la tuile : greffe en cours (ni réussie ni échouée) → statut + texte, sinon null
