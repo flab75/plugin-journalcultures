@@ -100,7 +100,7 @@ $('#jdc-froid-maj').on('click', function () { // téléchargement des fichiers M
   $('#div_alert').showAlert({message: "{{Froid du lieu : téléchargement des données Météo-France, quelques minutes…}}", level: 'info'})
   window.journalcultures.ajax('froid', {}, function (r) {
     b.removeData('en').css('opacity', 1); $('#div_alert').hide()
-    $('#jdc-froid').show().html('<b>{{Froid du lieu}}</b> · ' + r.map(window.journalcultures.esc).join('<br>'))
+    $('#jdc-froid').show().prop('open', true).find('.res').html(r.map(window.journalcultures.esc).join('<br>'))
   }, function (e) { b.removeData('en').css('opacity', 1); $('#div_alert').showAlert({message: e, level: 'danger'}) })
 })
 $('#jdc-imp').on('change', function () {

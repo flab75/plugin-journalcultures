@@ -39,12 +39,12 @@ $eqLogics = eqLogic::byType($plugin->getId());
 				<br>
 				<span>{{Froid du lieu}}</span>
 			</div>
-			<label class="cursor logoSecondary" title="{{Ajoute les plantes et produits absents d'un fichier exporté ; ce qui existe déjà n'est pas modifié}}">
+			<div class="cursor logoSecondary" onclick="document.getElementById('jdc-imp').click()" title="{{Ajoute les plantes et produits absents d'un fichier exporté ; ce qui existe déjà n'est pas modifié}}">
 				<i class="fas fa-file-import"></i>
 				<br>
 				<span>{{Importer}}</span>
-				<input type="file" id="jdc-imp" accept=".json,application/json" class="hidden">
-			</label>
+			</div>
+			<input type="file" id="jdc-imp" accept=".json,application/json" class="hidden">
 		</div>
 		<div id="jdc-imp-ok" class="alert alert-info" style="display:none">
 			<span class="res"></span>
@@ -55,7 +55,7 @@ $eqLogics = eqLogic::byType($plugin->getId());
 			<button type="button" class="btn btn-sm btn-success go">{{Importer}}</button>
 			<button type="button" class="btn btn-sm btn-default non">{{Annuler}}</button>
 		</div>
-		<div id="jdc-froid" class="alert alert-info"<?php $fr = journalcultures::froidResume(); echo $fr ? '' : ' style="display:none"'; ?>><b>{{Froid du lieu}}</b> · <?php echo implode('<br>', array_map('htmlspecialchars', $fr)); ?></div>
+		<details id="jdc-froid" style="margin:4px 0 10px<?php $fr = journalcultures::froidResume(); echo $fr ? '' : ';display:none'; ?>"><summary class="cursor">{{Froid du lieu : résultat du dernier calcul}}</summary><div class="res" style="padding:6px 0 0 14px"><?php echo implode('<br>', array_map('htmlspecialchars', $fr)); ?></div></details>
 		<legend><i class="fas fa-table"></i> {{Mes collections et plantes}}</legend>
 		<?php
 		if (count($eqLogics) == 0) {
