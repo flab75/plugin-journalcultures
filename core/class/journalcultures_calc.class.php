@@ -345,7 +345,7 @@ class journalcultures_calc {
       : (in_array($type, ['laterale', 'approche'], true) ? 'cote' : ($type == 'pont' ? 'pont' : 'rameau')); // type inconnu : rameau
     $rej = 'ôter les rejets du porte-greffe';
     $Q = [
-      'oeil' => ['attente' => 'œil vert et gonflé, sans se ratatiner (retirer le lien pour voir) ?',
+      'oeil' => ['attente' => 'œil vert et gonflé, sans se ratatiner (retirer le ruban ou l’élastique pour voir ; film qui se dégrade : rien à retirer) ?',
         'probable' => 'l’œil a-t-il débourré ? (sinon le forcer : entailler le porte-greffe aux 2/3 au-dessus de l’œil et coucher le haut ; ou le laisser dormir jusqu’au printemps)',
         'dormant' => 'printemps : forcer l’œil (entailler le porte-greffe aux 2/3 au-dessus de l’œil et coucher le haut) ; a-t-il débourré ?',
         'pousse' => 'l’œil pousse : porte-greffe coupé à environ 1,3 cm au-dessus de l’œil (haut couché compris), pousse tuteurée, ' . $rej . ' ?'],

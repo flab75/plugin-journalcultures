@@ -79,13 +79,24 @@ HO-39 et P3402 parlent d'arbres fruitiers tempérés (pommier, poirier, pêcher)
 | Lien | Ce qu'il fait | Sources |
 |---|---|---|
 | Ruban de polyéthylène (transparent ou vert), bandes d'environ 1,3 × 15-25 cm | serre et empêche le dessèchement ; transparent, il laisse voir la soudure ; **à couper** | HS1309 ; HO-39 (le meilleur pour le chip, il scelle mieux) |
-| Film étirable qui se dégrade (type Parafilm) | serre et scelle, se défait seul : rien à couper | P3402 ; sur agrumes, Oliveira et al. 2004 : même reprise (99,6 %) qu'avec le polyéthylène, pousse du greffon nettement meilleure |
-| Bande élastique (caoutchouc) | se relâche et tombe d'elle-même en 3 à 5 semaines ; sinon la couper | HO-39, **une seule source** |
-| Raphia, ficelle cirée | nœud du côté opposé à l'œil | INRAE (raphia) ; HO-39 (ficelle cirée) |
+| Film étirable qui se dégrade (type Parafilm) | serre et scelle, se défait seul : rien à couper | P3402 ; sur agrumes, Oliveira et al. 2004 : même reprise (99,6 %) qu'avec le polyéthylène, pousse du greffon nettement meilleure (quand le lien a été retiré : pas dit dans le résumé) |
+| Ruban qui se dégrade à la lumière (type Buddy Tape) | se laisse en place : rien à retirer ; il en reste des débris noirs sur la tige, sans dégât pour l'écorce ; plus long à poser | sur agrumes, Hayashi et al. 2012 (durée de dégradation non donnée) ; « il éclate tout seul » (Sage Horticultural, revendeur : non retenu comme source) |
+| Bande élastique (caoutchouc) | se relâche et tombe d'elle-même en 3 à 5 semaines ; sinon la couper | HO-39, fruitiers en général ; sur agrumes, AZ1146 la retire avec le ruban, à 2-3 semaines |
+| Raphia, ficelle cirée | nœud du côté opposé à l'œil ; aucun délai de retrait trouvé sur agrumes : le couper avant qu'il n'entaille l'écorce (UC Circ. 475) ; ficelle cirée coupée au bout de 3 mois (HO-39, fruitiers en général) | INRAE (raphia) ; HO-39 (ficelle cirée) |
 
-- **Couvrir l'œil ou non : les sources divergent.** HS1309 enroule 3-4 tours sous l'œil puis plusieurs au-dessus, en couvrant tout l'écusson, œil compris (d'où le ruban transparent) ; UC Ventura, HO-39 (chip) et INRAE (si l'air est humide) laissent l'œil à l'air.
-  Sur agrumes, Hayashi et al. 2012 : sur citrumelo Swingle, couvrir l'œil a fait moins débourrer ; le film qui se dégrade a avancé le débourrement mais se pose plus lentement.
-- **Retirer le ruban de polyéthylène 14 à 21 jours après la greffe, jamais plus de 30** (HS1309, **une seule source** pour les agrumes) : c'est le contrôle J+21 du plugin. Sur une greffe de rameau, P3402 fend le lien sur deux côtés 6 à 8 semaines après le départ et le laisse tomber.
+- **Couvrir l'œil ou non : les sources divergent.** HS1309 et AZ1146 couvrent tout l'écusson, œil compris (d'où le ruban transparent) ; Alabama ANR-3275, UC Ventura, HO-39 (chip) et INRAE (si l'air est humide) laissent l'œil à l'air.
+  Sur agrumes, Hayashi et al. 2012 ('Valência', 2009), part des yeux débourrés :
+
+| Porte-greffe | Délai | Ruban polyéthylène (ôté à 15 j) | Buddy Tape, œil couvert | Buddy Tape, œil à l'air |
+|---|---|---|---|---|
+| Limettier Rangpur | 15 jours | 2,1 % | 54,2 % | 64,6 % |
+| Limettier Rangpur | 49 jours | 93,8 % | 98,0 % | 95,5 % |
+| Citrumelo Swingle | 15 jours | 6,3 % | 16,7 % | 35,4 % |
+| Citrumelo Swingle | 49 jours | 93,8 % | 66,7 % | 95,8 % |
+
+Le ruban qui se dégrade fait débourrer plus tôt ; à la fin, le ruban polyéthylène rattrape. Sur citrumelo Swingle, avec le Buddy Tape, laisser l'œil à l'air.
+
+- **Retirer le ruban de polyéthylène vers 3 semaines** : 14 à 21 jours, jamais plus de 30 (HS1309) ; 2 à 3 semaines, ruban ou élastique, puis regarder si l'œil est vert (AZ1146) ; 3 à 4 semaines (Alabama ANR-3275) ; 15 jours dans l'essai de Hayashi et al. 2012 : c'est le contrôle J+21 du plugin. Film qui se dégrade (Parafilm, Buddy Tape) : rien à retirer, seulement regarder l'œil (P3402 ; Hayashi et al. 2012). Seul le ruban polyéthylène a des délais de retrait sourcés pour les agrumes. Sur une greffe de rameau, P3402 fend le lien sur deux côtés 6 à 8 semaines après le départ et le laisse tomber.
   Dans tous les cas, un lien oublié étrangle la tige (HO-39 ; P3402 ; UC Circ. 475).
 
 ![Les liens de greffe](../images/greffe-liens.svg)
@@ -104,7 +115,7 @@ HO-39 et P3402 parlent d'arbres fruitiers tempérés (pommier, poirier, pêcher)
 |---|---|---|
 | Prendre les greffons | sécateur ; rameaux ronds et droits, aux yeux bien formés, de l'avant-dernière pousse ou d'une pousse qui a durci (HS1309) ; feuilles coupées tout de suite en gardant un bout de pétiole qui protège l'œil (HS1309 ; HO-39 ; P3402) ; bâtonnets de 20 à 30 cm (HS1309 ; HO-39) ; une glacière au champ (P3402) | HS1309 ; HO-39 ; P3402 |
 | Préparer le porte-greffe | zone à greffer nettoyée des épines et des brindilles | HS1309, **une seule source** |
-| Les conserver | sac plastique au réfrigérateur 1 à 2 semaines (HS1309) ; sur agrumes, vers 4 °C, en sac de polyéthylène fermé sans ajouter d'eau, ou dans de la tourbe ou de la vermiculite humides (UC Circ. 475, **une seule source** pour le chiffre) ; pour des fruitiers tempérés, au frais et humide (sphagnum, papier humide) à 0-7 °C (P3402) ou 4-7 °C (HO-39) ; étiqueter cultivar, date, arbre d'origine (HS1309 ; P3402) ; pas avec des pommes ou des poires, leur éthylène abîme les greffons (HO-39, **une seule source**) | HS1309 ; UC Circ. 475 ; HO-39 ; P3402 |
+| Les conserver | sac plastique au réfrigérateur 1 à 2 semaines (HS1309) ; sur agrumes : 0 à 4 °C jusqu'à 2 semaines, avec un essuie-tout humide (pas ruisselant), en sac de polyéthylène fermé (Alabama ANR-3275) ; 2 à 7 °C jusqu'à 3-4 semaines dans du papier humide, sans geler (AZ1146) ; vers 4 °C, en sac fermé sans ajouter d'eau, ou dans de la tourbe ou de la vermiculite humides (UC Circ. 475) ; pour des fruitiers tempérés, au frais et humide (sphagnum, papier humide) à 0-7 °C (P3402) ou 4-7 °C (HO-39) ; étiqueter cultivar, date, arbre d'origine (HS1309 ; P3402) ; pas avec des pommes ou des poires, leur éthylène abîme les greffons (HO-39, **une seule source**) | HS1309 ; ANR-3275 ; AZ1146 ; UC Circ. 475 ; HO-39 ; P3402 |
 | Greffer | greffoir, lien, étiquettes | voir plus haut |
 | Après | mastic sur les plaies d'une fente ou d'une couronne (émulsion appliquée à froid ; une cire trop chaude brûle les tissus) (HO-39) ; sac plastique blanc ôté au bout de 15 jours (INRAE) ou sac et papier aluminium (P3402) ; tuteur et attaches (HS1309) ; badigeon blanc contre le coup de soleil des arbres rabattus (HS1309, **une seule source**) | HO-39 ; P3402 ; INRAE ; HS1309 |
 
@@ -112,9 +123,9 @@ HO-39 et P3402 parlent d'arbres fruitiers tempérés (pommier, poirier, pêcher)
 
 *Fig. G2 – Prendre et conserver les greffons : A, l'avant-dernière pousse, ou la pousse en cours une fois durcie ; B, feuilles coupées en gardant un bout de pétiole, bâtonnets de 20-30 cm ; C, étiquetés, gardés humides ; D, en sac fermé au réfrigérateur, vers 4 °C sur agrumes (UC Circ. 475), 1 à 2 semaines, loin des pommes et des poires.*
 
-Non retenu : ruban élastique « Buddy Tape » et bandes Flexibande (pages de vendeurs), greffoir à double lame et pince à greffer en oméga (FAO ; Jakab-Ilyefalvi 2013), Salih 2007, *Grafting Terminology* de l'UF/IFAS : **non relus ici**.
+Non retenu : bandes Flexibande (pages de vendeurs), greffoir à double lame et pince à greffer en oméga (FAO ; Jakab-Ilyefalvi 2013), Salih 2007, *Grafting Terminology* de l'UF/IFAS : **non relus ici**.
 Le pinceau d'hormone (BA) cité par HS1309 pour faire débourrer l'œil est un usage de pépinière professionnelle ; son autorisation pour un amateur en France n'a pas été vérifiée.
-Tableaux d'après une synthèse fournie par l'utilisateur, vérifiée dans HS1309, HO-39, P3402, Oliveira et al. 2004 et Hayashi et al. 2012.
+Tableaux d'après une synthèse fournie par l'utilisateur, vérifiée dans HS1309, HO-39, P3402, Oliveira et al. 2004 et Hayashi et al. 2012 (texte complet), puis complétée par une seconde synthèse sur le retrait des liens, vérifiée dans Hayashi et al. 2012, Alabama ANR-3275 et AZ1146.
 
 ## Comment greffer
 
@@ -307,7 +318,7 @@ ou *échouée* (greffe morte : le suivi s'arrête et le statut est aussitôt eff
 
 | Contrôle | Œil | Rameau | Côté | Pont |
 |---|---|---|---|---|
-| J+21 | œil vert et gonflé, sans se ratatiner, un cal au bord de l'écusson (HS1309) ; brun et sec : la greffe est morte (déduction du plugin) (retirer le lien pour voir) | bourgeons du greffon verts et gonflés (retirer le sac pour voir) | greffon vert | greffons verts |
+| J+21 | œil vert et gonflé, sans se ratatiner, un cal au bord de l'écusson (HS1309) ; brun et sec : la greffe est morte (déduction du plugin) (retirer le ruban ou l'élastique pour voir ; film qui se dégrade : rien à retirer) | bourgeons du greffon verts et gonflés (retirer le sac pour voir) | greffon vert | greffons verts |
 | J+42 | l'œil a-t-il débourré ? sinon le **forcer** (entailler le porte-greffe aux 2/3 au-dessus de l'œil et coucher le haut), ou « Au printemps » | le greffon pousse-t-il ? retirer le lien quand les feuilles sortent | le greffon pousse-t-il ? une fois soudé, couper le porte-greffe au-dessus (approche : sevrer le greffon de sa plante) | greffons soudés aux deux bouts ; oui → *réussie* (rien ne doit pousser, pas de « Au printemps ») |
 | Pousse (4 semaines après) | tuteurer la pousse, couper le haut du porte-greffe à environ 1,3 cm au-dessus de la greffe, ôter les rejets | greffon tuteuré, lien retiré, rejets ôtés | greffon tuteuré, rejets ôtés | — |
 | 1re pousse (4 semaines après) | 1re pousse durcie : raccourcir les charpentières à 5 feuilles, ôter les rejets | idem | idem | — |
@@ -420,7 +431,8 @@ Dans le plugin : chaque plant se saisit par « ＋ Plante », multiplication « 
 - **Justo et al. 1998** : Justo E., Elisiário P., Jacquemond C., Leitão J., « Variety purity assessment of fifteen citrus rootstocks by isozymes prior to field trial implementation », *Fruits* 53 (5), 1998, p. 325-330 (chez 15 porte-greffes, plants nucellaires et zygotiques sans différence de hauteur ni de diamètre ; le tri à l'œil est presque inefficace).
 - **FoC 2008** : Zhang D., Mabberley D. J., *Citrus*, in *Flora of China* vol. 11, 2008 (premières feuilles du Poncirus souvent simples).
 - **NSW DPI 2015** : Donovan, Tahir, Falivene et Khurshid, *Citrus budding in Pakistan*, fiche ASLP (NSW Department of Primary Industries / ACIAR), juillet 2015, libre de réutilisation avec attribution (chip budding, rabattre environ 2 cm au-dessus).
-- **AZ1146** : Wright G. C., *Budding citrus trees*, University of Arizona Cooperative Extension, AZ1146, février 2000 (rabattre à environ 2,5 cm au-dessus de l'œil).
+- **AZ1146** : Wright G. C., *Budding citrus trees*, University of Arizona Cooperative Extension, AZ1146, février 2000 (rabattre à environ 2,5 cm au-dessus de l'œil ; ruban plastique ou bandes de caoutchouc couvrant tout l'œil, retirés à 2-3 semaines ; greffons gardés 3-4 semaines à 2-7 °C, sans geler).
+- **Alabama ANR-3275** : Kelley J., O'Neill M., *Citrus Budding: A Step-by-Step Guide*, ANR-3275, Alabama Cooperative Extension System, juillet 2026 (œil et pétiole laissés à l'air, ruban gardé 3 à 4 semaines ; greffons à 0-4 °C jusqu'à 2 semaines).
 - **Synthèse « Choisir sa greffe »**, fournie par l'utilisateur, sources **non relues ici** : NSW DPI, *Reworking citrus trees* (Sanderson, Falivene, Hardy, 2007),
   [PDF](https://dpird-web.matrix.squiz.cloud/__data/assets/pdf_file/0010/136675/Reworking-citrus-trees.pdf) ; UC ANR, topworking des agrumes, [page](https://ucanr.edu/node/153844), sans auteur ni date ;
   Carimi et al. 2001, CIHEAM *Options Méditerranéennes* B 33 (microgreffage, d'après Navarro et al. 1975), [PDF](https://ressources.ciheam.org/ressources/om/pdf/b33/02001694.pdf) ;
@@ -428,5 +440,5 @@ Dans le plugin : chaque plant se saisit par « ＋ Plante », multiplication « 
 - **HO-39** : Stoltz R. L., Strang J. G., *Reproducing Fruit Trees by Graftage: Budding and Grafting*, HO-39, University of Kentucky Cooperative Extension, revu en octobre 2005 (arbres fruitiers tempérés).
 - **P3402** : Wilson J., Porter W., Barickman C., *Basic Grafting Techniques*, Publication 3402, Mississippi State University Extension (arbres fruitiers tempérés).
 - **Oliveira et al. 2004** : Oliveira R. P., Scivittaro W. B., Vargas L. A., « Fita plástica e fita degradável na enxertia de citros », *Revista Brasileira de Fruticultura* 26 (3), 2004, p. 564-566 (résumé lu).
-- **Hayashi et al. 2012** : Hayashi C. K. *et al.*, « Avaliação de fita fotodegradável para enxertia em mudas de citros », *Revista Brasileira de Fruticultura* 34 (2), 2012, p. 641-645, doi 10.1590/S0100-29452012000200042 (résumé lu ; 'Valência' sur limettier Rangpur et citrumelo Swingle).
+- **Hayashi et al. 2012** : Hayashi S., Girardi E. A., Silva S. R., Stuchi E. S., Cantuarias-Avilés T., « Avaliação de fita fotodegradável para enxertia em mudas de citros », *Revista Brasileira de Fruticultura* 34 (2), 2012, p. 641-645, doi 10.1590/S0100-29452012000200042 (texte complet lu ; 'Valência' sur limettier Rangpur et citrumelo Swingle, Bebedouro, 2009 ; tableau 2).
 - **Températures de soudure (21-32 °C)** : sources d'amateurs seulement (forums, sites de jardinage), d'où des seuils réglables : **choix du plugin**.
