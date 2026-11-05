@@ -121,7 +121,7 @@ Le défaut d'un engrais « spécial agrumes » du commerce (7-3-10, 3-2-5, 5-4-9
 C'est un **excès de potassium**. On ne le réduit qu'en confiant une part de l'azote à des produits **sans potassium** et **lents** (corne) **à la place** d'une part de l'engrais de fond, jamais en plus : la dose en pot est déjà 3 à 6 fois le besoin réel (voir [la dose en pot](#combien--la-dose-en-pot)).
 Le sang séché ne compte pas : azote rapide (effet en 3 à 4 jours, étiquette), il ne remplace pas une part de l'azote d'une saison ; c'est un coup de fouet ponctuel, hors plan.
 
-Calculs du plugin pour un pot de 17,7 L (≈ 40 g d'azote par saison), corne à 1 g par litre, 3 apports (dose de son étiquette, environ 15 % de l'azote du plan) :
+Calculs du plugin pour un pot de 17,7 L (besoin de 1,24 g d'azote par semaine), corne à 1 g par litre, 3 apports (dose de son étiquette, environ 15 % de l'azote du plan) :
 
 | Engrais de fond | Compléments | Rapport obtenu | Remarque |
 |---|---|---|---|
@@ -256,7 +256,7 @@ Au-delà d'environ 30 L, le calcul dépasse le maximum de l'étiquette (240 g) :
 
 **La corne broyée suit son étiquette** : en pot, 3 apports de 1 g par litre dans la saison (17,7 L : 18 g par apport).
 Calculée d'après le besoin, elle aurait reçu environ 6 fois plus (114 g si elle était seule) : c'est pourquoi elle a une dose d'étiquette (7e champ `1`).
-Elle ne couvre alors qu'environ 15 % du besoin en azote (plante adulte) ; le reste va aux autres produits cochés (Ferti Agrumes).
+Elle ne couvre alors qu'environ 15 % du besoin en azote (plante adulte) : le plugin compte par semaine, 18 g × 13 % = 2,3 g d'azote toutes les 12 semaines, soit 0,19 g par semaine sur un besoin de 1,24 g (sur une saison de 36 semaines : 6,9 g sur 44,6 g ; rapportés aux ≈ 40 g des 32 semaines du seul Ferti, ce serait 17 %) ; le reste va aux autres produits cochés (Ferti Agrumes).
 
 **Pourquoi plus que ce que l'arbre garde** : en verger bien conduit, l'arbre n'absorbe que **40 à 60 %** de l'azote apporté (50 % dans les exemples de Morgan et Hanlon) ; le reste est lessivé ou perdu
 (Morgan et Hanlon 2006, Asadi Kangarshahi 2023).

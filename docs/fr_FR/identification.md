@@ -168,7 +168,7 @@ Les groupes de la colonne du milieu sont ceux du plugin. La colonne de droite di
 - Des **rejets nombreux** près de la greffe peuvent signaler une incompatibilité entre porte-greffe et greffon (Curk 2022, NSW DPI).
   Un pli au point de greffe, ou un porte-greffe qui grossit plus que le greffon, aussi (NSW DPI, **une seule source**).
   Mais sur Poncirus, un tronc en goulot de bouteille autour de la greffe est normal et sans danger (Curk 2022).
-  Ses fentes d'écorce laissent toutefois entrer les spores de Phytophthora chez une variété sensible : Curk conseille un point de greffe à 40 cm au moins au-dessus du sol, contre les éclaboussures (Curk 2022 p. 195, **une seule source**).
+  Ses fentes d'écorce laissent toutefois entrer les spores de Phytophthora chez une variété sensible : Curk conseille un point de greffe à 40 cm au moins au-dessus du sol, contre les éclaboussures (Curk 2022 p. 195, **une seule source** ; la fiche INRAE-Cirad dit 25 à 40 cm : même filiation, deux chiffres différents, voir [Greffe](greffe.md)).
 
 ![Rejet du porte-greffe et goulot de bouteille](../images/id-rejet.svg)
 

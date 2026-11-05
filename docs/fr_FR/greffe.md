@@ -24,11 +24,11 @@ avec une autre multiplication (semis, bouture…), le type est effacé.
 | Type | Description |
 |---|---|
 | **Greffes d'un œil** | *pour multiplier en pépinière* |
-| Écusson en T inversé | Un œil prélevé avec un peu d'écorce, glissé sous l'écorce du porte-greffe incisée en T à l'envers (⊥). Avec le chip, la plus employée en Floride pour les jeunes plants (HS1309, **une seule source**) ; plus simple, elle demande moins d'habileté que le chip (HS1309). |
+| Écusson en T inversé | Un œil prélevé avec un peu d'écorce, glissé sous l'écorce du porte-greffe incisée en T à l'envers (⊥). La plus employée en Floride (« Most Florida citrus trees », HS1309, **une seule source**) ; plus simple, elle demande moins d'habileté que le chip (HS1309). |
 | Écusson en T | Même chose avec une incision en T droit. Convient aussi, moins employée. |
 | Chip budding (œil en copeau) | Un copeau de bois portant l'œil, posé dans une entaille de même forme. Quand l'écorce ne se décolle plus (hors sève) ou est trop épaisse pour l'écusson. Demande plus d'habileté (HS1309). |
-| Chip inversé | Variante du chip, courante sur agrumes, quand l'écorce ne se décolle pas. |
-| Placage d'œil | Plaque d'écorce portant l'œil, appliquée à la place d'une plaque identique retirée du porte-greffe. Pour les écorces épaisses. À ne pas confondre avec le « placage » de la fiche INRAE-Cirad, qui est le chip. |
+| Chip inversé | Variante du chip citée par une synthèse ; ni sa forme exacte ni son usage sur agrumes ne sont **vérifiés** (source non relue). |
+| Placage d'œil | Plaque d'écorce portant l'œil, appliquée à la place d'une plaque identique retirée du porte-greffe. Pour les écorces épaisses (**non vérifié** : revue *Fruits* 1982, non relue). À ne pas confondre avec le « placage » de la fiche INRAE-Cirad, qui est le chip. |
 | **Greffes de rameau** | *pour changer de cultivar (surgreffage) ou réparer un arbre* |
 | Fente | Le porte-greffe coupé est fendu, un greffon taillé en biseau y est inséré. Sur les charpentières, pour surgreffer. |
 | Sous écorce (couronne) | Greffons glissés entre l'écorce et le bois d'une branche coupée, en sève. Surgreffage. |
@@ -39,11 +39,11 @@ avec une autre multiplication (semis, bouture…), le type est effacé.
 | Latérale | Greffon inséré sur le côté du porte-greffe, sans le couper d'abord. |
 | Sur souche | Sur une souche recépée, pour repartir d'un vieil arbre. |
 | **Laboratoire et pépinière spécialisée** | |
-| Microgreffe d'apex in vitro | Pointe de pousse de quelques dixièmes de mm greffée en tube : assainit un cultivar porteur de virus (Corse : > 80 % de reprise après regreffage, **une seule source**). |
-| Minigreffe en fente | Fente sur porte-greffe de 6 mois : 75 % de réussite contre 38 % pour l'écusson en T (un essai sur orange 'Valencia', **une seule source**). |
+| Microgreffe d'apex in vitro | Pointe de pousse de quelques dixièmes de mm greffée en tube : assainit un cultivar porteur de virus. |
+| Minigreffe en fente | Fente sur porte-greffe de 6 mois, mieux reprise que l'écusson en T dans un essai sur orange 'Valencia' (essai colombien 2022, **non relu** : chiffres non repris). |
 
 Descriptions : relues dans HS1309 et la fiche INRAE-Cirad « Greffage » quand elles sont citées ; le reste est une synthèse de sources **non relues**
-(Cirad, revue *Fruits* 1982, guide du développement rural de Polynésie française, Carimi 2001, essai colombien 2022).
+(Cirad, revue *Fruits* 1982, guide du développement rural de Polynésie française, essai colombien 2022 ; Carimi et al. 2001 : voir Sources).
 
 ## Choisir sa greffe
 
@@ -62,13 +62,13 @@ ce tableau vient de fiches d'universités et de services agricoles (HS1309 compt
 | **Réparer** un tronc rongé | [pont, approche](#autres-types--daprès-bailey) | aucune source sur agrumes : HS261 (gommose) ne donne que la prévention, porte-greffe résistant et greffe haute | Bailey 1907 et 1920, **une seule source** |
 
 **Ce qui guide le choix** :
-1. **L'écorce se décolle-t-elle ?** Oui : écusson en T ou couronne. Non : chip budding ou fente (HS1309 ; NSW DPI 2007).
+1. **L'écorce se décolle-t-elle ?** Oui : écusson en T ou couronne. Non : chip budding (HS1309, **une seule source**).
 2. **La taille du porte-greffe** : un jeune plant reçoit un écusson ; un arbre adulte se surgreffe sur ses charpentières ou sur sa souche (synthèse des sources du tableau).
 3. **L'économie de greffons** : l'écusson n'utilise qu'un œil, la fente un rameau entier (UC ANR, page sans auteur ni date, **une seule source**).
 4. **La santé** : greffons pris sur des arbres certifiés sains ; c'est ce qui justifie le microgreffage chez les obtenteurs (HS1309 ; Carimi et al. 2001).
 
 Pas trouvé : une comparaison chiffrée de l'écusson en T et du chip budding sur agrumes.
-Tableau d'après une synthèse fournie par l'utilisateur ; NSW DPI 2007, UC ANR, Carimi 2001 et HS261 n'ont pas été relus ici (voir [Sources](#sources)).
+Tableau d'après une synthèse du 2026-11-05, dont l'auteur a lu les sources par extraits (le PDF NSW DPI 2007 en entier) ; NSW DPI 2007, UC ANR, Carimi 2001 et HS261 n'ont pas été relus ici (voir [Sources](#sources)).
 
 ## Le matériel
 
@@ -82,7 +82,7 @@ HO-39 et P3402 parlent d'arbres fruitiers tempérés (pommier, poirier, pêcher)
 | Film étirable qui se dégrade (type Parafilm) | serre et scelle, se défait seul : rien à couper | P3402 ; sur agrumes, Oliveira et al. 2004 : même reprise (99,6 %) qu'avec le polyéthylène, pousse du greffon nettement meilleure (quand le lien a été retiré : pas dit dans le résumé) |
 | Ruban qui se dégrade à la lumière (type Buddy Tape) | se laisse en place : rien à retirer ; il en reste des débris noirs sur la tige, sans dégât pour l'écorce ; plus long à poser | sur agrumes, Hayashi et al. 2012 (durée de dégradation non donnée) ; « il éclate tout seul » (Sage Horticultural, revendeur : non retenu comme source) |
 | Bande élastique (caoutchouc) | se relâche et tombe d'elle-même en 3 à 5 semaines ; sinon la couper | HO-39, fruitiers en général ; sur agrumes, AZ1146 la retire avec le ruban, à 2-3 semaines |
-| Raphia, ficelle cirée | nœud du côté opposé à l'œil ; aucun délai de retrait trouvé sur agrumes : le couper avant qu'il n'entaille l'écorce (UC Circ. 475) ; ficelle cirée coupée au bout de 3 mois (HO-39, fruitiers en général) | INRAE (raphia) ; HO-39 (ficelle cirée) |
+| Raphia, ficelle cirée | nœud du côté opposé à l'œil ; aucun délai de retrait trouvé sur agrumes : le couper avant qu'il n'entaille l'écorce (UC Circ. 475) ; autour d'une fente, une toile cirée est coupée au bout de 3 mois sans être retirée (HO-39, fruitiers en général) | INRAE (raphia) ; HO-39 (ficelle cirée pour l'anglaise, toile cirée pour la fente) |
 
 - **Couvrir l'œil ou non : les sources divergent.** HS1309 et AZ1146 couvrent tout l'écusson, œil compris (d'où le ruban transparent) ; Alabama ANR-3275, UC Ventura, HO-39 (chip) et INRAE (si l'air est humide) laissent l'œil à l'air.
   Sur agrumes, Hayashi et al. 2012 ('Valência', 2009), part des yeux débourrés :
@@ -107,13 +107,13 @@ Le ruban qui se dégrade fait débourrer plus tôt ; à la fin, le ruban polyét
 
 - Une lame **très affûtée**, entretenue à la pierre (à huile, ou diamant sans huile) (HS1309 ; HO-39), désinfectée avant chaque incision (HS1309, **une seule source**).
 - Un cutter à lame fine dépanne : lame changée quand elle s'émousse, mais trop fragile sur du gros bois (P3402, **une seule source**).
-- Pour la fente sur une branche : une serpette à fendre (ou une hachette) et un maillet, un coin ou un tournevis pour tenir la fente ouverte (HO-39 ; P3402) ; pour la couronne, de petites pointes peuvent tenir le greffon (HO-39, **une seule source**).
+- Pour la fente sur une branche : une serpette à fendre (ou une hachette) et un maillet, un coin ou un tournevis pour tenir la fente ouverte (HO-39 ; P3402) ; pour la couronne, de petites pointes peuvent tenir le greffon (HO-39 ; P3402, greffe sous écorce des fruitiers tempérés).
 
 **Le reste, étape par étape**
 
 | Étape | Matériel | Sources |
 |---|---|---|
-| Prendre les greffons | sécateur ; rameaux ronds et droits, aux yeux bien formés, de l'avant-dernière pousse ou d'une pousse qui a durci (HS1309) ; feuilles coupées tout de suite en gardant un bout de pétiole qui protège l'œil (HS1309 ; HO-39 ; P3402) ; bâtonnets de 20 à 30 cm (HS1309 ; HO-39) ; une glacière au champ (P3402) | HS1309 ; HO-39 ; P3402 |
+| Prendre les greffons | sécateur ; rameaux ronds et droits, aux yeux bien formés, de l'avant-dernière pousse ou d'une pousse qui a durci (HS1309) ; feuilles coupées tout de suite en gardant un bout de pétiole qui protège l'œil (HS1309 ; HO-39 ; P3402) ; bâtonnets de 20 à 25 cm (HS1309 ; ANR-3275), jusqu'à 30 cm (HO-39) ; une glacière au champ (P3402) | HS1309 ; HO-39 ; P3402 |
 | Préparer le porte-greffe | zone à greffer nettoyée des épines et des brindilles | HS1309, **une seule source** |
 | Les conserver | sac plastique au réfrigérateur 1 à 2 semaines (HS1309) ; sur agrumes : 0 à 4 °C jusqu'à 2 semaines, avec un essuie-tout humide (pas ruisselant), en sac de polyéthylène fermé (Alabama ANR-3275) ; 2 à 7 °C jusqu'à 3-4 semaines dans du papier humide, sans geler (AZ1146) ; vers 4 °C, en sac fermé sans ajouter d'eau, ou dans de la tourbe ou de la vermiculite humides (UC Circ. 475) ; pour des fruitiers tempérés, au frais et humide (sphagnum, papier humide) à 0-7 °C (P3402) ou 4-7 °C (HO-39) ; étiqueter cultivar, date, arbre d'origine (HS1309 ; P3402) ; pas avec des pommes ou des poires, leur éthylène abîme les greffons (HO-39, **une seule source**) | HS1309 ; ANR-3275 ; AZ1146 ; UC Circ. 475 ; HO-39 ; P3402 |
 | Greffer | greffoir, lien, étiquettes | voir plus haut |
@@ -125,14 +125,14 @@ Le ruban qui se dégrade fait débourrer plus tôt ; à la fin, le ruban polyét
 
 Non retenu : bandes Flexibande (pages de vendeurs), greffoir à double lame et pince à greffer en oméga (FAO ; Jakab-Ilyefalvi 2013), Salih 2007, *Grafting Terminology* de l'UF/IFAS : **non relus ici**.
 Le pinceau d'hormone (BA) cité par HS1309 pour faire débourrer l'œil est un usage de pépinière professionnelle ; son autorisation pour un amateur en France n'a pas été vérifiée.
-Tableaux d'après une synthèse fournie par l'utilisateur, vérifiée dans HS1309, HO-39, P3402, Oliveira et al. 2004 et Hayashi et al. 2012 (texte complet), puis complétée par une seconde synthèse sur le retrait des liens, vérifiée dans Hayashi et al. 2012, Alabama ANR-3275 et AZ1146.
+Tableaux d'après une synthèse du 2026-11-05, vérifiée dans HS1309, HO-39, P3402, Oliveira et al. 2004 et Hayashi et al. 2012 (texte complet), puis complétée par une seconde synthèse sur le retrait des liens, vérifiée dans Hayashi et al. 2012, Alabama ANR-3275 et AZ1146.
 
 ## Comment greffer
 
 Schémas dessinés pour ce plugin d'après le texte des deux fiches (pas à l'échelle). Pour les photos, voir HS1309 (fig. 5 à 8) ;
 pour les dessins d'origine, la fiche INRAE-Cirad (fig. 5 à 8). Les autres types n'ont pas de marche à suivre dans nos sources relues : voir les [dessins d'après Bailey](#autres-types--daprès-bailey).
 
-Pour tous : lame désinfectée avant chaque incision (HS1309, **une seule source**) ; point de greffe à 25-40 cm du collet, contre le *Phytophthora* (INRAE) ; 15-20 cm en Floride (HS1309) : les sources divergent, le plugin garde la plus haute.
+Pour tous : lame désinfectée avant chaque incision (HS1309, **une seule source**) ; point de greffe à 25-40 cm du collet, contre le *Phytophthora* (INRAE) ; 15-20 cm en Floride (HS1309) : les sources divergent, le plugin garde la plus haute ; Curk conseille, lui, 40 cm au moins (Curk 2022 p. 195) : même filiation (INRAE Corse), deux chiffres différents.
 
 ### Écusson (T et T inversé)
 
@@ -148,7 +148,7 @@ Pour tous : lame désinfectée avant chaque incision (HS1309, **une seule source
 3. **Glisser** l'écusson tout de suite sous l'écorce, face coupée contre le bois, entièrement dans l'incision (HS1309, INRAE) ; en T, recouper son haut au ras du trait horizontal (INRAE).
 4. **Ligaturer** tout de suite, ferme sans trop serrer, toutes les coupes couvertes : ruban (HS1309) ou raphia, nœud du côté opposé à l'œil (INRAE).
    Sens : du bas vers le haut ou l'inverse (HS1309), par le haut pour ne pas faire glisser l'écusson (INRAE). Œil couvert (HS1309), laissé à l'air si l'air est humide (INRAE) ou toujours laissé à l'air (UC Ventura) : les sources divergent.
-5. **Forcer**, une fois le lien retiré (vers J+21) et la soudure faite : entailler le porte-greffe aux 2/3 au-dessus de l'œil (du côté de l'œil, 2,5 à 4 cm au-dessus)
+5. **Forcer**, une fois le lien retiré (vers J+21) et la soudure faite : entailler le porte-greffe aux 2/3 au-dessus de l'œil (du côté de l'œil, 2,5 à 4 cm au-dessus : HS1309, **une seule source** pour le côté et la hauteur ; entaille aux 2/3 aussi dans ANR-3275)
    et coucher le haut (ou le courber en boucle) ; une fois que l'œil pousse (quelques centimètres), couper le porte-greffe à environ 1,3 cm au-dessus de l'œil ;
    à défaut, une coupe en biais à 2,5 cm au-dessus de l'œil (HS1309, **une seule source**). Le plugin pose la question à J+42 (choix du plugin, voir [Suivi](#suivi-et-points-de-contrôle)).
 
@@ -429,7 +429,7 @@ Dans le plugin : chaque plant se saisit par « ＋ Plante », multiplication « 
 - **UC Ventura** : Elam P. (UC Cooperative Extension, comté de Fresno), publication 8001, UC Division of Agriculture and Natural Resources, 1997, page du comté de Ventura, [Budding and grafting citrus and avocados in the home garden](https://ucanr.edu/county/cooperative-extension-ventura-county/budding-and-grafting-citrus-and-avocados-home-garden) (soudure en 3-4 semaines au printemps, 6-8 à l'automne ; œil laissé à l'air sous le lien).
 - **Lévy 2026** : Laurent Lévy, greffeur d'agrumes et pépiniériste, *Greffeur d'agrumes*, tutoriels en photos publiés sur le site de sa pépinière (fente, anglaise, couronne, chip budding, semis et sélection des porte-greffes), [greffeurdagrumes.com](https://www.greffeurdagrumes.com/fr/content/6-comment-faire-une-greffe-en-fente), mis à jour d'octobre à novembre 2026. **Site commercial** (la pépinière vend porte-greffes et kits de greffage), écrit par un praticien : ni publication scientifique ni texte relu ; **sous droits** : faits seulement, reformulés, ni texte ni photo repris.
 - **Non relues** (citées par la synthèse « Techniques de greffe », référence complète non retrouvée) : revue *Fruits* 1982 (Cirad, placage d'œil) ; guide du service du développement rural de Polynésie française ;
-  Carimi 2001 (Italie, microgreffe et embryogenèse somatique) ; essai colombien 2022 sur orange 'Valencia' (minigreffe en fente).
+  essai colombien 2022 sur orange 'Valencia' (minigreffe en fente).
 - **UF/IFAS HS1329** : Albrecht U., Rossi L., Zekri M., *Citrus Nursery Production Guide, Chapter 6: Citrus Rootstock Propagation: Traditional Techniques and Recent Advances*, HS1329, University of Florida IFAS, août 2019 (fiche distincte de HS1309).
 - **UC Circ. 475** : Johnston J. C., Opitz K. W., Frolich E. F., *Citrus Propagation*, Circular 475, California Agricultural Experiment Station, University of California, 1959.
 - **Justo et al. 1998** : Justo E., Elisiário P., Jacquemond C., Leitão J., « Variety purity assessment of fifteen citrus rootstocks by isozymes prior to field trial implementation », *Fruits* 53 (5), 1998, p. 325-330 (chez 15 porte-greffes, plants nucellaires et zygotiques sans différence de hauteur ni de diamètre ; le tri à l'œil est presque inefficace).
@@ -437,11 +437,11 @@ Dans le plugin : chaque plant se saisit par « ＋ Plante », multiplication « 
 - **NSW DPI 2015** : Donovan, Tahir, Falivene et Khurshid, *Citrus budding in Pakistan*, fiche ASLP (NSW Department of Primary Industries / ACIAR), juillet 2015, libre de réutilisation avec attribution (chip budding, rabattre environ 2 cm au-dessus).
 - **AZ1146** : Wright G. C., *Budding citrus trees*, University of Arizona Cooperative Extension, AZ1146, février 2000 (rabattre à environ 2,5 cm au-dessus de l'œil ; ruban plastique ou bandes de caoutchouc couvrant tout l'œil, retirés à 2-3 semaines ; greffons gardés 3-4 semaines à 2-7 °C, sans geler).
 - **Alabama ANR-3275** : Kelley J., O'Neill M., *Citrus Budding: A Step-by-Step Guide*, ANR-3275, Alabama Cooperative Extension System, juillet 2026 (œil et pétiole laissés à l'air, ruban gardé 3 à 4 semaines ; greffons à 0-4 °C jusqu'à 2 semaines).
-- **Synthèse « Choisir sa greffe »**, fournie par l'utilisateur, sources **non relues ici** : NSW DPI, *Reworking citrus trees* (Sanderson, Falivene, Hardy, 2007),
+- **Synthèse « Choisir sa greffe »** (2026-11-05), sources lues par extraits par son auteur (le PDF NSW DPI en entier), **non relues ici** : NSW DPI, *Reworking citrus trees* (Sanderson, Falivene, Hardy, 2007),
   [PDF](https://dpird-web.matrix.squiz.cloud/__data/assets/pdf_file/0010/136675/Reworking-citrus-trees.pdf) ; UC ANR, topworking des agrumes, [page](https://ucanr.edu/node/153844), sans auteur ni date ;
   Carimi et al. 2001, CIHEAM *Options Méditerranéennes* B 33 (microgreffage, d'après Navarro et al. 1975), [PDF](https://ressources.ciheam.org/ressources/om/pdf/b33/02001694.pdf) ;
   UF/IFAS HS261, *Phytophthora* (Futch et Graham), [fiche](https://ask.ifas.ufl.edu/publication/HS261).
-- **HO-39** : Stoltz R. L., Strang J. G., *Reproducing Fruit Trees by Graftage: Budding and Grafting*, HO-39, University of Kentucky Cooperative Extension, revu en octobre 2005 (arbres fruitiers tempérés).
+- **HO-39** : Stoltz L. P., Strang J., *Reproducing Fruit Trees by Graftage: Budding and Grafting*, HO-39, University of Kentucky Cooperative Extension, revu en octobre 2005 (arbres fruitiers tempérés).
 - **P3402** : Wilson J., Porter W., Barickman C., *Basic Grafting Techniques*, Publication 3402, Mississippi State University Extension (arbres fruitiers tempérés).
 - **Oliveira et al. 2004** : Oliveira R. P., Scivittaro W. B., Vargas L. A., « Fita plástica e fita degradável na enxertia de citros », *Revista Brasileira de Fruticultura* 26 (3), 2004, p. 564-566 (résumé lu).
 - **Hayashi et al. 2012** : Hayashi S., Girardi E. A., Silva S. R., Stuchi E. S., Cantuarias-Avilés T., « Avaliação de fita fotodegradável para enxertia em mudas de citros », *Revista Brasileira de Fruticultura* 34 (2), 2012, p. 641-645, doi 10.1590/S0100-29452012000200042 (texte complet lu ; 'Valência' sur limettier Rangpur et citrumelo Swingle, Bebedouro, 2009 ; tableau 2).

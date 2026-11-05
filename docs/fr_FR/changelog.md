@@ -2,6 +2,7 @@
 
 ## 0.30 (2026-11-05)
 - « Greffer… » : champ **Lien de la greffe** (ruban de polyéthylène, élastique, Parafilm, ruban qui se dégrade à la lumière, seul ou tenu par un élastique, raphia ou ficelle cirée), noté au journal ; la question du contrôle J+21 en dépend (retirer le ruban ou l'élastique, rien à retirer pour un film qui se dégrade, couper le raphia).
+- Notice (relecture R19) : chip seul quand l'écorce ne se décolle pas ; T inversé seul, le plus employé en Floride ; faits non vérifiés du tableau des types retirés ou marqués (minigreffe, microgreffe, chip inversé, placage) ; HO-39 (Stoltz L. P., toile cirée à 3 mois, pointes avec P3402) ; greffons de 20 à 25 cm, jusqu'à 30 ; forçage sourcé ; hauteur du point de greffe INRAE contre Curk ; corne : calcul par semaine expliqué ; auteurs de J. Econ. Entomol. 2019 ; « déduction du plugin » dans les noms.
 
 ## 0.29 (2026-11-04)
 - Collection **Greffes** : « Greffer… » y range le porte-greffe tant que la greffe est en cours ; un œil parti, la plante greffée va dans la collection choisie pour le greffon ; greffe morte, le porte-greffe retourne dans sa collection d'origine. Créée à la première greffe ; à la mise à jour, les greffes en cours y sont rangées.

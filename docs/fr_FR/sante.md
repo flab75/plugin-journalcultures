@@ -199,7 +199,7 @@ Saison de *Panonychus citri* : l'hiver en Tunisie (Chouikhi 2022, **une seule so
 **Gestes** :
 - surveiller les pousses tendres au moment des poussées ; sur pomelo (*C. ×paradisi*), il est rarement nécessaire d'intervenir (Brun 1990, **une seule source**) ;
 - favoriser les auxiliaires (coccinelles, surtout les petites *Scymnus*, chrysopes, syrphes) : la taille et la durée des colonies dépendent de la date d'arrivée des prédateurs,
-  il faut qu'ils soient là **dès les premières colonies** (Gómez-Marco 2016, J. Econ. Entomol. 2019).
+  il faut qu'ils soient là **dès les premières colonies** (Gómez-Marco 2016 ; Bouvet et al. 2019, J. Econ. Entomol. : même équipe, **une seule source**).
 
 ### Fumagine
 **Priorité 6.** Des champignons noirs qui poussent sur le miellat d'un insecte ; ils salissent et freinent la photosynthèse, mais n'attaquent pas la feuille.
@@ -352,8 +352,8 @@ Lues en entier, sauf : Whiteside 1971, El-Hamalawi et Menge 1994, Liu et Stansly
 - **Étude turque 1996** : connue seulement par la fiche « Agrumes — vérification des sources », référence complète non retrouvée.
 - **EFSA 2018** : EFSA Panel on Plant Health, *Pest categorisation of Aleurocanthus spp.*, *EFSA Journal* 16(10):e05436.
 - **El-Hamalawi et Menge 1994** : *Plant Disease* 78:700 (avocatier).
-- **Gómez-Marco 2016** : Gómez-Marco F. et al., *J. Pest Sci.* 89:69-79.
-- **J. Econ. Entomol. 2019** : micro-coccinelles *Scymnus* et pucerons des agrumes ; auteurs non relevés (à compléter) : si c'est l'équipe de Gómez-Marco 2016, les deux ne comptent que pour une source.
+- **Gómez-Marco 2016** : Gómez-Marco F., Tena A., Jaques J. A., Urbaneja A., « Early arrival of predators controls *Aphis spiraecola* colonies in citrus clementines », *J. Pest Sci.* 89:69-79, doi 10.1007/s10340-015-0668-9.
+- **J. Econ. Entomol. 2019** : Bouvet J. P. R., Urbaneja A., Monzó C., « Effects of Citrus Overwintering Predators, Host Plant Phenology and Environmental Variables on Aphid Infestation Dynamics in Clementine Citrus », *J. Econ. Entomol.* 112 (4), 2019, p. 1587-1597, doi 10.1093/jee/toz101 (résumé lu) : micro-coccinelles *Scymnus*. Même institut (IVIA) et un auteur commun (Urbaneja) avec Gómez-Marco 2016 : les deux ne comptent que pour **une seule source**.
 - **Kasap 2009** : Kasap İ., *Turkish J. Agric. For.* 33:593-600.
 - **Liu et Stansly 2000** : *Pest Management Science* 56:861.
 - **Migheli 2009** : Migheli Q. et al., *Plant Disease* 93:852-867.
