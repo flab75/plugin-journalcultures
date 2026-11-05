@@ -1,6 +1,17 @@
 <?php
 /* Calculs du journal de cultures : fonctions pures (pas de base, pas de réseau), testées par tests/selftest.php. */
 class journalcultures_calc {
+  /* ---------- étiquettes : code court de chaque plante et QR qui ouvre sa fiche ---------- */
+  const QR_ALPHA = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ'; // sans 0/O ni 1/I : se recopie à la main sous le QR
+  public static function qrCode($v) { return is_string($v) && preg_match('/^[2-9A-HJ-NP-Z]{5}$/D', $v) === 1; }
+  public static function qrNeuf() { $c = ''; for ($i = 0; $i < 5; $i++) $c .= self::QR_ALPHA[random_int(0, 31)]; return $c; }
+  public static function qrSvg($txt) { // bacon/bacon-qr-code est fourni par le core de Jeedom (double authentification) ; correction M, ISO-8859-1 : pas d'en-tête ECI
+    $m = \BaconQrCode\Encoder\Encoder::encode($txt, \BaconQrCode\Common\ErrorCorrectionLevel::M(), 'ISO-8859-1')->getMatrix();
+    $n = $m->getWidth(); $d = ''; $w = $n + 8; // marge de 4 modules exigée par la norme
+    for ($y = 0; $y < $n; $y++) for ($x = 0; $x < $n; $x++) if ($m->get($x, $y) == 1) $d .= "M$x,{$y}h1v1h-1z";
+    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="-4 -4 ' . $w . ' ' . $w . '" shape-rendering="crispEdges"><rect x="-4" y="-4" width="' . $w . '" height="' . $w . '" fill="#fff"/><path d="' . $d . '" fill="#000"/></svg>';
+  }
+
   const ACTIONS = ['Semis', 'Repiquage', 'Plantation', 'Rempotage', 'Taille', 'Greffe', 'Récolte', 'Arrosage', 'Engrais', 'Traitement',
     'Déplacement', 'Mesure', 'Observation', 'Travail du sol', 'Autre'];
   const ELEMENTS = ['racine', 'feuille', 'fleur', 'fruit']; // catégories de Sélénoculture

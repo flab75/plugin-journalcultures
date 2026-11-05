@@ -47,6 +47,12 @@ Cocher « Page plein écran dans le menu Accueil » dans la configuration du plu
 sur grand écran la fiche s'ouvre à côté de la liste. Champ « Chercher une plante… », colonnes Porte-greffe et Dernière mesure en plus de la tuile.
 Relue toutes les 5 minutes (bouton ↻ pour tout de suite).
 
+## Étiquettes à QR code
+**Étiquettes** (tuile ou page plein écran, administrateurs) : une planche à imprimer pour les plantes cochées, toutes si aucune n'est cochée. Chaque étiquette porte un QR code, le nom, le nom botanique et un code de 5 caractères propre à la plante.
+- Scanné avec l'appareil photo du téléphone, le QR ouvre la fiche de la plante dans la page plein écran (connexion à Jeedom demandée si le navigateur n'est pas connecté). Il pointe vers l'adresse externe de Jeedom (Réglages → Système → Configuration → Réseaux), l'interne à défaut.
+- Le code ne change pas quand la plante est renommée, déplacée ou greffée ; il suit la plante à l'export et à l'import (refait seulement s'il est déjà pris sur la box qui importe : réimprimer l'étiquette).
+- Imprimer sans mise à l'échelle : le QR fait 3,2 cm, assez pour un téléphone à 15-20 cm. Une étiquette dehors demande un support qui tient à l'eau et au soleil.
+
 ## Fiche d'une plante
 La fiche se modifie dans la page du plugin (équipement de la plante) ; l'onglet Fiche de la tuile l'affiche.
 - **Nom botanique** : vérifié auprès de GBIF à l'enregistrement (nom retenu, famille, statut).

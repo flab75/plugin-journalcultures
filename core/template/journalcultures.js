@@ -614,8 +614,27 @@ if (!window.journalcultures || window.journalcultures.v !== 37) (function () { /
     }]])
   }
 
+  // planche d'étiquettes dans un nouvel onglet, à imprimer ; QR = lien vers la fiche (page plein écran, &jdc=code)
+  function etiquettes(ids) {
+    var w = window.open('', '_blank') // ouvert pendant le clic, sinon le navigateur le bloque
+    if (!w) return
+    w.document.write('<p>…</p>')
+    ajax('etiquettes', {plantes: JSON.stringify(ids)}, function (l) {
+      w.document.open()
+      w.document.write('<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>' + "{{Étiquettes}}" + '</title><style>' +
+        'body{font-family:Georgia,serif;margin:10mm;color:#000;background:#fff}.bt{margin-bottom:6mm}' +
+        '.g{display:flex;flex-wrap:wrap;gap:3mm}.e{width:42mm;border:1px dashed #999;padding:2mm;text-align:center;break-inside:avoid}' +
+        '.e svg{width:32mm;height:32mm;display:block;margin:0 auto}.e b{display:block;font-size:11pt;line-height:1.15}.e i{display:block;font-size:8.5pt}.e small{font:8pt monospace;color:#444}' +
+        '@media print{.bt{display:none}body{margin:0}@page{margin:10mm}}</style></head><body>' +
+        '<div class="bt"><button onclick="print()">' + "{{Imprimer}}" + '</button> ' + l.length + ' ' + "{{étiquette(s) ; QR de 3,2 cm, à imprimer sans mise à l'échelle.}}" + '</div><div class="g">' +
+        l.map(function (e) { return '<div class="e">' + e.svg + '<b>' + esc(e.nom) + '</b>' + (e.bota ? '<i>' + esc(e.bota) + '</i>' : '') + '<small>' + esc(e.qr) + '</small></div>' }).join('') +
+        '</div></body></html>')
+      w.document.close()
+    }, function (er) { w.document.body.textContent = er })
+  }
+
   // opt.panel : colonnes en plus (porte-greffe, dernière mesure), masquées sur téléphone
-  window.journalcultures = {v: 37, notice: notice, ajax: ajax, esc: esc, nb: nb, init: function (b, d, opt) {
+  window.journalcultures = {v: 38, notice: notice, ajax: ajax, esc: esc, nb: nb, ouvrir: plante, init: function (b, d, opt) {
     if (!b) return
     d.apres = opt && opt.apres // relu par « Greffer… » (fiche)
     var pa = opt && opt.panel
@@ -628,7 +647,7 @@ if (!window.journalcultures || window.journalcultures.v !== 37) (function () { /
           '<td' + (p.alerte == 1 ? ' class="al"' : '') + (p.raison ? ' title="' + esc(p.raison) + '"' : '') + '>' + esc(p.nom) + (p.gr ? ' <span class="jdc-gr jdc-gr-' + esc(p.gr.s) + '" title="' + esc(p.gr.t) + '">' + ({attente: '⏳ ' + "{{greffe en attente}}", probable: '✓ ' + "{{greffe prise ?}}", dormant: '❄ ' + "{{œil dormant}}", pousse: '🌿 ' + "{{greffon pousse}}"}[p.gr.s] || "{{greffe}}") + '</span>' : '') + (p.alerte == 1 || p.raison ? ' <span class="al" aria-hidden="true">⚠</span><span class="jdc-sr">' + (p.alerte == 1 ? "{{en alerte}}" : '') + (p.raison ? ' : ' + esc(p.raison) : '') + '</span>' : '') + '</td>' + (gc ? '<td>' + (p.gr && p.gr.g ? esc(p.gr.g) + (p.gr.m ? ' <span class="jdc-gs" title="' + "{{greffon pris sur une de nos plantes}}" + '">🏡 ' + "{{collection}}" + '</span>' : ' <span class="jdc-gs jdc-gi" title="' + "{{greffon venu d'ailleurs}}" + '">📦 ' + "{{introduit}}" + '</span>') : '–') + '</td>' : '') + (pa ? '<td class="xs">' + esc(p.pg || '–') + '</td>' : '') + '<td>' + esc(p.empl || '–') + '</td><td class="n">' + nb(p.t, '°') + '</td>' +
           '<td class="n">' + nb(p.reff, '°') + '</td>' + (pa ? '<td class="xs">' + esc(p.mes || '–') + '</td>' : '') + '<td>' + (p.engrais ? '<span title="' + esc(p.engrais) + '" role="img" aria-label="' + "{{Engrais à donner}}" + ' : ' + esc(p.engrais) + '">🌱</span>' + (d.admin == 1 ? ' <button type="button" class="jb jdc-eng" title="' + "{{Engrais donné}}" + '" aria-label="' + "{{Engrais donné}}" + '">✓</button>' : '') : '') + '</td></tr>'
       }).join('') + '</table>' + (d.plantes.length ? '' : '<p>' + "{{Aucune plante : « ＋ Plante » pour en ajouter.}}" + '</p>') +
-      '<div class="jdc-bt">' + (d.admin == 1 ? '<button type="button" class="jb" data-b="nouvelle">＋ ' + "{{Plante}}" + '</button><button type="button" class="jb" data-b="noter">＋ ' + "{{Noter}}" + '</button><button type="button" class="jb" data-b="deplacer">' + "{{Déplacer…}}" + '</button>' : '') + '<button type="button" class="jb" data-b="journal">' + "{{Journal}}" + '</button></div>'
+      '<div class="jdc-bt">' + (d.admin == 1 ? '<button type="button" class="jb" data-b="nouvelle">＋ ' + "{{Plante}}" + '</button><button type="button" class="jb" data-b="noter">＋ ' + "{{Noter}}" + '</button><button type="button" class="jb" data-b="deplacer">' + "{{Déplacer…}}" + '</button><button type="button" class="jb" data-b="etiquettes" title="' + "{{Étiquettes à QR code des plantes cochées (toutes si aucune)}}" + '">' + "{{Étiquettes}}" + '</button>' : '') + '<button type="button" class="jb" data-b="journal">' + "{{Journal}}" + '</button></div>'
 
     var tt = b.querySelector('.jdc-tt'), mem = coches[d.id] || (coches[d.id] = {})
     b.querySelectorAll('.jdc-ck').forEach(function (c) { c.checked = !!mem[c.value]; c.onchange = function () { mem[c.value] = c.checked } })
@@ -651,6 +670,7 @@ if (!window.journalcultures || window.journalcultures.v !== 37) (function () { /
       a.onclick = function () {
         if (a.dataset.b == 'nouvelle') return nouvelle(d, opt && opt.apres)
         var ids = cochees(b)
+        if (a.dataset.b == 'etiquettes') return etiquettes(ids.length ? ids : d.plantes.map(function (p) { return p.id }))
         if (a.dataset.b == 'journal') return fenetre("{{Journal}}", [['j', "{{Toutes les plantes}}", function charger(ct) {
           ajax('journal', {id: d.id}, function (l) { ct.innerHTML = tableJournal(d, l, true); brancherSuppr(ct, function () { charger(ct) }) }, erreur(ct))
         }]])

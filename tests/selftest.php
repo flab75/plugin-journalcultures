@@ -5,6 +5,8 @@ require_once __DIR__ . '/../core/class/journalcultures.class.php';
 $ok = function ($v, $m) { if (!$v) { echo "ECHEC : $m\n"; exit(1); } }; // assert() est désactivé en production
 $C = 'journalcultures_calc';
 
+$ok($C::qrCode('K7M2Q') && !$C::qrCode('K7M2') && !$C::qrCode('K0M2Q') && !$C::qrCode("K7M2Q\n") && $C::qrCode($C::qrNeuf())
+  && strpos($C::qrSvg('https://zola77.ddns.net/index.php?v=d&m=journalcultures&p=panel&jdc=K7M2Q'), 'viewBox="-4 -4 45 45"') !== false, 'étiquettes QR (lien de 73 caractères = 37 modules)');
 $ok($C::nombre('−7 (FA5)') === -7.0 && $C::nombre('-6,5') === -6.5 && $C::nombre('– 15') === -15.0 && $C::nombre('') === null && $C::nombre('?') === null, 'nombre');
 $ok($C::rusticite('-16', ['pleine_terre' => true]) === -16.0, 'pleine terre : pas de pénalité');
 $ok($C::rusticite('-16', ['diam' => 40, 'haut' => 35, 'terre' => 30]) === -12.7, 'pot 40 × 30 : +3,3 °C');  // e = 15 cm, 50 / 15

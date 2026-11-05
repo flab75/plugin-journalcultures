@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.32 (2026-11-05)
+- **Étiquettes à QR code** : bouton « Étiquettes » de la tuile et de la page plein écran ; le QR ouvre la fiche de la plante (code de 5 caractères gardé à l'export/import). QR dessiné avec bacon/bacon-qr-code, déjà fourni par le core de Jeedom.
+
 ## 0.31 (2026-11-05)
 - **Froid du lieu** : nuits les plus froides des 30 derniers hivers autour de la box (ou de la position saisie pour la serre), d'après les stations Météo-France à moins de 30 km (data.gouv.fr, Licence Ouverte 2.0) : repères 1 hiver sur 10, 1 sur 5, moyenne, jours de gel, dates du dernier −2 °C et du premier −5 °C ; dans la fiche, combien de ces hivers auraient gelé la plante dehors. Calcul une fois par an ou quand la position change ; bouton « Froid du lieu » sur la page du plugin.
 

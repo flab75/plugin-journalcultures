@@ -52,7 +52,17 @@ if (!isConnect()) throw new Exception('{{401 - Accès non autorisé}}');
     if (c) J.init(P.querySelector('.jdc'), c, {panel: 1, apres: charger}); else P.querySelector('.jdc').textContent = "{{Aucune collection visible.}}"
     filtrer()
   }
-  function charger() { J.ajax('page', {}, function (d) { data = d; rendre() }, function (er) { P.querySelector('.jdc').textContent = er }) }
+  var code = new URLSearchParams(location.search).get('jdc') // étiquette scannée : ouvrir la fiche de cette plante
+  function charger() { J.ajax('page', {}, function (d) {
+    data = d
+    if (!code) return rendre()
+    var c = null, p = null
+    d.collections.forEach(function (x) { x.plantes.forEach(function (y) { if (y.qr === code) { c = x; p = y } }) })
+    if (c) { sel = String(c.id) }
+    rendre()
+    if (c) J.ouvrir(c, p.id); else P.querySelector('.jdc-liste').insertAdjacentHTML('afterbegin', '<p class="jdc-er">' + "{{Étiquette inconnue :}}" + ' ' + J.esc(code) + ' ' + "{{(plante supprimée, désactivée, ou d'une collection que vous ne voyez pas).}}" + '</p>')
+    code = null
+  }, function (er) { P.querySelector('.jdc').textContent = er }) }
   q.oninput = filtrer
   P.querySelector('#jdc-maj').onclick = charger
   P.querySelector('#jdc-not').onclick = function () { J.notice('index') }

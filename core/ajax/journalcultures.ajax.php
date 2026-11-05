@@ -63,6 +63,11 @@ try {
     foreach ($cs as $c) $c->maj();
     ajax::success(count($maj ?: [1]));
   }
+  if ($a == 'etiquettes') {
+    $ids = array_values(array_filter($liste('plantes'), 'is_numeric'));
+    if (!$ids || count($ids) > 200) throw new Exception(__('Choisir entre 1 et 200 plantes', __FILE__));
+    ajax::success(journalcultures::etiquettes(array_map(function ($id) use ($eq) { return $eq($id, 'plante'); }, $ids)));
+  }
   if ($a == 'supprimer') {
     $p = journalcultures::supprimerEntree(init('entree'));
     if (is_object($p) && $p->getIsEnable()) $p->maj();

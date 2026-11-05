@@ -62,6 +62,8 @@ class journalcultures extends eqLogic {
     $old = $this->getId() ? self::byId($this->getId()) : null;
     $this->_ancColl = is_object($old) && ($old->getConfiguration('collection') != $this->getConfiguration('collection') || $this->type() != 'plante') ? $old->collection() : null;
     if ($this->type() != 'plante') return;
+    $qr = $this->getConfiguration('qr'); // code de l'étiquette : gardé à l'export/import, refait s'il est déjà pris (import d'une plante d'une autre box)
+    if (!journalcultures_calc::qrCode($qr) || self::qrPris($qr, $this->getId())) { do $qr = journalcultures_calc::qrNeuf(); while (self::qrPris($qr, $this->getId())); $this->setConfiguration('qr', $qr); }
     foreach (array_merge(array_keys(self::FICHE), ['engrais', 'pot_diam', 'pot_haut', 'pot_terre', 'date_mult']) as $k) { // configuration en utf8mb3 : un émoji ferait échouer la sauvegarde
       if (is_string($v = $this->getConfiguration($k))) $this->setConfiguration($k, preg_replace('/[\x{10000}-\x{10FFFF}]/u', '', $v) ?? '');
     }
@@ -574,6 +576,22 @@ class journalcultures extends eqLogic {
     return (int)$this->getId();
   }
 
+  private static function qrPris($qr, $id) {
+    foreach (self::byType('journalcultures') as $e) if ($e->getId() != $id && $e->getConfiguration('qr') === $qr) return true;
+    return false;
+  }
+  public static function etiquettes(array $pl) { // [plante] → étiquettes à imprimer ; le QR ouvre la fiche dans la page plein écran
+    $base = rtrim(network::getNetworkAccess('external') ?: network::getNetworkAccess('internal'), '/');
+    if ($base === '') throw new Exception(__('Adresse de Jeedom inconnue : la renseigner dans Réglages → Système → Configuration → Réseaux', __FILE__));
+    $r = [];
+    foreach ($pl as $p) {
+      if (!journalcultures_calc::qrCode($p->getConfiguration('qr'))) { self::$_sansGbif = true; $p->save(); } // plante d'avant les étiquettes : code créé à la première
+      $qr = $p->getConfiguration('qr');
+      $r[] = ['nom' => $p->getName(), 'bota' => trim((string)$p->getConfiguration('bota')), 'qr' => $qr, 'svg' => journalcultures_calc::qrSvg($base . '/index.php?v=d&m=journalcultures&p=panel&jdc=' . $qr)];
+    }
+    return $r;
+  }
+
   /* ---------- export / import : fiches des plantes, leur journal et le catalogue des produits ---------- */
   // ponytail: ni photos (trop lourdes pour un JSON), ni historiques des sondes, ni entrées libres des collections ; à ajouter si une box doit être reprise à l'identique
   const EXPORT_SAUF = ['collection', 'type', 'ident', 'greffe_coll']; // id propres à cette box ; ident recalculé à l'enregistrement
@@ -1052,7 +1070,7 @@ class journalcultures extends eqLogic {
       $pl[] = ['id' => $p->getId(), 'nom' => $p->getName(), 'empl' => $p->valeur('emplacement'), 't' => $sonde && !$m ? $p->valeur('temperature') : null, 'muette' => $m,
         'reff' => $rust ? $p->valeur('rusticite') : null,
         'alerte' => $p->valeur('alerte'), 'raison' => $p->valeur('raison'), 'engrais' => $p->valeur('engrais'), 'rust' => $p->getConfiguration('rusticite'),
-        'pg' => (string)$p->getConfiguration('porte_greffe'), 'mes' => $mes[$p->getId()] ?? '', 'gr' => $p->enGreffe()];
+        'pg' => (string)$p->getConfiguration('porte_greffe'), 'mes' => $mes[$p->getId()] ?? '', 'gr' => $p->enGreffe(), 'qr' => (string)$p->getConfiguration('qr')];
     }
     return ['id' => $this->getId(), 'nom' => $this->getName(), 'plantes' => $pl, 'emplacements' => array_keys(self::emplacements()), 'admin' => isConnect('admin') ? 1 : 0,
       'actions' => array_map(function ($a) { return __($a, __FILE__); }, journalcultures_calc::ACTIONS), 'actionsCle' => journalcultures_calc::ACTIONS];
