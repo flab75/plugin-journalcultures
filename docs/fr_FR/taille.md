@@ -11,10 +11,10 @@ Ce que le plugin transpose au pot sans source est écrit **déduction**. Référ
 
 - Un agrume se taille **peu** : la taille est une agression, à garder la plus légère possible (Curk 2022) ; la récolte baisse à peu près comme le feuillage enlevé (UF/IFAS CMG16) ; un jeune arbre taillé fort fructifie plus tard (Matias 2023, UF/IFAS CMG16).
 - **Quand** : au **printemps**, après les gelées, avant la floraison ; en région froide, de fin mars à fin avril (Curk 2022, Matias 2023, UF/IFAS CMG16). Pour un pot hiverné à l'abri : à la sortie de l'abri.
-- **Jamais en automne** : la repousse tendre gèle (Curk 2022, Matias 2023, UF/IFAS CMG16).
-- **Toujours** : enlever les pousses du porte-greffe et le bois mort (Curk 2022, Matias 2023, UF/IFAS CMG16).
-- **Comment** : couper net, à la base ou au-dessus d'une branche, sans chicot, avec un outil propre et désinfecté (Curk 2022, Matias 2023, UF/IFAS CMG16).
-- **Après un gel** : attendre la reprise pour voir le bois mort, puis le couper (Curk 2022, Matias 2023).
+- **Pas de vraie taille à l'automne** : la repousse tendre gèle (Curk 2022, Matias 2023) ; UF/IFAS CMG16 tolère une taille légère jusqu'au début de l'automne, mais pas de taille moyenne ou forte avant l'hiver là où il gèle.
+- **Toujours** : enlever les pousses du porte-greffe et le bois mort (Curk 2022, Matias 2023).
+- **Comment** : couper net, au ras du bourrelet sans laisser de chicot (Curk 2022, Matias 2023) ou juste au-dessus d'une branche ou d'un bourgeon (UF/IFAS CMG16), avec un outil désinfecté (Curk 2022, UF/IFAS CMG16).
+- **Après un gel** : attendre la reprise pour voir le bois mort, puis le couper (Curk 2022 et Praloran 1964, même organisme : **une seule source**).
 
 ## Pourquoi tailler peu
 
@@ -57,13 +57,15 @@ Les sources ne donnent **pas de chiffre** valable pour un arbre en pot.
 
 | Taille | Feuillage enlevé | Usage, en verger |
 |---|---|---|
-| Légère | 10 % | entretien ; année de petite récolte d'un arbre alternant |
-| Moyenne | 20 % | entretien ; moins de tavelure, de mélanose et de chancre dans un essai |
-| Forte | 30 % | entretien d'un arbre vigoureux ; année de grosse récolte d'un arbre alternant |
+| Légère | 10 % | entretien annuel d'un arbre vigoureux ; année de petite récolte d'un arbre alternant |
+| Normale | 20 % | entretien ; moins de tavelure, de mélanose et de chancre dans un essai sur mandarinier (*C. reticulata*) |
+| Forte | 30 % | éclairer l'intérieur, renouveler une partie de l'arbre ; année de forte floraison d'un arbre alternant |
 | Très forte | 50 % | rénovation d'un vieil arbre, **jamais** pour l'entretien |
 
+Tableau repris par Matias 2023 d'un manuel espagnol (Rodríguez et Villalba 1998, Generalitat Valenciana).
+
 - Formation d'un jeune arbre : **moins de 25 %** (Matias 2023, **une seule source**).
-- Rajeunir un vieil arbre peut aller au-delà de 50 %, au prix d'une ou plusieurs récoltes (Matias 2023, **une seule source**). La règle « jamais plus de 50 % » parfois lue ne vient pas de ces sources.
+- Rajeunir un vieil arbre peut aller au-delà de 50 % (Matias 2023, **une seule source**) ; on y perd sans doute une ou plusieurs récoltes (**déduction**). La règle « jamais plus de 50 % » parfois lue ne vient pas de ces sources.
 - **En pot (déduction)** : s'en tenir à la taille légère, le volume restant presque le même.
 
 ## Jeune plant
@@ -77,16 +79,16 @@ Les sources ne donnent **pas de chiffre** valable pour un arbre en pot.
 
 ## Gourmands et pousses du porte-greffe
 
-- **Pousses du porte-greffe** (sous le point de greffe) : toujours les enlever (Curk 2022, Matias 2023, UF/IFAS CMG16), au moins une fois par an, à la main tant qu'elles sont tendres (Curk 2022). Elles détournent la sève et le greffon peut dépérir (Curk 2022). Pour les reconnaître : [Identification](identification.md#porte-greffes-et-rejets).
+- **Pousses du porte-greffe** (sous le point de greffe) : toujours les enlever (Curk 2022, Matias 2023 ; UF/IFAS CMG16 parle seulement des pousses du tronc des jeunes arbres), au moins une fois par an, à la main tant qu'elles sont tendres (Curk 2022). Elles détournent la sève et le greffon peut dépérir (Curk 2022). Pour les reconnaître : [Identification](identification.md#porte-greffes-et-rejets).
 - **Gourmands** (pousses verticales très vigoureuses) : ils pompent la sève (Curk 2022) ; les enlever à la main dès qu'ils sortent, tant qu'ils sont tendres (Matias 2023) ; chez le clémentinier, ne pas les laisser partir, ou les arquer (Curk 2022). Sur le citronnier, chaque coupe fait partir des gourmands (Curk 2022).
 
 ## Comment couper
 
 ![Où couper une branche](../images/taille-coupe.svg)
 
-*Fig. T1 – Où couper : A, au ras du bourrelet, sans l'abîmer ; B, chicot à éviter ; C, grosse branche en trois coupes ; D, raccourcir au-dessus d'une branche de côté d'au moins un tiers du diamètre.*
+*Fig. T1 – Où couper : A, au ras du bourrelet, sans l'abîmer ; B, chicot à éviter ; C, grosse branche en trois coupes ; D, raccourcir au-dessus d'une branche de côté d'au moins un tiers du diamètre (Matias 2023 ; « au-dessus d'une branche ou d'un bourgeon » : UF/IFAS CMG16). Dessin pour ce plugin, MIT.*
 
-- **Sans chicot** : couper à la base de la branche, au ras du bourrelet (le léger renflement à sa base) sans l'entamer, ou juste au-dessus d'une branche ou d'un bourgeon (Curk 2022, Matias 2023, UF/IFAS CMG16). Le chicot meurt et la plaie ne se referme pas (Matias 2023).
+- **Sans chicot** : couper à la base de la branche, au ras du bourrelet (le léger renflement à sa base) sans l'entamer (Curk 2022, Matias 2023), ou juste au-dessus d'une branche ou d'un bourgeon (UF/IFAS CMG16). Le chicot meurt et la plaie ne se referme pas (Matias 2023).
 - **Ordre** : du centre vers l'extérieur et du bas vers le haut, en commençant par les grosses coupes ; éclaircir plutôt que raccourcir (Curk 2022, Matias 2023).
 - **Petites coupes** : éviter les coupes de plus de 2 cm de diamètre (Curk 2022, **une seule source**).
 - **Grosse branche en trois coupes** : entaille par-dessous, puis coupe un peu plus loin qui fait tomber la branche sans déchirer l'écorce, puis coupe finale au bourrelet (Matias 2023, **une seule source**).
@@ -98,7 +100,7 @@ Les sources ne donnent **pas de chiffre** valable pour un arbre en pot.
 - Chaque plaie est une **porte d'entrée** des maladies : *Phytophthora*, mal secco, bactériose (Curk 2022, Vogel 1990, Chapot 1963). Voir [Santé](sante.md).
 - Les petites plaies se referment seules (Matias 2023).
 - **Mastic : les sources divergent.** Matias 2023 le réserve aux grosses plaies ; Curk 2022, la source la plus récente du groupe Cirad, le dit souvent nuisible (il enferme les spores ; mastics au plomb ou au goudron de Norvège toxiques pour l'arbre) et ne l'emploie que sur les coupes de plus de 2 cm près du sol ; Praloran 1964 et Vogel 1990 mastiquaient les plaies. **Choix du plugin** : pas de mastic sur les petites coupes.
-- **Coups de soleil** : chauler (badigeon blanc) les branches mises à nu par une taille sévère (Curk 2022, UF/IFAS HS1309).
+- **Coups de soleil** : badigeon blanc (chaux, ou peinture latex diluée) sur les branches mises à nu par une taille sévère (Curk 2022, Matias 2023, UF/IFAS HS1309).
 
 ## Après la taille
 
@@ -112,12 +114,12 @@ Les sources ne donnent **pas de chiffre** valable pour un arbre en pot.
 
 ## Arbre alternant
 
-Certaines variétés donnent beaucoup une année, peu la suivante (alternance). Les fruits viennent sur des rameaux qui n'ont pas porté l'année d'avant : la taille sert à régler l'alternance (Curk 2022). En verger : taille plus forte (30 %) l'année de grosse récolte, légère (10 %) ou nulle l'année de petite récolte (Matias 2023, **une seule source** pour les chiffres).
+Certaines variétés donnent beaucoup une année, peu la suivante (alternance). Les fruits viennent sur des rameaux qui n'ont pas porté l'année d'avant : la taille sert à régler l'alternance (Curk 2022). Tailler après une petite récolte et avant une grosse (Matias 2023, UF/IFAS CMG16). En verger : taille forte (30 %) l'année de forte floraison, légère (10 %) ou nulle l'année de petite récolte (Matias 2023, **une seule source** pour les chiffres).
 
 ## Ce qui manque
 
 - **Aucune étude sur la taille d'un agrume en pot** n'a été trouvée, hors l'essai taïwanais sur le kumquat (NTU 2012) : le reste vient de vergers.
-- Les pourcentages de feuillage viennent d'essais en verger espagnols et italiens (Matias 2023) ; les résultats de la taille mécanique (Clemenules, Salustiana, Navel) ne concernent pas un arbre en pot et ne sont pas repris.
+- Les pourcentages de feuillage viennent d'un manuel espagnol pour le verger (Rodríguez et Villalba 1998, repris par Matias 2023) ; les résultats de la taille mécanique (Clemenules, Salustiana, Navel) ne concernent pas un arbre en pot et ne sont pas repris.
 
 ## Sources
 
@@ -128,5 +130,5 @@ Certaines variétés donnent beaucoup une année, peu la suivante (alternance). 
 - **Vogel 1990** (p. 269, Corse, même organisme que Curk 2022) et **Chapot 1963** : voir [Santé](sante.md#sources).
 - **UF/IFAS HS1309** et **HS982** : voir [Greffe](greffe.md#sources) et [Identification](identification.md#sources).
 - **NTU 2012** : Lin Yu-Huei, *Effect of Pruning and Temperature on Growth and Flowering of Kumquat (Fortunella margarita)*, mémoire de master, Université nationale de Taïwan (n° 6894), directeur Chen Iou-Zen, 2012 : pots de 10 pouces ; fleurs sur les pousses de juin à août ; aucune fleur l'année même après une taille d'août à octobre ; pas de fleurs sous 25 °C.
-- **Lu en résumé seulement** : Mesejo C. et al. 2020, taille et récolte de la mandarine 'Tango' (accès fermé, rien n'en est repris).
+- **Lu en résumé seulement** : Mesejo C. et al., « Mechanical pruning attenuates alternate bearing in 'Nadorcott' mandarin », *Scientia Horticulturae* 261, 108993, 2020, doi 10.1016/j.scienta.2019.108993 (taille mécanique, accès fermé, rien n'en est repris).
 - **Non lu** : Chueca P., Mateu G., Garcerá C., sur la taille mécanique (cité, non retrouvé).

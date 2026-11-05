@@ -191,7 +191,7 @@ Saison de *Panonychus citri* : l'hiver en Tunisie (Chouikhi 2022, **une seule so
 
 ![Puceron noir de l'oranger](../images/sante-puceron-noir.webp)
 
-*Fig. S11 – Puceron noir de l'oranger (Aphis aurantii, ancien Toxoptera aurantii) ; le trait mesure 1 mm. Photo Jesse Rorabaugh, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Toxoptera_aurantii.jpg), CC0 (domaine public).*
+*Fig. S11 – Puceron noir de l'oranger (Aphis aurantii, ancien Toxoptera aurantii). Photo Jesse Rorabaugh, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Toxoptera_aurantii.jpg), CC0 (domaine public).*
 
 
 **Gestes** :
