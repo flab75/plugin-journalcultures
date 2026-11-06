@@ -13,7 +13,7 @@ class journalcultures_calc {
   }
 
   const ACTIONS = ['Semis', 'Repiquage', 'Plantation', 'Rempotage', 'Taille', 'Greffe', 'Récolte', 'Arrosage', 'Engrais', 'Traitement',
-    'Déplacement', 'Mesure', 'Observation', 'Travail du sol', 'Autre'];
+    'Déplacement', 'Mesure', 'Observation', 'Photo', 'Travail du sol', 'Autre'];
   const ELEMENTS = ['racine', 'feuille', 'fleur', 'fruit']; // catégories de Sélénoculture
 
   // « −7 », « -6,5 », « -15 (FA5) » → -7.0, -6.5, -15.0 ; null si pas de nombre

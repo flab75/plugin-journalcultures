@@ -96,7 +96,7 @@ try {
   }
   if ($a == 'mesurer') ajax::success($eq(init('id'), 'plante')->mesurer($liste('mesures')));
   if ($a == 'photo_ajout') ajax::success($eq(init('id'), 'plante')->ajouterPhoto($_FILES['photo'] ?? []));
-  if ($a == 'photo_suppr') { $p = $eq(init('id'), 'plante'); unlink($p->photo(init('nom'))); @unlink(jeedom::getTmpFolder('journalcultures') . '/mini/' . $p->getId() . '_' . pathinfo(init('nom'), PATHINFO_FILENAME) . '.jpg'); ajax::success(); }
+  if ($a == 'photo_suppr') { $eq(init('id'), 'plante')->supprimerPhoto(init('nom')); ajax::success(); }
   if ($a == 'etiquette') { // photo de l'étiquette = une des photos de la plante ('' = aucune)
     $p = $eq(init('id'), 'plante'); $n = (string)init('nom');
     if ($n !== '') $p->photo($n);

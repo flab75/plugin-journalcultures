@@ -6,6 +6,7 @@ require_once __DIR__ . '/journalcultures_calc.class.php';
    un équipement « collection » par ensemble de plantes (la tuile), un journal unique en table (partagé avec Sélénoculture). */
 class journalcultures extends eqLogic {
   const TABLE = 'journalcultures_journal';
+  const PHOTOS = 'journalcultures_photo'; // une ligne par photo : plante, nom, chemin du fichier (depuis la racine de Jeedom)
   // fiche : clé de configuration => libellé
   const HIVER = '45-8'; // repos hivernal : novembre → février (hémisphère nord), choix du plugin
   const FICHE = ['bota' => 'Nom botanique', 'cultivar' => 'Cultivar', 'porte_greffe' => 'Porte-greffe', 'origine' => 'Origine',
@@ -155,6 +156,7 @@ class journalcultures extends eqLogic {
     if ($this->type() != 'plante') return;
     $this->_ancColl = $this->collection();
     if (!self::desinstallation()) DB::Prepare('DELETE FROM ' . self::TABLE . ' WHERE plante_id = ?', [$this->getId()], DB::FETCH_TYPE_ROW); // désinstallation : table gardée (install.php), entrées orphelines mais lisibles en base (nom de la plante) ; pour réinstaller : exporter avant
+    DB::Prepare('DELETE FROM ' . self::PHOTOS . ' WHERE plante_id = ?', [$this->getId()], DB::FETCH_TYPE_ROW); // les fichiers partent juste après
     $d = self::dossier($this->getId());
     if (is_dir($d)) { array_map('unlink', glob($d . '/*') ?: []); @rmdir($d); }
     array_map('unlink', glob(jeedom::getTmpFolder('journalcultures') . '/mini/' . (int)$this->getId() . '_*') ?: []); // vignettes
@@ -299,6 +301,21 @@ class journalcultures extends eqLogic {
       cree DATETIME NOT NULL, KEY plante (plante_id, date), KEY collection (collection_id), KEY date (date)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci', [], DB::FETCH_TYPE_ROW);
     if (!DB::Prepare('SHOW COLUMNS FROM ' . self::TABLE . ' LIKE \'valeurs\'', [], DB::FETCH_TYPE_ROW)) // 0.3 : valeurs des mesures (JSON)
       DB::Prepare('ALTER TABLE ' . self::TABLE . ' ADD valeurs TEXT NULL', [], DB::FETCH_TYPE_ROW);
+    DB::Prepare('CREATE TABLE IF NOT EXISTS ' . self::PHOTOS . ' (id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, plante_id INT NOT NULL,
+      nom VARCHAR(40) NOT NULL, chemin VARCHAR(255) NOT NULL, ajoute DATETIME NOT NULL, UNIQUE KEY plante_nom (plante_id, nom)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci', [], DB::FETCH_TYPE_ROW);
+    foreach (glob(__DIR__ . '/../../data/photos/*/*.{jpg,png,webp}', GLOB_BRACE) ?: [] as $f) // 0.34 : photos déjà sur le disque → en base (INSERT IGNORE : rejouable)
+      if (preg_match('/^\d{8}_\d{6}_[0-9a-f]{6}\.(jpg|png|webp)$/D', $n = basename($f)) && is_object($p = eqLogic::byId((int)basename(dirname($f)))) && $p->getEqType_name() == 'journalcultures'
+        && !DB::Prepare('SELECT id FROM ' . self::PHOTOS . ' WHERE plante_id = ? AND nom = ?', [$p->getId(), $n], DB::FETCH_TYPE_ROW))
+        try { $p->photoEnBase($n); } catch (Throwable $e) { log::add('journalcultures', 'error', $p->getHumanName() . ' : photo ' . $n . ' non reprise : ' . $e->getMessage()); }
+  }
+
+  // ligne de la table PHOTOS + entrée « Photo » au journal (chronologie de la plante), datées comme le nom (AAAAMMJJ_HHMMSS)
+  private function photoEnBase($nom) {
+    $t = DateTime::createFromFormat('Ymd_His', substr($nom, 0, 15));
+    DB::Prepare('INSERT INTO ' . self::PHOTOS . ' (plante_id, nom, chemin, ajoute) VALUES (?, ?, ?, ?)',
+      [$this->getId(), $nom, 'plugins/journalcultures/data/photos/' . (int)$this->getId() . '/' . $nom, $t->format('Y-m-d H:i:s')], DB::FETCH_TYPE_ROW);
+    self::inserer(['date' => $t->format('Y-m-d'), 'plante_id' => $this->getId(), 'plante' => $this->getName(), 'lieu' => (string)$this->getConfiguration('emplacement'),
+      'action' => 'Photo', 'note' => sprintf(__('Photo ajoutée (%s)', __FILE__), $nom)]);
   }
 
   private static function lune($date) { // lune de midi, si Sélénoculture est présent (même calcul)
@@ -380,15 +397,22 @@ class journalcultures extends eqLogic {
 
   private static function dossier($id) { return __DIR__ . '/../../data/photos/' . (int)$id; } // data/.htaccess : rien n'est servi directement
 
-  public function photos() {
-    $r = array_map('basename', glob(self::dossier($this->getId()) . '/*.{jpg,png,webp}', GLOB_BRACE) ?: []);
-    rsort($r); // noms datés : plus récentes d'abord
-    return $r;
+  public function photos() { // noms des photos de la plante (table PHOTOS), plus récentes d'abord
+    return array_column(DB::Prepare('SELECT nom FROM ' . self::PHOTOS . ' WHERE plante_id = ? ORDER BY ajoute DESC, nom DESC', [$this->getId()], DB::FETCH_TYPE_ALL) ?: [], 'nom');
   }
 
-  public function photo($nom) { // chemin d'une photo de la plante, nom contrôlé (pas de ../)
-    if (!preg_match('/^\d{8}_\d{6}_[0-9a-f]{6}\.(jpg|png|webp)$/D', (string)$nom) || !is_file($f = self::dossier($this->getId()) . '/' . $nom)) throw new Exception(__('Photo introuvable', __FILE__));
+  public function photo($nom) { // fichier d'une photo de la plante, d'après le chemin en base ; nom contrôlé (pas de ../)
+    $r = preg_match('/^\d{8}_\d{6}_[0-9a-f]{6}\.(jpg|png|webp)$/D', (string)$nom) ? DB::Prepare('SELECT chemin FROM ' . self::PHOTOS . ' WHERE plante_id = ? AND nom = ?', [$this->getId(), $nom], DB::FETCH_TYPE_ROW) : null;
+    if (!$r || !is_file($f = __DIR__ . '/../../../../' . $r['chemin'])) throw new Exception(__('Photo introuvable', __FILE__));
     return $f;
+  }
+
+  public function supprimerPhoto($nom) {
+    $f = $this->photo($nom);
+    DB::Prepare('DELETE FROM ' . self::PHOTOS . ' WHERE plante_id = ? AND nom = ?', [$this->getId(), $nom], DB::FETCH_TYPE_ROW);
+    self::inserer(['date' => date('Y-m-d'), 'plante_id' => $this->getId(), 'plante' => $this->getName(), 'lieu' => (string)$this->getConfiguration('emplacement'),
+      'action' => 'Photo', 'note' => sprintf(__('Photo supprimée (%s)', __FILE__), $nom)]);
+    @unlink($f); @unlink(jeedom::getTmpFolder('journalcultures') . '/mini/' . $this->getId() . '_' . pathinfo($nom, PATHINFO_FILENAME) . '.jpg');
   }
 
   /* Vignette JPEG de 400 px au plus (tuile, fiche) gardée dans le dossier temporaire de Jeedom, refaite si la photo est plus récente ;
@@ -428,6 +452,7 @@ class journalcultures extends eqLogic {
     if (!is_dir($d) && !mkdir($d, 0775, true)) throw new Exception(__('Dossier des photos impossible à créer', __FILE__));
     $nom = date('Ymd_His') . '_' . bin2hex(random_bytes(3)) . '.' . $ext;
     if (!move_uploaded_file($f['tmp_name'], $d . '/' . $nom)) throw new Exception(__('Envoi de la photo échoué', __FILE__));
+    try { $this->photoEnBase($nom); } catch (Throwable $e) { @unlink($d . '/' . $nom); throw $e; } // pas de fichier sans ligne
     return $nom;
   }
 

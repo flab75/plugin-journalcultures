@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.34 (2026-11-06)
+- Photos : chaque photo est enregistrée en base (table `journalcultures_photo` : plante, nom, chemin du fichier, date d'ajout). Les fichiers restent rangés par plante (`data/photos/<id de la plante>/`). Les photos déjà présentes sont reprises lors de la mise à jour.
+- Journal : nouvelle action **Photo**, notée automatiquement à chaque ajout ou suppression de photo. Les photos déjà présentes y sont ajoutées à leur date de prise, pour que la chronologie soit complète.
+
 ## 0.33 (2026-11-05)
 - Fiche : la rusticité effective affiche aussi la part du pot (« dont pot +6,3 °C »), qui dépend de sa taille.
 - Notice : nouvel onglet **Taille** (quand, combien, comment couper, jeune plant, gourmands et rejets, plaies, après un gel, kumquat), d'après Curk 2022, Matias 2023 (CC BY 4.0) et UF/IFAS CMG16 ; planche T1 « où couper une branche ». Santé : désaccord des sources sur la coupe des pousses minées signalé.

@@ -22,4 +22,5 @@ function journalcultures_update() {
 
 // ponytail: la table du journal est gardée à la désinstallation (des années de notes) ; DROP TABLE journalcultures_journal à la main si voulu
 function journalcultures_remove() {
+  DB::Prepare('DROP TABLE IF EXISTS ' . journalcultures::PHOTOS, [], DB::FETCH_TYPE_ROW); // les fichiers (data/photos) partent avec le plugin : leurs lignes aussi
 }
