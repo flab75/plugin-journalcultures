@@ -176,11 +176,11 @@ Les groupes de la colonne du milieu sont ceux du plugin. La colonne de droite di
 - Des **rejets nombreux** près de la greffe peuvent signaler une incompatibilité entre porte-greffe et greffon (Curk 2022, NSW DPI).
   Un pli au point de greffe, ou un porte-greffe qui grossit plus que le greffon, aussi (NSW DPI, **une seule source**).
   Mais sur Poncirus, un tronc en goulot de bouteille autour de la greffe est normal et sans danger (Curk 2022).
-  Ses fentes d'écorce laissent toutefois entrer les spores de Phytophthora chez une variété sensible : Curk conseille un point de greffe à 40 cm au moins au-dessus du sol, contre les éclaboussures (Curk 2022 p. 195, **une seule source** ; la fiche INRAE-Cirad dit 25 à 40 cm : même filiation, deux chiffres différents, voir [Greffe](greffe.md)).
+  Ses fentes d'écorce laissent toutefois entrer les spores de Phytophthora chez une variété sensible : Curk conseille un point de greffe à 40 cm au moins au-dessus du sol, contre les éclaboussures (Curk 2022 p. 195, **une seule source** ; hors goulot, Curk et la fiche INRAE-Cirad disent 25 cm au moins, jusqu'à 40 cm là où le Phytophthora est fréquent, p. 192 et 214 ; voir [Greffe](greffe.md)).
 
 ![Rejet du porte-greffe et goulot de bouteille](../images/id-rejet.svg)
 
-*Fig. I7 – Rejet à 3 folioles né sous le point de greffe, à couper (UF/IFAS HS1309) ; goulot de bouteille autour de la greffe, normal sur Poncirus avec la plupart des variétés, sans dépérissement ; ses fentes d'écorce laissent entrer les spores de Phytophthora chez une variété sensible, d'où une greffe à 40 cm au moins du sol (Curk 2022 p. 195, **une seule source**). Schéma dessiné pour ce plugin, MIT.*
+*Fig. I7 – Rejet à 3 folioles né sous le point de greffe, à couper (UF/IFAS HS1309) ; goulot de bouteille autour de la greffe, normal sur Poncirus avec la plupart des variétés, sans dépérissement ; ses fentes d'écorce laissent entrer les spores de Phytophthora chez une variété sensible, d'où une greffe à 40 cm au moins du sol (Curk 2022 p. 195, **une seule source**) ; ailleurs, Curk donne 25 cm au moins au-dessus du collet, jusqu'à 40 cm là où le Phytophthora est fréquent (p. 192 et 214). Rejet à ôter à la main tant qu'il est tendre, au sécateur s'il a grossi (Curk 2022, Wright et Kelly 2008 ; voir [Taille](taille.md)). Schéma dessiné pour ce plugin, MIT.*
 
 - Les pucerons installés sur les rejets du porte-greffe font craindre la tristeza (INRAE-Cirad, fiche technique porte-greffe, **une seule source**).
 - Distinguer un **Poncirus** d'un **hybride de Poncirus** par la seule feuille : le plugin reste souvent « Indécis ». Le feuillage persistant ou un mélange de 1 et 3 folioles orientent vers l'hybride (choix du plugin).

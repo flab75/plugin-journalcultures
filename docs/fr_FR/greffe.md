@@ -134,7 +134,7 @@ Tableaux d'après une synthèse du 2026-11-05, vérifiée dans HS1309, HO-39, P3
 Schémas dessinés pour ce plugin d'après le texte des deux fiches (pas à l'échelle). Pour les photos, voir HS1309 (fig. 5 à 8) ;
 pour les dessins d'origine, la fiche INRAE-Cirad (fig. 5 à 8). Les autres types n'ont pas de marche à suivre dans nos sources relues : voir les [dessins d'après Bailey](#autres-types--daprès-bailey).
 
-Pour tous : lame désinfectée avant chaque incision (HS1309, **une seule source**) ; point de greffe à 25-40 cm du collet, contre le *Phytophthora* (INRAE) ; 15-20 cm en Floride (HS1309) : les sources divergent, le plugin garde la plus haute ; Curk conseille, lui, 40 cm au moins (Curk 2022 p. 195) : même filiation (INRAE Corse), deux chiffres différents.
+Pour tous : lame désinfectée avant chaque incision (HS1309, **une seule source**) ; point de greffe à 25-40 cm du collet, contre le *Phytophthora* (INRAE) ; 15-20 cm en Floride (HS1309) : les sources divergent, le plugin garde la plus haute ; Curk donne la même fourchette : 25 cm au moins au-dessus du collet, jusqu'à 40 cm là où le *Phytophthora* est fréquent (Curk 2022 p. 192 et 214), et 40 cm au moins sur Poncirus, dont le goulot de bouteille se fendille (p. 195) : même filiation (INRAE Corse), pas deux sources indépendantes.
 
 ### Écusson (T et T inversé)
 
