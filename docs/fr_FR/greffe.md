@@ -376,7 +376,7 @@ Un contrôle dû remplit la commande « Greffe à contrôler », reprise par le 
 
 ![Fiche d'une greffe en attente](../images/greffe.webp)
 
-*Fig. G20 – Poncirus greffé d'un Yuzu il y a deux semaines : la plante reste le porte-greffe, avec le greffon en attente ; porte-greffe et greffon deviendront « Yuzu sur Poncirus n°2 » au débourrement d'un œil. On y voit le contrôle prévu le 12/11 (J+21), la question à se poser, l'avertissement de température (8,5 °C en moyenne sur 24 h, trop froid pour souder) et la rusticité effective, celle du greffon, plus fragile : 7,3 °C = −5 °C (Yuzu, rusticité estimée) + 6,3 °C pour le pot (Ø 18 cm, 16 cm de terre, voir la fig. M8<!-- rusticite -->) + 6 °C de jeunesse (greffon de l'année) ; l'écran affiche cette part (« dont pot »), qui dépend de la taille du pot : plus il est petit, plus elle monte, au maximum si la taille n'est pas saisie. Les boutons répondent au contrôle.*
+*Fig. G20 – Poncirus greffé d'un Yuzu il y a deux semaines : la plante reste le porte-greffe, avec le greffon en attente ; porte-greffe et greffon deviendront « Yuzu sur Poncirus n°2 » au débourrement d'un œil. On y voit le contrôle prévu le 12/11 (J+21), la question à se poser, l'avertissement de température (8,5 °C en moyenne sur 24 h, trop froid pour souder) et la rusticité effective, celle du greffon, plus fragile : 7,3 °C = −5 °C (Yuzu, rusticité estimée) + 6,3 °C pour le pot (Ø 18 cm, 16 cm de terre, voir la fig. M10<!-- rusticite -->) + 6 °C de jeunesse (greffon de l'année) ; l'écran affiche cette part (« dont pot »), qui dépend de la taille du pot : plus il est petit, plus elle monte, au maximum si la taille n'est pas saisie. Les boutons répondent au contrôle.*
 
 ## Température, hiver, engrais
 
