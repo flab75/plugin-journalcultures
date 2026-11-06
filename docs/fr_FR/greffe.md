@@ -183,10 +183,10 @@ Méthode occasionnelle, de fin de printemps, la mieux adaptée aux écorces trè
 
 ![Greffe en couronne](../images/greffe-couronne.svg)
 
-*Fig. G7 – Greffe en couronne. **Une seule fiche** décrit ces étapes (INRAE, **une seule source**). 1, couper le porte-greffe à 30 cm (Poncirus) ou 40 cm (citranges) du collet ; fendre l'écorce sur quelques centimètres depuis la coupe et la décoller. 2, greffon : petite baguette de 2 ou 3 yeux, bas taillé très finement en bec de flûte. 3, glisser le greffon sous l'écorce, ligaturer au raphia, couvrir les coupes de mastic ; sac plastique blanc ou papier paraffiné, retiré 15 jours plus tard. 4, sur un très gros porte-greffe (plus de 4 cm par exemple), poser deux ou trois greffons, d'au moins 3 yeux ; après chaque pousse, rabattre le moins vigoureux à 1 œil : il fait du cal et referme la plaie plus vite (Lévy 2026, site commercial d'un pépiniériste, **une seule source**). Pas à l'échelle. Dessin pour ce plugin, MIT.*
+*Fig. G7 – Greffe en couronne. **Une seule fiche** décrit ces étapes (INRAE, **une seule source**). 1, couper le porte-greffe à 30 cm (Poncirus) ou 40 cm (citranges) du collet ; fendre l'écorce sur quelques centimètres depuis la coupe et la décoller. Sur Poncirus, Curk 2022 (même groupe, p. 195) demande pourtant 40 cm au moins au-dessus du sol, à cause des fentes du goulot de bouteille : les deux chiffres diffèrent ; 30 cm suffit contre le Phytophthora (25 cm au moins, Curk p. 192), le plugin conseille 40 cm sur Poncirus, la plus haute. 2, greffon : petite baguette de 2 ou 3 yeux, bas taillé très finement en bec de flûte. 3, glisser le greffon sous l'écorce, ligaturer au raphia, couvrir les coupes de mastic ; sac plastique blanc ou papier paraffiné, retiré 15 jours plus tard. 4, sur un très gros porte-greffe (plus de 4 cm par exemple), poser deux ou trois greffons, d'au moins 3 yeux ; après chaque pousse, rabattre le moins vigoureux à 1 œil : il fait du cal et referme la plaie plus vite (Lévy 2026, site commercial d'un pépiniériste, **une seule source**). Pas à l'échelle. Dessin pour ce plugin, MIT.*
 
 Une seule fiche décrit ces étapes (INRAE, **une seule source**) :
-1. **Couper** le porte-greffe à 30 cm (Poncirus) ou 40 cm (citranges) du collet ; fendre l'écorce sur quelques centimètres depuis la coupe et la décoller.
+1. **Couper** le porte-greffe à 30 cm (Poncirus) ou 40 cm (citranges) du collet (INRAE) ; sur Poncirus, plutôt 40 cm, comme le demande Curk 2022 à cause du goulot (voir la fig. G7<!-- greffe-couronne -->) ; fendre l'écorce sur quelques centimètres depuis la coupe et la décoller.
 2. **Greffon** : petite baguette de 2 ou 3 yeux, bas taillé très finement en « bec de flûte » ; retailler légèrement ses bords.
 3. **Glisser** le greffon sous l'écorce, ligaturer au raphia, couvrir les coupes de mastic ; sac plastique blanc ou papier paraffiné, retiré 15 jours plus tard.
 
@@ -376,7 +376,7 @@ Un contrôle dû remplit la commande « Greffe à contrôler », reprise par le 
 
 ![Fiche d'une greffe en attente](../images/greffe.webp)
 
-*Fig. G20 – Poncirus greffé d'un Yuzu il y a deux semaines : la plante reste le porte-greffe, avec le greffon en attente ; porte-greffe et greffon deviendront « Yuzu sur Poncirus n°2 » au débourrement d'un œil. On y voit le contrôle prévu le 12/11 (J+21), la question à se poser, l'avertissement de température (8,5 °C en moyenne sur 24 h, trop froid pour souder) et la rusticité effective, celle du greffon, plus fragile. Les boutons répondent au contrôle.*
+*Fig. G20 – Poncirus greffé d'un Yuzu il y a deux semaines : la plante reste le porte-greffe, avec le greffon en attente ; porte-greffe et greffon deviendront « Yuzu sur Poncirus n°2 » au débourrement d'un œil. On y voit le contrôle prévu le 12/11 (J+21), la question à se poser, l'avertissement de température (8,5 °C en moyenne sur 24 h, trop froid pour souder) et la rusticité effective, celle du greffon, plus fragile : 7,3 °C = −5 °C (Yuzu, rusticité estimée) + 6,3 °C pour le pot (Ø 18 cm, 16 cm de terre, voir la fig. M8<!-- rusticite -->) + 6 °C de jeunesse (greffon de l'année) ; l'écran n'affiche pas la part du pot. Les boutons répondent au contrôle.*
 
 ## Température, hiver, engrais
 
