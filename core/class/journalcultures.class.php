@@ -191,10 +191,10 @@ class journalcultures extends eqLogic {
     $e = (string)$this->getConfiguration('emplacement'); $L = self::emplacements();
     $s = $L[$e] ?? ['', '', '']; $inconnu = $e !== '' && !isset($L[$e]); // renommé ou retiré de la configuration
     $t = self::lire($s[0]); $h = self::lire($s[1]); $tmin = self::lire($s[2], 36); // une prévision peut rester identique longtemps
-    [$reff, $est, $jeu] = $this->reff((array)$this->getConfiguration()); $dugf = false;
+    [$reff, $est, $jeu, $pp] = $this->reff((array)$this->getConfiguration()); $dugf = false;
     if (is_array($gf = $this->getConfiguration('greffe_greffon'))) { // greffon en attente : alerte réglée sur le plus fragile des deux (choix du plugin)
       $g = $this->reff($gf);
-      if ($g[0] !== null && ($reff === null || $g[0] > $reff)) { [$reff, $est, $jeu] = $g; $dugf = true; }
+      if ($g[0] !== null && ($reff === null || $g[0] > $reff)) { [$reff, $est, $jeu, $pp] = $g; $dugf = true; }
     }
     $al = journalcultures_calc::alerte($reff, $t, $tmin, self::reglage('marge', 3));
     $sans = trim($s[0]) === '' && trim($s[2]) === ''; // emplacement sans sonde (Maison…)
@@ -217,7 +217,7 @@ class journalcultures extends eqLogic {
       if (!array_filter($notes, function ($n) use ($prod) { return trim((string)$n['note']) === '' || preg_match('/(?<![\p{L}\d])' . preg_quote($prod, '/') . '(?![\p{L}\d])/iu', $n['note']); })) $eng[] = $lib; // ce produit (mot entier) ou un apport sans note, depuis la semaine prévue
     }
     while (count($eng) > 1 && mb_strlen(implode(' ; ', $eng)) > 120) array_pop($eng); // coupé au produit près : la note de la coche garde des noms entiers
-    return ['empl' => $e, 't' => $t, 'h' => $h, 'tmin' => $tmin, 'reff' => $reff, 'jeunesse' => $jeu, 'du_greffon' => $dugf, 'estimee' => $est, 'alerte' => $al['alerte'] ?? null, 'raison' => $al['raison'] ?? '',
+    return ['empl' => $e, 't' => $t, 'h' => $h, 'tmin' => $tmin, 'reff' => $reff, 'jeunesse' => $jeu, 'pot' => $pp, 'du_greffon' => $dugf, 'estimee' => $est, 'alerte' => $al['alerte'] ?? null, 'raison' => $al['raison'] ?? '',
       'engrais' => mb_substr(implode(' ; ', $eng), 0, 120), 'greffe' => ($g = $this->suiviGreffe()) ? implode(' ; ', array_filter([$g['du'] ? $g['question'] : '', $g['temp']])) : ''];
   }
 
@@ -929,13 +929,13 @@ class journalcultures extends eqLogic {
     return count($c);
   }
 
-  private function reff(array $c) { // [rusticité effective (pot, jeunesse), estimation ou null] d'une fiche (la plante, ou le greffon en attente)
+  private function reff(array $c) { // [rusticité effective (pot, jeunesse), estimation ou null, jeunesse, pénalité du pot] d'une fiche (la plante, ou le greffon en attente)
     $r = $c['rusticite'] ?? ''; $est = null; // fiche sans rusticité : estimée d'après le groupe (nom botanique ou caractères)
     $car = []; foreach (array_keys(journalcultures_calc::CARACTERES) as $k) $car[$k] = $c['id_' . $k] ?? '';
     if (journalcultures_calc::nombre($r) === null && ($est = journalcultures_calc::estimee($c['bota'] ?? '', $car))) $r = $est['r'];
     $reff = journalcultures_calc::rusticite($r, $this->pot(), max(0, self::reglage('k', 50)), max(0, self::reglage('pmax', 8)));
     $jeu = journalcultures_calc::jeunesse((string)($c['multiplication'] ?? ''), $c['date_mult'] ?? '', self::reglage('jeune', 6), self::reglage('jeune_ans', 5));
-    return [$reff === null ? null : round($reff + $jeu, 1), $est, $jeu];
+    return [$reff === null ? null : round($reff + $jeu, 1), $est, $jeu, $reff === null ? 0 : round($reff - journalcultures_calc::nombre($r), 1)];
   }
   public function caracteres() { // [caractère => code saisi] pour journalcultures_calc::identifier
     $r = [];
