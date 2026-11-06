@@ -50,7 +50,7 @@ Le bourgeon de côté, à l'aisselle d'une feuille, se voit sur la planche de l'
 
 ![Épine d'agrume, aiguillon de rosier, épine-feuille](../images/bota-epine.svg)
 
-*Fig. B1 – A, épine d'agrume à l'aisselle d'une feuille, avec son bourgeon ; A′, l'aisselle vue de face ; B, aiguillon du rosier ; C, épine issue d'une feuille. Détail et sources sur le dessin. Dessin façon gravure ancienne aquarellée pour ce plugin, MIT.*
+*Fig. B1 – A, chez les agrumes, chaque nœud porte une feuille à pétiole ailé ; l'épine est dans son aisselle (Flora of China 2008 ; Zhang et al. 2020), et à côté d'elle, au même niveau, un bourgeon dormant (Zhang et al. 2020 p. 2952 ; Leichty et Sinha 2021) ; l'épine est un rameau transformé (Zhang et al. 2020 ; Wikipédia « Citrus »). A′, détail de A : l'aisselle vue de face. B, l'aiguillon du rosier n'est qu'une excroissance de la surface de la tige, n'importe où (Shipunov p. 127 ; Morrow, Photographic Atlas for Botany, § 12.4 ; OpenStax p. 869 range pourtant le rosier parmi les épines). C, une épine peut aussi être une feuille transformée (Shipunov p. 127 ; OpenStax p. 877) ; chez l'ocotillo, c'est le pétiole, avec un bourgeon dans l'aisselle de l'épine (Morrow, § 12.4, **une seule source**). Pour reconnaître : épine et bourgeon côte à côte à l'aisselle d'une feuille, un rameau ; bourgeon à l'aisselle de l'épine, une feuille ; ni l'un ni l'autre, n'importe où sur l'écorce, un aiguillon (déduction du plugin). Pas à l'échelle. Dessin pour ce plugin, MIT.*
 
 ## Sous l'écorce
 
@@ -77,7 +77,7 @@ Ces règles valent pour les arbres en général ; qu'elles s'appliquent aux agru
 
 ![Écorce, cambium et bois ; les deux cambiums d'une greffe](../images/bota-cambium.svg)
 
-*Fig. B4 – A, la tige en coupe, de l'écorce au bois ; B, le cambium grossi : il fait du bois vers l'intérieur et du liber vers l'extérieur ; C, dans une greffe (écusson en chip), les cambiums du greffon et du porte-greffe doivent se toucher (voir [Greffe](greffe.md)). Détail et sources sur le dessin. Dessin façon gravure ancienne aquarellée pour ce plugin, MIT.*
+*Fig. B4 – A, de l'extérieur vers le centre : l'écorce (liège et liber, tout ce qui est hors du cambium), le cambium, le bois ; l'aubier conduit encore l'eau (OpenStax p. 866 ; Shipunov p. 121 et 123 ; Atkinson 1905 p. 381). Un cerne par saison de pousse : un par an en climat à saisons, pas net sans saisons marquées (OpenStax p. 867-868 ; Shipunov p. 120). B, le cambium fait du bois vers l'intérieur et du liber vers l'extérieur (OpenStax p. 867 ; Shipunov p. 119) ; l'eau monte dans le bois, les sucres vont dans les deux sens dans le liber (OpenStax p. 861, 885 ; Shipunov p. 74, 103). Règle générale des arbres ; agrumes compris (déduction du plugin). C, les cambiums du greffon et du porte-greffe doivent se toucher (Bailey 1907 p. 78 ; Curk 2022 p. 183) ; pour le chip, des deux côtés si possible (UF/IFAS HS1309). Pas à l'échelle. Dessin pour ce plugin, MIT.*
 
 - **Annelure** : enlever un anneau d'écorce coupe le liber, pas le bois. Les sucres ne descendent plus : ils s'accumulent au-dessus de l'anneau et manquent dans les racines (Li et al. 2003, sur l'hybride de mandarinier « Murcott », **une seule source** ; Wikipédia « Annélation » et « Girdling » confirment).
   Chez Li et al., l'accumulation au-dessus ne se voit pas sur un arbre très chargé de fruits, qui consomment les sucres.
@@ -239,7 +239,7 @@ Détail et sources dans les paragraphes ci-dessous.
 
 ![Pépin à plusieurs embryons, germination hypogée et épigée](../images/bota-semis.svg)
 
-*Fig. B14 – A, pépin d'agrume ouvert : plusieurs embryons ; B, germination hypogée de l'agrume, le pépin reste sous terre ; C, un pépin, trois plantules, l'une plus vigoureuse ; D, germination épigée du haricot, pour comparer. Détail et sources sur le dessin. Dessin façon gravure ancienne aquarellée pour ce plugin, MIT.*
+*Fig. B14 – A, un pépin d'agrume contient souvent plusieurs embryons, chacun fait de deux cotylédons épais ; en général un issu de la fécondation (hybride), un ou plusieurs nucellaires, identiques à la mère (Curk 2022 ; UF/IFAS HS1309). B, la racine sort la première par la pointe (Citrus Academy, **une seule source**), puis la tige monte ; les cotylédons restent dans le pépin fendu, sous terre (Hayward et Long 1942 p. 20-21 ; Citrus Academy). Premières feuilles opposées, les suivantes alternes (Hayward et Long 1942 p. 22, **une seule source**). C, deux à quatre plantules par pépin, l'une plus vigoureuse (Hayward et Long 1942 p. 2 ; Citrus Academy) ; tige en crosse sous terre (règle générale, OpenStax Biology 2e, **une seule source**). D, pour comparer, le haricot : germination épigée, l'hypocotyle (la tige sous les cotylédons) s'allonge et sort les cotylédons de terre (Citrus Academy, **une seule source** ; OpenStax p. 937) ; courbé en crosse sous terre, il se redresse à la lumière et les jeunes feuilles s'ouvrent (OpenStax p. 937). Semer à 0,6-1,3 cm (HS1309, **une seule source**) : pas à l'échelle. Vocabulaire : Diccionario de botánica Everest. Dessin pour ce plugin, MIT.*
 
 ### Greffe
 
@@ -268,7 +268,7 @@ Détail et sources dans les paragraphes ci-dessous.
 
 ![Annelure et marcotte aérienne](../images/bota-marcotte.svg)
 
-*Fig. B15 – A, annelure : l'anneau ôté coupe le liber, pas le bois ; B à D, marcotte aérienne : anneau d'écorce ôté, mousse humide sous film, puis, les racines formées au-dessus de l'anneau, couper sous la mousse et rempoter. Détail et sources sur le dessin. Dessin façon gravure ancienne aquarellée pour ce plugin, MIT.*
+*Fig. B15 – A, un anneau d'écorce ôté coupe le liber, pas le bois : l'eau monte toujours, les sucres qui descendent s'arrêtent et s'accumulent au-dessus (Li et al. 2003, mandarinier « Murcott », **une seule source** ; Wikipédia « Annélation » et « Girdling » ; eau et sucres : OpenStax p. 861, 885 ; Shipunov p. 74, 103). B à D, la marcotte aérienne : écorce ôtée, couramment en anneau (Bailey 1907 p. 40), mousse humide tenue par un film ou un sac ; une fois les racines formées, couper sous la mousse et rempoter (OpenStax p. 943 ; Bailey 1907 p. 40-41). Les racines partent au-dessus de l'anneau (Bailey 1907 p. 40, **une seule source**), là où s'arrêtent les sucres de A (lien fait par le plugin). Pratiquée sur les citronniers d'ornement (Curk 2022 p. 188, **une seule source**). Pas à l'échelle. Dessin pour ce plugin, MIT.*
 
 ### Dans le plugin
 

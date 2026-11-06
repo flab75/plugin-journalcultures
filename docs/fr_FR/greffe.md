@@ -100,13 +100,13 @@ Le ruban qui se dégrade fait débourrer plus tôt ; à la fin, le ruban polyét
 
 ![Les liens de greffe](../images/greffe-liens.svg)
 
-*Fig. G1 – Les liens : A, ruban de polyéthylène, 3-4 tours sous l'œil puis au-dessus, œil couvert (HS1309) ; B, œil laissé à l'air : les sources divergent ; C, film qui se dégrade ; D, à J+21, ruban coupé et ôté (contrôle du plugin) ; E, lien oublié : il entaille l'écorce, un bourrelet se forme au-dessus ; F, bande élastique, tombe seule en 3 à 5 semaines (HO-39, fruitiers en général) ; G, raphia ou ficelle, nœud opposé à l'œil (INRAE), coupé avant qu'il n'entaille (UC Circ. 475).*
+*Fig. G1 – Les liens de greffe. A, ruban de polyéthylène transparent ou vert, en bandes d'environ 1,3 × 15-25 cm : 3-4 tours sous l'œil puis plusieurs au-dessus, tout couvert, œil compris ; transparent, il laisse voir la soudure (HS1309) ; c'est le meilleur lien pour le chip, il scelle mieux (HO-39). B, l'œil laissé à l'air (UC Ventura ; HO-39 pour le chip ; INRAE si l'air est humide) : les sources divergent ; sur citrumelo Swingle, couvrir l'œil a fait moins débourrer (Hayashi et al. 2012). C, film étirable qui se dégrade (type Parafilm), sur une greffe de rameau : rien à couper (P3402) ; sur agrumes, même reprise qu'avec le polyéthylène et pousse meilleure (Oliveira et al. 2004). D, retirer le ruban 14 à 21 jours après la greffe, jamais plus de 30 (HS1309, **une seule source** pour les agrumes) : c'est le contrôle J+21 du plugin. E, un lien oublié étrangle la tige et entaille l'écorce (HO-39 ; P3402 ; UC Circ. 475). F, bande élastique de caoutchouc : elle se relâche et tombe d'elle-même en 3 à 5 semaines, sinon la couper (HO-39, fruitiers en général ; sur agrumes, AZ1146 la retire avec le ruban, à 2-3 semaines). G, raphia ou ficelle : nœud du côté opposé à l'œil (INRAE) ; le couper avant qu'il n'entaille l'écorce (UC Circ. 475), en passant la lame du côté opposé à l'œil, 2 à 3 semaines après la greffe (Bailey 1907, fruitiers en général). Pas à l'échelle. Dessin pour ce plugin, MIT.*
 
 **Le greffoir**
 
 ![Les outils du greffeur](../images/greffe-greffoirs.svg)
 
-*Fig. G2 – Les outils : A, écussonnoir, lame à bout arrondi et spatule pour soulever l'écorce (os chez Bailey) (Bailey 1907, **une seule source**) ; B, greffoir, lame droite plate d'un côté (P3402, **une seule source**) ; C, cutter ; D, pierre à aiguiser. Détail et sources sur le dessin. Dessin pour ce plugin, MIT.*
+*Fig. G2 – Les outils de coupe. A, écussonnoir : lame mince à bout arrondi pour inciser, manche terminé par une spatule pour lever l'écorce (os chez Bailey) ; certains greffeurs lèvent l'écorce avec la lame (Bailey 1907, p. 97-98, fruitiers en général, **une seule source**) ; HS1309 lève l'écorce avec la pointe de la lame. B, greffoir : lame plate d'un côté (P3402, **une seule source**). C, cutter à lame fine : se change quand elle s'émousse, mais trop fragile sur du gros bois (P3402, **une seule source**). D, pierre à affûter, à huile ou diamant sans huile (HS1309 ; HO-39) : une lame très affûtée, désinfectée avant chaque incision (HS1309, **une seule source**). Pas à l'échelle. Dessin pour ce plugin d'après les descriptions, MIT.*
 
 - Une lame **très affûtée**, entretenue à la pierre (à huile, ou diamant sans huile) (HS1309 ; HO-39), désinfectée avant chaque incision (HS1309, **une seule source**).
 - Un cutter à lame fine dépanne, mais trop fragile sur du gros bois (P3402, **une seule source**).
@@ -123,7 +123,7 @@ Le ruban qui se dégrade fait débourrer plus tôt ; à la fin, le ruban polyét
 
 ![Prendre et conserver les greffons](../images/greffe-greffons.svg)
 
-*Fig. G3 – Prendre et conserver les greffons : A, l'avant-dernière pousse, ou la pousse en cours une fois durcie ; B, feuilles coupées en gardant un bout de pétiole, bâtonnets de 20-30 cm ; C, étiquetés, gardés humides ; D, en sac fermé au réfrigérateur, vers 4 °C sur agrumes (UC Circ. 475), 1 à 2 semaines, loin des pommes et des poires.*
+*Fig. G3 – Prendre et conserver les greffons. A, choisir un rameau rond et droit, aux yeux bien formés, sur l'avant-dernière pousse, ou sur la pousse en cours une fois qu'elle a durci (HS1309, **une seule source**). B, couper les feuilles tout de suite en gardant un bout de pétiole de 3 mm (HS1309) à 1 cm (HO-39), qui protège l'œil (HS1309) et sert à tenir l'écusson (P3402) ; bâtonnets de 20 à 25 cm (HS1309) ou 20 à 30 cm (HO-39). C, étiqueter cultivar, date et arbre d'origine (HS1309 ; P3402) ; garder humide, dans du papier humide ou de la sphaigne (HO-39 ; P3402). D, en sac fermé au réfrigérateur 1 à 2 semaines, et s'en servir au plus tôt (HS1309) ; sur agrumes, 0 à 4 °C jusqu'à 2 semaines (Alabama ANR-3275, 2026), 2 à 7 °C sans geler (AZ1146), vers 4 °C (UC Circ. 475, 1959), en sac de polyéthylène fermé ; pour des fruitiers tempérés, 0-7 °C (P3402) ou 4-7 °C (HO-39) ; pas avec des pommes ou des poires, dont l'éthylène abîme les greffons (HO-39, **une seule source**). Pas à l'échelle. Dessin pour ce plugin, MIT.*
 
 Non retenu : bandes Flexibande (pages de vendeurs), greffoir à double lame et pince à greffer en oméga (FAO ; Jakab-Ilyefalvi 2013), Salih 2007, *Grafting Terminology* de l'UF/IFAS : **non relus ici**.
 Le pinceau d'hormone (BA) cité par HS1309 pour faire débourrer l'œil est un usage de pépinière professionnelle ; son autorisation pour un amateur en France n'a pas été vérifiée.
@@ -140,7 +140,7 @@ Pour tous : lame désinfectée avant chaque incision (HS1309, **une seule source
 
 ![Greffe en écusson](../images/greffe-ecusson.svg)
 
-*Fig. G4 – Greffe en écusson : 1, inciser en T (1′, ou en T inversé) ; 2, lever l'écusson ; 3, le glisser dessous ; 4, ligaturer ; 5, forcer.*
+*Fig. G4 – Greffe en écusson. 1, inciser l'écorce jusqu'au bois : un trait vertical de 2,5 à 4 cm, puis un trait horizontal en haut (HS1309, INRAE) ; lame désinfectée avant chaque incision (HS1309, **une seule source**). 1′, ou en T inversé (⊥), le trait horizontal en bas : la méthode la plus employée en Floride (HS1309, **une seule source**). 2, lever sur la baguette un écusson de 2 à 2,5 cm, en le tenant par le reste du pétiole (HS1309, INRAE). 3, le glisser sous l'écorce, face coupée contre le bois, et recouper son haut au ras du trait horizontal (INRAE). 4, ligaturer tout de suite, toutes les coupes couvertes (HS1309, INRAE) ; l'œil couvert (HS1309) ou laissé à l'air (INRAE si l'air est humide, UC Ventura toujours) : les sources divergent, le dessin le couvre. 5, forcer, une fois le lien retiré et la soudure faite : entailler le porte-greffe aux 2/3 au-dessus de l'œil, du côté de l'œil, et coucher le haut (HS1309, **une seule source**). Pas à l'échelle. Dessin pour ce plugin, MIT.*
 
 1. **Inciser** l'écorce jusqu'au bois, dans une partie lisse entre deux nœuds : un trait vertical de 2,5 à 4 cm (HS1309), puis un trait horizontal en haut (T : HS1309, INRAE)
    ou en bas (⊥, T inversé : HS1309). Tige d'au moins 8 mm (INRAE ; 6 à 10 mm pour HS1309), porte-greffe en sève : l'écorce se soulève (INRAE).
@@ -158,7 +158,7 @@ Pour tous : lame désinfectée avant chaque incision (HS1309, **une seule source
 
 ![Chip budding](../images/greffe-chip.svg)
 
-*Fig. G5 – Chip budding : 1, entailler ; 2, le copeau du greffon ; 3, poser et ligaturer ; 4, rabattre au-dessus de l'œil parti. Détail et sources sur le dessin. Dessin pour ce plugin, MIT.*
+*Fig. G5 – Chip budding. 1, entailler le porte-greffe entre deux nœuds : une coupe d'environ 2 à 2,5 cm juste dans le bois (HS1309, INRAE), terminée par une base en biseau, pas plus de 2 mm d'épaisseur (INRAE, **une seule source**) ; 1 et 2 vus de profil. 2, prélever sur la baguette le copeau portant l'œil, de même forme et de même taille (HS1309, INRAE). 3, le poser écorce contre écorce : des deux côtés quand c'est possible (HS1309), au moins sur le bord inférieur et un côté, jamais centré (INRAE) ; ligaturer toutes les coupes (HS1309), l'œil peut rester en partie couvert sous le premier ruban (INRAE), mais le lien de serrage ne passe pas sur lui (Lévy 2026, site commercial d'un pépiniériste). Couper presque parallèlement à l'axe : plus l'angle est faible, plus le contact de cambium est grand (Lévy 2026, **une seule source**). 4, une fois l'œil démarré, couper le porte-greffe en biais au-dessus de l'œil : 2 à 3 cm (Lévy 2026, site commercial d'un pépiniériste), environ 2 cm (NSW DPI 2015), environ 2,5 cm (HS1309 ; Arizona AZ1146). Aucune de ces sources ne donne le sens de la pente : dessinée ici descendant à l'opposé de l'œil, usage courant non sourcé. Puis ôter toutes les pousses sous la greffe. Pas à l'échelle. Dessin pour ce plugin, MIT.*
 
 1. **Entailler** le porte-greffe entre deux nœuds : une coupe d'environ 2 à 2,5 cm juste dans le bois (HS1309, INRAE), terminée par une base en biseau,
    pas plus de 2 mm d'épaisseur (INRAE, **une seule source**).
@@ -173,7 +173,7 @@ Pour tous : lame désinfectée avant chaque incision (HS1309, **une seule source
 
 ![Placage d'œil, d'après L. H. Bailey 1907](../images/greffe-placage-oeil.svg)
 
-*Fig. G6 – Placage d'œil : 1, retirer une plaque d'écorce ; 2, lever une plaque identique portant l'œil ; 3, la poser à la place ; 4, lier. Détail et sources sur le dessin. Dessin façon gravure ancienne aquarellée pour ce plugin d'après le texte de Bailey 1907, [p. 106](https://archive.org/details/cu31924097691087/page/106), domaine public ; MIT.*
+*Fig. G6 – Placage d'œil : flute-budding chez Bailey, nom général de la plaque rectangulaire (glossaire et fig. 99), veneer-budding quand elle ne fait pas le tour de la tige. 1, retirer une plaque d'écorce du porte-greffe ; 2, lever sur la baguette une plaque identique portant l'œil ; 3, la poser à la place : l'œil n'est pas recouvert par l'écorce du porte-greffe, comme il l'est dans un écusson ; 4, lier, puis soigner comme un écusson. Méthode occasionnelle, de fin de printemps, la mieux adaptée aux écorces très épaisses ; faite tout autour de la tige, elle s'appelle greffe en anneau, ring- ou annular-budding (Bailey 1907, p. 106, fruitiers en général, **une seule source** relue). Pas à l'échelle. Dessin pour ce plugin d'après la description de Bailey, MIT.*
 
 Bailey l'appelle *flute-budding* (nom général de la plaque rectangulaire, fig. 99), ou *veneer-budding* quand la plaque ne fait pas le tour de la tige.
 Méthode occasionnelle, de fin de printemps, la mieux adaptée aux écorces très épaisses ; faite tout autour de la tige, c'est la greffe en anneau (*ring-* ou *annular-budding*)
@@ -183,7 +183,7 @@ Méthode occasionnelle, de fin de printemps, la mieux adaptée aux écorces trè
 
 ![Greffe en couronne](../images/greffe-couronne.svg)
 
-*Fig. G7 – Greffe en couronne : 1, rabattre et fendre l'écorce ; 2, le greffon de 2 ou 3 yeux ; 3, glisser et ligaturer ; 4, deux ou trois greffons sur un gros porte-greffe. Détail et sources sur le dessin. Dessin pour ce plugin, MIT.*
+*Fig. G7 – Greffe en couronne. **Une seule fiche** décrit ces étapes (INRAE, **une seule source**). 1, couper le porte-greffe à 30 cm (Poncirus) ou 40 cm (citranges) du collet ; fendre l'écorce sur quelques centimètres depuis la coupe et la décoller. 2, greffon : petite baguette de 2 ou 3 yeux, bas taillé très finement en bec de flûte. 3, glisser le greffon sous l'écorce, ligaturer au raphia, couvrir les coupes de mastic ; sac plastique blanc ou papier paraffiné, retiré 15 jours plus tard. 4, sur un très gros porte-greffe (plus de 4 cm par exemple), poser deux ou trois greffons, d'au moins 3 yeux ; après chaque pousse, rabattre le moins vigoureux à 1 œil : il fait du cal et referme la plaie plus vite (Lévy 2026, site commercial d'un pépiniériste, **une seule source**). Pas à l'échelle. Dessin pour ce plugin, MIT.*
 
 Une seule fiche décrit ces étapes (INRAE, **une seule source**) :
 1. **Couper** le porte-greffe à 30 cm (Poncirus) ou 40 cm (citranges) du collet ; fendre l'écorce sur quelques centimètres depuis la coupe et la décoller.
@@ -203,13 +203,13 @@ ont le même diamètre : contact des deux côtés. Si le porte-greffe est plus g
 
 ![Fente sur un porte-greffe plus gros, vue du dessus](../images/greffe-fente-gros.svg)
 
-*Fig. G8 – Greffe en fente vue du dessus : A, même diamètre ; B, greffon décalé ; C, fente décalée ; D, autre solution, la couronne. Détail et sources sur le dessin. Dessin pour ce plugin, MIT.*
+*Fig. G8 – Greffe en fente, vue du dessus. Le cambium (zone verte entre écorce et bois) du greffon doit toucher celui du porte-greffe : c'est là que la greffe soude (HS1309 ; Bailey 1907, p. 78). A, même diamètre : fendre à la hauteur où les deux tiges ont la même grosseur, contact des deux côtés. Porte-greffe plus gros : B, garder la fente au milieu et décaler le greffon contre un bord ; C, décaler la fente sur une corde aussi longue que le greffon est large (le greffon peut alors être taillé en biseau asymétrique, sans obligation). D, autre solution : greffer en couronne, sans fendre le bois, le greffon glissé sous l'écorce (Lévy 2026, site commercial d'un pépiniériste, **une seule source** pour B, C et D). Pas à l'échelle. Dessin original pour ce plugin, MIT.*
 
 ### Fente herbacée (minigreffe)
 
 ![Greffe en fente herbacée](../images/greffe-fente-herbacee.svg)
 
-*Fig. G9 – Greffe en fente herbacée : 1, écimer un très jeune porte-greffe et le fendre sur 1 cm ; 2, greffon de jeune pousse, base en double biseau ; 3, l'enchâsser, ligaturer, ensacher (INRAE, une seule source).*
+*Fig. G9 – Greffe en fente herbacée. **Une seule fiche** décrit ces étapes (INRAE, **une seule source**). 1, écimer à 35-45 cm du sol un très jeune porte-greffe dont la tige fait au moins 5 mm de diamètre ; le fendre verticalement sur 1 cm. 2, greffon : section de jeune pousse pas encore aoûtée, de même diamètre, coupée pour que son œil unique soit au milieu ; base taillée en double biseau. 3, enchâsser dans la fente, ligaturer au Parafilm en couvrant aussi le sommet du greffon ; ensacher avec 2 ou 3 feuilles du porte-greffe ; sac retiré 15 jours plus tard. Pas à l'échelle. Dessin pour ce plugin, MIT.*
 
 Une seule fiche décrit ces étapes (INRAE, **une seule source**) :
 1. **Écimer** à 35-45 cm du sol un très jeune porte-greffe dont la tige fait au moins 5 mm de diamètre ; le fendre verticalement sur 1 cm.
@@ -225,7 +225,7 @@ Légendes traduites de l'ouvrage ; dessins pas à l'échelle. *The Nursery-Book*
 
 ![Greffe anglaise, d'après L. H. Bailey 1907](../images/greffe-anglaise.svg)
 
-*Fig. G10 – Greffe anglaise : 1, le greffon ; 2, simple ; 3, compliquée ; 4, liée. Détail et sources sur le dessin. Dessin façon gravure ancienne aquarellée pour ce plugin d'après Bailey 1907 et Lévy 2026, fig. 101-102, [p. 108](https://archive.org/details/cu31924097691087/page/108), domaine public ; MIT.*
+*Fig. G10 – Greffe anglaise, sur deux tiges de même diamètre. 1, greffon coupé en biseau, puis fendu pour former une languette (le porte-greffe est taillé de même) ; 2, anglaise simple : biseau contre biseau, chacun taillé d'une seule coupe continue (Lévy 2026, site commercial d'un pépiniériste, **une seule source**) ; 3, anglaise compliquée : les deux emboîtés par leurs languettes ; 4, liés au raphia ou au liber (Bailey 1907, fig. 101-102 et texte p. 108, **une seule source** ; aucun agrume n'y est nommé). Bailey ne dessine que 1 et 3 : 4 est tiré de son texte. Vue de profil, pas à l'échelle. Dessin pour ce plugin, d'après Bailey (domaine public), MIT.*
 
 **Placage de rameau** (*veneer-grafting*, variante de la latérale selon Bailey ; à ne pas confondre avec le placage d'œil) — A : porte-greffe entaillé à travers l'écorce, une petite languette d'écorce à la base ;
 à côté, le greffon coupé en biais, une plaque d'écorce retirée sur le grand côté ; B : greffon posé et lié au raphia ; C : la soudure faite (D chez Bailey).
@@ -233,32 +233,32 @@ Selon Bailey, inutile de couper le haut du porte-greffe avant que le greffon ne 
 
 ![Placage de rameau, d'après L. H. Bailey 1907](../images/greffe-placage.svg)
 
-*Fig. G11 – Placage de rameau : A, l'entaille et le greffon ; B, posé et lié ; C, soudé. Détail et sources sur le dessin. Dessin façon gravure ancienne aquarellée pour ce plugin d'après Bailey 1907, fig. 111, [p. 114](https://archive.org/details/cu31924097691087/page/114), domaine public ; MIT.*
+*Fig. G11 – Placage de rameau. A, porte-greffe entaillé à travers l'écorce, une petite languette d'écorce laissée à la base ; à côté, le greffon coupé en biais, une plaque d'écorce retirée sur le grand côté ; B, greffon posé et lié au raphia ; C, la soudure faite (D chez Bailey). Selon Bailey, inutile de couper le haut du porte-greffe avant que le greffon ne débourre (Bailey 1907, fig. 111 et texte p. 114, **une seule source** ; aucun agrume n'y est nommé). Pas à l'échelle. Dessin pour ce plugin, d'après Bailey (domaine public), MIT.*
 
 **Latérale** — A : entaille oblique dans le porte-greffe, qu'on ne coupe pas, le bas d'un ciseau à lame mince et tige coudée en place dans l'entaille ; B : le greffon inséré dans l'entaille, puis lié.
 
 ![Greffe latérale, d'après L. H. Bailey 1907](../images/greffe-laterale.svg)
 
-*Fig. G12 – Greffe latérale : A, l'entaille et le ciseau ; B, le greffon inséré et lié. Détail et sources sur le dessin. Dessin façon gravure ancienne aquarellée pour ce plugin d'après Bailey 1907, fig. 113, [p. 115](https://archive.org/details/cu31924097691087/page/115), domaine public ; MIT.*
+*Fig. G12 – Greffe latérale. A, entaille oblique dans le porte-greffe, qu'on ne coupe pas ; le bas d'un ciseau à lame mince et tige coudée est en place dans l'entaille ; B, le greffon inséré dans l'entaille, puis lié (Bailey 1907, fig. 113, p. 115, **une seule source** ; aucun agrume n'y est nommé). Vue de profil, pas à l'échelle. Dessin pour ce plugin, d'après Bailey (domaine public), MIT.*
 
 **Incrustation** — A : porte-greffe coupé (ici une vigne), une rainure en V taillée dans la coupe (une ou deux selon le texte) ; B : greffon taillé à la même forme, pour s'y encastrer.
 
 ![Greffe en incrustation, d'après L. H. Bailey 1907](../images/greffe-incrustation.svg)
 
-*Fig. G13 – Greffe en incrustation : A, la rainure en V ; B, le greffon taillé à sa forme. Détail et sources sur le dessin. Dessin façon gravure ancienne aquarellée pour ce plugin d'après Bailey 1907, fig. 116, [p. 117](https://archive.org/details/cu31924097691087/page/117), domaine public ; MIT.*
+*Fig. G13 – Greffe en incrustation. A, porte-greffe coupé (ici une vigne), une rainure en V taillée dans la coupe (une ou deux selon le texte) ; B, greffon taillé à la même forme, pour s'y encastrer (Bailey 1907, fig. 116, p. 117, **une seule source** ; aucun agrume n'y est nommé). Pas à l'échelle. Dessin pour ce plugin, d'après Bailey (domaine public), MIT.*
 
 **Fente** — A : porte-greffe coupé net et fendu, un greffon en coin de chaque côté de la fente ; B : le greffon, trois yeux, le plus bas juste au-dessus du coin.
 
 ![Greffe en fente, d'après L. H. Bailey 1907](../images/greffe-fente.svg)
 
-*Fig. G14 – Greffe en fente : A, deux greffons dans la fente ; B, le greffon taillé en coin. Détail et sources sur le dessin. Dessin façon gravure ancienne aquarellée pour ce plugin d'après Bailey 1907, fig. 118-119, [p. 118](https://archive.org/details/cu31924097691087/page/118), domaine public ; MIT.*
+*Fig. G14 – Greffe en fente. A, porte-greffe coupé net et fendu, un greffon en coin de chaque côté de la fente ; B, le greffon : trois yeux, le plus bas juste au-dessus du coin (Bailey 1907, fig. 118-119, p. 118, **une seule source** ; aucun agrume n'y est nommé). Pas à l'échelle. Dessin pour ce plugin, d'après Bailey (domaine public), MIT.*
 
 **En approche** — A : deux plantes en pot, tiges entaillées et liées ensemble ; B (M chez Bailey) : un rameau C de la plante voisine joint en O au porte-greffe H, d'autres rameaux comme T pouvant être joints de même ;
 C (N chez Bailey) : la taille des surfaces accolées, en R. Bailey note que les orangers se multipliaient autrefois ainsi, mais (en 1907) plus facilement par placage.
 
 ![Greffe en approche, d'après L. H. Bailey 1907](../images/greffe-approche.svg)
 
-*Fig. G15 – Greffe en approche : A, deux plantes en pot ; B, un rameau joint au porte-greffe ; C, les surfaces accolées. Détail et sources sur le dessin. Dessin façon gravure ancienne aquarellée pour ce plugin d'après Bailey 1907, fig. 138-139, [p. 133](https://archive.org/details/cu31924097691087/page/133), domaine public ; MIT.*
+*Fig. G15 – Greffe par approche. A, deux plantes en pot, les tiges entaillées et liées ensemble ; B (M chez Bailey), un rameau C de la plante voisine joint en O au porte-greffe H, d'autres rameaux comme T pouvant être joints de même ; C (N chez Bailey), la taille des surfaces accolées, en R ; les petites lettres H, O, C, T, R sont celles de Bailey. Bailey note que les orangers se multipliaient autrefois ainsi, mais (en 1907) plus facilement par placage (Bailey 1907, fig. 138-139 et texte p. 133, **une seule source**). Pas à l'échelle. Dessin pour ce plugin, d'après Bailey (domaine public), MIT.*
 
 **Pont** — A : tronc annelé (écorce rongée tout autour) ; B : bords de la plaie parés, greffons biseautés aux deux bouts, à côté ;
 C : greffons posés dans des entailles faites à environ 1,3 cm au-dessus et au-dessous de la plaie, jusqu'à l'aubier, et cloués ; D : variante, logements à la forme des greffons ; en bas, le greffoir.
@@ -266,7 +266,7 @@ Bailey (p. 161) la juge souvent inutile si l'annelure n'atteint pas le bois : un
 
 ![Greffe en pont, d'après L. H. Bailey 1920](../images/greffe-pont.svg)
 
-*Fig. G16 – Greffe en pont : A, l'annelure ; B, la plaie parée et les greffons ; C, posés et cloués ; D, la variante. Détail et sources sur le dessin. Dessin façon gravure ancienne aquarellée pour ce plugin d'après Bailey 1920, fig. 191, [p. 161-162](https://archive.org/details/nurserymanualcom00bailrich/page/161) (lettres d'après Peck, cité par Bailey), domaine public ; MIT.*
+*Fig. G16 – Greffe en pont. A, tronc annelé (écorce rongée tout autour) ; B, bords de la plaie parés, greffons biseautés aux deux bouts, à côté ; C, greffons posés dans des entailles faites à environ 1,3 cm au-dessus et au-dessous de la plaie, jusqu'à l'aubier, et cloués ; D, variante, logements taillés à la forme des greffons ; en bas, le greffoir (le texte dit seulement « le couteau »). Bailey la juge souvent inutile si l'annelure n'atteint pas le bois : un bon enduit de cire ou d'argile bandé est souvent bien meilleur (Bailey 1920, fig. 191 et texte p. 161-162, **une seule source** ; aucun agrume n'y est nommé). Pas à l'échelle. Dessin pour ce plugin, d'après Bailey (domaine public), MIT.*
 
 ## Quand greffer
 
@@ -358,11 +358,11 @@ délais de ces contrôles (4 et 8 semaines, 1er mars, 6 semaines) : choix du plu
 
 ![Écusson pris ou raté au contrôle](../images/greffe-ecusson-controle.svg)
 
-*Fig. G18 – Au contrôle d'un écusson : A, pris (œil vert, cal au bord) ; B, raté ; C, forcer l'œil à J+42 s'il n'a pas débourré ; D, la pousse : tuteurer, couper le haut, ôter les rejets. Détail et sources sur le dessin. Dessin façon gravure ancienne aquarellée pour ce plugin, MIT.*
+*Fig. G18 – Au contrôle d'un écusson. A, l'écusson a pris : œil vert, sans trace de dessèchement, cal au bord (UF/IFAS HS1309 ; œil vert : Alabama ACES). B, l'inverse : écusson brun, sec et ratatiné, la greffe est morte (déduction du plugin). C, forcer : entailler le porte-greffe aux 2/3, du côté de l'œil, 2,5 à 4 cm au-dessus, et coucher le haut ou le courber en boucle (HS1309 ; Alabama ACES). D, quand la pousse fait quelques centimètres : tuteurer, couper le haut à environ 1,3 cm au-dessus de l'œil, ôter les rejets (HS1309, **une seule source** ; rejets : HS1309, Curk 2022). Le plugin pose ces questions à J+21 et J+42 (choix du plugin). A et B grossis, C et D pas à l'échelle. Dessin pour ce plugin, MIT.*
 
 ![Soins après le départ de la pousse](../images/greffe-soins.svg)
 
-*Fig. G19 – Soins d'une greffe d'œil après le départ de la pousse, dans l'ordre des contrôles : 1, 1re pousse raccourcie au-dessus de la 5e feuille ; 2, de même sur chaque pousse ; 3, après le premier hiver, rejets du porte-greffe (trois folioles) et liens ôtés ; 4, fleurs et petits fruits ôtés. Détail et sources sur le dessin. Dessin pour ce plugin, MIT.*
+*Fig. G19 – Soins d'une greffe d'œil (ici un chip, porte-greffe déjà rabattu) après le départ de la pousse, dans l'ordre des contrôles du plugin. 1, quand la première pousse a durci, la raccourcir au-dessus de la 5e feuille (Lévy 2026, site commercial d'un pépiniériste, **une seule source** pour le nombre de feuilles) ; pincer ou raccourcir la pousse la fait ramifier (HS1309 ; UC Circ. 475, 1959). 2, de même sur chaque nouvelle pousse durcie (Lévy 2026, **une seule source**). 3, après le premier hiver, ôter les pousses nées sous la greffe (ici sur un porte-greffe trifolié, Poncirus ou hybride comme le FA5 : leurs feuilles à trois folioles les distinguent du greffon), que l'on ôte en fait dès qu'elles sortent (HS1309 ; UC Circ. 475 ; Curk 2022 p. 210), et retirer les liens restants avant qu'ils n'entaillent l'écorce (UC Circ. 475 ; Lévy 2026). 4, à la première floraison, ôter toutes les fleurs et les petits fruits (Lévy 2026, **une seule source**). Pas à l'échelle. Dessin pour ce plugin, MIT.*
 
 **Répondre** (chaque réponse est notée au journal) :
 - **Oui** : étape suivante ;
@@ -422,7 +422,7 @@ Le FA5 ne se vend pas en graines : c'est une obtention protégée (Lévy 2026, *
 
 ![Semer et trier ses porte-greffes](../images/semis-porte-greffes.svg)
 
-*Fig. G21 – Semer et trier ses porte-greffes : A, contenant profond ; B, un pépin, plusieurs plants ; C, plant différent du pied mère ; D, les racines au rempotage. Détail et sources sur le dessin. Dessin pour ce plugin, MIT.*
+*Fig. G21 – Semer et trier ses porte-greffes. A, semer dans un contenant le plus profond possible, plaque de culture ou pot de 7 × 7 × 18 cm, pour la racine pivot qui a déjà 4 à 5 cm quand la plantule sort (Lévy 2026, site commercial d'un pépiniériste, **une seule source**) ; le semis a une racine pivot unique (HS1329), qui doit pousser vers le bas (UC Circ. 475, 1959). B, le pépin reste sous terre ; il peut donner plusieurs plantules : les marquer, puis au rempotage, après un an, couper la plus chétive (Lévy 2026) ; écarter les plants faibles (UC Circ. 475). La plus vigoureuse n'est pas sûrement nucellaire : souvent, pas toujours (Lévy 2026), et chez quinze porte-greffes, nucellaires et zygotiques ne différaient pas par la taille (Justo et al. 1998). C, écarter les plants différents du pied mère, les hors-type (HS1329 ; UC Circ. 475), par exemple à deux folioles quand le pied mère en a trois, dès 6 mois (Lévy 2026, **une seule source**), sur les feuilles qui suivent les premières : les toutes premières feuilles du Poncirus sont souvent simples (FoC 2008), ne pas écarter un bon plant trop tôt. D, écarter les racines tordues ou déformées (UC Circ. 475 ; Lévy 2026), dont le col de cygne, une racine repliée près du collet, visible en grattant les 2 premiers centimètres de substrat (Lévy 2026, **une seule source**). Pas à l'échelle. Dessin pour ce plugin, MIT.*
 
 Dans le plugin : chaque plant se saisit par « ＋ Plante », multiplication « semis » avec sa date ; son âge sert ensuite au calcul de la rusticité d'un jeune plant (pénalité de jeunesse).
 

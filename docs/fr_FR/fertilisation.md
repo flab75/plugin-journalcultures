@@ -87,7 +87,7 @@ La méthode ci-dessous assemble ce qui s'accorde entre eux. Elle suit le cadre d
 
 ![Où mettre l'engrais dans le pot](../images/ferti-pot.svg)
 
-*Fig. F1 – Où mettre l'engrais : A, granulés répartis en surface sur substrat humide, sans toucher la tige, puis griffés ; B, certains enrobés se mélangent au substrat, au rempotage seulement (lire l'étiquette) ; C, un arrosage en excès lessive l'azote par le fond. Détail et sources sur le dessin. Dessin façon gravure ancienne aquarellée pour ce plugin, MIT.*
+*Fig. F1 – Où mettre l'engrais. A, granulés répartis en surface sur un substrat humide, sans toucher la tige, puis griffés. B, certains enrobés se mélangent au substrat au rempotage seulement : lire l'étiquette. C, un arrosage en excès lessive l'azote par le fond. D'après Zekri et Obreza 2013, UF/IFAS SL456-SL457 et les étiquettes des fabricants. Pas à l'échelle. Dessin pour ce plugin, MIT.*
 
 ### Le Ferti Agrumes face à ces critères
 
@@ -233,7 +233,7 @@ la corne (12 semaines) en semaines 10, 22 et 34, soit les 3 apports de son étiq
 
 ![Période d'apport et saison de pousse](../images/ferti-saison.svg)
 
-*Fig. F2 – La saison d'engrais : période d'apport du produit et moyenne sur 7 jours de la sonde ; courbe d'exemple. Détail et sources sur le dessin. Dessin façon gravure ancienne aquarellée pour ce plugin, MIT.*
+*Fig. F2 – La saison d'engrais. Un apport n'est annoncé que si deux conditions sont réunies : la période d'apport du produit et une moyenne sur 7 jours au moins égale au zéro de végétation (≈ 13 °C). La période (ici début mars à début octobre, Île-de-France) se règle pour chaque produit selon le climat et l'étiquette ; dans l'hémisphère sud, le plugin la décale de 6 mois. La mesure suit la région : sous le seuil, l'apport attend et il est rattrapé dès que la moyenne remonte ; un rattrapage ne décale pas les apports suivants (choix du plugin). A et B : deux produits quelconques, chacun avec son intervalle. Courbe d'exemple. D'après Curk 2022 (INRAE), University of Maryland, Asadi Kangarshahi 2023. Dessin pour ce plugin, MIT.*
 
 ## Combien : la dose en pot
 
@@ -276,7 +276,7 @@ mais pour un **jeune plant** il faut viser nettement **sous** la dose calculée 
 
 ![Lire une étiquette N-P-K](../images/ferti-npk.svg)
 
-*Fig. F3 – Lire une étiquette N-P-K : pourcentages d'azote, de phosphore exprimé en P₂O₅ et de potassium exprimé en K₂O (pas P et K eux-mêmes) ; le plugin calcule le plan sur l'azote ; rapport conseillé en pot. Détail et sources sur le dessin. Dessin façon gravure ancienne aquarellée pour ce plugin, MIT.*
+*Fig. F3 – Lire une étiquette N-P-K. Les trois chiffres N-P-K sont des pourcentages : 12-6-6 = 12 % d'azote, puis le phosphore exprimé en P₂O₅ et le potassium exprimé en K₂O, et non P et K eux-mêmes (UF/IFAS SL457 ; une fiche de données de sécurité d'engrais du commerce) : à ne pas comparer tels quels à une analyse de sol. Le plugin calcule le plan sur le premier. Conseillé en pot : environ 2-1-1 ou 3-1-1 (12-6-6 ; le 12-4-6 cité aussi donne 3-1-1,5). D'après University of Maryland, Mississippi State University, Clemson. Sac et marque imaginaires. Dessin pour ce plugin, MIT.*
 
 ## Bonnes pratiques
 
