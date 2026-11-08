@@ -52,7 +52,7 @@ Si elle donne une dose par sujet ou par m², laisser vide : le plugin calcule d'
 
 ## Choisir sa fertilisation
 
-Aucune étude ne traite des agrumes **adultes en pot sous climat tempéré** : les essais en pot portent sur des plants de pépinière, les guides sur des vergers.
+Aucune étude ne traite des agrumes **adultes en pot sous climat tempéré** : les essais en pot portent sur des plants de pépinière ou de jeunes arbres, les guides sur des vergers ; les plus proches sont de jeunes satsumas en pots de 20 à 45 L et des arbres en terre confinée au Japon (voir [Le pot](#le-pot--taille-et-influences)).
 La méthode ci-dessous assemble ce qui s'accorde entre eux. Elle suit le cadre des « 4R » : **bon produit, bonne dose, bon moment, bon endroit**, à juger ensemble (Mikkelsen 2011, **résumé seul**).
 
 ### 1. Observer avant de décider
@@ -64,7 +64,7 @@ La méthode ci-dessous assemble ce qui s'accorde entre eux. Elle suit le cadre d
 - **En pot, un engrais à libération lente** (granulés organiques ou engrais enrobé) : les arrosages fréquents lessivent les éléments nutritifs (Mississippi State University, Clemson, University of Maryland).
   Autre possibilité : un engrais **liquide à chaque arrosage** pendant la saison (University of Maryland ; Rutgers, qui reprend Mississippi).
 - Un engrais riche en **azote**, d'un rapport N-P-K d'environ **2-1-1 ou 3-1-1** : par exemple 12-6-6 (2-1-1) ou 12-4-6 (3-1-1,5) (University of Maryland ; Mississippi State University et Clemson donnent 12-6-6 ou 12-4-6).
-  Notre Ferti Agrumes 7-3-10 contient plus de potassium que d'azote : rien ne dit qu'il nuise ; le plan est calculé sur son azote, le potassium en plus est sans effet sur le froid (voir [plus bas](#le-potassium-ne-protège-pas-du-froid)).
+  Notre Ferti Agrumes 7-3-10 contient plus de potassium que d'azote : rien ne dit qu'il nuise, mais en pépinière, plus d'engrais potassique a freiné l'absorption du calcium et du magnésium (Bernardi 2000, **une seule source**) : surveiller les signes d'un manque de magnésium (déduction du plugin) ; le plan est calculé sur son azote, le potassium en plus est sans effet sur le froid (voir [plus bas](#le-potassium-ne-protège-pas-du-froid)).
 - Un engrais qui contient des **oligo-éléments** (Mississippi State University, **une seule source**). Le Ferti Agrumes n'en déclare aucun : le fer et le magnésium se donnent à part, seulement si les feuilles le montrent.
 - Les produits « spécial agrumes » conviennent (University of Maryland, Mississippi State University).
 - Un engrais **organique** doit vraiment apporter de l'azote : en pépinière, un humate de lombricompost seul n'a pas couvert le besoin en azote d'un porte-greffe, contrairement à un engrais enrobé (Machado 2011, **une seule source**).
@@ -220,7 +220,7 @@ la corne (12 semaines) en semaines 10, 22 et 34, soit les 3 apports de son étiq
 
 **Pourquoi** :
 - au printemps, les nouvelles pousses et les fleurs vivent d'abord sur **l'azote mis en réserve** dans le bois et les vieilles feuilles (Asadi Kangarshahi 2023, Vannière et Marchal 1992 III) ;
-- l'arbre absorbe très peu d'azote en hiver et au tout début de la saison de pousse (Asadi Kangarshahi 2023, **une seule source**) ;
+- l'arbre absorbe très peu d'azote en hiver et au tout début de la saison de pousse (Asadi Kangarshahi 2023) ; même sens, mesuré sur des orangers de 4 ans en conteneurs de 120 L près de Valence : l'azote donné à la floraison est le moins bien utilisé (efficacité théorique 28 %, contre 72 % en fin de nouaison) et le plus exposé au lessivage, d'autant plus que la dose est forte (Martínez-Alcántara 2012) ;
 - peu ou pas d'engrais en automne et en hiver (Asadi Kangarshahi 2023 ; UF/IFAS SL457, pour une raison propre à la Floride) ;
 - les étiquettes disent « de mars à octobre » (Ferti Agrumes) ou de mars à septembre (Fertiligène Performance Organics).
 
@@ -234,6 +234,45 @@ la corne (12 semaines) en semaines 10, 22 et 34, soit les 3 apports de son étiq
 ![Période d'apport et saison de pousse](../images/ferti-saison.svg)
 
 *Fig. F2 – La saison d'engrais. Un apport n'est annoncé que si deux conditions sont réunies : la période d'apport du produit et une moyenne sur 7 jours au moins égale au zéro de végétation (≈ 13 °C). La période (ici début mars à début octobre, Île-de-France) se règle pour chaque produit selon le climat et l'étiquette ; dans l'hémisphère sud, le plugin la décale de 6 mois. La mesure suit la région : sous le seuil, l'apport attend et il est rattrapé dès que la moyenne remonte ; un rattrapage ne décale pas les apports suivants (choix du plugin). A et B : deux produits quelconques, chacun avec son intervalle. Courbe d'exemple. D'après Curk 2022 (INRAE), University of Maryland, Asadi Kangarshahi 2023. Dessin pour ce plugin, MIT.*
+
+## Le pot : taille et influences
+
+Peu d'études mesurent l'effet de la taille du pot sur un agrume, et aucune ne porte sur un agrume adulte en pot rentré l'hiver sous climat tempéré.
+Ce qui suit vient de pépinières (Brésil, Afrique), de jeunes plants (Japon) et d'essais sous abri (Floride, Japon). Le plugin ne se sert du pot que par son **volume** : dose d'engrais par litre et part du pot dans la rusticité (« dont pot »).
+
+### Ce qui est mesuré
+- **Un pot plus grand donne une plante plus grosse** : sur 65 études, toutes plantes confondues, doubler le volume du pot donne en moyenne **+43 % de biomasse**, surtout parce que chaque feuille fait plus de photosynthèse ; pas de différence entre plantes ligneuses et herbacées (Poorter 2012, synthèse).
+  Même sens chez les agrumes : rough lemon de 1,7 à 4,5 L (Ouma 2006, **résumé seul**), plants de pépinière de 3 à 5,8 L (Girardi 2005), mandarinier satsuma de 20 à 45 L (Yano 2018, voir plus bas).
+- **En pépinière, 5 L** : oranger 'Pera' sur Rangpur, le porte-greffe a poussé pareil dans tous les volumes jusqu'au greffage ; 5 mois après, 64 % des plants n'étaient pas assez développés pour la vente en 3 L, contre 36 % en 5,8 L. Les auteurs conseillent 5 L (Girardi 2005, **une seule source**).
+- **La forme compte aussi** : à volume égal (120 cm³), Poncirus, C37 et Sunki ont fait plus de 30 % de masse sèche en plus en plateau alvéolé qu'en tube, et un diamètre de tige 12 % plus fort, pour la même hauteur (Teixeira 2009, **une seule source**).
+- **L'azote profite davantage dans un grand pot** : l'effet d'une même dose d'azote croît avec le volume (Ouma 2006, **résumé seul, une seule source**).
+- **Moins de terre : moins de récolte, jus plus sucré** : arbres 'Aoshima' en terre confinée de 40, 75, 150 et 300 L ; avec moins de terre, tronc plus fin, moins de feuilles (net sur les arbres âgés), récolte plus faible par arbre et **alternance** à 40 L ; jus plus riche en sucres et plus acide pendant 3 ans, moins net ensuite (Sawano 1998, **résumé seul**).
+  En Floride, sous abri : récoltes semblables en pot et en pleine terre les 3 premières années, sucres (Brix) et acidité plus élevés en pot (UF/IFAS CMG19).
+  Deux organismes : un jus plus sucré et plus acide en petit volume est retenu.
+- **Le pot finit plein de racines** : en Floride, 7 ans d'essais en pots de tailles et de formes diverses ; après environ 5 ans de forte production, les arbres, à l'étroit, ont perdu de la vigueur, donné des fruits plus petits et des récoltes plus faibles. Remis en pleine terre, ils ont repris en un an. Le guide déconseille le pot pour la production (UF/IFAS CMG19, **une seule source** ; même sens que la récolte plus faible de Sawano 1998).
+- **La paroi du pot** : en pépinière, des pots à paroi cuivrée ont donné des arbres plus hauts, avec plus de pousse, et des feuilles plus riches en cuivre et en zinc ; les pots aérés (Air-Pot) n'ont pas fait mieux qu'un pot ordinaire (Pokhrel et Albrecht 2024, **résumé seul, une seule source**). Le cuivre en excès freine la croissance (voir [La bonne dose](#3-la-bonne-dose)).
+- **Le terreau** : deux mélanges du commerce ont fait aussi bien que le mélange de référence de l'université de Californie, aucun mieux ; le mélange a surtout joué sur le pH et les carences (Dekkers 2000, **notice seule, une seule source** ; voir [Le bon endroit](#5-le-bon-endroit--le-substrat-et-leau)).
+
+### Les facteurs étudiés par Yano 2018
+Jeunes mandariniers satsuma ('Miyagawa-Wase' et 'Oita-Wase') sur Poncirus, à Oita (Japon), en pots de 15, 20 et 45 L ; goutte-à-goutte chaque jour (0,6 L en 15-20 L, 1,8 L en 45 L), 200 g par plant et par an d'engrais enrobé 14-11-13, boutons floraux retirés, substrat non précisé.
+Les auteurs en tirent un modèle statistique de la croissance selon l'état de la plante au départ, l'environnement et le pot (Yano 2018, **une seule source** ; tableaux et figures non lus).
+- **La plante au départ** : l'âge et la masse initiale comptent (plants de 1 et 2 ans) : plus grosse au départ, plus grosse à la fin.
+- **La taille** : retirer 79 % de la pousse (48 % de la plante) d'un plant de 2 ans a d'abord ralenti sa croissance et réduit sa part de feuilles ; il a rattrapé en une saison.
+- **La lumière** : plein champ, serre non chauffée (environ 60 % de la lumière du plein champ) et serre ombrée (environ 20 %) ; l'effet est net, et l'ombre freine **surtout les racines** (selon la discussion ; le résumé est moins net).
+- **Le volume, 20 puis 45 L** : en 45 L, plante nettement plus lourde en serre et au plein champ, **pas à l'ombre** ; la vitesse de croissance et l'assimilation par les feuilles y étaient toujours plus fortes. L'effet du pot dépend donc de l'environnement.
+- **La chaleur** : plus la somme des températures de la saison est grande, plus la plante grossit.
+- **Ce qui manque se compense** : pour les auteurs, une température favorable et un grand pot activent la croissance ; une ressource qui manque peut être compensée par une plante plus grosse au départ, un pot plus grand ou une saison de pousse plus longue.
+- **La plante remplit son pot** : de 4 g de plante par litre de pot au départ à 56 g à la fin ; selon les auteurs, le pot freinait déjà nettement la croissance.
+  Pour les expériences en pot, Poorter 2012 juge l'effet du pot visible au-delà d'environ 1 g par litre et conseille de ne pas dépasser 2 g : c'est une règle pour comparer des essais, pas une règle de culture.
+- Pour comparaison (calcul du plugin) : 200 g d'engrais à 14 % = 28 g d'azote par an, soit 0,6 à 1,4 g par litre de pot ; le plugin en donne environ 2,2 (0,07 g par litre et par semaine pendant 32 semaines). Leur engrais enrobé et leur arrosage au goutte-à-goutte ne se comparent pas directement à un engrais organique en granulés.
+
+### Ce que le plugin en déduit
+Aucune source ne donne une taille de pot « juste » pour un agrume adulte. Déductions du plugin, à prendre comme telles :
+- un plant de pépinière : au moins 5 L (d'après Girardi 2005) ;
+- un pot plus grand fait pousser plus vite, mais **ne remplace pas la lumière** (Yano 2018) : l'hiver, la lumière compte plus que le pot ;
+- quand les racines remplissent le pot, la plante perd de la vigueur et donne moins (UF/IFAS CMG19, Sawano 1998) : rempoter plus grand, ou, pour un arbre déjà trop grand, le réduire peu à peu (voir [Taille](taille.md)) ;
+- un petit pot peut donner des fruits plus sucrés, mais moins nombreux et une récolte qui alterne ;
+- la dose d'engrais suit le volume (voir ci-dessous) : un rempotage change la dose, à noter dans les Mesures (« nouveau pot »).
 
 ## Combien : la dose en pot
 
@@ -440,9 +479,11 @@ Lues en entier, sauf mention.
 - **Aubert 1969** : Aubert B., synthèse sur le froid et les agrumes, *Fruits* 24(3), IFAC ; seuil de croissance ≈ 12,5 °C.
 - **Bar-Akiva 1966** : Bar-Akiva A., problème de la fumure organique en orangeraie, *Fruits* 21(7):343-346 (Israël) ; l'essai de Winnik y est cité de seconde main.
 - **Barooah 2022** : Barooah A., Chakravarty M., Hazarika B., *Response of nutrient management on growth, yield and quality of citrus crop: A review*, *Journal of Pharmacognosy and Phytochemistry* 11(5):291-297 (Inde).
+- **Bernardi 2000** : Bernardi A. C. C. et al., *Scientia Agricola* 57(4), doi 10.1590/S0103-90162000000400026 (CC BY 4.0 ; plants d'oranger 'Valencia' sur Rangpur, en pot, plan N × P × K) ; résumé seul.
 - **Boaretto 2024** : Boaretto R. M. et al., *Revista Brasileira de Fruticultura* 46:e-218, doi 10.1590/0100-29452024218 (IAC, Brésil).
 - **BSV PACA 2020** : Bulletin de santé du végétal, zones non agricoles, PACA, novembre 2020.
 - **Curk 2022** : Curk F., Luro F., Minuto G., Nieddu G., *Les agrumes du Nord de la Méditerranée*, Alain Piazzola, 2022 (HAL hal-04646466) ; seuils de croissance (zéro de végétation ≈ 13 °C).
+- **Dekkers 2000** : Dekkers et al., *Proceedings of the Florida State Horticultural Society* 113:130-133 (mélanges de terreau pour plants d'agrumes) ; notice seule (AGRIS).
 - **Diggers** : étiquette Fruit & Citrus Fertiliser, Diggers (Australie, vendeur).
 - **Elavarasan 2019** : Elavarasan K., Premalatha A., revue de synthèse, *Journal of Pharmacognosy and Phytochemistry* 8(4):1705-1708 (Inde ; 14 références, aucune de Floride).
 - **Étiquettes** : Ferti Agrumes, Sang séché, Corne broyée, Kélafer (Agro Sens / Comptoir des Jardins), sel d'Epsom GiDe ; fiche de données de sécurité Ferti Agrumes (Comptoir des Jardins, 2026).
@@ -450,10 +491,12 @@ Lues en entier, sauf mention.
 - **ICL Osmocote** : fiche technique du fabricant (ICL Growing Solutions) : durées de libération données à 16, 21 et 26 °C.
 - **Fertiligène Performance Organics** : étiquette engrais agrumes (fiche du vendeur Truffaut) ; engrais universel 8-5-5 (fiche du vendeur Truffaut, norme NF U 42-001, poignées, réappliquer après 5 semaines) et sa fiche de données de sécurité (Evergreen Garden Care, 2023).
 - **Règlement (UE) 2021/1165** : annexe II, engrais et amendements autorisés en agriculture biologique.
+- **Girardi 2005** : Girardi E. A. et al., *Fruits* 60(2):101-105, doi 10.1051/fruits:2005020 (CC BY 4.0 ; volume du pot en pépinière, 'Pera' sur Rangpur).
 - **Guardiola 1975** : Guardiola J. L., Vivas S., González-Sicilia E., efficacité de l'analyse foliaire de l'azote, *Fruits* 30(2):113-118 (INIA, Espagne).
 - **Labanauskas 1967** : Labanauskas C. K., Nauer E. M., Roistacher C. N., *Hilgardia* 38(15), Université de Californie (semis d'oranger Valencia en pot).
 - **Haifa** : Haifa Group (Israël, fabricant d'engrais), fiche commerciale « Deficiency Pro: Citrus », haifa-group.com.
 - **Machado 2011** : Magalhães Machado D. L. et al., *Revista Ceres* 58(3):359-365 (Brésil ; limettier Rangpur en pépinière).
+- **Martínez-Alcántara 2012** : Martínez-Alcántara B. et al., *Journal of Agricultural Science* (CCSE) 4(8), doi 10.5539/jas.v4n8p11 (CC BY 4.0 ; IVIA, Valence).
 - **Mattos 2010** : Mattos Jr. D. et al., *Bragantia* 69(1):135-147 (IAC, Brésil ; plants d'oranger en sacs, fertirrigation).
 - **Melgar 2010** : Melgar J. C., Schumann A. W., Syvertsen J. P., *Fertigation frequency affects growth and water and nitrogen use efficiencies of Swingle citrumelo citrus rootstock seedlings*, *HortScience* 45(8):1255-1259 (UF/IFAS, Floride ; lu en ligne).
 - **Mikkelsen 2011** : Mikkelsen R. L., *The « 4R » nutrient stewardship framework for horticulture*, *HortTechnology* 21(6):658-662 (**résumé seul**).
@@ -462,8 +505,14 @@ Lues en entier, sauf mention.
 - **University of Maryland** : Extension, *Growing Dwarf Citrus*.
 - **CDFA** : California Department of Food and Agriculture, FREP, *Fertilization Guidelines: Citrus*.
 - **Morgan et Hanlon 2006** : Morgan K. T., Hanlon E. A., *Improving Citrus Nitrogen Uptake Efficiency: Understanding Citrus Nitrogen Requirements*, UF/IFAS SL-240, avril 2006.
+- **Ouma 2006** : Ouma G., *Agricultura Tropica et Subtropica* 39(3):182-188 (volume du pot et azote, rough lemon) ; résumé seul (AGRIS).
 - **Niu 2024** : Niu R. et al., *Root reduction caused directly or indirectly by high application of nitrogen fertilizer…*, *Plants* 13(7):938, doi 10.3390/plants13070938 (Université du Sud-Ouest, Chongqing ; lu en ligne).
+- **Pokhrel et Albrecht 2024** : Pokhrel, Albrecht U., *HortScience* 59(8), doi 10.21273/HORTSCI17979-24 (types de pots en pépinière) ; résumé seul.
+- **Poorter 2012** : Poorter H. et al., *Pot size matters*, *Functional Plant Biology* 39:839-850, doi 10.1071/FP12049.
+- **Sawano 1998** : Sawano et al., *Bulletin of the Shizuoka Prefectural Citrus Experiment Station* 27:1-6 (volume de terre confinée, 'Aoshima') ; résumé seul (AGRIS).
+- **Teixeira 2009** : Teixeira et al., *Ciência Rural* 39(6), doi 10.1590/S0103-84782009005000122 (forme du contenant, porte-greffes).
 - **Tuzcu 1984** : *Fruits* 39(9), croissance de 14 porte-greffes à basse température ; Poncirus, satsuma et Nagami ne poussent qu'au-dessus de ≈ 15 °C.
+- **UF/IFAS CMG19** : Schumann A. W. et al., *2026–2029 Florida Citrus Production Guide : Citrus under Protective Screen (CUPS) Production Systems* (EDIS HS1304) ; lu en ligne.
 - **UF/IFAS SL454** : interprétation des analyses de sol pour les agrumes (EDIS SS667, 2020).
 - **SEDIF 2018** : Deloitte Conseil et IRH, *Benchmark sur le traitement du calcaire dans le monde*, rapport final volet 1, septembre 2018, pour le SEDIF (pages imprimées, p. 7 et 20 du PDF : p. 5, peut dépasser 30 °f ; p. 18, tableau 3, maximum en sortie d'usine : 30 °f Choisy-le-Roi, 32 °f Neuilly-sur-Marne, 22 °f Méry-sur-Oise), https://debatpublic.fr, relu le 2026-11-05.
 - **SEDIF 2024** : *La lettre*, avril 2024 (édition de Choisy-le-Roi), dureté 2023 d'après l'ARS Île-de-France, site vedif.eau.veolia.fr, **non relue ici** (site injoignable le 2026-11-05) ; chiffres 18, 23 et 27 °f confirmés par un relecteur le 2026-11-05.
@@ -471,4 +520,5 @@ Lues en entier, sauf mention.
 - **UF/IFAS SS618** : *Molybdenum (Mo) and Nickel (Ni) for Citrus Trees* (fiche EDIS, 2014, revue en 2025), https://edis.ifas.ufl.edu
 - **UF/IFAS PP328** : test du stylo, carence ou HLB (University of Florida).
 - **Vannière et Marchal 1992 III** : *Fruits* 47(1):45-49 ; **Vannière 1992 IV** : *Fruits* 47(1):50-54 (INRA-CIRAD, Corse, clémentinier).
+- **Yano 2018** : Yano et al., *A generalized linear model to predict the growth of potted seedlings of Satsuma mandarin…*, *The Horticulture Journal* 87(4):490-498, doi 10.2503/hortj.OKD-112 (© JSHS ; texte lu, tableaux et figures non lus).
 - **Zekri et Obreza 2013** : Zekri M., Obreza T., *Nitrogen (N) for Citrus Trees*, UF/IFAS SL378.

@@ -4,6 +4,7 @@
 - Photos : chaque photo est enregistrée en base (table `journalcultures_photo` : plante, nom, chemin du fichier, date d'ajout). Les fichiers restent rangés par plante (`data/photos/<id de la plante>/`). Les photos déjà présentes sont reprises lors de la mise à jour.
 - Journal : nouvelle action **Photo**, notée automatiquement à chaque ajout ou suppression de photo. Les photos déjà présentes y sont ajoutées à leur date de prise, pour que la chronologie soit complète.
 - Notice : section Photos complétée (rangement, table, action Photo du journal), captures de l'onglet Photos et du journal en clair et en sombre (fig. M7, M8).
+- Notice (2026-11-08), fertilisation : nouvelle section **Le pot : taille et influences** (ce que mesurent Poorter 2012, Girardi 2005, Ouma 2006, Teixeira 2009, Sawano 1998, UF/IFAS CMG19, Pokhrel et Albrecht 2024, Dekkers 2000 ; tous les facteurs de Yano 2018 ; déductions du plugin). Potassium et calcium/magnésium (Bernardi 2000) ; azote mal utilisé à la floraison (Martínez-Alcántara 2012).
 
 ## 0.33 (2026-11-05)
 - Fiche : la rusticité effective affiche aussi la part du pot (« dont pot +6,3 °C »), qui dépend de sa taille.
