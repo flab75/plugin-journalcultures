@@ -70,6 +70,19 @@ Ce qui vient du plugin lui-même (choix, seuil, déduction) est écrit comme tel
 Ce tableau vaut pour une plante adulte en pleine terre ; le plugin ajoute les pénalités du pot et de jeunesse ([Configuration du plugin](index.md#configuration-du-plugin)).
 Le limequat est rangé en lime (−3), plus prudent que TyCitriK (−6).
 
+**Fleurs et fruits gèlent avant l'arbre.** Températures où ils **commencent** à geler (FAO 2005, tableau 4.10, d'après Puffer et Turrell 1967 ; sans durée ni part de dégâts) :
+
+| Organe | Commence à geler vers |
+|---|---|
+| Orange verte, citron vert de plus de 12 mm | −1,4 à −1,9 °C |
+| Orange, pomelo, mandarine à moitié mûrs | −1,7 à −2,2 °C |
+| Orange, pomelo, mandarine mûrs | −2,2 à −2,8 °C |
+| Citron mûr ou tout petit | −0,8 à −1,4 °C |
+| Bourgeons et fleurs de citronnier | −2,8 °C |
+
+Ces valeurs varient de 1 à 2 °C d'un arbre ou d'un verger à l'autre : la FAO conseille de garder une marge. Une revue (Dahro 2023, d'après Huang 2011) retient pour les fleurs et les fruits des dégâts sous −2 °C pendant 4 h.
+Le plugin n'en tient pas compte : ses alertes suivent la rusticité de la plante, pas celle de ses fruits.
+
 ## Bien observer
 
 ### Quelle feuille
@@ -218,7 +231,9 @@ Non relus : les clés KeyBase (pages vides), la clé de Swingle et Reece 1967 (e
 - **Agromillora** : Agromillora, fiche commerciale « Forner-Alcaide 5 » (porte-greffe FA5), agromillora.com.
 - **Blondel 1986** : Blondel L. et al., citronnier en Corse, *Fruits* 41(10), 1986 (INRA Corse).
 - **Chopinet et Dupouy 1951** : Chopinet R., Dupouy J., Résistance au froid de certains citrus et de leurs hybrides, *Fruits* 6(4), 1951 (reprend Kains 1945 et Guillaumin pour les citrangedins et limonanges).
+- **Dahro 2023** : Dahro B., Li C., Liu J.-H., *Overlapping responses to multiple abiotic stresses in citrus*, *Horticulture Advances* 1:4, 2023, doi 10.1007/s44281-023-00007-2 (revue, CC BY 4.0) ; vérifiée par extraits.
 - **Curk 2022** : Curk F., Luro F., Minuto G., Nieddu G., *Les agrumes du Nord de la Méditerranée*, Alain Piazzola, 2022, doi 10.17180/m6z4-d276, https://hal.inrae.fr/hal-04646466
+- **FAO 2005** : Snyder R. L., de Melo-Abreu J. P., *Frost protection: fundamentals, practice and economics*, vol. 1, FAO, 2005, tableau 4.10 (d'après Puffer R. E., Turrell F. M., 1967) ; vérifiée par extraits.
 - **FoC 2008** : Zhang D., Mabberley D. J., *Citrus*, in *Flora of China* vol. 11 : 90-96, Science Press et Missouri Botanical Garden, 2008.
 - **FRPS 1997** : 中国植物志 (*Flora Reipublicae Popularis Sinicae*), vol. 43(2), Rutacées, p. 175-178 (calamondin, genre *Citrus*, clé des espèces), Science Press, 1997 ; relu sur le scan le 2026-11-02.
 - **Guo 2009** : Guo et al., *Acta Horticulturae Sinica* 36(1) : 81, 2009 (résumé seulement).
