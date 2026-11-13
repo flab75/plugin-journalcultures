@@ -290,13 +290,17 @@ Le pomelo (*C. ×paradisi*, grapefruit), très sensible, peut aussi décliner su
 
 *Fig. S19 – Rameau d'agrume écorcé, classé « symptômes de tristeza » par Bugwood, sans autre description : le bois creusé de sillons ressemble, à notre avis, au bois piqueté (« stem pitting ») ; Sáenz Pérez 2019 parle de « stem bite » sur la tige, sans photo ni détail. Photo Florida Division of Plant Industry, Florida Department of Agriculture and Consumer Services, [Bugwood.org](https://www.ipmimages.org/browse/detail.cfm?imgnum=5202034), [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/).*
 
+![Tristeza, le bois creusé](../images/sante-tristeza.svg)
+
+*Fig. S20 – Tristeza, le bois : sous une écorce épaisse et « fromagère », le bois est marqué de creux profonds (B) ; le bois sain est lisse (A). L'EPPO ne décrit rien sur la face interne de l'écorce, en face des creux : rien n'y est dessiné. L'EPPO dit seulement « creux profonds », sur le tronc, les branches et les rameaux ; leur forme allongée, dans le fil du bois, suit la fiche du Queensland (« des longs sillons aux petits trous », souche de CTV). Nombre et taille des creux : schéma, pas d'après une mesure. D'après la fiche EPPO du virus de la tristeza des agrumes. Pas à l'échelle. Dessin pour ce plugin, MIT.*
+
 ![Jeunes orangers atteints de tristeza](../images/sante-tristeza-jeunes.webp)
 
-*Fig. S20 – Virus de la tristeza sur de jeunes orangers doux greffés sur bigaradier : sévère à gauche, faible à droite (selon Bugwood, sans autre précision). Photo Florida Division of Plant Industry, Florida Department of Agriculture and Consumer Services, [Bugwood.org](https://www.ipmimages.org/browse/detail.cfm?imgnum=5265046), [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/).*
+*Fig. S21 – Virus de la tristeza sur de jeunes orangers doux greffés sur bigaradier : sévère à gauche, faible à droite (selon Bugwood, sans autre précision). Photo Florida Division of Plant Industry, Florida Department of Agriculture and Consumer Services, [Bugwood.org](https://www.ipmimages.org/browse/detail.cfm?imgnum=5265046), [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/).*
 
 ![Puceron brun des agrumes](../images/sante-puceron-brun.webp)
 
-*Fig. S21 – Puceron brun des agrumes (Aphis citricidus, ancien Toxoptera citricida) sur une jeune pousse. Photo Florida Division of Plant Industry, Florida Department of Agriculture and Consumer Services, [Bugwood.org](https://www.ipmimages.org/browse/detail.cfm?imgnum=5194050), [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/).*
+*Fig. S22 – Puceron brun des agrumes (Aphis citricidus, ancien Toxoptera citricida) sur une jeune pousse. Photo Florida Division of Plant Industry, Florida Department of Agriculture and Consumer Services, [Bugwood.org](https://www.ipmimages.org/browse/detail.cfm?imgnum=5194050), [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/).*
 
 
 **Gestes** : plants et greffons d'origine contrôlée (Vogel 1990, Sáenz Pérez 2019).
@@ -310,25 +314,25 @@ Contre la tristeza : Poncirus résistant, citranges et citrumelo tolérants ; to
 
 ![Psylle asiatique des agrumes](../images/sante-psylle.webp)
 
-*Fig. S22 – Psylle asiatique des agrumes (Diaphorina citri), adulte de 2 à 3 mm, sur une jeune feuille. Photo David Hall, USDA ARS, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Asian_Citrus_Psyllid_adult.jpg), domaine public.*
+*Fig. S23 – Psylle asiatique des agrumes (Diaphorina citri), adulte de 2 à 3 mm, sur une jeune feuille. Photo David Hall, USDA ARS, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Asian_Citrus_Psyllid_adult.jpg), domaine public.*
 
 ![Psylle asiatique : œufs et adultes, posture à 45°](../images/sante-psylle.svg)
 
-*Fig. S23 – Psylle asiatique des agrumes (Diaphorina citri), vecteur du HLB. A, les œufs jaune orangé sont pondus dans la pousse tendre qui se déplie ; B, l'adulte, environ 3 mm, ailes tachetées de brun, se nourrit tête contre la feuille, le corps relevé à environ 45° : une posture qui le fait reconnaître (UC IPM, **une seule source**). Le trait d'échelle vaut la longueur de l'insecte, tête comprise. Pousse pas à l'échelle. Dessin pour ce plugin, MIT.*
+*Fig. S24 – Psylle asiatique des agrumes (Diaphorina citri), vecteur du HLB. A, les œufs jaune orangé sont pondus dans la pousse tendre qui se déplie ; B, l'adulte, environ 3 mm, ailes tachetées de brun, se nourrit tête contre la feuille, le corps relevé à environ 45° : une posture qui le fait reconnaître (UC IPM, **une seule source**). Le trait d'échelle vaut la longueur de l'insecte, tête comprise. Pousse pas à l'échelle. Dessin pour ce plugin, MIT.*
 
 ![Marbrure de feuilles atteintes de HLB](../images/sante-hlb-feuille.webp)
 
-*Fig. S24 – Marbrure (« blotchy mottle ») causée par le HLB sur des feuilles d'agrume, dans un verger d'orangers doux au Texas. À repérer : le jaune n'est pas le même des deux côtés de la nervure centrale (voir le test de symétrie). Photo David Bartels, USDA, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Citrus_Greening_%2820120120-APHIS-DB-0064%29.jpg), domaine public.*
+*Fig. S25 – Marbrure (« blotchy mottle ») causée par le HLB sur des feuilles d'agrume, dans un verger d'orangers doux au Texas. À repérer : le jaune n'est pas le même des deux côtés de la nervure centrale (voir le test de symétrie). Photo David Bartels, USDA, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Citrus_Greening_%2820120120-APHIS-DB-0064%29.jpg), domaine public.*
 ![Test du stylo : HLB ou manque de zinc](../images/sante-hlb-zinc.svg)
 
-*Fig. S25 – Test du stylo. Dessiner un cercle de chaque côté de la nervure centrale, côte à côte, et comparer : la marbrure du HLB n'est pas la même dans les deux cercles (A), une carence est la même dans les deux (B) ; HLB comme carence se voient dessus comme dessous (UF/IFAS PP328, **une seule source** ; le HLB peut se confondre avec un manque de zinc, Sáenz Pérez 2019). B, zinc : bandes vertes le long des nervures sur fond jaune pâle, feuilles petites, étroites, pointues, sur les pousses du bout (UF/IFAS SL457, Elavarasan 2019). Pas à l'échelle. Dessin pour ce plugin, MIT.*
+*Fig. S26 – Test du stylo. Dessiner un cercle de chaque côté de la nervure centrale, côte à côte, et comparer : la marbrure du HLB n'est pas la même dans les deux cercles (A), une carence est la même dans les deux (B) ; HLB comme carence se voient dessus comme dessous (UF/IFAS PP328, **une seule source** ; le HLB peut se confondre avec un manque de zinc, Sáenz Pérez 2019). B, zinc : bandes vertes le long des nervures sur fond jaune pâle, feuilles petites, étroites, pointues, sur les pousses du bout (UF/IFAS SL457, Elavarasan 2019). Pas à l'échelle. Dessin pour ce plugin, MIT.*
 
 ![Fruits d'agrume colorés à l'envers (HLB)](../images/sante-hlb-fruits.webp)
 
-*Fig. S26 – Fruits d'agrume qui se colorent à l'envers à cause du HLB, au Texas. Photo David Bartels, USDA, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Citrus_Greening_%2820120120-APHIS-DB-0065%29.jpg), domaine public.*
+*Fig. S27 – Fruits d'agrume qui se colorent à l'envers à cause du HLB, au Texas. Photo David Bartels, USDA, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Citrus_Greening_%2820120120-APHIS-DB-0065%29.jpg), domaine public.*
 
 
-**Test de symétrie** : un jaunissement pareil des deux côtés de la nervure centrale est une carence (zinc, magnésium…) ; asymétrique, il est suspect : dessiner un cercle au stylo de chaque côté de la nervure, côte à côte, et comparer (fig. S25<!-- sante-hlb-zinc -->, UF/IFAS PP328, **une seule source** ; les décolorations asymétriques sont aussi décrites par BSV JEVI Corse 2025).
+**Test de symétrie** : un jaunissement pareil des deux côtés de la nervure centrale est une carence (zinc, magnésium…) ; asymétrique, il est suspect : dessiner un cercle au stylo de chaque côté de la nervure, côte à côte, et comparer (fig. S26<!-- sante-hlb-zinc -->, UF/IFAS PP328, **une seule source** ; les décolorations asymétriques sont aussi décrites par BSV JEVI Corse 2025).
 Le HLB peut se confondre avec un manque de zinc (Sáenz Pérez 2019).
 Asymétrique avec des psylles : signaler à la DRAAF-SRAL (service de l'État) ou à la FREDON de sa région.
 
@@ -364,6 +368,8 @@ Lues en entier, sauf : Whiteside 1971, El-Hamalawi et Menge 1994, Liu et Stansly
 - **OEPP 2024** : fiche de l'Organisation européenne et méditerranéenne pour la protection des plantes (mal secco) : pycnides vers 10 °C, infection entre 14 et 28 °C.
 - **OEPP, fiche aleurode épineux** ([gd.eppo.int/taxon/ALECSN/datasheet](https://gd.eppo.int/taxon/ALECSN/datasheet)) : premier signalement en Italie en 2008 dans les Pouilles (Porcelli 2008).
 - **OEPP 2026** : base de données de l'OEPP ([gd.eppo.int](https://gd.eppo.int)), répartition et statut réglementaire consultés le 3 novembre 2026 : tristeza (CTV000), aleurode épineux (ALECSN), *Diaphorina citri* (DIAACI), mal secco (DEUTTR).
+- **OEPP, fiche tristeza** ([gd.eppo.int/taxon/CTV000/datasheet](https://gd.eppo.int/taxon/CTV000/datasheet)), symptômes mis à jour le 16 octobre 2020 : creux profonds dans le bois sous une écorce épaisse et « fromagère » ; relue le 2026-11-13.
+- **Queensland** : Business Queensland, *Mandarin stem pitting* (souche de CTV), forme des creux ; lue le 2026-11-13.
 - **OEPP RS 2023/160, RS 2024/217** : Service d'information de l'OEPP, premier signalement de l'aleurode épineux en France ([2023/160](https://gd.eppo.int/reporting/article-7642)), puis à Menton.
 - **Oliveira 1981** : Oliveira et al., Embrapa, *Pesquisa Agropecuária Brasileira* 16(6).
 - **Réseau d'alerte d'Andalousie** : relayé par la presse (Agronews Castilla y León).

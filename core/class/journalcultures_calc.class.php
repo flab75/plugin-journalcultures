@@ -537,10 +537,10 @@ class journalcultures_calc {
      Produits en stock, pour toutes les plantes : une plante ne reçoit que ceux cochés dans son plan.
      % N et intervalle > 0 : produit possible du plan d'azote ; apporte = éléments (N P K Mg Fe S Zn Mn) pour les carences. Proposé quand le catalogue est vide.
      7e champ facultatif « g/L » : dose de l'étiquette en grammes par litre de pot et par apport ; le plan la suit au lieu de la calculer (corne : 3 × 1 g/L pendant la période d'apport). */
-  const PRODUITS = "Ferti Agrumes 7-3-10 | 7 | 8 | 10-40 | N P K | granulés à enfouir par léger griffage ; étiquette : 80 à 240 g par sujet tous les 2 mois, de mars à octobre\n"
+  const PRODUITS = "Engrais agrumes 7-3-10 | 7 | 8 | 10-40 | N P K | granulés à enfouir par léger griffage ; étiquette : 80 à 240 g par sujet tous les 2 mois, de mars à octobre\n"
     . "Corne broyée | 13 | 12 | 10-40 | N | effet sur 3 à 4 mois ; étiquette : en pot, 3 apports de 1 g par litre de terreau dans la saison | 1\n"
     . "Sang séché | 12 | 0 | 10-30 | N | coup de fouet (effet en 3 à 4 jours) ; étiquette : 1 à 2 apports par an, printemps et été\n"
-    . "Kélafer racinaire (fer EDDHA 6 %) | 0 | 0 | 6-44 | Fe | au pied seulement, jamais sur les feuilles ; dilué dans l'arrosage (10 à 40 g par litre d'eau = concentration ; la dose par pied reste la limite) ; étiquette : « horticulture » 1 à 3 g par pied (le plus proche du pot), jeunes plantations 5 à 15 g, seulement en cas de besoin\n"
+    . "Chélate de fer EDDHA 6 % (racinaire) | 0 | 0 | 6-44 | Fe | au pied seulement, jamais sur les feuilles ; dilué dans l'arrosage (10 à 40 g par litre d'eau = concentration ; la dose par pied reste la limite) ; étiquette : « horticulture » 1 à 3 g par pied (le plus proche du pot), jeunes plantations 5 à 15 g, seulement en cas de besoin\n"
     . "Sel d'Epsom (sulfate de magnésium) | 0 | 0 | 10-40 | Mg S | pas de dose sur le seau (produit pour le bain)";
 
   public static function produits($texte) { // → [['nom', 'n' (%), 'tous' (semaines), 'saison', 'apporte' => [éléments], 'note', 'gl' (g/L de l'étiquette, 0 = calculé)], …]

@@ -15,7 +15,7 @@ Ce qui vient du plugin lui-même (choix, déduction) est écrit comme tel.
   Pour un produit à dose d'étiquette, le % sert seulement à le cocher et compte dans le total de 100.
   Seuls les produits qui ont un % d'azote **et** un intervalle peuvent être cochés : le sang séché (ponctuel) n'entre pas dans le plan.
   Le plugin calcule la dose de chaque apport, arrondie au gramme (1 g au moins) ; elle peut être corrigée à la main (la correction l'emporte).
-  Un produit qui a une **dose d'étiquette** (7e champ) garde cette dose ; l'azote qu'il apporte est retiré du besoin et le reste va aux autres produits cochés, selon leurs parts. La corne seule ne couvre qu'environ 15 % du besoin d'une plante adulte : cocher aussi un engrais calculé (Ferti Agrumes).
+  Un produit qui a une **dose d'étiquette** (7e champ) garde cette dose ; l'azote qu'il apporte est retiré du besoin et le reste va aux autres produits cochés, selon leurs parts. La corne seule ne couvre qu'environ 15 % du besoin d'une plante adulte : cocher aussi un engrais calculé (l'engrais 7-3-10).
 - **Écrire dans le calendrier** (administrateurs) : rien n'est écrit dans le calendrier de la plante sans ce bouton ; les lignes des produits du plan sont remplacées,
   les autres (fer, magnésium, lignes à la main) gardées, et l'écriture est notée au journal.
 - **Fiche**, partie *Engrais* : des **pistes de carence** d'après la dernière mesure des feuilles, puis volume du pot et besoin, calendrier actuel, plan proposé
@@ -33,7 +33,7 @@ Les champs, dans l'ordre :
 
 | Champ | Exemple | À savoir |
 |---|---|---|
-| Nom | `Ferti Agrumes 7-3-10` | tel qu'il sera écrit dans le calendrier |
+| Nom | `Engrais agrumes 7-3-10` | tel qu'il sera écrit dans le calendrier |
 | % d'azote | `7` | le premier chiffre du « N-P-K » de l'étiquette ; `0` pour un correcteur sans azote |
 | toutes les n semaines | `8` | l'intervalle entre deux apports ; `0` = produit ponctuel, hors plan |
 | période d'apport | `10-40` | numéros de semaine, **hémisphère nord** (10 = début mars, 40 = début octobre) ; vide = 10-40 ; décalée de 6 mois si Jeedom est dans l'hémisphère sud |
@@ -42,9 +42,9 @@ Les champs, dans l'ordre :
 | dose de l'étiquette | `1` | **facultatif** : grammes par litre de pot et par apport ; le plan suit alors l'étiquette au lieu de calculer |
 
 Exemples :
-- un engrais de fond calculé : `Ferti Agrumes 7-3-10 | 7 | 8 | 10-40 | N P K | granulés à enfouir`
+- un engrais de fond calculé : `Engrais agrumes 7-3-10 | 7 | 8 | 10-40 | N P K | granulés à enfouir`
 - un engrais à dose d'étiquette : `Corne broyée | 13 | 12 | 10-40 | N | 3 apports de 1 g par litre de terreau | 1`
-- un correcteur ponctuel (pistes de carence seulement) : `Kélafer racinaire | 0 | 0 | 6-44 | Fe | au pied, si besoin reconnu`
+- un correcteur ponctuel (pistes de carence seulement) : `Chélate de fer EDDHA 6 % | 0 | 0 | 6-44 | Fe | au pied, si besoin reconnu`
 
 Pour retirer un produit, effacer sa ligne : les plans qui le cochaient le perdent (vérifier le plan des plantes concernées).
 Le champ **dose de l'étiquette** est à remplir quand l'étiquette donne une dose **par litre de pot** : le plugin la suit à la lettre.
@@ -64,11 +64,11 @@ La méthode ci-dessous assemble ce qui s'accorde entre eux. Elle suit le cadre d
 - **En pot, un engrais à libération lente** (granulés organiques ou engrais enrobé) : les arrosages fréquents lessivent les éléments nutritifs (Mississippi State University, Clemson, University of Maryland).
   Autre possibilité : un engrais **liquide à chaque arrosage** pendant la saison (University of Maryland ; Rutgers, qui reprend Mississippi).
 - Un engrais riche en **azote**, d'un rapport N-P-K d'environ **2-1-1 ou 3-1-1** : par exemple 12-6-6 (2-1-1) ou 12-4-6 (3-1-1,5) (University of Maryland ; Mississippi State University et Clemson donnent 12-6-6 ou 12-4-6).
-  Notre Ferti Agrumes 7-3-10 contient plus de potassium que d'azote : rien ne dit qu'il nuise, mais en pépinière, plus d'engrais potassique a freiné l'absorption du calcium et du magnésium (Bernardi 2000, **une seule source**) : surveiller les signes d'un manque de magnésium (déduction du plugin) ; le plan est calculé sur son azote, le potassium en plus est sans effet sur le froid (voir [plus bas](#le-potassium-ne-protège-pas-du-froid)).
-- Un engrais qui contient des **oligo-éléments** (Mississippi State University, **une seule source**). Le Ferti Agrumes n'en déclare aucun : le fer et le magnésium se donnent à part, seulement si les feuilles le montrent.
+  Notre engrais agrumes 7-3-10 contient plus de potassium que d'azote : rien ne dit qu'il nuise, mais en pépinière, plus d'engrais potassique a freiné l'absorption du calcium et du magnésium (Bernardi 2000, **une seule source**) : surveiller les signes d'un manque de magnésium (déduction du plugin) ; le plan est calculé sur son azote, le potassium en plus est sans effet sur le froid (voir [plus bas](#le-potassium-ne-protège-pas-du-froid)).
+- Un engrais qui contient des **oligo-éléments** (Mississippi State University, **une seule source**). L'engrais 7-3-10 en stock n'en déclare aucun : le fer et le magnésium se donnent à part, seulement si les feuilles le montrent.
 - Les produits « spécial agrumes » conviennent (University of Maryland, Mississippi State University).
 - Un engrais **organique** doit vraiment apporter de l'azote : en pépinière, un humate de lombricompost seul n'a pas couvert le besoin en azote d'un porte-greffe, contrairement à un engrais enrobé (Machado 2011, **une seule source**).
-  Ce résultat ne vaut pas pour un engrais organique dosé à 7 % d'azote comme le Ferti Agrumes (déduction du plugin).
+  Ce résultat ne vaut pas pour un engrais organique dosé à 7 % d'azote comme l'engrais 7-3-10 en stock (déduction du plugin).
 
 ### 3. La bonne dose
 - Pas plus que nécessaire, surtout pour un **jeune plant** : voir [Pas plus que nécessaire](#pas-plus-que-nécessaire) et la mise en garde de [la dose en pot](#combien--la-dose-en-pot).
@@ -89,11 +89,11 @@ La méthode ci-dessous assemble ce qui s'accorde entre eux. Elle suit le cadre d
 
 *Fig. F1 – Où mettre l'engrais. A, granulés répartis en surface sur un substrat humide, sans toucher la tige, puis griffés. B, certains enrobés se mélangent au substrat au rempotage seulement : lire l'étiquette. C, un arrosage en excès lessive l'azote par le fond. D'après Zekri et Obreza 2013, UF/IFAS SL456-SL457 et les étiquettes des fabricants. Pas à l'échelle. Dessin pour ce plugin, MIT.*
 
-### Le Ferti Agrumes face à ces critères
+### L'engrais 7-3-10 en stock face à ces critères
 
 Bilan du plugin (déduction à partir des critères ci-dessus et de l'étiquette) :
 
-| Critère | Ce que demande la notice | Ferti Agrumes 7-3-10 | Verdict |
+| Critère | Ce que demande la notice | Engrais organique 7-3-10 | Verdict |
 |---|---|---|---|
 | Forme | libération lente en pot | granulés organiques, effet 2 mois | conforme |
 | Rapport N-P-K | riche en azote, environ 2-1-1 ou 3-1-1 | 7-3-10 = 2,3-1-3,3 : plus de potassium que d'azote | à l'envers du rapport conseillé ; rien ne dit que ça nuise, le plan est calculé sur l'azote |
@@ -104,11 +104,11 @@ Bilan du plugin (déduction à partir des critères ci-dessus et de l'étiquette
 | Moment | pendant la pousse, au moins 3 apports, rien l'hiver | tous les 2 mois de mars à octobre (semaines 10, 18, 26, 34) | conforme |
 | Endroit | au pied, substrat humide, pas de chaulage | enfoui par léger griffage | conforme |
 
-Un 12-6-6 ou 12-4-6 avec oligo-éléments collerait mieux à la lettre des sources ; aucune ne montre que le Ferti Agrumes fait moins bien.
+Un 12-6-6 ou 12-4-6 avec oligo-éléments collerait mieux à la lettre des sources ; aucune ne montre que le 7-3-10 fait moins bien.
 
 **Et si on ajoute la corne broyée ?** Elle n'apporte que de l'azote (13 %, organique, lent) : ni phosphore, ni potassium, ni oligo-éléments.
-- Elle **rapproche un peu** le rapport de celui conseillé : à la dose de l'étiquette, elle couvre environ 15 % de l'azote du plan, et le Ferti le reste ; l'ensemble passe d'environ 2,3-1-3,3 à 2,7-1-3,3 (calcul du plugin), le potassium reste au-dessus de l'azote.
-  Aucune part de corne ne mène à 2-1-1 : sans phosphore ni potassium, elle laisse le rapport P-K du Ferti (1-3,3) et ne fait que monter l'azote (deux tiers de corne : environ 7-1-3,3).
+- Elle **rapproche un peu** le rapport de celui conseillé : à la dose de l'étiquette, elle couvre environ 15 % de l'azote du plan, et le 7-3-10 le reste ; l'ensemble passe d'environ 2,3-1-3,3 à 2,7-1-3,3 (calcul du plugin), le potassium reste au-dessus de l'azote.
+  Aucune part de corne ne mène à 2-1-1 : sans phosphore ni potassium, elle laisse le rapport P-K du 7-3-10 (1-3,3) et ne fait que monter l'azote (deux tiers de corne : environ 7-1-3,3).
 - Elle allonge la libération (effet 3 à 4 mois contre 2) : apport plus régulier, sans source qui en montre l'intérêt pour un agrume en pot.
 
 ### Rééquilibrer le rapport N-P-K
@@ -146,7 +146,7 @@ Tout cela se saisit dans le plugin : la part d'azote de chaque produit découle 
 
 Granulés d'engrais minéral sous une enveloppe de résine qui le libère peu à peu. C'est l'une des deux formes « à libération lente » conseillées en pot (voir [Le bon produit](#2-le-bon-produit)).
 Ce qu'en disent les étiquettes des fabricants :
-- la **durée** (3, 6, 8 à 9 mois…) est donnée pour une température fixe, souvent 21 °C : elle s'allonge au frais et raccourcit au chaud (pour un « 6 mois » : 6-7 mois à 15 °C, 5-6 mois à 21 °C, 4-5 mois à 27 °C, fiche d'un revendeur, **une seule source** ; la fiche ICL de l'Osmocote donne ses durées à 16, 21 et 26 °C) ; en serre l'été, il peut être épuisé avant la fin de la saison ;
+- la **durée** (3, 6, 8 à 9 mois…) est donnée pour une température fixe, souvent 21 °C : elle s'allonge au frais et raccourcit au chaud (pour un « 6 mois » : 6-7 mois à 15 °C, 5-6 mois à 21 °C, 4-5 mois à 27 °C, fiche d'un revendeur, **une seule source** ; la fiche d'un fabricant d'enrobé donne ses durées à 16, 21 et 26 °C) ; en serre l'été, il peut être épuisé avant la fin de la saison ;
 - certains se **mélangent** au substrat au rempotage seulement, d'autres se posent **en surface** et se griffent : lire l'étiquette ;
 - un **fer** chélaté en EDTA n'est stable qu'entre pH 4 et 6,5 (fiche technique d'un enrobé) : au-dessus (eau dure, substrat calcaire), il devient peu disponible, et le fer EDDHA sur signe reste utile (voir [pH et eau du robinet](#ph-et-eau-du-robinet)) ;
 - la **dose** est donnée en grammes par litre de substrat pour toute la durée : pour des plantes en pot, 2-3 g/L en dose faible, **3-4 g/L en dose moyenne**, 4-5 g/L en dose forte (un 6 mois à environ 16 % d'azote : 0,5 à 0,6 g d'azote par litre en dose moyenne) ; elle vaut pour un substrat sans engrais et des plantes adultes : **demi-dose pour un jeune plant** ; c'est bien en dessous de ce que calcule le plugin pour une saison (0,07 g par litre et par semaine sur 30 semaines ≈ 2 g par litre) ; ces doses visent les plantes en pot et les pépinières en conteneur ; l'écart va dans le sens de la mise en garde de [la dose en pot](#combien--la-dose-en-pot) (déduction du plugin, aucune source ne compare).
@@ -201,7 +201,7 @@ Dans le plugin, un apport n'est annoncé qu'à **deux conditions**, les deux à 
    environ 13 °C (Curk 2022, INRAE ; ≈ 12,5 °C pour Aubert 1969, IFAC ; même filiation, IFAC puis Cirad : **une seule source**, à confirmer ; 13 °C par défaut : choix du plugin).
    Les porte-greffes Poncirus, la satsuma et le kumquat Nagami ne poussent qu'au-dessus d'environ 15 °C (Tuzcu 1984, **une seule source**) : régler le seuil plus haut si la collection en est faite.
    En dessous, la fiche affiche « au repos » et l'apport prévu **attend** ; il est **rattrapé** la première semaine où la moyenne remonte,
-   tant que la période d'apport du produit court, que rien n'a été donné depuis (ce produit, ou un apport noté sans précision) et qu'on est dans la première moitié de l'intervalle (3 semaines au plus pour le Ferti, 5 pour la corne) ;
+   tant que la période d'apport du produit court, que rien n'a été donné depuis (ce produit, ou un apport noté sans précision) et qu'on est dans la première moitié de l'intervalle (3 semaines au plus pour l'engrais 7-3-10, 5 pour la corne) ;
    plus tard, on attend l'apport suivant, pour ne pas donner deux doses rapprochées (choix du plugin).
    Moyenne sur 7 jours et seuil réglable (configuration, « Zéro de végétation ») : choix du plugin. Sans sonde historisée, seule la période d'apport compte (pas de rattrapage) ; une sonde muette depuis 7 jours, elle, fait attendre les apports (la fiche le dit).
 
@@ -215,14 +215,14 @@ la mesure **raccourcit** la saison de pousse, elle ne l'allonge jamais au-delà 
 hors période d'apport, apports au même rythme à **demi-dose** (l'annonce donne la dose divisée par 2) tant que la moyenne atteint le seuil (choix du plugin, aucune de nos sources ne traite de l'hiver en pièce chauffée).
 Un jeune plant (moins d'un an, ou greffe en cours de suivi) n'en reçoit pas non plus hors période d'apport. Une plante cochée « **Repos hivernal au frais** » n'en reçoit jamais hors période d'apport ; de novembre à février, elle est signalée si elle est dans un emplacement chauffé ([Géographie](index.md#géographie)).
 Climat très différent (tropiques, saison sèche) : adapter la période d'apport de chaque produit à la main.
-Dans la période d'apport par défaut, les apports tombent à partir de la semaine 10, tous les n semaines : le Ferti Agrumes (8 semaines) en semaines 10, 18, 26 et 34, donc **le dernier dans la seconde quinzaine d'août** (mi-septembre au plus tard s'il est rattrapé) ;
+Dans la période d'apport par défaut, les apports tombent à partir de la semaine 10, tous les n semaines : l'engrais 7-3-10 (8 semaines) en semaines 10, 18, 26 et 34, donc **le dernier dans la seconde quinzaine d'août** (mi-septembre au plus tard s'il est rattrapé) ;
 la corne (12 semaines) en semaines 10, 22 et 34, soit les 3 apports de son étiquette.
 
 **Pourquoi** :
 - au printemps, les nouvelles pousses et les fleurs vivent d'abord sur **l'azote mis en réserve** dans le bois et les vieilles feuilles (Asadi Kangarshahi 2023, Vannière et Marchal 1992 III) ;
 - l'arbre absorbe très peu d'azote en hiver et au tout début de la saison de pousse (Asadi Kangarshahi 2023) ; même sens, mesuré sur des orangers de 4 ans en conteneurs de 120 L près de Valence : l'azote donné à la floraison est le moins bien utilisé (efficacité théorique 28 %, contre 72 % en fin de nouaison) et le plus exposé au lessivage, d'autant plus que la dose est forte (Martínez-Alcántara 2012) ;
 - peu ou pas d'engrais en automne et en hiver (Asadi Kangarshahi 2023 ; UF/IFAS SL457, pour une raison propre à la Floride) ;
-- les étiquettes disent « de mars à octobre » (Ferti Agrumes) ou de mars à septembre (Fertiligène Performance Organics).
+- les étiquettes disent « de mars à octobre » (engrais 7-3-10 en stock) ou de mars à septembre (un autre engrais agrumes organique).
 
 **Limites connues** :
 - l'étude iranienne conseille **au plus 10 à 15 % de la dose annuelle avant la floraison**, puis une montée progressive (Asadi Kangarshahi 2023, **une seule source**) ;
@@ -250,8 +250,21 @@ Ce qui suit vient de pépinières (Brésil, Afrique), de jeunes plants (Japon) e
   En Floride, sous abri : récoltes semblables en pot et en pleine terre les 3 premières années, sucres (Brix) et acidité plus élevés en pot (UF/IFAS CMG19).
   Deux organismes : un jus plus sucré et plus acide en petit volume est retenu.
 - **Le pot finit plein de racines** : en Floride, 7 ans d'essais en pots de tailles et de formes diverses ; après environ 5 ans de forte production, les arbres, à l'étroit, ont perdu de la vigueur, donné des fruits plus petits et des récoltes plus faibles. Remis en pleine terre, ils ont repris en un an. Le guide déconseille le pot pour la production (UF/IFAS CMG19, **une seule source** ; même sens que la récolte plus faible de Sawano 1998).
+- **Les racines tournent** : arrivées au fond du pot, les racines se mettent à tourner ; laissées en place, elles peuvent étrangler le tronc ou d'autres racines et freiner l'arbre, et une fois plantées elles continuent de tourner tant qu'on ne les taille pas. L'auteure conseille d'examiner les racines avant de planter (Albrecht 2022, pépinières et vergers de Floride, **une seule source** ; rien sur le moment du rempotage).
 - **La paroi du pot** : en pépinière, des pots à paroi cuivrée ont donné des arbres plus hauts, avec plus de pousse, et des feuilles plus riches en cuivre et en zinc ; les pots aérés (Air-Pot) n'ont pas fait mieux qu'un pot ordinaire (Pokhrel et Albrecht 2024, **résumé seul, une seule source**). Le cuivre en excès freine la croissance (voir [La bonne dose](#3-la-bonne-dose)).
 - **Le terreau** : deux mélanges du commerce ont fait aussi bien que le mélange de référence de l'université de Californie, aucun mieux ; le mélange a surtout joué sur le pH et les carences (Dekkers 2000, **notice seule, une seule source** ; voir [Le bon endroit](#5-le-bon-endroit--le-substrat-et-leau)).
+
+![Doubler le pot ne double pas la plante](../images/pot-doublement.svg)
+
+*Fig. F3 – Doubler le pot ne double pas la plante : dans une synthèse de 65 études, toutes plantes confondues et pas des agrumes, chaque doublement du volume du pot a augmenté la masse de la plante de 43 % en moyenne (Poorter et al. 2012) : pot ×2, ×4, ×8 → plante ×1,43, ×2,04, ×2,92 si l'effet se répète. Schéma : pots de même forme, aire du feuillage proportionnelle à la masse ; pas à l'échelle. Dessin pour ce plugin, MIT.*
+
+![La forme du contenant](../images/pot-forme.svg)
+
+*Fig. F4 – La forme du contenant : au même volume (120 cm³), des plants de Poncirus, de citrange C37 et de mandarinier Sunki ont fait plus de 30 % de masse sèche en plus en plateau alvéolé (B) qu'en tube (A), avec une tige environ 12 % plus forte, pour la même hauteur (Teixeira 2009, une seule source). Formes génériques, pas celles de l'essai. Pas à l'échelle. Dessin pour ce plugin, MIT.*
+
+![Le pot à l'étroit](../images/pot-chignon.svg)
+
+*Fig. F5 – A, après quelques années, les racines remplissent le pot, tournent le long de la paroi et du fond et sortent par le trou ; la plante perd de la vigueur. B, la motte sortie du pot : un « chignon » de racines, peu de terre. C, rempotée dans un pot plus grand, la motte est entourée de substrat neuf où partent de nouvelles racines. En Floride, des agrumes en pot à l'étroit après environ 5 ans de forte production ont perdu de la vigueur, donné des fruits plus petits et moins de récolte ; remis en pleine terre, ils ont repris en un an (UF/IFAS CMG19, texte seul, une seule source). Laissées en place, les racines qui tournent peuvent étrangler le tronc ou d'autres racines (Albrecht 2022, pépinière). Pas à l'échelle. Dessin pour ce plugin, MIT.*
 
 ### Les facteurs étudiés par Yano 2018
 Jeunes mandariniers satsuma ('Miyagawa-Wase' et 'Oita-Wase') sur Poncirus, à Oita (Japon), en pots de 15, 20 et 45 L ; goutte-à-goutte chaque jour (0,6 L en 15-20 L, 1,8 L en 45 L), 200 g par plant et par an d'engrais enrobé 14-11-13, boutons floraux retirés, substrat non précisé.
@@ -266,6 +279,10 @@ Les auteurs en tirent un modèle statistique de la croissance selon l'état de l
   Pour les expériences en pot, Poorter 2012 juge l'effet du pot visible au-delà d'environ 1 g par litre et conseille de ne pas dépasser 2 g : c'est une règle pour comparer des essais, pas une règle de culture.
 - Pour comparaison (calcul du plugin) : 200 g d'engrais à 14 % = 28 g d'azote par an, soit 0,6 à 1,4 g par litre de pot ; le plugin en donne environ 2,2 (0,07 g par litre et par semaine pendant 32 semaines). Leur engrais enrobé et leur arrosage au goutte-à-goutte ne se comparent pas directement à un engrais organique en granulés.
 
+![La lumière avant le pot](../images/pot-lumiere.svg)
+
+*Fig. F6 – La lumière avant le pot : jeunes mandariniers satsuma sur Poncirus passés de 20 à 45 L, au plein champ (A), en serre non chauffée (B, environ 60 % de la lumière du plein champ) et en serre ombrée (C, environ 20 %). En 45 L, la plante est nettement plus lourde au plein champ et en serre, pas à l'ombre ; l'ombre freine surtout les racines (Yano 2018, une seule source, texte seul). Un grand pot ne remplace pas la lumière. Tailles qualitatives, aucune masse mesurée n'est reprise. Pas à l'échelle. Dessin pour ce plugin, MIT.*
+
 ### Ce que le plugin en déduit
 Aucune source ne donne une taille de pot « juste » pour un agrume adulte. Déductions du plugin, à prendre comme telles :
 - un plant de pépinière : au moins 5 L (d'après Girardi 2005) ;
@@ -273,26 +290,36 @@ Aucune source ne donne une taille de pot « juste » pour un agrume adulte. Déd
 - quand les racines remplissent le pot, la plante perd de la vigueur et donne moins (UF/IFAS CMG19, Sawano 1998) : rempoter plus grand, ou, pour un arbre déjà trop grand, le réduire peu à peu (voir [Taille](taille.md)) ;
 - un petit pot peut donner des fruits plus sucrés, mais moins nombreux et une récolte qui alterne ; des racines à l'étroit donnent aussi des fruits plus acides, et le manque d'eau seul ne l'explique pas (KAKENHI 09660024, résumé) ;
 - tailler les racines pour garder l'arbre dans le même pot : un seul essai (Fukuoka, satsumas et 'Minneola' de 7 ans en pots d'environ 14 L) a réduit les racines de moitié ou d'un tiers ; **mi-décembre** valait mieux que fin mars, qui a fait tomber des feuilles et sécher des rameaux (2 à 30 % selon la variété) ; plus de fleurs ensuite, mais moins de fruits noués. Les auteurs n'ont pas étudié la vigueur à long terme : une source unique, à prendre avec prudence ;
+- **quand rempoter** : aucune étude trouvée. « Au printemps, à la reprise », partout répété, n'a pas de source ; la seule date mesurée est celle de la taille des racines ci-dessus (Fukuoka) ;
+- au rempotage, **ne pas enterrer le point de greffe** : au Japon, en verger, une variété greffée sur Poncirus dont le point de greffe était trop près du sol a fait ses propres racines (reconnues par analyse ADN) ; ses fruits étaient moins sucrés (9,6 contre 11,6 °Brix). Un an après qu'on les a coupées, l'écart s'était presque refermé (11,4 contre 12,1, différence non significative). La station conseille de bien dégager le point de greffe du sol (Saga 2013, **une seule source**, verger) ; en pot, c'est une déduction du plugin, dans le même sens que le point de greffe haut contre le *Phytophthora* (voir [Greffe](greffe.md)) ;
 - la dose d'engrais suit le volume (voir ci-dessous) : un rempotage change la dose, à noter dans les Mesures (« nouveau pot »).
+
+![Tailler les racines pour garder le pot](../images/pot-racines-taille.svg)
+
+*Fig. F7 – Tailler les racines pour garder l'arbre dans le même pot. Un seul essai (Fukuoka, satsumas et 'Minneola' de 7 ans en pots d'environ 14 L) a réduit les racines d'un tiers (A) ou de moitié (B). C, à la mi-décembre, mieux qu'à la fin mars, qui a fait tomber des feuilles et sécher des rameaux (2 à 30 % selon la variété). Ensuite : plus de fleurs, mais moins de fruits noués ; la vigueur à long terme n'a pas été étudiée. La manière de couper n'est pas décrite dans les extraits lus : côtés et fond sont un schéma du plugin. Une seule source, à prendre avec prudence. Pas à l'échelle. Dessin pour ce plugin, MIT.*
+
+![Mesurer le pot](../images/pot-mesure.svg)
+
+*Fig. F8 – Le plugin ne se sert du pot que par son volume de terre. A, pot rond : litres = 3,14 × Ø × Ø ÷ 4 × hauteur de terre ÷ 1000 (cm). B, pot carré : côté × côté × hauteur de terre ÷ 1000. Sans hauteur de terre, il prend la hauteur du pot. Il compte le pot comme un cylindre (ou un pavé) : un pot évasé contient un peu moins. Le Ø est pris ici en haut, à l'intérieur ; la notice ne le précise pas. C, au rempotage, saisir le « nouveau pot » dans les Mesures (Racines / pot) : de 17,7 L à 26,9 L, la dose d'un engrais à 7 % d'azote donné tous les 2 mois passe de 142 à 215 g (0,07 g d'azote par litre et par semaine). Au-delà d'environ 30 L, s'en tenir au maximum de l'étiquette. Calcul du plugin. Dessin pour ce plugin, MIT.*
 
 ## Combien : la dose en pot
 
 **Retenu** : en pleine saison, environ **0,10 à 0,16 g d'azote par litre de pot toutes les 2 semaines**
-(Boaretto 2024, azote minéral en fertirrigation sur écorce de pin, pot de 12 L, dose d'essai et pas un optimum testé ; étiquettes Diggers et Fertiligène Performance Organics).
-Aucune source **scientifique** ne fait varier la dose selon la taille de la plante en pot ; l'étiquette Ferti Agrumes, elle, donne 80 à 240 g par sujet « en fonction de la taille », sans règle propre au pot.
+(Boaretto 2024, azote minéral en fertirrigation sur écorce de pin, pot de 12 L, dose d'essai et pas un optimum testé ; étiquettes de deux engrais agrumes du commerce).
+Aucune source **scientifique** ne fait varier la dose selon la taille de la plante en pot ; l'étiquette de l'engrais 7-3-10, elle, donne 80 à 240 g par sujet « en fonction de la taille », sans règle propre au pot.
 Le plugin ne retient que le volume de terre.
 
 **Le calcul du plugin** : 0,07 g d'azote par litre et par semaine (= 0,14 g toutes les 2 semaines, réglable), puis
 
 dose d'un apport (g) = litres × 0,07 × semaines entre deux apports × part du produit (%) ÷ % d'azote du produit × facteur jeune plant (voir plus bas, 1 pour une plante adulte)
 
-Exemple : pot de Ø 30 cm avec 25 cm de terre = 17,7 L ; Ferti Agrumes (7 % d'N) seul, tous les 2 mois (8 semaines) : 17,7 × 0,07 × 8 × 100 ÷ 7 ≈ **142 g**,
+Exemple : pot de Ø 30 cm avec 25 cm de terre = 17,7 L ; engrais organique à 7 % d'azote seul, tous les 2 mois (8 semaines) : 17,7 × 0,07 × 8 × 100 ÷ 7 ≈ **142 g**,
 dans la fourchette de l'étiquette (80 à 240 g par sujet tous les 2 mois).
 Au-delà d'environ 30 L, le calcul dépasse le maximum de l'étiquette (240 g) : s'en tenir à l'étiquette.
 
 **La corne broyée suit son étiquette** : en pot, 3 apports de 1 g par litre dans la saison (17,7 L : 18 g par apport).
 Calculée d'après le besoin, elle aurait reçu environ 6 fois plus (114 g si elle était seule) : c'est pourquoi elle a une dose d'étiquette (7e champ `1`).
-Elle ne couvre alors qu'environ 15 % du besoin en azote (plante adulte) : le plugin compte par semaine, 18 g × 13 % = 2,3 g d'azote toutes les 12 semaines, soit 0,19 g par semaine sur un besoin de 1,24 g (sur une saison de 36 semaines : 6,9 g sur 44,6 g ; rapportés aux ≈ 40 g des 32 semaines du seul Ferti, ce serait 17 %) ; le reste va aux autres produits cochés (Ferti Agrumes).
+Elle ne couvre alors qu'environ 15 % du besoin en azote (plante adulte) : le plugin compte par semaine, 18 g × 13 % = 2,3 g d'azote toutes les 12 semaines, soit 0,19 g par semaine sur un besoin de 1,24 g (sur une saison de 36 semaines : 6,9 g sur 44,6 g ; rapportés aux ≈ 40 g des 32 semaines du seul 7-3-10, ce serait 17 %) ; le reste va aux autres produits cochés (l'engrais 7-3-10).
 
 **Pourquoi plus que ce que l'arbre garde** : en verger bien conduit, l'arbre n'absorbe que **40 à 60 %** de l'azote apporté (50 % dans les exemples de Morgan et Hanlon) ; le reste est lessivé ou perdu
 (Morgan et Hanlon 2006, Asadi Kangarshahi 2023).
@@ -316,7 +343,7 @@ mais pour un **jeune plant** il faut viser nettement **sous** la dose calculée 
 
 ![Lire une étiquette N-P-K](../images/ferti-npk.svg)
 
-*Fig. F3 – Lire une étiquette N-P-K. Les trois chiffres N-P-K sont des pourcentages : 12-6-6 = 12 % d'azote, puis le phosphore exprimé en P₂O₅ et le potassium exprimé en K₂O, et non P et K eux-mêmes (UF/IFAS SL457 ; une fiche de données de sécurité d'engrais du commerce) : à ne pas comparer tels quels à une analyse de sol. Le plugin calcule le plan sur le premier. Conseillé en pot : environ 2-1-1 ou 3-1-1 (12-6-6 ; le 12-4-6 cité aussi donne 3-1-1,5). D'après University of Maryland, Mississippi State University, Clemson. Sac et marque imaginaires. Dessin pour ce plugin, MIT.*
+*Fig. F9 – Lire une étiquette N-P-K. Les trois chiffres N-P-K sont des pourcentages : 12-6-6 = 12 % d'azote, puis le phosphore exprimé en P₂O₅ et le potassium exprimé en K₂O, et non P et K eux-mêmes (UF/IFAS SL457 ; une fiche de données de sécurité d'engrais du commerce) : à ne pas comparer tels quels à une analyse de sol. Le plugin calcule le plan sur le premier. Conseillé en pot : environ 2-1-1 ou 3-1-1 (12-6-6 ; le 12-4-6 cité aussi donne 3-1-1,5). D'après University of Maryland, Mississippi State University, Clemson. Sac et marque imaginaires. Dessin pour ce plugin, MIT.*
 
 ## Bonnes pratiques
 
@@ -325,7 +352,7 @@ mais pour un **jeune plant** il faut viser nettement **sous** la dose calculée 
   (Guardiola 1975, mesuré ; même conclusion : Zekri et Obreza 2013, UF/IFAS SL456 et SL457, Vannière 1992 IV, Asadi Kangarshahi 2023).
 - En pot, chez de jeunes porte-greffes, la **fréquence** compte peu à quantité égale : apports tous les 3, 6, 12 ou 24 jours, même croissance ; seuls des apports quotidiens très dilués ont réduit l'efficacité de l'azote (Melgar 2010, pots de 4 L de sable, en fertirrigation, **une seule source**).
   Le gain du fractionnement mesuré en verger porte sur les **fruits**, pas sur la croissance.
-- Le plugin suit l'intervalle de chaque produit (8 semaines pour le Ferti Agrumes, 12 pour la corne).
+- Le plugin suit l'intervalle de chaque produit (8 semaines pour l'engrais 7-3-10, 12 pour la corne).
 
 ### Pas plus que nécessaire
 - Au-delà d'un optimum, plus d'azote n'apporte rien (Vannière 1992 IV, Asadi Kangarshahi 2023, UF/IFAS SL457, Guardiola 1975) et peut même **réduire la récolte** (UF/IFAS SL457, Guardiola 1975).
@@ -336,7 +363,7 @@ mais pour un **jeune plant** il faut viser nettement **sous** la dose calculée 
 ### Arroser juste
 - L'eau qui sort par le fond du pot emporte l'azote (nitrate) : un arrosage en excès gaspille l'engrais
   (Zekri et Obreza 2013, UF/IFAS SL456 et SL457, Asadi Kangarshahi 2023 ; le pot est une déduction du plugin). Le potassium part presque aussi facilement en sol sableux (UF/IFAS SL457, **une seule source**).
-- Un substrat **détrempé** asphyxie les racines : le fer n'est plus absorbé (UF/IFAS SL457, Haifa) et l'azote se perd en gaz (Zekri et Obreza 2013, **une seule source**).
+- Un substrat **détrempé** asphyxie les racines : le fer n'est plus absorbé (UF/IFAS SL457, fiche de fabricant) et l'azote se perd en gaz (Zekri et Obreza 2013, **une seule source**).
   Il favorise aussi la gommose (voir [Santé](sante.md#gommose-et-pourriture-des-racines-phytophthora)).
 - Donner l'engrais sur un substrat **humide**, pas sec (précaution du plugin ; rien trouvé dans les sources).
 
@@ -350,6 +377,10 @@ mais pour un **jeune plant** il faut viser nettement **sous** la dose calculée 
 - **Hiverner au frais endurcit l'arbre** : des semis d'oranger en pot gardés 4 semaines à 10 °C ont supporté un gel de −7 °C avec peu de dégâts aux feuilles et aucun aux tiges ; gardés à 25 °C, ils ont perdu 99 % de leurs feuilles et tiges (Guy 1981). Des racines tenues à 5 °C ont rendu satsumas et natsumikans bien plus résistants au froid (Yamada 1985). Un local frais (vers 10 °C) n'est donc pas un pis-aller (**déduction du plugin**) ; aucune étude ne fixe la température idéale du local ni la lumière minimale pour un agrume rentré l'hiver.
 - **Pleine terre, vérifier avant d'arroser** : vérifier l'humidité à 10-15 cm **dans la zone des racines, sous le bord de la frondaison**, et arroser quand c'est sec à cette profondeur, avec une petite pelle ou une tige enfoncée (UC Master Gardeners : « petite pelle ou appareil de mesure ») (AZ1151 : laisser sécher environ 15 cm ; UC Master Gardeners : vérifier dans la zone des racines). **Pas au pied du tronc** : il n'y a pas de racines qui absorbent l'eau, et l'humidité contre le tronc favorise les champignons (UC Master Gardeners, **une seule source** ; voir la [gommose](sante.md#gommose-et-pourriture-des-racines-phytophthora)).
 - **Au goutte-à-goutte** : arrosages plus fréquents qu'au tuyau (AZ1151, **une seule source**) ; garder à peu près la même quantité par semaine, en 2 ou 3 fois, est un choix du plugin.
+
+![Hiverner au frais](../images/ferti-hiverner.svg)
+
+*Fig. F10 – Hiverner au frais endurcit : des semis d'oranger 'Valencia' de 8 mois gardés 4 semaines à 10 °C n'ont eu que peu de dégâts aux feuilles après un gel à −7 °C ; chez ceux gardés à 25 °C, le même gel a tué 99 % des feuilles et des tiges (Guy, Yelenosky et Sweet 1981). Une plante hivernée au chaud arrive au printemps sans cet endurcissement. Schéma, pas à l'échelle. Dessin pour ce plugin, MIT.*
 
 **Les moments sensibles**
 - **De la floraison à la chute de juin, ne pas laisser manquer d'eau** : la floraison est très sensible au manque d'eau, et un manque pendant la nouaison fait tomber les petits fruits en juin (FAO) ; sur clémentinier, le printemps est la période la plus critique, avec une forte baisse de récolte (González-Altozano et Castel). Deux sources. Une étude contraire existe : sur mandarinier, un manque d'eau à la floraison a donné plus de fruits (Conesa 2018).
@@ -380,7 +411,7 @@ Le calcul de pleine terre ci-dessous **ne vaut pas pour un pot**.
   - Ordres de grandeur proches de ceux de Greffeur d'agrumes (site commercial), recalculés ici. La pluie tombée se retire du besoin.
 
 ### Organique ou minéral
-- Les engrais azotés en stock sont **organiques** (Ferti Agrumes, corne, sang séché).
+- Les engrais azotés en stock sont **organiques** (engrais 7-3-10, corne, sang séché).
 - Pour nourrir l'arbre, l'organique **ne fait pas mieux** que le minéral : un essai de 20 ans (Winnik, cité par Bar-Akiva 1966) n'a montré aucune différence de récolte ;
   une revue indienne trouve l'organique seul moins productif (Barooah 2022). Seul point commun : l'engrais organique ne fait pas mieux que le minéral.
 - L'organique agit **lentement** (UF/IFAS SL457, Barooah 2022) : les microbes doivent d'abord le décomposer, plus vite au chaud et à l'humidité (UF/IFAS SL457, **une seule source**).
@@ -395,12 +426,12 @@ Le calcul de pleine terre ci-dessous **ne vaut pas pour un pot**.
 
 Dans la zone du SEDIF (Syndicat des eaux d'Île-de-France, banlieue de Paris), l'eau du robinet est calcaire : 23 °f en moyenne en 2023, de 18 à 27 °f (lettre SEDIF d'avril 2024, d'après le contrôle sanitaire de l'ARS, **non relue ici**, chiffres confirmés par un relecteur), et jusqu'à 30 à 32 °f en sortie de certaines usines (étude Deloitte-IRH pour le SEDIF, 2018) ; **une seule source** (le SEDIF). La valeur de sa commune est sur la fiche de l'ARS jointe à la facture d'eau.
 Une eau calcaire est une cause possible de jaunissement des jeunes feuilles par manque de fer (déduction du plugin).
-Le chélate EDDHA reste efficace jusqu'à pH 12 (étiquette Kélafer).
+Le chélate EDDHA reste efficace jusqu'à pH 12 (étiquette du chélate en stock).
 
 ### Sur les feuilles
 - La pulvérisation sur les feuilles corrige vite, mais n'apporte que de petites quantités : elle ne remplace pas l'engrais au pied, sauf en sol calcaire (UF/IFAS SL457, **une seule source**).
-- Le magnésium peut se donner en pulvérisation quand le sol est calcaire (UF/IFAS SL457 : le magnésium fait partie des éléments qu'on peut pulvériser, « surtout utile quand un pH élevé bloque la disponibilité », et la voie foliaire ne doit pas être la seule « sauf si le sol est calcaire » ; Haifa).
-- Le Kélafer, au contraire : **jamais sur les feuilles**, il les tache (étiquette).
+- Le magnésium peut se donner en pulvérisation quand le sol est calcaire (UF/IFAS SL457 : le magnésium fait partie des éléments qu'on peut pulvériser, « surtout utile quand un pH élevé bloque la disponibilité », et la voie foliaire ne doit pas être la seule « sauf si le sol est calcaire » ; fiche de fabricant).
+- Le chélate de fer EDDHA, au contraire : **jamais sur les feuilles**, il les tache (étiquette).
 
 ### Le potassium ne protège pas du froid
 Beaucoup de potassium n'augmente pas la rusticité au froid (UF/IFAS SL457, **une seule source**).
@@ -411,22 +442,22 @@ Toujours **regarder d'abord quelles feuilles** sont touchées : les vieilles ou 
 
 ![Où se voit une carence](../images/ferti-carences.svg)
 
-*Fig. F4 – Où se voit une carence, d'après le tableau ci-dessous : fer, zinc, manganèse sur les jeunes pousses ; azote et magnésium sur les vieilles feuilles ; potassium sur les feuilles adultes (les vieilles pour Haifa, celles de la pousse de printemps tout juste mûres pour UF/IFAS SL457). Jaunissement asymétrique : penser au HLB (marbrure) (UF/IFAS PP328, **une seule source**). Schéma dessiné pour ce plugin, MIT.*
+*Fig. F11 – Où se voit une carence, d'après le tableau ci-dessous : fer, zinc, manganèse sur les jeunes pousses ; azote et magnésium sur les vieilles feuilles ; potassium sur les feuilles adultes (les vieilles pour la fiche de fabricant, celles de la pousse de printemps tout juste mûres pour UF/IFAS SL457). Jaunissement asymétrique : penser au HLB (marbrure) (UF/IFAS PP328, **une seule source**). Schéma dessiné pour ce plugin, MIT.*
 
 ![Carences sur feuille d'agrume : saine, azote, magnésium, fer, zinc](../images/ferti-carences-feuilles.svg)
 
-*Fig. F5 – À quoi ressemble chaque carence, d'après le tableau ci-dessous (UF/IFAS SL457, chapitre 3 ; fiche commerciale Haifa ; revue Elavarasan 2019) : A saine ; B azote, vert pâle à jaune uniforme, vieilles feuilles ; C magnésium, V vert à l'envers à la base, vieilles feuilles ; D fer, réseau fin de nervures vertes sur limbe jaune pâle, jeunes pousses aux feuilles plus petites ; E zinc, bandes vertes le long des nervures, feuilles petites, étroites et pointues. Dessin façon gravure ancienne aquarellée pour ce plugin, MIT.*
+*Fig. F12 – À quoi ressemble chaque carence, d'après le tableau ci-dessous (UF/IFAS SL457, chapitre 3 ; fiche commerciale d'un fabricant d'engrais ; revue Elavarasan 2019) : A saine ; B azote, vert pâle à jaune uniforme, vieilles feuilles ; C magnésium, V vert à l'envers à la base, vieilles feuilles ; D fer, réseau fin de nervures vertes sur limbe jaune pâle, jeunes pousses aux feuilles plus petites ; E zinc, bandes vertes le long des nervures, feuilles petites, étroites et pointues. Dessin façon gravure ancienne aquarellée pour ce plugin, MIT.*
 
-**Retenu** pour l'azote, le magnésium, le fer, le zinc et le manganèse : trois sources décrivent les mêmes signes, mais elles n'ont pas le même poids. UF/IFAS SL457 (chapitre 3 de *Nutrition of Florida Citrus Trees*) est la référence ; Elavarasan 2019 est une revue de synthèse sans observations propres (sa bibliographie est indienne, californienne et chinoise, sans travail de Floride) ; Haifa est une fiche commerciale de fabricant d'engrais. Le potassium est décrit par Haifa et UF/IFAS SL457, qui ne placent pas les symptômes sur les mêmes feuilles (voir le tableau).
+**Retenu** pour l'azote, le magnésium, le fer, le zinc et le manganèse : trois sources décrivent les mêmes signes, mais elles n'ont pas le même poids. UF/IFAS SL457 (chapitre 3 de *Nutrition of Florida Citrus Trees*) est la référence ; Elavarasan 2019 est une revue de synthèse sans observations propres (sa bibliographie est indienne, californienne et chinoise, sans travail de Floride) ; la troisième est une fiche commerciale de fabricant d'engrais. Le potassium est décrit par cette fiche et par UF/IFAS SL457, qui ne placent pas les symptômes sur les mêmes feuilles (voir le tableau).
 
 | Carence | Feuilles touchées d'abord | Aspect | Que faire |
 |---|---|---|---|
-| Azote (N) | vieilles feuilles d'abord, puis tout le feuillage ; les vieilles tombent tôt | vert pâle à jaune uniforme, feuillage clairsemé ; manque ancien : les vieilles feuilles sont tombées, l'intérieur de la ramure est dégarni et les feuilles restantes peuvent rester presque vertes (UF/IFAS SL457) | un apport d'azote ; le manque de soufre donne le même aspect (UF/IFAS, Haifa) ; sur quelles feuilles d'abord, les sources ne s'accordent pas (HS1373 : vieilles ; d'autres : jeunes), le plugin ne propose donc pas de piste soufre |
+| Azote (N) | vieilles feuilles d'abord, puis tout le feuillage ; les vieilles tombent tôt | vert pâle à jaune uniforme, feuillage clairsemé ; manque ancien : les vieilles feuilles sont tombées, l'intérieur de la ramure est dégarni et les feuilles restantes peuvent rester presque vertes (UF/IFAS SL457) | un apport d'azote ; le manque de soufre donne le même aspect (UF/IFAS, fiche de fabricant) ; sur quelles feuilles d'abord, les sources ne s'accordent pas (HS1373 : vieilles ; d'autres : jeunes), le plugin ne propose donc pas de piste soufre |
 | Magnésium (Mg) | vieilles feuilles, près des fruits | jaune des deux côtés de la nervure, un **V vert à l'envers** reste à la base ; puis bronze et chute | sulfate de magnésium (sel d'Epsom : en stock, mais sans dose pour les plantes, voir plus bas) ; en pulvérisation si le sol est calcaire |
 | Fer (Fe) | **jeunes pousses** | jaune clair à ivoire, **nervures restées vertes**, feuilles plus petites | chélate de fer au pied ; d'abord chercher la cause : substrat détrempé, pH élevé, excès de cuivre |
 | Zinc (Zn) | pousses du bout | bandes vertes le long des nervures sur fond jaune pâle ; **feuilles petites, étroites, pointues**, en rosette | sulfate de zinc en pulvérisation (Elavarasan 2019, **une seule source** ; aucun produit en stock) |
 | Manganèse (Mn) | jeunes feuilles | marbrure légère, bandes vert foncé le long des nervures ; ressemble au zinc | rien si c'est passager : ne corriger que si ça dure (UF/IFAS SL457) |
-| Potassium (K) | feuilles adultes : vieilles feuilles pour Haifa, feuilles de la pousse de printemps tout juste mûres, en fin d'été, pour UF/IFAS (SL457) | jaune puis bronze, bout brun, feuilles qui s'enroulent | sulfate ou nitrate de potassium |
+| Potassium (K) | feuilles adultes : vieilles feuilles pour la fiche de fabricant, feuilles de la pousse de printemps tout juste mûres, en fin d'été, pour UF/IFAS (SL457) | jaune puis bronze, bout brun, feuilles qui s'enroulent | sulfate ou nitrate de potassium |
 | Molybdène (Mo) | feuilles adultes | taches jaunes entre les nervures (« yellow spot ») | rare ; aucun produit en stock (UF/IFAS SS618, **une seule source**) |
 
 - Manganèse et zinc, parfois le fer, manquent ensemble sur sol calcaire (« marl chlorosis », UF/IFAS SL457) ; le manque de fer se voit aussi en sol alcalin ou gorgé d'eau (SL457).
@@ -443,13 +474,13 @@ D'après leurs étiquettes et fiches (relevées le 2 novembre 2026).
 
 | Produit | Azote | Étiquette | Dans le plugin |
 |---|---|---|---|
-| Ferti Agrumes 7-3-10 (Agro Sens), granulés | 7 %, organique | 80 à 240 g par sujet « en fonction de la taille », tous les 2 mois, de mars à octobre, enfoui par léger griffage, en pot comme en pleine terre | engrais de fond, toutes les 8 semaines, semaines 10-40 ; le calcul tombe dans la fourchette |
-| Corne broyée (Agro-Sens Pro) | 13 %, organique | effet sur 3 à 4 mois ; en pot, 3 apports de 1 g par litre de terreau dans la saison | toutes les 12 semaines, semaines 10-40, **dose de l'étiquette** (1 g par litre) ; l'azote restant va aux autres produits |
-| Sang séché (Agro Sens) | 12 %, organique | « coup de fouet », effet en 3 à 4 jours ; 1 à 2 apports par an, printemps et été ; aucune dose en grammes | ponctuel (hors plan) ; semaines 10-30 dans le plugin : fin juillet, plus tôt que l'été de l'étiquette (choix du plugin) |
-| Kélafer racinaire (fer EDDHA 6 %) | — | au pied seulement ; dilué dans l'arrosage (étiquette : 10 à 40 g par litre d'eau, c'est la **concentration** de la solution ; la dose par pied ci-après reste la limite, lecture du plugin) ou griffé ; « horticulture » 1 à 3 g par pied, jeunes plantations 5 à 15 g ; « seulement en cas de besoin reconnu » | fer, seulement si les jeunes feuilles le montrent ; en pot, la dose « horticulture » est la plus proche |
+| Engrais organique agrumes 7-3-10, granulés | 7 %, organique | 80 à 240 g par sujet « en fonction de la taille », tous les 2 mois, de mars à octobre, enfoui par léger griffage, en pot comme en pleine terre | engrais de fond, toutes les 8 semaines, semaines 10-40 ; le calcul tombe dans la fourchette |
+| Corne broyée | 13 %, organique | effet sur 3 à 4 mois ; en pot, 3 apports de 1 g par litre de terreau dans la saison | toutes les 12 semaines, semaines 10-40, **dose de l'étiquette** (1 g par litre) ; l'azote restant va aux autres produits |
+| Sang séché | 12 %, organique | « coup de fouet », effet en 3 à 4 jours ; 1 à 2 apports par an, printemps et été ; aucune dose en grammes | ponctuel (hors plan) ; semaines 10-30 dans le plugin : fin juillet, plus tôt que l'été de l'étiquette (choix du plugin) |
+| Chélate de fer EDDHA 6 % (au pied) | — | au pied seulement ; dilué dans l'arrosage (étiquette : 10 à 40 g par litre d'eau, c'est la **concentration** de la solution ; la dose par pied ci-après reste la limite, lecture du plugin) ou griffé ; « horticulture » 1 à 3 g par pied, jeunes plantations 5 à 15 g ; « seulement en cas de besoin reconnu » | fer, seulement si les jeunes feuilles le montrent ; en pot, la dose « horticulture » est la plus proche |
 | Sel d'Epsom (sulfate de magnésium) | — | vendu pour le bain : **aucune dose pour les plantes** (9,9 % de Mg par la chimie) ; **aucune dose sourcée** : le plugin n'en propose pas, ne pas improviser | magnésium, seulement si les vieilles feuilles le montrent |
 
-Ni Mg, ni fer, ni oligo-éléments ne sont déclarés dans le Ferti Agrumes (fiche de données de sécurité).
+Ni Mg, ni fer, ni oligo-éléments ne sont déclarés dans l'engrais 7-3-10 (fiche de données de sécurité).
 
 ## Erreurs à éviter
 - Donner de l'engrais **l'hiver** ou très tôt au printemps : l'arbre vit sur ses réserves (voir [La saison](#la-saison)).
@@ -485,6 +516,7 @@ Lues en entier, sauf mention.
 - **UF/IFAS HS1333** : Ferrarezi R. S., *Citrus Nursery Production Guide*, chap. 8 ; vérifiée par extraits.
 - **Utah State University** : Extension, Garden Help Desk (presse, 2025) ; vérifiée par extraits.
 - **UC Master Gardeners** : programme du comté de Contra Costa, *Growing a happy, healthy Meyer lemon* (ucanr.edu) ; vérifiée par extraits.
+- **Albrecht 2022** : Albrecht U., *Citrus Root Structures: Lessons From Below*, UF/IFAS (EDIS), repris dans *Citrus Industry*, juillet 2022 ; lu dans *Citrus Industry*.
 - **Asadi Kangarshahi 2023** : Asadi Kangarshahi A., Akhlaghi Amiri N., gestion de l'azote dans les vergers d'agrumes, *Land Management Journal* 11(2):209-228, doi 10.22092/lmj.2023.362505.333 (Iran ; **résumé seul**, texte en persan).
 - **Aubert 1969** : Aubert B., synthèse sur le froid et les agrumes, *Fruits* 24(3), IFAC ; seuil de croissance ≈ 12,5 °C.
 - **Bar-Akiva 1966** : Bar-Akiva A., problème de la fumure organique en orangeraie, *Fruits* 21(7):343-346 (Israël) ; l'essai de Winnik y est cité de seconde main.
@@ -494,17 +526,17 @@ Lues en entier, sauf mention.
 - **BSV PACA 2020** : Bulletin de santé du végétal, zones non agricoles, PACA, novembre 2020.
 - **Curk 2022** : Curk F., Luro F., Minuto G., Nieddu G., *Les agrumes du Nord de la Méditerranée*, Alain Piazzola, 2022 (HAL hal-04646466) ; seuils de croissance (zéro de végétation ≈ 13 °C).
 - **Dekkers 2000** : Dekkers et al., *Proceedings of the Florida State Horticultural Society* 113:130-133 (mélanges de terreau pour plants d'agrumes) ; notice seule (AGRIS).
-- **Diggers** : étiquette Fruit & Citrus Fertiliser, Diggers (Australie, vendeur).
+- **Étiquette australienne** : étiquette d'un engrais pour fruitiers et agrumes vendu en Australie.
 - **Elavarasan 2019** : Elavarasan K., Premalatha A., revue de synthèse, *Journal of Pharmacognosy and Phytochemistry* 8(4):1705-1708 (Inde ; 14 références, aucune de Floride).
-- **Étiquettes** : Ferti Agrumes, Sang séché, Corne broyée, Kélafer (Agro Sens / Comptoir des Jardins), sel d'Epsom GiDe ; fiche de données de sécurité Ferti Agrumes (Comptoir des Jardins, 2026).
+- **Étiquettes** : des produits en stock (engrais organique agrumes 7-3-10, sang séché, corne broyée, chélate de fer EDDHA 6 %, sel d'Epsom) ; fiche de données de sécurité de l'engrais 7-3-10 (2026).
 - **Engrais enrobé** : fiche technique d'un engrais enrobé 16-8-12 « 6 mois » (revendeur italien, 2026) : durée selon la température, doses en pot, demi-dose pour un jeune plant, chélate EDTA stable entre pH 4 et 6,5.
-- **ICL Osmocote** : fiche technique du fabricant (ICL Growing Solutions) : durées de libération données à 16, 21 et 26 °C.
-- **Fertiligène Performance Organics** : étiquette engrais agrumes (fiche du vendeur Truffaut) ; engrais universel 8-5-5 (fiche du vendeur Truffaut, norme NF U 42-001, poignées, réappliquer après 5 semaines) et sa fiche de données de sécurité (Evergreen Garden Care, 2023).
+- **Fiche de fabricant d'enrobé** : fiche technique d'un fabricant d'engrais enrobé : durées de libération données à 16, 21 et 26 °C.
+- **Étiquettes d'un engrais organique du commerce** : engrais agrumes (fiche du vendeur) ; engrais universel 8-5-5 (fiche du vendeur, norme NF U 42-001, poignées, réappliquer après 5 semaines) et sa fiche de données de sécurité (2023).
 - **Règlement (UE) 2021/1165** : annexe II, engrais et amendements autorisés en agriculture biologique.
 - **Girardi 2005** : Girardi E. A. et al., *Fruits* 60(2):101-105, doi 10.1051/fruits:2005020 (CC BY 4.0 ; volume du pot en pépinière, 'Pera' sur Rangpur).
 - **Guardiola 1975** : Guardiola J. L., Vivas S., González-Sicilia E., efficacité de l'analyse foliaire de l'azote, *Fruits* 30(2):113-118 (INIA, Espagne).
 - **Labanauskas 1967** : Labanauskas C. K., Nauer E. M., Roistacher C. N., *Hilgardia* 38(15), Université de Californie (semis d'oranger Valencia en pot).
-- **Haifa** : Haifa Group (Israël, fabricant d'engrais), fiche commerciale « Deficiency Pro: Citrus », haifa-group.com.
+- **Fiche de fabricant** : fiche commerciale « Deficiency Pro: Citrus » d'un fabricant d'engrais israélien.
 - **Machado 2011** : Magalhães Machado D. L. et al., *Revista Ceres* 58(3):359-365 (Brésil ; limettier Rangpur en pépinière).
 - **Martínez-Alcántara 2012** : Martínez-Alcántara B. et al., *Journal of Agricultural Science* (CCSE) 4(8), doi 10.5539/jas.v4n8p11 (CC BY 4.0 ; IVIA, Valence).
 - **Mattos 2010** : Mattos Jr. D. et al., *Bragantia* 69(1):135-147 (IAC, Brésil ; plants d'oranger en sacs, fertirrigation).
@@ -519,6 +551,7 @@ Lues en entier, sauf mention.
 - **Niu 2024** : Niu R. et al., *Root reduction caused directly or indirectly by high application of nitrogen fertilizer…*, *Plants* 13(7):938, doi 10.3390/plants13070938 (Université du Sud-Ouest, Chongqing ; lu en ligne).
 - **Pokhrel et Albrecht 2024** : Pokhrel, Albrecht U., *HortScience* 59(8), doi 10.21273/HORTSCI17979-24 (types de pots en pépinière) ; résumé seul.
 - **Poorter 2012** : Poorter H. et al., *Pot size matters*, *Functional Plant Biology* 39:839-850, doi 10.1071/FP12049.
+- **Saga 2013** : station d'essais fruitiers de la préfecture de Saga (Ishimoto, Ikeda, Takeshita, Shindō), fiche de résultats, mars 2013 : racines propres de la variété 'Saga Kashi n° 34' sur Poncirus, coupées ; lue en entier.
 - **Sawano 1998** : Sawano et al., *Bulletin of the Shizuoka Prefectural Citrus Experiment Station* 27:1-6 (volume de terre confinée, 'Aoshima') ; résumé seul (AGRIS).
 - **Teixeira 2009** : Teixeira et al., *Ciência Rural* 39(6), doi 10.1590/S0103-84782009005000122 (forme du contenant, porte-greffes).
 - **Tuzcu 1984** : *Fruits* 39(9), croissance de 14 porte-greffes à basse température ; Poncirus, satsuma et Nagami ne poussent qu'au-dessus de ≈ 15 °C.

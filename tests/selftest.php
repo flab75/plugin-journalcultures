@@ -63,16 +63,16 @@ $ok($C::volume(['diam' => 20, 'terre' => 20]) === 6.3 && $C::volume(['diam' => 2
 $P = $C::produits($C::PRODUITS);
 $ok(count($P) == 5 && $P[0]['n'] == 7.0 && $P[0]['tous'] == 8 && $P[0]['saison'] == '10-40' && $P[0]['apporte'] == ['N', 'P', 'K'] && $P[3]['apporte'] == ['FE'] && $P[4]['apporte'] == ['MG', 'S'], 'catalogue proposé');
 // 10 L, 0,07 g N/L/sem., Ferti 7 % toutes les 8 semaines : 10 × 0,07 × 8 / 0,07 = 80 g (bas de l'étiquette, 80 à 240 g tous les 2 mois)
-$ok($C::plan(10, $P, [0 => 100]) == [['i' => 0, 'g' => 80.0, 'ligne' => '10-40/8 | Ferti Agrumes 7-3-10 | 80 g']], 'plan : 100 % Ferti Agrumes');
+$ok($C::plan(10, $P, [0 => 100]) == [['i' => 0, 'g' => 80.0, 'ligne' => '10-40/8 | Engrais agrumes 7-3-10 | 80 g']], 'plan : 100 % engrais 7-3-10');
 $ok($C::plan(10, $P, [0 => 100], 0.07 * 0.5)[0]['g'] == 40.0, 'plan d\'un jeune plant : moitié');
 $x = $C::plan(10, $P, [0 => 50, 1 => 50, 2 => 50, 3 => 100], 0.07 * 0.25); // besoin 0,175 g N/sem., corne 0,108 → Ferti 20 × 0,38 ≈ 8 g
 $ok(count($x) == 2 && $x[0]['g'] == 8.0 && $x[1]['ligne'] == '10-40/12 | Corne broyée | 10 g', 'jeune plant : corne gardée à l\'étiquette, Ferti réduit');
-$x = $C::plan(10, $P, [0 => 50, 1 => 50, 2 => 50, 3 => 100]); // sang séché ponctuel et Kélafer sans azote : jamais dans le plan
+$x = $C::plan(10, $P, [0 => 50, 1 => 50, 2 => 50, 3 => 100]); // sang séché ponctuel et chélate de fer sans azote : jamais dans le plan
 // corne à dose d'étiquette (1 g/L) : 10 g, 10 × 1 × 13 % / 12 sem. = 0,108 g N/sem. sur 0,7 → Ferti : 80 × (1 − 0,155) ≈ 68 g
 $ok(count($x) == 2 && $x[0]['g'] == 68.0 && $x[1]['ligne'] == '10-40/12 | Corne broyée | 10 g' && $C::plan(null, $P, [0 => 100]) === [] && $C::plan(10, $P, []) === [], 'plan partagé, corne à dose d\'étiquette, rien de coché');
 $Q = $C::produits("A | 10 | 4 | 10-40 | N\nB | 10 | 4 | 10-40 | N | | x");
 $ok($Q[1]['gl'] == 0.0 && array_column($C::plan(10, $Q, [0 => 30, 1 => 70]), 'g') == [8.0, 20.0] && $C::plan(10, $C::produits("C | 10 | 4 | 10-40 | N | | 20"), [0 => 100])[0]['g'] == 200.0, 'plan : parts sans étiquette, étiquette seule');
-$ok($C::plan(10, $P, [0 => 100], 0.07, [0 => 60]) == [['i' => 0, 'g' => 60.0, 'ligne' => '10-40/8 | Ferti Agrumes 7-3-10 | 60 g']] && $C::plan(10, $P, [0 => 100], 0.07, [0 => 12.5])[0]['ligne'] == '10-40/8 | Ferti Agrumes 7-3-10 | 12,5 g', 'plan : dose ajustée à la main');
+$ok($C::plan(10, $P, [0 => 100], 0.07, [0 => 60]) == [['i' => 0, 'g' => 60.0, 'ligne' => '10-40/8 | Engrais agrumes 7-3-10 | 60 g']] && $C::plan(10, $P, [0 => 100], 0.07, [0 => 12.5])[0]['ligne'] == '10-40/8 | Engrais agrumes 7-3-10 | 12,5 g', 'plan : dose ajustée à la main');
 $ok($C::semaines(explode(' | ', $x[0]['ligne'])[0]) == [10, 18, 26, 34], 'ligne du plan lisible par le calendrier');
 $ok(array_column($C::plan(10, $P, [0 => 50, 1 => 50], 0.01), 'i') == [1], 'plan : besoin couvert par la corne, pas de 1 g de Ferti d\'office');
 $ok(array_column($C::carences(['feuilles.couleur' => 'jaunissement entre les nervures', 'feuilles.touchees' => 'jeunes', 'pot.substrat' => 'détrempé']), 'el') == ['EAU', 'FE']

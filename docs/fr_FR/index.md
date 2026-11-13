@@ -73,7 +73,7 @@ La fiche se modifie dans la page du plugin (équipement de la plante) ; l'onglet
 
 ![Partie Engrais de la fiche](../images/engrais.webp)
 
-*Fig. M4 – Partie Engrais : pot de 17,7 L × 0,07 g d'azote par litre et par semaine × 8 semaines ÷ 7 % d'azote = 142 g de Ferti Agrumes toutes les 8 semaines (arrondi ici à 140 g à la main). Au-dessus, une piste de carence d'après la dernière mesure.*
+*Fig. M4 – Partie Engrais : pot de 17,7 L × 0,07 g d'azote par litre et par semaine × 8 semaines ÷ 7 % d'azote = 142 g d'engrais à 7 % d'azote toutes les 8 semaines (arrondi ici à 140 g à la main). Au-dessus, une piste de carence d'après la dernière mesure.*
 
 ## Nouvelle plante
 **＋ Plante** (tuile ou page plein écran, administrateurs) :

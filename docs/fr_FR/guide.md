@@ -56,7 +56,7 @@ Le bourgeon de côté, à l'aisselle d'une feuille, se voit sur la planche de l'
 
 ![Rameau de frêne de trois ans et ses cernes, Atkinson 1905](../images/bota-cernes.webp)
 
-*Fig. B2 – Rameau de frêne de trois ans, coupé dans chaque pousse annuelle : un cerne de plus chaque année vers le bas. Atkinson 1905, fig. 432, [p. 381](https://archive.org/details/collegetextbooko00atkiuoft/page/381), domaine public.*
+*Fig. B2 – Rameau de frêne de trois ans, coupé dans chaque pousse annuelle : un cerne de plus chaque année vers le bas. A, pousse de l'année : 1 cerne ; B, pousse de 2 ans : 2 cernes ; C, pousse de 3 ans : 3 cernes. Atkinson 1905, fig. 432, [p. 381](https://archive.org/details/collegetextbooko00atkiuoft/page/381), domaine public (lettres ajoutées).*
 
 De l'extérieur vers le centre :
 
@@ -73,7 +73,7 @@ Ces règles valent pour les arbres en général ; qu'elles s'appliquent aux agru
 
 ![Faisceau conducteur en coupe, Atkinson 1905](../images/bota-faisceau.webp)
 
-*Fig. B3 – Coupe d'un faisceau conducteur de tige de tournesol, au microscope : à gauche le **bois** (gros vaisseaux ronds), au centre le **cambium** (petites cellules en rangs), à droite le **liber**. Atkinson 1905, fig. 58, [p. 50](https://archive.org/details/collegetextbooko00atkiuoft/page/50), domaine public (légende anglaise d'origine retirée).*
+*Fig. B3 – Coupe d'un faisceau conducteur de tige de tournesol, au microscope : A, le **bois** (gros vaisseaux ronds) ; B, le **cambium** (petites cellules en rangs) ; C, le **liber**. Atkinson 1905, fig. 58, [p. 50](https://archive.org/details/collegetextbooko00atkiuoft/page/50), domaine public (légende anglaise d'origine retirée, lettres ajoutées).*
 
 ![Écorce, cambium et bois ; les deux cambiums d'une greffe](../images/bota-cambium.svg)
 
@@ -111,7 +111,7 @@ Ces règles valent pour les arbres en général ; qu'elles s'appliquent aux agru
 
 ![Épiderme et stomates, Atkinson 1905](../images/bota-stomates.webp)
 
-*Fig. B7 – Épiderme de feuille de lierre vu au microscope : cellules à bords ondulés, deux stomates (les ovales à deux lèvres). Atkinson 1905, fig. 53, [p. 42](https://archive.org/details/collegetextbooko00atkiuoft/page/42), domaine public.*
+*Fig. B7 – Épiderme de feuille de lierre vu au microscope. A, un stomate (ovale à deux lèvres ; un second à droite) ; B, la paroi ondulée entre deux cellules. Atkinson 1905, fig. 53, [p. 42](https://archive.org/details/collegetextbooko00atkiuoft/page/42), domaine public (lettres ajoutées).*
 
 - **Transpiration** : la perte d'eau par évaporation à la surface des feuilles (OpenStax p. 882 ; Shipunov p. 88).
 - **Photosynthèse** : avec la lumière, la feuille fabrique des **sucres** à partir du gaz carbonique de l'air et de l'eau, et rejette de l'oxygène (Shipunov p. 39 ; OpenStax p. 860 et 865).
@@ -123,7 +123,7 @@ Ces règles valent pour les arbres en général ; qu'elles s'appliquent aux agru
 
 ![Poils absorbants collés au sol, Atkinson 1905](../images/bota-poils-absorbants.webp)
 
-*Fig. B8 – Poils absorbants d'une plantule de maïs, avec des grains de terre collés. Atkinson 1905, fig. 44, [p. 32](https://archive.org/details/collegetextbooko00atkiuoft/page/32), domaine public.*
+*Fig. B8 – Poils absorbants d'une plantule de maïs. A, la racine ; B, un poil absorbant ; C, des grains de terre collés au poil. Atkinson 1905, fig. 44, [p. 32](https://archive.org/details/collegetextbooko00atkiuoft/page/32), domaine public (lettres ajoutées).*
 
 - Les racines **respirent** : elles ont besoin d'oxygène (Shipunov p. 97 ; OpenStax p. 878). Un bon sol a environ **moitié eau, moitié air** dans ses vides (OpenStax p. 906, **une seule source**).
   D'où le danger d'un pot détrempé : voir [Arroser juste](fertilisation.md#arroser-juste) et la [gommose](sante.md#gommose-et-pourriture-des-racines-phytophthora).
@@ -132,7 +132,7 @@ Ces règles valent pour les arbres en général ; qu'elles s'appliquent aux agru
 
 ![Pièces d'une fleur et fleur en coupe, Atkinson 1905](../images/bota-fleur.webp)
 
-*Fig. B9 – À gauche, de Trillium : sépale, pétale, étamine, pistil ; à droite, fleur de poirier coupée en long : pétales, étamines, pistil au centre. Atkinson 1905, fig. 379 [p. 320](https://archive.org/details/collegetextbooko00atkiuoft/page/320) et fig. 570 [p. 682](https://archive.org/details/collegetextbooko00atkiuoft/page/682) (d'après Warming), domaine public.*
+*Fig. B9 – A, sépale ; B, pétale ; C, étamine ; D, pistil. À gauche, les pièces d'une fleur de Trillium ; à droite, une fleur de poirier coupée en long, les mêmes lettres pour les mêmes pièces. Atkinson 1905, fig. 379 [p. 320](https://archive.org/details/collegetextbooko00atkiuoft/page/320) et fig. 570 [p. 682](https://archive.org/details/collegetextbooko00atkiuoft/page/682) (d'après Warming), domaine public (lettres ajoutées).*
 
 - De l'extérieur vers le centre : **sépales** (le calice), **pétales** (la corolle), **étamines**, **pistil** (Shipunov p. 153 ; OpenStax p. 920).
 - **Étamine** : elle porte l'**anthère**, qui fait le pollen (Shipunov p. 154 ; OpenStax p. 920) ; l'anthère est au bout d'un **filet** (Shipunov p. 154 ; OpenStax p. 923).

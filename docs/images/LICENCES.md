@@ -6,7 +6,7 @@
 | ferti-saison.svg, ferti-npk.svg, ferti-pot.svg | dessins façon gravure coloriée pour ce plugin d'après les sources de l'onglet Fertilisation citées sur chaque dessin (aucune figure recopiée) | MIT, comme le plugin |
 | bota-epine.svg, bota-cambium.svg, bota-semis.svg, bota-marcotte.svg | dessins façon gravure coloriée pour ce plugin d'après les sources de l'onglet Botanique citées sur chaque dessin (aucune figure recopiée) | MIT, comme le plugin |
 | greffe-ecusson-controle.svg | dessin façon gravure coloriée pour ce plugin d'après UF/IFAS HS1309 et Alabama ACES (aucune figure recopiée) | MIT, comme le plugin |
-| ferti-carences-feuilles.svg | dessin façon gravure coloriée pour ce plugin d'après le tableau « Reconnaître une carence » (UF/IFAS SL457 chapitre 3, fiche commerciale Haifa, revue Elavarasan 2019 ; aucune figure recopiée) | MIT, comme le plugin |
+| ferti-carences-feuilles.svg | dessin façon gravure coloriée pour ce plugin d'après le tableau « Reconnaître une carence » (UF/IFAS SL457 chapitre 3, fiche commerciale d'un fabricant d'engrais, revue Elavarasan 2019 ; aucune figure recopiée) | MIT, comme le plugin |
 | rusticite.svg, greffe-suivi.svg | schémas dessinés pour ce plugin d'après son propre calcul | MIT, comme le plugin |
 | bota-feuilles.svg | dessin façon gravure coloriée pour ce plugin d'après les définitions de Shipunov 2021 p. 82 (dont la base) et d'IPGRI 1999 p. 32-33 (aucune figure recopiée) | MIT, comme le plugin |
 | id-aile-mesure.svg | schéma dessiné pour ce plugin d'après les seuils de l'onglet Identification et la clé de la FoC 2008 (aucune figure recopiée) | MIT, comme le plugin |

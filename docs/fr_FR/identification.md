@@ -83,6 +83,10 @@ Le limequat est rangé en lime (−3), plus prudent que TyCitriK (−6).
 Ces valeurs varient de 1 à 2 °C d'un arbre ou d'un verger à l'autre : la FAO conseille de garder une marge. Une revue (Dahro 2023, d'après Huang 2011) retient pour les fleurs et les fruits des dégâts sous −2 °C pendant 4 h.
 Le plugin n'en tient pas compte : ses alertes suivent la rusticité de la plante, pas celle de ses fruits.
 
+![Qui gèle en premier](../images/id-gel.svg)
+
+*Fig. I2 – Qui gèle en premier : températures où les fruits, les bourgeons et les fleurs commencent à geler (FAO 2005, tableau 4.10, d'après Puffer et Turrell 1967) : citron mûr ou tout petit −0,8 à −1,4 °C ; orange verte et citron vert de plus de 12 mm −1,4 à −1,9 °C ; orange, pomelo, mandarine à moitié mûrs −1,7 à −2,2 °C, mûrs −2,2 à −2,8 °C ; bourgeons et fleurs de citronnier −2,8 °C. Ni durée ni part de dégâts : ce sont des seuils de début de gel, qui varient de 1 à 2 °C selon le verger, la variété et l'arbre ; la FAO conseille de garder une marge. En comparaison, des feuilles d'oranger 'Valencia' endurcies n'ont montré aucun signe de gel avant environ −6,7 °C (Yelenosky et al. 1981, verger de Floride, gel de janvier 1981). Le plugin n'en tient pas compte : ses alertes suivent la rusticité de la plante. Schéma : dessins des fruits et fleurs pas à l'échelle. Dessin pour ce plugin, MIT.*
+
 ## Bien observer
 
 ### Quelle feuille
@@ -96,6 +100,10 @@ Le plugin n'en tient pas compte : ses alertes suivent la rusticité de la plante
 - **Jeunes rameaux** : les regarder **à la loupe**, sur la pousse de l'année ; les poils sont fins (choix du plugin).
 - **Mots des flores** : elliptique, obovale, émarginé, crénelé… sont expliqués dans [La feuille](guide.md#la-feuille) (onglet Botanique).
 
+![Où prendre la feuille à identifier](../images/id-quelle-feuille.svg)
+
+*Fig. I3 – Où prendre la feuille à identifier. A, des feuilles adultes, complètement développées (IPGRI 1999, UPOV TG/83), au tiers moyen de la dernière pousse de printemps qui a fini de pousser (UPOV TG/83, écrit pour le Poncirus et ses hybrides, appliqué aux autres agrumes par le plugin ; une seule source). B, éviter les gourmands : les épines y sont plus fréquentes et plus longues (Curk 2022, chez l'oranger) ; chez le kumquat, jusqu'à 5 cm sur les jeunes pousses contre quelques millimètres sur les rameaux à fleurs (FoC 2008). Le plugin n'utilise pas les épines. Schéma, pas à l'échelle. Dessin pour ce plugin, MIT.*
+
 ### Fleurs et fruits
 - Fleurs : observer le bouton terminal, en pleine floraison ; la fleur ouverte, le premier jour (UPOV TG/83, **une seule source**).
 - Fruits : à maturité, cueillis à l'extérieur de l'arbre, pas déformés (UPOV TG/83, **une seule source**).
@@ -103,7 +111,7 @@ Le plugin n'en tient pas compte : ses alertes suivent la rusticité de la plante
 
 ![Formes de fruit et coupe en travers](../images/id-fruits.svg)
 
-*Fig. I2 – Formes de fruit (exemples du tableau ci-dessous ; calamondin aplati : FRPS 1997, **une seule source**, voir « Groupe par groupe ») et coupe en travers pour compter les quartiers : 6 ou moins orientent vers le kumquat (FoC 2008, **une seule source**). Schéma dessiné pour ce plugin, MIT.*
+*Fig. I4 – Formes de fruit (exemples du tableau ci-dessous ; calamondin aplati : FRPS 1997, **une seule source**, voir « Groupe par groupe ») et coupe en travers pour compter les quartiers : 6 ou moins orientent vers le kumquat (FoC 2008, **une seule source**). Schéma dessiné pour ce plugin, MIT.*
 
 - Couleur du fruit : à maturité seulement. La lime de Tahiti, par exemple, reste vert vif jusqu'à maturité puis devient jaune pâle (Morton 1987, site Purdue, **une seule source**).
 
@@ -118,19 +126,19 @@ Le plugin n'en tient pas compte : ses alertes suivent la rusticité de la plante
 
 ![1 foliole, 3 folioles, ou les deux mêlées](../images/id-folioles.svg)
 
-*Fig. I3 – 1 foliole, d'ordinaire articulée sur le pétiole (la plupart des agrumes), ou 3 folioles (Poncirus, *C. trifoliata*) (FoC 2008). Les deux mêlées sur un même rameau : profil d'hybride de Poncirus, choix du plugin (FA5 « surtout trifolié », Agromillora, **une seule source**). Schéma dessiné pour ce plugin, MIT.*
+*Fig. I5 – 1 foliole, d'ordinaire articulée sur le pétiole (la plupart des agrumes), ou 3 folioles (Poncirus, *C. trifoliata*) (FoC 2008). Les deux mêlées sur un même rameau : profil d'hybride de Poncirus, choix du plugin (FA5 « surtout trifolié », Agromillora, **une seule source**). Schéma dessiné pour ce plugin, MIT.*
 
 ![Feuilles à trois folioles de Poncirus trifoliata, photo](../images/id-poncirus-photo.webp)
 
-*Fig. I4 – Poncirus (*Citrus trifoliata*) : chaque feuille a trois folioles sur un pétiole ailé. Photo Alpsdake, Yoro (Japon), CC BY-SA 4.0, via [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Citrus_trifoliata_(leaf).jpg).*
+*Fig. I6 – Poncirus (*Citrus trifoliata*) : chaque feuille a trois folioles sur un pétiole ailé. Photo Alpsdake, Yoro (Japon), CC BY-SA 4.0, via [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Citrus_trifoliata_(leaf).jpg).*
 
 ![L'aile du pétiole selon le groupe](../images/id-ailes-groupes.svg)
 
-*Fig. I5 – L'aile du pétiole selon le groupe, d'après le tableau ci-dessous et « Groupe par groupe » (FoC 2008, Curk 2022 ; mandarine, orange douce, bigaradier : FoC 2008, **une seule source**) : formes typiques, pas à l'échelle ; un cultivar peut s'en écarter. Schéma dessiné pour ce plugin, MIT.*
+*Fig. I7 – L'aile du pétiole selon le groupe, d'après le tableau ci-dessous et « Groupe par groupe » (FoC 2008, Curk 2022 ; mandarine, orange douce, bigaradier : FoC 2008, **une seule source**) : formes typiques, pas à l'échelle ; un cultivar peut s'en écarter. Schéma dessiné pour ce plugin, MIT.*
 
 ![Feuilles de combava, photo](../images/id-combava-photo.webp)
 
-*Fig. I6 – Combava (*Citrus hystrix*, papeda) : l'aile, en bas, est presque aussi grande que le limbe, la feuille paraît « double » (FoC 2008, Curk 2022). Deux feuilles : la claire, à gauche, vue de dessous ; la foncée, à droite, vue de dessus. Photo B.navez, CC BY-SA 3.0, via [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:CitrusHystrix_leaves.jpg).*
+*Fig. I8 – Combava (*Citrus hystrix*, papeda) : l'aile, en bas, est presque aussi grande que le limbe, la feuille paraît « double » (FoC 2008, Curk 2022). Deux feuilles : la claire, à gauche, vue de dessous ; la foncée, à droite, vue de dessus. Photo B.navez, CC BY-SA 3.0, via [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:CitrusHystrix_leaves.jpg).*
 
 Les groupes de la colonne du milieu sont ceux du plugin. La colonne de droite dit ce que les sources en disent.
 
@@ -193,7 +201,7 @@ Les groupes de la colonne du milieu sont ceux du plugin. La colonne de droite di
 
 ![Rejet du porte-greffe et goulot de bouteille](../images/id-rejet.svg)
 
-*Fig. I7 – Rejet à 3 folioles né sous le point de greffe, à couper (UF/IFAS HS1309) ; goulot de bouteille autour de la greffe, normal sur Poncirus avec la plupart des variétés, sans dépérissement ; ses fentes d'écorce laissent entrer les spores de Phytophthora chez une variété sensible, d'où une greffe à 40 cm au moins du sol (Curk 2022 p. 195, **une seule source**) ; ailleurs, Curk donne 25 cm au moins au-dessus du collet, jusqu'à 40 cm là où le Phytophthora est fréquent (p. 192 et 214). Rejet à ôter à la main tant qu'il est tendre, au sécateur s'il a grossi (Curk 2022, Wright et Kelly 2008 ; voir [Taille](taille.md)). Schéma dessiné pour ce plugin, MIT.*
+*Fig. I9 – Rejet à 3 folioles né sous le point de greffe, à couper (UF/IFAS HS1309) ; goulot de bouteille autour de la greffe, normal sur Poncirus avec la plupart des variétés, sans dépérissement ; ses fentes d'écorce laissent entrer les spores de Phytophthora chez une variété sensible, d'où une greffe à 40 cm au moins du sol (Curk 2022 p. 195, **une seule source**) ; ailleurs, Curk donne 25 cm au moins au-dessus du collet, jusqu'à 40 cm là où le Phytophthora est fréquent (p. 192 et 214). Rejet à ôter à la main tant qu'il est tendre, au sécateur s'il a grossi (Curk 2022, Wright et Kelly 2008 ; voir [Taille](taille.md)). Schéma dessiné pour ce plugin, MIT.*
 
 - Les pucerons installés sur les rejets du porte-greffe font craindre la tristeza (INRAE-Cirad, fiche technique porte-greffe, **une seule source**).
 - Distinguer un **Poncirus** d'un **hybride de Poncirus** par la seule feuille : le plugin reste souvent « Indécis ». Le feuillage persistant ou un mélange de 1 et 3 folioles orientent vers l'hybride (choix du plugin).
@@ -251,5 +259,6 @@ Non relus : les clés KeyBase (pages vides), la clé de Swingle et Reece 1967 (e
 - **UF/IFAS HS-123** : Jackson L. K., Fasulo T. R., *Cold Hardy Citrus*, HS-123, University of Florida IFAS, 1994 (même organisme que HS982).
 - **UF/IFAS HS982** : Ferguson J. J., Chaparro J., *Dwarfing and Freeze Hardiness Potential of Trifoliate Orange Rootstocks*, HS982, University of Florida IFAS, 2004.
 - **UF/IFAS HS1309** : Albrecht U., Zekri M., Williamson J., *Citrus Propagation*, HS1309, University of Florida IFAS, 2017, révisé en 2021 et 2024 (même organisme que HS982).
+- **Yelenosky 1981** : Yelenosky G. et al., *Proceedings of the Florida State Horticultural Society* 94:46 (feuilles de 'Valencia' endurcies au gel de janvier 1981, en verger) ; citée pour la planche, non relue ici.
 - **UPOV TG/83** : UPOV, *Citrus L. – Group 5, Trifoliate Orange*, TG/83/4 Rev. Corr., 2003-2020 ; repris par le CPVO, CPVO-TP/083/1, 2004.
 - **Wikipedia** : article « Poncirus » (encyclopédie collaborative, à prendre comme un résumé).
